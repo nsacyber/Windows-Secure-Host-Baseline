@@ -13,15 +13,18 @@ Those Group Policy template files need to be copied to specific a location on th
 
 ### Updating the Chrome Group Policy templates for a domain 
 
-If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **chrome.admx** file to ** \\_Fully Qualified Domain Name_\SYSVOL\Fully Qualified Domain Name_\Policies\PolicyDefinitions\ ** and copy the **chrome.adml** file to ** \\_Fully Qualified Domain Name_\SYSVOL\Fully Qualified Domain Name_\Policies\PolicyDefinitions\en-us\ **
+If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **chrome.admx** file to **\\_Fully Qualified Domain Name_\SYSVOL\_Fully Qualified Domain Name_\Policies\PolicyDefinitions** and copy the **chrome.adml** file to **\\_Fully Qualified Domain Name_\SYSVOL\_Fully Qualified Domain Name_\Policies\PolicyDefinitions\en-us**
 
 
-If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\** folder on the domain controller.
+If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us** folder on the domain controller.
 
 ## Updating the Chrome Group Policy templates for a standalone system 
 
-**%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\** folder on the domain controller.
+**%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us** folder on the domain controller.
 
 
 # Google Update
 Chrome uses Google Update to update to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm
+
+# Guidance
+IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov:8443/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm).
