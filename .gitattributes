@@ -1,0 +1,2 @@
+# make sure git does not change line endings in certificate files
+*.cer binary
