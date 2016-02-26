@@ -17,6 +17,7 @@ This repository hosts Group Policy Objects, configuration files, and scripts in 
 * The [BitLocker folder](./BitLocker/) contains BitLocker [Computer](./BitLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [EMET folder](./EMET/) contains EMET 5.5 [Computer](./EMET/Group Policy Objects/Computer/) policy for any version of Windows.
 * The [Internet Explorer folder](./Internet Explorer/) contains Internet Explorer 11 [Computer](./Internet Explorer/Group Policy Objects/Computer/) and [User](./Internet Explorer/Group Policy Objects/User/) policies for the latest version of Windows 10.
+* The [Office folder](./Office) contains Office 2013 [Group Policy Object](./Office/Group Policy Objects/).
 * The [Chrome folder](./Chrome/) contains Chrome browser [Computer](./Chrome/Group Policy Objects/Computer/) policy for the latest version of Chrome.
 * The [Adobe Reader folder](./Adobe Reader/) contains Adobe Reader DC [Computer](./Adobe Reader/Group Policy Objects/Computer/) and [User](./Adobe Reader/Group Policy Objects/User/) policies for the latest version of Adobe Reader DC.
 
