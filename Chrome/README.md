@@ -20,7 +20,7 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 ## Updating the Chrome Group Policy templates for a standalone system 
 
-**%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
+**%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
 
 # Google Update
