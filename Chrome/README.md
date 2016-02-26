@@ -13,7 +13,7 @@ Those Group Policy template files need to be copied to specific a location on th
 
 ### Updating the Chrome Group Policy templates for a domain 
 
-If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **chrome.admx** file to **\\\_Fully Qualified Domain Name_\SYSVOL\\_Fully Qualified Domain Name_\Policies\PolicyDefinitions** and copy the **chrome.adml** file to **\\_Fully Qualified Domain Name_\SYSVOL\_Fully Qualified Domain Name_\Policies\PolicyDefinitions\en-us**
+If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **chrome.admx** file to **\\\\_Fully Qualified Domain Name_\SYSVOL\\_Fully Qualified Domain Name_\Policies\PolicyDefinitions** and copy the **chrome.adml** file to **\\_Fully Qualified Domain Name_\SYSVOL\_Fully Qualified Domain Name_\Policies\PolicyDefinitions\en-us**
 
 
 If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions**, typically **C:\Windows\PolicyDefinitions**, and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us** folder on the domain controller.
