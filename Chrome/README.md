@@ -27,7 +27,12 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 Chrome uses Google Update to update to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm
 
 # Acquire Googe Chrome
-[Google Chrome Download](https://www.google.com/work/chrome/browser/)
+Download the enterprise version of Google Chrome:
+* [X86](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
+* [X64](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi)
+
+
+The version number of Chrome the download represents is available at http://omahaproxy.appspot.com/win
 
 # Guidance
 IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov:8443/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm).
