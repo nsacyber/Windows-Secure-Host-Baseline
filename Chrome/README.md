@@ -9,7 +9,16 @@ The latest version of the Group Policy template files can be downloaded from htt
 * \windows\admx\en-us\chrome.adml
 
 
-Those Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
+Unlike Windows Group Policy templates, the Chrome Group Policy templates change fairly often. Major Chrome releases may have new policies added or current policies removed due to being deprecated. Administrators should compare the policy templates for the current version of Chrome they are using against the newly downloaded policy templates and note any additions or removals. This can be achieved by using a file comparison tool to review the changes between the two versions of the templates.
+
+
+Administrators can also identify deprecated policies in Chrome by installing the new version of Chrome but not immediately updating the policy templates used in their Chrome GPO to the latest policy templates. Then administrators can check the Chrome policies tab for deprecated policies by typing **chrome://policy** in the URL bar and looking for the text **This policy has been deprecated** under the **Status** column. This notice is displayed since Chrome still recognizes the registry data associated with deprecated policies for approximately 4 major releases of Chrome before it is completely removed. Once the policy has been completely removed from Chrome the Status column will display a message of **Unknown policy**.
+
+
+Before administrators update the Chrome GPO with the latest policy template they should first modify any deprecated policies currently configured in their Chrome GPO. Use the Group Policy Management Editor to set all the deprecated policies to **Not Configured**. The registry data for the deprecated policies will be removed from systems once Group Policy updates have been applied. If this procedure isn’t used, then registry data for the deprecated policies will remain indefinitely and **Unknown policy** will always be displayed for the policy. Once Group Policy updates have been applied to all systems, then administrators should update their Chrome GPO to use the latest Chrome Group Policy templates and configure any newly added policies. 
+
+
+The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
 
 ### Updating the Chrome Group Policy templates for a domain 
 
@@ -18,16 +27,16 @@ If the domain administrators have configured a [Group Policy Central Store](http
 
 If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
-## Updating the Chrome Group Policy templates for a standalone system 
+### Updating the Chrome Group Policy templates for a standalone system 
 
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
 
 # Google Update
-Chrome uses Google Update to update to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm
+Chrome uses Google Update to update Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm
 
-# Acquire Googe Chrome
-Download the enterprise version of Google Chrome:
+# Acquiring Googe Chrome
+Download the latest enterprise/business version of Google Chrome:
 * [X86](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
 * [X64](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi)
 
@@ -35,4 +44,4 @@ Download the enterprise version of Google Chrome:
 The version number of Chrome the download represents is available at http://omahaproxy.appspot.com/win
 
 # Guidance
-IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov:8443/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm).
+IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm).
