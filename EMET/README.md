@@ -52,7 +52,7 @@ In EMET 5.5 the Application Configuration policy setting can be used to selectiv
 1. Run **gpupdate /force** from the command line on a test system
 
 
-The above example overrides Internet Explorer's default Attack Sufrace Reduction (ASR) moduled list configuration of _npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll_ to add the ability to block Flash from loading. The asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
+The above example overrides Internet Explorer's default Attack Surface Reduction (ASR) moduled list configuration of **npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll** to add the ability to block Flash from loading. The asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
 * 0 = Local Zone
 * 1 = Intranet Zone
 * 2 = Trusted Zone
