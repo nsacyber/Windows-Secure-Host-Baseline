@@ -45,8 +45,8 @@ In EMET 5.5 the Application Configuration policy setting can be used to selectiv
 1. Double click **Application Configuration**
 1. Select the **Enabled** radio button
 1. Click the **Show** button
-1. For **Value name** enter _*\iexplore.exe_
-1. For **Value** enter _+ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx asr_zones:1;2_
+1. For **Value name** enter ***\iexplore.exe**
+1. For **Value** enter **+ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx asr_zones:1;2**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line on a test system
@@ -63,18 +63,18 @@ The above example overrides Internet Explorer's default Attack Sufrace Reduction
 The **asr_zones:1;2** option with those specific numbers means "Exempt the Intranet Zone and Trusted Zone from ASR protections".
 
 
-Changing an application's Export Address Table Access Filtering Plus (EAF+) mitigation is similar to changing ASR. For **Value** enter _+EAF+ eaf_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx_ or whatever value you wish to change the configuration to.
+Changing an application's Export Address Table Access Filtering Plus (EAF+) mitigation is similar to changing ASR. For **Value** enter _+EAF+ eaf_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx** or whatever value you wish to change the configuration to.
 
 
-Other examples of how to configure the Application Configuration policy can be taken from the registry path under _HKLM\\Software\\Policies\\Microsoft\\Defaults\\_. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
+Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\_. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
 
 ### Overriding a specific application mitigation
 
-1. Computer Configuration > Administrative Templates > Windows Components > EMET
+1. **Computer Configuration** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
 1. Select the **Enabled** radio button
 1. Click the **Show** button
-1. For **Value name** enter _*\iexplore.exe_
+1. For **Value name** enter ***\iexplore.exe**
 1. For **Value** enter **-EAF -EAF+**
 1. Click **OK**
 1. Click **OK**
