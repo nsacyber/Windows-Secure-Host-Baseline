@@ -3,9 +3,9 @@
 
 
 EMET 5.5 added official support for Windows 10. Other significant changes of interest in EMET 5.5 are:
-# Full support for configuring all EMET features through Group Policy.
-# Changing the system DEP setting through Group Policy no longer causes a BitLocker key recovery prompt since the DEP setting is no longer changed in that case.
-# The ability to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings.
+1. Full support for configuring all EMET features through Group Policy.
+1. Changing the system DEP setting through Group Policy no longer causes a BitLocker key recovery prompt since the DEP setting is no longer changed in that case.
+1. The ability to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings.
 
 Note that EMET 5.5 supports ends on [January 27, 2017](https://support.microsoft.com/en-us/kb/2458544).
 
@@ -42,14 +42,14 @@ In EMET 5.5 the Application Configuration policy setting can be used to selectiv
 
 ### Overriding an application's ASR or EAF+ configuration
 
-# Double click **Application Configuration**
-# Select the **Enabled** radio button
-# Click the **Show** button
-# For **Value name** enter _*\iexplore.exe_
-# For **Value** enter _+ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx asr_zones:1;2_
-# Click **OK**
-# Click **OK**
-# Run **gpupdate /force** from the command line on a test system
+1. Double click **Application Configuration**
+1. Select the **Enabled** radio button
+1. Click the **Show** button
+1. For **Value name** enter _*\iexplore.exe_
+1. For **Value** enter _+ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx asr_zones:1;2_
+1. Click **OK**
+1. Click **OK**
+1. Run **gpupdate /force** from the command line on a test system
 
 
 The above example overrides Internet Explorer's default Attack Sufrace Reduction (ASR) moduled list configuration of _npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll_ to add the ability to block Flash from loading. The asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
@@ -70,15 +70,15 @@ Other examples of how to configure the Application Configuration policy can be t
 
 ### Overriding a specific application mitigation
 
-# Computer Configuration > Administrative Templates > Windows Components > EMET
-# Double click **Application Configuration**
-# Select the **Enabled** radio button
-# Click the **Show** button
-# For **Value name** enter _*\iexplore.exe_
-# For **Value** enter **-EAF -EAF+**
-# Click **OK**
-# Click **OK**
-# Run **gpupdate /force** from the command line on a test system
+1. Computer Configuration > Administrative Templates > Windows Components > EMET
+1. Double click **Application Configuration**
+1. Select the **Enabled** radio button
+1. Click the **Show** button
+1. For **Value name** enter _*\iexplore.exe_
+1. For **Value** enter **-EAF -EAF+**
+1. Click **OK**
+1. Click **OK**
+1. Run **gpupdate /force** from the command line on a test system
 
 
 The above example disables Export Address Table Access Filtering (EAF) and Export Address Table Access Filtering Plus (EAF+) for the application.

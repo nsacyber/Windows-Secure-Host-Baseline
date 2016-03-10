@@ -1,2 +1,6 @@
 # make sure git does not change line endings in certificate files
 *.cer binary
+
+# treat Group Policy templates as text so they can be diffed
+*.adml text
+*.admx text
