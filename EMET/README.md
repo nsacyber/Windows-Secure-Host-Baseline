@@ -45,8 +45,8 @@ In EMET 5.5 the Application Configuration policy setting can be used to selectiv
 1. Double click **Application Configuration**
 1. Select the **Enabled** radio button
 1. Click the **Show** button
-1. For **Value name** enter ***\iexplore.exe**
-1. For **Value** enter **+ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx asr_zones:1;2**
+1. For **Value name** enter **\*\\iexplore.exe**
+1. For **Value** enter **+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx asr_zones:1;2**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line on a test system
@@ -63,10 +63,10 @@ The above example overrides Internet Explorer's default Attack Sufrace Reduction
 The **asr_zones:1;2** option with those specific numbers means "Exempt the Intranet Zone and Trusted Zone from ASR protections".
 
 
-Changing an application's Export Address Table Access Filtering Plus (EAF+) mitigation is similar to changing ASR. For **Value** enter _+EAF+ eaf_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash*.ocx** or whatever value you wish to change the configuration to.
+Changing an application's Export Address Table Access Filtering Plus (EAF+) mitigation is similar to changing ASR. For **Value** enter **+EAF+ eaf_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx** or whatever value you wish to change the configuration to.
 
 
-Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\_. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
+Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
 
 ### Overriding a specific application mitigation
 
@@ -74,7 +74,7 @@ Other examples of how to configure the Application Configuration policy can be t
 1. Double click **Application Configuration**
 1. Select the **Enabled** radio button
 1. Click the **Show** button
-1. For **Value name** enter ***\iexplore.exe**
+1. For **Value name** enter **\*\\iexplore.exe**
 1. For **Value** enter **-EAF -EAF+**
 1. Click **OK**
 1. Click **OK**
@@ -84,7 +84,7 @@ Other examples of how to configure the Application Configuration policy can be t
 The above example disables Export Address Table Access Filtering (EAF) and Export Address Table Access Filtering Plus (EAF+) for the application.
 
 
-Other examples of how to configure the Application Configuration policy can be taken from the registry path under _HKLM\\Software\\Policies\\Microsoft\\Defaults\\_. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
+Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
 
 ## On EMET Bypasses
 Over the years there have been techniques published for bypassing EMET. Sometimes a future version of EMET fixes the bypass technique and sometimes it does not. As with any security software, a dedicated and skilled attacker will find a way to bypass it and EMET is no different. The fact that a bypass technique exists for EMET is not an excuse to uninstall EMET from a system. If that was the case, then no one would install anti-virus software or use firewalls since those are bypassed by attackers every day. EMET does not introduce vulnerabilities into a system and EMET bypass techniques are not vulnerabilities since they rely on gaining successful code execution through another vulnerability. EMET has a history of stopping 0-day exploits and a list of example CVEs that EMET has blocked exploits for are listed [here](https://support.microsoft.com/en-us/kb/2909257) under the  **What are the exploits for which CVEs have been blocked by EMET?** heading.
