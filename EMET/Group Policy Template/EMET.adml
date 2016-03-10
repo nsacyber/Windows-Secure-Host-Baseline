@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0"
+                           xmlns="http://www.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>EMET Policy Settings</displayName>
+  <description>localizable resource strings used in EMET policy settings</description>
+  <resources>
+    <stringTable>
+      <string id="EMET">EMET</string>
+      <string id="EMET_HELP">Enhanced Mitigation Experience Toolkit</string>
+      <string id="EMET_DEP">System DEP</string>
+      <string id="EMET_DEP_HELP">System-wide Data Execution Prevention setting</string>
+      <string id="EMET_ASLR">System ASLR</string>
+      <string id="EMET_ASLR_HELP">System-wide Address Space Layout Randomization setting</string>
+      <string id="EMET_SEHOP">System SEHOP</string>
+      <string id="EMET_SEHOP_HELP">System-wide Structured Exception Handler Overwrite Protection setting</string>
+      <string id="EMET_PINNING">System CertPinning</string>
+      <string id="EMET_PINNING_HELP">System-wide Certificate Trust (Pinning) setting</string>
+	  <!-- string id="EMET_FONTS">System UntrustedFonts</string -->
+      <!-- string id="EMET_FONTS_HELP">System-wide Blocking Untrusted Fonts setting</string -->
+      <string id="EMET_REPORTING">Reporting</string>
+      <string id="EMET_REPORTING_HELP">Configure reporting (Windows Event Log, Tray Icon, Early Warning)</string>
+      <string id="EMET_ADVANCED">Default Action and Mitigation Settings</string>
+      <string id="EMET_ADVANCED_HELP">Configure default action after detection and advanced ROP mitigation settings</string>
+      <string id="EMET_AGENT">EMET Agent Visibility</string>
+      <string id="EMET_AGENT_HELP">Configure EMET Agent visibility at startup</string>
+      <string id="EMET_TrayIconMsg">EMET Agent Custom Message</string>
+      <string id="EMET_TrayIconMsg_HELP">Configure a custom Tray Icon Message for EMET Agent to notify users</string>
+      <string id="EMET_AppSettings">Application Configuration</string>
+      <string id="EMET_AppSettings_HELP">Specify custom applications to protect with EMET, and any changes from EMET default protections to apply.
+
+In the left column, specify a path specification to the executable to protect. This can include wildcards. For example, if you enter "*\Contoso\MyApp.exe", EMET protection is applied to any executable called "MyApp.exe" in a "Contoso" directory. If you enter only "MyApp.exe", EMET protection is applied to any executable called "MyApp.exe" in any directory.
+
+In the right column, specify any changes you want to make to default EMET configuration for the program. Leave the right column empty to apply all default protections. To disable a mitigation, enter a minus sign followed by its name. To enable a mitigation, enter a plus sign followed by its name.
+
+Default mitigations you can disable are: -SEHOP -DEP -MandatoryASLR -NullPage -BottomUpASLR -HeapSpray -EAF -LoadLib -MemProt -Caller -SimExecFlow -StackPivot
+
+EAF+ and ASR are not enabled by default. Adding +EAF+ and +ASR to the configuration enables them. You can also customize mitigations by adding any of these parameters, followed by a colon, and custom parameters separated with semicolons.
+
+For example, consider this configuration specification:
+-SEHOP +EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll
+This applies all default mitigations except SEHOP, enables EAF+, and specifies two DLLs for EAF+ protection. See the documentation for more details.</string>
+      <string id="AlwaysOn">Always On</string>
+      <string id="ApplicationOptOut">Application Opt-Out</string>
+      <string id="ApplicationOptIn">Application Opt-In</string>
+      <string id="Disabled">Disabled</string>
+      <string id="Enabled">Enabled</string>
+      <string id="Audit">Audit</string>
+      <string id="StopProgram">Stop Program</string>
+      <string id="AuditOnly">Audit Only</string>
+      <string id="UserConfigured">User Configured</string>
+      <string id="SUPPORTED_ProductOnly">Client: Windows XP SP3 and later. Server: Windows Server 2003 SP1 and later.</string>
+      <string id="SUPPORTED_ProductOnly_Reporting">Client: Windows XP SP3 and later. Server: Windows Server 2003 SP1 and later. NOTE: Early Warning is not available on Windows XP and Windows Server 2003.</string>
+      <string id="SUPPORTED_Windows10">At least Windows Server Technical Preview 2 or Windows 10</string>
+      <string id="EMET_Office">Default Protections for Recommended Software</string>
+      <string id="EMET_Office_HELP">Apply recommended EMET protections to WordPad, Microsoft Office, Adobe Acrobat, Adobe Acrobat Reader, and Oracle Java</string>
+      <string id="EMET_IE">Default Protections for Internet Explorer</string>
+      <string id="EMET_IE_HELP">Apply recommended EMET protections to Internet Explorer</string>
+      <string id="EMET_MISC">Default Protections for Popular Software</string>
+      <string id="EMET_MISC_HELP">Apply recommended EMET protections to additional applications: Windows Media Player, Skype, Microsoft Lync Communicator, Windows Live Mail, Microsoft Photo Gallery, Microsoft Live Writer, Microsoft SkyDrive, Google Chrome, Google Talk, Mozilla Firefox, Mozilla Thunderbird, Adobe Photoshop, Winamp, Opera, WinRAR, Winzip, VideoLAN VLC, RealPlayer, mIRC, 7zip, Safari, QuickTime Player, iTunes, Pidgin, and Foxit Reader</string>
+      <string id="CertPinningPolicy">Certificate pinning configuration</string>
+      <string id="CertPinningPolicy_Help">Configures EMET certificate pinning. Click the "Pinned Sites" and "Pinning Rules" buttons to configure sites and rules.
+
+Pinned Sites:
+In each row, specify a site to pin in the left column, and the name of a pinning rule in the right column, with an optional + in front of it.
+Place a minus sign in front of the rule name to make the rule inactive for that site.
+Example:
+    www.microsoft.com    +VerisignRootRule1
+    tailspintoys.com     -AnyVerisignRootRule
+
+Pinning Rules:
+In each row, provide the name of a pinning rule in the left column, and rule specifications in the right column, separated by semicolons.
+Rule specifications can include:
+* One or more certificate thumbprints, separated by semicolons. (Certificate "thumbprints" are also sometimes called "fingerprints.")
+* The words BLOCK or WARN, indicating whether the rule should block access to the site on cert validation failure or just display a warning.
+* The word "expiration:" followed by the date when the rule should stop being enforced, in yyyy-mm-dd format.
+Example:
+    VerisignRootRule1    BLOCK; expiration:2017-08-31; 4EB6D578499B1CCF5F581EAD56BE3D9B6744A5E5
+    AnyVerisignRootRule  WARN; expiration:9999-12-31; 742C3192E607E424EB4549542BE1BBC53E6174E2,4EB6D578499B1CCF5F581EAD56BE3D9B6744A5E5
+</string>
+	</stringTable>
+    <presentationTable>
+      <presentation id="TrayIconMsg">
+       <textBox refId="TrayIconMsg_TextBox">
+       <label>Tray Icon Message</label>
+       <defaultValue>Custom Message</defaultValue>
+     </textBox>
+      </presentation>
+      <presentation id="ASLR_DropDownList">
+        <dropdownList refId="ASLR_DropDownList_Box" defaultItem="0">ASLR Setting:</dropdownList>
+      </presentation>
+      <presentation id="DEP_DropDownList">
+        <dropdownList refId="DEP_DropDownList_Box" defaultItem="0">DEP Setting:</dropdownList>
+      </presentation>
+      <presentation id="SEHOP_DropDownList">
+        <dropdownList refId="SEHOP_DropDownList_Box" defaultItem="0">SEHOP Setting:</dropdownList>
+      </presentation>
+      <presentation id="Pinning_DropDownList">
+        <dropdownList refId="Pinning_DropDownList_Box" defaultItem="0">CertPinning Setting:</dropdownList>
+      </presentation>
+		<!--
+      <presentation id="Fonts_DropDownList">
+        <dropdownList refId="Fonts_DropDownList_Box" defaultItem="1">UntrustedFonts Setting:</dropdownList>
+      </presentation>
+	    -->
+      <presentation id="REPORTING">
+        <dropdownList refId="EventLog_DropDownList_Box" defaultItem="2">Event Log:</dropdownList>
+        <dropdownList refId="TrayIcon_DropDownList_Box" defaultItem="2">Tray Icon:</dropdownList>
+		    <dropdownList refId="TELEMETRY_DropDownList_Box" defaultItem="2">Early Warning:</dropdownList>		
+      </presentation>
+      <presentation id="ADVANCED">
+        <dropdownList refId="DeepHooks_DropDownList_Box" defaultItem="2">Deep Hooks:</dropdownList>
+        <dropdownList refId="AntiDetours_DropDownList_Box" defaultItem="2">Anti Detours:</dropdownList>
+        <dropdownList refId="BannedFunctions_DropDownList_Box" defaultItem="2">Banned Functions:</dropdownList>
+        <dropdownList refId="ExploitAction_DropDownList_Box" defaultItem="2">Exploit Action:</dropdownList>
+      </presentation>
+      <presentation id="AGENT">
+        <dropdownList refId="Agent_DropDownList_Box" defaultItem="0">Start Agent Hidden:</dropdownList>
+      </presentation>
+      <presentation id="AppSettings_ListBox">
+        <text>Click the "Show" button to specify custom applications to protect with EMET, and any changes from EMET default protections to apply.</text>
+		<listBox refId="AppSettings_ListBox_Column">Path specifications under "Value name"; non-default settings under "Value":</listBox>
+		  <text>Path specification can include wildcards. Examples:</text>
+		  <text>*\Contoso\MyApp.exe  --> protection applied to any MyApp.exe in a "Contoso" directory.</text>
+		  <text>*\MyApp.exe, or MyApp.exe  --> protection applied to any MyApp.exe in any directory.</text>
+        <text>Leave the "Value" column empty for default EMET protections.
+Disable default mitigations with "-" followed by mitigation name.
+Enable non-default mitigations with a "+".
+Specify parameters with parameter name followed by colon and semicolon-separated values.
+This example applies all default mitigations except SEHOP, enables EAF+, and specifies two DLLs for EAF+ protection:</text>
+<text>-SEHOP +EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll</text>
+      </presentation>
+      <presentation id="Office_Text">
+        <text>Included products and mitigations:</text>
+        <text>- WordPad - all default mitigations</text>
+        <text>- Microsoft Office - all default mitigations, and ASR blocking flash*.ocx in Word, Excel, and PowerPoint</text>
+        <text>- Adobe Acrobat - all default mitigations, and EAF+</text>
+        <text>- Adobe Acrobat Reader - all default mitigations, and EAF+</text>
+        <text>- Oracle Java - all default mitigations except HeapSpray</text>
+      </presentation>
+      <presentation id="IE_Text">
+        <text>Included products and mitigations:</text>
+        <text>- Microsoft Internet Explorer - all default mitigations and EAF+, and ASR blocking numerous risky modules except in the Intranet and Trusted Sites zones</text>
+      </presentation>
+      <presentation id="Misc_Text">
+        <text>Included products and mitigations:</text>
+        <text>- Windows Media Player - all default mitigations except MandatoryASLR and EAF</text>
+        <text>- Skype - all default mitigations except EAF</text>
+        <text>- Microsoft Lync Communicator - all default mitigations</text>
+        <text>- Windows Live Mail - all default mitigations</text>
+        <text>- Microsoft Photo Gallery - all default mitigations</text>
+        <text>- Microsoft Live Writer - all default mitigations</text>
+        <text>- Microsoft SkyDrive - all default mitigations</text>
+        <text>- Google Chrome - all default mitigations, and EAF+</text>
+        <text>- Google Talk - all default mitigations except DEP</text>
+        <text>- Mozilla Firefox - all default mitigations, and EAF+</text>
+        <text>- Mozilla Thunderbird - all default mitigations</text>
+        <text>- Adobe Photoshop - all default mitigations</text>
+        <text>- Winamp - all default mitigations</text>
+        <text>- Opera - all default mitigations</text>
+        <text>- WinRAR - all default mitigations</text>
+        <text>- Winzip - all default mitigations</text>
+        <text>- VideoLAN VLC - all default mitigations</text>
+        <text>- RealPlayer - all default mitigations</text>
+        <text>- mIRC - all default mitigations</text>
+        <text>- 7zip - all default mitigations except EAF</text>
+        <text>- Safari - all default mitigations</text>
+        <text>- QuickTime Player - all default mitigations</text>
+        <text>- iTunes - all default mitigations except Caller</text>
+        <text>- Pidgin - all default mitigations</text>
+        <text>- Foxit Reader - all default mitigations</text>
+      </presentation>
+		<presentation id="CertPinningPolicy">
+			<text>Configures EMET certificate pinning. Click the "Pinned Sites" and "Pinning Rules" buttons to configure sites and rules.</text>
+			<listBox refId="EMET_CertPinning_Sites">Pinned Sites -- enter URLs and rule names:</listBox>
+			<text>In each row, specify a site to pin in the left column, and the name of a pinning rule in the right column.</text>
+			<listBox refId="EMET_CertPinning_Rules">Pinning Rules -- enter rule names and certificate thumbprints:</listBox>
+			<text>In each row, provide the name of a pinning rule in the left column, and one or more certificate thumbprints in the right column, separated by commas. (Certificate "thumbprints" are also sometimes called "fingerprints.")</text>
+		</presentation>
+	</presentationTable>
+  </resources>
+</policyDefinitionResources>

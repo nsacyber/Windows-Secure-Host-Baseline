@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0"
+                   xmlns="http://www.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="EMET" namespace="Microsoft.Policies.EMET" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <supersededAdm fileName="EMET.adm" />
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_ProductOnly" displayName="$(string.SUPPORTED_ProductOnly)"/>
+      <definition name="SUPPORTED_ProductOnly_Reporting" displayName="$(string.SUPPORTED_ProductOnly_Reporting)"/>
+      <definition name="SUPPORTED_Windows10" displayName="$(string.SUPPORTED_Windows10)"/>
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="EMET" displayName="$(string.EMET)" explainText="$(string.EMET_HELP)">
+       <parentCategory ref="windows:WindowsComponents" />
+       <seeAlso>policy</seeAlso>
+       <keywords>EMET</keywords>
+    </category>
+  </categories>
+  <policies>
+    <policy name="ASLR" class="Machine" displayName="$(string.EMET_ASLR)" explainText="$(string.EMET_ASLR_HELP)" presentation="$(presentation.ASLR_DropDownList)"
+            key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="ASLR_DropDownList_Box" valueName="ASLR" required="true">
+          <item displayName="$(string.ApplicationOptIn)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DEP" class="Machine" displayName="$(string.EMET_DEP)" explainText="$(string.EMET_DEP_HELP)" presentation="$(presentation.DEP_DropDownList)"
+            key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="DEP_DropDownList_Box" valueName="DEP" required="true">
+          <item displayName="$(string.AlwaysOn)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ApplicationOptOut)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ApplicationOptIn)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="SEHOP" class="Machine" displayName="$(string.EMET_SEHOP)" explainText="$(string.EMET_SEHOP_HELP)" presentation="$(presentation.SEHOP_DropDownList)"
+            key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="SEHOP_DropDownList_Box" valueName="SEHOP" required="true">
+          <item displayName="$(string.ApplicationOptOut)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ApplicationOptIn)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+	  <policy
+		  name="CertPinningPolicy"
+		  class="Machine"
+		  displayName="$(string.CertPinningPolicy)"
+		  explainText="$(string.CertPinningPolicy_Help)"
+		  presentation="$(presentation.CertPinningPolicy)"
+		  key="Software\Policies\Microsoft\EMET\CertPinning">
+		  <parentCategory ref="EMET" />
+		  <supportedOn ref="SUPPORTED_ProductOnly" />
+		  <elements>
+			  <list id="EMET_CertPinning_Sites" key="Software\Policies\Microsoft\EMET\CertPinning\Sites" explicitValue="true" />
+			  <list id="EMET_CertPinning_Rules" key="Software\Policies\Microsoft\EMET\CertPinning\Rules" explicitValue="true" />
+		  </elements>
+	  </policy>
+
+	  <!--
+	  <policy name="CertPinning" class="Machine" displayName="$(string.EMET_PINNING)" explainText="$(string.EMET_PINNING_HELP)" presentation="$(presentation.Pinning_DropDownList)"
+            key="Software\Policies\Microsoft\EMET\SysSettings" valueName="Pinning">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="Pinning_DropDownList_Box" valueName="Pinning" required="true">
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          < !- - TODO: uncomment once EMET code supports audit of certificate pinning
+          <item displayName="$(string.Audit)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          - - >
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+	  -->
+	  
+	<!-- There is already a GPO to configure untrusted fonts on Win10+.
+    <policy name="UntrustedFonts" class="Machine" displayName="$(string.EMET_FONTS)" explainText="$(string.EMET_FONTS_HELP)" presentation="$(presentation.Fonts_DropDownList)"
+            key="Software\Policies\Microsoft\EMET\SysSettings" valueName="Fonts">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_Windows10" />
+      <elements>
+        <enum id="Fonts_DropDownList_Box" valueName="Fonts" required="true">
+          <item displayName="$(string.AlwaysOn)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Audit)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+	-->
+    <policy name="Reporting" class="Machine" displayName="$(string.EMET_REPORTING)" explainText="$(string.EMET_REPORTING_HELP)" presentation="$(presentation.REPORTING)" key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly_Reporting" />
+      <elements>
+        <enum id="EventLog_DropDownList_Box" valueName="EventLog" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="TrayIcon_DropDownList_Box" valueName="TrayIcon" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="TELEMETRY_DropDownList_Box" valueName="TELEMETRY" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AdvancedConfiguration" class="Machine" displayName="$(string.EMET_ADVANCED)" explainText="$(string.EMET_ADVANCED_HELP)" presentation="$(presentation.ADVANCED)" key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="DeepHooks_DropDownList_Box" valueName="DeepHooks" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="AntiDetours_DropDownList_Box" valueName="AntiDetours" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BannedFunctions_DropDownList_Box" valueName="BannedFunctions" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ExploitAction_DropDownList_Box" valueName="ExploitAction" required="true">
+          <item displayName="$(string.AuditOnly)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.StopProgram)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserConfigured)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="Agent" class="Machine" displayName="$(string.EMET_AGENT)" explainText="$(string.EMET_AGENT_HELP)" presentation="$(presentation.AGENT)" key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <enum id="Agent_DropDownList_Box" valueName="AgentStartHidden" required="true">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Enabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TrayIconMessage" class="Machine" displayName="$(string.EMET_TrayIconMsg)" explainText="$(string.EMET_TrayIconMsg_HELP)" presentation="$(presentation.TrayIconMsg)" key="Software\Policies\Microsoft\EMET\SysSettings">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <text id="TrayIconMsg_TextBox" valueName="TrayIconMsg" />
+      </elements>
+    </policy>
+
+    <policy name="Office" class="Both" displayName="$(string.EMET_Office)" explainText="$(string.EMET_Office_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Office_Text)">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <enabledList>
+	   	<!-- Wordpad -->
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows NT\Accessories\wordpad.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+
+        <!-- Office Suites 2003,2007,2010,2013 and Office365 -->
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\OUTLOOK.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\WINWORD.EXE">
+          <value>
+            <string>+ASR asr_modules:flash*.ocx</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\EXCEL.EXE">
+          <value>
+            <string>+ASR asr_modules:flash*.ocx</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\POWERPNT.EXE">
+          <value>
+            <string>+ASR asr_modules:flash*.ocx</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\MSACCESS.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\MSPUB.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\INFOPATH.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\VISIO.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\VPREVIEW.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\LYNC.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\PPTVIEW.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\OIS.EXE">
+          <value>
+            <string></string>
+          </value>
+        </item>
+
+        <!-- Adobe Acrobat and Acrobat Reader 8,9,10,11 -->
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\*\Reader\AcroRd32.exe">
+          <value>
+            <string>+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\Acrobat*\Acrobat\Acrobat.exe">
+          <value>
+            <string>+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api</string>
+          </value>
+        </item>
+
+        <!-- Java -->
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\java.exe">
+          <value>
+            <string>-HeapSpray</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\javaw.exe">
+          <value>
+            <string>-HeapSpray</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\javaws.exe">
+          <value>
+            <string>-HeapSpray</string>
+          </value>
+        </item>
+      </enabledList>
+	  <disabledList>
+		  <!-- Wordpad -->
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows NT\Accessories\wordpad.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+
+		  <!-- Office Suites 2003,2007,2010,2013 and Office365 -->
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\OUTLOOK.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\WINWORD.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\EXCEL.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\POWERPNT.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\MSACCESS.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\MSPUB.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\INFOPATH.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\VISIO.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\VPREVIEW.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\LYNC.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\PPTVIEW.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\OFFICE1*\OIS.EXE">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+
+		  <!-- Adobe Acrobat and Acrobat Reader 8,9,10,11 -->
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\*\Reader\AcroRd32.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\Acrobat*\Acrobat\Acrobat.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+
+		  <!-- Java 6,7,8 -->
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\java.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\javaw.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Java\jre*\bin\javaws.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+	  </disabledList>
+    </policy>
+
+    <policy name="IE" class="Both" displayName="$(string.EMET_IE)" explainText="$(string.EMET_IE_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.IE_Text)">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+       <enabledList>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Internet Explorer\iexplore.exe">
+          <value>
+            <string>+EAF+ eaf_modules:mshtml.dll;flash*.ocx;jscript*.dll;vbscript.dll;vgx.dll +ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll asr_zones:1;2</string>
+          </value>
+        </item>
+       </enabledList>
+       <disabledList>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Internet Explorer\iexplore.exe">
+          <value>
+            <delete />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+
+    <policy name="Other" class="Both" displayName="$(string.EMET_MISC)" explainText="$(string.EMET_MISC_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Misc_Text)">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <enabledList>
+	    <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Media Player\wmplayer.exe">
+          <value>
+            <string>-EAF -MandatoryASLR</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Skype\Phone\Skype.exe">
+          <value>
+            <string>-EAF</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Microsoft Lync\communicator.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Mail\wlmail.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Photo Gallery\WLXPhotoGallery.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Writer\WindowsLiveWriter.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\SkyDrive\SkyDrive.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Google\Chrome\Application\chrome.exe">
+          <value>
+            <string>+EAF+ eaf_modules:chrome_child.dll</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Google\Google Talk\googletalk.exe">
+          <value>
+            <string>-DEP</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Firefox\firefox.exe">
+          <value>
+            <string>+EAF+ eaf_modules:mozjs.dll;xul.dll</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Firefox\plugin-container.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Thunderbird\thunderbird.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Thunderbird\plugin-container.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\Adobe Photoshop CS*\Photoshop.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Winamp\winamp.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Opera\opera.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Opera\*\opera.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\winrar.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\rar.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\unrar.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinZip\winzip32.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinZip\winzip64.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\VideoLAN\VLC\vlc.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Real\RealPlayer\realconverter.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Real\RealPlayer\realplay.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\mIRC\mirc.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7z.exe">
+          <value>
+            <string>-EAF</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7zG.exe">
+          <value>
+            <string>-EAF</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7zFM.exe">
+          <value>
+            <string>-EAF</string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Safari\Safari.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\QuickTime\QuickTimePlayer.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\iTunes\iTunes.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Pidgin\pidgin.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Foxit Reader\Foxit Reader.exe">
+          <value>
+            <string></string>
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Media Player\wmplayer.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Skype\Phone\Skype.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Microsoft Lync\communicator.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Mail\wlmail.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Photo Gallery\WLXPhotoGallery.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Windows Live\Writer\WindowsLiveWriter.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\SkyDrive\SkyDrive.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Google\Chrome\Application\chrome.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Google\Google Talk\googletalk.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Firefox\firefox.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Firefox\plugin-container.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Thunderbird\thunderbird.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Mozilla Thunderbird\plugin-container.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Adobe\Adobe Photoshop CS*\Photoshop.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Winamp\winamp.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Opera\opera.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Opera\*\opera.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\winrar.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\rar.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinRAR\unrar.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinZip\winzip32.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\WinZip\winzip64.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\VideoLAN\VLC\vlc.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Real\RealPlayer\realconverter.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Real\RealPlayer\realplay.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\mIRC\mirc.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7z.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7zG.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\7-Zip\7zFM.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Safari\Safari.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\QuickTime\QuickTimePlayer.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\iTunes\iTunes.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Pidgin\pidgin.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+		  <item key="Software\Policies\Microsoft\EMET\Defaults" valueName="*\Foxit Reader\Foxit Reader.exe">
+			  <value>
+				  <delete />
+			  </value>
+		  </item>
+	  </disabledList>
+    </policy>
+
+    <policy name="AppSettings" class="Machine" displayName="$(string.EMET_AppSettings)" explainText="$(string.EMET_AppSettings_HELP)" presentation="$(presentation.AppSettings_ListBox)"
+            key="Software\Policies\Microsoft\EMET">
+      <parentCategory ref="EMET" />
+      <supportedOn ref="SUPPORTED_ProductOnly" />
+      <elements>
+        <list id="AppSettings_ListBox_Column" key="Software\Policies\Microsoft\EMET\AppSettings" explicitValue="true">
+        </list>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>
