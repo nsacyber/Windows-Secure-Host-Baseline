@@ -1,6 +1,6 @@
 # Chrome
 
-[Group Policy Object](./Chrome/Group Policy Objects/Computer/) and [Group Policy template files](./Chrome/Group Policy Template/) for the Chrome browser. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are provided as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release.
+[Group Policy Object](./Chrome/Group Policy Objects/Computer/) and [Group Policy template files](./Chrome/Group Policy Template/) for the Chrome browser are included in the SHB. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are provided as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release. The templates currently included in the SHB correspond to version Chrome 49.0.2623.87 [released on March 8, 2016](http://googlechromereleases.blogspot.com/2016/03/stable-channel-update_8.html).
 
 ## Updating the Chrome Group Policy templates
 
@@ -32,8 +32,8 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **chrome.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
 
-# Google Update
-Chrome uses Google Update to update Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm
+# Google Update Group Policy template
+Chrome uses Google Update to automatically update Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes.
 
 # Acquiring Googe Chrome
 Download the latest enterprise/business version of Google Chrome:
