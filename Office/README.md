@@ -1,2 +1,2 @@
 # Office
-Group Policy Objects for [Computer](./Windows/Group Policy Objects/Computer/) and [User](./Windows/Group Policy Objects/User/) for Office 2013 are included in the SHB.
+Group Policy Objects for [Computer and User](./Group Policy Objects/) policies for Office 2013 are included in the SHB.

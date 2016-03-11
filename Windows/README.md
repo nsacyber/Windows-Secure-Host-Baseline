@@ -1,5 +1,5 @@
 # Windows 10
-Group Policy Objects for [Computer](./Windows/Group Policy Objects/Computer/) and [User](./Windows/Group Policy Objects/User/) for Windows 10 are included in the SHB.
+Group Policy Objects for [Computer](./Group Policy Objects/Computer/) and [User](./Group Policy Objects/User/) policies for Windows 10 are included in the SHB.
 
 ## Hardware and Firmware requirements for the SHB
 [Credential Guard](https://technet.microsoft.com/en-us/library/mt483740(v=vs.85).aspx) must be enabled to meet the security requirements of the SHB. While Credential Guard can be enabled in Group Policy, it does not provide any additional protection unless certain hardware and firmware requirements are met. Without meeting these requirements, Credential Guard does not take affect on a system. Credential Guard requires that: 

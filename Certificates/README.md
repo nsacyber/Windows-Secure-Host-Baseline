@@ -1,6 +1,6 @@
 # DoD Certification Authority Certificates
 
-This folder contains certificates for the DoD [Root](./Certificates/Root/) and [Intermediate](./Certificates/Intermediate/) certification authorities.
+This folder contains certificates for the DoD [Root](./Root/) and [Intermediate](./Intermediate/) certification authorities.
 
 
 Using the methods described on this page removes the need for running the [InstallRoot](http://iase.disa.mil/pki-pke/Pages/tools.aspx) tool (available under the **Trust Store** tab at that link) that [installs DoD root certificates](http://iase.disa.mil/pki-pke/Documents/InstallRoot%204_1%20NIPRNET_User_Guide_02132015.pdf) on systems.
