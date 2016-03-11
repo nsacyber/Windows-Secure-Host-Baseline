@@ -1,5 +1,5 @@
 # EMET 5.5
-[Group Policy Object](./EMET/Group Policy Objects/Computer/) and [Group Policy template files](./EMET/Group Policy Template/) for EMET 5.5 are included in the SHB. [EMET](https://technet.microsoft.com/en-us/security/jj653751) is one way of enabling anti-exploitation features in Windows. [Enabling anti-exploitation features](https://www.iad.gov/iad/library/ia-guidance/security-tips/anti-exploitation-features.cfm) is on of [IAD's Top 10 mitigation strategies](https://www.iad.gov/iad/library/ia-guidance/iads-top-10-information-assurance-mitigation-strategies.cfm).
+[Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Template/) for EMET 5.5 are included in the SHB. [EMET](https://technet.microsoft.com/en-us/security/jj653751) is one way of enabling anti-exploitation features in Windows. [Enabling anti-exploitation features](https://www.iad.gov/iad/library/ia-guidance/security-tips/anti-exploitation-features.cfm) is on of [IAD's Top 10 mitigation strategies](https://www.iad.gov/iad/library/ia-guidance/iads-top-10-information-assurance-mitigation-strategies.cfm).
 
 
 EMET 5.5 added official support for Windows 10. Other significant changes of interest in EMET 5.5 are:
