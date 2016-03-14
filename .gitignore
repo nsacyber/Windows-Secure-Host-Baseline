@@ -1,0 +1,4 @@
+# ignore readme files that have been converted from markdown to HTML done for release packaging
+**/README.html
+LICENSE.html
+DISCLAIMER.html

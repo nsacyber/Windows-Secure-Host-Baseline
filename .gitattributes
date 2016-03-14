@@ -4,3 +4,9 @@
 # treat Group Policy templates as text so they can be diffed
 *.adml text
 *.admx text
+*.adm text
+
+# treat other Group Policy back up files as text so they can be diffed, inf and csv might redundant
+*.cmtx text
+*.inf text
+*.csv text
