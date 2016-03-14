@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<policyComments xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/CommentDefinitions">
+  <policyNamespaces>
+    <using prefix="ns0" namespace="Microsoft.Policies.DeviceInstallation"></using>
+    <using prefix="ns1" namespace="Microsoft.Policies.PowerManagement"></using>
+    <using prefix="ns2" namespace="Microsoft.Policies.VolumeEncryption"></using>
+  </policyNamespaces>
+  <comments>
+    <admTemplate>
+      <comment policyRef="ns0:DeviceInstall_Classes_Deny" commentText="$(resource.ns0_DeviceInstall_Classes_Deny)"></comment>
+      <comment policyRef="ns0:DeviceInstall_IDs_Deny" commentText="$(resource.ns0_DeviceInstall_IDs_Deny)"></comment>
+      <comment policyRef="ns1:AllowStandbyStatesAC_2" commentText="$(resource.ns1_AllowStandbyStatesAC_2)"></comment>
+      <comment policyRef="ns1:AllowStandbyStatesDC_2" commentText="$(resource.ns1_AllowStandbyStatesDC_2)"></comment>
+    </admTemplate>
+  </comments>
+  <resources minRequiredRevision="1.0">
+    <stringTable>
+      <string id="ns0_DeviceInstall_Classes_Deny">This GUID is to block the SPB-2 device class (aka Firewire) to prevent DMA attacks on BitLocker</string>
+      <string id="ns0_DeviceInstall_IDs_Deny">This is the device ID for the Thunderbolt controller, blocked to prevent DMA attacks against BitLocker</string>
+      <string id="ns1_AllowStandbyStatesAC_2">Sleep disabled to prevent BitLocker keys from being exposed in memory</string>
+      <string id="ns1_AllowStandbyStatesDC_2">Sleep disabled to prevent BitLocker keys from being exposed in memory</string>
+    </stringTable>
+  </resources>
+</policyComments>
