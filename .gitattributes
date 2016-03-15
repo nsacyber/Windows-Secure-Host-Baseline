@@ -8,6 +8,6 @@
 
 # treat other Group Policy back up files as text so they can be diffed, inf and csv might redundant
 *.cmtx text
-*.inf text
+*.inf text diff !eol
 *.csv text
-*.xml text
+*.xml text diff
