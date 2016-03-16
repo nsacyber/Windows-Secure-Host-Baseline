@@ -2,6 +2,19 @@
 Set-StrictMode -Version 3
 
 Function Get-GPOBackupInformation() {
+    <#
+    .SYNOPSIS
+    Gets Group Policy Object backup information.
+
+    .DESCRIPTION
+    Gets Group Policy Object backup information by parsing the bkupInfo.xml file from the GPO backup folder.
+
+    .PARAMETER GPOBackupPath
+    The path of the GPO backup folder. The path should end with a GUID and a bkupInfo.xml should be inside the folder.
+
+    .EXAMPLE
+    Get-GPOBackupInformation -GPOBackupPath '.\{BD6E70EE-4F8E-4BBA-A3C3-F1B715A2A028}'
+    #>
     [CmdletBinding()] 
     [OutputType([pscustomobject])]
     Param(
@@ -28,7 +41,7 @@ Function Get-GPOBackupInformation() {
     $gpoDomain = [string]$backupInstNode.GPODomain.'#cdata-section'
     $gpoDomainGuid = [System.Guid]$backupInstNode.GPODomainGuid.'#cdata-section'
     $gpoDC = [string]$backupInstNode.GPODomainController.'#cdata-section'
-    $backupTime = [string]$backupInstNode.BackupTime.'#cdata-section' # parse to a real datetime with ParseExact
+    $backupTime = [System.DateTime]([System.DateTime]::ParseExact($gpo.BackupTime, 'yyyy-MM-ddTHH:mm:ss', [System.Globalization.CultureInfo]::CurrentCulture).ToLocalTime())
     $id = [System.Guid]$backupInstNode.ID.'#cdata-section' # the GUID that the backup folder is name is this GUID
     $comment = [string]$backupInstNode.Comment.'#cdata-section'
     $gpoDisplayName = [string]$backupInstNode.GPODisplayName.'#cdata-section'
@@ -48,6 +61,19 @@ Function Get-GPOBackupInformation() {
 }
 
 Function Update-GPOBackup() {
+    <#
+    .SYNOPSIS
+    Updates an existing Group Policy Object backup with data from a different GPO backup.
+
+    .DESCRIPTION
+    Updates an existing Group Policy Object backup with data from a different GPO backup but keeps the current GPO backup GUID (aka the ID) in the backup metadata.
+
+    .PARAMETER GPOBackupPath
+    The path of the GPO backup folder. The path should end with a GUID and a bkupInfo.xml should be inside the folder.
+
+    .EXAMPLE
+    Update-GPOBackup -CurrentGPOBackupPath '.\{BD6E70EE-4F8E-4BBA-A3C3-F1B715A2A028}' -NewGPOBackupPath '.\'
+    #>
     [CmdletBinding(SupportsShouldProcess=$True)] 
     [OutputType([void])]
     Param(
@@ -101,12 +127,9 @@ Function Update-GPOBackup() {
             Set-Content -Path $currentBackupXmlFilePath -Value $updatedXml -NoNewLine
             Write-Verbose -Message ('Replaced {0} with {1} in {2}' -f $newGuid,$currentGuid,$currentBackupXmlFilePath)
         } else {
-            Write-Verbose -Message ('Did not update {0}' -f $currentBackupXmlFilePath)
+            Write-Verbose -Message ('Did not update {0} because {1} was not found in the file' -f $currentBackupXmlFilePath,$newGuid)
         } 
     } else {
-        Write-Verbose -Message ('{0} did not need to be updated' -f $currentBackupXmlFilePath)
+        Write-Verbose -Message ('Both GPO backup IDs are the same so {0} was not updated' -f $currentBackupXmlFilePath)
     }
-}
-
-
-    
+}    
