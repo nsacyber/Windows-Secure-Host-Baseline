@@ -41,7 +41,7 @@ Function Get-GPOBackupInformation() {
     $gpoDomain = [string]$backupInstNode.GPODomain.'#cdata-section'
     $gpoDomainGuid = [System.Guid]$backupInstNode.GPODomainGuid.'#cdata-section'
     $gpoDC = [string]$backupInstNode.GPODomainController.'#cdata-section'
-    $backupTime = [System.DateTime]([System.DateTime]::ParseExact($gpo.BackupTime, 'yyyy-MM-ddTHH:mm:ss', [System.Globalization.CultureInfo]::CurrentCulture).ToLocalTime())
+    $backupTime = [System.DateTime]([System.DateTime]::ParseExact($backupInstNode.BackupTime.'#cdata-section', 'yyyy-MM-ddTHH:mm:ss', [System.Globalization.CultureInfo]::CurrentCulture).ToLocalTime())
     $id = [System.Guid]$backupInstNode.ID.'#cdata-section' # the GUID that the backup folder is name is this GUID
     $comment = [string]$backupInstNode.Comment.'#cdata-section'
     $gpoDisplayName = [string]$backupInstNode.GPODisplayName.'#cdata-section'
