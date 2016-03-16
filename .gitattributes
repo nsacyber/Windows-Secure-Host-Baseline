@@ -1,13 +1,31 @@
-# make sure git does not change line endings in certificate files
+# tell git to not change line endings. -text should also work according to https://git-scm.com/docs/gitattributes
+* -crlf
+
+# make sure git never changes line endings in certificate files by marking them as binary
 *.cer binary
 
 # treat Group Policy templates as text so they can be diffed
-*.adml text
-*.admx text
-*.adm text
+*.adml diff linguist-language=XML
+*.admx diff linguist-language=XML
+*.adm diff linguist-language=XML
 
-# treat other Group Policy back up files as text so they can be diffed, inf and csv might redundant
-*.cmtx text
-*.inf text diff !eol
-*.csv text
-*.xml text diff
+# treat Group Policy back up files as text so they can be diffed
+*.cmtx diff linguist-language=XML
+*.inf diff linguist-language=INI
+*.csv diff
+*.xml diff
+*.pol diff
+
+
+# Despite the above settings, GitHub diffs will still say "Binary file not shown." for some files because GitHub ignores this for their display of web-based diffs. 
+# git diffs will work as expected, but not GitHub web-based diffs
+# Referencess:
+# 1. http://stackoverflow.com/a/24382933
+# "GitHub doesn't use .gitattributes files for choosing which files to show in a diff"
+# 2. https://github.com/github/linguist/issues/1873#issuecomment-158671709
+# "GitHub doesn't seem to honor the diff attribute"
+
+# linguage-language is used to treat some Group Policy files as XML for repository statistics (does not affect syntax highlighting)
+# https://github.com/github/linguist/blob/master/README.md#using-gitattributes
+# https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+# https://github.com/github/linguist/blob/master/CONTRIBUTING.md
