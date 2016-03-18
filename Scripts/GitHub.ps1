@@ -137,7 +137,7 @@ Function Get-GitHubHtmlTemplate() {
         throw 'GitHub stylesheet changed so style replacement was not successful'
     }
 
-    # carry forward to substitutions
+    # carry forward two substitutions
     $template =  $htmlTemplate -f '{0}',$stylesheet,'{1}'
     return $template
 }
@@ -209,8 +209,6 @@ Function Get-GitHubHtmlFromRawMarkdown() {
     }
 }
 
-
-
 Function Convert-MarkdownToHtml() {
     <#
     .SYNOPSIS
@@ -236,9 +234,6 @@ Function Convert-MarkdownToHtml() {
         [System.IO.FileInfo[]]$Files
     )
     Begin {
-        # get API rate limit remaing count
-        # check against markdownFiles count and warn if conversion will exceed limit
-
         $limit = Get-GitHubRateLimit
         $remaining =[UInt32] $limit.Remaining
     }
@@ -259,7 +254,6 @@ Function Convert-MarkdownToHtml() {
                 if(Test-Path -Path $markdownFile -PathType Leaf) {
                     $htmlFile = $markdownFile.Replace('.md','.html')
                     $markdown = Get-Content -Path $markdownFile -Raw
-                    #markdown = $markdown.Replace('.md)','.html)')
                     $html = Get-GitHubHtmlFromRawMarkdown -Markdown $markdown -Title $_.BaseName -Template $htmlTemplate
                     $html = $html.Replace('.md">','.html">') # update links to point to the converted HTML page
                     Set-Content -Path $htmlFile -Value $html -Force
