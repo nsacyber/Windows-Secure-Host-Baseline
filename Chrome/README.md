@@ -33,15 +33,15 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 
 # Google Update Group Policy template
-Chrome uses Google Update to automatically update Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes.
+Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes.
 
 # Acquiring Googe Chrome
 Download the latest enterprise/business version of Google Chrome:
-* [X86](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
-* [X64](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi)
+* [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
+* [64-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi) (recommended)
 
 
 The version number of Chrome the download represents is available at http://omahaproxy.appspot.com/win
 
 # Guidance
-IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm).
+IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm). Google has also published a [Chrome for Work Deployment Guide](https://support.google.com/chrome/a/answer/3115278?hl=en) for Windows enterprises.
