@@ -79,7 +79,12 @@ Answer these questions per model:
 
 ### Request for Answers
 
-Both OEMs and DoD administrators are requested to provide answers for the above questions. [Submit an issue](https://github.com/iadgov/Secure-Host-Baseline/issues/new) in [this repository's issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) containing answers to the questions for a model, or submit an issue and [attach a CSV file](https://help.github.com/articles/file-attachments-on-issues-and-pull-requests/) containing answers for a model or for a number of models. Cataloging answers in [one location](./) is more efficient than having individual DoD components ask OEMs for this information. DoD administrators can also contribute by submitting answers based on their own testing.
+Both OEMs and DoD administrators are requested to provide answers for the above questions. There are answer templates available in [markdown](./Template.md), [CSV](./Template.csv), and [Excel](./Template.xlsx) formats. There are number of ways to contribute answers:
+* [Submit an issue](https://github.com/iadgov/Secure-Host-Baseline/issues/new) in [this repository's issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) that contains answers to the questions for a model or for a number of models. 
+* [Submit an issue](https://github.com/iadgov/Secure-Host-Baseline/issues/new) and [attach a file](https://help.github.com/articles/file-attachments-on-issues-and-pull-requests/) using the [CSV](./Template.csv) or [Excel](./Template.xlsx) template that contains answers for a model or for a number of models. 
+* [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) with a modification to an existing answer for an OEM or use the [Markdown template](./Template.md) to add a new OEM. See [this page](https://help.github.com/articles/using-pull-requests/) for more information on using pull requests.
+
+Cataloging answers in [one location](./) is more efficient than having individual DoD components ask OEMs for this information. DoD administrators can also contribute by submitting answers based on their own testing. 
 
 ### Answers
 
