@@ -21,7 +21,7 @@ Function Get-GPOBackupInformation() {
         [Parameter(Position=0, Mandatory=$true, HelpMessage="The path of the GPO backup folder.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
-        [ValidateScript({[System.IO.Directory]::Exists($_)})]
+        [ValidateScript({$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath([System.IO.Directory]::Exists($_))})]
         [string]$GPOBackupPath
     )
 
@@ -80,13 +80,13 @@ Function Update-GPOBackup() {
         [Parameter(Position=0, Mandatory=$true, HelpMessage="The path of the current GPO backup folder.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
-        [ValidateScript({[System.IO.Directory]::Exists($_)})]
+        [ValidateScript({$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath([System.IO.Directory]::Exists($_))})]
         [string]$CurrentGPOBackupPath,
 
         [Parameter(Position=1, Mandatory=$true, HelpMessage="The path of the new GPO backup folder.")]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
-        [ValidateScript({[System.IO.Directory]::Exists($_)})]
+        [ValidateScript({$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath([System.IO.Directory]::Exists($_))})]
         [string]$NewGPOBackupPath
     )
 
