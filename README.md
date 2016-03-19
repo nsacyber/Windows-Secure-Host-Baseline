@@ -50,7 +50,7 @@ This work was prepared by an U.S. Government employee and, therefore, is exclude
 
 Copyright and Related Rights in the Work worldwide are waived through the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) [Universal license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).
 
-## Disclaimer
+## Disclaimer of Warranty
 This Work is provided "as is." Any express or implied warranties, including but not limited to, the
 implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event
 shall the United States Government be liable for any direct, indirect, incidental, special, exemplary or
@@ -68,3 +68,6 @@ property or technical data rights.
 
 Nothing in this Work is intended to constitute an endorsement, explicit or implied, by the U.S.
 Government of any particular manufacturer's product or service.
+
+## Disclaimer of Endorsement
+Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise, in this Work does not constitute an endorsement, recommendation, or favoring by the United States Government and shall not be used for advertising or product endorsement pursposes.

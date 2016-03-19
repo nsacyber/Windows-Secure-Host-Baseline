@@ -255,7 +255,7 @@ Function Convert-MarkdownToHtml() {
                     $htmlFile = $markdownFile.Replace('.md','.html')
                     $markdown = Get-Content -Path $markdownFile -Raw
                     $html = Get-GitHubHtmlFromRawMarkdown -Markdown $markdown -Title $_.BaseName -Template $htmlTemplate
-                    $html = $html.Replace('.md">','.html">') # update links to point to the converted HTML page
+                    $html = $html.Replace('.md','.html') # update links to point to the converted HTML page
                     Set-Content -Path $htmlFile -Value $html -Force
                 }
             }

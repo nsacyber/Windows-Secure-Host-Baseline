@@ -69,16 +69,21 @@ Answer these questions per model:
 1. If the model ships with a TPM that supports the Physical Presence Interface specification, what version of the PPI specification does it implement (1.0, 1.1, 1.2)? 
 1. Has the model been tested with Credential Guard enabled? 
 1. Has the model been tested with Device Guard enabled? 
-1. Does the model require a BIOS update to fix issues that may prevent Credential Guard or Device Guard from working? If yes, then include the version information for the update. 
+1. Does the model require a firmware update to fix issues that may prevent Credential Guard or Device Guard from working? 
+1. If the model require a firmware update to fix issues with Credential Guard or Device Guard, what is the version information for the update? 
 1. Does the model support deploying firmware updates using the Windows UEFI Firmware Update Platform specification? 
 1. Does the model officially support Windows 10? 
-1. If the model does not officially support Windows 10, then is there knowledge (e.g. customer reports) of it working with Windows 10? 
-1. Has the model passed the Windows Hardware Certification Program? 
+1. If the model does not officially support Windows 10, then is there knowledge (e.g. customer reports, internal testing) of it working with Windows 10? 
+1. Has the model passed a Windows Hardware Certification Program? 
 1. If the model passed a Windows Hardware Certification Program, then which OS version of the certification program was the model tested for? 
 
 ### Request for Answers
 
 Both OEMs and DoD administrators are requested to provide answers for the above questions. [Submit an issue](https://github.com/iadgov/Secure-Host-Baseline/issues/new) in [this repository's issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) containing answers to the questions for a model, or submit an issue and [attach a CSV file](https://help.github.com/articles/file-attachments-on-issues-and-pull-requests/) containing answers for a model or for a number of models. Cataloging answers in [one location](./) is more efficient than having individual DoD components ask OEMs for this information. DoD administrators can also contribute by submitting answers based on their own testing.
+
+### Answers
+
+* [Microsoft](./Microsoft.md)
 
 ## Other links
 
