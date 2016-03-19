@@ -132,4 +132,31 @@ Function Update-GPOBackup() {
     } else {
         Write-Verbose -Message ('Both GPO backup IDs are the same so {0} was not updated' -f $currentBackupXmlFilePath)
     }
-}    
+}
+
+Function Get-GPOBackupFolders() {
+    <#
+    .SYNOPSIS
+    Gets folders containing Group Policy Object backups.
+
+    .DESCRIPTION
+    Gets folders containing Group Policy Object backups.
+
+    .PARAMETER pPath
+    A path containing GPO backup folders.
+
+    .EXAMPLE
+    Get-GPOBackupFolders -Path '.\Secure-Host-Baseline'
+    #>
+    [CmdletBinding()] 
+    [OutputType([System.IO.DirectoryInfo[]])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage="A path containing GPO backup folders.")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({$ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath([System.IO.Directory]::Exists($_))})]
+        [string]$Path
+    )
+
+    return [System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where { $_.PsIsContainer -eq $true } | Where { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where { try { [System.Guid]::Parse($_.Name) | Out-Null; $true } catch { $false } })
+}
