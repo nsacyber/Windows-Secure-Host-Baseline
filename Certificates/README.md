@@ -50,7 +50,7 @@ $certificateFiles | ForEach {
 }
 ```
 
-You can also use the Microsoft Managment Console Certificates snap-in to import the certificates on a standalone system.
+You can also use the Microsoft Management Console Certificates snap-in to import the certificates on a standalone system.
 
 1. Click **Start**, type **mmc**, and and press **Enter**
 1. **File** > **Add/Remove snap-in...**

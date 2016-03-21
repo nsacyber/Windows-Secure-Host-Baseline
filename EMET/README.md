@@ -94,5 +94,5 @@ Over the years there have been techniques published for bypassing EMET. Sometime
 
 IAD has published a number of EMET guides:
 * [Understanding the Enhanced Mitigation Experience Toolkit - Frequently Asked Questions](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/understanding-the-emet-faq.cfm)
-* [Microsoft's Enhanced Mitigation Experience Toolkit: A Rationale for Enabling Modern Anti-Exploritation Mitigations in Windows](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/microsofts-emet-a-rationale-for-enabling-modern.cfm)
+* [Microsoft's Enhanced Mitigation Experience Toolkit: A Rationale for Enabling Modern Anti-Exploitation Mitigations in Windows](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/microsofts-emet-a-rationale-for-enabling-modern.cfm)
 * [Microsoft's Enhanced Mitigation Experience Toolkit Guide](https://www.iad.gov/iad/library/ia-guidance/tech-briefs/microsoft-enhanced-mitigation-experience-toolkit-a.cfm)
