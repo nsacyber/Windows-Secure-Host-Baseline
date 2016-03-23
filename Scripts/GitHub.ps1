@@ -262,3 +262,214 @@ Function Convert-MarkdownToHtml() {
         }
     }   
 }
+
+Function New-GitConfiguration() {
+    <#
+    .SYNOPSIS
+    Creates text for a new .gitconfig file.
+
+    .DESCRIPTION
+    Creates text for a new .gitconfig file.
+
+    .PARAMETER Username
+    GitHub account username.
+
+    .PARAMETER Email
+    GitHub account email address.
+
+    .PARAMETER Public
+    Optional switch that when specified prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs.
+
+    .PARAMETER DiffMergeTool
+    Specifies the diff/merge tool to use.
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear'
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+    #>
+    [CmdletBinding()] 
+    [OutputType([string])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage="GitHub account username")]
+        [ValidateNotNullOrEmpty()]
+        [string]$Username,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage="GitHub account email address")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({$_.Contains('@')})]
+        [ValidateLength(3,254)]
+        [string]$Email,
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage="Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs")]
+        [switch]$Public,
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage="Specifies the diff/merge tool to use")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
+        [string]$DiffMergeTool
+    )
+    Begin {
+    $userTemplate = @"
+[user]
+`tname = {0}
+`temail = {1}
+"@
+
+    # two factor auth uses HTTP, not SSH, so disable SSH prompts
+    $coreTemplate = @"
+[core]
+`taskpass = 
+"@
+
+    $diffTemplate = @"
+[diff]
+`ttool = {0}
+`tguitool = {0}
+"@
+
+    # path does not appear to work so make cmd have the full path of the executable
+    $diffToolTemplate = @"
+[difftool "{0}"]
+`tpath = \"{1}\"
+`tcmd = \"{1}/{2}\" {3}
+[difftool]
+`tprompt = false
+"@
+
+# path does not appear to work so make cmd have the full path of the executable
+    $mergeToolTemplate = @"
+[mergetool "{0}"]
+`tpath = \"{1}\"
+`tcmd = \"{1}/{2}\" {3}
+`ttrustExitCode = {4}
+[mergetool]
+`tprompt = false
+"@
+    }
+    Process {
+        $config = ''
+
+        $userSection = ''
+
+        if($Public) {
+            $userSection = $userTemplate -f $Username,$Email
+        } else {
+            $user = @($Email -split '@')[0]
+            $privateEmail = "{0}@{1}" -f $user,'users.noreply.github.com'
+
+            $userSection = $userTemplate -f $Username,$privateEmail
+        }
+
+        $coreSection = $coreTemplate
+        $diffMergeSection = ''
+
+        if ($DiffMergeTool -ne '') {
+            $toolName = $DiffMergeTool.ToLower()
+
+            if($toolName -ieq 'SourceGear') {
+                $executable = 'sgdm.exe'
+                $diffArgs = '--nosplash \"$LOCAL\" \"$REMOTE\"'
+                $mergeArgs = '--nosplash --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"'
+                $trustExitCode = 'true'
+            } elseif($DiffMergeTool -ieq 'Perforce') {
+                $executable = 'p4merge.exe'
+                $diffArgs = '\"$LOCAL\" \"$REMOTE\"'
+                $mergeArgs = '\"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"'
+                $trustExitCode = 'false'
+            }
+
+            $files = [System.IO.FileInfo[]]@(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter $executable -Recurse -Force -ErrorAction SilentlyContinue | Where { $_.PsIsContainer -eq $false } | Get-Unique)
+
+            if($files.Count -eq 0) {
+                throw '$executable not found in Program Files'
+            }
+
+            $file = $files[0]
+            $filePath = $file.Directory.FullName.Replace('\','/')
+
+            $diffSection = $diffTemplate -f $toolName
+            $diffToolSection = $diffToolTemplate -f $toolName,$filePath,$file.Name,$diffArgs
+            $mergeToolSection = $mergeToolTemplate -f $toolName,$filePath,$file.Name,$mergeArgs,$trustExitCode
+            $diffMergeSection = $diffSection,$diffToolSection,$mergeToolSection -join [System.Environment]::NewLine
+        }
+
+        if ($DiffMergeTool -ne '') {
+            $config = $userSection,$coreSection,$diffMergeSection -join [System.Environment]::NewLine
+        } else {
+            $config = $userSection,$coreSection -join [System.Environment]::NewLine
+        }
+
+        $config = $config -replace [System.Environment]::NewLine,"`n" # "real" generated gitconfig uses line feeds only
+        
+        return ($config,"`n" -join '') # a "real" generated .gitconfig ends with line feed only
+    }
+}
+
+Function New-GitConfigurationFile() {
+    <#
+    .SYNOPSIS
+    Creates a new .gitconfig file.
+
+    .DESCRIPTION
+    Creates a new .gitconfig file. Your existing .gitconfig file will be overwritten.
+
+    .PARAMETER Username
+    GitHub account username.
+
+    .PARAMETER Email
+    GitHub account email address.
+
+    .PARAMETER Public
+    Optional switch that when specified prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs.
+
+    .PARAMETER DiffMergeTool
+    Specifies the diff/merge tool to use.
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear'
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+    #>
+    [CmdletBinding()] 
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage="GitHub account username")]
+        [ValidateNotNullOrEmpty()]
+        [string]$Username,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage="GitHub account email address")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({$_.Contains('@')})]
+        [ValidateLength(3,254)]
+        [string]$Email,
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage="Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs")]
+        [switch]$Public,
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage="Specifies the diff/merge tool to use")]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
+        [string]$DiffMergeTool
+    )
+
+    $path = ($env:HOMEDRIVE,$env:HOMEPATH,'.gitconfig' -join '\').Replace('\\','\') 
+
+    if(Test-Path env\:GIT_CONFIG) {
+        $path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($env:GIT_CONFIG)
+    }
+
+    if(-not(Test-Path -Path $path -PathType Leaf)) {
+        throw '$path not found'
+    }
+
+    New-GitConfiguration @PSBoundParameters | Out-File -FilePath $path -NoNewline -Encoding ascii -Force
+}
