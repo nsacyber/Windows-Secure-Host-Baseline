@@ -263,6 +263,60 @@ Function Convert-MarkdownToHtml() {
     }   
 }
 
+Function Convert-CsvToMarkdownTable() {
+    <#
+    .SYNOPSIS
+    Converts a CSV file to markdown table syntax.
+
+    .DESCRIPTION
+    Converts a CSV file to markdown table syntax.
+
+    .PARAMETER Path
+    Path to the CSV file.
+
+    .EXAMPLE
+    Convert-CsvToMarkdownTable -Path '.\Secure-Host-Baseline\Hardware\Template.csv'
+    #>
+    [CmdletBinding()] 
+    [OutputType([string])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage="Path to CSV file")]
+        [ValidateNotNullOrEmpty()]
+        [System.IO.FileInfo]$Path
+    )
+
+    $table = ''
+
+    $rows = [object[]]@(Get-Content -Path $Path | ConvertFrom-Csv)
+
+    if($rows.Count -ge 1) {
+
+        $columnHeaderRow = ($rows[0].psobject.Properties | Select -ExpandProperty Name) -join ' | '
+        $columnHeaderRow = '| {0} |' -f $columnHeaderRow
+
+        $table = $table,$columnHeaderRow -join [System.Environment]::NewLine
+
+        $columnCount = @($rows[0] | Get-Member -MemberType NoteProperty).Count
+
+        $seperatorRow = ('| --- ' * $columnCount)
+        $seperatorRow = '{0}|' -f $seperatorRow 
+
+        $table = $table,$seperatorRow -join [System.Environment]::NewLine
+
+        $rows | ForEach {
+            $valueRow = ''
+
+            # $_| Get-Member -MemberType NoteProperty changes the order of the properties (sorts alphabetical) so use Select instead
+            $values = ($_.psobject.Properties | Select -ExpandProperty Value) -join ' | '
+            $valueRow = '| {0} |' -f $values
+
+            $table = $table,$valueRow -join [System.Environment]::NewLine
+        }
+    }
+
+    return $table
+}
+
 Function New-GitConfiguration() {
     <#
     .SYNOPSIS
