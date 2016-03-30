@@ -317,6 +317,31 @@ Function Convert-CsvToMarkdownTable() {
     return $table
 }
 
+<#
+Function Convert-MarkdownTableToCsv() {
+    <#
+    .SYNOPSIS
+    Converts a markdown table to a CSV file.
+
+    .DESCRIPTION
+    Converts a markdown table to a CSV file. 
+
+    .PARAMETER Path
+    Path to the CSV file.
+
+    .EXAMPLE
+    Convert-MarkdownTableToCsv -Path '.\Secure-Host-Baseline\Hardware\Template.csv'
+    
+    [CmdletBinding()] 
+    [OutputType([string])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage="Path to CSV file")]
+        [ValidateNotNullOrEmpty()]
+        [System.IO.FileInfo]$Path
+    )
+
+}
+#>
 Function New-GitConfiguration() {
     <#
     .SYNOPSIS
@@ -372,6 +397,7 @@ Function New-GitConfiguration() {
 [user]
 `tname = {0}
 `temail = {1}
+`tuseconfigonly = true
 "@
 
     # two factor auth uses HTTP, not SSH, so disable SSH prompts
