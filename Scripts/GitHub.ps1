@@ -33,7 +33,20 @@ Function Get-GitHubRateLimit() {
 
     $API = $API.ToLower()
 
-    $response = Invoke-WebRequest -Method 'Get' -Uri ($script:GitHubBaseUri,'rate_limit' -join '/')
+    $uri = ($script:GitHubBaseUri,'rate_limit' -join '/')
+
+    $params = @{
+        Uri = $uri;
+        Method = 'Get';
+    }
+
+    $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    if(([string]$proxyUri) -ne $uri) {
+        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+    } else {
+        $response = Invoke-WebRequest @params 
+    }
 
     $statusCode = $response.StatusCode 
 
@@ -71,15 +84,21 @@ Function Get-GitHubMarkdownStylesheet() {
     [OutputType([string])]
     Param()
 
-    $markdownStylesheetUri = 'https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css'
+    $uri = 'https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css'
 
     $params = @{
-        Uri = 'https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css';
+        Uri = $uri;
         Method = 'Get';
         ContentType = 'text/plain';
     }
 
-    $response = Invoke-WebRequest @params
+    $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    if(([string]$proxyUri) -ne $uri) {
+        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+    } else {
+        $response = Invoke-WebRequest @params 
+    }
 
     $statusCode = $response.StatusCode 
 
@@ -186,14 +205,22 @@ Function Get-GitHubHtmlFromRawMarkdown() {
 
         $html = ''
 
+        $uri = ($script:GitHubBaseUri,'markdown','raw' -join '/')
+
         $params = @{
-            Uri = ($script:GitHubBaseUri,'markdown','raw' -join '/');
+            Uri = $uri;
             Method = 'POST';
             ContentType = 'text/plain';
             Body =  $requestBody;
         }
 
-        $response = Invoke-WebRequest @params
+        $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+        if(([string]$proxyUri) -ne $uri) {
+            $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        } else {
+            $response = Invoke-WebRequest @params 
+        }
 
         $statusCode = $response.StatusCode 
 
