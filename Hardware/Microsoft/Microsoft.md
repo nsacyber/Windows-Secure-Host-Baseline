@@ -1,4 +1,4 @@
-Answers to [hardware and firmware questions](./../README.md#questions) about Microsoft hardware.
+Answers to [hardware and firmware questions](./../README.md#questions) about Microsoft hardware. You can also [view the CSV file](./Microsoft.csv) or download the CSV file by clicking the **Raw** button available at the previous link.
 
 | Model | Processor (Q1) | Chipset (Q2)| 64-bit (Q3)? | UEFI (Q4)? | UEFI default native (Q5)? | UEFI version (Q6) | SecureBoot (Q7)? | SecureBoot default enabled (Q8)? | SecureBoot upgrade (Q9)? | Secure MOR (Q10)? | MemVirt (Q11)? | MemVirt default enabled (Q12)? | IOVirt (Q13)? | IOVirt default enabled (Q14)? | SLAT (Q15)? | TPM (Q16)? | TPM version (Q17) | TPM enabled default (Q18)? | TPM auto (Q19)? | PPI (Q20)? | PPI version (Q21)| CG tested (Q22)? | DG tested (Q23)? | BIOS fix needed (Q24)? | BIOS version needed (Q25)| UEFI WU (Q26)? | Win10 official (Q27)? | Win10 tested (Q28)? | WHCP (Q29)? | WHCP version (Q30) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
