@@ -88,7 +88,7 @@ Cataloging answers in [one location](./) is more efficient than having individua
 
 ### Answers
 
-* [Microsoft](./Microsoft.md)
+* [Microsoft](./Microsoft/Microsoft.md)
 
 ## Other links
 
