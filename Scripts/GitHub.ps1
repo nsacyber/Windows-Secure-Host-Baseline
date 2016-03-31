@@ -43,7 +43,7 @@ Function Get-GitHubRateLimit() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -95,7 +95,7 @@ Function Get-GitHubMarkdownStylesheet() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -217,7 +217,7 @@ Function Get-GitHubHtmlFromRawMarkdown() {
         $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
         if(([string]$proxyUri) -ne $uri) {
-            $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+            $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
         } else {
             $response = Invoke-WebRequest @params 
         }
@@ -389,6 +389,9 @@ Function New-GitConfiguration() {
     .PARAMETER DiffMergeTool
     Specifies the diff/merge tool to use.
 
+    .PARAMETER Proxy
+    Specifies the proxy URL and port to use.
+
     .EXAMPLE
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov
 
@@ -397,6 +400,9 @@ Function New-GitConfiguration() {
 
     .EXAMPLE
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear' -Proxy '123.456.789.0:80'
     #>
     [CmdletBinding()] 
     [OutputType([string])]
@@ -417,7 +423,11 @@ Function New-GitConfiguration() {
         [Parameter(Position=3, Mandatory=$false, HelpMessage="Specifies the diff/merge tool to use")]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
-        [string]$DiffMergeTool
+        [string]$DiffMergeTool,
+
+        [Parameter(Position=4, Mandatory=$true, HelpMessage="Proxy URL and port")]
+        [ValidateNotNullOrEmpty()]
+        [string]$Proxy
     )
     Begin {
     $userTemplate = @"
@@ -425,6 +435,11 @@ Function New-GitConfiguration() {
 `tname = {0}
 `temail = {1}
 `tuseconfigonly = true
+"@
+
+    $proxyTemplate = @"
+[http]
+`tproxy = {0}
 "@
 
     # two factor auth uses HTTP, not SSH, so disable SSH prompts
@@ -473,6 +488,14 @@ Function New-GitConfiguration() {
         }
 
         $coreSection = $coreTemplate
+
+        $config = $userSection,$coreSection -join [System.Environment]::NewLine
+
+        if ($Proxy -ne '') {
+            $proxySection = $proxyTemplate -f $Proxy
+            $config = $config,$proxySection -join [System.Environment]::NewLine
+        }
+
         $diffMergeSection = ''
 
         if ($DiffMergeTool -ne '') {
@@ -503,12 +526,8 @@ Function New-GitConfiguration() {
             $diffToolSection = $diffToolTemplate -f $toolName,$filePath,$file.Name,$diffArgs
             $mergeToolSection = $mergeToolTemplate -f $toolName,$filePath,$file.Name,$mergeArgs,$trustExitCode
             $diffMergeSection = $diffSection,$diffToolSection,$mergeToolSection -join [System.Environment]::NewLine
-        }
 
-        if ($DiffMergeTool -ne '') {
-            $config = $userSection,$coreSection,$diffMergeSection -join [System.Environment]::NewLine
-        } else {
-            $config = $userSection,$coreSection -join [System.Environment]::NewLine
+            $config = $config,$diffMergeSection -join [System.Environment]::NewLine
         }
 
         $config = $config -replace [System.Environment]::NewLine,"`n" # "real" generated gitconfig uses line feeds only
@@ -537,6 +556,9 @@ Function New-GitConfigurationFile() {
     .PARAMETER DiffMergeTool
     Specifies the diff/merge tool to use.
 
+    .PARAMETER Proxy
+    Specifies the proxy URL and port to use.
+
     .EXAMPLE
     New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov
 
@@ -545,6 +567,9 @@ Function New-GitConfigurationFile() {
 
     .EXAMPLE
     New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear' -Proxy '123.456.789.0:80'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -565,7 +590,11 @@ Function New-GitConfigurationFile() {
         [Parameter(Position=3, Mandatory=$false, HelpMessage="Specifies the diff/merge tool to use")]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
-        [string]$DiffMergeTool
+        [string]$DiffMergeTool,
+
+        [Parameter(Position=4, Mandatory=$true, HelpMessage="Proxy URL and port")]
+        [ValidateNotNullOrEmpty()]
+        [string]$Proxy
     )
 
     $path = ($env:HOMEDRIVE,$env:HOMEPATH,'.gitconfig' -join '\').Replace('\\','\') 

@@ -38,7 +38,7 @@ Function Get-ChromeVersion() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -114,7 +114,7 @@ Function Get-ChromeExtension() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -198,7 +198,7 @@ Function Get-ChromeInstaller() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -256,7 +256,7 @@ Function Get-ChromeGroupPolicyTemplate() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
@@ -301,7 +301,7 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -ProxyUri $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
         $response = Invoke-WebRequest @params 
     }
