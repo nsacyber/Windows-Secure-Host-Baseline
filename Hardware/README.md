@@ -15,7 +15,7 @@ Some hardware and firmware features, if they exist, can be leveraged by Credenti
 * a Trusted Platform Module (TPM), version 1.2 or later, when present and enabled in the firmware
 * device Input/Output Memory Management Unit (IOMMU) virtualization extensions (Intel Vt-d or AMD-Vi) when supported by the processor and enabled in the firmware 
 
-While these hardware and firmware features are optional since Credential Guard and Device Guard can technically work without them, they are critical to ensuring the security improvements offered by Credential Guard and Device Guard are effectively protected against certain types of attacks. These hardware and firmware features should be considered required by organizations when procuring hardware for Windows 10.
+While these hardware and firmware features are optional since Credential Guard and Device Guard can technically work without them, they are critical to ensuring the security improvements offered by Credential Guard and Device Guard are effectively protected against certain types of attacks. These hardware and firmware features should be considered required by organizations when procuring hardware for Windows 10. **Microsoft provides a clear list of which security features in Windows 10 use certain hardware and firmware features in the [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware) article**. The notation in the table is **R** = recommended, **Y** = required, and **N** = not used.
 
 Most enterprise and business class models from OEMs that have passed the Windows Hardware Certification Program for Windows 8 or later likely meet these requirements.
 
@@ -94,3 +94,4 @@ Cataloging answers in [one location](./) is more efficient than having individua
 
 * [List of Dell models tested for upgrade to Windows 10](http://www.dell.com/support/article/us/en/19/SLN297954)
 * [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true)
+* [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware)
