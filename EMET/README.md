@@ -17,7 +17,7 @@ Note that EMET 5.5 supports ends on [January 27, 2017](https://support.microsoft
 
 ## Updating the EMET Group Policy templates
 
-The latest version of the Group Policy template files for EMET are included in _%ProgramFiles%\\EMET 5.5\\Deployment\\Group Policy Files\\_ or _%ProgramFiles(x86)%\\EMET 5.5\\Deployment\\Group Policy Files\\_. Copy the following files:
+The latest version of the Group Policy template files for EMET are included in **_%ProgramFiles%\\EMET 5.5\\Deployment\\Group Policy Files\\_** or **_%ProgramFiles(x86)%\\EMET 5.5\\Deployment\\Group Policy Files\\_**. Copy the following files:
 * EMET.admx
 * EMET.adml
 
