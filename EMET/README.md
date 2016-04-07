@@ -10,9 +10,10 @@ EMET 5.5 added official support for Windows 10. Other significant changes of int
 Note that EMET 5.5 supports ends on [January 27, 2017](https://support.microsoft.com/en-us/kb/2458544).
 
 ## Downloads for EMET 5.5
-[EMET 5.5](https://www.microsoft.com/en-us/download/details.aspx?id=50766)
-[EMET 5.5 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802)
-[EMET 5.5 converter script(https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True)
+
+* [EMET 5.5](https://www.microsoft.com/en-us/download/details.aspx?id=50766) 
+* [EMET 5.5 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802) 
+* [EMET 5.5 converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True) 
 
 ## Updating the EMET Group Policy templates
 
