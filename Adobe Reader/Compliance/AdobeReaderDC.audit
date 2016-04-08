@@ -1,0 +1,216 @@
+# Adobe Reader DC
+# Author: IAD
+# Revision: 1.1	
+# Date: 04/08/2016
+# Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm
+# Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
+
+<check_type: "Windows" version: "2">
+    <group_policy: "Adobe Reader DC Audit Policy">
+        <if>
+           # Check if Adobe Reader DC is installed
+            <condition type: "or">
+                <custom_item> 
+                    type		: FILE_CHECK 
+	            description		: "Check if Adobe Reader DC is installed on 64-bit Windows"
+	            value_type		: POLICY_TEXT 
+	            value_data		: "%ProgramFiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	            file_option		: MUST_EXIST
+	            severity		: LOW
+                </custom_item>
+
+                <custom_item> 
+	            type: FILE_CHECK 
+	            description		: "Check if Adobe Reader DC is installed on 32-bit Windows"
+	            value_type		: POLICY_TEXT 
+	            value_data		: "%ProgramFiles%\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	            file_option		: MUST_EXIST
+	            severity		: LOW
+                </custom_item>
+            </condition>
+            <then>
+                <custom_item> 
+	            type: FILE_VERSION
+	            description		: "Adobe Reader: Version"
+	            info		: "Running the latest version of Adobe Reader prevents exploitation of known vulnerabilies."
+	            value_type		: POLICY_FILE_VERSION
+	            value_data		: "15.10.20056.167417"       
+	            file		: "%Program Files% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	            check_type		: CHECK_GREATER_THAN_OR_EQUAL
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Enable Protected View"
+                    info               	: "Severity: CAT I"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    info               	: "Name: iProtectedView"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 2"
+                    value_type		: POLICY_DWORD
+                    value_data		: "2"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    reg_item		: "iProtectedView"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Enable Protected Mode"
+                    info               	: "Severity: CAT I"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    info               	: "Name: bProtectedMode"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    reg_item		: "bProtectedMode"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Enable Enhanced Security"
+                    info               	: "Severity: CAT I"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    info               	: "Name: bEnhancedSecurityStandalone"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    reg_item		: "bEnhancedSecurityStandalone"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Enable Enhanced Security In Browser"
+                    info               	: "Severity: CAT I"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    info               	: "Name: bEnhancedSecurityInBrowser"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    reg_item		: "bEnhancedSecurityInBrowser"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Enable Outlook Attachment ProtectView"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\TrustManager"
+                    info               	: "Name: bEnableAlwaysOutlookAttachmentProtectView"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 0"
+                    value_type		: POLICY_DWORD
+                    value_data		: "0"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\TrustManager"
+                    reg_item		: "bEnableAlwaysOutlookAttachmentProtectView"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Prevent PDF Handler Switching"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    info               	: "Name: bDisablePDFHandlerSwitching"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 0"
+                    value_type		: POLICY_DWORD
+                    value_data		: "0"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    reg_item		: "bDisablePDFHandlerSwitching"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Prevent Flash"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    info               	: "Name: bEnableFlash"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 0"
+                    value_type		: POLICY_DWORD
+                    value_data		: "0"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    reg_item		: "bEnableFlash"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Prevent 3D"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    info               	: "Name: bEnable3D"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 0"
+                    value_type		: POLICY_DWORD
+                    value_data		: "0"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    reg_item		: "bEnable3D"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Prevent URLs"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms"
+                    info               	: "Name: iURLPerms"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms"
+                    reg_item		: "iURLPerms"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Prevent Attachments"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    info               	: "Name: iFileAttachmentPerms"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"
+                    reg_item		: "iFileAttachmentPerms"
+                    severity		: HIGH
+                </custom_item>
+
+                <custom_item>
+                    type		: REGISTRY_SETTING
+                    description	        : "Adobe Reader: Disable Usage Statistics"
+                    info               	: "Severity: CAT II"
+                    info               	: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    info               	: "Name: bUsageMeasurement"
+                    info               	: "Type: DWORD"
+                    info               	: "Expected Data: 1"
+                    value_type		: POLICY_DWORD
+                    value_data		: "1"
+                    reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                    reg_item		: "bUsageMeasurement"
+                    severity		: MEDIUM
+                </custom_item>
+
+            </then>
+            <else>
+                <report type: "PASSED">
+                description: "Adobe Reader DC is not installed"
+                </report>
+            </else>
+        </if>
+    </group_policy>
+</check_type>
