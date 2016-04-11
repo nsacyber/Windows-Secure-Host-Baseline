@@ -30,7 +30,7 @@ Function Convert-CsvToExcel() {
         [string]$ExcelPath
     )
 
-    $excelFiles = @(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter 'excel.exe' -Recurse -Force -ErrorAction SilentlyContinue | Where { $_.PsIsContainer -eq $false } | Get-Unique)
+    $excelFiles = @(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter 'excel.exe' -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PsIsContainer -eq $false } | Get-Unique)
 
     if($excelFiles.Count -eq 0) {
         throw 'Excel not installed'
@@ -91,7 +91,7 @@ Function Convert-ExcelToCsv() {
         [string]$ExcelPath
     )
 
-    $excelFiles = @(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter 'excel.exe' -Recurse -Force -ErrorAction SilentlyContinue | Where { $_.PsIsContainer -eq $false } | Get-Unique)
+    $excelFiles = @(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter 'excel.exe' -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PsIsContainer -eq $false } | Get-Unique)
 
     if($excelFiles.Count -eq 0) {
         throw 'Excel not installed'

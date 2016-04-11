@@ -3,6 +3,37 @@ Set-StrictMode -Version 4
 
 
 Function Get-Stig() {
+    <#
+    .SYNOPSIS
+    Gets a STIG.
+
+    .DESCRIPTION
+    Gets a STIG, either from online or the file system and transforms it to HTML. Optionally options HTML in browser. Optionally converts STIG rules to CSV file.
+
+    .PARAMETER Url
+    A path to the STIG zip file on the internet.
+
+    .PARAMETER File
+    A path to the STIG zip file on the local system.
+
+    .PARAMETER Open
+    Open the transformed STIG HTML in the default browser.
+
+    .PARAMETER Csv
+    Create a CSV file with STIG rules in it.
+
+    .EXAMPLE
+    Get-Stig -Url 'http://iasecontent.disa.mil/stigs/zip/U_Windows_10_V1R2_STIG.ZIP'
+
+    .EXAMPLE
+    Get-Stig -File '$env:USERPROFILE\Desktop\U_Windows_10_V1R2_STIG.ZIP'
+
+    .EXAMPLE
+    Get-Stig -Url 'http://iasecontent.disa.mil/stigs/zip/U_Windows_10_V1R2_STIG.ZIP' -Open
+
+    .EXAMPLE
+    Get-Stig -Url 'http://iasecontent.disa.mil/stigs/zip/U_Windows_10_V1R2_STIG.ZIP' -Csv
+    #>
     [CmdletBinding(DefaultParameterSetName="All")]
     [OutputType([void])]
     Param (
@@ -139,18 +170,18 @@ Function Get-Stig() {
 
     $xml = [xml](Get-Content -Path $xmlPath)
 
-    Write-Host $xml.Benchmark.title
+    Write-Verbose -Message ($xml.Benchmark.title)
 
-    $xml.Benchmark.Profile | ForEach {
+    $xml.Benchmark.Profile | ForEach-Object {
         $rawCount = $_.select.Count
 
         $selectCount = ($_.Select | Where-Object { $_.selected -ieq "$true"}).Count
 
         $result = "Profile ID: {0,-20} Title: {1,-35} Total: {2,-4} Selected: {3,-4}" -f $_.id,$_.title,$rawCount,$selectCount
-        Write-Host $result
+        Write-Verbose -Message $result
     }
 
-    $xml.Benchmark.Group | ForEach {
+    $xml.Benchmark.Group | ForEach-Object {
         $description = $_.Rule.description
 
         $description = $description -replace "$([char]0x0A)","" -replace "$([char]0x0D)",""
@@ -158,8 +189,8 @@ Function Get-Stig() {
 
         $text = ""
 
-        if($vuln -ne $null) {
-            if($vuln.Node.InnerText -ne $null) {
+        if($null -ne $vuln) {
+            if($null -ne $vuln.Node.InnerText) {
                 $text = $vuln.Node.InnerText
             }
         }
@@ -184,7 +215,7 @@ Function Get-Stig() {
     $totalCount = $xml.Benchmark.Group.Count
 
     $result = "Total: {0,-3} Low: {1,-2} Medium: {2,-3} High: {3,-2}" -f $totalCount,$lowCount,$mediumCount,$highCount
-    Write-Host $result
+    Write-Verbose -Message $result
 
     $addedCount = $lowCount + $mediumCount + $highCount
 
@@ -203,9 +234,6 @@ Function Get-Stig() {
         $rules | Select-Object -Property GroupID,GroupTitle,RuleID,Severity,Title,Discussion | Export-Csv -Path $csvPath -NoTypeInformation #Force columns to be in a certain order
     }
 }
-
-# add -Open switch to open the STIG HTML in your browser
-# add -Csv to create a CSV file
 
 
 # Get-Stig -Url "http://iasecontent.disa.mil/stigs/zip/July2015/U_Windows_Firewall_V1R3_STIG.zip" -Open #Total: 30  Low: 15 Medium: 12  High: 3
