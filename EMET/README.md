@@ -36,24 +36,30 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **EMET.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **EMET.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
 ## EMET Configuration Tips
-In EMET 5.5 the Application Configuration policy setting can be used to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings. Prior to EMET 5.5 administrators would have likely directly editted the EMET.admx file to make changes but that is no longer necessary. The following examples assume these EMET Group Policy settings are enabled:
+In EMET 5.5 the Application Configuration policy setting can be used to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings. Prior to EMET 5.5 administrators would have likely directly edited the EMET.admx file to make changes but that is no longer necessary. The following examples assume these EMET Group Policy settings are enabled:
 * Default Protections for Internet Explorer 
 * Default Protections for Popular Software
 * Default Protections for Recommended Software
 
 ### Overriding an application's ASR or EAF+ configuration
+Assuming the above policies are enabled, the following example overrides Internet Explorer's default Attack Surface Reduction (ASR) module list configuration of **npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll** to *remove* **vbscript.dll** from the list. This example demonstrates how to change the configuration when a  third-party component is loaded into Internet Explorer that is not compatible with ASR being   configured for a specific module.
 
+1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
 1. Select the **Enabled** radio button
 1. Click the **Show** button
 1. For **Value name** enter **\*\\iexplore.exe**
-1. For **Value** enter **+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx asr_zones:1;2**
+1. For **Value** enter **+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll asr_zones:1;2**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line on a test system
 
 
-The above example overrides Internet Explorer's default Attack Surface Reduction (ASR) moduled list configuration of **npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll** to add the ability to block Flash from loading. The asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
+Another common scenario is using ASR to temporarily disable Flash due to a zero day. Changing the ASR configuration can be used to block Flash from loading in Internet Explorer. Follow the same steps above but change the **Value** entry for Internet Explorer to 
+**+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx asr_zones:1;2** to block Flash from loading in Internet Explorer. 
+
+
+Note that the asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
 * 0 = Local Zone
 * 1 = Intranet Zone
 * 2 = Trusted Zone
