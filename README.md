@@ -1,11 +1,11 @@
 # Secure Host Baseline
 
-## About The Secure Host Baseline
+## About the Secure Host Baseline
 
 The Secure Host Baseline (SHB) provides an automated and flexible approach for assisting the DoD in deploying the latest releases of Windows 10 using a framework that can be consumed by organizations of all sizes. 
 
 
-The [DoD CIO issued a memo on 11/20/2015](http://www.esi.mil/download.aspx?id=5542) directing Combatant Commands, Services, Agencies and Field Activities (CC/S/As) to rapidly deploy the Windows 10 operating system throughout their respective organizations with the objective of completing deployment by the end of January 2017. The [Deputy Secretary of Defense issued a memo on 02/26/2015](http://www.esi.mil/download.aspx?id=5543) directing the DoD to complete a rapid deployment and transition to Microsoft Windows 10 Secure Host Baseline by the end of January 2017.[[1](http://www.esi.mil/contentview.aspx?id=685)]
+The DoD CIO issued a memo on [November 20, 2015](http://www.esi.mil/download.aspx?id=5542) directing Combatant Commands, Services, Agencies and Field Activities (CC/S/As) to rapidly deploy the Windows 10 operating system throughout their respective organizations with the objective of completing deployment by the end of January 2017. The Deputy Secretary of Defense issued a memo on [February 26, 2016](http://www.esi.mil/download.aspx?id=5543) directing the DoD to complete a rapid deployment and transition to Microsoft Windows 10 Secure Host Baseline by the end of January 2017.[[1](http://www.esi.mil/contentview.aspx?id=685)]
 
 
 Formal product evaluations also support the move to Windows 10. The [National Information Assurance Partnership](https://www.niap-ccevs.org) (NIAP) oversees evaluations of commercial IT products for use in [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm). The Common Criteria evaluation of Windows 10 against the NIAP [Protection Profile for General Purpose Operating Systems](https://www.niap-ccevs.org/Profile/Info.cfm?id=400) completed [April 5, 2016](https://www.niap-ccevs.org/Product/CompliantCC.cfm?CCID=2016.1052). The Common Criteria evaluation of Windows 10 against the NIAP [Protection Profile for Mobile Device Fundamentals](https://www.niap-ccevs.org/Profile/Info.cfm?id=353) completed [January 29, 2016](https://www.niap-ccevs.org/Product/Compliant.cfm?pid=10677).
@@ -13,8 +13,9 @@ Formal product evaluations also support the move to Windows 10. The [National In
 
 Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/security-tips/secure-host-baseline.cfm) is one of [IAD's top 10 mitigation strategies](https://www.iad.gov/iad/library/ia-guidance/iads-top-10-information-assurance-mitigation-strategies.cfm). The DoD Secure Host Baseline also exemplifies other IAD top 10 mitigation strategies such as using [application whitelisting](https://www.iad.gov/iad/library/ia-guidance/security-tips/application-whitelisting.cfm), enabling [anti-exploitation features](https://www.iad.gov/iad/library/ia-guidance/security-tips/anti-exploitation-features.cfm), and using the [latest version of the operating system and applications](https://www.iad.gov/iad/library/ia-guidance/security-tips/take-advantage-of-software-improvements.cfm).
 
+## About this Repository
 
-This repository hosts Group Policy Objects, configuration files, and scripts in support of the Windows 10 DoD Secure Host Baseline framework. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework](https://disa.deps.mil/ext/cop/iase/dod-images/) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
+This repository hosts Group Policy Objects, configuration tools, and compliance checks in support of the Windows 10 DoD Secure Host Baseline framework. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework](https://disa.deps.mil/ext/cop/iase/dod-images/) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
 ## Group Policy Objects
 
@@ -49,25 +50,14 @@ Importing a GPO varies depending on whether it is being imported for a domain ve
 1. Open an administrative command prompt and type **lgpo.exe /g "_path to GPO backup folder_"**
 
 ## License
-This work was prepared by an U.S. Government employee and, therefore, is excluded from copyright by Section 105 of the Copyright Act of 1976.
+This Work was prepared by a United States Government employee and, therefore, is excluded from copyright by Section 105 of the Copyright Act of 1976.
 
 Copyright and Related Rights in the Work worldwide are waived through the [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) [Universal license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).
 
 ## Disclaimer of Warranty
-This Work is provided "as is." Any express or implied warranties, including but not limited to, the
-implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event
-shall the United States Government be liable for any direct, indirect, incidental, special, exemplary or
-consequential damages (including, but not limited to, procurement of substitute goods or services, loss
-of use, data or profits, or business interruption) however caused and on any theory of liability, whether
-in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of
-this Guidance, even if advised of the possibility of such damage.
+This Work is provided "as is." Any express or implied warranties, including but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the United States Government be liable for any direct, indirect, incidental, special, exemplary or consequential damages (including, but not limited to, procurement of substitute goods or services, loss of use, data or profits, or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this Guidance, even if advised of the possibility of such damage.
 
-The User of this Work agrees to hold harmless and indemnify the United States Government, its agents
-and employees from every claim or liability (whether in tort or in contract), including attorneys' fees,
-court costs, and expenses, arising in direct consequence of Recipient's use of the item, including, but not
-limited to, claims or liabilities made for injury to or death of personnel of User or third parties, damage
-to or destruction of property of User or third parties, and infringement or other violations of intellectual
-property or technical data rights.
+The User of this Work agrees to hold harmless and indemnify the United States Government, its agents and employees from every claim or liability (whether in tort or in contract), including attorneys' fees, court costs, and expenses, arising in direct consequence of Recipient's use of the item, including, but not limited to, claims or liabilities made for injury to or death of personnel of User or third parties, damage to or destruction of property of User or third parties, and infringement or other violations of intellectual property or technical data rights.
 
 Nothing in this Work is intended to constitute an endorsement, explicit or implied, by the U.S.
 Government of any particular manufacturer's product or service.
