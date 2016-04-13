@@ -13,7 +13,7 @@ Formal product evaluations also support the move to Windows 10. The [National In
 
 Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/security-tips/secure-host-baseline.cfm) is one of [IAD's top 10 mitigation strategies](https://www.iad.gov/iad/library/ia-guidance/iads-top-10-information-assurance-mitigation-strategies.cfm). The DoD Secure Host Baseline also exemplifies other IAD top 10 mitigation strategies such as using [application whitelisting](https://www.iad.gov/iad/library/ia-guidance/security-tips/application-whitelisting.cfm), enabling [anti-exploitation features](https://www.iad.gov/iad/library/ia-guidance/security-tips/anti-exploitation-features.cfm), and using the [latest version of the operating system and applications](https://www.iad.gov/iad/library/ia-guidance/security-tips/take-advantage-of-software-improvements.cfm).
 
-## About this Repository
+## About this repository
 
 This repository hosts Group Policy Objects, configuration tools, and compliance checks in support of the Windows 10 DoD Secure Host Baseline framework. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework](https://disa.deps.mil/ext/cop/iase/dod-images/) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 

@@ -35,7 +35,7 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **EMET.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **EMET.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
-## EMET Configuration Tips
+## EMET configuration tips
 In EMET 5.5 the Application Configuration policy setting can be used to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings. Prior to EMET 5.5 administrators would have likely directly edited the EMET.admx file to make changes but that is no longer necessary. The following examples assume these EMET Group Policy settings are enabled:
 * Default Protections for Internet Explorer 
 * Default Protections for Popular Software

@@ -1,2 +1,2 @@
-# Windows 10 Firewall
-Group Policy Objects for [Computer](./Group Policy Objects/Computer/) policies for the Windows 10 firewall are included in the SHB.
+# Windows Firewall
+A [Group Policy Object](./Group Policy Objects/Computer/) for the Windows 10 firewall is included in the SHB.

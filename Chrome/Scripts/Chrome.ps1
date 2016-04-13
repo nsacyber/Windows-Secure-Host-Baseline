@@ -26,8 +26,6 @@ Function Get-ChromeVersion() {
         [string]$Channel = 'stable'
     )
 
-    #(New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials | Out-Null
-
     $uri = ('https://omahaproxy.appspot.com/win?channel={0}' -f $Channel.ToLower())
   
     $params = @{
@@ -95,8 +93,6 @@ Function Get-ChromeExtension() {
         [Parameter(Position=3, Mandatory=$false, HelpMessage="The Chrome browser version")]
         [SYstem.Version]$ChromeVersion
     )
-
-    #(New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials | Out-Null
 
     if ($ChromeVersion -eq $null) {
         $ChromeVersion = Get-ChromeVersion
@@ -240,8 +236,6 @@ Function Get-ChromeGroupPolicyTemplate() {
         [System.Version]$ChromeVersion
     )
 
-    #(New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials | Out-Null
-
     if ($ChromeVersion -eq $null) {
         $ChromeVersion = Get-ChromeVersion
     }
@@ -288,8 +282,6 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param()
-
-    #(New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials | Out-Null
 
     $uri = 'http://dl.google.com/update2/enterprise/GoogleUpdate.adm'
   
