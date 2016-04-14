@@ -21,7 +21,7 @@ Function Get-ChromeVersion() {
     [CmdletBinding()] 
     [OutputType([System.Version])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage="The Chrome release channel")]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
         [string]$Channel = 'stable'
     )
@@ -83,16 +83,16 @@ Function Get-ChromeExtension() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="The Chrome extension ID")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Chrome extension ID')]
         [string]$ExtensionID,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage="The Chrome extension title")]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The Chrome extension title')]
         [string]$ExtensionTitle,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage="The Chrome extension version")]
+        [Parameter(Position=2, Mandatory=$true, HelpMessage='The Chrome extension version')]
         [string]$ExtensionVersion,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage="The Chrome browser version")]
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='The Chrome browser version')]
         [SYstem.Version]$ChromeVersion
     )
 
@@ -164,14 +164,14 @@ Function Get-ChromeInstaller() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="The Chrome architecture")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Chrome architecture')]
         [ValidateSet('64','32', IgnoreCase = $true)]
         [string]$Architecture,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage="The Chrome browser version")]
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The Chrome browser version')]
         [System.Version]$ChromeVersion,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage="The Chrome release channel")]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
         [string]$Channel = 'stable'
     )
@@ -236,7 +236,7 @@ Function Get-ChromeGroupPolicyTemplate() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage="The Chrome browser version")]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome browser version')]
         [System.Version]$ChromeVersion
     )
 

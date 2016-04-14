@@ -18,7 +18,7 @@ Function Get-GPOBackupInformation() {
     [CmdletBinding()] 
     [OutputType([pscustomobject])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="The path of the GPO backup folder.")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO backup folder.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -77,13 +77,13 @@ Function Update-GPOBackup() {
     [CmdletBinding(SupportsShouldProcess=$True)] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="The path of the current GPO backup folder.")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the current GPO backup folder.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$CurrentGPOBackupPath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage="The path of the new GPO backup folder.")]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path of the new GPO backup folder.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -108,10 +108,10 @@ Function Update-GPOBackup() {
 
     $currentBackupInfo = Get-GPOBackupInformation -GPOBackupPath $CurrentGPOBackupPath
 
-    $newGuid = $newBackupInfo.ID.ToString("B").ToUpper()
+    $newGuid = $newBackupInfo.ID.ToString('B').ToUpper()
     Write-Verbose -Message ('New Guid: {0}' -f $newGuid)
 
-    $currentGuid = $currentBackupInfo.ID.ToString("B").ToUpper()
+    $currentGuid = $currentBackupInfo.ID.ToString('B').ToUpper()
     Write-Verbose -Message ('Current Guid: {0}' -f $currentGuid)
 
     if($newGuid -ne $currentGuid) {
@@ -151,7 +151,7 @@ Function Get-GPOBackupFolders() {
     [CmdletBinding()] 
     [OutputType([System.IO.DirectoryInfo[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="A path containing GPO backup folders.")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path containing GPO backup folders.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]

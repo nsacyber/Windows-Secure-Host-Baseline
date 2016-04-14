@@ -21,11 +21,11 @@ Function Convert-CsvToExcel() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="Path to CSV file")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='Path to CSV file')]
         [ValidateNotNullOrEmpty()]
         [string]$CsvPath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage="Path to Excel file")]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='Path to Excel file')]
         [ValidateNotNullOrEmpty()]
         [string]$ExcelPath
     )
@@ -82,11 +82,11 @@ Function Convert-ExcelToCsv() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage="Path to CSV file")]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='Path to CSV file')]
         [ValidateNotNullOrEmpty()]
         [string]$CsvPath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage="Path to Excel file")]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='Path to Excel file')]
         [ValidateNotNullOrEmpty()]
         [string]$ExcelPath
     )
