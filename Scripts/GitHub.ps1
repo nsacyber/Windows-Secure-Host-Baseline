@@ -65,7 +65,7 @@ Function Get-GitHubRateLimit() {
 
         return $limit
     } else {
-        throw "Request failed with status code $statusCode"
+        throw 'Request failed with status code $statusCode'
     }
 }
 
@@ -107,7 +107,7 @@ Function Get-GitHubMarkdownStylesheet() {
 
         return ($returnedStylesheet | Out-String)
     } else {
-        throw "Request failed with status code $statusCode"
+        throw 'Request failed with status code $statusCode'
     }
 }
 
@@ -229,7 +229,7 @@ Function Get-GitHubHtmlFromRawMarkdown() {
       
             $html = $htmlTemplate -f $Title,$returnedHtml # this throws an error 'input string was not in a correct format' if brackets are not escaped in the template
         } else {
-            throw "Request failed with status code $statusCode"
+            throw 'Request failed with status code $statusCode'
         }
 
         return $html
@@ -265,17 +265,17 @@ Function Convert-MarkdownToHtml() {
         $remaining =[UInt32] $limit.Remaining
     }
     Process {
-        $markdownFiles = [System.IO.FileInfo[]]@($Files | ForEach { $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_) })
-        $markdownFiles = [System.IO.FileInfo[]]@($markdownFiles | Where {$_.Length -gt 0 })
+        $markdownFiles = [System.IO.FileInfo[]]@($Files | ForEach-Object { $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_) })
+        $markdownFiles = [System.IO.FileInfo[]]@($markdownFiles | Where-Object {$_.Length -gt 0 })
 
         if($markdownFiles.Count -gt $remaining) {
-            throw "$($markdownFiles.Count) files to convert but only $remaining conversions allowed until limit is reached"
+            throw '$($markdownFiles.Count) files to convert but only $remaining conversions allowed until limit is reached'
         }
 
         if($markdownFiles.Count -gt 0) {
             $htmlTemplate = Get-GitHubHtmlTemplate # only want to do this once say it calls out to the internet and the content won't change often
 
-            $markdownFiles | ForEach {
+            $markdownFiles | ForEach-Object {
                 $markdownFile = $_.FullName
 
                 if(Test-Path -Path $markdownFile -PathType Leaf) {
@@ -318,7 +318,7 @@ Function Convert-CsvToMarkdownTable() {
 
     if($rows.Count -ge 1) {
 
-        $columnHeaderRow = ($rows[0].psobject.Properties | Select -ExpandProperty Name) -join ' | '
+        $columnHeaderRow = ($rows[0].psobject.Properties | Select-Object -ExpandProperty Name) -join ' | '
         $columnHeaderRow = '| {0} |' -f $columnHeaderRow
 
         $table = $table,$columnHeaderRow -join [System.Environment]::NewLine
@@ -330,11 +330,11 @@ Function Convert-CsvToMarkdownTable() {
 
         $table = $table,$seperatorRow -join [System.Environment]::NewLine
 
-        $rows | ForEach {
+        $rows | ForEach-Object {
             $valueRow = ''
 
             # $_| Get-Member -MemberType NoteProperty changes the order of the properties (sorts alphabetical) so use Select instead
-            $values = ($_.psobject.Properties | Select -ExpandProperty Value) -join ' | '
+            $values = ($_.psobject.Properties | Select-Object -ExpandProperty Value) -join ' | '
             $valueRow = '| {0} |' -f $values
 
             $table = $table,$valueRow -join [System.Environment]::NewLine
@@ -404,6 +404,7 @@ Function New-GitConfiguration() {
     .EXAMPLE
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear' -Proxy '123.456.789.0:80'
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Scope='Function')] # this function does not change system state
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
@@ -513,10 +514,10 @@ Function New-GitConfiguration() {
                 $trustExitCode = 'false'
             }
 
-            $files = [System.IO.FileInfo[]]@(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter $executable -Recurse -Force -ErrorAction SilentlyContinue | Where { $_.PsIsContainer -eq $false } | Get-Unique)
+            $files = [System.IO.FileInfo[]]@(Get-ChildItem @($env:ProgramFiles,${env:ProgramFiles(x86)},$env:ProgramW6432) -Filter $executable -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PsIsContainer -eq $false } | Get-Unique)
 
             if($files.Count -eq 0) {
-                throw "$executable not found in Program Files"
+                throw '$executable not found in Program Files'
             }
 
             $file = $files[0]
@@ -603,7 +604,15 @@ Function New-GitConfigurationFile() {
         $path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($env:GIT_CONFIG)
     }
 
-    if(-not(Test-Path -Path $path -PathType Leaf)) {
+    if(Test-Path -Path $path -PathType Leaf) {
+        $pathInfo = [System.IO.FileInfo]$path
+        $timestamp = '{0:yyyyMMddHHmmss}' -f $pathInfo.LastWriteTime
+        $newName = $pathInfo.Name.Replace($pathInfo.Extension,('{0}.{1}.bak' -f $pathInfo.Extension,$timestamp))
+        Rename-Item -Path $path -NewName $newName -Force
+    } 
+    
+    if (-not(Test-Path -Path ([System.IO.FileInfo]$path).Directory.FullName -PathType Container))
+    {
         throw "$path not found"
     }
 

@@ -1,3 +1,3 @@
-# Windows 10 AppLocker
+# Microsoft AppLocker
 
-Microsoft AppLocker is an Application Whitelisting feature built into Windows. Group Policy Objects for an [Audit](./Group Policy Objects/Computer/Audit) and [Enforced](./Group Policy Objects/Computer/Enforced) policy are included in the SHB.
+Microsoft AppLocker is an application whitelisting feature built into the Enterprise edition of Windows starting with Windows 7. Group Policy Objects for [Audit mode](./Group Policy Objects/Computer/Audit) and [Enforcement mode](./Group Policy Objects/Computer/Enforced) policy are included in the SHB.

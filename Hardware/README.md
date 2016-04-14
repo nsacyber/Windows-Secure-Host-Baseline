@@ -25,7 +25,7 @@ A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available
 
 Ensuring the operating system is updated in a timely and regular manner is also critical for the SHB as Credential Guard and Device Guard are improved over time. New features were added to Credential Guard in [Version 1511](https://technet.microsoft.com/en-us/library/mt621547(v=vs.85).aspx) as well as support for using TPM 1.2.
 
-## Ideal System Properties for an SHB System
+## Ideal properties of an SHB system
 Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * Processor supports 64-bit instructions.
 * Firmware is UEFI and implements UEFI 2.3.1 Errata C or higher.
@@ -39,7 +39,7 @@ Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * System supports firmware updates using Windows UEFI Firmware Update Platform specification (optional, but recommended).
 * System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8 or later, but preferably for Windows 10.
 
-## Hardware and Firmware Survey
+## Hardware and firmware survey
 In support of deployment of the Windows 10 Secure Host Baseline, a number of hardware and firmware questions need to be answered about systems used by the DoD. The purpose of these questions is to determine how ready a system is to enable Windows 10 security features, such as Credential Guard and Device Guard, with the preferred hardware and firmware configuration. Answers to these questions can be used by DoD components to determine whether certain Windows 10 security features are supported by the model. Answers are needed for any Windows tablet, laptop, desktop, and server models produced by OEMs that are used in DoD. Answers should focus on enterprise and business class models rather than consumer class models. 
 
 ### Questions
@@ -77,7 +77,7 @@ Answer these questions per model:
 1. Has the model passed a Windows Hardware Certification Program? 
 1. If the model passed a Windows Hardware Certification Program, then which OS version of the certification program was the model tested for? 
 
-### Request for Answers
+### Request for answers
 
 Both OEMs and DoD administrators are requested to provide answers for the above questions. There are answer templates available in [markdown](./Template.md), [CSV](./Template.csv), and [Excel](./Template.xlsx) formats. There are number of ways to contribute answers:
 * [Submit an issue](https://github.com/iadgov/Secure-Host-Baseline/issues/new) in [this repository's issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) that contains answers to the questions for a model or for a number of models. 

@@ -142,7 +142,7 @@ Function Get-GPOBackupFolders() {
     .DESCRIPTION
     Gets folders containing Group Policy Object backups.
 
-    .PARAMETER pPath
+    .PARAMETER Path
     A path containing GPO backup folders.
 
     .EXAMPLE
@@ -158,5 +158,5 @@ Function Get-GPOBackupFolders() {
         [string]$Path
     )
 
-    return [System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where { $_.PsIsContainer -eq $true } | Where { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where { try { [System.Guid]::Parse($_.Name) | Out-Null; $true } catch { $false } })
+    return [System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $true } | Where-Object { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where-Object { try { [System.Guid]::Parse($_.Name) | Out-Null; $true } catch { $false } })
 }
