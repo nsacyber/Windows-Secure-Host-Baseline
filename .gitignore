@@ -2,3 +2,6 @@
 **/README.html
 LICENSE.html
 DISCLAIMER.html
+
+# ignore Visual Studio Code generated files
+**/*.db

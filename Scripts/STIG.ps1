@@ -46,6 +46,7 @@ Function Invoke-FileDownload() {
 }
 
 Function Test-AssemblyAvailable() {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingEmptyCatchBlock', '', Scope='Function')]
     [CmdletBinding()]
     [OutputType([bool])]
     Param (
@@ -60,7 +61,6 @@ Function Test-AssemblyAvailable() {
         Add-Type -AssemblyName $AssemblyName -ErrorAction SilentlyContinue
         $available = $true
     } catch {
-
     }
     
     return $available
@@ -136,6 +136,7 @@ Function Invoke-XslTransform() {
 }
 
 Function Get-StigProfiles() {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '', Scope='Function')]
     [CmdletBinding()]
     [OutputType([System.Collections.Generic.List[psobject]])]
     Param (
@@ -152,7 +153,7 @@ Function Get-StigProfiles() {
 
     $xml = [xml](Get-Content -Path $XmlPath)
 
-    $xml.Benchmark.Profile | ForEach {
+    $xml.Benchmark.Profile | ForEach-Object {
         $rawCount = $_.select.Count
 
         $selectCount = ($_.Select | Where-Object { $_.selected -ieq "$true"}).Count
@@ -167,10 +168,11 @@ Function Get-StigProfiles() {
         $profiles.Add($profile)
     }
 
-    return ,$profiles
+    return $profiles
 }
 
 Function Get-StigRules() {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '', Scope='Function')]
     [CmdletBinding()]
     [OutputType([System.Collections.Generic.List[psobject]])]
     Param (
@@ -188,7 +190,7 @@ Function Get-StigRules() {
 
     $xml = [xml](Get-Content -Path $XmlPath)
 
-    $xml.Benchmark.Group | ForEach {
+    $xml.Benchmark.Group | ForEach-Object {
         $description = $_.Rule.description
 
         $description = $description -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
@@ -196,8 +198,8 @@ Function Get-StigRules() {
 
         $discussion = ''
 
-        if($vuln -ne $null) {
-            if($vuln.Node.InnerText -ne $null) {
+        if($null -ne $vuln) {
+            if($nll -ne $vuln.Node.InnerText) {
                 $discussion = $vuln.Node.InnerText
             }
         }
@@ -214,13 +216,13 @@ Function Get-StigRules() {
             'VulnerabilityDiscussion'= $discussion;
             'CheckContent' = $_.Rule.check.'check-content';
             'FixText' = $_.Rule.fixtext.'#text';
-            'CCI' = @($_.Rule.ident | ForEach { $_.'#text' }) -join ', ' # $_.Rule.ident.'#text';
+            'CCI' = @($_.Rule.ident | ForEach-Object { $_.'#text' }) -join ', ' # $_.Rule.ident.'#text';
         }
         
         $rules.Add($rule)
     }
 
-    return ,$rules
+    return $rules
 }
 
 Function Start-Browser() {
@@ -362,7 +364,7 @@ Function Get-Stig() {
     $profiles = Get-StigProfiles -XmlPath $xmlPath
 
     if($VerbosePreference -ne [System.Management.Automation.ActionPreference]::SilentlyContinue) {
-        $profiles | ForEach { Write-Verbose -Message ('Profile ID: {0,-20} Title: {1,-35} Total: {2,-4} Selected: {3,-4}' -f $_.ID,$_.Title,$_.RuleCount,$_.SelectedRuleCount) }
+        $profiles | ForEach-Object { Write-Verbose -Message ('Profile ID: {0,-20} Title: {1,-35} Total: {2,-4} Selected: {3,-4}' -f $_.ID,$_.Title,$_.RuleCount,$_.SelectedRuleCount) }
     }
 
     $rules = Get-StigRules -XmlPath $xmlPath
