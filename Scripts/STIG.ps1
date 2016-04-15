@@ -135,6 +135,108 @@ Function Invoke-XslTransform() {
     }
 }
 
+Function Get-StigProfiles() {
+    [CmdletBinding()]
+    [OutputType([System.Collections.Generic.List[psobject]])]
+    Param (
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The XML file path')]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^.*\.xml$')]
+        [System.IO.FileInfo]$XmlPath
+    )
+    $profiles = New-Object System.Collections.Generic.List[psobject]
+
+    if(-not(Test-Path -Path $XmlPath -PathType Leaf)) {
+        throw "$XmlPath not found"
+    }
+
+    $xml = [xml](Get-Content -Path $XmlPath)
+
+    $xml.Benchmark.Profile | ForEach {
+        $rawCount = $_.select.Count
+
+        $selectCount = ($_.Select | Where-Object { $_.selected -ieq "$true"}).Count
+
+        $profile = [pscustomobject]@{
+            'ID' = $_.id;
+            'Title' = $_.title
+            'RuleCount' = $rawCount
+            'SelectedRuleCount' = $selectCount
+        }
+
+        $profiles.Add($profile)
+    }
+
+    return ,$profiles
+}
+
+Function Get-StigRules() {
+    [CmdletBinding()]
+    [OutputType([System.Collections.Generic.List[psobject]])]
+    Param (
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The XML file path')]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^.*\.xml$')]
+        [System.IO.FileInfo]$XmlPath
+    )
+
+    $rules = New-Object System.Collections.Generic.List[psobject]
+
+    if(-not(Test-Path -Path $XmlPath -PathType Leaf)) {
+        throw "$XmlPath not found"
+    }
+
+    $xml = [xml](Get-Content -Path $XmlPath)
+
+    $xml.Benchmark.Group | ForEach {
+        $description = $_.Rule.description
+
+        $description = $description -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
+        $vuln = Select-Xml -Content "<root>$description</root>" -XPath './/VulnDiscussion'
+
+        $discussion = ''
+
+        if($vuln -ne $null) {
+            if($vuln.Node.InnerText -ne $null) {
+                $discussion = $vuln.Node.InnerText
+            }
+        }
+
+        $title = $_.Rule.title -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
+
+        $rule = [pscustomobject]@{
+            'GroupID'=$_.id; # aka VulID
+            'GroupTitle'=$_.title; # same as RuleVersion
+            'RuleID'=$_.Rule.id; 
+            'Severity'=$_.Rule.severity; 
+            'RuleVersion' = $_.Rule.version; # aka STIG-ID, same as GroupTitle
+            'Title'=$title; 
+            'VulnerabilityDiscussion'= $discussion;
+            'CheckContent' = $_.Rule.check.'check-content';
+            'FixText' = $_.Rule.fixtext.'#text';
+            'CCI' = @($_.Rule.ident | ForEach { $_.'#text' }) -join ', ' # $_.Rule.ident.'#text';
+        }
+        
+        $rules.Add($rule)
+    }
+
+    return ,$rules
+}
+
+Function Start-Browser() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param (
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The HTML file path')]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^.*\.html$')]
+        [string]$HtmlPath
+    )
+    New-PSDrive -Name HKCR -PSProvider registry -Root HKEY_CLASSES_ROOT | Out-Null
+    $browserPath = ((Get-ItemProperty 'HKCR:\http\shell\open\command').'(Default)').Split('"')[1]
+    Start-Process -FilePath $browserPath -ArgumentList $HtmlPath -Verb Open
+}
+
 Function Get-Stig() {
     <#
     .SYNOPSIS
@@ -166,6 +268,9 @@ Function Get-Stig() {
 
     .EXAMPLE
     Get-Stig -Url 'http://iasecontent.disa.mil/stigs/zip/U_Windows_10_V1R2_STIG.ZIP' -Csv
+
+    .EXAMPLE
+    Get-Stig -File "$env:USERPROFILE\Downloads\U_Windows_10_V1R2_STIG.ZIP" -Csv
     #>
     [CmdletBinding(DefaultParameterSetName='All')]
     [OutputType([void])]
@@ -188,6 +293,7 @@ Function Get-Stig() {
     )
 
     $rules = New-Object System.Collections.Generic.List[psobject]
+    $profiles = New-Object System.Collections.Generic.List[psobject]
 
     if ($Url -ne $null) {
         $zip = $Url.Segments[-1]
@@ -247,52 +353,28 @@ Function Get-Stig() {
 
     $xml = [xml](Get-Content -Path $xmlPath)
 
-    Write-Host $xml.Benchmark.title
+    Write-Verbose -Message ('Title: {0}' -f $xml.Benchmark.title)
+    Write-Verbose -Message ('ID: {0}' -f $xml.Benchmark.id)
+    Write-Verbose -Message ('Description: {0}' -f $xml.Benchmark.description)
+    Write-Verbose -Message ($xml.Benchmark.'plain-text'.'#text')
+    Write-Verbose -Message ('Version: {0}' -f $xml.Benchmark.version)
 
-    $xml.Benchmark.Profile | ForEach {
-        $rawCount = $_.select.Count
+    $profiles = Get-StigProfiles -XmlPath $xmlPath
 
-        $selectCount = ($_.Select | Where-Object { $_.selected -ieq "$true"}).Count
-
-        $result = 'Profile ID: {0,-20} Title: {1,-35} Total: {2,-4} Selected: {3,-4}' -f $_.id,$_.title,$rawCount,$selectCount
-        Write-Host $result
+    if($VerbosePreference -ne [System.Management.Automation.ActionPreference]::SilentlyContinue) {
+        $profiles | ForEach { Write-Verbose -Message ('Profile ID: {0,-20} Title: {1,-35} Total: {2,-4} Selected: {3,-4}' -f $_.ID,$_.Title,$_.RuleCount,$_.SelectedRuleCount) }
     }
 
-    $xml.Benchmark.Group | ForEach {
-        $description = $_.Rule.description
+    $rules = Get-StigRules -XmlPath $xmlPath
 
-        $description = $description -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
-        $vuln = Select-Xml -Content "<root>$description</root>" -XPath './/VulnDiscussion'
+    $lowCount = @($rules | Where-Object { $_.Severity -ieq 'low'}).Count
+    $mediumCount = @($rules | Where-Object { $_.Severity -ieq 'medium'}).Count
+    $highCount = @($rules | Where-Object { $_.Severity -ieq 'high'}).Count
+    $totalCount = $rules.Count
 
-        $text = ''
-
-        if($vuln -ne $null) {
-            if($vuln.Node.InnerText -ne $null) {
-                $text = $vuln.Node.InnerText
-            }
-        }
-
-        #$props = @{}
-        #$props.GroupID = $_.id
-        #$props.RuleID = $_.Rule.id
-        #$props.Severity = $_.Rule.severity
-        $title = $_.Rule.title -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
-        #$props.Discussion = $text
-        #$obj = New-Object -TypeName psobject -Prop $props
-
-        $obj = [pscustomobject]@{'GroupID'=$_.id; 'GroupTitle'=$_.title; 'RuleID'=$_.Rule.id; 'Severity'=$_.Rule.severity; 'Title'=$title; 'Discussion'=$text}
-        $rules.Add($obj)
-
-        #Write-Host Group ID: $_.id Rule: $_.Rule.id Severity: $_.Rule.severity $_.Rule.title $text
+    if($VerbosePreference -ne [System.Management.Automation.ActionPreference]::SilentlyContinue) {
+        Write-Verbose -Message ('Total: {0,-3} Low: {1,-2} Medium: {2,-3} High: {3,-2}' -f $totalCount,$lowCount,$mediumCount,$highCount)
     }
-
-    $lowCount = @($xml.Benchmark.Group | Where-Object { $_.Rule.severity -ieq 'low'}).Count
-    $mediumCount = @($xml.Benchmark.Group | Where-Object { $_.Rule.severity -ieq 'medium'}).Count
-    $highCount = @($xml.Benchmark.Group | Where-Object { $_.Rule.severity -ieq 'high'}).Count
-    $totalCount = $xml.Benchmark.Group.Count
-
-    $result = 'Total: {0,-3} Low: {1,-2} Medium: {2,-3} High: {3,-2}' -f $totalCount,$lowCount,$mediumCount,$highCount
-    Write-Host $result
 
     $addedCount = $lowCount + $mediumCount + $highCount
 
@@ -301,13 +383,11 @@ Function Get-Stig() {
     }
 
     if($Open) {
-        New-PSDrive -Name HKCR -PSProvider registry -Root HKEY_CLASSES_ROOT | Out-Null
-        $browserPath = ((Get-ItemProperty 'HKCR:\http\shell\open\command').'(Default)').Split('"')[1]
-        Start-Process -FilePath $browserPath -ArgumentList $htmlPath -Verb Open
+        Start-Browser $htmlPath 
     }
 
     if($Csv) {
         $csvPath = $htmlPath.Replace('.html', '.csv')
-        $rules | Select-Object -Property GroupID,GroupTitle,RuleID,Severity,Title,Discussion | Export-Csv -Path $csvPath -NoTypeInformation #Force columns to be in a certain order
+        $rules | Select-Object -Property GroupID,GroupTitle,RuleID,Severity,RuleVersion,Title,VulnerabilityDiscussion,CheckContent,FixText,CCI | Export-Csv -Path $csvPath -NoTypeInformation #Force columns to be in a certain order
     }
 }
