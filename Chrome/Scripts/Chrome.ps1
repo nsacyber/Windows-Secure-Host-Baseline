@@ -172,8 +172,6 @@ Function Get-ChromeInstaller() {
         [string]$Channel = 'stable'
     )
 
-    #(New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials | Out-Null
-
     if ($ChromeVersion -eq $null) {
         $ChromeVersion = Get-ChromeVersion -Channel $Channel
     }
