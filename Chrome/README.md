@@ -1,6 +1,6 @@
 # Chrome
 
-[Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Template/) for the Chrome browser are included in the SHB. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are included as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release. The templates currently included in the SHB correspond to version Chrome 49.0.2623.87 [released on March 8, 2016](http://googlechromereleases.blogspot.com/2016/03/stable-channel-update_8.html).
+[Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Template/) for the Chrome browser are included in the SHB. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are included as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release. The templates currently included in the SHB correspond to Chrome 50.0.2661.75 [released on April 13, 2016](http://googlechromereleases.blogspot.com/2016/04/stable-channel-update_13.html).
 
 ## Updating the Chrome Group Policy templates
 
