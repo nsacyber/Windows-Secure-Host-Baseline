@@ -43,9 +43,17 @@ Importing a GPO varies depending on whether it is being imported for a domain ve
 1. Right click the GPO you want to import settings into and select **Import Settings**
 1. Follow the steps in the Import Wizard and select the GPO backup folder for the GPO you want to import
 
+The PowerShell [Group Policy commands](<https://technet.microsoft.com/en-us/library/hh967461(v=wps.630).aspx>) can also be used to import a domain GPO on [systems that have the PowerShell Group Policy module](https://technet.microsoft.com/en-us/library/ee461027.aspx#sectionSection0).
+
+```
+Import-Module GroupPolicy
+
+Import-GPO -Path "path to GPO backup folder"
+```
+
 ### Importing a GPO for a standalone system
 
-1. Download the [LGPO tool](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and copy it to the standalone system
+1. Download the [LGPO tool](http://blogs.technet.com/cfs-filesystemfile.ashx/__key/telligent-evolution-components-attachments/01-4062-00-00-03-65-94-11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and copy it to the standalone system
 1. Copy the GPO backup folder for the GPO you want to import to the standalone system
 1. Open an administrative command prompt and type **lgpo.exe /g "_path to GPO backup folder_"**
 
@@ -59,8 +67,7 @@ This Work is provided "as is." Any express or implied warranties, including but 
 
 The User of this Work agrees to hold harmless and indemnify the United States Government, its agents and employees from every claim or liability (whether in tort or in contract), including attorneys' fees, court costs, and expenses, arising in direct consequence of Recipient's use of the item, including, but not limited to, claims or liabilities made for injury to or death of personnel of User or third parties, damage to or destruction of property of User or third parties, and infringement or other violations of intellectual property or technical data rights.
 
-Nothing in this Work is intended to constitute an endorsement, explicit or implied, by the U.S.
-Government of any particular manufacturer's product or service.
+Nothing in this Work is intended to constitute an endorsement, explicit or implied, by the United States Government of any particular manufacturer's product or service.
 
 ## Disclaimer of Endorsement
 Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise, in this Work does not constitute an endorsement, recommendation, or favoring by the United States Government and shall not be used for advertising or product endorsement purposes.
