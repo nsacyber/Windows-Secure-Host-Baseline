@@ -5,3 +5,6 @@ DISCLAIMER.html
 
 # ignore Visual Studio Code generated files
 **/*.db
+
+# ignore executables e.g lgpo.exe
+**/*.exe
