@@ -17,7 +17,19 @@ Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/secur
 
 This repository hosts Group Policy Objects, configuration tools, and compliance checks in support of the Windows 10 DoD Secure Host Baseline framework. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework](https://disa.deps.mil/ext/cop/iase/dod-images/) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
-## Group Policy Objects
+## Getting started
+
+1. [Download](#downloads) the repository.
+1. [Import](#importing-a-gpo) the Group Policy Objects to your domain or standalone system.
+
+## Downloads
+
+* [Current code](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) - Use this until there is an official release.
+* [Latest release](https://github.com/iadgov/Secure-Host-Baseline/releases/latest) - There are no official releases yet.
+
+## Repository content
+
+### Group Policy Objects
 
 * The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group Policy Objects/User) and [Computer](./Windows/Group Policy Objects/Computer/) policies for the latest version of Windows 10.
 * The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group Policy Object/Computer/) policy for the latest version of Windows 10.
@@ -28,6 +40,18 @@ This repository hosts Group Policy Objects, configuration tools, and compliance 
 * The [Office folder](./Office/README.md) contains Office 2013 [Group Policy Object](./Office/Group Policy Objects/).
 * The [Chrome folder](./Chrome/README.md) contains Chrome browser [Computer](./Chrome/Group Policy Objects/Computer/) policy for the latest version of Chrome.
 * The [Adobe Reader folder](./Adobe Reader/README.md) contains Adobe Reader DC [Computer](./Adobe Reader/Group Policy Objects/Computer/) and [User](./Adobe Reader/Group Policy Objects/User/) policies for the latest version of Adobe Reader DC.
+
+### Scripts and tools
+Scripts for aiding users with the SHB are located in the Scripts sub folders of each component. Scripts available for use so far:
+
+* [General](./Scripts/)
+* [BitLocker](./BitLocker/Scripts/)
+* [Chrome](./Chrome/Scripts/)
+
+### Compliance checks
+Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this respository over time. Compliance checks available for use so far:
+
+* [Adobe Reader DC](./Adobe Reader/Compliance/)
 
 ## Importing a GPO
 Importing a GPO varies depending on whether it is being imported for a domain versus a standalone system.
