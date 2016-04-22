@@ -23,7 +23,8 @@ Function Get-BitLockerStatus() {
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^[A-Z]:$')]
         [string]$Drive
-        )
+    )
+    Begin {
 $type = @'
         using System.Runtime.InteropServices;
         using System;
@@ -44,22 +45,31 @@ $type = @'
             }
         }
 '@
-    Add-Type $type
-    
-    [FveApi.FVE_STATUS]$status = New-Object FveApi.FVE_STATUS
-    $status.Size = [System.Runtime.InteropServices.Marshal]::SizeOf($status)
-    $status.Version = 1;
-
-    $value = [FveApi.NativeMethods]::FveGetStatusW("\\.\$Drive", [ref] $status)
-
-    if(0 -ne $value) {
-        throw ('Retrieving BitLocker status failed with error 0x{0:X8}' -f $value)
+        Add-Type $type
     }
+    Process {
 
-    return $status
+        $bitlockerDrives = [System.IO.DriveInfo[]]@([System.IO.DriveInfo]::GetDrives()| Where-Object { $_.DriveType -eq [System.IO.DriveType]::Fixed -or $_.DriveType -eq [System.IO.DriveType]::Removable })
+
+        if("$Drive\" -in @($bitlockerDrives | ForEach-Object { $_.Name })) {
+            throw "Cannot get BitLocker status for $Drive"
+        }
+
+        [FveApi.FVE_STATUS]$status = New-Object FveApi.FVE_STATUS
+        $status.Size = [System.Runtime.InteropServices.Marshal]::SizeOf($status)
+        $status.Version = 1;
+
+        $value = [FveApi.NativeMethods]::FveGetStatusW("\\.\$Drive", [ref] $status)
+
+        if(0 -ne $value) {
+            throw ('Retrieving BitLocker status failed with error 0x{0:X8}' -f $value)
+        }
+
+        return $status
+    }
 }
 
-Function Start-BitLocker() {
+Function Start-BitLockerEncryption() {
     <#
     .SYNOPSIS
     Starts the BitLocker encryption process for a drive.
@@ -86,19 +96,19 @@ Function Start-BitLocker() {
     Specifies to restart the system, if needed, so the BitLocker encryption process can start.
 
     .EXAMPLE
-    Start-BitLocker -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\')
+    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\')
 
     .EXAMPLE
-    Start-BitLocker -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin
+    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin
 
     .EXAMPLE
-    Start-BitLocker -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin ('12345678' | ConvertTo-SecureString -AsPlainText -Force)
+    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin ('12345678' | ConvertTo-SecureString -AsPlainText -Force)
 
     .EXAMPLE
-    Start-BitLocker -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UseActiveDirectory
+    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UseActiveDirectory
 
     .EXAMPLE
-    Start-BitLocker -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin  ('12345678' | ConvertTo-SecureString -AsPlainText -Force) -UseActiveDirectory -Restart
+    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin  ('12345678' | ConvertTo-SecureString -AsPlainText -Force) -UseActiveDirectory -Restart
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWMICmdlet', '', Scope='Function')]
     [CmdletBinding()] 
@@ -126,6 +136,12 @@ Function Start-BitLocker() {
         [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies to restart the system so the BitLocker encryption process can start')]
         [switch]$Restart 
     )
+
+    $bitlockerDrives = [System.IO.DriveInfo[]]@([System.IO.DriveInfo]::GetDrives()| Where-Object { $_.DriveType -eq [System.IO.DriveType]::Fixed -or $_.DriveType -eq [System.IO.DriveType]::Removable })
+
+    if("$Drive\" -in @($bitlockerDrives | ForEach-Object { $_.Name })) {
+        throw "$Drive cannot be encrypted by BitLocker"
+    }
 
     $tpm = Get-WmiObject -Class 'Win32_Tpm' -Namespace 'root\CIMV2\Security\MicrosoftTpm'
 
