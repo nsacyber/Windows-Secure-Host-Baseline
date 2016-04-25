@@ -188,7 +188,7 @@ Function Start-BitLockerEncryption() {
                 $fix = ''
 
                 switch ($errorNumber) {
-                    0x8031005B { $fix = "Set the 'Require additional authentication at startup' policy to Enabled and configure all the options to 'Allow' OR set one option to 'Require' and the other options to 'Do not allow'" ; break }
+                    0x8031005B { $fix = "Change the 'Require additional authentication at startup' policy to configure all 4 dropdown menu options to 'Allow' OR set 1 option to 'Require' and the other 3 options to 'Do not allow'" ; break }
                     0x803100B5 { $fix = "Set the 'Enable use of BitLocker authentication requiring preboot keyboard input on slates' policy to Enabled"; break }
                     default {}
                 }
