@@ -46,6 +46,7 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 
 * [General](./Scripts/)
 * [BitLocker](./BitLocker/Scripts/)
+* [Certificates](./Certificates/Scripts/)
 * [Chrome](./Chrome/Scripts/)
 
 ### Compliance checks
