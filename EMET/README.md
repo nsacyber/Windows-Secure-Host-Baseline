@@ -42,7 +42,7 @@ In EMET 5.5 the Application Configuration policy setting can be used to selectiv
 * Default Protections for Recommended Software
 
 ### Overriding an application's ASR or EAF+ configuration
-Assuming the above policies are enabled, the following example overrides Internet Explorer's default Attack Surface Reduction (ASR) module list configuration of **npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll** to *remove* **vbscript.dll** from the list. This example demonstrates how to change the configuration when a  third-party component is loaded into Internet Explorer that is not compatible with ASR being   configured for a specific module.
+Assuming the above policies are enabled, the following example overrides Internet Explorer's default Attack Surface Reduction (ASR) module list configuration of **npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll** to *remove* **vbscript.dll** from the list. This example demonstrates how to change the configuration when a  third-party component is loaded into Internet Explorer that is not compatible with ASR being configured for a specific module.
 
 1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
@@ -92,6 +92,19 @@ The above example disables Export Address Table Access Filtering (EAF) and Expor
 
 
 Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
+
+### Blocking the regsvr32 application whitelisting bypass technique
+EMET's ASR protection can be used to block the [regsvr32 application whitelisting bypass technique](http://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html).
+
+1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
+1. Double click **Application Configuration**
+1. Select the **Enabled** radio button
+1. Click the **Show** button
+1. For **Value name** enter **\*\\regsvr32.exe**
+1. For **Value** enter **+ASR asr_modules:scrobj.dll;scrrun.dll**
+1. Click **OK**
+1. Click **OK**
+1. Run **gpupdate /force** from the command line on a test system
 
 ## On EMET bypasses
 Over the years there have been techniques published for bypassing EMET. Sometimes a future version of EMET fixes the bypass technique and sometimes it does not. As with any security software, a dedicated and skilled attacker will find a way to bypass it and EMET is no different. The fact that a bypass technique exists for EMET is not an excuse to uninstall EMET from a system. If that was the case, then no one would install anti-virus software or use firewalls since those are bypassed by attackers every day. EMET does not introduce vulnerabilities into a system and EMET bypass techniques are not vulnerabilities since they rely on gaining successful code execution through another vulnerability. EMET has a history of stopping 0-day exploits and a list of example CVEs that EMET has blocked exploits for are listed [here](https://support.microsoft.com/en-us/kb/2909257) under the  **What are the exploits for which CVEs have been blocked by EMET?** heading.
