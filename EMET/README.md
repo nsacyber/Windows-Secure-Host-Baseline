@@ -106,6 +106,16 @@ EMET's ASR protection can be used to block the [regsvr32 application whitelistin
 1. Click **OK**
 1. Run **gpupdate /force** from the command line on a test system
 
+Below is a screenshot of the Group Policy configuration.
+![EMET Group Policy configuration to block regsvr32 application whitelisting bypass](./images/emet group policy block regsvr32 sct file.png?raw=true)
+
+Below is a screenshot of the test of the of the Group Policy configuration and the notification from EMET.
+![EMET notification block regsvr32 application whitelisting bypass](./images/emet notification block regsvr32 sct file.png?raw=true)
+
+Below is a screenshot of the EMET event log event as a result of the test.
+![EMET event log block regsvr32 application whitelisting bypass](./images/emet event log block regsvr32 sct file.png?raw=true)
+
+
 ## On EMET bypasses
 Over the years there have been techniques published for bypassing EMET. Sometimes a future version of EMET fixes the bypass technique and sometimes it does not. As with any security software, a dedicated and skilled attacker will find a way to bypass it and EMET is no different. The fact that a bypass technique exists for EMET is not an excuse to uninstall EMET from a system. If that was the case, then no one would install anti-virus software or use firewalls since those are bypassed by attackers every day. EMET does not introduce vulnerabilities into a system and EMET bypass techniques are not vulnerabilities since they rely on gaining successful code execution through another vulnerability. EMET has a history of stopping 0-day exploits and a list of example CVEs that EMET has blocked exploits for are listed [here](https://support.microsoft.com/en-us/kb/2909257) under the  **What are the exploits for which CVEs have been blocked by EMET?** heading.
 
