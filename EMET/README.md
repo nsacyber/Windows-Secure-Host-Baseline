@@ -123,8 +123,7 @@ Another application whitelisting bypass technique uses rundll32.exe to execute J
 1. Select the **Enabled** radio button
 1. Click the **Show** button
 1. For **Value name** enter **\*\\rundll32.exe**
-1. For **Value** enter **+ASR asr_modules:jscript\*.dll;mshtml.dll
-**
+1. For **Value** enter **+ASR asr_modules:jscript\*.dll;mshtml.dll**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line
