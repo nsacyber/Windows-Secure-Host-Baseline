@@ -73,7 +73,7 @@ The **asr_zones:1;2** option with those specific numbers means "Exempt the Intra
 Changing an application's Export Address Table Access Filtering Plus (EAF+) mitigation is similar to changing ASR. For **Value** enter **+EAF+ eaf_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx** or whatever value you wish to change the configuration to.
 
 
-Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
+Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\EMET\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
 
 ### Overriding a specific application mitigation
 
