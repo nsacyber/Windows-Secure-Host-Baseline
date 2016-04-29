@@ -116,7 +116,7 @@ Below is a screenshot of the EMET event log event as a result of the test.
 ![EMET event log block regsvr32 application whitelisting bypass](./images/emet event log block regsvr32 sct file.png?raw=true)
 
 ### Blocking one rundll32 application whitelisting bypass technique
-Another application whitelisting bypass technique uses rundll32.exe to execute Javascript. This  technique was used by the Win32\Poweliks malware. This technique is not specific to AppLocker.
+Another application whitelisting bypass technique uses rundll32.exe to execute Javascript. This technique was used by the Win32\Poweliks malware. This technique is not specific to AppLocker.
 
 1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
@@ -124,6 +124,31 @@ Another application whitelisting bypass technique uses rundll32.exe to execute J
 1. Click the **Show** button
 1. For **Value name** enter **\*\\rundll32.exe**
 1. For **Value** enter **+ASR asr_modules:jscript\*.dll;mshtml.dll**
+1. Click **OK**
+1. Click **OK**
+1. Run **gpupdate /force** from the command line
+
+### Blocking malicious OLE packages in Microsoft Office products
+Object Linking and Embedding (OLE) packages can be used to embed executable content in Microsoft Office documents. OLE packages have been shown to be useful in [executing potentially malicious content that Outlook would normally prevent](https://medium.com/@networksecurity/oleoutlook-bypass-almost-every-corporate-security-control-with-a-point-n-click-gui-37f4cbc107d0). The configuration below overrides the built-in default EMET policies for Excel, PowerPoint, Word, Outlook, InfoPath, Publisher, and Visio by adding the OLE unpacking library to the list of modules to block from loading. This configuration prevents this technique from being used in those applications. 
+
+1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
+1. Double click **Application Configuration**
+1. Select the **Enabled** radio button
+1. Click the **Show** button
+1. For **Value name** enter **\*\\OFFICE1\*\\EXCEL.EXE**
+1. For **Value** enter **+ASR asr_modules:flash\*.ocx;packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\POWERPNT.EXE**
+1. For **Value** enter **+ASR asr_modules:flash\*.ocx;packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\WINWORD.EXE**
+1. For **Value** enter **+ASR asr_modules:flash\*.ocx;packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\OUTLOOK.EXE**
+1. For **Value** enter **+ASR asr_modules:packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\INFOPATH.EXE**
+1. For **Value** enter **+ASR asr_modules:packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\MSPUB.EXE**
+1. For **Value** enter **+ASR asr_modules:packager.dll**
+1. For **Value name** enter **\*\OFFICE1\*\VISIO.EXE**
+1. For **Value** enter **+ASR asr_modules:packager.dll**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line
