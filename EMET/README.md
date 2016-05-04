@@ -123,10 +123,12 @@ Another application whitelisting bypass technique uses rundll32.exe to execute J
 1. Select the **Enabled** radio button
 1. Click the **Show** button
 1. For **Value name** enter **\*\\rundll32.exe**
-1. For **Value** enter **+ASR asr_modules:jscript\*.dll;mshtml.dll**
+1. For **Value** enter **+ASR asr_modules:mshtml.dll**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line
+
+You can also use **+ASR asr_modules:mshtml.dll;jscript\*.dll** for step 6 but that may block too many legitimate use cases of regsvr32 loading jscript. Administrators may want to test with both combinations to determine the operational impact from additionally blocking jscript from loading.
 
 ### Blocking malicious OLE packages in Microsoft Office products
 Object Linking and Embedding (OLE) packages can be used to embed executable content in Microsoft Office documents. OLE packages have been shown to be useful in [executing potentially malicious content that Outlook would normally prevent](https://medium.com/@networksecurity/oleoutlook-bypass-almost-every-corporate-security-control-with-a-point-n-click-gui-37f4cbc107d0). The configuration below overrides the built-in default EMET policies for Excel, PowerPoint, Word, Outlook, InfoPath, Publisher, and Visio by adding the OLE unpacking library to the list of modules to block from loading. This configuration prevents this technique from being used in those applications. 
