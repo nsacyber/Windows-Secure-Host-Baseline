@@ -199,7 +199,7 @@ Function Get-StigRules() {
         $discussion = ''
 
         if($null -ne $vuln) {
-            if($nll -ne $vuln.Node.InnerText) {
+            if($null -ne $vuln.Node.InnerText) {
                 $discussion = $vuln.Node.InnerText
             }
         }
