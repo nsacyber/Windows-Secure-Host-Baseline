@@ -41,6 +41,9 @@ Google Update, based on the open source [Omaha project](https://github.com/googl
 
 You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
 
+## Compliance
+The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) .audit file to check compliance with the settings implemented in the Group Policy Object.
+
 # Download Google Chrome
 Download the latest enterprise/business version of Google Chrome:
 * [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
