@@ -1,0 +1,220 @@
+# EMET 5.5
+# Author: IAD
+# Revision: 1.1	
+# Date: 05/06/2016
+# Guidance: https://github.com/iadgov/Secure-Host-Baseline/tree/master/EMET
+# Source: https://github.com/iadgov/Secure-Host-Baseline/EMET/Compliance/EMET_5.5.audit
+
+
+<check_type : "Windows" version : "2">
+<group_policy: "Enhanced Mitigation Experience Toolkit (EMET) v5.5">
+
+<if>
+<condition type: "and">
+
+<custom_item>
+ type            : AUDIT_POWERSHELL
+ description     : "EMET 5.5 Installed"
+ value_type	 : POLICY_TEXT
+ value_data	 : ""
+ powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Format-Table -AutoSize"
+ only_show_cmd_output : YES
+ check_type	: CHECK_EQUAL
+</custom_item>
+
+<custom_item> 
+	type		: FILE_CHECK 
+	description	: "Check if EMET 5.5 is Installed - file"
+	value_type	: POLICY_TEXT 
+	value_data	: "C:\Program Files (x86)\EMET 5.5\EMET.dll"
+	file_option	: MUST_EXIST
+</custom_item>
+
+</condition>
+<then>
+
+<custom_item>
+ type            : AUDIT_POWERSHELL
+ description     : "EMET 5.5 Installed"
+ value_type	 : POLICY_TEXT
+ value_data	 : ""
+ powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Format-Table -AutoSize"
+ only_show_cmd_output : YES
+ check_type	: CHECK_EQUAL
+ ##powershell_option : CAN_NOT_BE_NULL
+</custom_item>
+
+<custom_item>
+ type			: REG_CHECK
+ description	        : "EMET: Internet Explorer Protections Enabled"
+ info	                : "STIG ID: V-63387"
+ value_type		: POLICY_TEXT
+ value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
+ reg_option		: MUST_EXIST
+ key_item		: "*\Internet Explorer\iexplore.exe"
+ severity		: MEDIUM
+</custom_item>
+
+## Popular Software Check
+<if>
+<condition type: "and">
+<custom_item>
+ type			: REG_CHECK
+ description	        : "EMET: Popular Software Protections Enabled"
+ info	                : "STIG ID: V-63391"
+ value_type		: POLICY_TEXT
+ value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
+ reg_option		: MUST_EXIST
+ key_item		: "*\7-Zip\7z.exe"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REG_CHECK
+ description	        : "EMET: Popular Software Protections Enabled"
+ info	                : "STIG ID: V-63391"
+ value_type		: POLICY_TEXT
+ value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
+ reg_option		: MUST_EXIST
+ key_item		: "*\mIRC\mirc.exe"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+	<report type: "PASSED">
+	description: "EMET: Popular Software Protections Enabled"
+	info: "Severity: CAT II"
+	</report>
+</then>
+<else>
+	<report type: "FAILED">
+	description: "EMET: Popular Software Protections Enabled"
+	info: "Severity: CAT II"
+	</report>
+</else>
+</if>
+
+## Recommended Software Check
+<if>
+<condition type: "and">
+<custom_item>
+ type			: REG_CHECK
+ description	        : "EMET: Recommended Software Protections Enabled"
+ info	                : "STIG ID: V-63397"
+ value_type		: POLICY_TEXT
+ value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
+ reg_option		: MUST_EXIST
+ key_item		: "*\OFFICE1*\WINWORD.exe"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REG_CHECK
+ description	        : "EMET: Recommended Software Protections Enabled"
+ info	                : "STIG ID: V-63397"
+ value_type		: POLICY_TEXT
+ value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
+ reg_option		: MUST_EXIST
+ key_item		: "*\Java\jre*\bin\java.exe"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+	<report type: "PASSED">
+	description: "EMET: Recommended Software Protections Enabled"
+	info: "Severity: CAT II"
+	</report>
+</then>
+<else>
+	<report type: "FAILED">
+	description: "EMET: Recommended Software Protections Enabled"
+	info: "Severity: CAT II"
+	</report>
+</else>
+</if>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: System-wide ASLR Set to Opt-In"
+ info	                : "STIG ID: 43"
+ value_type		: POLICY_DWORD
+ value_data		: "3"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "ASLR"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: System-wide DEP Set to Opt-Out"
+ info	                : "STIG ID: V-63407"
+ value_type		: POLICY_DWORD
+ value_data		: "2"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "DEP"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: System-wide SEHOP Set to Opt-Out"
+ info	                : "STIG ID: V-63411"
+ value_type		: POLICY_DWORD
+ value_data		: "2"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "SEHOP"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: AntiDetours Enabled"
+ info	                : "STIG ID: V-63425"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "AntiDetours"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: BannedFunctions Enabled"
+ info	                : "STIG ID: V-63433"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "BannedFunctions"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: DeepHooks Enabled"
+ info	                : "STIG ID: V-63417"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "DeepHooks"
+ severity		: MEDIUM
+</custom_item>
+
+# NOT A STIG SETTING
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "EMET: ExploitAction Set to Block"
+ value_type		: POLICY_DWORD
+ value_data		: "2"
+ reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
+ reg_item		: "ExploitAction"
+ severity		: MEDIUM
+</custom_item>
+
+</then>
+<else>
+		<report type: "FAILED">
+		description: "EMET 5.5 NOT INSTALLED"
+		</report>
+</else>
+</if>
+
+</group_policy>
+</check_type>
