@@ -27,7 +27,7 @@ Function Test-IsFirmwareTablePresent() {
         [Parameter(Position=1, Mandatory = $true, HelpMessage = 'The firmware table provider')]
         [ValidateSet('ACPI','FIRM','RSMB', IgnoreCase=$true)] 
         [ValidateNotNullOrEmpty()]
-        [UInt32]$Provider,
+        [string]$Provider,
 
         [Parameter(Position=1, Mandatory = $true, HelpMessage = 'The firmware table name')]
         [ValidateNotNullOrEmpty()]
@@ -50,15 +50,15 @@ Function Test-IsFirmwareTablePresent() {
     }
     Process {
         $providerName = $Provider.ToUpper()
-        $providerSignature = ('0x{0:X8}' -f ([string](@([System.Text.Encoding]::ASCII.GetBytes($providerName.ToUpper()) | ForEach { '{0:X2}' -f $_ }) -join '')) )
+        $providerSignature = ('0x{0:X8}' -f ([string](@([System.Text.Encoding]::ASCII.GetBytes($providerName.ToUpper()) | ForEach-Object { '{0:X2}' -f $_ }) -join '')) )
 
         $tableName = $Table.ToUpper().ToCharArray()
         [System.Array]::Reverse($tableName)
-        $tableSignature = [uint32]('0x{0}' -f ((@([byte[]]$tableName | ForEach { '{0:X2}' -f $_ })) -join ''))
+        $tableSignature = [uint32]('0x{0}' -f ((@([byte[]]$tableName | ForEach-Object { '{0:X2}' -f $_ })) -join ''))
 
         $tableBytes = [Kernel32.NativeMethods]::GetSystemFirmwareTable($providerSignature, $tableSignature, [ref] [System.IntPtr]::Zero, 0)
 
-        return $value -ne 0
+        return $tableBytes -ne 0
     }
 
 }
