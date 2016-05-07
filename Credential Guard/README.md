@@ -11,6 +11,7 @@ A TPM is *not* required for Credential Guard to work, but it is preferred and re
 Credential Guard may be the source of concern from some DoD components about hardware compatibility for Windows 10. This section clarifies required versus optional hardware and firmware dependencies for Credential Guard.
 
 Required dependencies for Credential Guard:
+
 * The Enterprise edition of Windows 10 must be installed.
 *	The 64-bit version of Windows 10 must be installed.
 *	The processor must support 64-bit architecture.
@@ -21,6 +22,7 @@ Required dependencies for Credential Guard:
 *	The firmware must support Secure Boot and it must be enabled in the firmware.
 
 Optional dependencies for Credential Guard:
+
 * Trusted Platform Module version 1.2 (Windows 10 Version 1511) or version 2.0 (Windows 10 Version 1507 and later)
 * IOMMU (Intel VT-d/AMD-Vi)
 
@@ -29,6 +31,7 @@ Most enterprise and business class models from Original Equipment Manufacturers 
 ## Credential Guard configuration issues
 
 The final determination if Windows will enable Credential Guard depends on if the system supports an IOMMU as well as the specific Group Policy value that is selected. **The behavior in some cases is unintuitive and can lead to Credential Guard not being enabled.** The Credential Guard behavior, as of Windows 10 Version 1511, is documented below based on the **Select Platform Security Level** drop down menu selection and if an IOMMU is present:
+
 * System with an IOMMU present and enabled:
     * Selected value is **Secure Boot** - System will enable Credential Guard with DMA protection but not lock it. 
     * Selected value is **Secure Boot and DMA Protection** - System will enable Credential Guard with DMA protection and lock it.
@@ -39,6 +42,7 @@ The final determination if Windows will enable Credential Guard depends on if th
 **When there is no IOMMU present, or it is present but not enabled, with the combination of the DMA Protection option selected results in unintuitive and undesirable behavior since Credential Guard will not be enabled.** Many enterprise and business class models produced in the last 5 years have an IOMMU (Intel VT-d/AMD-Vi) present but most OEMs have it disabled by default in the system firmware due to no compelling reason to have it enabled in the past (unlike the Intel VT-x/AMD-V virtualization extensions which are usually enabled by default).
 
 Until this behavior is changed, the recommended Credential Guard configuration is:
+
 1. For networks where an administrator can verify all systems have an IOMMU present and enabled, select the **Secure Boot and DMA Protection** option.
 1. For networks where an administrator cannot verify all systems have an IOMMU present and enabled, select the **Secure Boot** option.
 
