@@ -396,13 +396,19 @@ Function New-GitConfiguration() {
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov
 
     .EXAMPLE
-    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear'
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear'
 
     .EXAMPLE
-    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'Perforce' -Public
 
     .EXAMPLE
-    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear' -Proxy '123.456.789.0:80'
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80'
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager'
+
+    .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager' -SigningKey 'AAABB1234'
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Scope='Function')] # this function does not change system state
     [CmdletBinding()] 
@@ -428,7 +434,17 @@ Function New-GitConfiguration() {
 
         [Parameter(Position=4, Mandatory=$true, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
-        [string]$Proxy
+        [string]$Proxy,
+
+        [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('manager','winstore','wincred', IgnoreCase=$true)]
+        [string]$CredentialManager,
+
+        [Parameter(Position=6, Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^[A-Za-z0-9]{8}$')]
+        [string]$SigningKey
     )
     Begin {
     $userTemplate = @"
@@ -436,6 +452,10 @@ Function New-GitConfiguration() {
 `tname = {0}
 `temail = {1}
 `tuseconfigonly = true
+"@
+
+    $signTemplate = @"
+`tsigning = {0}
 "@
 
     $proxyTemplate = @"
@@ -464,7 +484,7 @@ Function New-GitConfiguration() {
 `tprompt = false
 "@
 
-# path does not appear to work so make cmd have the full path of the executable
+    # path does not appear to work so make cmd have the full path of the executable
     $mergeToolTemplate = @"
 [mergetool "{0}"]
 `tpath = \"{1}\"
@@ -473,8 +493,17 @@ Function New-GitConfiguration() {
 [mergetool]
 `tprompt = false
 "@
+
+    $credManTemplate = @"
+[credential]
+`thelper = {0}
+"@
+
     }
     Process {
+        # force PSBoundParameters to existing during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+        $params = $PSBoundParameters
+
         $config = ''
 
         $userSection = ''
@@ -488,18 +517,21 @@ Function New-GitConfiguration() {
             $userSection = $userTemplate -f $Username,$privateEmail
         }
 
+        if($params.ContainsKey('SigningKey')) {
+            $signSection = $signTemplate -f $SigningKey
+            $userSection = $userSection,$signSection -join [System.Environment]::NewLine
+        }
+
         $coreSection = $coreTemplate
 
         $config = $userSection,$coreSection -join [System.Environment]::NewLine
 
-        if ($Proxy -ne '') {
+        if ($params.ContainsKey('Proxy')) {
             $proxySection = $proxyTemplate -f $Proxy
             $config = $config,$proxySection -join [System.Environment]::NewLine
         }
 
-        $diffMergeSection = ''
-
-        if ($DiffMergeTool -ne '') {
+        if ($params.ContainsKey('DiffMergeTool')) {
             $toolName = $DiffMergeTool.ToLower()
 
             if($toolName -ieq 'SourceGear') {
@@ -529,6 +561,11 @@ Function New-GitConfiguration() {
             $diffMergeSection = $diffSection,$diffToolSection,$mergeToolSection -join [System.Environment]::NewLine
 
             $config = $config,$diffMergeSection -join [System.Environment]::NewLine
+        }
+
+        if($params.ContainsKey('CredentialManager')) {
+            $credManSection = $credManTemplate -f $CredentialManager.ToLower()
+            $config = $config,$credManSection -join [System.Environment]::NewLine
         }
 
         $config = $config -replace [System.Environment]::NewLine,"`n" # "real" generated gitconfig uses line feeds only
@@ -564,13 +601,19 @@ Function New-GitConfigurationFile() {
     New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov
 
     .EXAMPLE
-    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear'
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear'
 
     .EXAMPLE
-    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'Perforce' -Public
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'Perforce' -Public
 
     .EXAMPLE
-    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMerge 'SourceGear' -Proxy '123.456.789.0:80'
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80'
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager'
+
+    .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager' -SigningKey 'AAABB1234'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -595,7 +638,17 @@ Function New-GitConfigurationFile() {
 
         [Parameter(Position=4, Mandatory=$true, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
-        [string]$Proxy
+        [string]$Proxy,
+
+        [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('manager','winstore','wincred', IgnoreCase=$true)]
+        [string]$CredentialManager,
+
+        [Parameter(Position=6, Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
+        [ValidateNotNullOrEmpty()]
+        [ValidatePattern('^[A-Za-z0-9]{8}$')]
+        [string]$SigningKey
     )
 
     $path = ($env:HOMEDRIVE,$env:HOMEPATH,'.gitconfig' -join '\').Replace('\\','\') 
