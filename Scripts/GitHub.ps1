@@ -438,7 +438,7 @@ Function New-GitConfiguration() {
 
         [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('manager','winstore','wincred', IgnoreCase=$true)]
+        [ValidateSet('manager', IgnoreCase=$true)]
         [string]$CredentialManager,
 
         [Parameter(Position=6, Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
