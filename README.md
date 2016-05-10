@@ -51,11 +51,12 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 * [Hardware](./Hardware/Scripts/)
 
 ### Compliance checks
-Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this respository over time. Compliance checks available for use so far:
+Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this repository over time. Compliance checks available for use so far:
 
 * [Adobe Reader DC](./Adobe Reader/Compliance/)
 * [Chrome](./Chrome/Compliance/)
 * [EMET](./EMET/Compliance/)
+* [Internet Explorer](./Internet Explorer/Compliance/)
 
 ## Importing a GPO
 Importing a GPO varies depending on whether it is being imported for a domain versus a standalone system.

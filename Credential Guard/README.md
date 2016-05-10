@@ -65,3 +65,7 @@ Windows 10 Version 1507 did not have the **Credential Guard Configuration** drop
 It is difficult to detect if a system has an IOMMU present but disabled. The case of when an IOMMU is present and enabled can be reliably detected though. Use the **Test-IsIOMMUEnabled** function in the [Hardware PowerShell script](./../Hardware/Scripts/Hardware.ps1) to detect if an IOMMU is enabled. It cannot detect if an IOMMU is present but disabled.
 
 ## Detecting if Credential Guard is enabled
+
+## Links
+* [Protect derived domain credentials with Credential Guard](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard)
+* [What's new in Credential Guard?](https://technet.microsoft.com/en-us/itpro/windows/whats-new/credential-guard)
