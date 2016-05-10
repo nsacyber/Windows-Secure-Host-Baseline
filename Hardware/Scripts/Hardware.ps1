@@ -3,10 +3,9 @@ Set-StrictMode -Version 2
 
 
 # guard against re-adding the type when script is reloaded
+# will leave a stale type in memory if the type is changed so will need to close/open editor to load changed type
 
-$script:isTypeAdded = $false
-
-if (-not($script:isTypeAdded)) {
+if (([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods').Type -eq $null) {
     # moved to global scope so wouldn't have to define a new class for every function that does P\Invoke
     # otherwise would get type already exists error when calling different functions that do P\Invoke due to NativeMethods already existing
     $type = @'
@@ -21,20 +20,46 @@ if (-not($script:isTypeAdded)) {
                 Max = 3
             }
 
+            [StructLayout(LayoutKind.Explicit)]
+            public struct PROCESSOR_INFO_UNION {
+                [FieldOffset(0)]
+                public UInt32 dwOemId;
+
+                [FieldOffset(0)]
+                public UInt16 wProcessorArchitecture;
+
+                [FieldOffset(2)]
+                public UInt16 wReserved;
+            }
+
+            [StructLayout(LayoutKind.Sequential)]
+            public struct SYSTEM_INFO {
+                public PROCESSOR_INFO_UNION uProcessorInfo;
+                public UInt32 dwPageSize;
+                public IntPtr lpMinimumApplicationAddress;
+                public IntPtr lpMaximumApplicationAddress;
+                public UIntPtr dwActiveProcessorMask;
+                public UInt32 dwNumberOfProcessors;
+                public UInt32 dwProcessorType;
+                public UInt32 dwAllocationGranularity;
+                public UInt16 wProcessorLevel;
+                public UInt16 wProcessorRevision;
+            }
+
             public class NativeMethods {
                 [DllImport("kernel32.dll")]
                 public static extern bool GetFirmwareType(out FIRMWARE_TYPE FirmwareType);
 
                 [DllImport("kernel32.dll")]
                 public static extern uint GetSystemFirmwareTable(uint FirmwareTableProviderSignature, uint FirmwareTableID, out System.IntPtr pFirmwareTableBuffer, uint BufferSize);
+
+                [DllImport("kernel32.dll")]
+                public static extern void GetNativeSystemInfo([MarshalAs(UnmanagedType.Struct)] ref SYSTEM_INFO lpSystemInfo);
             }
         }
 '@
 
     Add-Type $type
-
-    $script:isTypeAdded = $true
-
 }
 
 Function Test-IsFirmwareTablePresent() {
@@ -71,7 +96,7 @@ Function Test-IsFirmwareTablePresent() {
     )
 
     $providerName = $Provider.ToUpper()
-    $providerSignature = ('0x{0:X8}' -f ([string](@([System.Text.Encoding]::ASCII.GetBytes($providerName.ToUpper()) | ForEach-Object { '{0:X2}' -f $_ }) -join '')) )
+    $providerSignature = [uint32]('0x{0:X8}' -f ([string](@([System.Text.Encoding]::ASCII.GetBytes($providerName.ToUpper()) | ForEach-Object { '{0:X2}' -f $_ }) -join '')) )
 
     $tableName = $Table.ToUpper().ToCharArray()
     [System.Array]::Reverse($tableName)
@@ -116,7 +141,7 @@ Function Test-IsFirmwareUEFI() {
     #>
     [CmdletBinding()]
     [OutputType([System.Boolean])]
-    Param ()
+    Param()
 
     $firmwareType = [Kernel32.FIRMWARE_TYPE]::Unknown
 
@@ -253,4 +278,159 @@ Function Test-IsCredentialGuardEnabled() {
     $dg = Get-WmiObject -ClassName 'Win32_DeviceGuard' -Namespace 'root\Microsoft\Windows\DeviceGuard'
 
     return ($dg.VirtualizationBasedSecurityStatus -eq 2 -and $dg.SecurityServicesRunning -contains 1 -and $dg.SecurityServicesConfigured -contains 1)
+}
+
+Function Get-ArchitectureName() {
+    <#
+    .SYNOPSIS
+    Gets hardware architecture name.
+
+    .DESCRIPTION
+    Gets hardware architecture name based on the architecture of the processor.
+
+    .PARAMETER Architecture
+    Architecture value.
+
+    .EXAMPLE
+    Get-ArchitectureName
+    #>
+    [CmdletBinding()]
+    [OutputType([string])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='Architecture')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateRange(0,12)]
+        [Uint32]$Architecture
+    )
+
+    $name = 'unknown'
+
+    switch ($Architecture) {
+        0 { $name = 'x86'; break }
+        1 { $name = 'Alpha'; break }
+        2 { $name = 'MIPS'; break }
+        3 { $name = 'PowerPC'; break }
+        5 { $name = 'ARM'; break }
+        6 { $name = 'Itanium'; break }
+        9 { $name = 'x64'; break }
+        12{ $name = 'ARM64'; break }
+        default { $name = 'unknown' }
+    }
+
+    return $name
+}
+
+Function Get-HardwareArchitectureName() {
+    <#
+    .SYNOPSIS
+    Gets hardware architecture name.
+
+    .DESCRIPTION
+    Gets hardware architecture name based on the architecture of the processor.
+
+    .EXAMPLE
+    Get-HardwareArchitectureName
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    $processor = Get-WmiObject -Class Win32_Processor -Filter "DeviceID='CPU0'" | Select-Object Architecture
+    $architecture = $processor.Architecture
+    $name = Get-ArchitectureName -Architecture $architecture
+
+    return $name
+}
+
+Function Get-OperatingSystemArchitectureName() {
+    <#
+    .SYNOPSIS
+    Gets operating system architecture name.
+
+    .DESCRIPTION
+    Gets operating system architecture name.
+
+    .EXAMPLE
+    Get-OperatingSystemArchitectureName
+    #>
+    [CmdletBinding()]
+    [OutputType([string])]
+    Param()
+
+    # unintuitive but returns correct results for OS architecture in a virtualized environment
+
+    $systemInfo = New-Object Kernel32.SYSTEM_INFO
+    $systemInfo.uProcessorInfo = New-Object Kernel32.PROCESSOR_INFO_UNION
+    [Kernel32.NativeMethods]::GetNativeSystemInfo([ref] $systemInfo)
+    $architecture = $systemInfo.uProcessorInfo.wProcessorArchitecture
+
+    $name = Get-ArchitectureName -Architecture $architecture
+
+    return $name
+}
+
+Function Get-HardwareBitness() {
+    <#
+    .SYNOPSIS
+    Gets hardware bitness.
+
+    .DESCRIPTION
+    Gets hardware bitness.
+
+    .EXAMPLE
+    Get-HardwareBitness
+    #>
+    [CmdletBinding()]
+    [OutputType([Uint32])]
+    Param()
+
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object  'DataWidth'
+    $bitness = $processor.DataWidth
+    return $bitness
+}
+
+Function Get-OperatingSystemBitness() {
+    <#
+    .SYNOPSIS
+    Gets operating system bitness.
+
+    .DESCRIPTION
+    Gets operating system bitness.
+
+    .EXAMPLE
+    Get-OperatingSystemBitness
+    #>
+    [CmdletBinding()]
+    [OutputType([Uint32])]
+    Param()
+
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object  'AddressWidth'
+    $bitness = $processor.AddressWidth
+    return $bitness
+}
+
+Function Test-IsOperatinySystemVirtualized() {
+    <#
+    .SYNOPSIS
+    Tests if the operating system is virtualized.
+
+    .DESCRIPTION
+    Tests if the operating system is virtualized.
+
+    .EXAMPLE
+    Test-IsOperatinySystemVirtualized
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    # Windows 8 and later only but that's ok since we assume Windows 10 for now
+    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting Model,Manufacturer
+
+    # returns correct result on Hyper-V and VMware Workstation
+    # TODO test other virtualization products
+    $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object 'HypervisorPresent'
+    $virtulized = $computer.HypervisorPresent
+
+    return $virtulized
 }
