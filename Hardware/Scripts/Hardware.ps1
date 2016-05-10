@@ -144,7 +144,7 @@ Function Test-IsFirmwareBIOS() {
 
     $success = [Kernel32.NativeMethods]::GetFirmwareType([ref] $firmwareType)
 
-    return $firmwareType -eq [Kernel32.FIRMWARE_TYPE]::UEFI
+    return $firmwareType -eq [Kernel32.FIRMWARE_TYPE]::BIOS
 }
 
 Function Test-IsSecureBootEnabled() {
@@ -158,7 +158,6 @@ Function Test-IsSecureBootEnabled() {
     .EXAMPLE
     Test-IsSecureBootEnabled
     #>
-
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param()
