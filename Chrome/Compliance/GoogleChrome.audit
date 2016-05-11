@@ -38,7 +38,7 @@
 <custom_item> 
 	type: FILE_VERSION
 	description: "Chrome Version"
-	info: "Running the latest version of Chrome protects users from known vulnerabilies."
+	info: "Running the latest version of Chrome protects users from known vulnerabilities."
 	value_type: POLICY_FILE_VERSION
 	value_data: "49.0"       
 	file: "%programfiles% (x86)\Google\Chrome\Application\chrome.exe"
@@ -74,23 +74,6 @@
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "AlwaysAuthorizePlugins"
  severity: HIGH
-</custom_item>
-
-## This check is for a STIG setting that has been depricated
-## in newer versions of Chrome.
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Session Only Based Cookies"
- info	                : "SV-57633r1"
- info               	: "Severity: CAT II"
- info               	: "This setting has been depricated"
- info               	: "HKLM\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls (DWORD:0)"
- value_type		: POLICY_DWORD
- value_data		: "0"
- reg_key		: "HKLM\Software\Policies\Google\Chrome\"
- reg_item		: "CookiesSessionOnlyForUrls"
- reg_option		: CAN_BE_NULL
- severity: LOW
 </custom_item>
 
 <custom_item>
@@ -651,12 +634,26 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  severity: LOW
 </custom_item>
 
-
-### NOT CURRENTLY A STIG CHECK
-
+## SETTING REMOVED FROM CHROME, BUT STILL IN STIG
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Proceed Anyways Option (NOT A STIG CHECK)"
+ description	        : "Chrome: Disable Session Only Based Cookies"
+ info	                : "SV-57633r1"
+ info               	: "Severity: CAT II"
+ info               	: "This setting has been deprecated"
+ info               	: "HKLM\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\Software\Policies\Google\Chrome\"
+ reg_item		: "CookiesSessionOnlyForUrls"
+ reg_option		: CAN_BE_NULL
+ severity: LOW
+</custom_item>
+
+### NOT CURRENTLY A STIG CHECK
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "Chrome: Disable Proceed Anyways Option (NOT A STIG CHECK)"
  info               	: "Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DisableSafeBrowsingProceedAnyway (DWORD:1)"
  value_type		: POLICY_DWORD

@@ -7,7 +7,7 @@
 
 
 <check_type : "Windows" version : "2">
-<group_policy: "Enhanced Mitigation Experience Toolkit (EMET) v5.5">
+<group_policy: "Encahnced Mitigation Experince Toolkit (EMET) v5.5">
 
 <if>
 <condition type: "and">
@@ -26,7 +26,7 @@
 	type		: FILE_CHECK 
 	description	: "Check if EMET 5.5 is Installed - file"
 	value_type	: POLICY_TEXT 
-	value_data	: "C:\Program Files (x86)\EMET 5.5\EMET.dll"
+	value_data	: "%programfiles% (x86)\EMET 5.5\EMET.dll"
 	file_option	: MUST_EXIST
 </custom_item>
 
