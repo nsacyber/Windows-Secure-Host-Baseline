@@ -19,7 +19,7 @@
 	type: FILE_CHECK 
 	description: "Check if Adobe Reader is installed - file"
 	value_type: POLICY_TEXT 
-	value_data: "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	value_data: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	file_option: MUST_EXIST
 	severity: LOW
 </custom_item>
@@ -27,7 +27,7 @@
 	type: FILE_CHECK 
 	description: "Check if Adobe Reader is installed - file"
 	value_type: POLICY_TEXT 
-	value_data: "C:\Program Files\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	value_data: "%programfiles%\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	file_option: MUST_EXIST
 	severity: LOW
 </custom_item>
@@ -49,7 +49,7 @@
 	info: "Running the latest version of Reader protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
 	value_data: "15.9"       
-	file: "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+	file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 

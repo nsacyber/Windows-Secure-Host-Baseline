@@ -1,9 +1,8 @@
-# Adobe Reader DC
+# Internet Explorer 11
 # Author: IAD
 # Revision: 1.0	
 # Date: 05/10/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Internet Explorer/Compliance/InternetExplorer11.audit
-
 
 <check_type : "Windows" version : "2">
 <group_policy: "Internet Explorer (IE) 11 Audit Policy">
@@ -22,7 +21,7 @@
 	info: "Running the latest version of IE protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
 	value_data: "11.0"       
-	file: "C:\Program Files (x86)\Internet Explorer\iexplore.exe"
+	file: "%programfiles% (x86)\Internet Explorer\iexplore.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 <custom_item> 
@@ -31,7 +30,8 @@
 	info: "Running the latest version of IE protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
 	value_data: "11.0"       
-	file: "C:\Program Files\Internet Explorer\iexplore.exe"
+	#file: "C:\Program Files\Internet Explorer\iexplore.exe"
+	file: "%programfiles%\Internet Explorer\iexplore.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
@@ -44,7 +44,7 @@
 	info: "Running the latest version of IE protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
 	value_data: "11.0"       
-	file: "C:\Program Files\Internet Explorer\iexplore.exe"
+	file: "%programfiles%\Internet Explorer\iexplore.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
