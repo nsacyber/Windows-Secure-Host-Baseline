@@ -7,7 +7,7 @@
 
 
 <check_type : "Windows" version : "2">
-<group_policy: "Encahnced Mitigation Experince Toolkit (EMET) v5.5">
+<group_policy: "Enhanced Mitigation Experience Toolkit (EMET) v5.5">
 
 <if>
 <condition type: "and">
