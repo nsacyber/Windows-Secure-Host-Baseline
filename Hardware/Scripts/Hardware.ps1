@@ -1,11 +1,10 @@
 ﻿#requires -version 2
 Set-StrictMode -Version 2
 
-
 # guard against re-adding the type when script is reloaded
 # will leave a stale type in memory if the type is changed so will need to close/open editor to load changed type
 
-if (([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods').Type -eq $null) {
+if ($null -eq ([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods').Type) {
     # moved to global scope so wouldn't have to define a new class for every function that does P\Invoke
     # otherwise would get type already exists error when calling different functions that do P\Invoke due to NativeMethods already existing
     $type = @'
@@ -55,6 +54,9 @@ if (([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods').Type -eq
 
                 [DllImport("kernel32.dll")]
                 public static extern void GetNativeSystemInfo([MarshalAs(UnmanagedType.Struct)] ref SYSTEM_INFO lpSystemInfo);
+
+                [DllImport("kernel32.dll", SetLastError=true)]
+                public static extern uint GetFirmwareEnvironmentVariable(string lpName, string lpGuid, IntPtr pBUffer, uint nSize);
             }
         }
 '@
@@ -69,6 +71,9 @@ Function Test-IsFirmwareTablePresent() {
 
     .DESCRIPTION
     Tests if a firmware table is present.
+
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows Server 2008 x86/x64 and later, Windows XP X64, Windows Server 2003 SP1.
 
     .PARAMETER Provider
     The firmware provider name.
@@ -115,9 +120,49 @@ Function Get-FirmwareType() {
     .DESCRIPTION
     Gets the firmware type the operating system sees. UEFI firmware running Compatibility Support Module (CSM) will return 'BIOS' instead of 'UEFI'.
 
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows XP x86 SP1, Windows Server 2003 x86/x64 and later.
+
     .EXAMPLE
     Get-FirmwareType
     #>
+    [CmdletBinding()]
+    [OutputType([System.Enum])]
+    Param()
+
+    $firmwareType = [Kernel32.FIRMWARE_TYPE]::Unknown
+
+    # don't need SE_SYSTEM_ENVIRONMENT_NAME privilege for this case
+    # accessing a real variable will fail with Win32 error 1314 (ERROR_PRIVILEGE_NOT_HELD) if privilege isn't held though
+    $result = [Kernel32.NativeMethods]::GetFirmwareEnvironmentVariable('', '{00000000-0000-0000-0000-000000000000}', [System.IntPtr]::Zero, 0)
+    $win32Error = [System.Runtime.InteropServices.Marshal]::GetLastWin32Error()
+
+    if($result -eq 0) {
+        switch($win32Error) {
+            1 { $firmwareType = [Kernel32.FIRMWARE_TYPE]::BIOS; break } # ERROR_INVALID_FUNCTION
+            998 { $firmwareType = [Kernel32.FIRMWARE_TYPE]::UEFI; break } # ERROR_NOACCESS
+            default { throw $("Win32 error {0} 0x{1:X8}" -f $win32Error, $win32Error) }
+        }
+    }
+
+    return $firmwareType
+}
+
+Function Get-FirmwareTypeEx() {
+    <#
+    .SYNOPSIS
+    Gets the firmware type.
+
+    .DESCRIPTION
+    Gets the firmware type the operating system sees. UEFI firmware running Compatibility Support Module (CSM) will return 'BIOS' instead of 'UEFI'.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Get-FirmwareTypeEx
+    #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssigments', '', Scope='Function')] #success variable doesn't need to be used
     [CmdletBinding()]
     [OutputType([System.Enum])] # [Kernel32.FirmwareType] will not exist until after type/script is loaded
     Param ()
@@ -136,6 +181,9 @@ Function Test-IsFirmwareUEFI() {
     .DESCRIPTION
     Test if the firmware type the operating system sees is UEFI. UEFI firmware running Compatibility Support Module (CSM) will return false instead of true.
 
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows XP x86 SP1, Windows Server 2003 x86/x64 and later.
+
     .EXAMPLE
     Test-IsFirmwareUEFI
     #>
@@ -143,9 +191,7 @@ Function Test-IsFirmwareUEFI() {
     [OutputType([System.Boolean])]
     Param()
 
-    $firmwareType = [Kernel32.FIRMWARE_TYPE]::Unknown
-
-    $success = [Kernel32.NativeMethods]::GetFirmwareType([ref] $firmwareType)
+    $firmwareType = Get-FirmwareType
 
     return $firmwareType -eq [Kernel32.FIRMWARE_TYPE]::UEFI
 }
@@ -158,6 +204,9 @@ Function Test-IsFirmwareBIOS() {
     .DESCRIPTION
     Test if the firmware type the operating system sees is legacy BIOS. UEFI firmware running Compatibility Support Module (CSM) will return true instead of false.
 
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows XP x86 SP1, Windows Server 2003 x86/x64 and later.
+
     .EXAMPLE
     Test-IsFirmwareBIOS
     #>
@@ -165,9 +214,7 @@ Function Test-IsFirmwareBIOS() {
     [OutputType([System.Boolean])]
     Param()
 
-    $firmwareType = [Kernel32.FIRMWARE_TYPE]::Unknown
-
-    $success = [Kernel32.NativeMethods]::GetFirmwareType([ref] $firmwareType)
+    $firmwareType = Get-FirmwareType
 
     return $firmwareType -eq [Kernel32.FIRMWARE_TYPE]::BIOS
 }
@@ -180,6 +227,9 @@ Function Test-IsSecureBootEnabled() {
     .DESCRIPTION
     Test if Secure Boot is enabled.
 
+    .PREREQUISITES
+    None.
+
     .EXAMPLE
     Test-IsSecureBootEnabled
     #>
@@ -187,9 +237,14 @@ Function Test-IsSecureBootEnabled() {
     [OutputType([System.Boolean])]
     Param()
 
-    #Confirm-SecureBootUEFI command also works but it requires administrator privileges
-    $value = Get-ItemPropertyValue -Path HKLM:\System\CurrentControlSet\Control\SecureBoot\State -Name UEFISecureBootEnabled -ErrorAction SilentlyContinue
-    $enabled = $value -eq 1
+    $enabled = $false
+
+    # Confirm-SecureBootUEFI command also works but it requires administrator privileges and only works on Windows 8 and later
+    $value = Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\SecureBoot\State' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'UEFISecureBootEnabled' -ErrorAction SilentlyContinue
+
+    if ($null -ne $value) {
+        $enabled = $value -eq 1
+    }
 
     return $enabled
 }
@@ -201,6 +256,9 @@ Function Test-IsIOMMUEnabled() {
 
     .DESCRIPTION
     Tests if an IOMMU is present and enabled. Does not test if an IOMMU is present but disabled.
+
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows Server 2008 x86/x64 and later, Windows XP X64, Windows Server 2003 SP1.
 
     .EXAMPLE
     Test-IsIOMMUEnabled
@@ -223,6 +281,9 @@ Function Test-IsTPMEnabled() {
     .DESCRIPTION
     Tests if a TPM is present and enabled. Does not test if a TPM is present but disabled.
 
+    .PREREQUISITES
+    Windows Vista x86/x64 and later, Windows Server 2008 x86/x64 and later, Windows XP X64, Windows Server 2003 SP1.
+
     .EXAMPLE
     Test-IsTPMEnabled
     #>
@@ -244,6 +305,9 @@ Function Test-IsWindowsUEFIFirmwareUpdatePlatformSupported() {
     .DESCRIPTION
     Tests if the Windows UEFI Firmware Update Platform specification is supported by the firmware.
 
+    .PREREQUISITES
+    None.
+
     .EXAMPLE
     Test-IsWindowsUEFIFirmwareUpdatePlatformSupported
     #>
@@ -253,8 +317,8 @@ Function Test-IsWindowsUEFIFirmwareUpdatePlatformSupported() {
 
     $supported = $false
 
-    if (Test-Path HKLM:\Hardware\UEFI\ESRT) {
-        $supported = ((@(Get-ChildItem -Path HKLM:\Hardware\UEFI\ESRT -Recurse -Force -ErrorAction SilentlyContinue| Where-Object {$_.GetValue('Type') -eq 1})).Count -gt 0)
+    if (Test-Path -Path 'HKLM:\Hardware\UEFI\ESRT') {
+        $supported = ((@(Get-ChildItem -Path 'HKLM:\Hardware\UEFI\ESRT' -Recurse -Force -ErrorAction SilentlyContinue| Where-Object {$_.GetValue('Type') -eq 1})).Count -gt 0)
     }
     
     return $supported
@@ -268,6 +332,9 @@ Function Test-IsCredentialGuardEnabled() {
     .DESCRIPTION
     Tests if Credential Guard is enabled and running.
 
+    .PREREQUISITES
+    Windows 10 x86/x64 and later.
+
     .EXAMPLE
     Test-IsCredentialGuardEnabled
     #>
@@ -275,9 +342,14 @@ Function Test-IsCredentialGuardEnabled() {
     [OutputType([System.Boolean])]
     Param()
 
-    $dg = Get-WmiObject -ClassName 'Win32_DeviceGuard' -Namespace 'root\Microsoft\Windows\DeviceGuard'
+    $enabled = $false
 
-    return ($dg.VirtualizationBasedSecurityStatus -eq 2 -and $dg.SecurityServicesRunning -contains 1 -and $dg.SecurityServicesConfigured -contains 1)
+    if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\DeviceGuard') -or (Test-Path -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard')) {
+        $dg = Get-WmiObject -ClassName 'Win32_DeviceGuard' -Namespace 'root\Microsoft\Windows\DeviceGuard'
+        $enabled =  ($dg.VirtualizationBasedSecurityStatus -eq 2 -and $dg.SecurityServicesRunning -contains 1 -and $dg.SecurityServicesConfigured -contains 1)
+    }
+
+    return $enabled
 }
 
 Function Get-ArchitectureName() {
@@ -287,6 +359,9 @@ Function Get-ArchitectureName() {
 
     .DESCRIPTION
     Gets hardware architecture name based on the architecture of the processor.
+
+    .PREREQUISITES
+    None.
 
     .PARAMETER Architecture
     Architecture value.
@@ -328,6 +403,9 @@ Function Get-HardwareArchitectureName() {
     .DESCRIPTION
     Gets hardware architecture name based on the architecture of the processor.
 
+    .PREREQUISITES
+    None.
+
     .EXAMPLE
     Get-HardwareArchitectureName
     #>
@@ -335,7 +413,7 @@ Function Get-HardwareArchitectureName() {
     [OutputType([System.Boolean])]
     Param()
 
-    $processor = Get-WmiObject -Class Win32_Processor -Filter "DeviceID='CPU0'" | Select-Object Architecture
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'Architecture'
     $architecture = $processor.Architecture
     $name = Get-ArchitectureName -Architecture $architecture
 
@@ -349,6 +427,9 @@ Function Get-OperatingSystemArchitectureName() {
 
     .DESCRIPTION
     Gets operating system architecture name.
+
+    .PREREQUISITES
+    Windows XP x86/x64 and later, Windows Server 2003 x86/x64 and later.
 
     .EXAMPLE
     Get-OperatingSystemArchitectureName
@@ -377,6 +458,9 @@ Function Get-HardwareBitness() {
     .DESCRIPTION
     Gets hardware bitness.
 
+    .PREREQUISITES
+    None.
+
     .EXAMPLE
     Get-HardwareBitness
     #>
@@ -384,7 +468,7 @@ Function Get-HardwareBitness() {
     [OutputType([Uint32])]
     Param()
 
-    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object  'DataWidth'
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'DataWidth'
     $bitness = $processor.DataWidth
     return $bitness
 }
@@ -397,6 +481,9 @@ Function Get-OperatingSystemBitness() {
     .DESCRIPTION
     Gets operating system bitness.
 
+    .PREREQUISITES
+    None.
+
     .EXAMPLE
     Get-OperatingSystemBitness
     #>
@@ -404,7 +491,7 @@ Function Get-OperatingSystemBitness() {
     [OutputType([Uint32])]
     Param()
 
-    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object  'AddressWidth'
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'AddressWidth'
     $bitness = $processor.AddressWidth
     return $bitness
 }
@@ -417,15 +504,18 @@ Function Test-IsOperatinySystemVirtualized() {
     .DESCRIPTION
     Tests if the operating system is virtualized.
 
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
     .EXAMPLE
-    Test-IsOperatinySystemVirtualized
+    Test-IsOperatingSystemVirtualized
     #>
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param()
 
     # Windows 8 and later only but that's ok since we assume Windows 10 for now
-    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting Model,Manufacturer
+    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting Model/Manufacturer
 
     # returns correct result on Hyper-V and VMware Workstation
     # TODO test other virtualization products
