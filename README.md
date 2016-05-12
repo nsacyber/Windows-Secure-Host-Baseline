@@ -50,6 +50,33 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 * [Chrome](./Chrome/Scripts/)
 * [Hardware](./Hardware/Scripts/)
 
+Users may need to perform 3 steps to run the functions defined in the PowerShell scripts:
+1. Change the PowerShell execution policy
+1. Unblock the PowerShell script
+1. Dot source the PowerShell script
+
+##### Changing the PowerShell execution policy
+
+Users may need to change the default PowerShell execution policy. This can be achieved in a number of different ways:
+* Open a command prompt and run **powershell.exe -ExecutionPolicy Bypass** and run scripts from that PowerShell session.
+* Open a PowerShell prompt and run **Set-ExecutionPolicy Unrestricted -Scope CurrentUser** and run scripts from any PowerShell session.
+* Open an administrative PowerShell prompt and run **Set-ExecutionPolicy Unrestricted** and run scripts from any PowerShell session.
+
+##### Unblocking the PowerShell scripts
+
+Users may need to unblock PowerShell files that have been downloaded from the Internet. Open a PowerShell prompt and run the following command **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline') -Recurse -Filter '\*.ps1' | Unblock-File** to unblock all PowerShell files.
+
+##### Dot sourcing the PowerShell scripts
+
+Once the PowerShell execution policy has been configured, and the PowerShell scripts have been unblocked, [dot source}(https://technet.microsoft.com/en-us/library/hh847841.aspx) the file to load the PowerShell code.
+
+1. Open a PowerShell prompt
+1. Change directory to where the script is located (e.g. **cd .\\Hardware\\Scripts\\**)
+1. Dot source the script into the PowerShell session (e.g. **. .\\Hardware.ps1**)
+1. Execute the PowerShell function (e.g. **Test-IsCredentialGuardEnabled**)
+
+Eventually the PowerShell scripts will be turned into modules so dot sourcing will not be required.
+
 ### Compliance checks
 Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this repository over time. Compliance checks available for use so far:
 
