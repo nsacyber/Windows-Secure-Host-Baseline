@@ -18,10 +18,10 @@ Required dependencies for Credential Guard:
 
 Optional dependencies for Credential Guard:
 
-* Trusted Platform Module (TPM) version 1.2 (Windows 10 Version 1511) or version 2.0 (Windows 10 Version 1507 and later)
-* IOMMU (Intel VT-d/AMD-Vi)
+* Trusted Platform Module (TPM) version 1.2 (Windows 10 Version 1511) or version 2.0 (Windows 10 Version 1507 and later).
+* IOMMU (Intel VT-d/AMD-Vi). 
 
-Note that a TPM is *not* required for Credential Guard to work, but it is preferred and recommended for Credential Guard to most effectively protect a system. Windows 10 Version 1511 added support for Credential Guard to be able to use a TPM version 1.2. Windows 10 1507 only supported Credential Guard with TPM version 2.0.
+Even though a TPM is *not* required for Credential Guard to work, it is highly recommended for Credential Guard to most effectively protect a system. A **TPM is so highly recommended that it should be considered required** similar to how TPMs are recommended, but in reality required, for BitLocker (BitLocker protection is ineffective without a TPM). Windows 10 Version 1511 added support for Credential Guard to be able to use a TPM version 1.2. Windows 10 1507 only supported Credential Guard with TPM version 2.0.
 
 Most enterprise and business class models from Original Equipment Manufacturers (OEMs) that have passed the Windows Hardware Certification Program for Windows 8 or later likely satisfy the required dependencies for Credential Guard. Some enterprise and business class models released within 1-2 years before the release of Windows 8 may also support Credential Guard but may need a firmware update to support Secure Boot. Some features used by Credential Guard, such as Secure Boot, Intel VT-x/AMD-Vi, and Intel VT-d/AMD-Vi, may need to be enabled in the firmware since some OEMs chose to disable certain features by default. In order to clarify which models satisfy the Windows 10 Credential Guard dependencies, which models may need firmware configuration changes, and which models may need firmware updates, IAD has requested OEMs provide information on a [publicly accessible web site](./../Hardware/README.md) to clarify these issues and is currently awaiting answers.
 
@@ -43,7 +43,7 @@ Until this behavior is changed, the recommended Credential Guard configuration i
 1. For networks where an administrator can verify all systems have an IOMMU present and enabled, select the **Secure Boot and DMA Protection** option.
 1. For networks where an administrator cannot verify all systems have an IOMMU present and enabled, select the **Secure Boot** option.
 
-Due to the unintuitive behavior where Credential Guard may not be enabled, the Windows 10 STIG will allow for either **Secure Boot** or **Secure Boot and DMA Protection** even though, as of the April 2016 release, it says to select **Secure Boot and DMA Protection**. The STIG will be updated in the future to reflect allowing either value.
+Due to the unintuitive behavior where Credential Guard may not be enabled, the Windows 10 STIG will allow for either **Secure Boot** or **Secure Boot and DMA Protection** even though, as of the April 2016 release, it says to select **Secure Boot and DMA Protection**. The STIG will be updated in July to reflect allowing either value.
 
 ## Enabling Credential Guard
 
@@ -53,9 +53,10 @@ To enable Credential Guard:
 1. Double click the **Turn On Virtualization Based Security** policy
 1. Select the **Enabled** radio button
 1. From the **Select Platform Security Level** drop down, select the option that will result in the most systems having Credential Guard enabled as discussed above. 
+1. From the **Credential Guard Configuration** drop down, select either option. **Enabled without UEFI lock** may be the safest option until Credential Guard is more widely used in a large scale operational environment to ensure any other issues are identified and resolved before locking it. 
 1. Click **OK**
 
-Windows 10 Version 1507 did not have the **Credential Guard Configuration** drop down menu. Its default behavior was equivalent to **Enabled with UEFI lock**. The Windows 10 STIG does not specify a specific value.
+Windows 10 Version 1507 did not have the **Credential Guard Configuration** drop down menu but its default behavior was equivalent to **Enabled with UEFI lock**. The Windows 10 STIG does not specify a specific value. If the configuration is locked, then the only way to unlock the configuration (e.g. disable Credential Guard) is by having an administrator use SecConfig.efi, reboot the computer, and press a key during system boot to accept the security prompt to change the configuration. In other words, an administrator must be physically present to disable Credential Guard when the UEFI lock option is used.
 
 ## Detecting if an IOMMU is enabled
 
