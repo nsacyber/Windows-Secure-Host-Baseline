@@ -28,14 +28,17 @@ Ensuring the operating system is updated in a timely and regular manner is also 
 ## Ideal properties of an SHB system
 Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * Processor supports 64-bit instructions.
-* Firmware is UEFI and implements UEFI 2.3.1 Errata C or higher.
-* Firmware is in UEFI native mode by default.
-* Firmware supports Secure Boot and Secure Boot is enabled by default.
-* Processor supports memory virtualization and the firmware has memory virtualization enabled by default if a configurable option is provided.
-* Processor supports IOMMU device virtualization and the firmware has IOMMU device virtualization enabled by default if a configurable option is provided.
-* Processor supports Second Level Address Translation.
-* System has a Trusted Platform Module, version 1.2 or later, that implements the Physical Presence Interface specification 1.2 or later, is enabled by default, and can be automatically provisioned by Windows 8 or later.
-* System supports Credential Guard and Device Guard.
+* Firmware type is Unified Extensible Firmware Interface (UEFI) and implements UEFI specification version 2.3.1 Errata C or higher.
+* Firmware is in UEFI native mode by default (if a firmware configuration option is provided) rather than Legacy mode aka Compatibility Support Module (CSM) mode.
+* Firmware supports Secure Boot and Secure Boot is enabled by default (if a firmware configuration option is provided).
+* Processor supports memory virtualization (Intel VT-x or AMD-V) and the firmware has memory virtualization enabled by default (if a firmware configuration option is provided).
+* Processor supports IOMMU device virtualization (Intel Vt-d or AMD-Vi) and the firmware has IOMMU device virtualization enabled by default (if a  firmware configuration option is provided).
+* Processor supports Second Level Address Translation (Intel EPT or AMD-RVI).
+* System has a Trusted Platform Module (TPM), at least version 1.2, but version 2.0 is preferred when possible.
+* TPM implements the Physical Presence Interface specification 1.2 or later.
+* TPM is enabled and activated by default (if a firmware configuration option is provided) or can be automatically provisioned by Windows 8 or later.
+* System and firmware support Credential Guard and Device Guard.
+* Device drivers are compatible ([1](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/10/29/new-device-level-test-to-be-included-as-part-of-the-compatibility-program-in-november-2015/),[2](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/05/22/driver-compatibility-with-device-guard-in-windows-10/)) with Device Guard and Hypervisor Code Integrity (HVCI).
 * System supports firmware updates using Windows UEFI Firmware Update Platform specification (optional, but recommended).
 * System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8 or later, but preferably for Windows 10.
 
