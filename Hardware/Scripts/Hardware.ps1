@@ -352,6 +352,99 @@ Function Test-IsCredentialGuardEnabled() {
     return $enabled
 }
 
+Function Test-IsVMMSupported() {
+    <#
+    .SYNOPSIS
+    Tests if virtual machine extensions are supported by the processor.
+
+    .DESCRIPTION
+    Tests if virtual machine extensions are supported by the processor.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Test-IsVMMSupported
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    $supported = $false
+
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VMMonitorModeExtensions -ErrorAction SilentlyContinue
+
+    if ($null -ne $processor.VMMonitorModeExtensions) {
+        $supported = $processor.VMMonitorModeExtensions
+    } else {
+        # TODO downlevel case
+    }
+
+    return $supported
+}
+
+Function Test-IsVMMEnabled() {
+    <#
+    .SYNOPSIS
+    Tests if virtual machine extensions are enabled.
+
+    .DESCRIPTION
+    Tests if virtual machine extensions are enabled.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Test-IsVMMEnabled
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    $enabled = $false
+
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VirtualizationFirmwareEnabled -ErrorAction SilentlyContinue
+
+    if ($null -ne $processor.VirtualizationFirmwareEnabled) {
+        $enabled = $processor.VirtualizationFirmwareEnabled
+    } else {
+        # TODO downlevel case
+    }
+
+    return $enabled
+}
+
+Function Test-IsSLATSupported() {
+    <#
+    .SYNOPSIS
+    Tests if Second level Address Translation (Intel EPT/AMD-RVI) is supported by the processor.
+
+    .DESCRIPTION
+    Tests if Second level Address Translation (Intel EPT/AMD-RVI) is supported by the processor. SLAT is either supported/not supported. There is no need for testing if it is enabled/disabled.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Test-IsSLATSupported
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    $supported = $false
+
+    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object SecondLevelAddressTranslationExtensions -ErrorAction SilentlyContinue
+
+    if ($null -ne $processor.SecondLevelAddressTranslationExtensions) {
+        $supported = $processor.SecondLevelAddressTranslationExtensions
+    } else {
+        # TODO downlevel case
+    }
+
+    return $supported
+}
+
 Function Get-ArchitectureName() {
     <#
     .SYNOPSIS
@@ -496,7 +589,7 @@ Function Get-OperatingSystemBitness() {
     return $bitness
 }
 
-Function Test-IsOperatinySystemVirtualized() {
+Function Test-IsOperatingSystemVirtualized() {
     <#
     .SYNOPSIS
     Tests if the operating system is virtualized.
@@ -514,13 +607,80 @@ Function Test-IsOperatinySystemVirtualized() {
     [OutputType([System.Boolean])]
     Param()
 
+    $virtualized = $false
+
     # Windows 8 and later only but that's ok since we assume Windows 10 for now
     # TODO come up with method for Windows 7, prefer not to rely on fingerprinting Model/Manufacturer
 
     # returns correct result on Hyper-V and VMware Workstation
     # TODO test other virtualization products
     $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object 'HypervisorPresent'
-    $virtulized = $computer.HypervisorPresent
+
+    if ($null -ne $computer.HypervisorPresent) {
+        $virtulized = $computer.HypervisorPresent
+    } else {
+        # TODO downlevel case
+    }
 
     return $virtulized
+}
+
+Function Test-IsSystemCredentialGuardReady() {
+    <#
+    .SYNOPSIS
+    Tests if the system meets depencies to enable Credential Guard.
+
+    .DESCRIPTION
+    Tests if the system meets dependencies to enable Credential Guard.
+
+    .PARAMETER IncludeTPM
+    Include tests to see if the Trusted Platform Module is ready for Credential Guard.
+
+    .PARAMETER IncludeIOMMU
+    Include tests to see if the IOMMU is ready for Credential Guard.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Test-IsSystemCredentialGuardReady
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='Include TPM tests')]
+        [switch]$IncludeTPM,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Include IOMMU tests')]
+        [switch]$IncludeIOMMU 
+    )
+
+    $ready = $false
+
+    $isHardware = (Get-HardwareBitness) -eq 64
+    $isOS = (Get-OperatingSystemBitness) -eq 64
+    $isUEFI = Test-IsFirmwareUEFI
+    $isSecureBoot = Test-IsSecureBootEnabled
+    $isVMM = (Test-IsVMMSupported) -and (Test-IsVMMEnabled)
+    $isSLAT = Test-IsSLATSupported
+    $isPhysical = -not(Test-IsOperatingSystemVirtualized)
+
+    $ready = $isHardware -and $isOS -and $isUEFI -and $isSecureBoot -and $isVMM -and $isSLAT -and $isPhysical
+
+    if ($IncludeTPM) {
+        $tpmEnabled = Test-IsTPMEnabled
+
+        if ($tpmEnabled) {
+            # TODO add more tests to see if it is really ready for use by OS
+        }
+
+        $ready = $ready -and $tpmEnabled
+    }
+
+    if ($IncludeIOMMU) {
+        $iommuEnabled = Test-IsIOMMUEnabled
+        $ready = $ready -and $iommuEnabled
+    }
+
+    return $ready
 }
