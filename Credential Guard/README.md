@@ -10,7 +10,7 @@ Required dependencies for Credential Guard:
 * The Enterprise edition of Windows 10 must be installed.
 *	The 64-bit version of Windows 10 must be installed.
 *	The processor must support 64-bit architecture.
-*	The processor must support memory virtualization (Intel VT-x/AMD-Vi) and it must be enabled in the firmware.
+*	The processor must support memory virtualization (Intel VT-x/AMD-V) and it must be enabled in the firmware.
 *	The processor must support Second Level Address Translation (Intel EPT/AMD RVI).
 *	The firmware type must be Unified Extensible Firmware Interface (UEFI), rather than legacy BIOS, running in UEFI native mode instead of Compatibility Support Module (CSM) mode.
 * The firmware must implement UEFI version 2.3.1 or later.
