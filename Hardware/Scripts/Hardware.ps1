@@ -57,6 +57,13 @@ if ($null -eq ([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods'
 
                 [DllImport("kernel32.dll", SetLastError=true)]
                 public static extern uint GetFirmwareEnvironmentVariable(string lpName, string lpGuid, IntPtr pBUffer, uint nSize);
+
+                [DllImport("kernel32.dll")]
+                [return: MarshalAs(UnmanagedType.Bool)]
+                public static extern bool IsProcessorFeaturePresent(uint ProcessorFeature);
+
+                public const UInt32 PF_SECOND_LEVEL_ADDRESS_TRANSLATION = 20;
+                public const UInt32 PF_VIRT_FIRMWARE_ENABLED = 21;
             }
         }
 '@
@@ -90,12 +97,12 @@ Function Test-IsFirmwareTablePresent() {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param (
-        [Parameter(Position=1, Mandatory = $true, HelpMessage = 'The firmware table provider')]
+        [Parameter(Position=0, Mandatory = $true, HelpMessage = 'The firmware table provider')]
         [ValidateSet('ACPI','FIRM','RSMB', IgnoreCase=$true)] 
         [ValidateNotNullOrEmpty()]
         [string]$Provider,
 
-        [Parameter(Position=2, Mandatory = $true, HelpMessage = 'The firmware table name')]
+        [Parameter(Position=1, Mandatory = $true, HelpMessage = 'The firmware table name')]
         [ValidateNotNullOrEmpty()]
         [string]$Table
     )
@@ -345,6 +352,7 @@ Function Test-IsCredentialGuardEnabled() {
     $enabled = $false
 
     if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\DeviceGuard') -or (Test-Path -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard')) {
+        # TODO eleminate WMI if possible due to its slowness
         $dg = Get-WmiObject -ClassName 'Win32_DeviceGuard' -Namespace 'root\Microsoft\Windows\DeviceGuard'
         $enabled =  ($dg.VirtualizationBasedSecurityStatus -eq 2 -and $dg.SecurityServicesRunning -contains 1 -and $dg.SecurityServicesConfigured -contains 1)
     }
@@ -372,6 +380,7 @@ Function Test-IsVMMSupported() {
 
     $supported = $false
 
+    # TODO eliminate WMI if possible due to its slowness
     $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VMMonitorModeExtensions -ErrorAction SilentlyContinue
 
     if ($null -ne $processor.VMMonitorModeExtensions) {
@@ -403,13 +412,16 @@ Function Test-IsVMMEnabled() {
 
     $enabled = $false
 
-    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VirtualizationFirmwareEnabled -ErrorAction SilentlyContinue
+    #$processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VirtualizationFirmwareEnabled -ErrorAction SilentlyContinue
 
-    if ($null -ne $processor.VirtualizationFirmwareEnabled) {
-        $enabled = $processor.VirtualizationFirmwareEnabled
-    } else {
-        # TODO downlevel case
-    }
+    #if ($null -ne $processor.VirtualizationFirmwareEnabled) {
+    #    $enabled = $processor.VirtualizationFirmwareEnabled
+    #} else {
+    #    # TODO downlevel case
+    #}
+
+    # faster than WMI but still need to do downlevel case since this flag is only supported in Windows 8+
+    $enabled = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_VIRT_FIRMWARE_ENABLED)
 
     return $enabled
 }
@@ -434,13 +446,16 @@ Function Test-IsSLATSupported() {
 
     $supported = $false
 
-    $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object SecondLevelAddressTranslationExtensions -ErrorAction SilentlyContinue
+    #$processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object SecondLevelAddressTranslationExtensions -ErrorAction SilentlyContinue
 
-    if ($null -ne $processor.SecondLevelAddressTranslationExtensions) {
-        $supported = $processor.SecondLevelAddressTranslationExtensions
-    } else {
-        # TODO downlevel case
-    }
+    #if ($null -ne $processor.SecondLevelAddressTranslationExtensions) {
+    #    $supported = $processor.SecondLevelAddressTranslationExtensions
+    #} else {
+    #    # TODO downlevel case
+    #}
+
+    # faster than WMI but still need to do downlevel case since this flag is only supported in Windows 8+
+    $supported = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_SECOND_LEVEL_ADDRESS_TRANSLATION)
 
     return $supported
 }
@@ -506,6 +521,7 @@ Function Get-HardwareArchitectureName() {
     [OutputType([System.Boolean])]
     Param()
 
+    # TODO eliminate WMI if possible due to its slowness
     $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'Architecture'
     $architecture = $processor.Architecture
     $name = Get-ArchitectureName -Architecture $architecture
@@ -561,8 +577,10 @@ Function Get-HardwareBitness() {
     [OutputType([Uint32])]
     Param()
 
+    # TODO eliminate WMI if possible due to its slowness
     $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'DataWidth'
     $bitness = $processor.DataWidth
+
     return $bitness
 }
 
@@ -584,8 +602,10 @@ Function Get-OperatingSystemBitness() {
     [OutputType([Uint32])]
     Param()
 
+    # TODO eliminate WMI if possible due to its slowness
     $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object 'AddressWidth'
     $bitness = $processor.AddressWidth
+
     return $bitness
 }
 
@@ -610,19 +630,84 @@ Function Test-IsOperatingSystemVirtualized() {
     $virtualized = $false
 
     # Windows 8 and later only but that's ok since we assume Windows 10 for now
-    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting Model/Manufacturer
+    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting of Win32_ComputerSystem.Manufacturer ('Xen', 'VMware', 'Microsoft', 'Red Hat', 'innotek')
 
-    # returns correct result on Hyper-V and VMware Workstation
+    # returns correct result on Hyper-V and VMware Workstation, not sure about others
     # TODO test other virtualization products
+    # TODO eliminate WMI if possible due to its slowness
     $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object 'HypervisorPresent'
 
     if ($null -ne $computer.HypervisorPresent) {
-        $virtulized = $computer.HypervisorPresent
+        $virtualized = $computer.HypervisorPresent
     } else {
         # TODO downlevel case
     }
 
-    return $virtulized
+    return $virtualized
+}
+
+Function Get-OperatingSystemEdition() {
+    <#
+    .SYNOPSIS
+    Gets the operating system edition.
+
+    .DESCRIPTION
+    Gets the operating system edition.
+
+    .PREREQUISITES
+    Windows 7 x86/x64 and later.
+
+    .EXAMPLE
+    Get-OperatingSystemEdition
+    #>
+    [CmdletBinding()]
+    [OutputType([string])]
+    Param()
+
+    $edition = Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'EditionID' -ErrorAction SilentlyContinue
+
+    return $edition
+}
+
+Function Get-OperatingSystemVersion() {
+    <#
+    .SYNOPSIS
+    Gets the operating system version.
+
+    .DESCRIPTION
+    Gets the operating system version.
+
+    .PREREQUISITES
+    Windows 7 x86/x64 and later.
+
+    .EXAMPLE
+    Get-OperatingSystemVersion
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Version])]
+    Param()
+
+    $major = 0
+    $minor = 0
+    $build = 0
+    $revision = 0
+
+    $currentVersionPath = 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion'
+
+    $isWindows10orLater = $null -ne (Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentMajorVersionNumber' -ErrorAction SilentlyContinue)
+
+    if($isWindows10orLater) {
+
+        $major = [Uint32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentMajorVersionNumber' -ErrorAction SilentlyContinue)
+        $minor = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentMinorVersionNumber' -ErrorAction SilentlyContinue)
+        $build = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentBuildNumber' -ErrorAction SilentlyContinue)
+    } else {
+        $major = [Uint32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[0]
+        $minor = [UInt32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[1]
+        $build = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentBuild' -ErrorAction SilentlyContinue)
+    }
+
+    return [System.Version]('{0}.{1}.{2}.{3}' -f $major,$minor,$build,$revision)
 }
 
 Function Test-IsSystemCredentialGuardReady() {
@@ -632,6 +717,9 @@ Function Test-IsSystemCredentialGuardReady() {
 
     .DESCRIPTION
     Tests if the system meets dependencies to enable Credential Guard.
+
+    .PARAMETER IncludeOS
+    Include tests to see if the operating system supports Credential Guard.
 
     .PARAMETER IncludeTPM
     Include tests to see if the Trusted Platform Module is ready for Credential Guard.
@@ -648,39 +736,49 @@ Function Test-IsSystemCredentialGuardReady() {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Include TPM tests')]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='Include operating system tests')]
+        [switch]$IncludeOS,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Include TPM tests')]
         [switch]$IncludeTPM,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Include IOMMU tests')]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='Include IOMMU tests')]
         [switch]$IncludeIOMMU 
     )
 
-    $ready = $false
+    $isReady = $false
 
-    $isHardware = (Get-HardwareBitness) -eq 64
-    $isOS = (Get-OperatingSystemBitness) -eq 64
-    $isUEFI = Test-IsFirmwareUEFI
-    $isSecureBoot = Test-IsSecureBootEnabled
-    $isVMM = (Test-IsVMMSupported) -and (Test-IsVMMEnabled)
-    $isSLAT = Test-IsSLATSupported
+    $isOS64Bit = (Get-OperatingSystemBitness) -eq 64
+    $isHardware64Bit = (Get-HardwareBitness) -eq 64
+    $isFirmwareUEFI = Test-IsFirmwareUEFI
+    $isSecureBootEnabled = Test-IsSecureBootEnabled
+    $isVMMReady = (Test-IsVMMSupported) -and (Test-IsVMMEnabled)
+    $isSLATSupported = Test-IsSLATSupported
     $isPhysical = -not(Test-IsOperatingSystemVirtualized)
 
-    $ready = $isHardware -and $isOS -and $isUEFI -and $isSecureBoot -and $isVMM -and $isSLAT -and $isPhysical
+    $isReady = $isHardware64Bit -and $isOS64Bit -and $isFirmwareUEFI -and $isSecureBootEnabled -and $isVMMReady -and $isSLATSupported -and $isPhysical
+
+    if ($IncludeOS) {
+        $isWindows10 = (Get-OperatingSystemVersion).Major -ge 10
+        $isEnterprise = (Get-OperatingSystemEdition) -eq 'Enterprise'
+
+        $isReady = $isReady -and $isWindows10 -and $isEnterprise
+    }
 
     if ($IncludeTPM) {
-        $tpmEnabled = Test-IsTPMEnabled
+        $isTPMEnabled = Test-IsTPMEnabled
 
-        if ($tpmEnabled) {
-            # TODO add more tests to see if it is really ready for use by OS
+        if ($isTPMEnabled) {
+            # TODO add more tests to see if TPM is really ready for use by OS (enabled, activated, owned)
         }
 
-        $ready = $ready -and $tpmEnabled
+        $isReady = $isReady -and $isTPMEnabled
     }
 
     if ($IncludeIOMMU) {
-        $iommuEnabled = Test-IsIOMMUEnabled
-        $ready = $ready -and $iommuEnabled
+        $isIOMMUEnabled = Test-IsIOMMUEnabled
+        $isReady = $isReady -and $isIOMMUEnabled
     }
 
-    return $ready
+    return $isReady
 }
