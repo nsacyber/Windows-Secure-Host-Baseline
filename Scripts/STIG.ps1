@@ -206,6 +206,15 @@ Function Get-StigRules() {
 
         $title = $_.Rule.title -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
 
+        $cci = @()
+
+        # Outlook 2013 does not have ident property on most items, appears to only have it on 2
+        if($_.Rule.PSObject.Properties.Name -contains 'ident') {
+            $cci = @($_.Rule.ident | ForEach-Object { $_.'#text' }) -join ', '
+        } else {
+            Write-Warning -Message ('{0} is missing ident (CCI) property' -f $_.id)
+        }
+
         $rule = [pscustomobject]@{
             'GroupID'=$_.id; # aka VulID
             'GroupTitle'=$_.title; # same as RuleVersion
@@ -216,7 +225,7 @@ Function Get-StigRules() {
             'VulnerabilityDiscussion'= $discussion;
             'CheckContent' = $_.Rule.check.'check-content';
             'FixText' = $_.Rule.fixtext.'#text';
-            'CCI' = @($_.Rule.ident | ForEach-Object { $_.'#text' }) -join ', ' # $_.Rule.ident.'#text';
+            'CCI' = $cci
         }
         
         $rules.Add($rule)
