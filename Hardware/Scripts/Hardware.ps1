@@ -10,6 +10,7 @@ if ($null -eq ([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods'
     $type = @'
         using System.Runtime.InteropServices;
         using System;
+        using System.Security.Principal;
 
         namespace Kernel32 {                       
             public enum FIRMWARE_TYPE: uint {
@@ -50,7 +51,7 @@ if ($null -eq ([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods'
                 public static extern bool GetFirmwareType(out FIRMWARE_TYPE FirmwareType);
 
                 [DllImport("kernel32.dll")]
-                public static extern uint GetSystemFirmwareTable(uint FirmwareTableProviderSignature, uint FirmwareTableID, out System.IntPtr pFirmwareTableBuffer, uint BufferSize);
+                public static extern uint GetSystemFirmwareTable(uint FirmwareTableProviderSignature,uint FirmwareTableID, out IntPtr pFirmwareTableBuffer, uint BufferSize);
 
                 [DllImport("kernel32.dll")]
                 public static extern void GetNativeSystemInfo([MarshalAs(UnmanagedType.Struct)] ref SYSTEM_INFO lpSystemInfo);
@@ -64,11 +65,46 @@ if ($null -eq ([System.Management.Automation.PSTypeName]'Kernel32.NativeMethods'
 
                 public const UInt32 PF_SECOND_LEVEL_ADDRESS_TRANSLATION = 20;
                 public const UInt32 PF_VIRT_FIRMWARE_ENABLED = 21;
+
+                [DllImport("kernel32.dll", SetLastError=true)]
+                public static extern IntPtr GetCurrentProcess();
+
+                [DllImport("kernel32.dll", SetLastError=true)]
+                [return: MarshalAs(UnmanagedType.Bool)]
+                public static extern bool CloseHandle(IntPtr hObject);
+
+                [DllImport ("advapi32.dll", SetLastError=true)]
+                [return: MarshalAs(UnmanagedType.Bool)]
+                public static extern bool OpenProcessToken (IntPtr ProcessToken, TokenAccessLevels DesiredAccess, out IntPtr TokenHandle);
+
+                public const UInt32 TOKEN_QUERY = 0x0008;
+                public const UInt32 TOKEN_ADJUST_PRIVILEGES = 0x0020;
+                public const string SE_SYSTEM_ENVIRONMENT_NAME = "SeSystemEnvironmentPrivilege";
+
             }
         }
 '@
 
     Add-Type $type
+}
+
+Function Invoke-AdjustPrivilege() {
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param (
+        [Parameter(Position=0, Mandatory = $true, HelpMessage = 'The privilege name')]
+        [ValidateSet('SeSystemEnvironmentPrivilege', IgnoreCase=$false)] 
+        [ValidateNotNullOrEmpty()]
+        [string]$PrivilegeName,
+
+        [Parameter(Position=1, Mandatory = $false, HelpMessage = 'Whether or not to enable or disable the privilege.')]
+        [ValidateNotNullOrEmpty()]
+        [bool]$Enable  = $true
+    )
+
+    $processHandle = [Kernel32.NativeMethods]::GetCurrentProcess()
+
+    $closed = [Kernel32.NativeMethods]::CloseHandle($processHandle)
 }
 
 Function Test-IsFirmwareTablePresent() {
@@ -360,6 +396,43 @@ Function Test-IsCredentialGuardEnabled() {
     return $enabled
 }
 
+Function Test-IsOperatingSystemVirtualized() {
+    <#
+    .SYNOPSIS
+    Tests if the operating system is virtualized.
+
+    .DESCRIPTION
+    Tests if the operating system is virtualized.
+
+    .PREREQUISITES
+    Windows 8 x86/x64 and later.
+
+    .EXAMPLE
+    Test-IsOperatingSystemVirtualized
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    Param()
+
+    $virtualized = $false
+
+    # Windows 8 and later only but that's ok since we assume Windows 10 for now
+    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting of Win32_ComputerSystem.Manufacturer ('Xen', 'VMware', 'Microsoft', 'Red Hat', 'innotek')
+
+    # returns correct result on Hyper-V and VMware Workstation, not sure about others
+    # TODO test other virtualization products
+    # TODO eliminate WMI if possible due to its slowness
+    $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object 'HypervisorPresent'
+
+    if ($null -ne $computer.HypervisorPresent) {
+        $virtualized = $computer.HypervisorPresent
+    } else {
+        # TODO downlevel case
+    }
+
+    return $virtualized
+}
+
 Function Test-IsVMMSupported() {
     <#
     .SYNOPSIS
@@ -384,7 +457,9 @@ Function Test-IsVMMSupported() {
     $processor = Get-WmiObject -Class 'Win32_Processor' -Filter "DeviceID='CPU0'" | Select-Object VMMonitorModeExtensions -ErrorAction SilentlyContinue
 
     if ($null -ne $processor.VMMonitorModeExtensions) {
-        $supported = $processor.VMMonitorModeExtensions
+        # VMMonitorModeExtensions is false when VBS is enabled on a system since you are technically in a guest which doesn't support nested virtualization (Server 2016 and Windows 1607 will support this)
+        # the processor technically supports VMM, but obviously the OS detects this case to return false to the guest
+        $supported = ($processor.VMMonitorModeExtensions) -or (Test-IsOperatingSystemVirtualized) 
     } else {
         # TODO downlevel case
     }
@@ -421,7 +496,9 @@ Function Test-IsVMMEnabled() {
     #}
 
     # faster than WMI but still need to do downlevel case since this flag is only supported in Windows 8+
-    $enabled = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_VIRT_FIRMWARE_ENABLED)
+    # VirtualizationFirmwareEnabled is false when VBS is enabled on a system since you are technically in a guest which doesn't support nested virtualization (Server 2016 and Windows 1607 will support this)
+    # the processor technically supports VMM, but obviously the OS detects this case to return false to the guest
+    $enabled = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_VIRT_FIRMWARE_ENABLED) -or (Test-IsOperatingSystemVirtualized) 
 
     return $enabled
 }
@@ -455,7 +532,9 @@ Function Test-IsSLATSupported() {
     #}
 
     # faster than WMI but still need to do downlevel case since this flag is only supported in Windows 8+
-    $supported = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_SECOND_LEVEL_ADDRESS_TRANSLATION)
+    # SecondLevelAddressTranslationExtensions is false when VBS is enabled on a system since you are technically in a guest which doesn't support nested virtualization (Server 2016 and Windows 1607 will support this)
+    # the processor technically supports VMM, but obviously the OS detects this case to return false to the guest
+    $supported = [Kernel32.NativeMethods]::IsProcessorFeaturePresent([Kernel32.NativeMethods]::PF_SECOND_LEVEL_ADDRESS_TRANSLATION) -or (Test-IsOperatingSystemVirtualized) 
 
     return $supported
 }
@@ -609,43 +688,6 @@ Function Get-OperatingSystemBitness() {
     return $bitness
 }
 
-Function Test-IsOperatingSystemVirtualized() {
-    <#
-    .SYNOPSIS
-    Tests if the operating system is virtualized.
-
-    .DESCRIPTION
-    Tests if the operating system is virtualized.
-
-    .PREREQUISITES
-    Windows 8 x86/x64 and later.
-
-    .EXAMPLE
-    Test-IsOperatingSystemVirtualized
-    #>
-    [CmdletBinding()]
-    [OutputType([System.Boolean])]
-    Param()
-
-    $virtualized = $false
-
-    # Windows 8 and later only but that's ok since we assume Windows 10 for now
-    # TODO come up with method for Windows 7, prefer not to rely on fingerprinting of Win32_ComputerSystem.Manufacturer ('Xen', 'VMware', 'Microsoft', 'Red Hat', 'innotek')
-
-    # returns correct result on Hyper-V and VMware Workstation, not sure about others
-    # TODO test other virtualization products
-    # TODO eliminate WMI if possible due to its slowness
-    $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object 'HypervisorPresent'
-
-    if ($null -ne $computer.HypervisorPresent) {
-        $virtualized = $computer.HypervisorPresent
-    } else {
-        # TODO downlevel case
-    }
-
-    return $virtualized
-}
-
 Function Get-OperatingSystemReleaseId() {
     <#
     .SYNOPSIS
@@ -729,6 +771,7 @@ Function Get-OperatingSystemVersion() {
         $major = [Uint32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[0]
         $minor = [UInt32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[1]
         $build = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentBuild' -ErrorAction SilentlyContinue)
+        #revision could be service pack level on downlevel OSes
     }
 
     return [System.Version]('{0}.{1}.{2}.{3}' -f $major,$minor,$build,$revision)
