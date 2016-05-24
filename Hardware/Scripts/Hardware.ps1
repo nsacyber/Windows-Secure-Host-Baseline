@@ -646,6 +646,29 @@ Function Test-IsOperatingSystemVirtualized() {
     return $virtualized
 }
 
+Function Get-OperatingSystemReleaseId() {
+    <#
+    .SYNOPSIS
+    Gets the operating system release identifier.
+
+    .DESCRIPTION
+    Gets the Windows 10 operating system release identifier (e.g. 1507, 1511, 1607).
+
+    .PREREQUISITES
+    Windows 10 x86/x64 and later.
+
+    .EXAMPLE
+    Get-OperatingSystemReleaseId
+    #>
+    [CmdletBinding()]
+    [OutputType([UInt32])]
+    Param()
+
+    $release = [UInt32](Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'ReleaseId' -ErrorAction SilentlyContinue)
+
+    return $release
+}
+
 Function Get-OperatingSystemEdition() {
     <#
     .SYNOPSIS
@@ -701,6 +724,7 @@ Function Get-OperatingSystemVersion() {
         $major = [Uint32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentMajorVersionNumber' -ErrorAction SilentlyContinue)
         $minor = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentMinorVersionNumber' -ErrorAction SilentlyContinue)
         $build = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentBuildNumber' -ErrorAction SilentlyContinue)
+        $revision = [UInt32](Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'UBR' -ErrorAction SilentlyContinue)
     } else {
         $major = [Uint32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[0]
         $minor = [UInt32]((Get-ItemProperty -Path $currentVersionPath -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'CurrentVersion' -ErrorAction SilentlyContinue) -split '\.')[1]
@@ -770,6 +794,8 @@ Function Test-IsSystemCredentialGuardReady() {
 
         if ($isTPMEnabled) {
             # TODO add more tests to see if TPM is really ready for use by OS (enabled, activated, owned)
+
+            # TODO check TPM version. if 1.2 make sure OS version is 1511
         }
 
         $isReady = $isReady -and $isTPMEnabled
