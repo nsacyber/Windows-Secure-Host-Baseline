@@ -35,6 +35,8 @@ Function Get-ChromeVersion() {
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
@@ -72,11 +74,17 @@ Function Get-ChromeExtension() {
     .PARAMETER ChromeVersion
     The Chrome browser version.
 
+    .PARAMETER Path
+    The folder path to save the extension to.
+
     .EXAMPLE
     Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43'
 
     .EXAMPLE
     Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43' -ChromeVersion '49.0.2623.110'
+
+    .EXAMPLE
+    Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43' -ChromeVersion '49.0.2623.110' -Path 'C:\Chrome'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -91,11 +99,27 @@ Function Get-ChromeExtension() {
         [string]$ExtensionVersion,
 
         [Parameter(Position=3, Mandatory=$false, HelpMessage='The Chrome browser version')]
-        [SYstem.Version]$ChromeVersion
+        [SYstem.Version]$ChromeVersion,
+
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='The folder path to save the extension to')]
+        [string]$Path
     )
 
-    if ($ChromeVersion -eq $null) {
+    # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+    $parameters = $PSBoundParameters
+
+    if (-not($parameters.ContainsKey('ChromeVersion'))) {
         $ChromeVersion = Get-ChromeVersion
+    }
+    
+    $extensionFolder = $env:USERPROFILE,'Downloads' -join '\'
+
+    if ($parameters.ContainsKey('Path')) {
+        $extensionFolder = $Path
+    }
+    
+    if (-not(Test-Path -Path $extensionFolder -PathType Container)) {
+        throw "$extensionFolder does not exist"
     }
 
     $uri = ('https://clients2.google.com/service/update2/crx?response=redirect&prodversion={0}&x=id%3D{1}%26uc' -f $ChromeVersion,$ExtensionID)
@@ -104,10 +128,12 @@ Function Get-ChromeExtension() {
         Uri = $uri;
         Method = 'Get';
         ContentType = 'application/x-chrome-extension' # 'application/octet-stream' also works
-        UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$ChromeVersion Safari/537.36"; # Chrome 49.0.2623.110 64-bit on Windows 10 64-bit
+        UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$ChromeVersion Safari/537.36"; # Chrome 64-bit on Windows 10 64-bit
     }
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -120,7 +146,7 @@ Function Get-ChromeExtension() {
     if ($statusCode -eq 200) {
         $bytes = $response.Content
 
-        $extensionFile = $env:USERPROFILE,'Desktop',('{0}-{1}.crx' -f $ExtensionTitle,$ExtensionVersion) -join '\'
+        $extensionFile = $extensionFolder,('{0}-{1}.crx' -f $ExtensionTitle,$ExtensionVersion) -join '\'     
 
         Set-Content -Path $extensionFile -Value $bytes -Encoding Byte -Force -NoNewline
     } else {
@@ -145,6 +171,9 @@ Function Get-ChromeInstaller() {
     .PARAMETER Channel
     The Chrome release channel to get the installer for. Defaults to 'stable'. Valid values are 'dev', 'canary', 'beta', 'stable'.
 
+    .PARAMETER Path
+    The folder path to save the installer to.
+
     .EXAMPLE
     Get-ChromeInstaller -Architecture 32
 
@@ -156,6 +185,9 @@ Function Get-ChromeInstaller() {
 
     .EXAMPLE
     Get-ChromeInstaller -Architecture 64 -Channel 'beta' -ChromeVersion '49.0.2623.110'
+
+    .EXAMPLE
+    Get-ChromeInstaller -Architecture 64 -Channel 'beta' -ChromeVersion '49.0.2623.110' -Path 'C:\Chrome'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -169,11 +201,27 @@ Function Get-ChromeInstaller() {
 
         [Parameter(Position=2, Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
-        [string]$Channel = 'stable'
+        [string]$Channel = 'stable',
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
+        [string]$Path
     )
 
-    if ($ChromeVersion -eq $null) {
+    # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+    $parameters = $PSBoundParameters
+
+    if (-not($parameters.ContainsKey('ChromeVersion'))) {
         $ChromeVersion = Get-ChromeVersion -Channel $Channel
+    }
+    
+    $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
+
+    if ($parameters.ContainsKey('Path')) {
+        $installerFolder = $Path
+    }
+    
+    if (-not(Test-Path -Path $installerFolder -PathType Container)) {
+        throw "$installerFolder does not exist"
     }
 
     $installer = 'GoogleChromeStandaloneEnterprise.msi'
@@ -187,9 +235,14 @@ Function Get-ChromeInstaller() {
     $params = @{
         Uri = $uri;
         Method = 'Get';
+        UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$ChromeVersion Safari/537.36"; # Chrome 64-bit on Windows 10 64-bit
     }
 
+    
+
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -202,7 +255,7 @@ Function Get-ChromeInstaller() {
     if ($statusCode -eq 200) {
         $bytes = $response.Content
 
-        $installerFile = $env:USERPROFILE,'Desktop',('{0}{1}_{2}.msi' -f 'GoogleChromeStandaloneEnterprise',$Architecture,$ChromeVersion) -join '\'
+        $installerFile = $installerFolder,('{0}{1}_{2}.msi' -f 'GoogleChromeStandaloneEnterprise',$Architecture,$ChromeVersion) -join '\'
 
         Set-Content -Path $installerFile -Value $bytes -Encoding Byte -Force -NoNewline
     } else {
@@ -221,21 +274,43 @@ Function Get-ChromeGroupPolicyTemplate() {
     .PARAMETER ChromeVersion
     Specifies a Chrome version rather than automatically retrieving the version online.
 
+    .PARAMETER Path
+    The folder path to save the template zip file to.
+
     .EXAMPLE
     Get-ChromeGroupPolicyTemplate
 
     .EXAMPLE
     Get-ChromeGroupPolicyTemplate -ChromeVersion '49.0.2623.110'
+
+    .EXAMPLE
+    Get-ChromeGroupPolicyTemplate -ChromeVersion '49.0.2623.110' -Path 'C:\Chrome'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome browser version')]
-        [System.Version]$ChromeVersion
+        [System.Version]$ChromeVersion,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the template zip file to')]
+        [string]$Path
     )
 
-    if ($ChromeVersion -eq $null) {
+    # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+    $parameters = $PSBoundParameters
+
+    if (-not($parameters.ContainsKey('ChromeVersion'))) {
         $ChromeVersion = Get-ChromeVersion
+    }
+    
+    $templateFolder = $env:USERPROFILE,'Downloads' -join '\'
+
+    if ($parameters.ContainsKey('Path')) {
+        $templateFolder = $Path
+    }
+    
+    if (-not(Test-Path -Path $templateFolder -PathType Container)) {
+        throw "$templateFolder does not exist"
     }
 
     $uri = 'http://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip'
@@ -246,6 +321,8 @@ Function Get-ChromeGroupPolicyTemplate() {
     }
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -258,7 +335,7 @@ Function Get-ChromeGroupPolicyTemplate() {
     if ($statusCode -eq 200) {
         $bytes = $response.Content
 
-        $zipFile = $env:USERPROFILE,'Desktop',('{0}_{1}.zip' -f 'ChromeGroupPolicyTemplate',$ChromeVersion) -join '\'
+        $zipFile = $templateFolder,('{0}_{1}.zip' -f 'ChromeGroupPolicyTemplate',$ChromeVersion) -join '\'
 
         Set-Content -Path $zipFile -Value $bytes -Encoding Byte -Force -NoNewline
     } else {
@@ -274,12 +351,34 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     .DESCRIPTION
     Gets the Google Update Group Policy template file.
 
+    .PARAMETER Path
+    The folder path to save the template file to.
+
     .EXAMPLE
     Get-GoogleUpdateGroupPolicyTemplate
+
+    .EXAMPLE
+    Get-GoogleUpdateGroupPolicyTemplate -Path 'C:\Chrome'
     #>
     [CmdletBinding()] 
     [OutputType([void])]
-    Param()
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The folder path to save the template file to')]
+        [string]$Path    
+    )
+
+    # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+    $parameters = $PSBoundParameters
+
+    $templateFolder = $env:USERPROFILE,'Downloads' -join '\'
+
+    if ($parameters.ContainsKey('Path')) {
+        $templateFolder = $Path
+    }
+    
+    if (-not(Test-Path -Path $templateFolder -PathType Container)) {
+        throw "$templateFolder does not exist"
+    }
 
     $uri = 'http://dl.google.com/update2/enterprise/GoogleUpdate.adm'
   
@@ -289,6 +388,8 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     }
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -301,7 +402,7 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     if ($statusCode -eq 200) {
         $bytes = $response.Content
 
-        $admFile = $env:USERPROFILE,'Desktop','GoogleUpdate.adm' -join '\'
+        $admFile = $templateFolder,'GoogleUpdate.adm' -join '\'
 
         Set-Content -Path $admFile -Value $bytes -Encoding Byte -Force -NoNewline
     } else {

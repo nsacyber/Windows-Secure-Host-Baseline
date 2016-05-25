@@ -42,6 +42,8 @@ Function Get-GitHubRateLimit() {
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
     } else {
@@ -93,6 +95,8 @@ Function Get-GitHubMarkdownStylesheet() {
     }
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
         $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -215,6 +219,8 @@ Function Get-GitHubHtmlFromRawMarkdown() {
         }
 
         $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+        $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
         if(([string]$proxyUri) -ne $uri) {
             $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
@@ -501,8 +507,8 @@ Function New-GitConfiguration() {
 
     }
     Process {
-        # force PSBoundParameters to existing during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
-        $params = $PSBoundParameters
+        # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+        $parameters = $PSBoundParameters
 
         $config = ''
 
@@ -517,7 +523,7 @@ Function New-GitConfiguration() {
             $userSection = $userTemplate -f $Username,$privateEmail
         }
 
-        if($params.ContainsKey('SigningKey')) {
+        if($parameters.ContainsKey('SigningKey')) {
             $signSection = $signTemplate -f $SigningKey
             $userSection = $userSection,$signSection -join [System.Environment]::NewLine
         }
@@ -526,12 +532,12 @@ Function New-GitConfiguration() {
 
         $config = $userSection,$coreSection -join [System.Environment]::NewLine
 
-        if ($params.ContainsKey('Proxy')) {
+        if ($parameters.ContainsKey('Proxy')) {
             $proxySection = $proxyTemplate -f $Proxy
             $config = $config,$proxySection -join [System.Environment]::NewLine
         }
 
-        if ($params.ContainsKey('DiffMergeTool')) {
+        if ($parameters.ContainsKey('DiffMergeTool')) {
             $toolName = $DiffMergeTool.ToLower()
 
             if($toolName -ieq 'SourceGear') {
@@ -563,7 +569,7 @@ Function New-GitConfiguration() {
             $config = $config,$diffMergeSection -join [System.Environment]::NewLine
         }
 
-        if($params.ContainsKey('CredentialManager')) {
+        if($parameters.ContainsKey('CredentialManager')) {
             $credManSection = $credManTemplate -f $CredentialManager.ToLower()
             $config = $config,$credManSection -join [System.Environment]::NewLine
         }
