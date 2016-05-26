@@ -68,7 +68,7 @@ Users may need to unblock PowerShell files that have been downloaded from the In
 
 ##### Dot sourcing the PowerShell scripts
 
-Once the PowerShell execution policy has been configured, and the PowerShell scripts have been unblocked, [dot source}(https://technet.microsoft.com/en-us/library/hh847841.aspx) the file to load the PowerShell code.
+Once the PowerShell execution policy has been configured, and the PowerShell scripts have been unblocked, [dot source](https://technet.microsoft.com/en-us/library/hh847841.aspx) the file to load the PowerShell code.
 
 1. Open a PowerShell prompt
 1. Change directory to where the script is located (e.g. **cd .\\Hardware\\Scripts\\**)
