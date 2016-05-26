@@ -93,8 +93,39 @@ Cataloging answers in [one location](./) is more efficient than having individua
 
 * [Microsoft](./Microsoft/Microsoft.md)
 
+## STIG items related to hardware and firmware dependencies
+Directly related:
+* V-63323: Domain-joined systems must have a Trusted Platform Module (TPM) enabled and ready for use. 
+* V-63595: Virtualization Based Security must be enabled with the platform security level configured to Secure Boot only *or* Secure Boot and DMA Protection. 
+* V-63599: Credential Guard must be running on domain-joined systems.
+* V-63603: Virtualization-based protection of code integrity must be enabled on domain-joined systems.
+
+Indirectly related:
+* V-63319: Domain-joined systems must use Windows 10 Enterprise Edition.
+* V-63327: System firmware or system controllers must have administrator accounts/passwords configured.
+* V-63331: The system must not use removable media as the boot loader.
+* V-63365: Users must not be allowed to run virtual machines in Hyper-V on the system.
+
+## Potential hardware and firmware issues
+These section mentions some potential hardware and firmware issues related to Windows 10 security features that leverage specific hardware and firmware dependencies.
+*	Many systems do not have their TPM enabled and activated by default. Some OEM (HP and Dell) enterprise class systems can have their TPMs automatically enabled using free OEM provided tools.
+*	Windows 8+ is capable of automatically enabling and activating a TPM, but many older TPMs (>3-4 years) can’t be automatically enabled and activated using Windows 8+. 
+*	TPM ownership must have been performed by Windows rather than third-party software.
+*	Many older systems (>4 years) do not support UEFI firmware.
+*	Many systems that support UEFI firmware are shipped in Legacy (aka CSM) mode by default rather than in native mode. Some OEM (HP and Dell) enterprise class systems can change UEFI mode to native mode with free OEM provided tools, but the operating system will need to be re-installed after the change. Secure Boot requires systems to be in UEFI native mode.
+*	Many older systems (>4 years) do not support Secure Boot . 
+*	Some older systems (3-4 years ago around the release of Windows 8) support Secure Boot but may need a firmware update to support Secure Boot.
+*	Even if the firmware supports Secure Boot, some systems may have Option ROMs (a firmware component) that do not support Secure Boot. This is more common in systems that may have SCSI or other storage controllers.
+*	64-bit was not widely supported by processors until about Windows 7 even though it has been more common in Intel processors since 2007/2008. 
+*	SLAT was not widely supported by processors until about Windows 8 even though it has been more common in Intel processors since 2008/2009.  
+*	VT-x was not widely supported by processors until about Windows 7 even though it has been more common in Intel processors since 2007/2008. 
+*	Older systems (>5 years ago) shipped with VT-x disabled by default in the firmware. Newer systems (<3-4 years) typically have VT-x enabled by default. Some OEM (HP and Dell) enterprise class systems can have VT-x automatically enabled with free OEM provided tools.
+*	Vt-d was not widely supported by processors until about Windows 7 SP1 even though it has been more common in Intel processors since 2011/2012.
+*	Vt-d is generally disabled by default in the firmware. Some OEM (HP and Dell) enterprise class systems can have  Vt-d automatically enabled with free OEM provided tools.
+
 ## Other links
 
 * [List of Dell models tested for upgrade to Windows 10](http://www.dell.com/support/article/us/en/19/SLN297954)
 * [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true)
 * [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware)
+* [Dell TPM 1.2 versus TPM 2.0 features](http://en.community.dell.com/techcenter/enterprise-client/w/wiki/11849.tpm-1-2-vs-2-0-features)
