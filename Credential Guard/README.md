@@ -21,7 +21,7 @@ Optional dependencies for Credential Guard:
 * Trusted Platform Module (TPM) version 1.2 (Windows 10 Version 1511) or version 2.0 (Windows 10 Version 1507 and later).
 * IOMMU (Intel VT-d/AMD-Vi). 
 
-Even though a TPM is *not* required for Credential Guard to work, it is highly recommended for Credential Guard to most effectively protect a system. A **TPM is so highly recommended that it should be considered required** similar to how TPMs are recommended, but in reality required, for BitLocker (BitLocker protection is ineffective without a TPM). Windows 10 Version 1511 added support for Credential Guard to be able to use a TPM version 1.2. Windows 10 1507 only supported Credential Guard with TPM version 2.0.
+Even though a TPM is *not* required for Credential Guard to work, it is highly recommended for Credential Guard to most effectively protect a system. A **TPM is so highly recommended that it should be considered required** similar to how TPMs are recommended, but in reality required, for BitLocker since BitLocker protection is ineffective without a TPM. Windows 10 Version 1511 added support for Credential Guard to be able to use a TPM version 1.2. Windows 10 1507 only supported Credential Guard with TPM version 2.0.
 
 Most enterprise and business class models from Original Equipment Manufacturers (OEMs) that have passed the Windows Hardware Certification Program for Windows 8 or later likely satisfy the required dependencies for Credential Guard. Some enterprise and business class models released within 1-2 years before the release of Windows 8 may also support Credential Guard but may need a firmware update to support Secure Boot. Some features used by Credential Guard, such as Secure Boot, Intel VT-x/AMD-Vi, and Intel VT-d/AMD-Vi, may need to be enabled in the firmware since some OEMs chose to disable certain features by default. In order to clarify which models satisfy the Windows 10 Credential Guard dependencies, which models may need firmware configuration changes, and which models may need firmware updates, IAD has requested OEMs provide information on a [publicly accessible web site](./../Hardware/README.md) to clarify these issues and is currently awaiting answers.
 
@@ -36,7 +36,7 @@ The final determination if Windows enables Credential Guard depends on if the sy
     * Selected value is **Secure Boot** - System will enable Credential Guard without DMA protection.
     * Selected value is **Secure Boot and DMA Protection** - System will *not* enable Credential Guard.
 
-**When selecting the DMA Protection option  and there is no IOMMU present, or it is present but *not* enabled, then the result is unintuitive and undesirable behavior since Credential Guard will not be enabled.** Many enterprise and business class models produced in the last 5 years have an IOMMU (Intel VT-d/AMD-Vi) present but most OEMs have it disabled by default in the system firmware due to no compelling reason to have it enabled in the past (unlike the Intel VT-x/AMD-V virtualization extensions which are usually enabled by default).
+**When selecting the DMA Protection option and there is no IOMMU present, or it is present but *not* enabled, then the result is unintuitive and undesirable behavior since Credential Guard will not be enabled.** Many enterprise and business class models produced in the last 5 years have an IOMMU (Intel VT-d/AMD-Vi) present but most OEMs have it disabled by default in the system firmware due to no compelling reason to have it enabled in the past (unlike the Intel VT-x/AMD-V virtualization extensions which are usually enabled by default).
 
 Until this behavior is changed, the recommended Credential Guard configuration is:
 
@@ -66,6 +66,13 @@ It is difficult to detect if a system has an IOMMU present but disabled. The cas
 
 Use the **Test-IsCredentialGuardEnabled** function in the [Hardware PowerShell script](./../Hardware/Scripts/Hardware.ps1) to detect if Credential Guard is enabled and running on a system.
 
+## Detecting if a system is ready for Credential Guard
+Use the **Test-IsSystemCredentialGuardReady** function in the [Hardware PowerShell script](./../Hardware/Scripts/Hardware.ps1) to detect if a system is ready for Credential Guard to be enabled.
+
+## Limitations of Credential Guard
+Microsoft's [Credential Guard documentation](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard) identifies it protects domain credentials such as NTLM password hashes and Kerberos Ticket Granting Tickets. Credential Guard only prevents some forms of credential theft attacks. Credentials that are exposed through the [CredSSP](https://msdn.microsoft.com/en-us/library/windows/desktop/bb931352(v=vs.85).aspx), TsPkg (Terminal Services/Remote Desktop), and [WDigest](https://msdn.microsoft.com/en-us/library/windows/desktop/aa378745(v=vs.85).aspx) security providers can still be used to steal credentials. For example, if WDigest is enabled (it is disabled by default in Windows 8.1 and later), then [mimikatz](https://github.com/gentilkiwi/mimikatz) can still be used to extract domain password hashes. Credential Guard does not protect local account credentials nor can it protect against Golden Ticket or Silver Ticket credential abuses. Despite these limitations, enabling Credential Guard is a starting point for reducing the effectiveness of credential theft attacks. Windows 10 Version 1511 added [improvements](https://technet.microsoft.com/en-us/itpro/windows/whats-new/credential-guard) to Credential Guard so  future improvements may further reduce the credential theft attack surface.
+
 ## Links
 * [Protect derived domain credentials with Credential Guard](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard)
 * [What's new in Credential Guard?](https://technet.microsoft.com/en-us/itpro/windows/whats-new/credential-guard)
+* [Credential Guard and WDigest](https://social.technet.microsoft.com/Forums/en-US/a428cc98-934d-49b0-89ec-56913e1f99f4/credentialguard-and-wdigest?forum=WinPreview2014General)
