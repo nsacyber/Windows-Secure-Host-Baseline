@@ -2,7 +2,7 @@
 
 Answers to [hardware and firmware survey questions](./../README.md#questions) about *insert vendor name here* hardware are included in the table below. You can also:
 
-* **[View the CSV file on GitHub](./Vendor.csv)  hich is easier to read than the table below and is searchable.** 
+* **[View the CSV file on GitHub](./Survey.csv)  hich is easier to read than the table below and is searchable.** 
 * Download the CSV file by clicking the **Raw** button available at the previous link, save the file to your local system, and then open the file in Excel. 
 
 Please [submit an update](./../README.md#request-for-answers) if inaccuracies are found or data is missing.

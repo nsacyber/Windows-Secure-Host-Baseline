@@ -1,5 +1,7 @@
+# SHB information related to Dell hardware, firmware, and drivers
 
-
+* [Survey answers](./Survey.md)
+* [Dell updates](./Updates.md)
 
 ## Other links
 * [List of Dell models tested for upgrade to Windows 10](http://www.dell.com/support/article/us/en/19/SLN297954)

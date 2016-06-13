@@ -1,4 +1,4 @@
-# Dell Updates
+# Dell updates
 
 This page documents published Dell updates related to fixing issues with Credential Guard, Device Guard, and Virtualization-based protection of code integrity (aka HVCI).
 
