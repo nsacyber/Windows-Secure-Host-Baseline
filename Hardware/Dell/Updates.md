@@ -1,6 +1,9 @@
 # Dell updates
 
-This page documents published Dell updates related to fixing issues with Credential Guard, Device Guard, and Virtualization-based protection of code integrity (aka HVCI).
+This page documents published Dell updates related to fixing issues with Credential Guard, Device Guard, and Virtualization-based protection of code integrity (aka HVCI). You can: 
+
+* **[View the CSV file on GitHub](./Updates.csv) which is easier to read than the table below and is searchable.** 
+* Download the CSV file by clicking the **Raw** button available at the previous link, save the file to your local system, and then open the file in Excel. 
 
 System device driver updates resolve compatibility issues with Virtualization-based protection of code integrity. 
 
