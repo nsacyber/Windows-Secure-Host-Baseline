@@ -1,6 +1,6 @@
 # Credential Guard
 
-Credential Guard is required to be enabled in the SHB due to being a CAT I item in the Windows 10 STIG to prevent some common forms of credential theft attacks.
+Credential Guard is required to be enabled in the SHB due to being a CAT III item in the Windows 10 STIG to prevent some common forms of credential theft attacks. DISA was directed to make modifications to the Windows 10 STIG downgrading the Credential Guard Category I finding to a Category III finding in the **Updated Direction for the Implementation of Microsoft Windows 10 Secure Host Baseline** memo from the DoD CIO dated 06/01/2016. Note that the memo also says **Credential Guard must be enabled on Windows 10 computers that support the feature.**
 
 ## Credential Guard dependencies 
 Credential Guard may be the source of concern from some DoD components about hardware compatibility for Windows 10. This section clarifies required versus optional dependencies for Credential Guard.
