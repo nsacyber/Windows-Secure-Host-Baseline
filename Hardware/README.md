@@ -1,29 +1,6 @@
 # Hardware and Firmware Requirements for an SHB System
 
-[Credential Guard](https://technet.microsoft.com/en-us/library/mt483740(v=vs.85).aspx) must be enabled to meet the security requirements of the SHB. While Credential Guard can be enabled in Group Policy, it does not provide any additional protection unless certain hardware and firmware requirements are met. Without meeting these requirements, Credential Guard does not take affect on a system. Credential Guard requires that: 
-* a 64-bit capable processor and the 64-bit version of Windows is installed
-* the Enterprise Edition of Windows is installed
-* Unified Extensible Firmware Interface (UEFI) firmware, as opposed to legacy BIOS, version 2.3.1 (Errata C) or later is configured in native mode in the firmware rather than in legacy mode (Compatibility Support Module (CSM))
-* Secure Boot is supported and enabled in the firmware
-* memory virtualization extensions (Intel VT-x or AMD-V) are supported by the processor and enabled in the firmware
-* Second Level Address Translation (Intel EPT or [AMD-RVI](http://support.amd.com/en-us/kb-articles/Pages/GPU120AMDRVICPUsHyperVWin8.aspx)) is supported by the processor
-* the OS is not running in a virtual machine (includes Virtual Desktop Infrastructure (VDI) client systems)
-
-Meeting these requirements also positions an organization to be able to enable [Device Guard](https://technet.microsoft.com/en-us/library/mt463091(v=vs.85).aspx).
-
-Some hardware and firmware features, if they exist, can be leveraged by Credential Guard and Device Guard to provide extra security benefits. These features include: 
-* a Trusted Platform Module (TPM), version 1.2 or later, when present and enabled in the firmware
-* device Input/Output Memory Management Unit (IOMMU) virtualization extensions (Intel Vt-d or AMD-Vi) when supported by the processor and enabled in the firmware 
-
-While these hardware and firmware features are optional since Credential Guard and Device Guard can technically work without them, they are critical to ensuring the security improvements offered by Credential Guard and Device Guard are effectively protected against certain types of attacks. These hardware and firmware features should be considered required by organizations when procuring hardware for Windows 10. **Microsoft provides a clear list of which security features in Windows 10 use certain hardware and firmware features in the [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware) article**. The notation in the table is **R** = recommended, **Y** = required, and **N** = not used.
-
-Most enterprise and business class models from OEMs that have passed the Windows Hardware Certification Program for Windows 8 or later likely meet these requirements.
-
-
-A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available [here](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true). A similar list for AMD processors that support 64-bit, AMD-V, AMD-RVI, and AMD-Vi could not be found.
-
-
-Ensuring the operating system is updated in a timely and regular manner is also critical for the SHB as Credential Guard and Device Guard are improved over time. New features were added to Credential Guard in [Version 1511](https://technet.microsoft.com/en-us/library/mt621547(v=vs.85).aspx) as well as support for using TPM 1.2.
+Microsoft provides a clear list of which security features in Windows 10 use certain hardware and firmware features in the [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware) article. The notation in the table is **R** = recommended, **Y** = required, and **N** = not used.
 
 ## Ideal properties of an SHB system
 Properties of an ideal system for Windows 10 Secure Host Baseline include:
@@ -32,15 +9,17 @@ Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * Firmware is in UEFI native mode by default (if a firmware configuration option is provided) rather than Legacy mode aka Compatibility Support Module (CSM) mode.
 * Firmware supports Secure Boot and Secure Boot is enabled by default (if a firmware configuration option is provided).
 * Processor supports memory virtualization (Intel VT-x or AMD-V) and the firmware has memory virtualization enabled by default (if a firmware configuration option is provided).
-* Processor supports IOMMU device virtualization (Intel Vt-d or AMD-Vi) and the firmware has IOMMU device virtualization enabled by default (if a  firmware configuration option is provided).
+* Processor supports IOMMU device virtualization (Intel Vt-d or AMD-Vi) and the firmware has IOMMU device virtualization enabled by default (if a firmware configuration option is provided).
 * Processor supports Second Level Address Translation (Intel EPT or AMD-RVI).
-* System has a Trusted Platform Module (TPM), at least version 1.2, but version 2.0 is preferred when possible.
+* System has a Trusted Platform Module (TPM), at least version 1.2, but version 2.0 is preferred when available.
 * TPM implements the Physical Presence Interface specification 1.2 or later.
 * TPM is enabled and activated by default (if a firmware configuration option is provided) or can be automatically provisioned by Windows 8 or later.
-* System and firmware support Credential Guard and Device Guard.
-* Device drivers are compatible ([1](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/10/29/new-device-level-test-to-be-included-as-part-of-the-compatibility-program-in-november-2015/),[2](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/05/22/driver-compatibility-with-device-guard-in-windows-10/)) with Device Guard and Hypervisor Code Integrity (HVCI).
+* Firmware supports Credential Guard and Device Guard.
+* Device drivers are compatible ([1](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/10/29/new-device-level-test-to-be-included-as-part-of-the-compatibility-program-in-november-2015/),[2](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/05/22/driver-compatibility-with-device-guard-in-windows-10/)) with Device Guard and Virtualization-based protection of code integrity aka Hypervisor-based Code Integrity (HVCI).
 * System supports firmware updates using Windows UEFI Firmware Update Platform specification (optional, but recommended).
-* System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8 or later, but preferably for Windows 10.
+* System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8, but preferably for Windows 10.
+
+**A system that satisfies the above properties should work out-of-the-box with [Credential Guard](../Credential Guard), [Device Guard](../Device Guard), and Virtualization-based protection of code integrity.**
 
 ## Hardware and firmware survey
 In support of deployment of the Windows 10 Secure Host Baseline, a number of hardware and firmware questions need to be answered about systems used by the DoD. The purpose of these questions is to determine how ready a system is to enable Windows 10 security features, such as Credential Guard and Device Guard, with the preferred hardware and firmware configuration. Answers to these questions can be used by DoD components to determine whether certain Windows 10 security features are supported by the model. Answers are needed for any Windows tablet, laptop, desktop, and server models produced by OEMs that are used in DoD. Answers should focus on enterprise and business class models rather than consumer class models. 
@@ -58,7 +37,7 @@ Answer these questions per model:
 1. Does the model ship with Secure Boot support? 
 1. If the model ships with Secure Boot support, does the model ship with Secure Boot enabled by default? 
 1. If the model did not initially support Secure Boot, can it be upgraded via a firmware update to support Secure Boot? 
-1. If the model has UEFI firmware, does it implement the MemoryOverwriteRequestControl UEFI variable (aka Secure MOR)? 
+1. If the model has UEFI firmware, does it implement the [MemoryOverwriteRequestControl/MemoryOverwriteRequestControlLock](https://msdn.microsoft.com/en-us/windows/hardware/drivers/bringup/device-guard-requirements) UEFI variables (aka Secure MOR) and enable the lock? 
 1. Does the model support memory virtualization extensions (Intel VT-x/AMD-V)? 
 1. If the model supports memory virtualization extensions, does it have memory virtualization extensions enabled by default in the firmware if a configurable option is provided? 
 1. Does the model support IOMMU device virtualization extensions (Intel VT-d/AMD-Vi)? 
@@ -91,7 +70,8 @@ Cataloging answers in [one location](./) is more efficient than having individua
 
 ### Answers
 
-* [Microsoft](./Microsoft/Microsoft.md)
+* [Microsoft](./Microsoft/Survey.md)
+* [Dell](./Dell/Survey.md)
 
 ## STIG items related to hardware and firmware dependencies
 Directly related:
@@ -122,10 +102,9 @@ These section mentions some potential hardware and firmware issues related to Wi
 *	Older systems (>5 years ago) shipped with VT-x disabled by default in the firmware. Newer systems (<3-4 years) typically have VT-x enabled by default. Some OEM (HP and Dell) enterprise class systems can have VT-x automatically enabled with free OEM provided tools.
 *	Vt-d was not widely supported by processors until about Windows 7 SP1 even though it has been more common in Intel processors since 2011/2012.
 *	Vt-d is generally disabled by default in the firmware. Some OEM (HP and Dell) enterprise class systems can have  Vt-d automatically enabled with free OEM provided tools.
+* System device drivers may not be compatible with Virtualization-based protection of code integrity aka Hypervisor-based Code Integrity (HVCI).
 
 ## Other links
 
-* [List of Dell models tested for upgrade to Windows 10](http://www.dell.com/support/article/us/en/19/SLN297954)
 * [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true)
 * [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware)
-* [Dell TPM 1.2 versus TPM 2.0 features](http://en.community.dell.com/techcenter/enterprise-client/w/wiki/11849.tpm-1-2-vs-2-0-features)
