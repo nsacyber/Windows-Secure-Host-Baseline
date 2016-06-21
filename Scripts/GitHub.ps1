@@ -147,19 +147,20 @@ Function Get-GitHubHtmlTemplate() {
 
     $stylesheet = Get-GitHubMarkdownStylesheet
 
+    # corresponds to 2.3.0 of https://github.com/sindresorhus/github-markdown-css/ released on May 3 2016
+    if($stylesheet.Length -ne 13529) {
+        throw 'GitHub stylesheet changed so style replacement may not be successful'
+    }
+
     # minimize line breaks and spaces, have to use double quotes to replace the line feed character 
     $stylesheet = ($stylesheet -replace "`n",' ') -replace '   ',' ' -replace '  ', ' '
 
     # replace main markdown-body style
-    $orignalBodyStyle = '.markdown-body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; color: #333; font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; line-height: 1.6; word-wrap: break-word; }'
-    $customBodyStyle =  '.markdown-body { padding: 45px; word-wrap: break-word; background-color: #fff; border: 1px solid #ddd; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; line-height: 1.6; display: block; box-sizing: border-box; color: #333; background-color: #fff; }'
+    $originalBodyStyle = '.markdown-body { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #333; font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; line-height: 1.6; word-wrap: break-word; }'
+    $customBodyStyle  =  '.markdown-body { padding: 45px; word-wrap: break-word; background-color: #fff; border: 1px solid #ddd; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; line-height: 1.6; display: block; box-sizing: border-box; color: #333; background-color: #fff; }'
 
-    $stylesheet = $stylesheet.Replace($orignalBodyStyle, $customBodyStyle)
-    
-    if($stylesheet.Length -ne 12419) {
-        throw 'GitHub stylesheet changed so style replacement was not successful'
-    }
-
+    $stylesheet = $stylesheet.Replace($originalBodyStyle, $customBodyStyle)
+   
     # carry forward two substitutions
     $template =  $htmlTemplate -f '{0}',$stylesheet,'{1}'
     return $template
