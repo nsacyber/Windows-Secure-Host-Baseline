@@ -1,4 +1,4 @@
-# Hardware and Firmware Requirements for an SHB System
+# Hardware and Firmware Recommendations for an SHB System
 
 Microsoft provides a clear list of which security features in Windows 10 use certain hardware and firmware features in the [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware) article. The notation in the table is **R** = recommended, **Y** = required, and **N** = not used.
 
@@ -11,15 +11,17 @@ Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * Processor supports memory virtualization (Intel VT-x or AMD-V) and the firmware has memory virtualization enabled by default (if a firmware configuration option is provided).
 * Processor supports IOMMU device virtualization (Intel Vt-d or AMD-Vi) and the firmware has IOMMU device virtualization enabled by default (if a firmware configuration option is provided).
 * Processor supports Second Level Address Translation (Intel EPT or AMD-RVI).
-* System has a Trusted Platform Module (TPM), at least version 1.2, but version 2.0 is preferred when available.
+* System has a Trusted Platform Module (TPM), at least version 1.2, but version 2.0 is recommended if available.
 * TPM implements the Physical Presence Interface specification 1.2 or later.
 * TPM is enabled and activated by default (if a firmware configuration option is provided) or can be automatically provisioned by Windows 8 or later.
-* Firmware supports Credential Guard and Device Guard.
+* Firmware supports, and is compatible with, Credential Guard and Device Guard.
 * Device drivers are compatible ([1](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/10/29/new-device-level-test-to-be-included-as-part-of-the-compatibility-program-in-november-2015/),[2](https://blogs.msdn.microsoft.com/windows_hardware_certification/2015/05/22/driver-compatibility-with-device-guard-in-windows-10/)) with Device Guard and Virtualization-based protection of code integrity aka Hypervisor-based Code Integrity (HVCI).
 * System supports firmware updates using Windows UEFI Firmware Update Platform specification (optional, but recommended).
 * System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8, but preferably for Windows 10.
 
 **A system that satisfies the above properties should work out-of-the-box with [Credential Guard](../Credential Guard), [Device Guard](../Device Guard), and Virtualization-based protection of code integrity.**
+
+A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available [here](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true). A similar list for AMD processors that support 64-bit, AMD-V, AMD-RVI, and AMD-Vi could not be found.
 
 ## Hardware and firmware survey
 In support of deployment of the Windows 10 Secure Host Baseline, a number of hardware and firmware questions need to be answered about systems used by the DoD. The purpose of these questions is to determine how ready a system is to enable Windows 10 security features, such as Credential Guard and Device Guard, with the preferred hardware and firmware configuration. Answers to these questions can be used by DoD components to determine whether certain Windows 10 security features are supported by the model. Answers are needed for any Windows tablet, laptop, desktop, and server models produced by OEMs that are used in DoD. Answers should focus on enterprise and business class models rather than consumer class models. 
@@ -102,7 +104,7 @@ These section mentions some potential hardware and firmware issues related to Wi
 *	Older systems (>5 years ago) shipped with VT-x disabled by default in the firmware. Newer systems (<3-4 years) typically have VT-x enabled by default. Some OEM (HP and Dell) enterprise class systems can have VT-x automatically enabled with free OEM provided tools.
 *	Vt-d was not widely supported by processors until about Windows 7 SP1 even though it has been more common in Intel processors since 2011/2012.
 *	Vt-d is generally disabled by default in the firmware. Some OEM (HP and Dell) enterprise class systems can have  Vt-d automatically enabled with free OEM provided tools.
-* System device drivers may not be compatible with Virtualization-based protection of code integrity aka Hypervisor-based Code Integrity (HVCI).
+* System and peripheral device drivers may not be compatible with Virtualization-based protection of code integrity aka Hypervisor-based Code Integrity (HVCI).
 
 ## Other links
 

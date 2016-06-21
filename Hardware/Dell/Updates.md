@@ -9,6 +9,7 @@ System device driver updates resolve compatibility issues with Virtualization-ba
 
 System BIOS/firmware updates resolve compatibility issues with Device Guard when assigning a Device Guard code integrity policy would cause the system to lock up on boot and also prevent system shutdown unless a hard reset was performed.
 
+These updates were discovered via a search for ["Device Guard" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq=Device+Guard+feature&ie=UTF-8&q=Device+Guard+feature#q=%22Device+Guard%22+site:dell.com+inurl:drivers)
 
 | Description | Version | Date | Applies to | Link | Notes |
 | --- | --- | --- | --- | --- | --- | 
@@ -28,3 +29,5 @@ System BIOS/firmware updates resolve compatibility issues with Device Guard when
 | Dell Venue 11 Pro 7139 vPro System BIOS | A18 | 18 Apr 2016 | Venue 7130 Pro, Venue 7139 Pro | [Download](http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=53VYD) | Supported Microsoft Windows 10 Enterprise Device Guard feature | 
 | Dell Venue 11 Pro 7130 System BIOS | A18 | 18 Apr 2016 | Venue 7130 Pro, Venue 7139 Pro | [Download](http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=903R8) | | 
 | Dell Venue 11 Pro 7130 vPro System BIOS | A18 | 18 Apr 2016 | Venue 7130 Pro, Venue 7139 Pro | [Download](http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=MRM2F) | Supported Microsoft Windows 10 Enterprise Device Guard feature | 
+| Dell Precision Workstation T7810 | A13 | 17 June 2016 | Dell Precision Tower 7810, Dell Precision Tower 7810XL | [Download](http://www.dell.com/support/home/us/en/10/Drivers/DriversDetails?driverId=XF8NG) | Fixed Device Guard support and added Secure MOR implementation | 
+| Dell Inspiron 5458/5558/5758 HSW/BDW System BIOS | A10 | 16 June 2016 | Tulip HSW/BDW 14/15/17 | [Download](http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=1MV2N) | BSOD occurs when enabling device guard in Win10 | 
