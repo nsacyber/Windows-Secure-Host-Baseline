@@ -16,8 +16,8 @@
  type            : AUDIT_POWERSHELL
  description     : "EMET 5.5 Installed"
  value_type	 : POLICY_TEXT
- value_data	 : ""
- powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Format-Table -AutoSize"
+ value_data	 : "5.5"
+ powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Select-Object -ExpandProperty DisplayVersion"
  only_show_cmd_output : YES
  check_type	: CHECK_EQUAL
 </custom_item>
@@ -37,8 +37,8 @@
  type            : AUDIT_POWERSHELL
  description     : "EMET 5.5 Installed"
  value_type	 : POLICY_TEXT
- value_data	 : ""
- powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Format-Table -AutoSize"
+ value_data	 : "5.5"
+ powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Select-Object -ExpandProperty DisplayVersion"
  only_show_cmd_output : YES
  check_type	: CHECK_EQUAL
  ##powershell_option : CAN_NOT_BE_NULL

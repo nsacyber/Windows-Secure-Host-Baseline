@@ -17,6 +17,8 @@ Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/secur
 
 This repository hosts Group Policy Objects, configuration tools, and compliance checks in support of the Windows 10 DoD Secure Host Baseline framework. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework](https://disa.deps.mil/ext/cop/iase/dod-images/) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
+Question or comments can be submitted to our GitHub [issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) or posted on [software.forge.mil](https://software.forge.mil/sf/projects/win10shb) under Windows 10 Secure Host Baseline project. Usage of Software Forge does requre a Common Access Card (CAC).
+
 ## Getting started
 
 1. [Download](#downloads) the repository.
