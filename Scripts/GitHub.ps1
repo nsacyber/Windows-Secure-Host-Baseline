@@ -286,10 +286,14 @@ Function Convert-MarkdownToHtml() {
                 $markdownFile = $_.FullName
 
                 if(Test-Path -Path $markdownFile -PathType Leaf) {
-                    $htmlFile = $markdownFile.Replace('.md','.html')
+                    $extension = ([System.IO.FileInfo]$markdownFile).Extension
+
+                    # deal with collisions. e.g. Survey.md and Survey.csv existing in same folder
+                    $htmlExtension = '{0}{1}' -f $extension,'.html'
+                    $htmlFile = $markdownFile.Replace($extension, $htmlExtension)
                     $markdown = Get-Content -Path $markdownFile -Raw
                     $html = Get-GitHubHtmlFromRawMarkdown -Markdown $markdown -Title $_.BaseName -Template $htmlTemplate
-                    $html = $html.Replace('.md','.html') # update links to point to the converted HTML page
+                    $html = $html.Replace($extension, $htmlExtension) # update links to point to the converted HTML page
                     Set-Content -Path $htmlFile -Value $html -Force
                 }
             }
