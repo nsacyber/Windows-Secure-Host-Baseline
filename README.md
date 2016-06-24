@@ -53,6 +53,7 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 * [Hardware](./Hardware/Scripts/)
 
 Users may need to perform 3 steps to run the functions defined in the PowerShell scripts:
+
 1. Change the PowerShell execution policy
 1. Unblock the PowerShell script
 1. Dot source the PowerShell script

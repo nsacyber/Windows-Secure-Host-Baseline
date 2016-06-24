@@ -62,14 +62,14 @@ You can also use the Microsoft Management Console Certificates snap-in to import
 1. Repeat the same steps for **Intermediate Certification Authorities** and import the certificates from the Intermediate folder
 
 ## Fixing iad.gov certificate warnings
-https://www.iad.gov does not use a certificate from a commercial Certificate Authority (CA). This results in non-DoD users receiving a certificate warning  (NET:ERR_CERT_AUTHORITY_INVALID) about iad.gov being an insecure web site when it is accessed. This is due to the browser not having the specific DoD CA certificate that issued the iad.gov certificate in the browser certificate store. To fix this issue import the **DoD Root CA 3** and **DoD ID SW CA-37** certificates into the browser certificate store.
+Non-DoD users may not want to import all the DoD Certificate Authority (CA) certificates as outlined above. Non-DoD users who visit https://www.iad.gov will receive a certificate warning (NET:ERR_CERT_AUTHORITY_INVALID) about www.iad.gov being an insecure web site when it is accessed since it does not use a certificate from a commercial CA that is already trusted by the browser. The browser's certificate store does not have the specific DoD CA certificate that issued the www.iad.gov certificate. To fix this issue import the **DoD Root CA 3** and **DoD ID SW CA-37** certificates into the browser certificate store.
 
-1. Download the [repository zip file](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) and extract the zip file to a folder.
+1. Download the [repository zip file](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) and extract the zip file to a **Secure-Host-Baseline** folder.
 1. Open a PowerShell prompt.
 1. Change directory to the folder (e.g. **cd Secure-Host-Baseline** ).
 1. Copy and paste the PowerShell code below and press Enter to execute it which will import the correct certificates.
 
-Even after importing the correct certificates, browsing to https://iad.gov rather than https://www.iad.gov will still give a certificate warning (NET::ERR_CERT_COMMON_NAME_INVALID) since the certificate for iad.gov does not have a [Subject Alternative Name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) (SAN) for iad.gov. It only has a SAN for www.iad.gov. Only browse to https://www.iad.gov to avoid that warning until this issue has been resolved.
+Even after importing the correct certificates, users who browse to https://iad.gov rather than https://www.iad.gov will still receive a certificate warning (NET::ERR_CERT_COMMON_NAME_INVALID) since the certificate for www.iad.gov does not have a [Subject Alternative Name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) (SAN) for iad.gov. Only browse to https://www.iad.gov to avoid this certificate warning until this issue has been resolved.
 
 **Import into the system certificate store** (requires administrator privilege)
 ```
