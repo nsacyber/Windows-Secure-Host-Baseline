@@ -60,3 +60,27 @@ You can also use the Microsoft Management Console Certificates snap-in to import
 1. Right click on **Certificates** and select **All Tasks** > **Import...**
 1. Follow the steps in the Certificate Import Wizard to import the certificates from the Root folder
 1. Repeat the same steps for **Intermediate Certification Authorities** and import the certificates from the Intermediate folder
+
+## Fixing iad.gov certificate warnings
+https://www.iad.gov does not use a certificate from a commercial Certificate Authority (CA). This results in non-DoD users receiving a certificate warning  (NET:ERR_CERT_AUTHORITY_INVALID) about iad.gov being an insecure web site when it is accessed. This is due to the browser not having the specific DoD CA certificate that issued the iad.gov certificate in the browser certificate store. To fix this issue import the **DoD Root CA 3** and **DoD ID SW CA-37** certificates into the browser certificate store.
+
+1. Download the [repository zip file](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) and extract the zip file to a folder.
+1. Open a PowerShell prompt.
+1. Change directory to the folder (e.g. **cd Secure-Host-Baseline** ).
+1. Copy and paste the PowerShell code below and press Enter to execute it which will import the correct certificates.
+
+Even after importing the correct certificates, browsing to https://iad.gov rather than https://www.iad.gov will still give a certificate warning (NET::ERR_CERT_COMMON_NAME_INVALID) since the certificate for iad.gov does not have a [Subject Alternative Name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) (SAN) for iad.gov. It only has a SAN for www.iad.gov. Only browse to https://www.iad.gov to avoid that warning until this issue has been resolved.
+
+**Import into the system certificate store** (requires administrator privilege)
+```
+Import-Certificate -FilePath .\Certificates\Root\DoD_Root_CA_3__01__DoD_Root_CA_3.cer -CertStoreLocation cert:\LocalMachine\Root
+Import-Certificate -FilePath .\Certificates\Intermediate\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer -CertStoreLocation cert:\LocalMachine\CA
+```
+
+or
+
+**Import the certificates into the user certificate store**
+```
+Import-Certificate -FilePath .\Certificates\Root\DoD_Root_CA_3__01__DoD_Root_CA_3.cer -CertStoreLocation cert:\CurrentUser\Root
+Import-Certificate -FilePath .\Certificates\Intermediate\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer -CertStoreLocation cert:\CurrentUser\CA
+```
