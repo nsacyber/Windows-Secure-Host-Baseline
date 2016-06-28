@@ -81,7 +81,7 @@ Once the PowerShell execution policy has been configured, and the PowerShell scr
 Eventually the PowerShell scripts will be turned into modules so dot sourcing will not be required.
 
 ### Compliance checks
-Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this repository over time. Compliance checks available for use so far:
+Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files and [SCAP](https://en.wikipedia.org/wiki/Security_Content_Automation_Protocol) content will be included in this repository over time. Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](https://github.com/iadgov/Secure-Host-Baseline/tree/master/Compliance) page. Compliance checks available for use so far:
 
 * [Adobe Reader DC](./Adobe Reader/Compliance/)
 * [Chrome](./Chrome/Compliance/)
