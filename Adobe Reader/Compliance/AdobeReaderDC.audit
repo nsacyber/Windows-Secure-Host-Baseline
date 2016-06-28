@@ -1,7 +1,7 @@
 # Adobe Reader DC
-# Author: IAD
-# Revision: 1.1	
-# Date: 05/04/2016
+# Author: NSA Information Assurance
+# Revision: 1.1.1	
+# Date: 06/28/2016
 # Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
 
@@ -48,7 +48,7 @@
 	description: "Adobe Reader: Version"
 	info: "Running the latest version of Reader protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
-	value_data: "15.9"       
+	value_data: "15.10.20056"       
 	file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
