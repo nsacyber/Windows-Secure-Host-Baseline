@@ -1,7 +1,6 @@
 # ignore readme files that have been converted from markdown to HTML done for release packaging
-**/README.html
-LICENSE.html
-DISCLAIMER.html
+**/*.md.html
+**/*.csv.html
 
 # ignore Visual Studio Code generated files
 **/*.db
