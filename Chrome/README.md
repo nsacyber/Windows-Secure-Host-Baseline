@@ -56,4 +56,4 @@ The version number of Chrome the download represents is available at http://omah
 You can use the Get-ChromeInstaller command in the [Chrome.ps1](./Scripts/Chrome.ps1)  file in the [scripts folder](./Scripts) to download Chrome. Examples: **Get-ChromeInstaller -Architecture 64** or **Get-ChromeInstaller -Architecture 32**
 
 # Guidance
-IAD has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm). Google has also published a [Chrome for Work Deployment Guide](https://support.google.com/chrome/a/answer/3115278?hl=en) for Windows enterprises.
+NSA Information Assurance has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm). Google has also published a [Chrome for Work Deployment Guide](https://support.google.com/chrome/a/answer/3115278?hl=en) for Windows enterprises.
