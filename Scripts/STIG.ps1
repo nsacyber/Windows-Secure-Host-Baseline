@@ -22,6 +22,8 @@ Function Invoke-FileDownload() {
         ContentType = 'text/plain';
     }
 
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
     if(([string]$proxyUri) -ne $uri) {
