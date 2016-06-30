@@ -111,7 +111,7 @@ Function Get-AdobeReaderInstaller() {
     Get-AdobeReaderInstaller -ReaderVersion '15.010.20060.0'
 
     .EXAMPLE
-    Get-AdobeReaderInstaller -ReaderVersion '2015.010.20060' -Multi
+    Get-AdobeReaderInstaller -ReaderVersion '2015.010.20060' -Multilingual
 
     .EXAMPLE
     Get-AdobeReaderInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader'
@@ -122,8 +122,8 @@ Function Get-AdobeReaderInstaller() {
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
         [System.Version]$ReaderVersion,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Intrace (MUI) version of Adobe Reader')]
-        [switch]$Multi,     
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
+        [switch]$Multilingual,     
 
         [Parameter(Position=2, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
         [string]$Path
