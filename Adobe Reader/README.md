@@ -1,6 +1,8 @@
 # Adobe Reader DC
 
-[Group Policy Objects](./Group Policy Objects/) for [User](./Group Policy Objects/User/) and [Computer](./Group Policy Objects/Computer/) policy and [Group Policy template files](./Group Policy Templates/) are included in the SHB. The settings implemented in the GPOs are from the NSA Information Assurance guidance paper [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm). This guidance aligns with the initial version of the DISA STIG for ARDC since STIG development was a collaborative effort. Recommendations are for the [continuous track](http://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/whatsnewdc.html) version of Adobe Reader DC (ARDC) and focus on enabling security features without sacrificing usability.
+[Group Policy Objects](./Group Policy Objects/) for [User](./Group Policy Objects/User/) and [Computer](./Group Policy Objects/Computer/) policy and [Group Policy template files](./Group Policy Templates/) are included in the SHB. The settings implemented in the GPOs are from the NSA Information Assurance guidance paper [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm). 
+
+Using the [continuous track](http://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/whatsnewdc.html) version of Adobe Reader DC (ARDC) is recommended.
 
 ## Updating the Adobe Reader DC Group Policy templates
 The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
@@ -21,6 +23,8 @@ The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.
 ## Download Adobe Reader DC
 
 [Adobe Reader DC Download](https://get.adobe.com/reader/)
+
+You can use the Get-AdobeReaderInstaller command in the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file in the [scripts folder](./Scripts) to download a specific version of Adobe Reader DC. Example: **Get-AdobeReaderInstaller -Version '2015.016.20039'** Adobe Reader DC version numbers that can be used with this script can be found on [Adobe Reader for Windows page](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10).
 
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)

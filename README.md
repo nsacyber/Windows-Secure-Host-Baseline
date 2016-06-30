@@ -47,6 +47,7 @@ Questions or comments can be submitted to the [issue tracker](https://github.com
 Scripts for aiding users with the SHB are located in the Scripts sub folders of each component. Scripts available for use so far:
 
 * [General](./Scripts/)
+* [Adobe Reader](./Adobe Reader/Scripts/)
 * [BitLocker](./BitLocker/Scripts/)
 * [Certificates](./Certificates/Scripts/)
 * [Chrome](./Chrome/Scripts/)
