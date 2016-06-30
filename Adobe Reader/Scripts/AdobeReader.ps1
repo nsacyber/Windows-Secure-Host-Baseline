@@ -28,7 +28,7 @@ Function Get-AdobeReaderManifest() {
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The type of manifest')]
-        [ValidateSet('ARM','Reader','ReaderServices' IgnoreCase = $true)]
+        [ValidateSet('ARM','Reader','ReaderServices', IgnoreCase = $true)]
         [string]$ManifestType,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the manifest to')]
@@ -48,16 +48,18 @@ Function Get-AdobeReaderManifest() {
         throw "$installerFolder does not exist"
     }
 
+    $baseUri = ''
+    
     $installer = ''
 
     switch($ManifestType.ToLower()) {
-        'arm' { $installer = 'ArmManifest.msi' ; break }
-        'reader' { $installer = 'ReaderDCManifest.msi' ; break }
-        'readerservices' { $installer = '/ServicesUpdater/DC/RdrManifest.msi' ; break }
+        'arm' { $installer = 'ArmManifest.msi' ; $baseUri = ' http://armmf.adobe.com/arm-manifests/win/{0}' ; break }
+        'reader' { $installer = 'ReaderDCManifest.msi' ;  $baseUri = ' http://armmf.adobe.com/arm-manifests/win/{0}'; break }
+        'readerservices' { $installer = 'RdrManifest.msi' ; $baseUri = 'http://armmf.adobe.com/arm-manifests/win/ServicesUpdater/DC/{0}' ; break }
         default { $installer = '' }
     }
 
-    $uri = ('http://armmf.adobe.com/arm-manifests/win/{0}' -f $installer)
+    $uri = ($baseUri -f $installer)
   
     $params = @{
         Uri = $uri;
