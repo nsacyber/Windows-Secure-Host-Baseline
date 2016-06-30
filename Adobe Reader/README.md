@@ -28,3 +28,15 @@ You can use the Get-AdobeReaderInstaller command in the [AdobeReader.ps1](./Scri
 
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)
+
+## Links
+* [Adobe Reader Security Bulletins](https://helpx.adobe.com/security.html#reader)
+* [Adobe Reader Updates for Windows](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10)
+* [Adobe Reader Release Notes](https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html)
+* [Enterprise Toolkit for Adobe Products home page](http://www.adobe.com/devnet-docs/acrobatetk/index.html)
+* [Adobe Reader Enterprise Administration Guide](http://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/index.html)
+* [Adobe Reader Settings for Windows - HKCU](https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html)
+* [Adobe Reader Settings for Windows - HKLM](https://www.adobe.com/devnet-docs/acrobat)
+* [Adobe Reader Application Security Guide](http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/index.html)
+* [Adobe Reader Updater: A configuration and user guide](http://kb2.adobe.com/cps/837/cpsid_83709/attachments/Acrobat_Reader_Updater.pdf)
+* [Adobe Group Policy Templates](http://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/gpo.html)
