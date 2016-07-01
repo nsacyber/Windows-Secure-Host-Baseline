@@ -69,18 +69,20 @@ Even after importing the correct certificates, users who browse to https://iad.g
 The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows.
 
 ### Automatically import iad.gov certificates
-1. Download the [iadgov.ps1 file](https://github.com/iadgov/Secure-Host-Baseline/blob/master/Certificates/Scripts/iadgov.ps1) to your **Downloads** folder
+1. Download the [iadgov.ps1 file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Scripts/iadgov.ps1) to your **Downloads** folder
 1. Open a PowerShell prompt
 1. Change directory to the location that you saved the file to (e.g. **cd Downloads**)
-1. Execute the script by typing **. .\\iadgov.ps1**
+1. Type **Unblock-File -Path 'iadgov.ps1'** and press Enter to allow the file to execute
+1. Type **Set-ExecutionPolicy Unrestricted -Scope CurrentUser** and press Enter to allow the file to execute
+1. Type **. .\\iadgov.ps1** and press Enter to execute the file which will import the correct certificates
 1. Browse to www.iad.gov and confirm no warnings are displayed
 
 ### Manually import iad.gov certificates
 
-1. Download the [DoD Root CA 3 certificate file](https://github.com/iadgov/Secure-Host-Baseline/blob/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DOD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save it to your **Downloads** folder.
+1. Download the [DoD Root CA 3 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DOD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save them to your **Downloads** folder.
 1. Open a PowerShell prompt
-1. Change directory to the folder (e.g. **cd Downloads** )
-1. Copy and paste one of the two PowerShell code snippets below and press Enter to execute it which will import the correct certificates
+1. Change directory to the folder (e.g. **cd Downloads**)
+1. Copy and paste one of the two PowerShell code snippets below into the PowerShell prompt and press Enter to execute the code which will import the correct certificates
 1. Browse to www.iad.gov and confirm no warnings are displayed
 
 
