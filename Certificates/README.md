@@ -26,7 +26,7 @@ Importing certificates varies depending on whether they are being imported for a
 
 You can use PowerShell's [Import-Certificate command](https://technet.microsoft.com/en-us/%5Clibrary/hh848630(v=wps.630).aspx) to import the certificates. 
 
-1. Open a PowerShell prompt with administrator privileges 
+1. Open a PowerShell prompt as an administrator
 1. Change directory to the Certificates directory (e.g. **cd Secure-Host-Baseline\\Certificates**)
 1. Copy and paste the code below into the PowerShell prompt and press **Enter** twice
 
@@ -64,23 +64,38 @@ You can also use the Microsoft Management Console Certificates snap-in to import
 ## Fixing iad.gov certificate warnings
 Non-DoD users may not want to import all the DoD Certificate Authority (CA) certificates as outlined above. Non-DoD users who visit https://www.iad.gov will receive a certificate warning (NET:ERR_CERT_AUTHORITY_INVALID) about www.iad.gov being an insecure web site when it is accessed since it does not use a certificate from a commercial CA that is already trusted by the browser. The browser's certificate store does not have the specific DoD CA certificate that issued the www.iad.gov certificate. To fix this issue import the **DoD Root CA 3** and **DoD ID SW CA-37** certificates into the browser certificate store.
 
-1. Download the [repository zip file](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) and extract the zip file to a **Secure-Host-Baseline** folder.
-1. Open a PowerShell prompt.
-1. Change directory to the folder (e.g. **cd Secure-Host-Baseline** ).
-1. Copy and paste the PowerShell code below and press Enter to execute it which will import the correct certificates.
-
 Even after importing the correct certificates, users who browse to https://iad.gov rather than https://www.iad.gov will still receive a certificate warning (NET::ERR_CERT_COMMON_NAME_INVALID) since the certificate for www.iad.gov does not have a [Subject Alternative Name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) (SAN) for iad.gov. Only browse to https://www.iad.gov to avoid this certificate warning until this issue has been resolved.
 
-**Import into the system certificate store** (requires administrator privilege)
+The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows.
+
+### Automatically import iad.gov certificates
+1. Download the [iadgov.ps1 file](https://github.com/iadgov/Secure-Host-Baseline/blob/master/Certificates/Scripts/iadgov.ps1) to your **Downloads** folder
+1. Open a PowerShell prompt
+1. Change directory to the location that you saved the file to (e.g. **cd Downloads**)
+1. Execute the script by typing **. .\\iadgov.ps1**
+1. Browse to www.iad.gov and confirm no warnings are displayed
+
+### Manually import iad.gov certificates
+
+1. Download the [DoD Root CA 3 certificate file](https://github.com/iadgov/Secure-Host-Baseline/blob/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DOD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save it to your **Downloads** folder.
+1. Open a PowerShell prompt
+1. Change directory to the folder (e.g. **cd Downloads** )
+1. Copy and paste one of the two PowerShell code snippets below and press Enter to execute it which will import the correct certificates
+1. Browse to www.iad.gov and confirm no warnings are displayed
+
+
+#### Import iad.gov certificates into the system certificate store
+This requires administrator privileges but will get rid of the warnings for all users on the system.
 ```
-Import-Certificate -FilePath .\Certificates\Root\DoD_Root_CA_3__01__DoD_Root_CA_3.cer -CertStoreLocation cert:\LocalMachine\Root
-Import-Certificate -FilePath .\Certificates\Intermediate\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer -CertStoreLocation cert:\LocalMachine\CA
+Import-Certificate -FilePath '.\DoD_Root_CA_3__01__DoD_Root_CA_3.cer' -CertStoreLocation cert:\LocalMachine\Root
+Import-Certificate -FilePath '.\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer' -CertStoreLocation cert:\LocalMachine\CA
 ```
 
 or
 
-**Import the certificates into the user certificate store**
+#### Import iad.gov certificates into the user certificate store
+THis does not require administrator privileges but will only get rid of the warnings for the currently logged in user.
 ```
-Import-Certificate -FilePath .\Certificates\Root\DoD_Root_CA_3__01__DoD_Root_CA_3.cer -CertStoreLocation cert:\CurrentUser\Root
-Import-Certificate -FilePath .\Certificates\Intermediate\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer -CertStoreLocation cert:\CurrentUser\CA
+Import-Certificate -FilePath '.\DoD_Root_CA_3__01__DoD_Root_CA_3.cer' -CertStoreLocation cert:\CurrentUser\Root
+Import-Certificate -FilePath '.\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer' -CertStoreLocation cert:\CurrentUser\CA
 ```
