@@ -68,7 +68,7 @@ Even after importing the correct certificates, users who browse to https://iad.g
 
 The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows.
 
-### Automatically import iad.gov certificates
+### Automatically importing iad.gov certificates
 1. Download the [iadgov.ps1 file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Scripts/iadgov.ps1) to your **Downloads** folder
 1. Open a PowerShell prompt
 1. Change directory to the location that you saved the file to (e.g. **cd Downloads**)
@@ -77,27 +77,27 @@ The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for
 1. Type **. .\\iadgov.ps1** and press Enter to execute the file which will import the correct certificates
 1. Browse to www.iad.gov and confirm no warnings are displayed
 
-### Manually import iad.gov certificates
+### Manually importing iad.gov certificates
 
-1. Download the [DoD Root CA 3 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DOD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save them to your **Downloads** folder.
-1. Open a PowerShell prompt
+1. Download the [DoD Root CA 3 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DoD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save them to your **Downloads** folder.
+1. Open a command prompt
 1. Change directory to the folder (e.g. **cd Downloads**)
-1. Copy and paste one of the two PowerShell code snippets below into the PowerShell prompt and press Enter to execute the code which will import the correct certificates
+1. Copy and paste one of the two sets of commands below into the command prompt and press Enter to execute the code which will import the correct certificates
 1. Browse to www.iad.gov and confirm no warnings are displayed
 
 
-#### Import iad.gov certificates into the system certificate store
+#### Importing iad.gov certificates into the system certificate store
 This requires administrator privileges but will get rid of the warnings for all users on the system.
 ```
-Import-Certificate -FilePath '.\DoD_Root_CA_3__01__DoD_Root_CA_3.cer' -CertStoreLocation cert:\LocalMachine\Root
-Import-Certificate -FilePath '.\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer' -CertStoreLocation cert:\LocalMachine\CA
+certutil.exe -addstore root DoD_Root_CA_3__01__DoD_Root_CA_3.cer
+certutil.exe -addstore ca DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer
 ```
 
 or
 
-#### Import iad.gov certificates into the user certificate store
-THis does not require administrator privileges but will only get rid of the warnings for the currently logged in user.
+#### Importing iad.gov certificates into the user certificate store
+This does not require administrator privileges but will only get rid of the warnings for the currently logged in user. The user will receive a security warning dialog asking if you want to install the certificate. Click Yes to install the certificate.
 ```
-Import-Certificate -FilePath '.\DoD_Root_CA_3__01__DoD_Root_CA_3.cer' -CertStoreLocation cert:\CurrentUser\Root
-Import-Certificate -FilePath '.\DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer' -CertStoreLocation cert:\CurrentUser\CA
+certutil.exe -user -addstore root DoD_Root_CA_3__01__DoD_Root_CA_3.cer
+certutil.exe -user -addstore ca DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer
 ```

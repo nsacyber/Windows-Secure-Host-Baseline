@@ -1,6 +1,47 @@
 #requires -version 2
 Set-StrictMode -Version 2
 
+Function Import-CertificateDownlevel() {
+ <#
+    .SYNOPSIS
+    Imports a certificate on downlevel operating systems that do not have the Import-Certificate command.
+
+    .DESCRIPTION
+    Imports a certificate on downlevel operating systems (Windows 7 and earlier) that do not have the Import-Certificate command.
+
+    .EXAMPLE
+    Import-CertificateDownlevel -FilePath '.\root.cer' -StoreName 'Root' -StoreLocation 'LocalMachine'
+
+    .EXAMPLE
+    Import-CertificateDownlevel -FilePath '.\intermediate.cer' -StoreName 'CertificateAuthority' -StoreLocation 'CurrentUser'
+    #>
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param (
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the certificate file.')]
+        [ValidateNotNullOrEmpty()]
+        [string]$FilePath,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the certificate store to import the certificate to.')]
+        [ValidateNotNullOrEmpty()]
+        [System.Security.Cryptography.X509Certificates.StoreName]$StoreName,
+
+        [Parameter(Position=2, Mandatory=$true, HelpMessage='The name of the certificate store location to import the certificate to.')]
+        [ValidateNotNullOrEmpty()]
+        [System.Security.Cryptography.X509Certificates.StoreLocation]$StoreLocation
+    )
+
+    $store = New-Object System.Security.Cryptography.X509Certificates.X509Store -ArgumentList $StoreName,$StoreLocation
+
+    $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]::ReadWrite)
+
+    $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $FilePath
+
+    $store.Add($certificate)
+
+    $store.Close()
+}
+
 Function Import-IADgovCertificates() {
     <#
     .SYNOPSIS
@@ -17,7 +58,7 @@ Function Import-IADgovCertificates() {
     [OutputType([void])]
     Param()
 
-    $dodRootCA3Certificate = '@
+    $dodRootCA3Certificate = @'
 -----BEGIN CERTIFICATE-----
 MIIDczCCAlugAwIBAgIBATANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJVUzEY
 MBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNEb0QxDDAKBgNVBAsT
@@ -39,9 +80,9 @@ Io+WBbRODHWRfdPy55TClBR2T48MqxCHWDKFB3WGEgte6lO0CshMhJIf6+hBhjy6
 hxuQE0iBzcqQxw3B1Jg/jvIOV2gzEo6ZCbHw5PYQ9DbySb3qozjIVkEjg5rfoRs1
 fOs/QbP1b0s6Xq5vk3aY0vGZnUXEjnI=
 -----END CERTIFICATE-----
-@'
+'@
 
-    $dodIDSWCA37Certificate = '@
+    $dodIDSWCA37Certificate = @'
 -----BEGIN CERTIFICATE-----
 MIIEoDCCA4igAwIBAgIBEjANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJVUzEY
 MBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNEb0QxDDAKBgNVBAsT
@@ -69,23 +110,40 @@ AH1GDfFmczuSfqwqZcapgJal9BWMIJoCXH1sUOHXmg/6anXx1d30OH9iTYV0to76
 oHTg6PEw7nwxNDgGcVgLDVyDAyTpfQCfhV4fSLI9cDTs4nA0SUgUga01d2h1Sp4r
 0PtksjJINJlYvLggvRWucI/MokLw5F6m+w6BN+t+kEggLn6T
 -----END CERTIFICATE-----
-@'
+'@
 
     $rootCertificateFile = Join-Path -Path $env:USERPROFILE -ChildPath 'DoD_Root_CA_3.cer'
     $intermediateCertificateFile = Join-Path -Path $env:USERPROFILE -ChildPath 'DoD ID SW CA-37.cer'
 
-    Set-Content -Path $rootCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force -NoNewline
-    Set-Content -Path $intermediateCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force -NoNewline
+    Set-Content -Path $rootCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force 
+    Set-Content -Path $intermediateCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force
 
+    $osVersion = [System.Environment]::OSVersion.Version
 
-    try {
+    $version = [double]('{0}.{1}' -f $osVersion.Major,$osVersion.Minor)
+
+    if ($version -ge 6.2) {
         # importing as an administrator into the machine store does not prompt the user
-        Import-Certificate -FilePath $rootCertificateFile -CertStoreLocation cert:\LocalMachine\Root | Out-Null
-        Import-Certificate -FilePath $intermediateCertificateFile -CertStoreLocation cert:\LocalMachine\CA | Out-Null
-    } catch {
         # user will get a security warning prompt asking if they want to import the certificate which they will be required to answer Yes to
-        Import-Certificate -FilePath $rootCertificateFile -CertStoreLocation cert:\CurrentUser\Root -InformationAction SilentlyContinue | Out-Null
-        Import-Certificate -FilePath $intermediateCertificateFile -CertStoreLocation cert:\CurrentUser\CA -InformationAction SilentlyContinue | Out-Null
+        # Import-Certificate only exists on Windows 8+
+
+        try {
+            Import-Certificate -FilePath $rootCertificateFile -CertStoreLocation cert:\LocalMachine\Root | Out-Null
+            Import-Certificate -FilePath $intermediateCertificateFile -CertStoreLocation cert:\LocalMachine\CA | Out-Null
+        } catch {
+            Import-Certificate -FilePath $rootCertificateFile -CertStoreLocation cert:\CurrentUser\Root | Out-Null
+            Import-Certificate -FilePath $intermediateCertificateFile -CertStoreLocation cert:\CurrentUser\CA | Out-Null
+        }
+    } else {
+        try {
+            Import-CertificateDownlevel -FilePath $rootCertificateFile -StoreName 'Root' -StoreLocation 'LocalMachine' 
+            # todo: figure out why import of intermediate certificate imports the root, not the intermediate
+            Import-CertificateDownlevel -FilePath $intermediateCertificateFile -StoreName 'CertificateAuthority' -StoreLocation 'LocalMachine'
+        } catch {
+            Import-CertificateDownlevel -FilePath $rootCertificateFile -StoreName 'Root' -StoreLocation 'CurrentUser'
+            # todo: figure out why import of intermediate certificate imports the root, not the intermediate
+            Import-CertificateDownlevel -FilePath $intermediateCertificateFile -StoreName 'CertificateAuthority' -StoreLocation 'CurrentUser'
+        }
     }
 
     Remove-Item -Path $rootCertificateFile -Force
