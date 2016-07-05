@@ -113,14 +113,14 @@ oHTg6PEw7nwxNDgGcVgLDVyDAyTpfQCfhV4fSLI9cDTs4nA0SUgUga01d2h1Sp4r
 '@
 
     $rootCertificateFile = Join-Path -Path $env:USERPROFILE -ChildPath 'DoD_Root_CA_3.cer'
-    $intermediateCertificateFile = Join-Path -Path $env:USERPROFILE -ChildPath 'DoD ID SW CA-37.cer'
+    $intermediateCertificateFile = Join-Path -Path $env:USERPROFILE -ChildPath 'DoD_ID_SW_CA-37.cer'
 
     Set-Content -Path $rootCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force 
-    Set-Content -Path $intermediateCertificateFile -Value $dodRootCA3Certificate -Encoding Ascii -Force
+    Set-Content -Path $intermediateCertificateFile -Value $dodIDSWCA37Certificate -Encoding Ascii -Force
 
     $osVersion = [System.Environment]::OSVersion.Version
 
-    $version = [double]('{0}.{1}' -f $osVersion.Major,$osVersion.Minor)
+    $version = [decimal]('{0}.{1}' -f $osVersion.Major,$osVersion.Minor)
 
     if ($version -ge 6.2) {
         # importing as an administrator into the machine store does not prompt the user
@@ -136,12 +136,10 @@ oHTg6PEw7nwxNDgGcVgLDVyDAyTpfQCfhV4fSLI9cDTs4nA0SUgUga01d2h1Sp4r
         }
     } else {
         try {
-            Import-CertificateDownlevel -FilePath $rootCertificateFile -StoreName 'Root' -StoreLocation 'LocalMachine' 
-            # todo: figure out why import of intermediate certificate imports the root, not the intermediate
+            Import-CertificateDownlevel -FilePath $rootCertificateFile -StoreName 'Root' -StoreLocation 'LocalMachine'
             Import-CertificateDownlevel -FilePath $intermediateCertificateFile -StoreName 'CertificateAuthority' -StoreLocation 'LocalMachine'
         } catch {
             Import-CertificateDownlevel -FilePath $rootCertificateFile -StoreName 'Root' -StoreLocation 'CurrentUser'
-            # todo: figure out why import of intermediate certificate imports the root, not the intermediate
             Import-CertificateDownlevel -FilePath $intermediateCertificateFile -StoreName 'CertificateAuthority' -StoreLocation 'CurrentUser'
         }
     }
