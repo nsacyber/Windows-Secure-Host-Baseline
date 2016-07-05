@@ -69,7 +69,7 @@ Even after importing the correct certificates, users who browse to https://iad.g
 The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows.
 
 ### Automatically importing iad.gov certificates
-1. Download the [iadgov.ps1 file](./Scripts/iadgov.ps1?raw=true) to your **Downloads** folder
+1. Download (right click on the link and select Save As/Save Target As/Save Link As) the [iadgov.ps1 file](./Scripts/iadgov.ps1?raw=true) to your **Downloads** folder
 1. Open a PowerShell prompt
 1. Change directory to the location that you saved the file to (e.g. **cd Downloads**)
 1. Type **Unblock-File -Path 'iadgov.ps1'** and press Enter to allow the file to execute
@@ -79,7 +79,7 @@ The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for
 
 ### Manually importing iad.gov certificates
 
-1. Download the [DoD Root CA 3 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer) and the [DoD ID SW CA-37 certificate file](https://raw.githubusercontent.com/iadgov/Secure-Host-Baseline/master/Certificates/Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer) and save them to your **Downloads** folder.
+1. Download (right click on the link and select Save As/Save Target As/Save Link As) the [DoD Root CA 3 certificate file](./Root/DoD_Root_CA_3__01__DoD_Root_CA_3.cer?raw=true) and the [DoD ID SW CA-37 certificate file](./Intermediate/DoD_Root_CA_3__0x12__DOD_ID_SW_CA-37.cer?raw=true) to your **Downloads** folder
 1. Open a command prompt
 1. Change directory to the folder (e.g. **cd Downloads**)
 1. Copy and paste one of the two sets of commands below into the command prompt and press Enter to execute the code which will import the correct certificates

@@ -1,8 +1,9 @@
 # Windows 10 Compliance
-The Windows 10 [audit file](./Windows 10.audit) can be used to verify compliance of the Windows 10 configuration portion of the SHB. The Nessus audit file provides an automatic way to verify as many checks as possible. Five of the checks require [Base64 encoded PowerShell](#Base64-Encoded-PowerShell) in order to perform the check. The PowerShell and matching Base64 string are listed below for documentation proposes. The Base64 version of the PowerShell checks are included in the audit file. There are a few remaining [manual checks](#Manual-Checks) that can not be automated. Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](https://github.com/iadgov/Secure-Host-Baseline/tree/master/Compliance) page.
+The Windows 10 [audit file](./Windows 10.audit) can be used to verify compliance of the Windows 10 configuration portion of the SHB. The Nessus audit file provides an automatic way to verify as many checks as possible. Five of the checks require [Base64 encoded PowerShell](#Base64-Encoded-PowerShell) in order to perform the check correctly. The PowerShell and matching Base64 string are listed below for documentation proposes. The Base64 version of the PowerShell checks are included in the audit file. There are a few remaining [manual checks](#Manual-Checks) that can not be automated. Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](./../../Compliance/README.md) page.
 
 ## Manual Checks
-The following checks must be performed manually because there is currently no good automated way of performing these checks. These checks are not covered by the current .audit file, hence these must be performed manually.
+The following checks must be performed manually because there is currently no automated way of performing these checks. These checks are not covered by the current .audit file, hence these must be performed manually.
+
 * WN10-00-000015 - System firmware or system controllers must have administrator accounts/passwords configured.
 * WN10-00-000020 - The system must not use removable media as the boot loader. 
 * WN10-00-000030 - Mobile systems must encrypt all discs to protect the confidentiality and integrity of all information at rest.
@@ -18,6 +19,8 @@ The following checks must be performed manually because there is currently no go
 
 
 ## Base64 Encoded PowerShell Audits
+The following PowerShell-based checks need to be base 64 encoded to run correctly. 
+
 WN10-00-000050 - Local volumes must be formatted using NTFS. The following PowerShell can automate this check but it must be Base64 encoded to run under Nessus.
 
 ```
