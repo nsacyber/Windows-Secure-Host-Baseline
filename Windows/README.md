@@ -6,12 +6,11 @@ See the [Hardware page](./../Hardware/README.md) for more information about hard
 ## Downloads for Windows 10
 * [Group Policy templates](https://www.microsoft.com/en-us/download/details.aspx?id=48257)
 * [Group Policy reference](https://www.microsoft.com/en-us/download/details.aspx?id=25250)
-* [Microsoft Security Baseline](http://blogs.technet.com/cfs-filesystemfile.ashx/__key/telligent-evolution-components-attachments/01-4062-00-00-03-65-94-81/Windows-10-TH2-Security-Baseline.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/22/security-baseline-for-windows-10-v1511-quot-threshold-2-quot-final.aspx)
+* [Microsoft Security Baseline for Windows 10 Version 1511](https://blogs.technet.microsoft.com/secguide/2016/01/22/security-baseline-for-windows-10-v1511-threshold-2-final/)
+* [Microsoft Security Baseline for Windows 10 Version 1507](https://blogs.technet.microsoft.com/secguide/2016/01/22/security-baseline-for-windows-10-v1507-build-10240-th1-ltsb-update/)
 
 ## Guidance
-NSA Information Assurance has guidance for Windows 10:
+NSA Information Assurance guidance for Windows 10:
 * [Security Highlights of Windows 10](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/security-highlights-of-windows-10.cfm)
-* Security Improvements in Windows 10
-* Hardware Recommendations for Windows 10
 
 
