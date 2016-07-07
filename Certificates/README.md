@@ -66,7 +66,7 @@ Non-DoD users may not want to import all the DoD Certificate Authority (CA) cert
 
 Even after importing the correct certificates, users who browse to https://iad.gov rather than https://www.iad.gov will still receive a certificate warning (NET::ERR_CERT_COMMON_NAME_INVALID) since the certificate for www.iad.gov does not have a [Subject Alternative Name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) (SAN) for iad.gov. Only browse to https://www.iad.gov to avoid this certificate warning until this issue has been resolved.
 
-The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows.
+The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows. Users of other browser and operating system combinations may be able to use instructions [here](http://wiki.cacert.org/FAQ/ImportRootCert) and [here](http://wiki.cacert.org/FAQ/BrowserClients) by replacing references to **cacert-root** with **DoD Root CA 3** and references to **cacert-class3** with **DoD ID SW CA-37**.
 
 ### Automatically importing iad.gov certificates
 1. Download (right click on the link and select Save As/Save Target As/Save Link As) the [iadgov.ps1 file](./Scripts/iadgov.ps1?raw=true) to your **Downloads** folder
