@@ -28,7 +28,7 @@ In support of deployment of the Windows 10 Secure Host Baseline, a number of har
 
 ### Questions
 
-Answer these questions per model:
+Answer these questions per model. If an OEM doesn't have a traditional model scheme, then answer these questions based on processors available for a system configuration.
 
 1. Which processors are available as options for this model?
 1. Which chipsets are available as options for this model?
@@ -109,4 +109,5 @@ These section mentions some potential hardware and firmware issues related to Wi
 ## Other links
 
 * [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true)
+* [List of Intel processors that support 64-bit, VT-x, and EPT](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true)
 * [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware)
