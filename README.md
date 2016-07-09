@@ -52,6 +52,7 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 * [Certificates](./Certificates/Scripts/)
 * [Chrome](./Chrome/Scripts/)
 * [Hardware](./Hardware/Scripts/)
+* [Windows](./Windows/Scripts/)
 
 Users may need to perform 3 steps to run the functions defined in the PowerShell scripts:
 
