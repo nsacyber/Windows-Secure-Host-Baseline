@@ -83,10 +83,18 @@
 
 
       <!-- UPDATER SETTINGS --> 
-      <string id="updatersetting">Allow Updater Prompts</string>
-      <string id="updatersetting_Explain">Enable/Disable ability for the Adobe Reader DC Updater to prompt users about updates. This setting has no effect on the ability for administrator to install updates. Setting to Allow or Not Configured will allow the updater to prompt the user. Setting to disabled will prevent the updater from displaying prompts to the user about updates.</string>
+      <string id="updatersetting1">Allow Adobe Reader Product Updates</string>
+      <string id="updatersetting1_Explain">Enable/Disable ability for the Adobe Reader DC Updater to download and install product updates. This setting also controls the check for updates menu item. Setting to Allowed will allow updates to be downlaoded, including service updates if configured to allow. Setting to disabled will prevent the updater from running and hide the check for updates menu item. NOTE: The EULA must be accpected by the user, or the EULA GPO setting must be configured to Accept EULA before any updates can be downloaded.</string>
       
+      <string id="updatersetting2">Allow Online Service Updates</string>
+      <string id="updatersetting2_Explain">Enable/Disable ability for the Adobe Reader DC Updater to download online service updates. Setting to disabled will prevent the updater from downloading updates.</string>
       
+      <string id="updatersetting3">Enable Verbose Logging</string>
+      <string id="updatersetting3_Explain">Enable/Disable verbose logging for the Adobe Reader DC Updater. Setting to disabled or not configured will produce basic logging. Setting to enabled will produce verbose logging. Update Logs can be found in C:\Users\username\AppData\Local\Temp\AdobeARM.txt</string>
+      
+      <string id="updatersetting4">Accept EULA</string>
+      <string id="EULA_Explain">Enable/Disable acceptance of of end user license agreement (EULA) for the end user. Setting to Enabled will prevent the EULA from being displayed. The EULA must be accepted before the updater can download product updates.</string>
+
       <!-- EMBEDDED CONTENT SETTINGS --> 
       <string id="attachmentsetting">Allow Attachments</string>
       <string id="attachmentsetting_Explain">Enable/Disable attachments embedded inside PDF documents. Embedded attachments could contain malicious content and should only be enabled if necessary. Setting to Allow or Not Configured will allow embedded attachments.</string>
@@ -131,13 +139,6 @@ For example: Util.CharToByte|App.alert|Collab.getIcon
       
       <string id="splashscreen">Display Splash Screen at Startup</string>
       <string id="splashscreen_Explain">Enable/Disable showing the adobe splash screen everytime the product launches. Setting to Enabled or Not Configured will show the splash screen. Setting to Disabled will prevent the splash screen.</string>
-      
-
-      <!-- HKCU - USER SETTINGS (Not Security related but could improve user experience) -->
-      
-      <string id="eula">Display EULA</string>
-      <string id="eula_Explain">Enable/Disable display of end user license agreement indicating EULA has been accepted by the end user. Setting to Disabled will prevent the EULA from being displayed. Note: This is a user setting (HKCU).</string>
-      
       
     </stringTable>
     

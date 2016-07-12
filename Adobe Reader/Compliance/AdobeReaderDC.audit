@@ -1,7 +1,7 @@
 # Adobe Reader DC
 # Author: NSA Information Assurance
-# Revision: 1.1.3	
-# Date: 06/28/2016
+# Revision: 1.1.4	
+# Date: 07/12/2016
 # Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
 
@@ -59,6 +59,7 @@
 ####
 
 # SECURITY SETTINGS
+
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "Adobe Reader: Enable Protected View"
@@ -132,6 +133,7 @@
 </custom_item>
 
 #TRUSTED LOCATION SETTINGS
+
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "Adobe Reader: Disable Trusted Sites"
@@ -145,6 +147,7 @@
 </custom_item>
 
 #CLOUD SETTINGS
+
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "Adobe Reader: Disable SharePoint Services"
@@ -230,6 +233,7 @@
 </custom_item>
 
 #EMBEDDED CONTENT SETTINGS
+
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "Adobe Reader: Prevent Flash"
@@ -288,6 +292,20 @@
  reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
  reg_item		: "bUsageMeasurement"
  severity		: MEDIUM
+</custom_item>
+
+#UPDATE SETTINGS
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "Adobe Reader: Automatic Updates Enabled"
+ info               	: "Severity: CAT II"
+ info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\bUpdater (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+ reg_item		: "bUpdater"
+ severity		: HIGH
 </custom_item>
 
 </then>

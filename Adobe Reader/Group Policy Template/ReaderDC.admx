@@ -272,8 +272,8 @@
     
     <!-- UPDATER SETTINGS --> 
     
-    <policy class="Machine" displayName="$(string.updatersetting)" explainText="$(string.updatersetting_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
-      name="updatersetting" valueName="bUpdater">
+    <policy class="Machine" displayName="$(string.updatersetting1)" explainText="$(string.updatersetting1_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="updatersetting1" valueName="bUpdater">
       <parentCategory ref="updater_group"/>
       <supportedOn ref="SUPPORTED_READERDC"/>
       <enabledValue>
@@ -283,7 +283,43 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
-    
+
+    <policy class="Machine" displayName="$(string.updatersetting2)" explainText="$(string.updatersetting2_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
+      name="updatersetting2" valueName="bUpdater">
+      <parentCategory ref="updater_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+
+    <policy class="Machine" displayName="$(string.updatersetting3)" explainText="$(string.updatersetting3_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\1.0\ARM" 
+      name="updatersetting3" valueName="iLogLevel">
+      <parentCategory ref="updater_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+
+    <policy class="Machine" displayName="$(string.updatersetting4)" explainText="$(string.EULA_Explain)" key="Software\Wow6432Node\Adobe\Acrobat Reader\DC\AdobeViewer" 
+      name="updatersetting4" valueName="EULA">
+      <parentCategory ref="updater_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>    
+
     <!-- EMBEDDED CONTENT SETTINGS --> 
     
     <policy class="Machine" displayName="$(string.attachmentsetting)" explainText="$(string.attachmentsetting_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
@@ -440,20 +476,6 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>    
-        
-    <!-- HKCU - USER SETTINGS (Not Security related but could improve user experience) -->
-    
-    <policy class="User" displayName="$(string.eula)" explainText="$(string.eula_Explain)" key="Software\Adobe\Acrobat Reader\DC\AdobeViewer" 
-      name="eula" valueName="EULA">
-      <parentCategory ref="ui_group"/>
-      <supportedOn ref="SUPPORTED_READERDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy>
-    
+         
   </policies>
 </policyDefinitions>
