@@ -298,7 +298,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Adobe Reader: Automatic Updates Enabled"
+ description	        : "Adobe Reader: Enable Automatic Updates"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\bUpdater (DWORD:1)"
  value_type		: POLICY_DWORD
@@ -306,6 +306,18 @@
  reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
  reg_item		: "bUpdater"
  severity		: HIGH
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "Adobe Reader: Prevent Service Updates"
+ info               	: "Severity: CAT II"
+ info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices\bUpdater (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cServices"
+ reg_item		: "bUpdater"
+ severity		: MEDIUM
 </custom_item>
 
 </then>
