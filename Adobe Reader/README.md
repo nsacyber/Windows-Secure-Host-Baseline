@@ -17,6 +17,23 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 **%SystemRoot%\\PolicyDefinitions\\**, typically **C:\\Windows\\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **ReaderDC.admx** file to **%SystemRoot%\\PolicyDefinitions\\** and copy the **ReaderDC.adml** file  to **%SystemRoot%\\PolicyDefinitions\\en-us\\** folder on the domain controller.
 
+## Importing the Adobe Reader DC Group Policy
+
+### Importing the Adobe Reader DC domain Group Policy
+Use the PowerShell Group Policy commands to import the Adobe Reader DC Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Import-Module GroupPolicy
+
+Import-GPO -Path ".\Adobe Reader\Group Policy Objects\Computer\{659E383E-BA08-4166-9A33-60EC86176370}"
+```
+### Importing the Adobe Reader DC local Group Policy
+Use Microsoft's LGPO tool to apply the Adobe Reader DC Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+lgpo.exe /g ".\Adobe Reader\Group Policy Objects\Computer\{659E383E-BA08-4166-9A33-60EC86176370}"
+```
+
 ## Compliance
 The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) .audit file to check compliance with the settings implemented in the Group Policy Object.
 
