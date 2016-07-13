@@ -57,23 +57,34 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 Users may need to perform 3 steps to run the functions defined in the PowerShell scripts:
 
 1. Change the PowerShell execution policy
-1. Unblock the PowerShell script
+1. Unblock the downloaded zip file
 1. Dot source the PowerShell script
 
 ##### Changing the PowerShell execution policy
 
 Users may need to change the default PowerShell execution policy. This can be achieved in a number of different ways:
-* Open a command prompt and run **powershell.exe -ExecutionPolicy Bypass** and run scripts from that PowerShell session.
+* Open a command prompt and run **powershell.exe -ExecutionPolicy Bypass** or **powershell.exe -ExecutionPolicy Unrestricted** and run scripts from that PowerShell session.
 * Open a PowerShell prompt and run **Set-ExecutionPolicy Unrestricted -Scope CurrentUser** and run scripts from any PowerShell session.
 * Open an administrative PowerShell prompt and run **Set-ExecutionPolicy Unrestricted** and run scripts from any PowerShell session.
 
 ##### Unblocking the PowerShell scripts
+Users will need to unblock the downloaded zip file since it will be marked as having been downloaded from the Internet. Running the PowerShell scripts inside the zip file without unblocking the file will result in the following warning:
 
-Users may need to unblock PowerShell files that have been downloaded from the Internet. Open a PowerShell prompt and run the following command **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline') -Recurse -Filter '\*.ps1' | Unblock-File** to unblock all PowerShell files.
+```
+Security warning
+Run only scripts that you trust. While scripts from the internet can be useful, this script can potentially harm your computer. If you trust this script, use the Unblock-File cmdlet to allow the script to run without this warning message. Do you want to run C:\users\user\Downloads\script.ps1?
+[D] Do not run [R] Run once [S] Suspend [?] Help (default is "D"):
+```
+
+Open a PowerShell prompt and run the following command **Unblock-File -Path '.\master.zip'**
+
+If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline') -Recurse -Filter '\*.ps1' | Unblock-File**
+
+See the [Unlbock-File command's documentation](https://technet.microsoft.com/en-us/library/hh849924.aspx) for more information on how to use it.
 
 ##### Dot sourcing the PowerShell scripts
 
-Once the PowerShell execution policy has been configured, and the PowerShell scripts have been unblocked, [dot source](https://technet.microsoft.com/en-us/library/hh847841.aspx) the file to load the PowerShell code.
+Once the PowerShell execution policy has been configured, and the zip file or PowerShell scripts have been unblocked, [dot source](https://technet.microsoft.com/en-us/library/hh847841.aspx) the file to load the PowerShell code.
 
 1. Open a PowerShell prompt
 1. Change directory to where the script is located (e.g. **cd .\\Hardware\\Scripts\\**)
