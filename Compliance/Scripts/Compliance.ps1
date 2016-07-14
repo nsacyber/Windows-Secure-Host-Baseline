@@ -30,13 +30,14 @@ Audit File for compliance
 Enable verbose to see Error Messages 
 
 .SYNTAX
-Compliance.ps1 [[-File] <string>] [[-verbose] <switch>]
+Test-Compliance [[-File] <string>] [[-verbose] <switch>]
 
 .EXAMPLE
-Compliance.ps1 InternetExplorer.audit -verbose 
+. .\Compliance.ps1 
+Test-Compliance InternetExplorer.audit -verbose 
 
 #>
-param([string]$File, [switch]$verbose)
+
 
 $script:service_policy_key = "HKLM\SYSTEM\CurrentControlSet\Services\"
 $script:service_policy_item = "start"
@@ -1859,7 +1860,7 @@ function Test-Compliance {
     #>
     param(
         [String]$path,
-        [bool]$isVerbose)
+        [switch]$verbose)
 
     if (!(Test-Path $path)) {
         Write-Host "$path does not exist"
@@ -1867,7 +1868,7 @@ function Test-Compliance {
     }
     $fd = Get-Content $path
     $oldVerbose = $VerbosePreference
-    if ($isVerbose) {
+    if ($verbose) {
         $VerbosePreference = "continue"
     } else {
         $VerbosePreference = "SilentlyContinue"
@@ -2088,6 +2089,3 @@ function Test-Compliance {
 
     $VerbosePreference = $oldVerbose
 }
-
-
-Test-Compliance $File $verbose

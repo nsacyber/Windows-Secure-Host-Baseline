@@ -21,7 +21,7 @@ A paid version of Nessus Professional or Nessus Manager must be used in order to
 
 ### Standalone Scan with PowerShell
 
-The Test-Compliance command in the [Scripts\Compliance.ps1](./Scripts/Compliance.ps1) file can be used to verify system compliance against any of the above listed .audit files. This powershell script makes it simple to scan a single standalone system and verify a configuration has been applied correctly. The following will execute a compliance check locally.
+The Test-Compliance command in the [Scripts\Compliance.ps1](./Scripts/Compliance.ps1) file can be used to verify system compliance against any of the above listed .audit files. This powershell script makes it simple to scan a single standalone system and verify a configuration has been applied correctly. The following instructions can be used to execute a compliance check locally.
 
 1. Open a PowerShell prompt as an administrator
 2. Change directory to the Compliance\Scripts directory (e.g. cd Secure-Host-Baseline\Compliance\Scripts)
@@ -35,6 +35,16 @@ Test-Compliance ..\..\EMET\Compliance\EMET_5.5.audit
 Test-Compliance ..\..\Internet Explorer\Compliance\InternetExplorer11.audit
 Test-Compliance ..\..\Windows\Compliance\Windows 10.audit
 ```
+Below is a screenshot of the [Compliance.ps1](./Scripts/Compliance.ps1) script running the Internet Explorer audit file.
+![compliance_script_example](./images/compliance_script_example.jpg?raw=true)
+
+The [Compliance.ps1](./Scripts/Compliance.ps1) script supports a verbose flag which will show details for checks that fail. Without the verbose flag a simple pass/fail is displayed for each compliance check as shown in image above. 
+
+```
+Test-Compliance ..\..\Adobe Reader\Compliance\AdobeReaderDC.audit -verbose
+```
+
+
 
 ## Links
 * [Nessus Compliance Checks Reference](https://support.tenable.com/support-center/nessus_compliance_reference.pdf)
