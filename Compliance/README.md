@@ -29,11 +29,11 @@ The Test-Compliance command in the [Scripts\Compliance.ps1](./Scripts/Compliance
 4. Copy and paste the desired line(s) below into the PowerShell prompt and press Enter twice.
 
 ```
-Test-Compliance ..\..\Adobe Reader\Compliance\AdobeReaderDC.audit
-Test-Compliance ..\..\Chrome\Compliance\GoogleChrome.audit
-Test-Compliance ..\..\EMET\Compliance\EMET_5.5.audit
-Test-Compliance ..\..\Internet Explorer\Compliance\InternetExplorer11.audit
-Test-Compliance ..\..\Windows\Compliance\Windows 10.audit
+Test-Compliance "..\..\Adobe Reader\Compliance\AdobeReaderDC.audit"
+Test-Compliance "..\..\Chrome\Compliance\GoogleChrome.audit"
+Test-Compliance "..\..\EMET\Compliance\EMET_5.5.audit"
+Test-Compliance "..\..\Internet Explorer\Compliance\InternetExplorer11.audit"
+Test-Compliance "..\..\Windows\Compliance\Windows 10.audit"
 ```
 Below is a screenshot of the [Compliance.ps1](./Scripts/Compliance.ps1) script running the Internet Explorer audit file.
 ![compliance_script_example](./images/compliance_script_example.jpg?raw=true)
@@ -41,7 +41,7 @@ Below is a screenshot of the [Compliance.ps1](./Scripts/Compliance.ps1) script r
 The [Compliance.ps1](./Scripts/Compliance.ps1) script supports a verbose flag which will show details for checks that fail. Without the verbose flag a simple pass/fail is displayed for each compliance check as shown in image above. 
 
 ```
-Test-Compliance ..\..\Adobe Reader\Compliance\AdobeReaderDC.audit -verbose
+Test-Compliance "..\..\Adobe Reader\Compliance\AdobeReaderDC.audit" -verbose
 ```
 
 
