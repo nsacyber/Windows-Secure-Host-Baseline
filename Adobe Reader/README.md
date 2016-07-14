@@ -43,6 +43,15 @@ The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.
 
 You can use the Get-AdobeReaderInstaller command in the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file in the [scripts folder](./Scripts) to download a specific version of Adobe Reader DC. Example: **Get-AdobeReaderInstaller -Version '2015.016.20039'** Adobe Reader DC version numbers that can be used with this script can be found on [Adobe Reader for Windows page](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10).
 
+## Managing updates
+Adobe Reader DC installs a task that executes an update check every time a user logs in. After a successful update check, another update check will not occur for 3 days even though the task runs at every user login. Manually running the installed task named **Adobe Acrobat Update Task** will result in an error of *The user account does not have permission to run this task*. Systems may rarely automatically update since the task can't successfully execute. A [new task](./Adobe Reader x64 Update Task.xml) has been included in this repository which can be imported to a system using the [Register-ScheduledTask command](https://technet.microsoft.com/en-us/library/jj649811(v=wps.630).aspx).
+
+```
+Register-ScheduledTask -Xml ((Get-Content -Path '.\Secure-Host-Baseline\Adobe Reader\Adobe Reader x64 Update Task.xml') | Out-String) -TaskName 'Adobe Reader x64 Update Task'
+```
+
+The updater will also not execute if the Adobe Reader EULA has not been accepted which may result in some systems not getting updated. This behavior can be prevented by creating a **DWORD** registry value named **iDisableCheckEula** under **HKLM\Software\Adobe\Adobe ARM\1.0\ARM** and setting the value to **1**. This value can be configured using the provided Group Policy template.
+
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)
 
