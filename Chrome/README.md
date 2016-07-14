@@ -46,8 +46,9 @@ The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.
 
 # Download Google Chrome
 Download the latest enterprise/business version of Google Chrome:
-* [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
 * [64-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi) (recommended)
+* [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
+
 
 
 The version number of Chrome the download represents is available at http://omahaproxy.appspot.com/win
