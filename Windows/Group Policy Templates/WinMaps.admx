@@ -27,5 +27,20 @@
             <decimal value="1" />
         </disabledValue>
     </policy>
+    <policy name="DisallowUntriggeredNetworkOnSettingsPage"
+            class="Machine"
+            displayName="$(string.DisallowUntriggeredNetworkOnSettingsPage_Name)"
+            explainText="$(string.DisallowUntriggeredNetworkOnSettingsPage_Explain)"
+            key="Software\Policies\Microsoft\Windows\Maps"
+            valueName="AllowUntriggeredNetworkTrafficOnSettingsPage">
+        <parentCategory ref="Maps" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+        <enabledValue>
+            <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="1" />
+        </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>

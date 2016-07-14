@@ -130,5 +130,39 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
+    <policy
+        name="RequirePrivateStoreOnly_1"
+        class="User"
+        displayName="$(string.RequirePrivateStoreOnly)"
+        explainText="$(string.RequirePrivateStoreOnly_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RequirePrivateStoreOnly"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="RequirePrivateStoreOnly_2"
+        class="Machine"
+        displayName="$(string.RequirePrivateStoreOnly)"
+        explainText="$(string.RequirePrivateStoreOnly_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RequirePrivateStoreOnly"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>

@@ -35,6 +35,12 @@ If you enable this setting, the Store application will not offer updates to the 
 If you disable or do not configure this setting the Store application will offer updates to the latest version of Windows.</string>
       <string id="DisableStoreApps">Disable all apps from Windows Store </string>
       <string id="DisableStoreApps_Help">Disable turns off the launch of all apps from the Windows Store that came pre-installed or were downloaded. Apps will not be updated. Your Store will be also be disabled. Enable turns all of it back on.</string>
+      <string id="RequirePrivateStoreOnly">Only display the private store within the Windows Store app</string>
+      <string id="RequirePrivateStoreOnly_Help">Denies access to the retail catalog in the Windows Store app, but displays the private store.
+
+If you enable this setting, users will not be able to view the retail catalog in the Windows Store app, but they will be able to view apps in the private store.
+
+If you disable or don't configure this setting, users can access the retail catalog in the Windows Store app.</string>
       <string id="WindowsStore">Store</string>
     </stringTable>
   </resources>
