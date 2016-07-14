@@ -419,6 +419,9 @@ Function New-GitConfiguration() {
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager'
 
     .EXAMPLE
+    New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -CredentialManager 'manager'
+
+    .EXAMPLE
     New-GitConfiguration -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager' -SigningKey 'AAABB1234'
     #>
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Scope='Function')] # this function does not change system state
@@ -443,7 +446,7 @@ Function New-GitConfiguration() {
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
         [string]$DiffMergeTool,
 
-        [Parameter(Position=4, Mandatory=$true, HelpMessage='Proxy URL and port')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
         [string]$Proxy,
 
@@ -624,6 +627,9 @@ Function New-GitConfigurationFile() {
     New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager'
 
     .EXAMPLE
+    New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -CredentialManager 'manager'
+
+    .EXAMPLE
     New-GitConfigurationFile -Username iadgovuser1 -Email iadgovuser1@iad.gov -DiffMergeTool 'SourceGear' -Proxy '123.456.789.0:80' -CredentialManager 'manager' -SigningKey 'AAABB1234'
     #>
     [CmdletBinding()] 
@@ -647,7 +653,7 @@ Function New-GitConfigurationFile() {
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
         [string]$DiffMergeTool,
 
-        [Parameter(Position=4, Mandatory=$true, HelpMessage='Proxy URL and port')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
         [string]$Proxy,
 
