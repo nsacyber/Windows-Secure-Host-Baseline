@@ -1,7 +1,7 @@
 # Windows 10 STIG
 # Author: IAD
-# Revision: 1.0
-# Date: 06/24/2016
+# Revision: 1.0.1
+# Date: 07/14/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/Windows 10.audit
 
 
@@ -303,8 +303,7 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Severity: CAT I"
  value_type	: POLICY_TEXT
  value_data	: "NTFS"
- powershell_args: 'CgAkAEYAaQBsAGUAUwB5AHMAdABlAG0AIAA9ACAAIgBOAFQARgBTACIACgAkAGQAcgBpAHYAZQBzACAAPQAgAGcAZQB0AC0AdwBtAGkAbwBiAGoAZQBjAHQAIAAtAGMAbABhAHMAcwAgACIAVwBpAG4AMwAyAF8AVgBvAGwAdQBtAGUAIgAgAC0AbgBhAG0AZQBzAHAAYQBjAGUAIAAiAHIAbwBvAHQAXABDAEkATQBWADIAIgAgAC0AZgBpAGwAdABlAHIAIAAiAEQAcgBpAHYAZQBUAHkAcABlACAAPQAgADMAIgAgAC0AYwBvAG0AcAB1AHQAZQByAG4AYQBtAGUAIAAcIC4AHSAKAGYAbwByAGUAYQBjAGgAIAAoACQAZAByAGkAdgBlACAAaQBuACAAJABkAHIAaQB2AGUAcwApACAAewAgAAoAaQBmACAAKAAtAE4AbwB0ACAAJABkAHIAaQB2AGUALgBGAGkAbABlAFMAeQBzAHQAZQBtACAALQBNAGEAdABjAGgAIAAnAE4AVABGAFMAJwApACAAewAkAEYAaQBsAGUAUwB5AHMAdABlAG0AIAA9ACAAJABkAHIAaQB2AGUAcwAuAEYAaQBsAGUAUwB5AHMAdABlAG0AfQAKAH0ACgB3AHIAaQB0AGUALQBoAG8AcwB0ACAAJABGAGkAbABlAFMAeQBzAHQAZQBtAAoA'
- ps_encoded_args: YES
+ powershell_args: "$FileSystem = 'NTFS'; $drives = (get-wmiobject -class 'Win32_Volume' -namespace 'root\CIMV2' -filter 'DriveType = 3' -computername '.'); foreach ($drive in $drives) { if (-Not $drive.FileSystem -Match 'NTFS') { $FileSystem = $drives.FileSystem; } }; write-output $FileSystem;"
 </custom_item>
 
 # STIG ID	: WN10-00-000055
@@ -336,8 +335,7 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "Admin$ C$ IPC$"
- powershell_args: 'CgAkAHMAaABhAHIAZQBzACAAPQAgACIAIgAKACQAYwB0AHIAIAA9ACAAMAAKACQAcwBoAGEAcgBlAGQAXwBkAHIAaQB2AGUAcwAgAD0AIABnAGUAdAAtAHcAbQBpAG8AYgBqAGUAYwB0ACAALQBjAGwAYQBzAHMAIAAiAHcAaQBuADMAMgBfAFMAaABhAHIAZQAiACAAIAAtAG4AYQBtAGUAcwBwAGEAYwBlACAAIgByAG8AbwB0AFwAQwBJAE0AVgAyACIAIAAtAGMAbwBtAHAAdQB0AGUAcgBuAGEAbQBlACAAHCAuAB0gIAB8ACAAcwBvAHIAdAAtAG8AYgBqAGUAYwB0ACAATgBhAG0AZQAKAGYAbwByAGUAYQBjAGgAIAAoACQAZAByAGkAdgBlACAAaQBuACAAJABzAGgAYQByAGUAZABfAGQAcgBpAHYAZQBzACkAIAB7ACAACgAgACAACQBpAGYAIAAoACQAYwB0AHIAIAAtAGUAcQAgADAAKQAgAHsAIAAkAHMAaABhAHIAZQBzACAAPQAgACQAZAByAGkAdgBlAC4ATgBhAG0AZQAgAH0ACgAgACAACQBlAGwAcwBlACAAewAgACQAcwBoAGEAcgBlAHMAIAA9ACAAJABzAGgAYQByAGUAcwAgACsAIAAiACAAIgAgACsAIAAkAGQAcgBpAHYAZQAuAE4AYQBtAGUAIAB9AAoAIAAgAAkAJABjAHQAcgArACsACgB9AAoAdwByAGkAdABlAC0AaABvAHMAdAAgACQAcwBoAGEAcgBlAHMACgA='
- ps_encoded_args: YES
+ powershell_args: "$shares = ''; $ctr = 0; $shared_drives = (get-wmiobject -class 'win32_Share'  -namespace 'root\CIMV2' -computername '.' | sort-object Name); foreach ($drive in $shared_drives) { if ($ctr -eq 0) { $shares = $drive.Name; } else { $shares = $shares + ' ' + $drive.Name; } $ctr++;}; write-output $shares;"
 </custom_item>
 
 # STIG ID	: WN10-00-000065
@@ -354,8 +352,7 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Severity: CAT III"
  value_type	: POLICY_TEXT
  value_data	: "None"
- powershell_args: 'CgAkAEMAdQB0AG8AZgBmACAAPQAgACgARwBlAHQALQBEAGEAdABlACkALgBBAGQAZABEAGEAeQBzACgALQAzADUAKQAKACQAQwBuAHQAIAA9ACAAMAAKACgAWwBBAEQAUwBJAF0AKAAnAFcAaQBuAE4AVAA6AC8ALwB7ADAAfQAnACAALQBmACAAJABlAG4AdgA6AEMATwBNAFAAVQBUAEUAUgBOAEEATQBFACkAKQAuAEMAaABpAGwAZAByAGUAbgAgAHwAIABXAGgAZQByAGUAIAB7ACAAJABfAC4AUwBjAGgAZQBtAGEAQwBsAGEAcwBzAE4AYQBtAGUAIAAtAGUAcQAgACcAdQBzAGUAcgAnACAAfQAgAHwAIABGAG8AcgBFAGEAYwBoACAAewAKACQAdQBzAGUAcgAgAD0AIAAoAFsAQQBEAFMASQBdACQAXwAuAFAAYQB0AGgAKQAKACQAbABhAHMAdABMAG8AZwBpAG4AIAA9ACAAJAB1AHMAZQByAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAEwAYQBzAHQATABvAGcAaQBuAC4AVgBhAGwAdQBlAAoAJABlAG4AYQBiAGwAZQBkACAAPQAgACgAJAB1AHMAZQByAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFUAcwBlAHIARgBsAGEAZwBzAC4AVgBhAGwAdQBlACAALQBiAGEAbgBkACAAMAB4ADIAKQAgAC0AbgBlACAAMAB4ADIACgAKAGkAZgAgACgAJABsAGEAcwB0AEwAbwBnAGkAbgAgAC0AbAB0ACAAJABDAHUAdABvAGYAZgAgAC0AQQBuAGQAIAAkAGUAbgBhAGIAbABlAGQAKQAgAHsACgBXAHIAaQB0AGUALQBIAG8AcwB0ACAAJAB1AHMAZQByAC4ATgBhAG0AZQAKACQAQwBuAHQAKwArAAoAfQAKAH0ACgBpAGYAIAAoACQAQwBuAHQAIAAtAGUAcQAgADAAKQAgAHsAVwByAGkAdABlAC0ASABvAHMAdAAgACIATgBvAG4AZQAiAH0ACgA='
- ps_encoded_args: YES
+ powershell_args: "$Cutoff = (Get-Date).AddDays(-35); $Cnt = 0; ([ADSI]('WinNT://{0}' -f $env:COMPUTERNAME)).Children | Where { $_.SchemaClassName -eq 'user' } | ForEach { $user = ([ADSI]$_.Path); $lastLogin = $user.Properties.LastLogin.Value; $enabled = ($user.Properties.UserFlags.Value -band 0x2) -ne 0x2; if ($lastLogin -lt $Cutoff -And $enabled) {Write-Output $user.Name; $Cnt++;}}; if ($Cnt -eq 0) {Write-Output 'None';};"
 </custom_item>
 
 # STIG ID	: WN10-00-000070
@@ -446,8 +443,7 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
 		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "NULL"
- powershell_args: 'CgAkAEEAYwB0AGkAdgBlACAAPQAgADAACgAkAGMAbwBsAEkAdABlAG0AcwAgAD0AIABnAGUAdAAtAHcAbQBpAG8AYgBqAGUAYwB0ACAALQBjAGwAYQBzAHMAIAAiAFcAaQBuADMAMgBfAHUAcwBlAHIAQQBjAGMAbwB1AG4AdAAiACAALQBuAGEAbQBlAHMAcABhAGMAZQAgACIAcgBvAG8AdABcAEMASQBNAFYAMgAiACAALQBmAGkAbAB0AGUAcgAgACIATABvAGMAYQBsAEEAYwBjAG8AdQBuAHQAIAA9ACAAVAByAHUAZQAiACAALQBjAG8AbQBwAHUAdABlAHIAbgBhAG0AZQAgACIALgAiAAoAZgBvAHIAZQBhAGMAaAAgACgAJABvAGIAagBJAHQAZQBtACAAaQBuACAAJABjAG8AbABJAHQAZQBtAHMAKQAgAHsAIAAKAGkAZgAgACgALQBOAG8AdAAgACQAbwBiAGoASQB0AGUAbQAuAFAAYQBzAHMAdwBvAHIAZABFAHgAcABpAHIAZQBzACkAIAB7ACAAdwByAGkAdABlAC0AaABvAHMAdAAgACQAbwBiAGoASQB0AGUAbQAuAEMAYQBwAHQAaQBvAG4AOwAgACQAQQBjAHQAaQB2AGUAKwArACAAfQAKAH0ACgBpAGYAIAAoACQAQQBjAHQAaQB2AGUAIAAtAGUAcQAgADAAKQAgAHsAIAB3AHIAaQB0AGUALQBoAG8AcwB0ACAAIgBOAFUATABMACIAIAB9AAoA'
- ps_encoded_args: YES
+ powershell_args: "$Active = 0;$colItems = (get-wmiobject -class 'Win32_userAccount' -namespace 'root\CIMV2' -filter 'LocalAccount = True' -computername '.'); foreach ($objItem in $colItems) { if (-Not $objItem.PasswordExpires) { write-output $objItem.Caption; $Active++; } }; if ($Active -eq 0) { write-output 'NULL' }"
 </custom_item>
 
 # STIG ID	: WN10-00-000095
@@ -1598,13 +1594,17 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 # STIG ID	: WN10-CC-000070
 <custom_item>
  type		: AUDIT_POWERSHELL
- description	: "WN10-CC-000070: Virtualization Based Security must be enabled with the platform 
+ description	: "WN10-CC-000070: Virtualization Based Security must be enabled with the platform 
+
 security level configured to Secure Boot with DMA Protection."
- info		: "Virtualization Based Security (VBS) provides the platform for the additional 
-security features, Credential Guard and Virtualization based protection of code integrity. Secure 
+ info		: "Virtualization Based Security (VBS) provides the platform for the additional 
+
+security features, Credential Guard and Virtualization based protection of code integrity. Secure 
+
 Boot is the minimum security level with DMA protection providing additional memory protection.
 
-		If RequiredSecurityProperties does not include a value of '3' (e.g.. '{1, 2, 3}'), 
+		If RequiredSecurityProperties does not include a value of '3' (e.g.. '{1, 2, 3}'), 
+
 this is a finding.
 
 		STIG ID: WN10-CC-000070
@@ -1620,12 +1620,16 @@ this is a finding.
 <custom_item>
  type		: AUDIT_POWERSHELL
  description	: "WN10-CC-000075: Credential Guard must be running on domain-joined systems."
- info		: "Credential Guard uses virtualization based security to protect secrets that could 
-be used in credential theft attacks if compromised. This authentication information, which was 
-stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the 
+ info		: "Credential Guard uses virtualization based security to protect secrets that could 
+
+be used in credential theft attacks if compromised. This authentication information, which was 
+
+stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the 
+
 rest of the operating system and can only be accessed by privileged system software.
 
-		If SecurityServicesRunning does not include a value of '1' (e.g.. '{1, 2}'), this is 
+		If SecurityServicesRunning does not include a value of '1' (e.g.. '{1, 2}'), this is 
+
 a finding.
 
 		STIG ID: WN10-CC-000075
@@ -1640,13 +1644,17 @@ a finding.
 # STIG ID	: WN10-CC-000080
 <custom_item>
  type		: AUDIT_POWERSHELL
- description	: "WN10-CC-000080: Virtualization-based protection of code integrity must be enabled 
+ description	: "WN10-CC-000080: Virtualization-based protection of code integrity must be enabled 
+
 on domain-joined systems."
- info 		: "Virtualization based protection of code integrity enforces kernel mode memory 
-protections as well as protecting Code Integrity validation paths. This isolates the processes from 
+ info 		: "Virtualization based protection of code integrity enforces kernel mode memory 
+
+protections as well as protecting Code Integrity validation paths. This isolates the processes from 
+
 the rest of the operating system and can only be accessed by privileged system software.
 
-		If SecurityServicesRunning does not include a value of '2' (e.g.. '{1, 2}'), this is 
+		If SecurityServicesRunning does not include a value of '2' (e.g.. '{1, 2}'), this is 
+
 a finding.
 
 		STIG ID: WN10-CC-000080
@@ -3003,7 +3011,7 @@ a finding.
  		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "DoD Root CA 2"
- powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Root -DNSName '*DoD Root CA 2*' | Select-Object Subject | Select-Object -ExpandProperty Subject)) -eq $NULL) {write-host 'NULL'} else {write-host $c.Substring(3,13)}"
+ powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Root -DNSName '*DoD Root CA 2*' | Select-Object Subject | Select-Object -ExpandProperty Subject)) -eq $NULL) {write-output 'NULL'} else {write-output $c.Substring(3,13)}"
 
 </custom_item>
 
@@ -3018,7 +3026,7 @@ a finding.
  		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "ECA Root CA 2"
- powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Root -DNSName '*ECA Root CA 2*' | Select-Object Subject | Select-Object -ExpandProperty Subject)) -eq $NULL) {write-host 'NULL'} else {write-host $c.Substring(3,13)}"
+ powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Root -DNSName '*ECA Root CA 2*' | Select-Object Subject | Select-Object -ExpandProperty Subject)) -eq $NULL) {write-output 'NULL'} else {write-output $c.Substring(3,13)}"
 </custom_item>
 
 # STIG ID	: WN10-PK-000015
@@ -3033,7 +3041,7 @@ a finding.
  		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "DoD Interoperability Root CA 1"
- powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Disallowed -DNSName '*DoD Root CA 2*' | where-object {$_.Issuer -like '*DoD Interoperability Root CA 1*'} | Select-Object Issuer | Select-Object Issuer | Select-Object -ExpandProperty Issuer)) -eq $NULL) {write-host 'NULL'} else {write-host $c.Substring(3,30)}"
+ powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Disallowed -DNSName '*DoD Root CA 2*' | where-object {$_.Issuer -like '*DoD Interoperability Root CA 1*'} | Select-Object Issuer | Select-Object Issuer | Select-Object -ExpandProperty Issuer)) -eq $NULL) {write-output 'NULL'} else {write-output $c.Substring(3,30)}"
 </custom_item>
 
 # STIG ID	: WN10-PK-0000020
@@ -3048,7 +3056,7 @@ a finding.
  		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "US DoD CCEB Interoperability Root CA 1"
- powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Disallowed -DNSName '*DoD Root CA 2*' | where-object {$_.Issuer -like '*US DoD CCEB Interoperability Root CA 1*'} | Select-Object Issuer | Select-Object Issuer | Select-Object -ExpandProperty Issuer)) -eq $NULL) {write-host 'NULL'} else {write-host $c.Substring(3,38)}"
+ powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Disallowed -DNSName '*DoD Root CA 2*' | where-object {$_.Issuer -like '*US DoD CCEB Interoperability Root CA 1*'} | Select-Object Issuer | Select-Object Issuer | Select-Object -ExpandProperty Issuer)) -eq $NULL) {write-output 'NULL'} else {write-output $c.Substring(3,38)}"
 </custom_item>
 
 #--------------------------------------#
@@ -4874,3 +4882,4 @@ info		: "Inappropriate granting of user rights can provide system, administrativ
 
 </group_policy>
 </check_type>
+
