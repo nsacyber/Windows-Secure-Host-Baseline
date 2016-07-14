@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="devicecompat" namespace="Microsoft.Policies.DeviceCompatibility" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DeviceCompat" displayName="$(string.DeviceCompat)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DeviceFlags" class="Machine" displayName="$(string.DeviceFlags)" explainText="$(string.DeviceFlags_Help)" key="System\CurrentControlSet\Policies\Microsoft\Compatibility" valueName="DisableDeviceFlags">
+      <parentCategory ref="DeviceCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DriverShims" class="Machine" displayName="$(string.DriverShims)" explainText="$(string.DriverShims_Help)" key="System\CurrentControlSet\Policies\Microsoft\Compatibility" valueName="DisableDriverShims">
+      <parentCategory ref="DeviceCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

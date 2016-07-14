@@ -1,0 +1,1869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="volumeencryption" namespace="Microsoft.Policies.VolumeEncryption" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>  
+    <definitions>
+      <!-- We must make our own definition for Windows 8 without ARM -->  
+      <definition name="SUPPORTED_Windows8NoARM" displayName="$(string.SUPPORTED_Windows8NoARM)" />  
+      <!-- Make our own definition for Windows Vista through Blue -->  
+      <definition name="SUPPORTED_Windows_6_3ToVista" displayName="$(string.SUPPORTED_Windows_6_3ToVista)" />  
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="FVECategory" displayName="$(string.FVECategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="FVEOSCategory" displayName="$(string.FVEOSCategory)">
+      <parentCategory ref="FVECategory" />
+    </category>
+    <category name="FVEFDVCategory" displayName="$(string.FVEFDVCategory)">
+      <parentCategory ref="FVECategory" />
+    </category>
+    <category name="FVERDVCategory" displayName="$(string.FVERDVCategory)">
+      <parentCategory ref="FVECategory" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ActiveDirectoryBackup_Name" class="Machine" displayName="$(string.ActiveDirectoryBackup_Name)" explainText="$(string.ActiveDirectoryBackup_Help)" presentation="$(presentation.ActiveDirectoryBackup_Name)" key="Software\Policies\Microsoft\FVE" valueName="ActiveDirectoryBackup">
+      <parentCategory ref="FVECategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="RequireActiveDirectoryBackup_Name" valueName="RequireActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="ActiveDirectoryBackupDropDown_Name" valueName="ActiveDirectoryInfoToStore" required="true">
+          <item displayName="$(string.ActiveDirectoryBackupDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveDirectoryBackupDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ConfigureRecoveryUsage_Name" class="Machine" displayName="$(string.ConfigureRecoveryUsage_Name)" explainText="$(string.ConfigureRecoveryUsage_Help)" presentation="$(presentation.ConfigureRecoveryUsage_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+      <parentCategory ref="FVECategory" />
+     <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only" />
+      <elements>
+        <enum id="ConfigureRecoveryPasswordUsageDropDown_Name" valueName="UseRecoveryPassword" required="true">
+          <item displayName="$(string.ConfigureRecoveryPasswordUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureRecoveryPasswordUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ConfigureRecoveryKeyUsageDropDown_Name" valueName="UseRecoveryDrive" required="true">
+          <item displayName="$(string.ConfigureRecoveryKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureRecoveryKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ConfigureRecoveryFolder_Name" class="Machine" displayName="$(string.ConfigureRecoveryFolder_Name)" explainText="$(string.ConfigureRecoveryFolder_Help)" presentation="$(presentation.ConfigureRecoveryFolder_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+      <parentCategory ref="FVECategory" />
+     <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="ConfigureRecoveryFolderPath_Input" valueName="DefaultRecoveryFolderPath" required="false" expandable="true" />
+      </elements>
+    </policy>
+
+    <policy name="EncryptionMethod_Name" class="Machine" displayName="$(string.EncryptionMethod_Name)" explainText="$(string.EncryptionMethod_Help)" presentation="$(presentation.EncryptionMethod_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+      <parentCategory ref="FVECategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+
+      <elements>
+        <enum id="EncryptionMethodDropDown_Name" valueName="EncryptionMethod" required="true">
+          <item displayName="$(string.EncryptionMethodDropDown_AES128Diffuser_Name)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionMethodDropDown_AES256Diffuser_Name)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionMethodDropDown_AES128_Name)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionMethodDropDown_AES256_Name)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="EncryptionMethodNoDiffuser_Name" class="Machine" displayName="$(string.EncryptionMethodNoDiffuser_Name)" explainText="$(string.EncryptionMethodNoDiffuser_Help)" presentation="$(presentation.EncryptionMethodNoDiffuser_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+          <parentCategory ref="FVECategory" />
+          <supportedOn ref="windows:SUPPORTED_Windows8" />
+
+          <elements>
+              <enum id="EncryptionMethodNoDiffDropDown_Name" valueName="EncryptionMethodNoDiffuser" required="true">
+                  <item displayName="$(string.EncryptionMethodDropDown_AES128_Name)">
+                      <value>
+                          <decimal value="3" />
+                      </value>
+                  </item>
+                  <item displayName="$(string.EncryptionMethodDropDown_AES256_Name)">
+                      <value>
+                          <decimal value="4" />
+                      </value>
+                  </item>
+              </enum>
+          </elements>
+    </policy>
+
+    <policy name="EncryptionMethodWithXts_Name" class="Machine" displayName="$(string.EncryptionMethodWithXts_Name)" explainText="$(string.EncryptionMethodWithXts_Help)" presentation="$(presentation.EncryptionMethodWithXts_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+        <parentCategory ref="FVECategory" />
+        <!--Bug OS:4242178 -->
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+
+        <elements>
+            <enum id="EncryptionMethodWithXtsOsDropDown_Name" valueName="EncryptionMethodWithXtsOs" required="true">
+                <item displayName="$(string.EncryptionMethodDropDown_AES128_Name2)">
+                    <value>
+                        <decimal value="3" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_AES256_Name2)">
+                    <value>
+                        <decimal value="4" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES128_Name)">
+                    <value>
+                        <decimal value="6" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES256_Name)">
+                    <value>
+                        <decimal value="7" />
+                    </value>
+                </item>
+            </enum>
+
+            <enum id="EncryptionMethodWithXtsFdvDropDown_Name" valueName="EncryptionMethodWithXtsFdv" required="true">
+                <item displayName="$(string.EncryptionMethodDropDown_AES128_Name2)">
+                    <value>
+                        <decimal value="3" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_AES256_Name2)">
+                    <value>
+                        <decimal value="4" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES128_Name)">
+                    <value>
+                        <decimal value="6" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES256_Name)">
+                    <value>
+                        <decimal value="7" />
+                    </value>
+                </item>
+            </enum>
+
+            <enum id="EncryptionMethodWithXtsRdvDropDown_Name" valueName="EncryptionMethodWithXtsRdv" required="true">
+                <item displayName="$(string.EncryptionMethodDropDown_AES128_Name3)">
+                    <value>
+                        <decimal value="3" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_AES256_Name2)">
+                    <value>
+                        <decimal value="4" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES128_Name2)">
+                    <value>
+                        <decimal value="6" />
+                    </value>
+                </item>
+                <item displayName="$(string.EncryptionMethodDropDown_XTS_AES256_Name)">
+                    <value>
+                        <decimal value="7" />
+                    </value>
+                </item>
+            </enum>
+        </elements>
+    </policy>
+      
+    <policy name="MorBehavior_Name" class="Machine" displayName="$(string.MorBehavior_Name)" explainText="$(string.MorBehavior_Help)" presentation="$(presentation.MorBehavior_Name)" key="Software\Policies\Microsoft\FVE" valueName="MorBehavior">
+      <parentCategory ref="FVECategory" />
+       <supportedOn ref="SUPPORTED_Windows_6_3ToVista" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="PrebootRecoveryInfo_Name" class="Machine" displayName="$(string.PrebootRecoveryInfo_Name)" explainText="$(string.PrebootRecoveryInfo_Help)" presentation="$(presentation.PrebootRecoveryInfo)" key="Software\Policies\Microsoft\FVE">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <elements>
+        <enum id="PrebootRecoveryInfoDropDown_Name" valueName="RecoveryKeyMessageSource" required="true">
+          <item displayName="$(string.PrebootRecoveryInfoEmpty)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.PrebootRecoveryInfoUseDefault)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.PrebootRecoveryInfoUseMessage)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PrebootRecoveryInfoUseUrl)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <text id="RecoveryMessage_Input" valueName="RecoveryKeyMessage" required="false" maxLength="900" />
+        <text id="RecoveryUrl_Input" valueName="RecoveryKeyUrl" required="false" maxLength="500" />
+      </elements>
+    </policy>
+
+    <policy name="EnhancedPIN_Name" class="Machine" displayName="$(string.EnhancedPIN_Name)" explainText="$(string.EnhancedPIN_Help)" presentation="$(presentation.EnhancedPIN)" key="Software\Policies\Microsoft\FVE" valueName="UseEnhancedPin">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="OSPassphrase_Name" class="Machine" displayName="$(string.OSPassphrase_Name)" explainText="$(string.OSPassphrase_Help)" presentation="$(presentation.OSPassphrase_Name)" key="Software\Policies\Microsoft\FVE" valueName="OSPassphrase">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="OSPassphraseComplexity_Name" valueName="OSPassphraseComplexity">
+          <item displayName="$(string.PassphraseComplexityDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+       </enum>
+       <decimal id="OSPassphraseLength_Name" valueName="OSPassphraseLength" required="true" minValue="8" maxValue="255" />
+       <boolean id="OSPassphraseASCIIOnly_Name" valueName="OSPassphraseASCIIOnly" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="TPMAutoReseal_Name" class="Machine" displayName="$(string.TPMAutoReseal_Name)" explainText="$(string.TPMAutoReseal_Help)" presentation="$(presentation.TPMAutoReseal)" key="Software\Policies\Microsoft\FVE" valueName="TPMAutoReseal">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="DisallowStandardUsersCanChangePIN_Name" class="Machine" displayName="$(string.DisallowStandardUsersCanChangePIN_Name)" explainText="$(string.DisallowStandardUsersCanChangePIN_Help)" presentation="$(presentation.DisallowStandardUsersCanChangePIN)" key="Software\Policies\Microsoft\FVE" valueName="DisallowStandardUserPINReset">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="IdentificationField_Name" class="Machine" displayName="$(string.IdentificationField_Name)" explainText="$(string.IdentificationField_Help)" key="Software\Policies\Microsoft\FVE"  valueName="IdentificationField" presentation="$(presentation.IdentificationField)">
+      <parentCategory ref="FVECategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="IdentificationField" valueName="IdentificationFieldString"  maxLength="260" />
+
+      <text id="SecIdentificationField" valueName="SecondaryIdentificationField" maxLength="260" />
+
+      </elements>
+    </policy>
+
+    <policy name="UserCertificateOID_Name" class="Machine" displayName="$(string.UserCertificateOID_Name)" explainText="$(string.UserCertificateOID_Help)" key="Software\Policies\Microsoft\FVE"  presentation="$(presentation.UserCertificateOID)">
+      <parentCategory ref="FVECategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+       <elements>
+        <text id="UserCertificateOID" valueName="CertificateOID" required="true" />
+       </elements>
+    </policy>
+
+    <policy name="UseEnhancedBcdProfile_Name" class="Machine" displayName="$(string.UseEnhancedBcdProfile_Name)" explainText="$(string.UseEnhancedBcdProfile_Help)" key="Software\Policies\Microsoft\FVE" valueName="OSUseEnhancedBcdProfile" presentation="$(presentation.UseEnhancedBcdProfile)">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <!-- The following multi-line text boxes allow administrators to tweak
+             the default lists by either adding "security critical" BCD
+             settings that should not be excluded or adding additional entries
+             to the exclusion list.
+         -->
+        <multiText id="EnhancedBcdProfile_AdditionalSecurityCriticalSettings" valueName="OSBcdAdditionalSecurityCriticalSettings" maxLength="50" />
+        <multiText id="EnhancedBcdProfile_AdditionalExcludedSettings" valueName="OSBcdAdditionalExcludedSettings" maxLength="50" />
+      </elements>
+    </policy>
+
+   <policy name="OSRecoveryUsage_Name" class="Machine" displayName="$(string.OSRecoveryUsage_Name)" explainText="$(string.OSRecoveryUsage_Help)" presentation="$(presentation.OSRecoveryUsage_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="OSRecovery">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+     <enabledValue>
+       <decimal value="1" />
+     </enabledValue>
+     <disabledValue>
+       <decimal value="0" />
+     </disabledValue>
+     <elements>
+        <boolean id="OSAllowDRA_Name" valueName="OSManageDRA">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+
+        <enum id="OSRecoveryPasswordUsageDropDown_Name" valueName="OSRecoveryPassword" required="true">
+          <item displayName="$(string.OSRecoveryPasswordUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.OSRecoveryPasswordUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.OSRecoveryPasswordUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="OSRecoveryKeyUsageDropDown_Name" valueName="OSRecoveryKey" required="true">
+          <item displayName="$(string.OSRecoveryKeyUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.OSRecoveryKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.OSRecoveryKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+       <boolean id="OSHideRecoveryPage_Name" valueName="OSHideRecoveryPage">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+       <boolean id="OSActiveDirectoryBackup_Name" valueName="OSActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+         <boolean id="OSRequireActiveDirectoryBackup_Name" valueName="OSRequireActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="OSActiveDirectoryBackupDropDown_Name" valueName="OSActiveDirectoryInfoToStore" required="true">
+          <item displayName="$(string.OSActiveDirectoryBackupDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.OSActiveDirectoryBackupDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="OSEncryptionType_Name" class="Machine" displayName="$(string.OSEncryptionType_Name)" explainText="$(string.EncryptionType_Help)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="OSEncryptionType"  presentation="$(presentation.OSEncryptionType)">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+
+      <elements>
+        <enum id="OSEncryptionTypeDropDown_Name" valueName="OSEncryptionType" required="true">
+          <item displayName="$(string.EncryptionTypeDropDown_UserChooses_Name)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_FullEncryption_Name)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_DataOnlyEncryption_Name)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ConfigureStartupUsage_Name" class="Machine" displayName="$(string.ConfigureStartupUsage_Name)" explainText="$(string.ConfigureStartupUsage_Help)" presentation="$(presentation.ConfigureStartupUsage_Name)" key="SOFTWARE\Policies\Microsoft\FVE">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only" />
+      <elements>
+       <boolean id="ConfigureNonTPMStartupKeyUsage_Name" valueName="EnableNonTPM">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="ConfigureTPMStartupKeyUsageDropDown_Name" valueName="UsePartialEncryptionKey" required="true">
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ConfigurePINUsageDropDown_Name" valueName="UsePIN" required="true">
+          <item displayName="$(string.ConfigurePINUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigurePINUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigurePINUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ConfigureAdvancedStartup_Name" class="Machine" displayName="$(string.ConfigureAdvancedStartup_Name)" explainText="$(string.ConfigureAdvancedStartup_Help)" presentation="$(presentation.ConfigureAdvancedStartup_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="UseAdvancedStartup">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="ConfigureNonTPMStartupKeyUsage_Name" valueName="EnableBDEWithNoTPM">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="ConfigureTPMStartupKeyUsageDropDown_Name" valueName="UseTPMKey" required="true">
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMStartupKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ConfigurePINUsageDropDown_Name" valueName="UseTPMPIN" required="true">
+          <item displayName="$(string.ConfigurePINUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigurePINUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigurePINUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ConfigureTPMPINKeyUsageDropDown_Name" valueName="UseTPMKeyPIN" required="true">
+          <item displayName="$(string.ConfigureTPMPINKeyUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMPINKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMPINKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ConfigureTPMUsageDropDown_Name" valueName="UseTPM" required="true">
+          <item displayName="$(string.ConfigureTPMUsageDropDown_Optional)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ConfigureTPMUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name ="AllowNetworkUnlockAtStartup_Name" class="Machine" displayName="$(string.AllowNetworkUnlockAtStartup_Name)" explainText="$(string.AllowNetworkUnlockAtStartup_Help)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="OSManageNKP">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+      
+    <policy name="PlatformValidation_Deprecated_Name" class="Machine" displayName="$(string.PlatformValidation_Deprecated_Name)" explainText="$(string.PlatformValidation_Deprecated_Help)" presentation="$(presentation.PlatformValidation_Deprecated_Name)" key="SOFTWARE\Policies\Microsoft\FVE\PlatformValidation" valueName="Enabled">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="PlatformValidation_Deprecated_Setting0" valueName="0">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting1" valueName="1">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting2" valueName="2">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting3" valueName="3">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting4" valueName="4">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting5" valueName="5">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting6" valueName="6">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting7" valueName="7">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting8" valueName="8">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting9" valueName="9">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting10" valueName="10">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting11" valueName="11">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting12" valueName="12">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting13" valueName="13">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting14" valueName="14">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting15" valueName="15">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting16" valueName="16">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting17" valueName="17">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting18" valueName="18">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting19" valueName="19">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting20" valueName="20">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting21" valueName="21">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting22" valueName="22">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_Deprecated_Setting23" valueName="23">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="PlatformValidation_BIOS_Name" class="Machine" displayName="$(string.PlatformValidation_BIOS_Name)" explainText="$(string.PlatformValidation_BIOS_Help)" presentation="$(presentation.PlatformValidation_BIOS_Name)" key="SOFTWARE\Policies\Microsoft\FVE\OSPlatformValidation_BIOS" valueName="Enabled">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="PlatformValidation_BIOS_Setting0" valueName="0">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting1" valueName="1">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting2" valueName="2">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting3" valueName="3">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting4" valueName="4">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting5" valueName="5">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting6" valueName="6">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting7" valueName="7">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting8" valueName="8">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting9" valueName="9">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting10" valueName="10">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting11" valueName="11">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting12" valueName="12">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting13" valueName="13">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting14" valueName="14">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting15" valueName="15">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting16" valueName="16">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting17" valueName="17">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting18" valueName="18">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting19" valueName="19">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting20" valueName="20">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting21" valueName="21">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting22" valueName="22">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_BIOS_Setting23" valueName="23">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="PlatformValidation_UEFI_Name" class="Machine" displayName="$(string.PlatformValidation_UEFI_Name)" explainText="$(string.PlatformValidation_UEFI_Help)" presentation="$(presentation.PlatformValidation_UEFI_Name)" key="SOFTWARE\Policies\Microsoft\FVE\OSPlatformValidation_UEFI" valueName="Enabled">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="PlatformValidation_UEFI_Setting0" valueName="0">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting1" valueName="1">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting2" valueName="2">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting3" valueName="3">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting4" valueName="4">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting5" valueName="5">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting6" valueName="6">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting7" valueName="7">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting8" valueName="8">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting9" valueName="9">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting10" valueName="10">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting11" valueName="11">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting12" valueName="12">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting13" valueName="13">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting14" valueName="14">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting15" valueName="15">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting16" valueName="16">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting17" valueName="17">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting18" valueName="18">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting19" valueName="19">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting20" valueName="20">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting21" valueName="21">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting22" valueName="22">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PlatformValidation_UEFI_Setting23" valueName="23">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="MinimumPINLength_Name" class="Machine" displayName="$(string.MinimumPINLength_Name)" explainText="$(string.MinimumPINLength_Help)" key="Software\Policies\Microsoft\FVE" presentation="$(presentation.MinimumPINLength)">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <elements>
+        <decimal id="MinPINLength" valueName="MinimumPIN" required="true" minValue="4" maxValue="20" />
+      </elements>
+    </policy>
+
+    <policy name="OSEDrive_Name" class="Machine" displayName="$(string.OSEDrive_Name)" explainText="$(string.OSEDrive_Help)" presentation="$(presentation.OSEDrive_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="OSHardwareEncryption">
+      <parentCategory ref="FVEOSCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="OSUseSW" valueName="OSAllowSoftwareEncryptionFailover">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="OSRestrictAlgos" valueName="OSRestrictHardwareEncryptionAlgorithms">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="OSAllowedAlgos" valueName="OSAllowedHardwareEncryptionAlgorithms" required="false" expandable="true" />
+      </elements>
+    </policy>
+
+    <policy name="EnablePrebootInputProtectorsOnSlates_Name" class="Machine" displayName="$(string.EnablePrebootInputProtectorsOnSlates_Name)" explainText="$(string.EnablePrebootInputProtectorsOnSlates_Help)" key="Software\Policies\Microsoft\FVE" valueName="OSEnablePrebootInputProtectorsOnSlates">
+        <parentCategory ref="FVEOSCategory" />
+        <supportedOn ref="SUPPORTED_Windows8NoARM" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+
+    <policy name="AllowSecureBootForIntegrity_Name" class="Machine" displayName="$(string.AllowSecureBootForIntegrity_Name)" explainText="$(string.AllowSecureBootForIntegrity_Help)" key="Software\Policies\Microsoft\FVE" valueName="OSAllowSecureBootForIntegrity">
+        <parentCategory ref="FVEOSCategory" />
+        <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+
+    <policy name="FDVRecoveryUsage_Name" class="Machine" displayName="$(string.FDVRecoveryUsage_Name)" explainText="$(string.FDVRecoveryUsage_Help)" presentation="$(presentation.FDVRecoveryUsage_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="FDVRecovery">
+     <parentCategory ref="FVEFDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+     <enabledValue>
+       <decimal value="1" />
+     </enabledValue>
+     <disabledValue>
+       <decimal value="0" />
+     </disabledValue>
+       <elements>
+        <enum id="FDVRecoveryPasswordUsageDropDown_Name" valueName="FDVRecoveryPassword" required="true">
+          <item displayName="$(string.FDVRecoveryPasswordUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.FDVRecoveryPasswordUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.FDVRecoveryPasswordUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="FDVRecoveryKeyUsageDropDown_Name" valueName="FDVRecoveryKey" required="true">
+          <item displayName="$(string.FDVRecoveryKeyUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.FDVRecoveryKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.FDVRecoveryKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="FDVAllowDRA_Name" valueName="FDVManageDRA">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      <boolean id="FDVHideRecoveryPage_Name" valueName="FDVHideRecoveryPage">
+           <trueValue>
+             <decimal value="1" />
+           </trueValue>
+           <falseValue>
+             <decimal value="0" />
+           </falseValue>
+         </boolean>
+      <boolean id="FDVActiveDirectoryBackup_Name" valueName="FDVActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+
+        <boolean id="FDVRequireActiveDirectoryBackup_Name" valueName="FDVRequireActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="FDVActiveDirectoryBackupDropDown_Name" valueName="FDVActiveDirectoryInfoToStore" required="true">
+         <item displayName="$(string.FDVActiveDirectoryBackupDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.FDVActiveDirectoryBackupDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+
+      </elements>
+    </policy>
+
+    <policy name="FDVPassphrase_Name" class="Machine" displayName="$(string.FDVPassphrase_Name)" explainText="$(string.FDVPassphrase_Help)" presentation="$(presentation.FDVPassphrase_Name)" key="Software\Policies\Microsoft\FVE" valueName="FDVPassphrase">
+      <parentCategory ref="FVEFDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="FDVRequirePassphrase" valueName="FDVEnforcePassphrase">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="FDVPassphraseComplexity" valueName="FDVPassphraseComplexity">
+          <item displayName="$(string.PassphraseComplexityDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+       </enum>
+      <decimal id="FDVMinPassphraseLength" valueName="FDVPassphraseLength" required="true" minValue="8" maxValue="99" />
+      </elements>
+    </policy>
+
+   <policy name="FDVDenyWriteAccess_Name" class="Machine" displayName="$(string.FDVDenyWriteAccess_Name)" explainText="$(string.FDVDenyWriteAccess_Help)" key="System\CurrentControlSet\Policies\Microsoft\FVE" valueName="FDVDenyWriteAccess">
+      <parentCategory ref="FVEFDVCategory" />
+     <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+   <policy name="FDVHybrid_Name" class="Machine" displayName="$(string.FDVHybrid_Name)" explainText="$(string.FDVHybrid_Help)" key="Software\Policies\Microsoft\FVE" valueName="FDVDiscoveryVolumeType" presentation="$(presentation.FDVDiscoveryVolumeType)">
+      <parentCategory ref="FVEFDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <string>FAT32</string>
+      </enabledValue>
+      <disabledValue>
+        <string>&lt;none&gt;</string>
+      </disabledValue>
+
+      <elements>
+        <boolean id="FDVNoBitLockerToGoReader_Name" valueName="FDVNoBitLockerToGoReader" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+
+   </policy>
+
+   <policy name="FDVConfigureSmartCard" class="Machine" displayName="$(string.FDVConfigureSmartCard_Name)" explainText="$(string.FDVConfigureSmartCard_Help)" key="Software\Policies\Microsoft\FVE" valueName="FDVAllowUserCert" presentation="$(presentation.FDVConfigureSmartCard)" >
+      <parentCategory ref="FVEFDVCategory" />
+     <supportedOn ref="windows:SUPPORTED_Windows7" />
+     <enabledValue>
+       <decimal value="1" />
+     </enabledValue>
+     <disabledValue>
+       <decimal value="0" />
+     </disabledValue>
+      <elements>
+        <boolean id="FDVRequireSmartCard_Name" valueName="FDVEnforceUserCert" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="FDVEncryptionType_Name" class="Machine" displayName="$(string.FDVEncryptionType_Name)" explainText="$(string.EncryptionType_Help)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="FDVEncryptionType"  presentation="$(presentation.FDVEncryptionType)">
+      <parentCategory ref="FVEFDVCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+
+      <elements>
+        <enum id="FDVEncryptionTypeDropDown_Name" valueName="FDVEncryptionType" required="true">
+          <item displayName="$(string.EncryptionTypeDropDown_UserChooses_Name)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_FullEncryption_Name)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_DataOnlyEncryption_Name)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="FDVEDrive_Name" class="Machine" displayName="$(string.FDVEDrive_Name)" explainText="$(string.FDVEDrive_Help)" presentation="$(presentation.FDVEDrive_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="FDVHardwareEncryption">
+      <parentCategory ref="FVEFDVCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="FDVUseSW" valueName="FDVAllowSoftwareEncryptionFailover">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="FDVRestrictAlgos" valueName="FDVRestrictHardwareEncryptionAlgorithms">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="FDVAllowedAlgos" valueName="FDVAllowedHardwareEncryptionAlgorithms" required="false" expandable="true" />
+      </elements>
+    </policy>
+
+    <policy name="RDVRecoveryUsage_Name" class="Machine" displayName="$(string.RDVRecoveryUsage_Name)" explainText="$(string.RDVRecoveryUsage_Help)" presentation="$(presentation.RDVRecoveryUsage_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="RDVRecovery">
+      <parentCategory ref="FVERDVCategory" />
+     <supportedOn ref="windows:SUPPORTED_Windows7" />
+     <enabledValue>
+       <decimal value="1" />
+     </enabledValue>
+     <disabledValue>
+       <decimal value="0" />
+     </disabledValue>
+      <elements>
+        <enum id="RDVRecoveryPasswordUsageDropDown_Name" valueName="RDVRecoveryPassword" required="true">
+          <item displayName="$(string.RDVRecoveryPasswordUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RDVRecoveryPasswordUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RDVRecoveryPasswordUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="RDVRecoveryKeyUsageDropDown_Name" valueName="RDVRecoveryKey" required="true">
+          <item displayName="$(string.RDVRecoveryKeyUsageDropDown_Allow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RDVRecoveryKeyUsageDropDown_Require)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RDVRecoveryKeyUsageDropDown_Disallow)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="RDVAllowDRA_Name" valueName="RDVManageDRA">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="RDVHideRecoveryPage_Name" valueName="RDVHideRecoveryPage">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+
+        <boolean id="RDVActiveDirectoryBackup_Name" valueName="RDVActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+
+        <boolean id="RDVRequireActiveDirectoryBackup_Name" valueName="RDVRequireActiveDirectoryBackup">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      <enum id="RDVActiveDirectoryBackupDropDown_Name" valueName="RDVActiveDirectoryInfoToStore" required="true">
+          <item displayName="$(string.RDVActiveDirectoryBackupDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RDVActiveDirectoryBackupDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+
+      </elements>
+    </policy>
+
+
+    <policy name="RDVConfigureBDE" class="Machine" displayName="$(string.RDVConfigureBDE_Name)" explainText="$(string.RDVConfigureBDE_Help)" key="Software\Policies\Microsoft\FVE" valueName="RDVConfigureBDE" presentation="$(presentation.RDVConfigureBDE)" >
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="RDVAllowBDE_Name" valueName="RDVAllowBDE" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+
+        <boolean id="RDVDisableBDE_Name" valueName="RDVDisableBDE" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="RDVPassphrase_Name" class="Machine" displayName="$(string.RDVPassphrase_Name)" explainText="$(string.RDVPassphrase_Help)" presentation="$(presentation.RDVPassphrase_Name)" key="Software\Policies\Microsoft\FVE" valueName="RDVPassphrase">
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="RDVRequirePassphrase" valueName="RDVEnforcePassphrase">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <enum id="RDVPassphraseComplexity" valueName="RDVPassphraseComplexity">
+          <item displayName="$(string.PassphraseComplexityDropDown_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.PassphraseComplexityDropDown_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="RDVMinPassphraseLength" valueName="RDVPassphraseLength" required="true" minValue="8" maxValue="99" />
+      </elements>
+    </policy>
+
+    <policy name="RDVDenyWriteAccess_Name" class="Machine" displayName="$(string.RDVDenyWriteAccess_Name)" explainText="$(string.RDVDenyWriteAccess_Help)" key="System\CurrentControlSet\Policies\Microsoft\FVE" valueName="RDVDenyWriteAccess" presentation="$(presentation.RDVDenyWriteAccess)">
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="RDVCrossOrg" key="Software\Policies\Microsoft\FVE" valueName="RDVDenyCrossOrg" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="RDVHybrid_Name" class="Machine" displayName="$(string.RDVHybrid_Name)" explainText="$(string.RDVHybrid_Help)" key="Software\Policies\Microsoft\FVE" valueName="RDVDiscoveryVolumeType" presentation="$(presentation.RDVDiscoveryVolumeType)">
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+      <enabledValue>
+        <string>FAT32</string>
+      </enabledValue>
+      <disabledValue>
+        <string>&lt;none&gt;</string>
+      </disabledValue>
+
+      <elements>
+        <boolean id="RDVNoBitLockerToGoReader_Name" valueName="RDVNoBitLockerToGoReader" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+
+    </policy>
+
+   <policy name="RDVConfigureSmartCard" class="Machine" displayName="$(string.RDVConfigureSmartCard_Name)" explainText="$(string.RDVConfigureSmartCard_Help)" key="Software\Policies\Microsoft\FVE" valueName="RDVAllowUserCert" presentation="$(presentation.RDVConfigureSmartCard)" >
+      <parentCategory ref="FVERDVCategory" />
+     <supportedOn ref="windows:SUPPORTED_Windows7" />
+
+     <enabledValue>
+       <decimal value="1" />
+     </enabledValue>
+     <disabledValue>
+       <decimal value="0" />
+     </disabledValue>
+      <elements>
+        <boolean id="RDVRequireSmartCard_Name" valueName="RDVEnforceUserCert" required="true">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="RDVEncryptionType_Name" class="Machine" displayName="$(string.RDVEncryptionType_Name)" explainText="$(string.EncryptionType_Help)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="RDVEncryptionType"  presentation="$(presentation.RDVEncryptionType)">
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+
+      <elements>
+        <enum id="RDVEncryptionTypeDropDown_Name" valueName="RDVEncryptionType" required="true">
+          <item displayName="$(string.EncryptionTypeDropDown_UserChooses_Name)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_FullEncryption_Name)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EncryptionTypeDropDown_DataOnlyEncryption_Name)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="RDVEDrive_Name" class="Machine" displayName="$(string.RDVEDrive_Name)" explainText="$(string.RDVEDrive_Help)" presentation="$(presentation.RDVEDrive_Name)" key="SOFTWARE\Policies\Microsoft\FVE" valueName="RDVHardwareEncryption">
+      <parentCategory ref="FVERDVCategory" />
+      <supportedOn ref="SUPPORTED_Windows8NoARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="RDVUseSW" valueName="RDVAllowSoftwareEncryptionFailover">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="RDVRestrictAlgos" valueName="RDVRestrictHardwareEncryptionAlgorithms">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="RDVAllowedAlgos" valueName="RDVAllowedHardwareEncryptionAlgorithms" required="false" expandable="true" />
+      </elements>
+    </policy>
+
+  </policies>
+</policyDefinitions>

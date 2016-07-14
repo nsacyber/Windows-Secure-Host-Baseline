@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2008 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Hotspot Authentication Group Policy Settings</displayName>
+  <description>Hotspot Authentication Group Policy Settings</description>
+  <resources>
+    <stringTable>
+      <string id="HotspotAuth_Category">Hotspot Authentication</string>
+      <string id="HotspotAuth_Enable">Enable Hotspot Authentication</string>
+      <string id="HotspotAuth_Enable_Help">This policy setting defines whether WLAN hotspots are probed for Wireless Internet Service Provider roaming (WISPr) protocol support.
+
+If a WLAN hotspot supports the WISPr protocol, users can submit credentials when manually connecting to the network. If authentication is successful, users will be connected automatically on subsequent attempts. Credentials can also be configured by network operators.
+
+If you enable this policy setting, or if you do not configure this policy setting, WLAN hotspots are automatically probed for WISPR protocol support.
+
+If you disable this policy setting, WLAN hotspots are not probed for WISPr protocol support, and users can only authenticate with WLAN hotspots using a web browser.
+</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

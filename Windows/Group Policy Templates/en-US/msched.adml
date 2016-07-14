@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Maintenance Scheduler Policies</displayName>
+  <description>Maintenance Scheduler Group Policies</description>
+  <resources>
+    <stringTable>
+      <string id="MaintenanceScheduler">Maintenance Scheduler</string>
+      <string id="ActivationBoundary">Automatic Maintenance Activation Boundary</string>
+      <string id="ActivationBoundaryHelp">
+          This policy setting allows you to configure Automatic Maintenance activation boundary.
+
+          The maintenance activation boundary is the daily schduled time at which Automatic Maintenance starts
+
+          If you enable this policy setting, this will override the default daily scheduled time as specified in Security and Maintenance/Automatic Maintenance Control Panel.
+
+          If you disable or do not configure this policy setting, the daily scheduled time as specified in Security and Maintenance/Automatic Maintenance Control Panel will apply.
+      </string>
+      <string id="RandomDelay">Automatic Maintenance Random Delay</string>
+      <string id="RandomDelayHelp">
+          This policy setting allows you to configure Automatic Maintenance activation random delay.
+
+          The maintenance random delay is the amount of time up to which Automatic Maintenance will delay starting from its Activation Boundary.
+
+          If you enable this policy setting, Automatic Maintenance will delay starting from its Activation Boundary, by upto this time.
+
+          If you do not configure this policy setting, 4 hour random delay will be applied to Automatic Maintenance.
+
+          If you disable this policy setting, no random delay will be applied to Automatic Maintenance.
+      </string>
+      <string id="WakeUp">Automatic Maintenance WakeUp Policy</string>
+      <string id="WakeUpHelp">
+          This policy setting allows you to configure Automatic Maintenance wake up policy.
+
+          The maintenance wakeup policy specifies if Automatic Maintenance should make a wake request to the OS for the daily scheduled maintenance. Note, that if the OS power wake policy is explicitly disabled, then this setting has no effect.
+
+          If you enable this policy setting, Automatic Maintenance will attempt to set OS wake policy and make a wake request for the daily scheduled time, if required.
+
+          If you disable or do not configure this policy setting, the wake setting as specified in Security and Maintenance/Automatic Maintenance Control Panel will apply.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="ActivationBoundaryPolicy">
+        <textBox refId="ActivationBoundary">
+          <label>Regular maintenance activation boundary</label>
+          <defaultValue>2000-01-01T02:00:00</defaultValue>
+        </textBox>
+      </presentation>   
+      <presentation id="RandomDelayPolicy">
+        <textBox refId="RandomDelay">
+          <label>Regular maintenance random delay</label>
+          <defaultValue>PT4H</defaultValue>
+        </textBox>
+      </presentation>   
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

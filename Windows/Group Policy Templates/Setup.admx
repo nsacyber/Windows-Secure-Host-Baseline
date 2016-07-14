@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="setup" namespace="Microsoft.Policies.WindowsSetup" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="ServicePackSourcePath" class="Machine" displayName="$(string.ServicePackSourcePath)" explainText="$(string.ServicePackSourcePath_Help)" presentation="$(presentation.ServicePackSourcePath)" key="Software\Policies\Microsoft\Windows NT\Setup">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="ServicePackSourcePathBox" valueName="ServicePackSourcePath" required="true" />
+      </elements>
+    </policy>
+    <policy name="SetupSourcePath" class="Machine" displayName="$(string.SetupSourcePath)" explainText="$(string.SetupSourcePath_Help)" presentation="$(presentation.SetupSourcePath)" key="Software\Policies\Microsoft\Windows NT\Setup">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="SetupSourcePathBox" valueName="SourcePath" required="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

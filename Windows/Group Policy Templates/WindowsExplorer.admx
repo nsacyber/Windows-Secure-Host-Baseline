@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsexplorer" namespace="Microsoft.Policies.WindowsExplorer" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="inetres" namespace="Microsoft.Policies.InternetExplorer" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Comdlg" displayName="$(string.Comdlg)">
+      <parentCategory ref="windows:WindowsExplorer" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoBackButton" class="User" displayName="$(string.NoBackButton)" explainText="$(string.NoBackButton_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Comdlg32" valueName="NoBackButton">
+      <parentCategory ref="Comdlg" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoFileMRU" class="User" displayName="$(string.NoFileMRU)" explainText="$(string.NoFileMRU_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Comdlg32" valueName="NoFileMru">
+      <parentCategory ref="Comdlg" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoPlacesBar" class="User" displayName="$(string.NoPlacesBar)" explainText="$(string.NoPlacesBar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Comdlg32" valueName="NoPlacesBar">
+      <parentCategory ref="Comdlg" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="PlacesBar" class="User" displayName="$(string.PlacesBar)" explainText="$(string.PlacesBar_Help)" presentation="$(presentation.PlacesBar)" key="Software\Microsoft\Windows\CurrentVersion\Policies\comdlg32\Placesbar">
+      <parentCategory ref="Comdlg" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Places0" valueName="Place0" />
+        <text id="Places1" valueName="Place1" />
+        <text id="Places2" valueName="Place2" />
+        <text id="Places3" valueName="Place3" />
+        <text id="Places4" valueName="Place4" />
+      </elements>
+    </policy>
+    <policy name="ClassicShell" class="User" displayName="$(string.ClassicShell)" explainText="$(string.ClassicShell_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ClassicShell">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo2k" />
+    </policy>
+    <policy name="ConfirmFileDelete" class="User" displayName="$(string.ConfirmFileDelete)" explainText="$(string.ConfirmFileDelete_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ConfirmFileDelete">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="EnforceShellExtensionSecurity" class="User" displayName="$(string.EnforceShellExtensionSecurity)" explainText="$(string.EnforceShellExtensionSecurity_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="EnforceShellExtensionSecurity">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="LinkResolveIgnoreLinkInfo" class="User" displayName="$(string.LinkResolveIgnoreLinkInfo)" explainText="$(string.LinkResolveIgnoreLinkInfo_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="LinkResolveIgnoreLinkInfo">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="MaxRecentDocs" class="User" displayName="$(string.MaxRecentDocs)" explainText="$(string.MaxRecentDocs_Help)" presentation="$(presentation.MaxRecentDocs)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+      <elements>
+        <decimal id="MaxRecentDocs" valueName="MaxRecentDocs" required="true" />
+      </elements>
+    </policy>
+    <policy name="NoCacheThumbNailPictures" class="User" displayName="$(string.NoCacheThumbNailPictures)" explainText="$(string.NoCacheThumbNailPictures_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoThumbnailCache">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoCDBurning" class="User" displayName="$(string.NoCDBurning)" explainText="$(string.NoCDBurning_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoCDBurning">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoChangeAnimation" class="User" displayName="$(string.NoChangeAnimation)" explainText="$(string.NoChangeAnimation_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoChangeAnimation">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoChangeKeyboardNavigationIndicators" class="User" displayName="$(string.NoChangeKeyboardNavigationIndicators)" explainText="$(string.NoChangeKeyboardNavigationIndicators_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoChangeKeyboardNavigationIndicators">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoDFSTab" class="User" displayName="$(string.NoDFSTab)" explainText="$(string.NoDFSTab_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoDFSTab">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoDrives" class="User" displayName="$(string.NoDrives)" explainText="$(string.NoDrives_Help)" presentation="$(presentation.NoDrives)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="NoDrivesDropdown" valueName="NoDrives" required="true">
+          <item displayName="$(string.ABOnly)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.COnly)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.DOnly)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ABConly)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.ABCDOnly)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ALLDrives)">
+            <value>
+              <decimal value="67108863" />
+            </value>
+          </item>
+          <item displayName="$(string.RestNoDrives)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="NoEntireNetwork" class="User" displayName="$(string.NoEntireNetwork)" explainText="$(string.NoEntireNetwork_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Network" valueName="NoEntireNetwork">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoFileMenu" class="User" displayName="$(string.NoFileMenu)" explainText="$(string.NoFileMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoFileMenu">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoFolderOptions" class="User" displayName="$(string.NoFolderOptions)" explainText="$(string.NoFolderOptions_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoFolderOptions">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoHardwareTab" class="User" displayName="$(string.NoHardwareTab)" explainText="$(string.NoHardwareTab_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoHardwareTab">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoManageMyComputerVerb" class="User" displayName="$(string.NoManageMyComputerVerb)" explainText="$(string.NoManageMyComputerVerb_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoManageMyComputerVerb">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoMyComputerSharedDocuments" class="User" displayName="$(string.NoMyComputerSharedDocuments)" explainText="$(string.NoMyComputerSharedDocuments_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSharedDocuments">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOnly" />
+    </policy>
+    <policy name="NoNetConnectDisconnect" class="User" displayName="$(string.NoNetConnectDisconnect)" explainText="$(string.NoNetConnectDisconnect_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoNetConnectDisconnect">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoRecycleFiles" class="User" displayName="$(string.NoRecycleFiles)" explainText="$(string.NoRecycleFiles_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRecycleFiles">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoRunAsInstallPrompt" class="User" displayName="$(string.NoRunAsInstallPrompt)" explainText="$(string.NoRunAsInstallPrompt_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRunasInstallPrompt">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoSecurityTab" class="User" displayName="$(string.NoSecurityTab)" explainText="$(string.NoSecurityTab_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSecurityTab">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoShellSearchButton" class="User" displayName="$(string.NoShellSearchButton)" explainText="$(string.NoShellSearchButton_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoShellSearchButton">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoViewContextMenu" class="User" displayName="$(string.NoViewContextMenu)" explainText="$(string.NoViewContextMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoViewContextMenu">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoViewOnDrive" class="User" displayName="$(string.NoViewOnDrive)" explainText="$(string.NoViewOnDrive_Help)" presentation="$(presentation.NoViewOnDrive)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="NoDrivesDropdown" valueName="NoViewOnDrive" required="true">
+          <item displayName="$(string.ABOnly)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.COnly)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.DOnly)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ABConly)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.ABCDOnly)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ALLDrives)">
+            <value>
+              <decimal value="67108863" />
+            </value>
+          </item>
+          <item displayName="$(string.RestNoDrives)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="NoWindowsHotKeys" class="User" displayName="$(string.NoWindowsHotKeys)" explainText="$(string.NoWindowsHotKeys_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWinKeys">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+    </policy>
+    <policy name="NoWorkgroupContents" class="User" displayName="$(string.NoWorkgroupContents)" explainText="$(string.NoWorkgroupContents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoComputersNearMe">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="PromptRunasInstallNetPath" class="User" displayName="$(string.PromptRunasInstallNetPath)" explainText="$(string.PromptRunasInstallNetPath_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="PromptRunasInstallNetPath">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="RecycleBinSize" class="User" displayName="$(string.RecycleBinSize)" explainText="$(string.RecycleBinSize_Help)" presentation="$(presentation.RecycleBinSize)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <decimal id="RecycleBinSizeSpin" valueName="RecycleBinSize" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="ShellProtocolProtectedModeTitle_1" class="User" displayName="$(string.ShellProtocolProtectedModeTitle)" explainText="$(string.ShellProtocolProtectedModeExplain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="PreXPSP2ShellProtocolBehavior">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellProtocolProtectedModeTitle_2" class="Machine" displayName="$(string.ShellProtocolProtectedModeTitle)" explainText="$(string.ShellProtocolProtectedModeExplain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="PreXPSP2ShellProtocolBehavior">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchInternetTryHarderButton" class="User" displayName="$(string.NoSearchInternetTryHarderButton)" explainText="$(string.NoSearchInternetTryHarderButton_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoSearchInternetTryHarderButton">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TryHarderPinnedOpenSearch" class="User" displayName="$(string.TryHarderPinnedOpenSearch)" explainText="$(string.TryHarderPinnedOpenSearch_Help)" presentation="$(presentation.TryHarderPinnedOpenSearch)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="TryHarderPinnedOpenSearch">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="OpenSearch0" valueName="OpenSearch0" />
+        <text id="OpenSearchLabel0" valueName="OpenSearchLabel0" />
+        <text id="OpenSearch1" valueName="OpenSearch1" />
+        <text id="OpenSearchLabel1" valueName="OpenSearchLabel1" />
+        <text id="OpenSearch2" valueName="OpenSearch2" />
+        <text id="OpenSearchLabel2" valueName="OpenSearchLabel2" />
+        <text id="OpenSearch3" valueName="OpenSearch3" />
+        <text id="OpenSearchLabel3" valueName="OpenSearchLabel3" />
+        <text id="OpenSearch4" valueName="OpenSearch4" />
+        <text id="OpenSearchLabel4" valueName="OpenSearchLabel4" />
+      </elements>
+    </policy>
+    <policy name="TryHarderPinnedLibrary" class="User" displayName="$(string.TryHarderPinnedLibrary)" explainText="$(string.TryHarderPinnedLibrary_Help)" presentation="$(presentation.TryHarderPinnedLibrary)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="TryHarderPinnedLibrary">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="Library0" valueName="Library0" />
+        <text id="Library1" valueName="Library1" />
+        <text id="Library2" valueName="Library2" />
+        <text id="Library3" valueName="Library3" />
+        <text id="Library4" valueName="Library4" />
+      </elements>
+    </policy>
+    <policy name="CheckSameSourceAndTargetForFRAndDFS" class="Machine" displayName="$(string.CheckSameSourceAndTargetForFRAndDFS_DisplayName)" explainText="$(string.CheckSameSourceAndTargetForFRAndDFS_ExplainText)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="CheckSameSourceAndTargetForFRAndDFS">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableKnownFolders" class="User" displayName="$(string.DisableKnownFolders_DisplayName)" explainText="$(string.DisableKnownFolders_ExplainText)" presentation="$(presentation.DisableKnownFolders_Presentation)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableKnownFolders">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DisableKnownFolders_Prompt" key="Software\Policies\Microsoft\Windows\Explorer\DisableKnownFolders" additive="true" />
+      </elements>
+    </policy>
+    <policy name="HideContentViewModeSnippets" class="User" displayName="$(string.HideContentViewModeSnippets_DisplayName)" explainText="$(string.HideContentViewModeSnippets_ExplainText)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="HideContentViewModeSnippets">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableIndexedLibraryExperience" class="User" displayName="$(string.DisableIndexedLibraryExperience_DisplayName)" explainText="$(string.DisableIndexedLibraryExperience_ExplainText)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableIndexedLibraryExperience">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSearchBoxSuggestions" class="User" displayName="$(string.DisableSearchBoxSuggestions_DisplayName)" explainText="$(string.DisableSearchBoxSuggestions_ExplainText)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableSearchBoxSuggestions">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableBindDirectlyToPropertySetStorage" class="Both" displayName="$(string.DisableBindDirectlyToPropertySetStorage_DisplayName)" explainText="$(string.DisableBindDirectlyToPropertySetStorage_ExplainText)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableBindDirectlyToPropertySetStorage">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoStrCmpLogical" class="Both" displayName="$(string.NoStrCmpLogical_DisplayName)" explainText="$(string.NoStrCmpLogical_ExplainText)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStrCmpLogical">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_LocalMachine"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0">
+      <parentCategory ref="inetres:IZ_LocalMachineZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_Intranet"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1">
+      <parentCategory ref="inetres:IZ_IntranetZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_Trusted"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2">
+      <parentCategory ref="inetres:IZ_TrustedSitesZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_Internet"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3">
+      <parentCategory ref="inetres:IZ_InternetZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_Restricted"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery_DefaultDisabled)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4">
+      <parentCategory ref="inetres:IZ_RestrictedSitesZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_LocalMachineLockdown"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0">
+      <parentCategory ref="inetres:IZ_LocalMachineZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_IntranetLockdown"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1">
+      <parentCategory ref="inetres:IZ_IntranetZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_TrustedLockdown"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2">
+      <parentCategory ref="inetres:IZ_TrustedSitesZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_InternetLockdown"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3">
+      <parentCategory ref="inetres:IZ_InternetZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchQuery_RestrictedLockdown"
+          class="Both"
+          valueName="180E"
+          displayName="$(string.IZ_OpenSearchQuery)"
+          explainText="$(string.IZ_Explain_OpenSearchQuery_DefaultDisabled)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4">
+      <parentCategory ref="inetres:IZ_RestrictedSitesZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_LocalMachine"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0">
+      <parentCategory ref="inetres:IZ_LocalMachineZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_Intranet"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1">
+      <parentCategory ref="inetres:IZ_IntranetZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_Trusted"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2">
+      <parentCategory ref="inetres:IZ_TrustedSitesZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_Internet"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3">
+      <parentCategory ref="inetres:IZ_InternetZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_Restricted"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview_DefaultDisabled)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4">
+      <parentCategory ref="inetres:IZ_RestrictedSitesZone" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_LocalMachineLockdown"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0">
+      <parentCategory ref="inetres:IZ_LocalMachineZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_IntranetLockdown"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1">
+      <parentCategory ref="inetres:IZ_IntranetZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_TrustedLockdown"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2">
+      <parentCategory ref="inetres:IZ_TrustedSitesZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_InternetLockdown"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\3">
+              <parentCategory ref="inetres:IZ_InternetZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="IZ_Policy_OpenSearchPreview_RestrictedLockdown"
+          class="Both"
+          valueName="180F"
+          displayName="$(string.IZ_OpenSearchPreview)"
+          explainText="$(string.IZ_Explain_OpenSearchPreview_DefaultDisabled)"
+          key="Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4">
+      <parentCategory ref="inetres:IZ_RestrictedSitesZoneLockdown" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy name="DefaultLibrariesLocation"
+            class="Both"
+            displayName="$(string.DefaultLibrariesLocation)"
+            explainText="$(string.DefaultLibrariesLocation_User_Explain)"
+            presentation="$(presentation.DefaultLibrariesLocation)"
+            key="SOFTWARE\Policies\Microsoft\Windows\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <text id="DefaultLibrariesLocation"
+              key="Software\Policies\Microsoft\Windows\Explorer"
+              valueName="DefaultLibrariesLocation" />
+      </elements>
+    </policy>
+    <policy name="EnableSmartScreen" class="Machine" displayName="$(string.EnableSmartScreen)" explainText="$(string.EnableSmartScreen_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableSmartScreen" presentation="$(presentation.EnableSmartScreen)">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="EnableSmartScreenDropdown" valueName="EnableSmartScreen" required="true">
+          <item displayName="$(string.SmartScreen_RequireAdmin)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.SmartScreen_Prompt)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SmartScreen_Off)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ShowLockOption" class="Machine" displayName="$(string.ShowLockOption)" explainText="$(string.ShowLockOption_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowLockOption">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowSleepOption" class="Machine" displayName="$(string.ShowSleepOption)" explainText="$(string.ShowSleepOption_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowSleepOption">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowHibernateOption" class="Machine" displayName="$(string.ShowHibernateOption)" explainText="$(string.ShowHibernateOption_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowHibernateOption">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoNewAppAlert" class="Machine" displayName="$(string.NoNewAppAlert)" explainText="$(string.NoNewAppAlert_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoNewAppAlert">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ExplorerRibbonStartsMinimized" 
+            class="Both" 
+            displayName="$(string.ExplorerRibbonStartsMinimized_DisplayName)" 
+            explainText="$(string.ExplorerRibbonStartsMinimized_ExplainText)" 
+            presentation="$(presentation.ExplorerRibbonStartsMinimized)"
+            key="Software\Policies\Microsoft\Windows\Explorer" 
+            valueName="ExplorerRibbonStartsMinimized">
+        <parentCategory ref="windows:WindowsExplorer" />
+        <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <elements>
+          <enum id="ExplorerRibbonStartsMinimizedDropdown" valueName="ExplorerRibbonStartsMinimized" required="true">
+            <item displayName="$(string.ExplorerRibbonStartsMinimized_StartsMinimized)">
+              <value>
+                <decimal value="1" />
+              </value>
+            </item>
+            <item displayName="$(string.ExplorerRibbonStartsMinimized_StartsNotMinimized)">
+              <value>
+                <decimal value="2" />
+              </value>
+            </item>
+            <item displayName="$(string.ExplorerRibbonStartsMinimized_InitializedMinimized)">
+              <value>
+                <decimal value="3" />
+              </value>
+            </item>
+            <item displayName="$(string.ExplorerRibbonStartsMinimized_InitializedNotMinimized)">
+              <value>
+                <decimal value="4" />
+              </value>
+            </item>
+          </enum>
+        </elements>
+    </policy>
+    <policy name="DefaultAssociationsConfiguration" class="Machine" displayName="$(string.DefaultAssociationsConfiguration)" explainText="$(string.DefaultAssociationsConfiguration_Help)" presentation="$(presentation.DefaultAssociationsConfiguration)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+          <text id="DefaultAssociationsConfiguration_TextBox" valueName="DefaultAssociationsConfiguration"/>
+      </elements>
+    </policy>
+    <policy name="EnableShellShortcutIconRemotePath"
+            class="Machine"
+            displayName="$(string.EnableShellShortcutIconRemotePath_DisplayName)"
+            explainText="$(string.EnableShellShortcutIconRemotePath_Help)"
+            key="Software\Policies\Microsoft\Windows\Explorer"
+            valueName="EnableShellShortcutIconRemotePath">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

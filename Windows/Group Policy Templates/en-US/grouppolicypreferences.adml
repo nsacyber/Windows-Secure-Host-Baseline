@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+  <displayName>Group Policy Preference Policies</displayName>
+  <description></description>
+  <resources>
+    <stringTable>
+      <string id="MMC_PrefApplications">Permit use of Application snap-ins</string>
+      <string id="MMC_PrefApplications_Explain">This policy setting allows you to permit or prohibit use of Application snap-ins (Application preference item types). When prohibited, no Application preference item types appear when you attempt to create a new Application preference item, and you are unable to do so. This policy setting does not affect existing Application preference items.
+
+If you enable or do not configure this policy setting, you permit use of Application snap-ins. Enabling this policy setting does not override policy settings that restrict the use of preference extensions.
+
+If you disable this policy setting, you prohibit use of Applications snap-ins, and new Application preference items cannot be created.
+</string>
+      <string id="MMC_GPO_Applications">Permit use of Applications preference extension</string>
+      <string id="MMC_GPO_Applications_Explain">This policy setting allows you to permit or prohibit use of the Applications preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_CompControl">Permit use of Control Panel Settings (Computers)</string>
+      <string id="MMC_GPO_CompControl_Explain">This policy setting allows you to permit or prohibit use of the Control Panel Settings item and all preference extensions listed in the Group Policy Management Editor window of the GPMC under Computer Configuration\Preferences\Control Panel Settings. When the Control Panel Settings item or a preference extension is prohibited, it does not appear in the Group Policy Management Editor window.
+
+If you enable this policy setting, you permit use of the Control Panel Settings item and all preference extensions under Control Panel Settings for Computer Configuration. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting for the Control Panel Settings item, but not for its children. Enabling this policy setting does not override any "Permit use of &lt;extension name&gt; preference extension" policy settings that are disabled.
+
+If you disable this policy setting, you prohibit use of preference extensions under Control Panel Settings for Computer Configuration. Disabling this policy setting overrides any "Permit use of &lt;extension name&gt; preference extension" policy settings.
+
+If you do not configure this policy setting, you permit use of preference extensions under Control Panel Settings for Computer Configuration unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting or any "Permit use of &lt;extension name&gt; preference extension" policy settings.
+</string>
+      <string id="MMC_GPO_DataSources">Permit use of Data Sources preference extension</string>
+      <string id="MMC_GPO_DataSources_Explain">This policy setting allows you to permit or prohibit use of the Data Sources preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_Devices">Permit use of Devices preference extension</string>
+      <string id="MMC_GPO_Devices_Explain">This policy setting allows you to permit or prohibit use of the Devices preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_Drives">Permit use of Drive Maps preference extension</string>
+      <string id="MMC_GPO_Drives_Explain">This policy setting allows you to permit or prohibit use of the Drive Maps preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_Environment">Permit use of Environment preference extension</string>
+      <string id="MMC_GPO_Environment_Explain">This policy setting allows you to permit or prohibit use of the Environment preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_Files">Permit use of Files preference extension</string>
+      <string id="MMC_GPO_Files_Explain">This policy setting allows you to permit or prohibit use of the Files preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_FolderOptions">Permit use of Folder Options preference extension</string>
+      <string id="MMC_GPO_FolderOptions_Explain">This policy setting allows you to permit or prohibit use of the Folder Options preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_Folders">Permit use of Folders preference extension</string>
+      <string id="MMC_GPO_Folders_Explain">This policy setting allows you to permit or prohibit use of the Folders preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_IniFiles">Permit use of Ini Files preference extension</string>
+      <string id="MMC_GPO_IniFiles_Explain">This policy setting allows you to permit or prohibit use of the Ini Files preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_Internet">Permit use of Internet Settings preference extension</string>
+      <string id="MMC_GPO_Internet_Explain">This policy setting allows you to permit or prohibit use of the Internet Settings preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Users)" policy setting. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" or "Permit use of Control Panel Settings (Users)" policy settings.
+</string>
+      <string id="MMC_GPO_LocalUsersAndGroups">Permit use of Local Users and Groups preference extension</string>
+      <string id="MMC_GPO_LocalUsersAndGroups_Explain">This policy setting allows you to permit or prohibit use of the Local Users and Groups preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_NetworkOptions">Permit use of Network Options preference extension</string>
+      <string id="MMC_GPO_NetworkOptions_Explain">This policy setting allows you to permit or prohibit use of the Network Options preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_NetworkShares">Permit use of Network Shares preference extension</string>
+      <string id="MMC_GPO_NetworkShares_Explain">This policy setting allows you to permit or prohibit use of the Network Shares preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_PowerOptions">Permit use of Power Options preference extension</string>
+      <string id="MMC_GPO_PowerOptions_Explain">This policy setting allows you to permit or prohibit use of the Power Options preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_Printers">Permit use of Printers preference extension</string>
+      <string id="MMC_GPO_Printers_Explain">This policy setting allows you to permit or prohibit use of the Printers preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_RegionalOptions">Permit use of Regional Options preference extension</string>
+      <string id="MMC_GPO_RegionalOptions_Explain">This policy setting allows you to permit or prohibit use of the Regional Options preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Users)" policy setting. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" or "Permit use of Control Panel Settings (Users)" policy settings.
+</string>
+      <string id="MMC_GPO_Registry">Permit use of Registry preference extension</string>
+      <string id="MMC_GPO_Registry_Explain">This policy setting allows you to permit or prohibit use of the Registry preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_ScheduledTasks">Permit use of Scheduled Tasks preference extension</string>
+      <string id="MMC_GPO_ScheduledTasks_Explain">This policy setting allows you to permit or prohibit use of the Scheduled Tasks preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" or "Permit use of Control Panel Settings (Users)" policy settings. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins," "Permit use of Control Panel Settings (Computers)," or "Permit use of Control Panel Settings (Users)," policy settings.
+</string>
+      <string id="MMC_GPO_Services">Permit use of Services preference extension</string>
+      <string id="MMC_GPO_Services_Explain">This policy setting allows you to permit or prohibit use of the Services preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Computers)" policy setting. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" or "Permit use of Control Panel Settings (Computers)" policy settings.
+</string>
+      <string id="MMC_GPO_Shortcuts">Permit use of Shortcuts preference extension</string>
+      <string id="MMC_GPO_Shortcuts_Explain">This policy setting allows you to permit or prohibit use of the Shortcuts preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+</string>
+      <string id="MMC_GPO_UserControl">Permit use of Control Panel Settings (Users)</string>
+      <string id="MMC_GPO_UserControl_Explain">This policy setting allows you to permit or prohibit use of the Control Panel Settings item and all preference extensions listed in the Group Policy Management Editor window of the GPMC under User Configuration\Preferences\Control Panel Settings. When the Control Panel Settings item or a preference extension is prohibited, it does not appear in the Group Policy Management Editor window.
+
+If you enable this policy setting, you permit use of the Control Panel Settings item and all preference extensions under Control Panel Settings for User Configuration. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting for the Control Panel Settings item, but not for its children. Enabling this policy setting does not override any "Permit use of &lt;extension name&gt; preference extension" policy settings that are disabled.
+
+If you disable this policy setting, you prohibit use of preference extensions under Control Panel Settings for User Configuration. Disabling this policy setting overrides any "Permit use of &lt;extension name&gt; preference extension" policy settings.
+
+If you do not configure this policy setting, you permit use of preference extensions under Control Panel Settings for User Configuration unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" policy setting or any "Permit use of &lt;extension name&gt; preference extension" policy settings.
+</string>
+      <string id="MMC_GPO_StartMenu">Permit use of Start Menu preference extension</string>
+      <string id="MMC_GPO_StartMenu_Explain">This policy setting allows you to permit or prohibit use of the Start Menu preference extension. When a preference extension is prohibited, it does not appear in the Group Policy Management Editor window of the GPMC.
+
+If you enable this policy setting, you permit use of the preference extension unless restricted by the "Permit use of Control Panel Settings (Users)" policy setting. Enabling this policy setting overrides the "Restrict users to the explicitly permitted list of snap-ins" policy setting.
+
+If you disable this policy setting, you prohibit use of the preference extension.
+
+If you do not configure this policy setting, you permit use of the preference extension unless restricted by the "Restrict users to the explicitly permitted list of snap-ins" or "Permit use of Control Panel Settings (Users)" policy settings.
+</string>
+      <string id="MMC_GPO_ViewExtensionPro">Permit use of Preferences tab</string>
+      <string id="MMC_GPO_ViewExtensionPro_Explain">This policy setting allows you to permit or prohibit use of the Preferences tab. When prohibited, the Preferences tab does not appear when you view a preference extension in the Group Policy Management Editor window of the GPMC. The Extended and Standard tabs are unaffected, and you can still create and manage preference items.
+
+If you enable this policy setting, you permit use of the Preferences tab. Enabling this policy setting does not override policy settings that restrict the use of preference extensions.
+
+If you disable this policy setting, you prohibit use of the Preferences tab.
+
+If you do not configure this policy setting, you permit use of the Preferences tab.
+</string>
+      <string id="CSE_Applications">Configure Applications preference extension policy processing</string>
+      <string id="CSE_Applications_Help">This policy setting allows you to configure when preference items in the Applications preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Application preference items.
+
+If you disable or do not configure this policy setting, Application preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Applications_Logging">Configure Applications preference logging and tracing</string>
+      <string id="CSE_Applications_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Applications preference extension, and to turn on tracing for the Applications extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Applications extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.
+</string>
+      <string id="CSE_DataSources">Configure Data Sources preference extension policy processing</string>
+      <string id="CSE_DataSources_Help">This policy setting allows you to configure when preference items in the Data Sources preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Data Sources preference items.
+
+If you disable or do not configure this policy setting, Data Sources preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.
+</string>
+      <string id="CSE_DataSources_Logging">Configure Data Sources preference logging and tracing</string>
+      <string id="CSE_DataSources_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Data Sources preference extension, and to turn on tracing for the Data Sources extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Data Sources extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Devices">Configure Devices preference extension policy processing</string>
+      <string id="CSE_Devices_Help">This policy setting allows you to configure when preference items in the Devices preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Device preference items.
+
+If you disable or do not configure this policy setting, Device preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.
+</string>
+      <string id="CSE_Devices_Logging">Configure Devices preference logging and tracing</string>
+      <string id="CSE_Devices_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Devices preference extension, and to turn on tracing for the Devices extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Devices extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Drives">Configure Drive Maps preference extension policy processing</string>
+      <string id="CSE_Drives_Help">This policy setting allows you to configure when preference items in the Drive Maps preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Drive Maps preference items.
+
+If you disable or do not configure this policy setting, Drive Maps preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.
+</string>
+      <string id="CSE_Drives_Logging">Configure Drive Maps preference logging and tracing</string>
+      <string id="CSE_Drives_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Drive Maps preference extension, and to turn on tracing for the Drive Maps extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Drive Maps extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Environment">Configure Environment preference extension policy processing</string>
+      <string id="CSE_Environment_Help">This policy setting allows you to configure when preference items in the Environment preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Environment Variable preference items.
+
+If you disable or do not configure this policy setting, Environment Variable preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged 
+preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Environment_Logging">Configure Environment preference logging and tracing</string>
+      <string id="CSE_Environment_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Environment preference extension, and to turn on tracing for the Environment extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Environment extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Files">Configure Files preference extension policy processing</string>
+      <string id="CSE_Files_Help">This policy setting allows you to configure when preference items in the Files preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for File preference items.
+
+If you disable or do not configure this policy setting, File preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Files_Logging">Configure Files preference logging and tracing</string>
+      <string id="CSE_Files_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Files preference extension, and to turn on tracing for the Files extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Files extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_FolderOptions">Configure Folder Options preference extension policy processing</string>
+      <string id="CSE_FolderOptions_Help">This policy setting allows you to configure when preference items in the Folder Options preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Folder Options, Open With, and File Type preference items.
+
+If you disable or do not configure this policy setting, Folder Options, Open With, and File Type preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_FolderOptions_Logging">Configure Folder Options preference logging and tracing</string>
+      <string id="CSE_FolderOptions_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Folder Options preference extension, and to turn on tracing for the Folder Options extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Folder Options extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Folders">Configure Folders preference extension policy processing</string>
+      <string id="CSE_Folders_Help">This policy setting allows you to configure when preference items in the Folders preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Folder preference items.
+
+If you disable or do not configure this policy setting, Folder preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Folders_Logging">Configure Folders preference logging and tracing</string>
+      <string id="CSE_Folders_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Folders preference extension, and to turn on tracing for the Folders extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Folders extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_IniFiles">Configure Ini Files preference extension policy processing</string>
+      <string id="CSE_IniFiles_Help">This policy setting allows you to configure when preference items in the Ini Files preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Ini Files preference items.
+
+If you disable or do not configure this policy setting, Ini Files preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_IniFiles_Logging">Configure Ini Files preference logging and tracing</string>
+      <string id="CSE_IniFiles_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Ini Files preference extension, and to turn on tracing for the Ini Files extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Ini Files extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Internet">Configure Internet Settings preference extension policy processing</string>
+      <string id="CSE_Internet_Help">This policy setting allows you to configure when preference items in the Internet Settings preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Internet preference items.
+
+If you disable or do not configure this policy setting, Internet preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Internet_Logging">Configure Internet Settings preference logging and tracing</string>
+      <string id="CSE_Internet_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Internet preference extension, and to turn on tracing for the Internet extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Internet extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_LocalUsersAndGroups">Configure Local Users and Groups preference extension policy processing</string>
+      <string id="CSE_LocalUsersAndGroups_Help">This policy setting allows you to configure when preference items in the Local Users and Groups preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Local User and Local Group preference items.
+
+If you disable or do not configure this policy setting, Local User and Local Group preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_LocalUsersAndGroups_Logging">Configure Local Users and Groups preference logging and tracing</string>
+      <string id="CSE_LocalUsersAndGroups_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Local User and Local Group preference extension, and to turn on tracing for the Local User and Local Group extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Local User and Local Group extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_NetworkOptions">Configure Network Options preference extension policy processing</string>
+      <string id="CSE_NetworkOptions_Help">This policy setting allows you to configure when preference items in the Network Options preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for VPN Connection and DUN Connection preference items.
+
+If you disable or do not configure this policy setting, VPN Connection and DUN Connection preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_NetworkOptions_Logging">Configure Network Options preference logging and tracing</string>
+      <string id="CSE_NetworkOptions_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Network Options preference extension, and to turn on tracing for the Network Options extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Network Options extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_NetShares">Configure Network Shares preference extension policy processing</string>
+      <string id="CSE_NetShares_Help">This policy setting allows you to configure when preference items in the Network Shares preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Network Shares preference items.
+
+If you disable or do not configure this policy setting, Network Shares preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_NetShares_Logging">Configure Network Shares preference logging and tracing</string>
+      <string id="CSE_NetShares_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Network Shares preference extension, and to turn on tracing for the Network Shares extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Network Shares extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_PowerOptions">Configure Power Options preference extension policy processing</string>
+      <string id="CSE_PowerOptions_Help">This policy setting allows you to configure when preference items in the Power Options preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Power Options and Power Scheme preference items.
+
+If you disable or do not configure this policy setting, Power Options and Power Scheme preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_PowerOptions_Logging">Configure Power Options preference logging and tracing</string>
+      <string id="CSE_PowerOptions_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Power Options preference extension, and to turn on tracing for the Power Options extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Power Options extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Printers">Configure Printers preference extension policy processing</string>
+      <string id="CSE_Printers_Help">This policy setting allows you to configure when preference items in the Printers preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Shared Printer, TCP/IP Printer, and Local Printer preference items.
+
+If you disable or do not configure this policy setting, Shared Printer, TCP/IP Printer, and Local Printer preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Printers_Logging">Configure Printers preference logging and tracing</string>
+      <string id="CSE_Printers_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Printers preference extension, and to turn on tracing for the Printers extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Printers extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_RegionalOptions">Configure Regional Options preference extension policy processing</string>
+      <string id="CSE_RegionalOptions_Help">This policy setting allows you to configure when preference items in the Regional Options preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Regional Options preference items.
+
+If you disable or do not configure this policy setting, Regional Options preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_RegionalOptions_Logging">Configure Regional Options preference logging and tracing</string>
+      <string id="CSE_RegionalOptions_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Regional Options preference extension, and to turn on tracing for the Regional Options extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Regional Options extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_PrefRegistry">Configure Registry preference extension policy processing</string>
+      <string id="CSE_PrefRegistry_Help">This policy setting allows you to configure when preference items in the Registry preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Registry preference items.
+
+If you disable or do not configure this policy setting, Registry preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_PrefRegistry_Logging">Configure Registry preference logging and tracing</string>
+      <string id="CSE_PrefRegistry_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Registry preference extension, and to turn on tracing for the Registry extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Registry extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_ScheduledTasks">Configure Scheduled Tasks preference extension policy processing</string>
+      <string id="CSE_ScheduledTasks_Help">This policy setting allows you to configure when preference items in the Scheduled Tasks preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Scheduled Task and Immediate Task preference items.
+
+If you disable or do not configure this policy setting, Scheduled Task and Immediate Task preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_ScheduledTasks_Logging">Configure Scheduled Tasks preference logging and tracing</string>
+      <string id="CSE_ScheduledTasks_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Scheduled Tasks preference extension, and to turn on tracing for the Scheduled Tasks extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Scheduled Tasks extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Services">Configure Services preference extension policy processing</string>
+      <string id="CSE_Services_Help">This policy setting allows you to configure when preference items in the Services preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Service preference items.
+
+If you disable or do not configure this policy setting, Service preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Services_Logging">Configure Services preference logging and tracing</string>
+      <string id="CSE_Services_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Services preference extension, and to turn on tracing for the Services extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Services extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_Shortcuts">Configure Shortcuts preference extension policy processing</string>
+      <string id="CSE_Shortcuts_Help">This policy setting allows you to configure when preference items in the Shortcuts preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Shortcut preference items.
+
+If you disable or do not configure this policy setting, Shortcut preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_Shortcuts_Logging">Configure Shortcuts preference logging and tracing</string>
+      <string id="CSE_Shortcuts_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Shortcuts preference extension, and to turn on tracing for the Shortcuts extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Shortcuts extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_StartMenu">Configure Start Menu preference extension policy processing</string>
+      <string id="CSE_StartMenu_Help">This policy setting allows you to configure when preference items in the Start Menu preference extension are updated.
+
+If you enable this policy setting, you can configure processing options for Start Menu preference items.
+
+If you disable or do not configure this policy setting, Start Menu preference items are allowed to process across a slow network connection, to be applied during background processing, and to process even if the Group Policy objects (GPOs) are unchanged. By default, background processing priority is "Idle."
+
+Notes:
+
+1. The "Allow processing across a slow network connection" option updates preference items even when the update is transmitted across a slow network connection, such as a telephone line. Updates across slow connections can cause significant delays. 
+
+2. The "Do not apply during periodic background processing" option prevents the system from updating affected preference items in the background while the computer is in use. When background updates are disabled, preference item changes do not take effect until the next user logon or system restart.
+
+3. The "Process even if the Group Policy objects have not changed" option updates and reapplies the preference items even if the preference items have not changed. Many policy implementations specify that they are updated only when changed. However, you might want to update unchanged preference items, such as reapplying a desired preference setting in case a user has changed it.</string>
+      <string id="CSE_StartMenu_Logging">Configure Start Menu preference logging and tracing</string>
+      <string id="CSE_StartMenu_Logging_Help">This policy setting allows you to configure the level of detail recorded by event logging for the Start Menu preference extension, and to turn on tracing for the Start Menu extension. Logging and tracing provide diagnostic information for troubleshooting.
+
+If you enable this policy setting, you can configure event logging and turn on tracing for the Start Menu extension for client computers.
+
+If you disable or do not configure this policy setting, by default event logging for this extension includes only warnings and errors, and tracing for this extension is turned off.
+
+Notes:
+
+1. User Configuration tracing: To perform tracing for items in this preference extension listed under User Configuration, you must provide a path in the "User trace" box to the location where a user trace file can be created on the client computer, and you must turn on the "Tracing" option. If there are no preference items under User Configuration in this extension, no user trace file is created.
+
+2. Computer Configuration tracing: This preference extension is available under User Configuration only, so computer configuration tracing is not applicable.
+
+3. Group Policy Modeling query tracing: To perform tracing for items in this preference extension when you perform a Group Policy Modeling query, you must provide a path in the "Planning trace" box to the location where a planning trace file can be created on the computer where you run modeling, and you must turn on the "Tracing" option. If you are not performing Group Policy Modeling or there are no preference items in this extension, no planning trace file is created.</string>
+      <string id="CSE_NOCHANGES">Process even if the Group Policy objects have not changed</string>
+      <string id="CSE_NOBACKGROUND">Do not apply during periodic background processing</string>
+      <string id="CSE_ALLOWSLOWLINK">Allow processing across a slow network connection</string>
+      <string id="CSE_TRACELEVEL">Tracing</string>
+      <string id="CSE_TRACEFILEPATHUSER">User trace</string>
+      <string id="CSE_TRACEFILEPATHMACHINE">Computer trace</string>
+      <string id="CSE_TRACEFILEPATH">Trace file</string>
+      <string id="CSE_TRACEFILEPATHPLANNING">Planning trace</string>
+      <string id="CSE_TRACEFILEMAXSIZE">Maximum size of trace file (KB)</string>
+      <string id="CSE_TRACELEVELNORMAL">Off</string>
+      <string id="CSE_TRACELEVELVERBOSE">On</string>
+      <string id="CSE_BACKGROUNDPRIORTYLEVEL">Background priority</string>
+      <string id="CSE_PRILEVEL_NORMAL">Normal</string>
+      <string id="CSE_PRILEVEL_BELOWNORMAL">Below Normal</string>
+      <string id="CSE_PRILEVEL_LOWEST">Lowest</string>
+      <string id="CSE_PRILEVEL_IDLE">Idle</string>
+      <string id="CSE_LOGLEVEL">Event logging</string>
+      <string id="CSE_LOGLEVEL_INFORMATION">Informational, Warnings and Errors</string>
+      <string id="CSE_LOGLEVEL_WARNINGS">Warnings and Errors</string>
+      <string id="CSE_LOGLEVEL_ERRORS">Errors Only</string>
+      <string id="CSE_LOGLEVEL_NONE">None</string>
+      <string id="MMC_Preferences_GPSnapin">Preference snap-in extensions</string>
+      <string id="MMC_Preferences_GPSnapin_Help">Allows you to permit and prohibit the use of Group Policy Object Editor (GPOE) Preference snap-in extensions.</string>
+      <string id="CSE_Logging">Logging and tracing</string>
+      <string id="CSE_Logging_Help">Allows you to configure the logging and tracing for Preference components.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="CSE_Applications">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Applications_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_DataSources">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_DataSources_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Devices">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Devices_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Drives">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Drives_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Environment">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Environment_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Files">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Files_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_FolderOptions">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_FolderOptions_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Folders">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Folders_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_IniFiles">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_IniFiles_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Internet">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Internet_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_LocalUsersAndGroups">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_LocalUsersAndGroups_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_NetworkOptions">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_NetworkOptions_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_NetShares">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_NetShares_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_PowerOptions">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_PowerOptions_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Printers">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Printers_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_RegionalOptions">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_RegionalOptions_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_PrefRegistry">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_PrefRegistry_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_ScheduledTasks">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_ScheduledTasks_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Services">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Services_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_Shortcuts">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_Shortcuts_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHMACHINE">
+          <label>Computer trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Computer.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+      <presentation id="CSE_StartMenu">
+        <checkBox refId="CSE_ALLOWSLOWLINK" defaultChecked="true">Allow processing across a slow network connection</checkBox>
+        <checkBox refId="CSE_NOBACKGROUND">Do not apply during periodic background processing</checkBox>
+        <checkBox refId="CSE_NOCHANGES" defaultChecked="true">Process even if the Group Policy objects have not changed</checkBox>
+        <dropdownList refId="CSE_BACKGROUNDPRIORTYLEVEL" noSort="true" defaultItem="3">Background priority</dropdownList>
+      </presentation>
+      <presentation id="CSE_StartMenu_Logging">
+        <dropdownList refId="CSE_LOGLEVEL" noSort="true" defaultItem="1">Event logging</dropdownList>
+        <dropdownList refId="CSE_TRACELEVEL" noSort="true" defaultItem="1">Tracing</dropdownList>
+        <textBox refId="CSE_TRACEFILEPATHUSER">
+          <label>User trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\User.log</defaultValue>
+        </textBox>
+        <textBox refId="CSE_TRACEFILEPATHPLANNING">
+          <label>Planning trace</label>
+          <defaultValue>%COMMONAPPDATA%\GroupPolicy\Preference\Trace\Planning.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="CSE_TRACEFILEMAXSIZE" defaultValue="1024">Maximum size of trace file (KB)</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

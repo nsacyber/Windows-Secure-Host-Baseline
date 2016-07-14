@@ -1,0 +1,732 @@
+﻿<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+
+<!--  (c) 2006 Microsoft Corporation  --><policyDefinitions
+    xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    revision="1.0"
+    schemaVersion="1.0"
+    >
+  <policyNamespaces>
+    <target
+        namespace="Microsoft.Policies.Printing"
+        prefix="printing"
+        />
+    <using
+        namespace="Microsoft.Policies.Windows"
+        prefix="windows"
+        />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0"/>
+  <supportedOn>
+    <definitions>
+      <!-- XPSP1 through Server 2008 RTM -->
+      <definition
+          displayName="$(string.SUPPORTED_XPSP1_through_Server_2008_RTM)"
+          name="SUPPORTED_XPSP1_through_Server_2008_RTM"
+          >
+        <or>
+          <range
+              minVersionIndex="1"
+              ref="products:MicrosoftWindowsXP"
+              />
+          <!-- Windows XP SP1 and later service packs -->
+          <reference ref="products:MicrosoftWindowsServer2003"/>
+          <!-- all of Windows 2003 -->
+          <reference ref="products:MicrosoftWindowsVista"/>
+          <!-- all of Windows Vista -->
+          <reference ref="products:WindowsServer2008_RTM"/>
+          <!-- Server 2008 RTM Only, no way to include SP without picking up R2 -->
+        </or>
+      </definition>
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category
+        displayName="$(string.CplPrinters)"
+        explainText="$(string.CplPrinters_Help)"
+        name="CplPrinters"
+        >
+      <parentCategory ref="windows:ControlPanel"/>
+    </category>
+  </categories>
+  <policies>
+    <policy
+        class="Machine"
+        displayName="$(string.AllowWebPrinting)"
+        explainText="$(string.AllowWebPrinting_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="AllowWebPrinting"
+        valueName="DisableWebPrinting"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Win2kOnly"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.ApplicationDriverIsolation)"
+        explainText="$(string.ApplicationDriverIsolation_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="ApplicationDriverIsolation"
+        valueName="ApplicationDriverIsolation"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.CustomizedSupportUrl)"
+        explainText="$(string.CustomizedSupportUrl_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="CustomizedSupportUrl"
+        presentation="$(presentation.CustomizedSupportUrl)"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista"/>
+      <elements>
+        <text
+            id="CustomizedSupportUrl_Link"
+            maxLength="255"
+            valueName="SupportLink"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.DomainPrinters)"
+        explainText="$(string.DomainDisplayPrinters_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\Wizard"
+        name="DomainPrinters"
+        presentation="$(presentation.DomainPrinters)"
+        valueName="DomainDisplayPrinters_State"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="2"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+      <elements>
+        <decimal
+            id="ADprinters"
+            maxValue="1000"
+            valueName="DomainADprinters"
+            />
+        <decimal
+            id="IPprinters"
+            maxValue="1000"
+            valueName="DomainIPprinters"
+            />
+        <decimal
+            id="WSDprinters"
+            maxValue="1000"
+            valueName="DomainWSDprinters"
+            />
+        <decimal
+            id="Bluetoothprinters"
+            maxValue="1000"
+            valueName="DomainBluetoothprinters"
+            />
+        <decimal
+            id="Shareprinters"
+            maxValue="1000"
+            valueName="DomainShareprinters"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.DownlevelBrowse)"
+        explainText="$(string.DownlevelBrowse_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\Wizard"
+        name="DownlevelBrowse"
+        valueName="Downlevel Browse"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.EMFDespooling)"
+        explainText="$(string.EMFDespooling_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="EMFDespooling"
+        valueName="ForceCSREMFDespooling"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.ForceSWRas)"
+        explainText="$(string.ForceSWRas_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="ForceSoftwareRasterization"
+        valueName="ForceSoftwareRasterization"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.IntranetPrintersUrl)"
+        explainText="$(string.IntranetPrintersUrl_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\Wizard"
+        name="IntranetPrintersUrl"
+        presentation="$(presentation.IntranetPrintersUrl)"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista"/>
+      <elements>
+        <text
+            id="IntranetPrintersUrl_Link"
+            maxLength="255"
+            required="true"
+            valueName="Printers Page URL"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.KMPrintersAreBlocked)"
+        explainText="$(string.KMPrintersAreBlocked_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="KMPrintersAreBlocked"
+        valueName="KMPrintersAreBlocked"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.NoAddPrinter)"
+        explainText="$(string.NoAddPrinter_Help)"
+        key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
+        name="NoAddPrinter"
+        valueName="NoAddPrinter"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.NoDeletePrinter)"
+        explainText="$(string.NoDeletePrinter_Help)"
+        key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
+        name="NoDeletePrinter"
+        valueName="NoDeletePrinter"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.NonDomainPrinters)"
+        explainText="$(string.NonDomainDisplayPrinters_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\Wizard"
+        name="NonDomainPrinters"
+        presentation="$(presentation.NonDomainPrinters)"
+        valueName="NonDomainDisplayPrinters_State"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="2"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+      <elements>
+        <decimal
+            id="IPprinters"
+            maxValue="1000"
+            valueName="NonDomainIPprinters"
+            />
+        <decimal
+            id="WSDprinters"
+            maxValue="1000"
+            valueName="NonDomainWSDprinters"
+            />
+        <decimal
+            id="Bluetoothprinters"
+            maxValue="1000"
+            valueName="NonDomainBluetoothprinters"
+            />
+        <decimal
+            id="Shareprinters"
+            maxValue="1000"
+            valueName="NonDomainShareprinters"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.PackagePointAndPrintOnly)"
+        explainText="$(string.PackagePointAndPrintOnly_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint"
+        name="PackagePointAndPrintOnly"
+        valueName="PackagePointAndPrintOnly"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.PackagePointAndPrintServerList)"
+        explainText="$(string.PackagePointAndPrintServerList_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint"
+        name="PackagePointAndPrintServerList"
+        presentation="$(presentation.PackagePointAndPrintServerList)"
+        valueName="PackagePointAndPrintServerList"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+      <elements>
+        <list
+            additive="true"
+            id="PackagePointAndPrintServerList_Edit"
+            key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint\ListofServers"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PackagePointAndPrintOnly)"
+        explainText="$(string.PackagePointAndPrintOnly_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint"
+        name="PackagePointAndPrintOnly_Win7"
+        valueName="PackagePointAndPrintOnly"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PackagePointAndPrintServerList)"
+        explainText="$(string.PackagePointAndPrintServerList_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint"
+        name="PackagePointAndPrintServerList_Win7"
+        presentation="$(presentation.PackagePointAndPrintServerList)"
+        valueName="PackagePointAndPrintServerList"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+      <elements>
+        <list
+            additive="true"
+            id="PackagePointAndPrintServerList_Edit"
+            key="Software\Policies\Microsoft\Windows NT\Printers\PackagePointAndPrint\ListofServers"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PhysicalLocation)"
+        explainText="$(string.PhysicalLocation_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="PhysicalLocation"
+        presentation="$(presentation.PhysicalLocation)"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <elements>
+        <text
+            id="PhysicalLocation_Name"
+            maxLength="259"
+            valueName="PhysicalLocation"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PhysicalLocationSupport)"
+        explainText="$(string.PhysicalLocationSupport_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="PhysicalLocationSupport"
+        valueName="PhysicalLocationSupport"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.PointAndPrint_Restrictions)"
+        explainText="$(string.PointAndPrint_Restrictions_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint"
+        name="PointAndPrint_Restrictions"
+        presentation="$(presentation.PointAndPrint_Restrictions)"
+        valueName="Restricted"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="SUPPORTED_XPSP1_through_Server_2008_RTM"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+      <elements>
+        <boolean
+            id="PointAndPrint_TrustedServers_Chk"
+            valueName="TrustedServers"
+            >
+          <trueValue>
+            <decimal value="1"/>
+          </trueValue>
+          <falseValue>
+            <decimal value="0"/>
+          </falseValue>
+        </boolean>
+        <text
+            id="PointAndPrint_TrustedServers_Edit"
+            valueName="ServerList"
+            />
+        <boolean
+            id="PointAndPrint_TrustedForest_Chk"
+            valueName="InForest"
+            >
+          <trueValue>
+            <decimal value="1"/>
+          </trueValue>
+          <falseValue>
+            <decimal value="0"/>
+          </falseValue>
+        </boolean>
+        <enum
+            id="PointAndPrint_NoWarningNoElevationOnInstall_Enum"
+            valueName="NoWarningNoElevationOnInstall"
+            >
+          <item displayName="$(string.WarnAndElevateOnUpdate)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.NoWarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum
+            id="PointAndPrint_NoWarningNoElevationOnUpdate_Enum"
+            valueName="UpdatePromptSettings"
+            >
+          <item displayName="$(string.WarnAndElevateOnUpdate)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.WarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.NoWarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PointAndPrint_Restrictions)"
+        explainText="$(string.PointAndPrint_Restrictions_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint"
+        name="PointAndPrint_Restrictions_Win7"
+        presentation="$(presentation.PointAndPrint_Restrictions)"
+        valueName="Restricted"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_WindowsVista"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+      <elements>
+        <boolean
+            id="PointAndPrint_TrustedServers_Chk"
+            valueName="TrustedServers"
+            >
+          <trueValue>
+            <decimal value="1"/>
+          </trueValue>
+          <falseValue>
+            <decimal value="0"/>
+          </falseValue>
+        </boolean>
+        <text
+            id="PointAndPrint_TrustedServers_Edit"
+            maxLength="8192"
+            valueName="ServerList"
+            />
+        <boolean
+            id="PointAndPrint_TrustedForest_Chk"
+            valueName="InForest"
+            >
+          <trueValue>
+            <decimal value="1"/>
+          </trueValue>
+          <falseValue>
+            <decimal value="0"/>
+          </falseValue>
+        </boolean>
+        <enum
+            id="PointAndPrint_NoWarningNoElevationOnInstall_Enum"
+            valueName="NoWarningNoElevationOnInstall"
+            >
+          <item displayName="$(string.WarnAndElevateOnUpdate)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.NoWarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum
+            id="PointAndPrint_NoWarningNoElevationOnUpdate_Enum"
+            valueName="UpdatePromptSettings"
+            >
+          <item displayName="$(string.WarnAndElevateOnUpdate)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.WarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.NoWarningNoElevationOnUpdate)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy
+        class="User"
+        displayName="$(string.PrinterDirectorySearchScope)"
+        explainText="$(string.PrinterDirectorySearchScope_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers\Wizard"
+        name="PrinterDirectorySearchScope"
+        presentation="$(presentation.PrinterDirectorySearchScope)"
+        >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <elements>
+        <text
+            id="PrinterDirectorySearchScope_Name"
+            maxLength="255"
+            valueName="Default Search Scope"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PrinterServerThread)"
+        explainText="$(string.PrinterServerThread_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="PrinterServerThread"
+        valueName="ServerThread"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Win2k"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PrintDriverIsolationExecutionPolicy)"
+        explainText="$(string.PrintDriverIsolationExecutionPolicy_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="PrintDriverIsolationExecutionPolicy"
+        valueName="PrintDriverIsolationExecutionPolicy"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PrintDriverIsolationOverrideCompat)"
+        explainText="$(string.PrintDriverIsolationOverrideCompat_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="PrintDriverIsolationOverrideCompat"
+        valueName="PrintDriverIsolationOverrideCompat"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.DoNotInstallCompatibleDriverFromWindowsUpdate)"
+        explainText="$(string.DoNotInstallCompatibleDriverFromWindowsUpdate_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="DoNotInstallCompatibleDriverFromWindowsUpdate"
+        valueName="DoNotInstallCompatibleDriverFromWindowsUpdate"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.V4DriverDisallowPrinterExtension)"
+        explainText="$(string.V4DriverDisallowPrinterExtension_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="V4DriverDisallowPrinterExtension"
+        valueName="V4DriverDisallowPrinterExtension"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MXDWUseLegacyOutputFormatMSXPS)"
+        explainText="$(string.MXDWUseLegacyOutputFormatMSXPS_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="MXDWUseLegacyOutputFormatMSXPS"
+        valueName="MXDWUseLegacyOutputFormatMSXPS"
+        >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>    
+    <policy
+        class="Machine"
+        displayName="$(string.ShowJobTitleInEventLogs)"
+        explainText="$(string.ShowJobTitleInEventLogs_Help)"
+        key="Software\Policies\Microsoft\Windows NT\Printers"
+        name="ShowJobTitleInEventLogs"
+        valueName="ShowJobTitleInEventLogs"
+      >
+      <parentCategory ref="windows:Printers"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

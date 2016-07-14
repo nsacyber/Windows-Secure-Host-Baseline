@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="diskdiagnostic" namespace="Microsoft.Policies.DiskDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_WindowsLonghornServerDesktopExperienceOrVista" displayName="$(string.SUPPORTED_WindowsLonghornServerDesktopExperienceOrVista)" />
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="WdiScenarioCategory" displayName="$(string.WdiScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DfdAlertPolicy" class="Machine" displayName="$(string.DfdAlertPolicy)" explainText="$(string.DfdAlertPolicyExplain)" presentation="$(presentation.DfdAlertPolicy)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="SUPPORTED_WindowsLonghornServerDesktopExperienceOrVista" />
+      <elements>
+        <text id="DfdAlertPolicyTitle" valueName="DfdAlertTextOverride" required="true" maxLength="512" />
+      </elements>
+    </policy>
+    <policy name="WdiScenarioExecutionPolicy" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.WdiScenarioExecutionPolicyExplain)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="SUPPORTED_WindowsLonghornServerDesktopExperienceOrVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{29689E29-2CE9-4751-B4FC-8EFF5066E3FD}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+  </policies>
+</policyDefinitions>

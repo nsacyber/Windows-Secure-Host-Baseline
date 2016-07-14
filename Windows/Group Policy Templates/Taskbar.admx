@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+    <policyNamespaces>
+        <target prefix="taskbar" namespace="Microsoft.Policies.TaskBar2" />
+        <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    </policyNamespaces>
+    <resources minRequiredRevision="1.0" />
+    <policies>
+        <policy name="HideSCAPower" class="User" displayName="$(string.HideSCABattery)" explainText="$(string.HideSCABattery_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="HideSCAPower">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="HideSCANetwork" class="User" displayName="$(string.HideSCANetwork)" explainText="$(string.HideSCANetwork_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="HideSCANetwork">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="HideSCAVolume" class="User" displayName="$(string.HideSCAVolume)" explainText="$(string.HideSCAVolume_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="HideSCAVolume">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="HideSCAHealth" class="User" displayName="$(string.HideSCAHealth)" explainText="$(string.HideSCAHealth_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="HideSCAHealth">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarLockAll" class="User" displayName="$(string.TaskbarLockAll)" explainText="$(string.TaskbarLockAll_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarLockAll">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoAddRemoveToolbar" class="User" displayName="$(string.TaskbarNoAddRemoveToolbar)" explainText="$(string.TaskbarNoAddRemoveToolbar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoAddRemoveToolbar">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoDragToolbar" class="User" displayName="$(string.TaskbarNoDragToolbar)" explainText="$(string.TaskbarNoDragToolbar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoDragToolbar">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoNotification" class="User" displayName="$(string.TaskbarNoNotification)" explainText="$(string.TaskbarNoNotification_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoNotification">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoRedock" class="User" displayName="$(string.TaskbarNoRedock)" explainText="$(string.TaskbarNoRedock_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoRedock">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoResize" class="User" displayName="$(string.TaskbarNoResize)" explainText="$(string.TaskbarNoResize_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoResize">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoThumbnail" class="User" displayName="$(string.TaskbarNoThumbnail)" explainText="$(string.TaskbarNoThumbnail_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TaskbarNoThumbnail">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoPinnedList" class="User" displayName="$(string.TaskbarNoPinnedList)" explainText="$(string.TaskbarNoPinnedList_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="TaskbarNoPinnedList">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoSystraySystemPromotion" class="User" displayName="$(string.NoSystraySystemPromotion)" explainText="$(string.NoSystraySystemPromotion_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoSystraySystemPromotion">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="EnableLegacyBalloonNotifications" class="User" displayName="$(string.EnableLegacyBalloonNotifications)" explainText="$(string.EnableLegacyBalloonNotifications_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="EnableLegacyBalloonNotifications">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoBalloonFeatureAdvertisements" class="User" displayName="$(string.NoBalloonFeatureAdvertisements)" explainText="$(string.NoBalloonFeatureAdvertisements_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoBalloonFeatureAdvertisements">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoRemoteDestinations" class="User" displayName="$(string.NoRemoteDestinations)" explainText="$(string.NoRemoteDestinations_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoRemoteDestinations">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoPinningToTaskbar" class="User" displayName="$(string.NoPinningToTaskbar)" explainText="$(string.NoPinningToTaskbar_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoPinningToTaskbar">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoPinningToDestinations" class="User" displayName="$(string.NoPinningToDestinations)" explainText="$(string.NoPinningToDestinations_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoPinningToDestinations">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="TaskbarNoMultimon" class="User" displayName="$(string.TaskbarNoMultimon)" explainText="$(string.TaskbarNoMultimon_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="TaskbarNoMultimon">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="ShowWindowsStoreAppsOnTaskbar" class="User" displayName="$(string.ShowWindowsStoreAppsOnTaskbar)" explainText="$(string.ShowWindowsStoreAppsOnTaskbar_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowWindowsStoreAppsOnTaskbar">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="2" />
+            </disabledValue>
+        </policy>
+        <policy name="DisableNotificationCenter" class="User" displayName="$(string.DisableNotificationCenter)" explainText="$(string.DisableNotificationCenter_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableNotificationCenter">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="NoPinningStoreToTaskbar" class="User" displayName="$(string.NoPinningStoreToTaskbar)" explainText="$(string.NoPinningStoreToTaskbar_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoPinningStoreToTaskbar">
+            <parentCategory ref="windows:StartMenu" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+    </policies>
+</policyDefinitions>

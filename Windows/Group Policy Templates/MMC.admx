@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="mmc" namespace="Microsoft.Policies.ManagementConsole" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="MMC" displayName="$(string.MMC)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="MMC_RESTRICT" displayName="$(string.MMC_RESTRICT)">
+      <parentCategory ref="MMC" />
+    </category>
+    <category name="MMC_ExtensionSnapins" displayName="$(string.MMC_ExtensionSnapins)">
+      <parentCategory ref="MMC_RESTRICT" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="MMC_Restrict_Author" class="User" displayName="$(string.MMC_Restrict_Author)" explainText="$(string.MMC_restrict_Author_Explain)" key="Software\Policies\Microsoft\MMC" valueName="RestrictAuthorMode">
+      <parentCategory ref="MMC" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Restrict_To_Permitted_Snapins" class="User" displayName="$(string.MMC_Restrict_To_Permitted_Snapins)" explainText="$(string.MMC_restrict_To_Permitted_Snapins_Explain)" key="Software\Policies\Microsoft\MMC" valueName="RestrictToPermittedSnapins">
+      <parentCategory ref="MMC" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ExtendView" class="User" displayName="$(string.MMC_ExtendView)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B708457E-DB61-4C55-A92F-0D4B5E9B1224}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ActiveXControl" class="User" displayName="$(string.MMC_ActiveXControl)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C96401CF-0E17-11D3-885B-00C04F72C717}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_LinkToWeb" class="User" displayName="$(string.MMC_LinkToWeb)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C96401D1-0E17-11D3-885B-00C04F72C717}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

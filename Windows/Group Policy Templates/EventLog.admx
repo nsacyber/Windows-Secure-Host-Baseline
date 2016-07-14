@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="eventlog" namespace="Microsoft.Policies.EventLogs" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="EventLogCategory" displayName="$(string.EventLogCategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="EventLog_Application" displayName="$(string.EventLog_Application)" explainText="$(string.ChannelName_Help)">
+      <parentCategory ref="EventLogCategory" />
+    </category>
+    <category name="EventLog_Security" displayName="$(string.EventLog_Security)" explainText="$(string.ChannelName_Help)">
+      <parentCategory ref="EventLogCategory" />
+    </category>
+    <category name="EventLog_Setup" displayName="$(string.EventLog_Setup)" explainText="$(string.ChannelName_Help)">
+      <parentCategory ref="EventLogCategory" />
+    </category>
+    <category name="EventLog_System" displayName="$(string.EventLog_System)" explainText="$(string.ChannelName_Help)">
+      <parentCategory ref="EventLogCategory" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Channel_Log_AutoBackup_1" class="Machine" displayName="$(string.Channel_Log_AutoBackup)" explainText="$(string.Channel_Log_AutoBackup_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Application" valueName="AutoBackupLogFiles">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_1" class="Machine" displayName="$(string.Channel_Log_FileLogAccess)" explainText="$(string.Channel_Log_FileLogAccessApplication_Help)" presentation="$(presentation.Channel_Log_FileLogAccess_1)" key="Software\Policies\Microsoft\Windows\EventLog\Application">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="ChannelAccess" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_5" class="Machine" displayName="$(string.Channel_Log_FileLogAccess_Legacy)" explainText="$(string.Channel_Log_FileLogAccessApplication_Help_Legacy)" presentation="$(presentation.Channel_Log_FileLogAccess_5)" key="System\CurrentControlSet\Services\EventLog\Application">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="CustomSD" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_Retention_1" class="Machine" displayName="$(string.Channel_Log_Retention)" explainText="$(string.Channel_Log_Retention_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Application" valueName="Retention">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_LogFilePath_1" class="Machine" displayName="$(string.Channel_LogFilePath)" explainText="$(string.Channel_LogFilePath_Help)" presentation="$(presentation.Channel_LogFilePath_1)" key="Software\Policies\Microsoft\Windows\EventLog\Application">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_LogFilePath" valueName="File" />
+      </elements>
+    </policy>
+    <policy name="Channel_LogMaxSize_1" class="Machine" displayName="$(string.Channel_LogMaxSize)" explainText="$(string.Channel_LogMaxSize_Help)" presentation="$(presentation.Channel_LogMaxSize_1)" key="Software\Policies\Microsoft\Windows\EventLog\Application">
+      <parentCategory ref="EventLog_Application" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="Channel_LogMaxSize" valueName="MaxSize" required="true" minValue="1024" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_AutoBackup_2" class="Machine" displayName="$(string.Channel_Log_AutoBackup)" explainText="$(string.Channel_Log_AutoBackup_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Security" valueName="AutoBackupLogFiles">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_2" class="Machine" displayName="$(string.Channel_Log_FileLogAccess)" explainText="$(string.Channel_Log_FileLogAccessSecurity_Help)" presentation="$(presentation.Channel_Log_FileLogAccess_2)" key="Software\Policies\Microsoft\Windows\EventLog\Security">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="ChannelAccess" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_6" class="Machine" displayName="$(string.Channel_Log_FileLogAccess_Legacy)" explainText="$(string.Channel_Log_FileLogAccessSecurity_Help_Legacy)" presentation="$(presentation.Channel_Log_FileLogAccess_6)" key="System\CurrentControlSet\Services\EventLog\Security">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="CustomSD" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_Retention_2" class="Machine" displayName="$(string.Channel_Log_Retention)" explainText="$(string.Channel_Log_Retention_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Security" valueName="Retention">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_LogFilePath_2" class="Machine" displayName="$(string.Channel_LogFilePath)" explainText="$(string.Channel_LogFilePath_Help)" presentation="$(presentation.Channel_LogFilePath_2)" key="Software\Policies\Microsoft\Windows\EventLog\Security">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_LogFilePath" valueName="File" />
+      </elements>
+    </policy>
+    <policy name="Channel_LogMaxSize_2" class="Machine" displayName="$(string.Channel_LogMaxSize)" explainText="$(string.Channel_LogMaxSize_Help)" presentation="$(presentation.Channel_LogMaxSize_2)" key="Software\Policies\Microsoft\Windows\EventLog\Security">
+      <parentCategory ref="EventLog_Security" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="Channel_LogMaxSize" valueName="MaxSize" required="true" minValue="20480" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_AutoBackup_3" class="Machine" displayName="$(string.Channel_Log_AutoBackup)" explainText="$(string.Channel_Log_AutoBackup_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Setup" valueName="AutoBackupLogFiles">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_3" class="Machine" displayName="$(string.Channel_Log_FileLogAccess)" explainText="$(string.Channel_Log_FileLogAccessApplication_Help)" presentation="$(presentation.Channel_Log_FileLogAccess_3)" key="Software\Policies\Microsoft\Windows\EventLog\Setup">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="ChannelAccess" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_7" class="Machine" displayName="$(string.Channel_Log_FileLogAccess_Legacy)" explainText="$(string.Channel_Log_FileLogAccessApplication_Help_Legacy)" presentation="$(presentation.Channel_Log_FileLogAccess_7)" key="System\CurrentControlSet\Services\EventLog\Setup">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="CustomSD" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_Retention_3" class="Machine" displayName="$(string.Channel_Log_Retention)" explainText="$(string.Channel_Log_Retention_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Setup" valueName="Retention">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_LogEnabled" class="Machine" displayName="$(string.Channel_LogEnabled)" explainText="$(string.Channel_LogEnabled_Help)" key="Software\Policies\Microsoft\Windows\EventLog\Setup" valueName="Enabled">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_LogFilePath_3" class="Machine" displayName="$(string.Channel_LogFilePath)" explainText="$(string.Channel_LogFilePath_Help)" presentation="$(presentation.Channel_LogFilePath_3)" key="Software\Policies\Microsoft\Windows\EventLog\Setup">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_LogFilePath" valueName="File" />
+      </elements>
+    </policy>
+    <policy name="Channel_LogMaxSize_3" class="Machine" displayName="$(string.Channel_LogMaxSize)" explainText="$(string.Channel_LogMaxSize_Help)" presentation="$(presentation.Channel_LogMaxSize_3)" key="Software\Policies\Microsoft\Windows\EventLog\Setup">
+      <parentCategory ref="EventLog_Setup" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="Channel_LogMaxSize" valueName="MaxSize" required="true" minValue="1024" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_AutoBackup_4" class="Machine" displayName="$(string.Channel_Log_AutoBackup)" explainText="$(string.Channel_Log_AutoBackup_Help)" key="Software\Policies\Microsoft\Windows\EventLog\System" valueName="AutoBackupLogFiles">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_4" class="Machine" displayName="$(string.Channel_Log_FileLogAccess)" explainText="$(string.Channel_Log_FileLogAccessSystem_Help)" presentation="$(presentation.Channel_Log_FileLogAccess_4)" key="Software\Policies\Microsoft\Windows\EventLog\System">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="ChannelAccess" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_FileLogAccess_8" class="Machine" displayName="$(string.Channel_Log_FileLogAccess_Legacy)" explainText="$(string.Channel_Log_FileLogAccessSystem_Help_Legacy)" presentation="$(presentation.Channel_Log_FileLogAccess_8)" key="System\CurrentControlSet\Services\EventLog\System">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_Log_FileLogAccess" valueName="CustomSD" />
+      </elements>
+    </policy>
+    <policy name="Channel_Log_Retention_4" class="Machine" displayName="$(string.Channel_Log_Retention)" explainText="$(string.Channel_Log_Retention_Help)" key="Software\Policies\Microsoft\Windows\EventLog\System" valueName="Retention">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="Channel_LogFilePath_4" class="Machine" displayName="$(string.Channel_LogFilePath)" explainText="$(string.Channel_LogFilePath_Help)" presentation="$(presentation.Channel_LogFilePath_4)" key="Software\Policies\Microsoft\Windows\EventLog\System">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="Channel_LogFilePath" valueName="File" />
+      </elements>
+    </policy>
+    <policy name="Channel_LogMaxSize_4" class="Machine" displayName="$(string.Channel_LogMaxSize)" explainText="$(string.Channel_LogMaxSize_Help)" presentation="$(presentation.Channel_LogMaxSize_4)" key="Software\Policies\Microsoft\Windows\EventLog\System">
+      <parentCategory ref="EventLog_System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="Channel_LogMaxSize" valueName="MaxSize" required="true" minValue="1024" maxValue="2147483647" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

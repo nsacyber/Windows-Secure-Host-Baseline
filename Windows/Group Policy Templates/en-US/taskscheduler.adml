@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="AllowBrowse">Prohibit Browse</string>
+      <string id="AllowBrowseHelp">Limits newly scheduled to items on the user's Start menu, and prevents the user from changing the scheduled program for existing tasks.
+
+This setting removes the Browse button from the Schedule Task Wizard and from the Task tab of the properties dialog box for a task. Also, users cannot edit the "Run" box or the "Start in" box that determine the program and path for a task.
+
+As a result, when users create a task, they must select a program from the list in the Scheduled Task Wizard, which displays only the tasks that appear on the Start menu and its submenus. Once a task is created, users cannot change the program a task runs.
+
+Important: This setting does not prevent users from creating a new task by pasting or dragging any program into the Scheduled Tasks folder. To prevent this action, use the "Prohibit Drag-and-Drop" setting.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.</string>
+      <string id="DisableAdvanced">Hide Advanced Properties Checkbox in Add Scheduled Task Wizard</string>
+      <string id="DisableAdvancedHelp">This setting removes the "Open advanced properties for this task when I click Finish" checkbox from the last page of the Scheduled Task Wizard.  This policy is only designed to simplify task creation for beginning users.
+
+The checkbox, when checked, instructs Task Scheduler to automatically open the newly created task's property sheet upon completion of the "Add Scheduled Task" wizard.  The task's property sheet allows users to change task characteristics such as: the program the task runs, details of its schedule, idle time and power management settings, and its security context.  Beginning users will often not be interested or confused by having the property sheet displayed automatically.  Note that the checkbox is not checked by default even if this setting is Disabled or Not Configured.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.</string>
+      <string id="DragAndDrop">Prohibit Drag-and-Drop</string>
+      <string id="DragAndDropHelp">Prevents users from adding or removing tasks by moving or copying programs in the Scheduled Tasks folder.
+
+This setting disables the Cut, Copy, Paste, and Paste Shortcut items on the context menu and the Edit menu in Scheduled Tasks. It also disables the drag-and-drop features of the Scheduled Tasks folder.
+
+As a result, users cannot add new scheduled tasks by dragging, moving, or copying a document or program into the Scheduled tasks folder.
+
+This setting does not prevent users from using other methods to create new tasks, and it does not prevent users from deleting tasks.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.</string>
+      <string id="Execution">Prevent Task Run or End</string>
+      <string id="ExecutionHelp">Prevents users from starting and stopping tasks manually.
+
+This setting removes the Run and End Task items from the context menu that appears when you right-click a task. As a result, users cannot start tasks manually or force tasks to end before they are finished.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.</string>
+      <string id="PropertyPages">Hide Property Pages</string>
+      <string id="PropertyPagesHelp">Prevents users from viewing and changing the properties of an existing task.
+
+This setting removes the Properties item from the File menu in Scheduled Tasks and from the context menu that appears when you right-click a task. As a result, users cannot change any properties of a task. They can only see the properties that appear in Detail view and in the task preview.
+
+This setting prevents users from viewing and changing characteristics such as the program the task runs, its schedule details, idle time and power management settings, and its security context.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.
+
+Tip: This setting affects existing tasks only. To prevent users from changing the properties of newly created tasks, use the "Remove Advanced Menu" setting.</string>
+      <string id="TaskCreation">Prohibit New Task Creation</string>
+      <string id="TaskCreationHelp">Prevents users from creating new tasks.
+
+This setting removes the Add Scheduled Task item that starts the New Task Wizard. Also, the system does not respond when users try to move, paste, or drag programs or documents into the Scheduled Tasks folder.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.
+
+Important: This setting does not prevent administrators of a computer from using At.exe to create new tasks or prevent administrators from submitting tasks from remote computers.</string>
+      <string id="TaskDeletion">Prohibit Task Deletion</string>
+      <string id="TaskDeletionHelp">Prevents users from deleting tasks from the Scheduled Tasks folder.
+
+This setting removes the Delete command from the Edit menu in the Scheduled Tasks folder and from the menu that appears when you right-click a task. Also, the system does not respond when users try to cut or drag a task from the Scheduled Tasks folder.
+
+Note: This setting appears in the Computer Configuration and User Configuration folders. If both settings are configured, the setting in Computer Configuration takes precedence over the setting in User Configuration.
+
+Important: This setting does not prevent administrators of a computer from using At.exe to delete tasks.</string>
+      <string id="TaskScheduler">Task Scheduler</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

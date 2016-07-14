@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="taskscheduler" namespace="Microsoft.Policies.TaskScheduler" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="TaskScheduler" displayName="$(string.TaskScheduler)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowBrowse_1" class="User" displayName="$(string.AllowBrowse)" explainText="$(string.AllowBrowseHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Allow Browse">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="AllowBrowse_2" class="Machine" displayName="$(string.AllowBrowse)" explainText="$(string.AllowBrowseHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Allow Browse">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="DisableAdvanced_1" class="User" displayName="$(string.DisableAdvanced)" explainText="$(string.DisableAdvancedHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Disable Advanced">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="DisableAdvanced_2" class="Machine" displayName="$(string.DisableAdvanced)" explainText="$(string.DisableAdvancedHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Disable Advanced">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="DragAndDrop_1" class="User" displayName="$(string.DragAndDrop)" explainText="$(string.DragAndDropHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="DragAndDrop">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="DragAndDrop_2" class="Machine" displayName="$(string.DragAndDrop)" explainText="$(string.DragAndDropHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="DragAndDrop">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="Execution_1" class="User" displayName="$(string.Execution)" explainText="$(string.ExecutionHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Execution">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="Execution_2" class="Machine" displayName="$(string.Execution)" explainText="$(string.ExecutionHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Execution">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="PropertyPages_1" class="User" displayName="$(string.PropertyPages)" explainText="$(string.PropertyPagesHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Property Pages">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="PropertyPages_2" class="Machine" displayName="$(string.PropertyPages)" explainText="$(string.PropertyPagesHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Property Pages">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="TaskCreation_1" class="User" displayName="$(string.TaskCreation)" explainText="$(string.TaskCreationHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Task Creation">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="TaskCreation_2" class="Machine" displayName="$(string.TaskCreation)" explainText="$(string.TaskCreationHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Task Creation">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="TaskDeletion_1" class="User" displayName="$(string.TaskDeletion)" explainText="$(string.TaskDeletionHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Task Deletion">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="TaskDeletion_2" class="Machine" displayName="$(string.TaskDeletion)" explainText="$(string.TaskDeletionHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler5.0" valueName="Task Deletion">
+      <parentCategory ref="TaskScheduler" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+  </policies>
+</policyDefinitions>

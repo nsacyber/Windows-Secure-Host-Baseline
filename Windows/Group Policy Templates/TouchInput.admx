@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="touchinput" namespace="Microsoft.Policies.TabletPCTouchInput" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="TouchInput" displayName="$(string.TouchInput)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="TouchInputOff_1" class="User" displayName="$(string.TouchInputOff)" explainText="$(string.TouchInputOff_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffTouchInput">
+      <parentCategory ref="TouchInput" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TouchInputOff_2" class="Machine" displayName="$(string.TouchInputOff)" explainText="$(string.TouchInputOff_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffTouchInput">
+      <parentCategory ref="TouchInput" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PanningEverywhereOff_1" class="User" displayName="$(string.SingleFingerPanningOff)" explainText="$(string.SingleFingerPanningOff_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffPanning">
+      <parentCategory ref="TouchInput" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PanningEverywhereOff_2" class="Machine" displayName="$(string.SingleFingerPanningOff)" explainText="$(string.SingleFingerPanningOff_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffPanning">
+      <parentCategory ref="TouchInput" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Reliability Analysis Component</displayName>
+  <description>Reliability Analysis Component</description>
+  <resources>
+    <stringTable>
+      <string id="RAC">Windows Reliability Analysis</string>
+      <string id="ConfigureRacWmi">Configure Reliability WMI Providers</string>
+      <string id="ConfigureRacWmi_help">This policy setting allows the Windows Management Instrumentation (WMI) providers Win32_ReliabilityStabilitymetrics and Win32_ReliabilityRecords to provide data to Reliability Monitor in the Security and Maintenance control panel, and to respond to WMI requests.
+
+If you enable or do not configure this policy setting, the listed providers will respond to WMI queries, and Reliability Monitor will display system reliability information.
+
+If you disable this policy setting, Reliability Monitor will not display system reliability information, and WMI-capable applications will be unable to access reliability information from the listed providers.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

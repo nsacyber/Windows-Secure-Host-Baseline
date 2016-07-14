@@ -1,0 +1,42 @@
+<policyDefinitions revision="1.0" schemaVersion="1.0">
+  <policyNamespaces>
+    <target prefix="fullarmor" namespace="FullArmor.Policies.0EF0F32B_7305_4FC7_BBEB_D43DCC622C81" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="ELAMCategory" displayName="$(string.ELAMCategory)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="POL_DriverLoadPolicy_Name" class="Machine" displayName="$(string.POL_DriverLoadPolicy_Name)" explainText="$(string.POL_DriverLoadPolicy_Name_Help)" presentation="$(presentation.POL_DriverLoadPolicy_Name)" key="System\CurrentControlSet\Policies\EarlyLaunch" valueName="DriverLoadPolicy">
+      <parentCategory ref="ELAMCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />      
+      <elements>
+        <enum id="SelectDriverLoadPolicy" key="System\CurrentControlSet\Policies\EarlyLaunch" valueName="DriverLoadPolicy" required="true">
+          <item displayName="$(string.SelectDriverLoadPolicy-GoodOnly)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.SelectDriverLoadPolicy-GoodPlusUnknown)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SelectDriverLoadPolicy-GoodPlusUnknownPlusKnownBadCritical)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.SelectDriverLoadPolicy-All)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

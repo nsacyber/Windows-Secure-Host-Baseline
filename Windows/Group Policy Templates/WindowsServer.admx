@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="server" namespace="Microsoft.Policies.Server" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <!--At least Windows Server 2008-->
+      <definition name="SUPPORTED_WindowsServer2008" displayName="$(string.SUPPORTED_WindowsServer2008)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="5"/>
+        </or>
+      </definition>
+      <definition name="SUPPORTED_WindowsServer2003R2" displayName="$(string.SUPPORTED_WindowsServer2003R2)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="5"/>
+        </or>
+      </definition>
+    </definitions>
+  </supportedOn>
+  
+  <categories>
+    <category name="ServerComponents" displayName="$(string.ServerComponents)" explainText="$(string.ServerComponents_Help)" />
+  </categories>
+</policyDefinitions>

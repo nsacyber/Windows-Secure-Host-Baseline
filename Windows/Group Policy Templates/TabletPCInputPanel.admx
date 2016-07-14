@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="tabletpcinputpanel" namespace="Microsoft.Policies.TabletPCInputPanel" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="TabletTIP" displayName="$(string.TabletTIP)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AutoComplete_1" class="User" displayName="$(string.AutoComplete)" explainText="$(string.AutoCompleteExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisableACIntegration">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AutoComplete_2" class="Machine" displayName="$(string.AutoComplete)" explainText="$(string.AutoCompleteExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisableACIntegration">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EdgeTarget_1" class="User" displayName="$(string.EdgeTarget)" explainText="$(string.EdgeTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisableEdgeTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EdgeTarget_2" class="Machine" displayName="$(string.EdgeTarget)" explainText="$(string.EdgeTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisableEdgeTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IPTIPTarget_1" class="User" displayName="$(string.IPTIPTarget)" explainText="$(string.IPTIPTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="HideIPTIPTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IPTIPTarget_2" class="Machine" displayName="$(string.IPTIPTarget)" explainText="$(string.IPTIPTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="HideIPTIPTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IPTIPTouchTarget_1" class="User" displayName="$(string.IPTIPTouchTarget)" explainText="$(string.IPTIPTouchTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="HideIPTIPTouchTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IPTIPTouchTarget_2" class="Machine" displayName="$(string.IPTIPTouchTarget)" explainText="$(string.IPTIPTouchTargetExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="HideIPTIPTouchTarget">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PasswordSecurity_1" class="User" displayName="$(string.PasswordSecurity)" explainText="$(string.PasswordSecurityExplain)" presentation="$(presentation.PasswordSecurity_1)" key="software\policies\microsoft\TabletTip\1.7" valueName="PasswordSecurityState">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="PasswordSecurity" valueName="PasswordSecurity" required="true">
+          <item displayName="$(string.PasswordSecurity_Low)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_MediumLow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_Medium)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_MediumHigh)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_High)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="PasswordSecurity_2" class="Machine" displayName="$(string.PasswordSecurity)" explainText="$(string.PasswordSecurityExplain)" presentation="$(presentation.PasswordSecurity_2)" key="software\policies\microsoft\TabletTip\1.7" valueName="PasswordSecurityState">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="PasswordSecurity" valueName="PasswordSecurity" required="true">
+          <item displayName="$(string.PasswordSecurity_Low)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_MediumLow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_Medium)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_MediumHigh)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.PasswordSecurity_High)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="RareChar_1" class="User" displayName="$(string.RareChar)" explainText="$(string.RareCharExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="IncludeRareChar">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RareChar_2" class="Machine" displayName="$(string.RareChar)" explainText="$(string.RareCharExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="IncludeRareChar">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ScratchOut_1" class="User" displayName="$(string.ScratchOut)" explainText="$(string.ScratchOutExplain)" presentation="$(presentation.ScratchOut_1)" key="software\policies\microsoft\TabletTip\1.7" valueName="ScratchOutState">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="ScratchOut" valueName="ScratchOut" required="true">
+          <item displayName="$(string.ScratchOut_All)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ScratchOut_Tolerant)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ScratchOut_None)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ScratchOut_2" class="Machine" displayName="$(string.ScratchOut)" explainText="$(string.ScratchOutExplain)" presentation="$(presentation.ScratchOut_2)" key="software\policies\microsoft\TabletTip\1.7" valueName="ScratchOutState">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="ScratchOut" valueName="ScratchOut" required="true">
+          <item displayName="$(string.ScratchOut_All)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ScratchOut_Tolerant)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ScratchOut_None)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="Prediction_1" class="User" displayName="$(string.EnablePrediction)" explainText="$(string.EnablePredictionExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisablePrediction">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Prediction_2" class="Machine" displayName="$(string.EnablePrediction)" explainText="$(string.EnablePredictionExplain)" key="software\policies\microsoft\TabletTip\1.7" valueName="DisablePrediction">
+      <parentCategory ref="TabletTIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

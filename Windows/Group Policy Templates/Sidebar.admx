@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="sidebar" namespace="Microsoft.Policies.SideBar" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Sidebar" displayName="$(string.Sidebar)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="TurnOffSidebar_1" class="User" displayName="$(string.TurnOffSidebar)" explainText="$(string.TurnOffSidebar_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffSidebar">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffSidebar_2" class="Machine" displayName="$(string.TurnOffSidebar)" explainText="$(string.TurnOffSidebar_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffSidebar">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffUnsignedGagdets_1" class="User" displayName="$(string.TurnOffUnsignedGagdets)" explainText="$(string.TurnOffUnsignedGadgets_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffUnsignedGadgets">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffUnsignedGagdets_2" class="Machine" displayName="$(string.TurnOffUnsignedGagdets)" explainText="$(string.TurnOffUnsignedGadgets_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffUnsignedGadgets">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffUserInstalledGagdets_1" class="User" displayName="$(string.TurnOffUserInstalledGadgets)" explainText="$(string.TurnOffUserInstalledGadgets_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffUserInstalledGadgets">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffUserInstalledGagdets_2" class="Machine" displayName="$(string.TurnOffUserInstalledGadgets)" explainText="$(string.TurnOffUserInstalledGadgets_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Windows\Sidebar" valueName="TurnOffUserInstalledGadgets">
+      <parentCategory ref="Sidebar" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

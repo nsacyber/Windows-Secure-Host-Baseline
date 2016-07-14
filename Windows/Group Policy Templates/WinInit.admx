@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wininit" namespace="Microsoft.Policies.WindowsInitialization" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Shutdown" displayName="$(string.ShutdownOptions)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="ShutdownOptions" displayName="$(string.Shutdown)">
+        <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableNamedPipeShutdownPolicyDescription" class="Machine" displayName="$(string.DisableNamedPipeShutdownPolicyDescription)" explainText="$(string.DisableNamedPipeShutdownPolicyDescription_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableShutdownNamedPipe">
+      <parentCategory ref="Shutdown" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShutdownTimeoutHungSessionsDescription" class="Machine" displayName="$(string.ShutdownTimeoutHungSessionsDescription)" explainText="$(string.ShutdownTimeoutHungSessionsDescription_Help)" presentation="$(presentation.ShutdownTimeoutHungSessionsDescription)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="Shutdown" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="ShutdownSessionTimeout_Time" valueName="ShutdownSessionTimeout" />
+      </elements>
+    </policy>
+    <policy name="Hiberboot" class="Machine" displayName="$(string.Hiberboot)" explainText="$(string.Hiberboot_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="HiberbootEnabled">
+        <parentCategory ref="ShutdownOptions" />
+        <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

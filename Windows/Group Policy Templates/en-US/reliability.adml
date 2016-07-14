@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="EE_EnablePersistentTimeStamp">Enable Persistent Time Stamp</string>
+      <string id="EE_EnablePersistentTimeStamp_Help">This policy setting allows the system to detect the time of unexpected shutdowns by writing the current time to disk on a schedule controlled by the Timestamp Interval.
+
+If you enable this policy setting, you are able to specify how often the Persistent System Timestamp is refreshed and subsequently written to the disk. You can specify the Timestamp Interval in seconds.
+
+If you disable this policy setting, the Persistent System Timestamp is turned off and the timing of unexpected shutdowns is not recorded.
+
+If you do not configure this policy setting, the Persistent System Timestamp is refreshed according the default, which is every 60 seconds beginning with Windows Server 2003.
+
+Note: This feature might interfere with power configuration settings that turn off hard disks after a period of inactivity. These power settings may be accessed in the Power Options Control Panel.</string>
+      <string id="PCH_ReportShutdownEvents">Report unplanned shutdown events</string>
+      <string id="PCH_ReportShutdownEvents_Help">This policy setting controls whether or not unplanned shutdown events can be reported when error reporting is enabled.
+
+If you enable this policy setting, error reporting includes unplanned shutdown events.
+
+If you disable this policy setting, unplanned shutdown events are not included in error reporting.
+
+If you do not configure this policy setting, users can adjust this setting using the control panel, which is set to "Upload unplanned shutdown events" by default.
+
+Also see the "Configure Error Reporting" policy setting.</string>
+      <string id="ShutdownEventTrackerStateFile">Activate Shutdown Event Tracker System State Data feature</string>
+      <string id="ShutdownEventTrackerStateFile_Help">This policy setting defines when the Shutdown Event Tracker System State Data feature is activated.
+
+The system state data file contains information about the basic system state as well as the state of all running processes.
+
+If you enable this policy setting, the System State Data feature is activated when the user indicates that the shutdown or restart is unplanned.
+
+If you disable this policy setting, the System State Data feature is never activated.
+
+If you do not configure this policy setting, the default behavior for the System State Data feature occurs.
+
+Note: By default, the System State Data feature is always enabled on Windows Server 2003. See "Supported on" for all supported versions.</string>
+      <string id="ShutdownReason">Display Shutdown Event Tracker</string>
+      <string id="ShutdownReason_Always">Always</string>
+      <string id="ShutdownReason_Help">The Shutdown Event Tracker can be displayed when you shut down a workstation or server.  This is an extra set of questions that is displayed when you invoke a shutdown to collect information related to why you are shutting down the computer.
+
+If you enable this setting and choose "Always" from the drop-down menu list, the Shutdown Event Tracker is displayed when the computer shuts down.
+
+If you enable this policy setting and choose "Server Only" from the drop-down menu list, the Shutdown Event Tracker is displayed when you shut down a computer running Windows Server. (See "Supported on" for supported versions.)
+
+If you enable this policy setting and choose "Workstation Only" from the drop-down menu list, the Shutdown Event Tracker is displayed when you shut down a computer running a client version of Windows. (See "Supported on" for supported versions.)
+
+If you disable this policy setting, the Shutdown Event Tracker is not displayed when you shut down the computer.
+
+If you do not configure this policy setting, the default behavior for the Shutdown Event Tracker occurs.
+
+Note: By default, the Shutdown Event Tracker is only displayed on computers running Windows Server.</string>
+      <string id="ShutdownReason_SrvOnly">Server Only</string>
+      <string id="ShutdownReason_WkstnOnly">Workstation Only</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="EE_EnablePersistentTimeStamp">
+        <text>The setting allows you to customize how often the</text>
+        <text>Persistent System Time Stamp is written to the disk.</text>
+        <text>The range is 1 to 86400 seconds (1 day).</text>
+        <decimalTextBox refId="EE_EnablePersistentTimeStamp_Desc4" defaultValue="60">Seconds: </decimalTextBox>
+      </presentation>
+      <presentation id="ShutdownReason">
+        <dropdownList refId="ShutdownReason_Box" defaultItem="0">Shutdown Event Tracker should be displayed:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

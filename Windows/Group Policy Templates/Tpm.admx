@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="tpm" namespace="Microsoft.Policies.TrustedPlatformModule" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="TPMCategory" displayName="$(string.TPMCategory)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ActiveDirectoryBackup_Name" class="Machine" displayName="$(string.ActiveDirectoryBackup_Name)" explainText="$(string.ActiveDirectoryBackup_Help)" key="Software\Policies\Microsoft\TPM">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList defaultKey="Software\Policies\Microsoft\TPM">
+        <item valueName="ActiveDirectoryBackup">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <!-- 
+          Windows Vista and Windows 7 specified RequireActiveDirectoryBackup
+          as a separate setting for the ADBackup policy. To simplify TPM
+          policy, backup required is implied by enabling AD
+          Backup. By setting the RequireActiveDirectoryBackup value to 1 when
+          the AD backup policy is enabled, downlevel systems will see
+          consistent behavior.
+        -->
+        <item valueName="RequireActiveDirectoryBackup">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList defaultKey="Software\Policies\Microsoft\TPM">
+        <item valueName="ActiveDirectoryBackup">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item valueName="RequireActiveDirectoryBackup">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="OSManagedAuth_Name" class="Machine" displayName="$(string.OSManagedAuth_Name)" explainText="$(string.OSManagedAuth_Help)" presentation="$(presentation.OSManagedAuth_Name)" key="Software\Policies\Microsoft\TPM">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="SelectOSManagedAuthLevel" valueName="OSManagedAuthLevel" required="true">
+          <item displayName="$(string.OSManagedAuth-TpmAuthFull)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.OSManagedAuth-TpmAuthAdminPlusUser)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.OSManagedAuth-TpmAuthNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>    
+    <policy name="BlockedCommandsList_Name" class="Machine" displayName="$(string.BlockedCommandsList_Name)" explainText="$(string.BlockedCommandsList_Help)" presentation="$(presentation.BlockedCommandsList_Name)" key="SOFTWARE\Policies\Microsoft\Tpm\BlockedCommands" valueName="Enabled">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="BlockedCommandsList_Ordinals2" key="SOFTWARE\Policies\Microsoft\Tpm\BlockedCommands\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="IgnoreDefaultList_Name" class="Machine" displayName="$(string.IgnoreDefaultList_Name)" explainText="$(string.IgnoreDefaultList_Help)" key="Software\Policies\Microsoft\TPM\BlockedCommands" valueName="IgnoreDefaultList">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IgnoreLocalList_Name" class="Machine" displayName="$(string.IgnoreLocalList_Name)" explainText="$(string.IgnoreLocalList_Help)" key="Software\Policies\Microsoft\TPM\BlockedCommands" valueName="IgnoreLocalList">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+      <policy name="StandardUserAuthorizationFailureDuration_Name" class="Machine" displayName="$(string.StandardUserAuthorizationFailureDuration_Name)" explainText="$(string.StandardUserAuthorizationFailureDuration_Name_Help)" presentation="$(presentation.StandardUserAuthorizationFailureDuration_Name)" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureDuration">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="DXT_StandardUserAuthorizationFailureDuration_Name" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureDuration" maxValue="10000" />
+      </elements>
+    </policy>
+    <policy name="StandardUserAuthorizationFailureIndividualThreshold_Name" class="Machine" displayName="$(string.StandardUserAuthorizationFailureIndividualThreshold_Name)" explainText="$(string.StandardUserAuthorizationFailureIndividualThreshold_Name_Help)" presentation="$(presentation.StandardUserAuthorizationFailureIndividualThreshold_Name)" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureIndividualThreshold">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="DXT_StandardUserAuthorizationFailureIndividualThreshold_Name" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureIndividualThreshold" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="StandardUserAuthorizationFailureTotalThreshold_Name" class="Machine" displayName="$(string.StandardUserAuthorizationFailureTotalThreshold_Name)" explainText="$(string.StandardUserAuthorizationFailureTotalThreshold_Name_Help)" presentation="$(presentation.StandardUserAuthorizationFailureTotalThreshold_Name)" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureTotalThreshold">
+      <parentCategory ref="TPMCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="DXT_StandardUserAuthorizationFailureTotalThreshold_Name" key="Software\Policies\Microsoft\Tpm" valueName="StandardUserAuthorizationFailureTotalThreshold" maxValue="100" />
+      </elements>
+    </policy>    
+  </policies>
+</policyDefinitions>

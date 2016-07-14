@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="remoteassistance" namespace="Microsoft.Policies.RemoteAssistance" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="RemoteAssist" displayName="$(string.RemoteAssist)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="RA_Logging" class="Machine" displayName="$(string.RA_Logging)" explainText="$(string.RA_Logging_Help)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="LoggingEnabled">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RA_EncryptedTicketOnly" class="Machine" displayName="$(string.RA_EncryptedTicketOnly)" explainText="$(string.RA_EncryptedTicketOnly_Help)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="CreateEncryptedOnlyTickets">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RA_Optimize_Bandwidth" class="Machine" displayName="$(string.RA_Optimize_Bandwidth)" explainText="$(string.RA_Optimize_Bandwidth_Help)" presentation="$(presentation.RA_Optimize_Bandwidth)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="UseBandwidthOptimization">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="RA_Optimize_Bandwidth_List" valueName="OptimizeBandwidth">
+          <item displayName="$(string.RA_Optimize_Bandwidth_14)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Optimize_Bandwidth_12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Optimize_Bandwidth_8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Optimize_Bandwidth_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="RA_Options" class="Machine" displayName="$(string.RA_Options)" explainText="$(string.RA_Options_Help)" presentation="$(presentation.RA_Options)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="UseCustomMessages">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="RA_Options_Share_Control_Message" valueName="ShareControlMessage" />
+        <text id="RA_Options_Connect_Message" valueName="ViewMessage" />
+      </elements>
+    </policy>
+    <policy name="RA_Solicit" class="Machine" displayName="$(string.RA_Solicit)" explainText="$(string.RA_Solicit_Help)" presentation="$(presentation.RA_Solicit)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="fAllowToGetHelp">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="RA_Solicit_Control_List" valueName="fAllowFullControl">
+          <item displayName="$(string.RA_Solicit_Control_Ctrl)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Solicit_Control_View)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="RA_Solicit_ExpireValue_Edt" valueName="MaxTicketExpiry" minValue="1" maxValue="99" />
+        <enum id="RA_Solicit_ExpireUnits_List" valueName="MaxTicketExpiryUnits">
+          <item displayName="$(string.RA_Solicit_Control_Minutes)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Solicit_Control_Hours)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Solicit_Control_Days)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="RA_Solicit_Mailto_List" valueName="fUseMailto">
+          <item displayName="$(string.RA_Solicit_SimpleMapi)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Solicit_Mailto)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="RA_Unsolicit" class="Machine" displayName="$(string.RA_Unsolicit)" explainText="$(string.RA_Unsolicit_Help)" presentation="$(presentation.RA_Unsolicit)" key="Software\policies\Microsoft\Windows NT\Terminal Services" valueName="fAllowUnsolicited">
+      <parentCategory ref="RemoteAssist" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="RA_Unsolicit_Control_List" valueName="fAllowUnsolicitedFullControl">
+          <item displayName="$(string.RA_Unsolicit_Control_Ctrl)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RA_Unsolicit_Control_View)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <list id="RA_Unsolicit_DACL_Edit" key="Software\policies\Microsoft\Windows NT\Terminal Services\RAUnsolicit" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

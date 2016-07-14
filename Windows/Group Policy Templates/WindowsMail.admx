@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsmail" namespace="Microsoft.Policies.WindowsMail" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WindowsMail" displayName="$(string.WindowsMail)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="TurnOffWindowsMail_1" class="User" displayName="$(string.TurnOffWindowsMail)" explainText="$(string.WindowsMail_help)" key="SOFTWARE\Policies\Microsoft\Windows Mail" valueName="ManualLaunchAllowed">
+      <parentCategory ref="WindowsMail" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffWindowsMail_2" class="Machine" displayName="$(string.TurnOffWindowsMail)" explainText="$(string.WindowsMail_help)" key="SOFTWARE\Policies\Microsoft\Windows Mail" valueName="ManualLaunchAllowed">
+      <parentCategory ref="WindowsMail" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffCommunities_1" class="User" displayName="$(string.TurnOffCommunities)" explainText="$(string.TurnOffCommunities_help)" key="SOFTWARE\Policies\Microsoft\Windows Mail" valueName="DisableCommunities">
+      <parentCategory ref="WindowsMail" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffCommunities_2" class="Machine" displayName="$(string.TurnOffCommunities)" explainText="$(string.TurnOffCommunities_help)" key="SOFTWARE\Policies\Microsoft\Windows Mail" valueName="DisableCommunities">
+      <parentCategory ref="WindowsMail" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

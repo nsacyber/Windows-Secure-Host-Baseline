@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="diskquota" namespace="Microsoft.Policies.DiskQuota" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DiskQuota" displayName="$(string.DiskQuota)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DQ_Enable" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" class="Machine" displayName="$(string.DQ_Enable)" explainText="$(string.DQ_Enable_Help)" key="Software\Policies\Microsoft\Windows NT\DiskQuota" valueName="Enable">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DQ_Enforce" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" class="Machine" displayName="$(string.DQ_Enforce)" explainText="$(string.DQ_Enforce_Help)" key="Software\Policies\Microsoft\Windows NT\DiskQuota" valueName="Enforce">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DQ_Limit" class="Machine" displayName="$(string.DQ_Limit)" explainText="$(string.DQ_Limit_Help)" presentation="$(presentation.DQ_Limit)" key="Software\Policies\Microsoft\Windows NT\DiskQuota">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="DQ_LimitValue" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" valueName="Limit" required="true" maxValue="1000" />
+        <enum id="DQ_LimitUnits" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" valueName="LimitUnits" required="true">
+          <item displayName="$(string.DQ_UnitsKB)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsMB)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsGB)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsTB)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsPB)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsEB)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="DQ_ThresholdValue" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" valueName="Threshold" required="true" maxValue="1000" />
+        <enum id="DQ_ThresholdUnits" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" valueName="ThresholdUnits" required="true">
+          <item displayName="$(string.DQ_UnitsKB)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsMB)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsGB)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsTB)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsPB)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.DQ_UnitsEB)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DQ_LogEventOverLimit" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" class="Machine" displayName="$(string.DQ_LogEventOverLimit)" explainText="$(string.DQ_LogEventOverLimit_Help)" key="Software\Policies\Microsoft\Windows NT\DiskQuota" valueName="LogEventOverLimit">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DQ_LogEventOverThreshold" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" class="Machine" displayName="$(string.DQ_LogEventOverThreshold)" explainText="$(string.DQ_LogEventOverThreshold_Help)" key="Software\Policies\Microsoft\Windows NT\DiskQuota" valueName="LogEventOverThreshold">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DQ_RemovableMedia" clientExtension="{3610eda5-77ef-11d2-8dc5-00c04fa31a66}" class="Machine" displayName="$(string.DQ_RemovableMedia)" explainText="$(string.DQ_RemovableMedia_Help)" key="Software\Policies\Microsoft\Windows NT\DiskQuota" valueName="ApplyToRemovableMedia">
+      <parentCategory ref="DiskQuota" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+  </policies>
+</policyDefinitions>

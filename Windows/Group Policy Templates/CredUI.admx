@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="credui" namespace="Microsoft.Policies.CredentialsUI" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CredUI" displayName="$(string.CredUI)" explainText="$(string.CredUI_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="EnumerateAdministrators" class="Machine" displayName="$(string.EnumerateAdministrators)" explainText="$(string.EnumerateAdministrators_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\CredUI" valueName="EnumerateAdministrators">
+      <parentCategory ref="CredUI" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableSecureCredentialPrompting" class="Machine" displayName="$(string.EnableSecureCredentialPrompting)" explainText="$(string.EnableSecureCredentialPrompting_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\CredUI" valueName="EnableSecureCredentialPrompting">
+      <parentCategory ref="CredUI" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+    </policy>
+    <policy name="DisablePasswordReveal" class="Both" displayName="$(string.DisablePasswordReveal)" explainText="$(string.DisablePasswordReveal_Help)" key="Software\Policies\Microsoft\Windows\CredUI" valueName="DisablePasswordReveal">
+      <parentCategory ref="CredUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows8_Or_IE10" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="cloudcontent" namespace="Microsoft.Policies.CloudContent" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CloudContent" displayName="$(string.CloudContent)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableWindowsConsumerFeatures" class="Machine" displayName="$(string.DisableWindowsConsumerFeatures)" explainText="$(string.DisableWindowsConsumerFeatures_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableWindowsConsumerFeatures">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSoftLanding" class="Machine" displayName="$(string.DisableSoftLanding)" explainText="$(string.DisableSoftLanding_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableSoftLanding">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

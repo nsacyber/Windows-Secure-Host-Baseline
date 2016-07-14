@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="w32time" namespace="Microsoft.Policies.WindowsTimeService" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="W32TIME_ROOT" displayName="$(string.W32TIME_ROOT)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="W32TIME_TIMEPROVIDERS" displayName="$(string.W32TIME_TIMEPROVIDERS)">
+      <parentCategory ref="W32TIME_ROOT" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="W32TIME_POLICY_CONFIG" class="Machine" displayName="$(string.W32TIME_POLICY_CONFIG)" explainText="$(string.W32TIME_CONFIG_EXPLAIN)" presentation="$(presentation.W32TIME_POLICY_CONFIG)" key="Software\Policies\Microsoft\W32Time\Config">
+      <parentCategory ref="W32TIME_ROOT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="W32TIME_FrequencyCorrectRate" valueName="FrequencyCorrectRate" minValue="1" />
+        <decimal id="W32TIME_HoldPeriod" valueName="HoldPeriod" minValue="1" />
+        <decimal id="W32TIME_LargePhaseOffset" valueName="LargePhaseOffset" maxValue="4294967295" />
+        <decimal id="W32TIME_MaxAllowedPhaseOffset" valueName="MaxAllowedPhaseOffset" />
+        <decimal id="W32TIME_MaxNegPhaseCorrection" valueName="MaxNegPhaseCorrection" maxValue="4294967295" />
+        <decimal id="W32TIME_MaxPosPhaseCorrection" valueName="MaxPosPhaseCorrection" maxValue="4294967295" />
+        <decimal id="W32TIME_PhaseCorrectRate" valueName="PhaseCorrectRate" minValue="1" />
+        <decimal id="W32TIME_PollAdjustFactor" valueName="PollAdjustFactor" minValue="1" />
+        <decimal id="W32TIME_SpikeWatchPeriod" valueName="SpikeWatchPeriod" minValue="1" />
+        <decimal id="W32TIME_UpdateInterval" valueName="UpdateInterval" minValue="1" maxValue="4294967295" />
+        <decimal id="W32TIME_AnnounceFlags" valueName="AnnounceFlags" maxValue="16" />
+        <decimal id="W32TIME_EventLogFlags" valueName="EventLogFlags" maxValue="3" />
+        <decimal id="W32TIME_LocalClockDispersion" valueName="LocalClockDispersion" maxValue="16" />
+        <decimal id="W32TIME_MaxPollInterval" valueName="MaxPollInterval" />
+        <decimal id="W32TIME_MinPollInterval" valueName="MinPollInterval" maxValue="15" />
+        <decimal id="W32TIME_RequireSecureTimeSyncRequests" valueName="RequireSecureTimeSyncRequests" minValue="0" maxValue="1" />
+        <decimal id="W32TIME_UtilizeSslTimeData" valueName="UtilizeSslTimeData" minValue="0" maxValue="1" />
+        <decimal id="W32TIME_ChainEntryTimeout" valueName="ChainEntryTimeout" minValue="2" maxValue="16" />
+        <decimal id="W32TIME_ChainMaxEntries" valueName="ChainMaxEntries" minValue="128" maxValue="1024" />
+        <decimal id="W32TIME_ChainMaxHostEntries" valueName="ChainMaxHostEntries" minValue="1" maxValue="4" />
+        <decimal id="W32TIME_ChainDisable" valueName="ChainDisable" minValue="0" maxValue="1" />
+        <decimal id="W32TIME_ChainLoggingRate" valueName="ChainLoggingRate" minValue="0" maxValue="10080" />
+      </elements>
+    </policy>
+    <policy name="W32TIME_POLICY_CONFIGURE_NTPCLIENT" class="Machine" displayName="$(string.W32TIME_POLICY_CONFIGURE_NTPCLIENT)" explainText="$(string.W32TIME_CONFIGURE_NTPCLIENT_EXPLAIN)" presentation="$(presentation.W32TIME_POLICY_CONFIGURE_NTPCLIENT)" key="Software\Policies\Microsoft\W32time\TimeProviders\NtpClient">
+      <parentCategory ref="W32TIME_TIMEPROVIDERS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="W32TIME_NtpServer" key="Software\Policies\Microsoft\W32time\Parameters" valueName="NtpServer" />
+        <enum id="W32TIME_Type" key="Software\Policies\Microsoft\W32time\Parameters" valueName="Type">
+          <item displayName="$(string.W32TIME_Type_NoSync)">
+            <value>
+              <string>NoSync</string>
+            </value>
+          </item>
+          <item displayName="$(string.W32TIME_Type_Ntp)">
+            <value>
+              <string>NTP</string>
+            </value>
+          </item>
+          <item displayName="$(string.W32TIME_Type_NT5DS)">
+            <value>
+              <string>NT5DS</string>
+            </value>
+          </item>
+          <item displayName="$(string.W32TIME_Type_AllSync)">
+            <value>
+              <string>AllSync</string>
+            </value>
+          </item>
+        </enum>
+        <decimal id="W32TIME_CrossSiteSyncFlags" valueName="CrossSiteSyncFlags" maxValue="2" />
+        <decimal id="W32TIME_ResolvePeerBackoffMinutes" valueName="ResolvePeerBackoffMinutes" />
+        <decimal id="W32TIME_ResolvePeerBackoffMaxTimes" valueName="ResolvePeerBackoffMaxTimes" />
+        <decimal id="W32TIME_SpecialPollInterval" valueName="SpecialPollInterval" maxValue="4294967295" />
+        <decimal id="W32TIME_NtpClientEventLogFlags" valueName="EventLogFlags" maxValue="3" />
+      </elements>
+    </policy>
+    <policy name="W32TIME_POLICY_ENABLE_NTPCLIENT" class="Machine" displayName="$(string.W32TIME_POLICY_ENABLE_NTPCLIENT)" explainText="$(string.W32TIME_ENABLE_NTPCLIENT_EXPLAIN)" key="Software\Policies\Microsoft\W32time\TimeProviders\NtpClient" valueName="Enabled">
+      <parentCategory ref="W32TIME_TIMEPROVIDERS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="W32TIME_POLICY_ENABLE_NTPSERVER" class="Machine" displayName="$(string.W32TIME_POLICY_ENABLE_NTPSERVER)" explainText="$(string.W32TIME_ENABLE_NTPSERVER_EXPLAIN)" key="Software\Policies\Microsoft\W32Time\TimeProviders\NtpServer" valueName="Enabled">
+      <parentCategory ref="W32TIME_TIMEPROVIDERS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

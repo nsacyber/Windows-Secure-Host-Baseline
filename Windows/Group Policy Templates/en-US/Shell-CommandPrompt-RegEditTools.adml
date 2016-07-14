@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DisableCMD">Prevent access to the command prompt</string>
+      <string id="DisableCMD_Help">This policy setting prevents users from running the interactive command prompt, Cmd.exe.  This policy setting also determines whether batch files (.cmd and .bat) can run on the computer.
+
+If you enable this policy setting and the user tries to open a command window, the system displays a message explaining that a setting prevents the action.
+
+If you disable this policy setting or do not configure it, users can run Cmd.exe and batch files normally.
+
+Note: Do not prevent the computer from running batch files if the computer uses logon, logoff, startup, or shutdown batch file scripts, or for users that use Remote Desktop Services.</string>
+      <string id="DisableCMD_NO">No</string>
+      <string id="DisableCMD_YES">Yes</string>
+      <string id="DisableRegedit">Prevent access to registry editing tools</string>
+      <string id="DisableRegedit_Help">Disables the Windows registry editor Regedit.exe.
+
+If you enable this policy setting and the user tries to start Regedit.exe, a message appears explaining that a policy setting prevents the action.
+
+If you disable this policy setting or do not configure it, users can run Regedit.exe normally.
+
+To prevent users from using other administrative tools, use the "Run only specified Windows applications" policy setting.</string>
+      <string id="DisableRegeditMode_UIAndSilent">Yes</string>
+      <string id="DisableRegeditMode_UIonly">No</string>
+  
+   <string id="RestrictApps">Run only specified Windows applications</string>
+      <string id="RestrictApps_Help">Limits the Windows programs that users have permission to run on the computer.
+
+If you enable this policy setting, users can only run programs that you add to the list of allowed applications.
+
+If you disable this policy setting or do not configure it, users can run all applications.
+
+This policy setting only prevents users from running programs that are started by the File Explorer process.  It does not prevent users from running programs such as Task Manager, which are started by the system process or by other processes.  Also, if users have access to the command prompt (Cmd.exe), this policy setting does not prevent them from starting programs in the command window even though they would be prevented from doing so using File Explorer.
+
+Note: Non-Microsoft applications with Windows 2000 or later certification are required to comply with this policy setting.
+Note: To create a list of allowed applications, click Show.  In the Show Contents dialog box, in the Value column, type the application executable name (e.g., Winword.exe, Poledit.exe, Powerpnt.exe).</string>
+      <string id="DisallowApps">Don't run specified Windows applications</string>
+      <string id="DisallowApps_Help">Prevents Windows from running the programs you specify in this policy setting.
+
+If you enable this policy setting, users cannot run programs that you add to the list of disallowed applications.
+
+If you disable this policy setting or do not configure it, users can run any programs.
+
+This policy setting only prevents users from running programs that are started by the File Explorer process. It does not prevent users from running programs, such as Task Manager, which are started by the system process or by other processes.  Also, if users have access to the command prompt (Cmd.exe), this policy setting does not prevent them from starting programs in the command window even though they would be prevented from doing so using File Explorer.
+
+Note: Non-Microsoft applications with Windows 2000 or later certification are required to comply with this policy setting.
+Note: To create a list of allowed applications, click Show.  In the Show Contents dialog box, in the Value column, type the application executable name (e.g., Winword.exe, Poledit.exe, Powerpnt.exe).</string>
+  </stringTable>
+    <presentationTable>
+      <presentation id="DisableCMD">
+        <dropdownList refId="DisableCMDScripts" noSort="true" defaultItem="1">Disable the command prompt script processing also?</dropdownList>
+      </presentation>
+      <presentation id="DisableRegedit">
+        <dropdownList refId="DisableRegeditMode" noSort="true" defaultItem="0">Disable regedit from running silently?</dropdownList>
+      </presentation>
+	<presentation id="RestrictApps">
+        <listBox refId="RestrictApps_RestrictAppsList">List of allowed applications</listBox>
+      </presentation>
+      <presentation id="DisallowApps">
+        <listBox refId="DisallowAppsList">List of disallowed applications</listBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

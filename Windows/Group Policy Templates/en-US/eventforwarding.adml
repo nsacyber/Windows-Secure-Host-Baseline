@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+	<displayName>Event Forwarding</displayName>
+
+	<description>Policy Definitions For Event Forwarding</description>
+
+	<resources>
+
+		<stringTable>
+
+			<string id="EventForwarding">Event Forwarding</string>
+
+                        <string id="ForwarderResourceUsage">Configure forwarder resource usage</string>
+                        <string id="ForwarderResourceUsage_Help">This policy setting controls resource usage for the forwarder (source computer) by controlling the events/per second sent to the Event Collector.
+
+If you enable this policy setting, you can control the volume of events sent to the Event Collector by the source computer. This may be required in high volume environments.
+
+If you disable or do not configure this policy setting, forwarder resource usage is not specified.
+
+This setting applies across all subscriptions for the forwarder (source computer).</string>
+ 
+			<string id="SubscriptionManager">Configure target Subscription Manager</string>
+
+			<string id="Subscription_Help">This policy setting allows you to configure the server address, refresh interval, and issuer certificate authority (CA) of a target Subscription Manager.
+
+If you enable this policy setting, you can configure the Source Computer to contact a specific FQDN (Fully Qualified Domain Name) or IP Address and request subscription specifics.
+
+Use the following syntax when using the HTTPS protocol:
+Server=https://&lt;FQDN of the collector&gt;:5986/wsman/SubscriptionManager/WEC,Refresh=&lt;Refresh interval in seconds&gt;,IssuerCA=&lt;Thumb print of the client authentication certificate&gt;. When using the HTTP protocol, use port 5985.
+
+If you disable or do not configure this policy setting, the Event Collector computer will not be specified.</string>
+
+			<string id="SubscriptionManager_Listbox">SubscriptionManagers</string>
+		</stringTable>
+
+	
+		<presentationTable>
+
+			<presentation id="SubscriptionManager">
+                                
+				<listBox refId="SubscriptionManager_Listbox">SubscriptionManagers</listBox>
+
+			</presentation>
+
+                        <presentation id="ForwarderResourceUsage">
+
+                                <decimalTextBox refId="MaxForwardingRate" spinStep="100">The maximum forwarding rate ( events/sec ) allowed for the forwarder: </decimalTextBox>
+
+                        </presentation>
+
+		</presentationTable>
+
+	</resources>
+
+</policyDefinitionResources>

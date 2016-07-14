@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="linklayertopologydiscovery" namespace="Microsoft.Policies.LinkLayerTopology" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="LLTD_Category" displayName="$(string.LLTD_Category)" explainText="$(string.LLTD_Category_Help)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="LLTD_EnableLLTDIO" class="Machine" displayName="$(string.LLTD_EnableLLTDIO)" explainText="$(string.LLTD_EnableLLTDIO_Help)" presentation="$(presentation.LLTD_EnableLLTDIO)" key="Software\Policies\Microsoft\Windows\LLTD" valueName="EnableLLTDIO">
+      <parentCategory ref="LLTD_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="LLTD_EnableLLTDIO_AllowOnDomain" valueName="AllowLLTDIOOnDomain">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LLTD_EnableLLTDIO_AllowOnPublicNet" valueName="AllowLLTDIOOnPublicNet">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LLTD_EnableLLTDIO_ProhibitOnPrivateNet" valueName="ProhibitLLTDIOOnPrivateNet">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="LLTD_EnableRspndr" class="Machine" displayName="$(string.LLTD_EnableRspndr)" explainText="$(string.LLTD_EnableRspndr_Help)" presentation="$(presentation.LLTD_EnableRspndr)" key="Software\Policies\Microsoft\Windows\LLTD" valueName="EnableRspndr">
+      <parentCategory ref="LLTD_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="LLTD_EnableRspndr_AllowOnDomain" valueName="AllowRspndrOnDomain">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LLTD_EnableRspndr_AllowOnPublicNet" valueName="AllowRspndrOnPublicNet">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="LLTD_EnableRspndr_ProhibitOnPrivateNet" valueName="ProhibitRspndrOnPrivateNet">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

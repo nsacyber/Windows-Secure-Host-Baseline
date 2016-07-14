@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsmessenger" namespace="Microsoft.Policies.WindowsMessenger" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WinMSG_WindowsMsg" displayName="$(string.WinMSG_WindowsMsg)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WinMSG_NoAutoStartWindowsMsg_Comp" class="Machine" displayName="$(string.WinMSG_NoAutoStartWindowsMsg_Comp)" explainText="$(string.WinMSG_NoAutoStartWindowsMsg_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="PreventAutoRun">
+      <parentCategory ref="WinMSG_WindowsMsg" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WinMSG_NoAutoStartWindowsMsg_User" class="User" displayName="$(string.WinMSG_NoAutoStartWindowsMsg_User)" explainText="$(string.WinMSG_NoAutoStartWindowsMsg_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="PreventAutoRun">
+      <parentCategory ref="WinMSG_WindowsMsg" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WinMSG_NoWindowsMsg_Comp" class="Machine" displayName="$(string.WinMSG_NoWindowsMsg_Comp)" explainText="$(string.WinMSG_NoWindowsMsg_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="PreventRun">
+      <parentCategory ref="WinMSG_WindowsMsg" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WinMSG_NoWindowsMsg_User" class="User" displayName="$(string.WinMSG_NoWindowsMsg_User)" explainText="$(string.WinMSG_NoWindowsMsg_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="PreventRun">
+      <parentCategory ref="WinMSG_WindowsMsg" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

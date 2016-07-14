@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="credssp" namespace="Microsoft.Policies.CredentialsSSP" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CredentialsDelegation" displayName="$(string.CredentialsDelegation)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowDefaultCredentials" class="Machine" displayName="$(string.AllowDefaultCredentials)" explainText="$(string.AllowDefaultCredentials_Explain)" presentation="$(presentation.AllowDefaultCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowDefaultCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowDefaultCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowDefaultCredentials" valuePrefix="" additive="true"/>
+        <boolean id="ConcatenateDefaults_ADC" valueName="ConcatenateDefaults_AllowDefault">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="AllowDefCredentialsWhenNTLMOnly" class="Machine" displayName="$(string.AllowDefCredentialsWhenNTLMOnly)" explainText="$(string.AllowDefCredentialsWhenNTLMOnly_Explain)" presentation="$(presentation.AllowDefCredentialsWhenNTLMOnly)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowDefCredentialsWhenNTLMOnly">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowDefCredentialsWhenNTLMOnly_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowDefCredentialsWhenNTLMOnly" valuePrefix="" additive="true"/>
+        <boolean id="ConcatenateDefaults_ADCN" valueName="ConcatenateDefaults_AllowDefNTLMOnly">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="AllowFreshCredentials" class="Machine" displayName="$(string.AllowFreshCredentials)" explainText="$(string.AllowFreshCredentials_Explain)" presentation="$(presentation.AllowFreshCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowFreshCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowFreshCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowFreshCredentials" valuePrefix="" additive="true" />
+        <boolean id="ConcatenateDefaults_AFC" valueName="ConcatenateDefaults_AllowFresh">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="AllowFreshCredentialsWhenNTLMOnly" class="Machine" displayName="$(string.AllowFreshCredentialsWhenNTLMOnly)" explainText="$(string.AllowFreshCredentialsWhenNTLMOnly_Explain)" presentation="$(presentation.AllowFreshCredentialsWhenNTLMOnly)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowFreshCredentialsWhenNTLMOnly">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowFreshCredentialsWhenNTLMOnly_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowFreshCredentialsWhenNTLMOnly" valuePrefix="" additive="true" />
+        <boolean id="ConcatenateDefaults_AFCN" valueName="ConcatenateDefaults_AllowFreshNTLMOnly">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="AllowSavedCredentials" class="Machine" displayName="$(string.AllowSavedCredentials)" explainText="$(string.AllowSavedCredentials_Explain)" presentation="$(presentation.AllowSavedCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowSavedCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowSavedCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowSavedCredentials" valuePrefix="" additive="true" />
+        <boolean id="ConcatenateDefaults_ASC" valueName="ConcatenateDefaults_AllowSaved">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="AllowSavedCredentialsWhenNTLMOnly" class="Machine" displayName="$(string.AllowSavedCredentialsWhenNTLMOnly)" explainText="$(string.AllowSavedCredentialsWhenNTLMOnly_Explain)" presentation="$(presentation.AllowSavedCredentialsWhenNTLMOnly)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="AllowSavedCredentialsWhenNTLMOnly">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="AllowSavedCredentialsWhenNTLMOnly_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\AllowSavedCredentialsWhenNTLMOnly" valuePrefix="" additive="true" />
+        <boolean id="ConcatenateDefaults_ASCN" valueName="ConcatenateDefaults_AllowSavedNTLMOnly">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="DenyDefaultCredentials" class="Machine" displayName="$(string.DenyDefaultCredentials)" explainText="$(string.DenyDefaultCredentials_Explain)" presentation="$(presentation.DenyDefaultCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="DenyDefaultCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DenyDefaultCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\DenyDefaultCredentials" valuePrefix="" additive="true"/>
+        <boolean id="ConcatenateDefaults_DDC" valueName="ConcatenateDefaults_DenyDefault">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="DenyFreshCredentials" class="Machine" displayName="$(string.DenyFreshCredentials)" explainText="$(string.DenyFreshCredentials_Explain)" presentation="$(presentation.DenyFreshCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="DenyFreshCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DenyFreshCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\DenyFreshCredentials" valuePrefix="" additive="true"/>
+        <boolean id="ConcatenateDefaults_DFC" valueName="ConcatenateDefaults_DenyFresh">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="DenySavedCredentials" class="Machine" displayName="$(string.DenySavedCredentials)" explainText="$(string.DenySavedCredentials_Explain)" presentation="$(presentation.DenySavedCredentials)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="DenySavedCredentials">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DenySavedCredentials_Name" key="Software\Policies\Microsoft\Windows\CredentialsDelegation\DenySavedCredentials" valuePrefix="" additive="true"/>
+        <boolean id="ConcatenateDefaults_DSC" valueName="ConcatenateDefaults_DenySaved">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>      
+      </elements>
+    </policy>
+    <policy name="RestrictedRemoteAdministration" class="Machine" displayName="$(string.RestrictedRemoteAdministration)" explainText="$(string.RestrictedRemoteAdministration_Explain)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="RestrictedRemoteAdministration">
+      <parentCategory ref="CredentialsDelegation" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

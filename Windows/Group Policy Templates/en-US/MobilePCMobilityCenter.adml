@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="MobilityCenterCat">Windows Mobility Center</string>
+      <string id="MobilityCenterEnable">Turn off Windows Mobility Center</string>
+      <string id="MobilityCenterEnableExplain">This policy setting turns off Windows Mobility Center.
+
+If you enable this policy setting, the user is unable to invoke Windows Mobility Center. The Windows Mobility Center UI is removed from all shell entry points and the .exe file does not launch it.
+
+If you disable this policy setting, the user is able to invoke Windows Mobility Center and the .exe file launches it.
+
+If you do not configure this policy setting, Windows Mobility Center is on by default.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

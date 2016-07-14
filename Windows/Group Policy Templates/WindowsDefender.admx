@@ -1,0 +1,1119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2013 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+    <policyNamespaces>
+        <target prefix="windef" namespace="Microsoft.Policies.WindowsDefender" />
+        <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    </policyNamespaces>
+    <resources minRequiredRevision="1.0" />
+    <categories>
+        <category name="AntiSpywareDefender" displayName="$(string.AntiSpywareDefender)">
+            <parentCategory ref="windows:WindowsComponents" />
+        </category>
+        <category name="Exclusions" displayName="$(string.Exclusions)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="NetworkRealtimeInspection" displayName="$(string.NetworkRealtimeInspection)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="NetworkRealtimeInspection_Exclusions" displayName="$(string.NetworkRealtimeInspection_Exclusions)">
+            <parentCategory ref="NetworkRealtimeInspection" />
+        </category>
+        <category name="Quarantine" displayName="$(string.Quarantine)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="RealtimeProtection" displayName="$(string.RealtimeProtection)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="Remediation" displayName="$(string.Remediation)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="Reporting" displayName="$(string.Reporting)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="Scan" displayName="$(string.Scan)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="SignatureUpdate" displayName="$(string.SignatureUpdate)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="Spynet" displayName="$(string.Spynet)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="Threats" displayName="$(string.Threats)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+        <category name="ClientInterface" displayName="$(string.ClientInterface)">
+            <parentCategory ref="AntiSpywareDefender" />
+        </category>
+    </categories>
+    <policies>
+        <policy name="DisableAutoExclusions" class="Machine" displayName="$(string.DisableAutoExclusions)" explainText="$(string.DisableAutoExclusions_Explain)" key="Software\Policies\Microsoft\Windows Defender\Exclusions" valueName="DisableAutoExclusions">
+            <parentCategory ref="Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="AllowFastServiceStartup" class="Machine" displayName="$(string.AllowFastServiceStartup)" explainText="$(string.AllowFastServiceStartup_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="AllowFastServiceStartup">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="DisableAntiSpywareDefender" class="Machine" displayName="$(string.DisableAntiSpywareDefender)" explainText="$(string.DisableAntiSpywareDefender_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="DisableAntiSpyware">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="DisableLocalAdminMerge" class="Machine" displayName="$(string.DisableLocalAdminMerge)" explainText="$(string.DisableLocalAdminMerge_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="DisableLocalAdminMerge">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="DisableRoutinelyTakingAction" class="Machine" displayName="$(string.DisableRoutinelyTakingAction)" explainText="$(string.DisableRoutinelyTakingActionDefender_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="DisableRoutinelyTakingAction">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="ProxyBypass" class="Machine" displayName="$(string.ProxyBypass)" explainText="$(string.ProxyBypass_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="ProxyBypass" presentation="$(presentation.ProxyBypass)">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <text id="ProxyBypass" valueName="ProxyBypass" required="true" />
+            </elements>
+        </policy>
+        <policy name="ProxyServer" class="Machine" displayName="$(string.ProxyServer)" explainText="$(string.ProxyServer_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="ProxyServer" presentation="$(presentation.ProxyServer)">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <text id="ProxyServer" valueName="ProxyServer" required="true" />
+            </elements>
+        </policy>
+        <policy name="RandomizeScheduleTaskTimes" class="Machine" displayName="$(string.RandomizeScheduleTaskTimes)" explainText="$(string.RandomizeScheduleTaskTimes_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="RandomizeScheduleTaskTimes">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="ServiceKeepAlive" class="Machine" displayName="$(string.ServiceKeepAlive)" explainText="$(string.ServiceKeepAlive_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="ServiceKeepAlive">
+            <parentCategory ref="AntiSpywareDefender" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Exclusions_Extensions" class="Machine" displayName="$(string.Exclusions_Extensions)" explainText="$(string.Exclusions_Extensions_Explain)" key="Software\Policies\Microsoft\Windows Defender\Exclusions" valueName="Exclusions_Extensions" presentation="$(presentation.Exclusions_Extensions)">
+            <parentCategory ref="Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Exclusions_ExtensionsList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\Exclusions\Extensions" />
+            </elements>
+        </policy>
+        <policy name="Exclusions_Paths" class="Machine" displayName="$(string.Exclusions_Paths)" explainText="$(string.Exclusions_Paths_Explain)" key="Software\Policies\Microsoft\Windows Defender\Exclusions" valueName="Exclusions_Paths" presentation="$(presentation.Exclusions_Paths)">
+            <parentCategory ref="Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Exclusions_PathsList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\Exclusions\Paths" />
+            </elements>
+        </policy>
+        <policy name="Exclusions_Processes" class="Machine" displayName="$(string.Exclusions_Processes)" explainText="$(string.Exclusions_Processes_Explain)" key="Software\Policies\Microsoft\Windows Defender\Exclusions" valueName="Exclusions_Processes" presentation="$(presentation.Exclusions_Processes)">
+            <parentCategory ref="Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Exclusions_ProcessesList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\Exclusions\Processes" />
+            </elements>
+        </policy>
+        <policy name="Nis_DisableProtocolRecognition" class="Machine" displayName="$(string.Nis_DisableProtocolRecognition)" explainText="$(string.Nis_DisableProtocolRecognition_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS" valueName="DisableProtocolRecognition">
+            <parentCategory ref="NetworkRealtimeInspection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Nis_Consumers_IPS_DisableSignatureRetirement" class="Machine" displayName="$(string.Nis_Consumers_IPS_DisableSignatureRetirement)" explainText="$(string.Nis_Consumers_IPS_DisableSignatureRetirement_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS" valueName="DisableSignatureRetirement">
+            <parentCategory ref="NetworkRealtimeInspection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Nis_Consumers_IPS_ThrottleDetectionEventsRate" class="Machine" displayName="$(string.Nis_Consumers_IPS_ThrottleDetectionEventsRate)" explainText="$(string.Nis_Consumers_IPS_ThrottleDetectionEventsRate_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS" valueName="ThrottleDetectionEventsRate" presentation="$(presentation.Nis_Consumers_IPS_ThrottleDetectionEventsRate)">
+            <parentCategory ref="NetworkRealtimeInspection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Nis_Consumers_IPS_ThrottleDetectionEventsRate" valueName="ThrottleDetectionEventsRate" minValue="0" maxValue="10000000" />
+            </elements>
+        </policy>
+        <policy name="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\IP Ranges" valueName="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range)">
+            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_RangeList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\IP Ranges\IP Range" />
+            </elements>
+        </policy>
+        <policy name="Nis_Consumers_IPS_Exclusions_Ports_Port_Number" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Ports_Port_Number)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Ports_Port_Number_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Ports" valueName="Nis_Consumers_IPS_Exclusions_Ports_Port_Number" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Ports_Port_Number)">
+            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Nis_Consumers_IPS_Exclusions_Ports_Port_NumberList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Ports\Port Number" />
+            </elements>
+        </policy>
+        <policy name="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Processes" valueName="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name)">
+            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_NameList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Processes\Executable Path and name" />
+            </elements>
+        </policy>
+        <policy name="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Threat IDs" valueName="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id)">
+            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_IdList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Threat IDs\Threat Id" />
+            </elements>
+        </policy>
+        <policy name="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid" class="Machine" displayName="$(string.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid)" explainText="$(string.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\SKU Differentiation" valueName="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid" presentation="$(presentation.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid)">
+            <parentCategory ref="NetworkRealtimeInspection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Nis_Consumers_IPS_sku_differentiation_Signature_Set_GuidList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\SKU Differentiation\Signature Set GUID" />
+            </elements>
+        </policy>
+        <policy name="Quarantine_LocalSettingOverridePurgeItemsAfterDelay" class="Machine" displayName="$(string.Quarantine_LocalSettingOverridePurgeItemsAfterDelay)" explainText="$(string.Quarantine_LocalSettingOverridePurgeItemsAfterDelay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Quarantine" valueName="LocalSettingOverridePurgeItemsAfterDelay">
+            <parentCategory ref="Quarantine" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Quarantine_PurgeItemsAfterDelay" class="Machine" displayName="$(string.Quarantine_PurgeItemsAfterDelay)" explainText="$(string.Quarantine_PurgeItemsAfterDelay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Quarantine" valueName="PurgeItemsAfterDelay" presentation="$(presentation.Quarantine_PurgeItemsAfterDelay)">
+            <parentCategory ref="Quarantine" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Quarantine_PurgeItemsAfterDelay" valueName="PurgeItemsAfterDelay" minValue="0" maxValue="10000000" />
+            </elements>
+        </policy>
+        <policy name="RealtimeProtection_DisableBehaviorMonitoring" class="Machine" displayName="$(string.RealtimeProtection_DisableBehaviorMonitoring)" explainText="$(string.RealtimeProtection_DisableBehaviorMonitoring_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableBehaviorMonitoring">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableInformationProtectionControl" class="Machine" displayName="$(string.RealtimeProtection_DisableInformationProtectionControl)" explainText="$(string.RealtimeProtection_DisableInformationProtectionControl_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableInformationProtectionControl">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableIntrusionPreventionSystem" class="Machine" displayName="$(string.RealtimeProtection_DisableIntrusionPreventionSystem)" explainText="$(string.RealtimeProtection_DisableIntrusionPreventionSystem_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableIntrusionPreventionSystem">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableIOAVProtection" class="Machine" displayName="$(string.RealtimeProtection_DisableIOAVProtection)" explainText="$(string.RealtimeProtection_DisableIOAVProtection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableIOAVProtection">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableOnAccessProtection" class="Machine" displayName="$(string.RealtimeProtection_DisableOnAccessProtection)" explainText="$(string.RealtimeProtection_DisableOnAccessProtection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableOnAccessProtection">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableRawWriteNotification" class="Machine" displayName="$(string.RealtimeProtection_DisableRawWriteNotification)" explainText="$(string.RealtimeProtection_DisableRawWriteNotification_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableRawWriteNotification">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="DisableRealtimeMonitoring" class="Machine" displayName="$(string.DisableRealtimeMonitoring)" explainText="$(string.DisableRealtimeMonitoringDefender_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableRealtimeMonitoring">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_DisableScanOnRealtimeEnable" class="Machine" displayName="$(string.RealtimeProtection_DisableScanOnRealtimeEnable)" explainText="$(string.RealtimeProtection_DisableScanOnRealtimeEnable_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableScanOnRealtimeEnable">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_IOAVMaxSize" class="Machine" displayName="$(string.RealtimeProtection_IOAVMaxSize)" explainText="$(string.RealtimeProtection_IOAVMaxSize_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="IOAVMaxSize" presentation="$(presentation.RealtimeProtection_IOAVMaxSize)">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="RealtimeProtection_IOAVMaxSize" valueName="IOAVMaxSize" minValue="0" maxValue="10000000" />
+            </elements>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideDisableBehaviorMonitoring" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableBehaviorMonitoring)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableBehaviorMonitoring_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableBehaviorMonitoring">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableOnAccessProtection">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableIntrusionPreventionSystem">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideDisableIOAVProtection" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableIOAVProtection)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableIOAVProtection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableIOAVProtection">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideDisableRealtimeMonitoring" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableRealtimeMonitoring)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableRealtimeMonitoring_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableRealtimeMonitoring">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_LocalSettingOverrideRealtimeScanDirection" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideRealtimeScanDirection)" explainText="$(string.RealtimeProtection_LocalSettingOverrideRealtimeScanDirection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideRealtimeScanDirection">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="RealtimeProtection_RealtimeScanDirection" class="Machine" displayName="$(string.RealtimeProtection_RealtimeScanDirection)" explainText="$(string.RealtimeProtection_RealtimeScanDirection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="RealtimeScanDirection" presentation="$(presentation.RealtimeProtection_RealtimeScanDirection)">
+            <parentCategory ref="RealtimeProtection" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <enum id="RealtimeProtection_RealtimeScanDirection" valueName="RealtimeScanDirection" required="true">
+                    <item displayName="$(string.RealtimeProtection_RealtimeScanDirection_0)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.RealtimeProtection_RealtimeScanDirection_1)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.RealtimeProtection_RealtimeScanDirection_2)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="Remediation_LocalSettingOverrideScan_ScheduleTime" class="Machine" displayName="$(string.Remediation_LocalSettingOverrideScan_ScheduleTime)" explainText="$(string.Remediation_LocalSettingOverrideScan_ScheduleTime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Remediation" valueName="LocalSettingOverrideScan_ScheduleTime">
+            <parentCategory ref="Remediation" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Remediation_Scan_ScheduleDay" class="Machine" displayName="$(string.Remediation_Scan_ScheduleDay)" explainText="$(string.Remediation_Scan_ScheduleDay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Remediation" valueName="Scan_ScheduleDay" presentation="$(presentation.Remediation_Scan_ScheduleDay)">
+            <parentCategory ref="Remediation" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <enum id="Remediation_Scan_ScheduleDay" valueName="Scan_ScheduleDay" required="true">
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_0)">
+                        <value>
+                            <decimal value="8" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_1)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_2)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_3)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_4)">
+                        <value>
+                            <decimal value="3" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_5)">
+                        <value>
+                            <decimal value="4" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_6)">
+                        <value>
+                            <decimal value="5" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_7)">
+                        <value>
+                            <decimal value="6" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Remediation_Scan_ScheduleDay_8)">
+                        <value>
+                            <decimal value="7" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="Remediation_Scan_ScheduleTime" class="Machine" displayName="$(string.Remediation_Scan_ScheduleTime)" explainText="$(string.Remediation_Scan_ScheduleTime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Remediation" valueName="Scan_ScheduleTime" presentation="$(presentation.Remediation_Scan_ScheduleTime)">
+            <parentCategory ref="Remediation" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Remediation_Scan_ScheduleTime" valueName="Scan_ScheduleTime" minValue="0" maxValue="1440" />
+            </elements>
+        </policy>
+        <policy name="Reporting_AdditionalActionTimeout" class="Machine" displayName="$(string.Reporting_AdditionalActionTimeout)" explainText="$(string.Reporting_AdditionalActionTimeout_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="AdditionalActionTimeout" presentation="$(presentation.Reporting_AdditionalActionTimeout)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_AdditionalActionTimeout" valueName="AdditionalActionTimeout" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Reporting_CriticalFailureTimeout" class="Machine" displayName="$(string.Reporting_CriticalFailureTimeout)" explainText="$(string.Reporting_CriticalFailureTimeout_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="CriticalFailureTimeout" presentation="$(presentation.Reporting_CriticalFailureTimeout)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_CriticalFailureTimeout" valueName="CriticalFailureTimeout" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Reporting_NonCriticalTimeout" class="Machine" displayName="$(string.Reporting_NonCriticalTimeout)" explainText="$(string.Reporting_NonCriticalTimeout_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="NonCriticalTimeout" presentation="$(presentation.Reporting_NonCriticalTimeout)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_NonCriticalTimeout" valueName="NonCriticalTimeout" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Reporting_RecentlyCleanedTimeout" class="Machine" displayName="$(string.Reporting_RecentlyCleanedTimeout)" explainText="$(string.Reporting_RecentlyCleanedTimeout_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="RecentlyCleanedTimeout" presentation="$(presentation.Reporting_RecentlyCleanedTimeout)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_RecentlyCleanedTimeout" valueName="RecentlyCleanedTimeout" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Reporting_WppTracingComponents" class="Machine" displayName="$(string.Reporting_WppTracingComponents)" explainText="$(string.Reporting_WppTracingComponents_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="WppTracingComponents" presentation="$(presentation.Reporting_WppTracingComponents)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_WppTracingComponents" valueName="WppTracingComponents" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Reporting_WppTracingLevel" class="Machine" displayName="$(string.Reporting_WppTracingLevel)" explainText="$(string.Reporting_WppTracingLevel_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="WppTracingLevel" presentation="$(presentation.Reporting_WppTracingLevel)">
+            <parentCategory ref="Reporting" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Reporting_WppTracingLevel" valueName="WppTracingLevel" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Scan_AllowPause" class="Machine" displayName="$(string.Scan_AllowPause)" explainText="$(string.Scan_AllowPause_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="AllowPause">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_ArchiveMaxDepth" class="Machine" displayName="$(string.Scan_ArchiveMaxDepth)" explainText="$(string.Scan_ArchiveMaxDepth_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ArchiveMaxDepth" presentation="$(presentation.Scan_ArchiveMaxDepth)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_ArchiveMaxDepth" valueName="ArchiveMaxDepth" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Scan_ArchiveMaxSize" class="Machine" displayName="$(string.Scan_ArchiveMaxSize)" explainText="$(string.Scan_ArchiveMaxSize_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ArchiveMaxSize" presentation="$(presentation.Scan_ArchiveMaxSize)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_ArchiveMaxSize" valueName="ArchiveMaxSize" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Scan_AvgCPULoadFactor" class="Machine" displayName="$(string.Scan_AvgCPULoadFactor)" explainText="$(string.Scan_AvgCPULoadFactor_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="AvgCPULoadFactor" presentation="$(presentation.Scan_AvgCPULoadFactor)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_AvgCPULoadFactor" valueName="AvgCPULoadFactor" minValue="0" maxValue="100" />
+            </elements>
+        </policy>
+        <policy name="CheckForSignaturesBeforeRunningScan" class="Machine" displayName="$(string.CheckForSignaturesBeforeRunningScan)" explainText="$(string.CheckForSignaturesBeforeRunningScan_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="CheckForSignaturesBeforeRunningScan">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableArchiveScanning" class="Machine" displayName="$(string.Scan_DisableArchiveScanning)" explainText="$(string.Scan_DisableArchiveScanning_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableArchiveScanning">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableCatchupFullScan" class="Machine" displayName="$(string.Scan_DisableCatchupFullScan)" explainText="$(string.Scan_DisableCatchupFullScan_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableCatchupFullScan">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableCatchupQuickScan" class="Machine" displayName="$(string.Scan_DisableCatchupQuickScan)" explainText="$(string.Scan_DisableCatchupQuickScan_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableCatchupQuickScan">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableEmailScanning" class="Machine" displayName="$(string.Scan_DisableEmailScanning)" explainText="$(string.Scan_DisableEmailScanning_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableEmailScanning">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableHeuristics" class="Machine" displayName="$(string.Scan_DisableHeuristics)" explainText="$(string.Scan_DisableHeuristics_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableHeuristics">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisablePackedExeScanning" class="Machine" displayName="$(string.Scan_DisablePackedExeScanning)" explainText="$(string.Scan_DisablePackedExeScanning_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisablePackedExeScanning">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableRemovableDriveScanning" class="Machine" displayName="$(string.Scan_DisableRemovableDriveScanning)" explainText="$(string.Scan_DisableRemovableDriveScanning_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableRemovableDriveScanning">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableReparsePointScanning" class="Machine" displayName="$(string.Scan_DisableReparsePointScanning)" explainText="$(string.Scan_DisableReparsePointScanning_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableReparsePointScanning">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableRestorePoint" class="Machine" displayName="$(string.Scan_DisableRestorePoint)" explainText="$(string.Scan_DisableRestorePoint_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableRestorePoint">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableScanningMappedNetworkDrivesForFullScan" class="Machine" displayName="$(string.Scan_DisableScanningMappedNetworkDrivesForFullScan)" explainText="$(string.Scan_DisableScanningMappedNetworkDrivesForFullScan_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableScanningMappedNetworkDrivesForFullScan">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_DisableScanningNetworkFiles" class="Machine" displayName="$(string.Scan_DisableScanningNetworkFiles)" explainText="$(string.Scan_DisableScanningNetworkFiles_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="DisableScanningNetworkFiles">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_LocalSettingOverrideAvgCPULoadFactor" class="Machine" displayName="$(string.Scan_LocalSettingOverrideAvgCPULoadFactor)" explainText="$(string.Scan_LocalSettingOverrideAvgCPULoadFactor_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="LocalSettingOverrideAvgCPULoadFactor">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_LocalSettingOverrideScanParameters" class="Machine" displayName="$(string.Scan_LocalSettingOverrideScanParameters)" explainText="$(string.Scan_LocalSettingOverrideScanParameters_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="LocalSettingOverrideScanParameters">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_LocalSettingOverrideScheduleDay" class="Machine" displayName="$(string.Scan_LocalSettingOverrideScheduleDay)" explainText="$(string.Scan_LocalSettingOverrideScheduleDay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="LocalSettingOverrideScheduleDay">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_LocalSettingOverrideScheduleQuickScantime" class="Machine" displayName="$(string.Scan_LocalSettingOverrideScheduleQuickScantime)" explainText="$(string.Scan_LocalSettingOverrideScheduleQuickScantime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="LocalSettingOverrideScheduleQuickScanTime">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_LocalSettingOverrideScheduleTime" class="Machine" displayName="$(string.Scan_LocalSettingOverrideScheduleTime)" explainText="$(string.Scan_LocalSettingOverrideScheduleTime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="LocalSettingOverrideScheduleTime">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_PurgeItemsAfterDelay" class="Machine" displayName="$(string.Scan_PurgeItemsAfterDelay)" explainText="$(string.Scan_PurgeItemsAfterDelay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="PurgeItemsAfterDelay" presentation="$(presentation.Scan_PurgeItemsAfterDelay)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_PurgeItemsAfterDelay" valueName="PurgeItemsAfterDelay" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="Scan_QuickScanInterval" class="Machine" displayName="$(string.Scan_QuickScanInterval)" explainText="$(string.Scan_QuickScanInterval_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="QuickScanInterval" presentation="$(presentation.Scan_QuickScanInterval)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_QuickScanInterval" valueName="QuickScanInterval" minValue="0" maxValue="24" />
+            </elements>
+        </policy>
+        <policy name="Scan_ScanOnlyIfIdle" class="Machine" displayName="$(string.Scan_ScanOnlyIfIdle)" explainText="$(string.Scan_ScanOnlyIfIdle_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ScanOnlyIfIdle">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Scan_ScanParameters" class="Machine" displayName="$(string.Scan_ScanParameters)" explainText="$(string.Scan_ScanParameters_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ScanParameters" presentation="$(presentation.Scan_ScanParameters)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <enum id="Scan_ScanParameters" valueName="ScanParameters" required="true">
+                    <item displayName="$(string.Scan_ScanParameters_0)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScanParameters_1)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="Scan_ScheduleDay" class="Machine" displayName="$(string.Scan_ScheduleDay)" explainText="$(string.Scan_ScheduleDay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ScheduleDay" presentation="$(presentation.Scan_ScheduleDay)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <enum id="Scan_ScheduleDay" valueName="ScheduleDay" required="true">
+                    <item displayName="$(string.Scan_ScheduleDay_0)">
+                        <value>
+                            <decimal value="8" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_1)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_2)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_3)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_4)">
+                        <value>
+                            <decimal value="3" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_5)">
+                        <value>
+                            <decimal value="4" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_6)">
+                        <value>
+                            <decimal value="5" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_7)">
+                        <value>
+                            <decimal value="6" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.Scan_ScheduleDay_8)">
+                        <value>
+                            <decimal value="7" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="Scan_ScheduleQuickScantime" class="Machine" displayName="$(string.Scan_ScheduleQuickScantime)" explainText="$(string.Scan_ScheduleQuickScantime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ScheduleQuickScanTime" presentation="$(presentation.Scan_ScheduleQuickScantime)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_ScheduleQuickScantime" valueName="ScheduleQuickScanTime" minValue="0" maxValue="1440" />
+            </elements>
+        </policy>
+        <policy name="Scan_ScheduleTime" class="Machine" displayName="$(string.Scan_ScheduleTime)" explainText="$(string.Scan_ScheduleTime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="ScheduleTime" presentation="$(presentation.Scan_ScheduleTime)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="Scan_ScheduleTime" valueName="ScheduleTime" minValue="0" maxValue="1440" />
+            </elements>
+        </policy>
+        <policy name="Scan_MissedScheduledScanCountBeforeCatchup" class="Machine" displayName="$(string.Scan_MissedScheduledScanCountBeforeCatchup)" explainText="$(string.Scan_MissedScheduledScanCountBeforeCatchup_Explain)" key="Software\Policies\Microsoft\Windows Defender\Scan" valueName="MissedScheduledScanCountBeforeCatchup" presentation="$(presentation.Scan_MissedScheduledScanCountBeforeCatchup)">
+            <parentCategory ref="Scan" />
+            <supportedOn ref="windows:SUPPORTED_Windows8"/>
+            <elements>
+                <decimal id="Scan_MissedScheduledScanCountBeforeCatchup" valueName="MissedScheduledScanCountBeforeCatchup" minValue="2" maxValue="20" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_ASSignatureDue" class="Machine" displayName="$(string.SignatureUpdate_ASSignatureDue)" explainText="$(string.SignatureUpdate_ASSignatureDue_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="ASSignatureDue" presentation="$(presentation.SignatureUpdate_ASSignatureDue)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="SignatureUpdate_ASSignatureDue" valueName="ASSignatureDue" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_AVSignatureDue" class="Machine" displayName="$(string.SignatureUpdate_AVSignatureDue)" explainText="$(string.SignatureUpdate_AVSignatureDue_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="AVSignatureDue" presentation="$(presentation.SignatureUpdate_AVSignatureDue)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="SignatureUpdate_AVSignatureDue" valueName="AVSignatureDue" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_DefinitionUpdateFileSharesSources" class="Machine" displayName="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources)" explainText="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="DefinitionUpdateFileSharesSources" presentation="$(presentation.SignatureUpdate_DefinitionUpdateFileSharesSources)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <text id="SignatureUpdate_DefinitionUpdateFileSharesSources" valueName="DefinitionUpdateFileSharesSources" required="true" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_DisableScanOnUpdate" class="Machine" displayName="$(string.SignatureUpdate_DisableScanOnUpdate)" explainText="$(string.SignatureUpdate_DisableScanOnUpdate_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="DisableScanOnUpdate">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_DisableScheduledSignatureUpdateonBattery" class="Machine" displayName="$(string.SignatureUpdate_DisableScheduledSignatureUpdateonBattery)" explainText="$(string.SignatureUpdate_DisableScheduledSignatureUpdateonBattery_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="DisableScheduledSignatureUpdateOnBattery">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_DisableUpdateOnStartupWithoutEngine" class="Machine" displayName="$(string.SignatureUpdate_DisableUpdateOnStartupWithoutEngine)" explainText="$(string.SignatureUpdate_DisableUpdateOnStartupWithoutEngine_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="DisableUpdateOnStartupWithoutEngine">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_FallbackOrder" class="Machine" displayName="$(string.SignatureUpdate_FallbackOrder)" explainText="$(string.SignatureUpdate_FallbackOrder_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="FallbackOrder" presentation="$(presentation.SignatureUpdate_FallbackOrder)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <text id="SignatureUpdate_FallbackOrder" valueName="FallbackOrder" required="true" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_ForceUpdateFromMU" class="Machine" displayName="$(string.SignatureUpdate_ForceUpdateFromMU)" explainText="$(string.SignatureUpdate_ForceUpdateFromMU_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="ForceUpdateFromMU">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_RealtimeSignatureDelivery" class="Machine" displayName="$(string.SignatureUpdate_RealtimeSignatureDelivery)" explainText="$(string.SignatureUpdate_RealtimeSignatureDelivery_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="RealtimeSignatureDelivery">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_ScheduleDay" class="Machine" displayName="$(string.SignatureUpdate_ScheduleDay)" explainText="$(string.SignatureUpdate_ScheduleDay_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="ScheduleDay" presentation="$(presentation.SignatureUpdate_ScheduleDay)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <enum id="SignatureUpdate_ScheduleDay" valueName="ScheduleDay" required="true">
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_0)">
+                        <value>
+                            <decimal value="8" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_1)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_2)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_3)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_4)">
+                        <value>
+                            <decimal value="3" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_5)">
+                        <value>
+                            <decimal value="4" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_6)">
+                        <value>
+                            <decimal value="5" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_7)">
+                        <value>
+                            <decimal value="6" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SignatureUpdate_ScheduleDay_8)">
+                        <value>
+                            <decimal value="7" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_ScheduleTime" class="Machine" displayName="$(string.SignatureUpdate_ScheduleTime)" explainText="$(string.SignatureUpdate_ScheduleTime_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="ScheduleTime" presentation="$(presentation.SignatureUpdate_ScheduleTime)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="SignatureUpdate_ScheduleTime" valueName="ScheduleTime" minValue="0" maxValue="1440" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_SignatureDisableNotification" class="Machine" displayName="$(string.SignatureUpdate_SignatureDisableNotification)" explainText="$(string.SignatureUpdate_SignatureDisableNotification_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="SignatureDisableNotification">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="SignatureUpdate_SignatureUpdateCatchupInterval" class="Machine" displayName="$(string.SignatureUpdate_SignatureUpdateCatchupInterval)" explainText="$(string.SignatureUpdate_SignatureUpdateCatchupInterval_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="SignatureUpdateCatchupInterval" presentation="$(presentation.SignatureUpdate_SignatureUpdateCatchupInterval)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="SignatureUpdate_SignatureUpdateCatchupInterval" valueName="SignatureUpdateCatchupInterval" minValue="0" maxValue="4294967295" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_SignatureUpdateInterval" class="Machine" displayName="$(string.SignatureUpdate_SignatureUpdateInterval)" explainText="$(string.SignatureUpdate_SignatureUpdateInterval_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="SignatureUpdateInterval" presentation="$(presentation.SignatureUpdate_SignatureUpdateInterval)">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <decimal id="SignatureUpdate_SignatureUpdateInterval" valueName="SignatureUpdateInterval" minValue="0" maxValue="24" />
+            </elements>
+        </policy>
+        <policy name="SignatureUpdate_UpdateOnStartup" class="Machine" displayName="$(string.SignatureUpdate_UpdateOnStartup)" explainText="$(string.SignatureUpdate_UpdateOnStartup_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="UpdateOnStartUp">
+            <parentCategory ref="SignatureUpdate" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Spynet_LocalSettingOverrideSpynetReporting" class="Machine" displayName="$(string.Spynet_LocalSettingOverrideSpynetReporting)" explainText="$(string.Spynet_LocalSettingOverrideSpynetReporting_Explain)" key="Software\Policies\Microsoft\Windows Defender\Spynet" valueName="LocalSettingOverrideSpynetReporting">
+            <parentCategory ref="Spynet" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="SpynetReporting" class="Machine" displayName="$(string.SpynetReporting)" explainText="$(string.SpynetReporting_Explain)" key="Software\Policies\Microsoft\Windows Defender\Spynet" valueName="SpynetReporting" presentation="$(presentation.SpynetReporting)">
+            <parentCategory ref="Spynet" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <elements>
+                <enum id="SpynetReporting" valueName="SpynetReporting" required="true">
+                    <item displayName="$(string.SpynetReporting_Disabled)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SpynetReporting_Basic)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SpynetReporting_Advanced)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="SubmitSamplesConsent" class="Machine" displayName="$(string.SubmitSamplesConsent)" explainText="$(string.SubmitSamplesConsent_Explain)" key="Software\Policies\Microsoft\Windows Defender\Spynet" valueName="SubmitSamplesConsent" presentation="$(presentation.SubmitSamplesConsent)">
+            <parentCategory ref="Spynet" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <elements>
+                <enum id="SubmitSamplesConsent" valueName="SubmitSamplesConsent" required="true">
+                    <item displayName="$(string.SubmitSamplesConsent_Always_Prompt)">
+                        <value>
+                            <decimal value="0" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SubmitSamplesConsent_Send_Safe)">
+                        <value>
+                            <decimal value="1" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SubmitSamplesConsent_Never_Send)">
+                        <value>
+                            <decimal value="2" />
+                        </value>
+                    </item>
+                    <item displayName="$(string.SubmitSamplesConsent_Send_All)">
+                        <value>
+                            <decimal value="3" />
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+        <policy name="Threats_ThreatIdDefaultAction" class="Machine" displayName="$(string.Threats_ThreatIdDefaultAction)" explainText="$(string.Threats_ThreatIdDefaultAction_Explain)" key="Software\Policies\Microsoft\Windows Defender\Threats" valueName="Threats_ThreatIdDefaultAction" presentation="$(presentation.Threats_ThreatIdDefaultAction)">
+            <parentCategory ref="Threats" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Threats_ThreatIdDefaultActionList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\Threats\ThreatIdDefaultAction" />
+            </elements>
+        </policy>
+        <policy name="Threats_ThreatSeverityDefaultAction" class="Machine" displayName="$(string.Threats_ThreatSeverityDefaultAction)" explainText="$(string.Threats_ThreatSeverityDefaultAction_Explain)" key="Software\Policies\Microsoft\Windows Defender\Threats" valueName="Threats_ThreatSeverityDefaultAction" presentation="$(presentation.Threats_ThreatSeverityDefaultAction)">
+            <parentCategory ref="Threats" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <list id="Threats_ThreatSeverityDefaultActionList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction" />
+            </elements>
+        </policy>
+        <policy name="UX_Configuration_UILockdown" class="Machine" displayName="$(string.UX_Configuration_UILockdown)" explainText="$(string.UX_Configuration_UILockdown_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="UILockdown">
+            <parentCategory ref="ClientInterface" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="UX_Configuration_SuppressRebootNotification" class="Machine" displayName="$(string.UX_Configuration_SuppressRebootNotification)" explainText="$(string.UX_Configuration_SuppressRebootNotification_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="SuppressRebootNotification">
+            <parentCategory ref="ClientInterface" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="UX_Configuration_Notification_Suppress" class="Machine" displayName="$(string.UX_Configuration_Notification_Suppress)" explainText="$(string.UX_Configuration_Notification_Suppress_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="Notification_Suppress">
+            <parentCategory ref="ClientInterface" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="UX_Configuration_CustomDefaultActionToastString" class="Machine" displayName="$(string.UX_Configuration_CustomDefaultActionToastString)" explainText="$(string.UX_Configuration_CustomDefaultActionToastString_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="CustomDefaultActionToastString" presentation="$(presentation.UX_Configuration_CustomDefaultActionToastString)">
+            <parentCategory ref="ClientInterface" />
+            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <elements>
+                <text id="UX_Configuration_CustomDefaultActionToastString" valueName="CustomDefaultActionToastString" required="true" />
+            </elements>
+        </policy>
+    </policies>
+</policyDefinitions>

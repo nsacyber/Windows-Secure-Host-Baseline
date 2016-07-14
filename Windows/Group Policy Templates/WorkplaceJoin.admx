@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2013 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="10.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="WJ" namespace="Microsoft.Policies.WorkplaceJoin" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WorkplaceJoin" displayName="$(string.WJ_WorkplaceJoinCategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WJ_AutoJoin" class="Machine" displayName="$(string.WJ_AutoJoin)" explainText="$(string.WJ_AutoJoinExplain)" key="Software\Policies\Microsoft\Windows\WorkplaceJoin" valueName="autoWorkplaceJoin">
+      <parentCategory ref="WorkplaceJoin" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DownloadGameInfo">Turn off downloading of game information</string>
+      <string id="DownloadGameInfo_Help">Manages download of game box art and ratings from the Windows Metadata Services.
+
+If you enable this setting, game information including box art and ratings will not be downloaded. 
+
+If you disable or do not configure this setting, game information will be downloaded from Windows Metadata Services.</string>
+      <string id="GAMEUX">Game Explorer</string>
+      <string id="ListRecentlyPlayed">Turn off tracking of last play time of games in the Games folder</string>
+      <string id="ListRecentlyPlayed_Help">Tracks the last play time of games in the Games folder.
+
+If you enable this setting the last played time of games will not be recorded in Games folder. This setting only affects the Games folder. 
+
+If you disable or do not configure this setting, the last played time will be displayed to the user.</string>
+
+      <string id="GameUpdateOptions">Turn off game updates</string>
+      <string id="GameUpdateOptions_Help">Manages download of game update information from Windows Metadata Services.
+
+If you enable this setting, game update information will not be downloaded. 
+
+If you disable or do not configure this setting, game update information will be downloaded from Windows Metadata Services.</string>
+
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

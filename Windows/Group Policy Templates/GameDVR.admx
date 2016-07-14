@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="0.9" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="gamedvr" namespace="Microsoft.Policies.GameDVR" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" fallbackCulture="uz-UZ-Cyrl"/>
+  <categories>
+    <category name="GAMEDVR" displayName="$(string.GAMEDVR)" explainText="$(string.GAMEDVRHELP)">  
+       <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowGameDVR" class="Machine" displayName="$(string.GameDVRMode)" explainText="$(string.GameDVRMode_Help)" key="Software\Policies\Microsoft\Windows\GameDVR" valueName="AllowGameDVR">
+      <parentCategory ref="GAMEDVR" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

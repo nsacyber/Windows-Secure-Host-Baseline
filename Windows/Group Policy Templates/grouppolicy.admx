@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="grouppolicy" namespace="Microsoft.Policies.GroupPolicy" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="PolicyPolicies" displayName="$(string.PolicyPolicies)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="MitOptions" displayName="$(string.MitigationOptions)">  
+      <parentCategory ref="windows:System" />  
+    </category> 
+  </categories>
+  <policies>
+     <policy name="FontMitigation" clientExtension="{2A8FDC61-2347-4C87-92F6-B05EB91A201A}" class="Machine" displayName="$(string.Font_List)" explainText="$(string.Font_List_Help)" presentation="$(presentation.Font_List)" key="SOFTWARE\Policies\Microsoft\Windows NT\MitigationOptions">
+      <parentCategory ref="MitOptions" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <enum id="FontMitigation_DL" valueName="MitigationOptions_FontBocking" required="true">
+          <item displayName="$(string.FontMitigation_On)">
+            <value>
+              <string>1000000000000</string>
+            </value>
+          </item>
+          <item displayName="$(string.FontMitigation_Off)">
+            <value>
+              <string>2000000000000</string>
+            </value>
+          </item>
+          <item displayName="$(string.FontMitigation_Audit)">
+            <value>
+              <string>3000000000000</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="EnableLogonOptimization" class="Machine" displayName="$(string.EnableLogonOptimization)" explainText="$(string.EnableLogonOptimization_Help)" presentation="$(presentation.SyncModeThreshold)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableLogonOptimization">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="SyncModeSlowLinkThreshold1" valueName="SyncModeSlowLinkThreshold" maxValue="300000" />
+        <decimal id="SyncModeNoDCThreshold1" valueName="SyncModeNoDCThreshold" maxValue="600000" />
+      </elements>
+    </policy>
+    <policy name="EnableLogonOptimizationOnServerSKU" class="Machine" displayName="$(string.EnableLogonOptimizationOnServerSKU)" explainText="$(string.EnableLogonOptimizationOnServerSKU_Help)" presentation="$(presentation.SyncModeThreshold)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableLogonOptimizationOnServerSKU">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="SyncModeSlowLinkThreshold1" valueName="SyncModeSlowLinkThresholdOnServerSKU" maxValue="300000" />
+        <decimal id="SyncModeNoDCThreshold1" valueName="SyncModeNoDCThresholdOnServerSKU" maxValue="600000" />
+      </elements>
+    </policy>
+    <policy name="LogonScriptDelay" class="Machine" displayName="$(string.LogonScriptDelay)" explainText="$(string.LogonScriptDelay_Help)" presentation="$(presentation.LogonScriptDelay)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableLogonScriptDelay">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="AsyncScriptDelay1" valueName="AsyncScriptDelay" maxValue="1000" />
+      </elements>
+    </policy>
+    <policy name="ResetDfsClientInfoDuringRefreshPolicy" class="Machine" displayName="$(string.ResetDfsClientInfoDuringRefreshPolicy)" explainText="$(string.ResetDfsClientInfoDuringRefreshPolicy_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="ResetDfsClientInfoDuringRefreshPolicy">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableAOACProcessing" class="Machine" displayName="$(string.DisableAOACProcessing)" explainText="$(string.DisableAOACProcessing_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableAOACProcessing">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+      <policy name="SlowLinkDefaultForDirectAccess" class="Machine" displayName="$(string.SlowLinkDefaultForDirectAccess)" explainText="$(string.SlowLinkDefaultForDirectAccess_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="SlowLinkDefaultForDirectAccess">
+          <parentCategory ref="PolicyPolicies" />
+          <supportedOn ref="windows:SUPPORTED_Windows8" />
+          <enabledValue>
+              <decimal value="1" />
+          </enabledValue>
+          <disabledValue>
+              <decimal value="0" />
+          </disabledValue>
+      </policy>
+      <policy name="SlowlinkDefaultToAsync" class="Machine" displayName="$(string.SlowlinkDefaultToAsync)" explainText="$(string.SlowlinkDefaultToAsync_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="SlowlinkDefaultToAsync">
+          <parentCategory ref="PolicyPolicies" />
+          <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+          <enabledValue>
+              <decimal value="1" />
+          </enabledValue>
+          <disabledValue>
+              <decimal value="0" />
+          </disabledValue>
+      </policy>
+      <policy name="DisableLGPOProcessing" class="Machine" displayName="$(string.DisableLGPOProcessing)" explainText="$(string.DisableLGPOProcessing_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableLGPOProcessing">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SyncWaitTime" class="Machine" displayName="$(string.SyncWaitTime)" explainText="$(string.SyncWaitTime_Help)" presentation="$(presentation.SyncWaitTime)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="SyncWaitTime_Minutes" valueName="GpNetworkStartTimeoutPolicyValue" minValue="1" maxValue="600" />
+      </elements>
+    </policy>
+    <policy name="AllowX-ForestPolicy-and-RUP" class="Machine" displayName="$(string.AllowX-ForestPolicy-and-RUP)" explainText="$(string.AllowX-ForestPolicy-and-RUP_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="AllowX-ForestPolicy-and-RUP">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CSE_AppMgmt" class="Machine" displayName="$(string.CSE_AppMgmt)" explainText="$(string.CSE_AppMgmt_Help)" presentation="$(presentation.CSE_AppMgmt)" key="Software\Policies\Microsoft\Windows\Group Policy\{c6dc5466-785a-11d2-84d0-00c04fb169f7}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK1" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES1" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_DiskQuota" class="Machine" displayName="$(string.CSE_DiskQuota)" explainText="$(string.CSE_DiskQuota_Help)" presentation="$(presentation.CSE_DiskQuota)" key="Software\Policies\Microsoft\Windows\Group Policy\{3610eda5-77ef-11d2-8dc5-00c04fa31a66}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK2" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND2" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES2" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_EFSRecovery" class="Machine" displayName="$(string.CSE_EFSRecovery)" explainText="$(string.CSE_EFSRecovery_Help)" presentation="$(presentation.CSE_EFSRecovery)" key="Software\Policies\Microsoft\Windows\Group Policy\{B1BE8D72-6EAC-11D2-A4EA-00C04F79F83A}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK3" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND3" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES3" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_FolderRedirection" class="Machine" displayName="$(string.CSE_FolderRedirection)" explainText="$(string.CSE_FolderRedirection_Help)" presentation="$(presentation.CSE_FolderRedirection)" key="Software\Policies\Microsoft\Windows\Group Policy\{25537BA6-77A8-11D2-9B6C-0000F8080861}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK4" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES4" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_IEM" class="Machine" displayName="$(string.CSE_IEM)" explainText="$(string.CSE_IEM_Help)" presentation="$(presentation.CSE_IEM)" key="Software\Policies\Microsoft\Windows\Group Policy\{A2E30F80-D7DE-11d2-BBDE-00C04F86AE3B}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK5" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND5" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES5" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_IPSecurity" class="Machine" displayName="$(string.CSE_IPSecurity)" explainText="$(string.CSE_IPSecurity_Help)" presentation="$(presentation.CSE_IPSecurity)" key="Software\Policies\Microsoft\Windows\Group Policy\{e437bc1c-aa7d-11d2-a382-00c04f991e27}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK6" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND6" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES6" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_Registry" class="Machine" displayName="$(string.CSE_Registry)" explainText="$(string.CSE_Registry_Help)" presentation="$(presentation.CSE_Registry)" key="Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_NOBACKGROUND10" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES10" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_Scripts" class="Machine" displayName="$(string.CSE_Scripts)" explainText="$(string.CSE_Scripts_Help)" presentation="$(presentation.CSE_Scripts)" key="Software\Policies\Microsoft\Windows\Group Policy\{42B5FAAE-6536-11d2-AE5A-0000F87571E3}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK7" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND7" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES7" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_Security" class="Machine" displayName="$(string.CSE_Security)" explainText="$(string.CSE_Security_Help)" presentation="$(presentation.CSE_Security)" key="Software\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_NOBACKGROUND11" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES11" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_Wireless" class="Machine" displayName="$(string.CSE_Wireless)" explainText="$(string.CSE_Wireless_Help)" presentation="$(presentation.CSE_Wireless)" key="Software\Policies\Microsoft\Windows\Group Policy\{0ACDD40C-75AC-47ab-BAA0-BF6DE7E7FE63}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <boolean id="CSE_SLOWLINK9" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND9" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES9" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="CSE_Wired" class="Machine" displayName="$(string.CSE_Wired)" explainText="$(string.CSE_Wired_Help)" presentation="$(presentation.CSE_Wired)" key="Software\Policies\Microsoft\Windows\Group Policy\{B587E2B1-4D59-4e7e-AED9-22B9DF11D053}">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <boolean id="CSE_SLOWLINK8" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND8" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES8" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="DenyRsopToInteractiveUser_1" class="User" displayName="$(string.DenyRsopToInteractiveUser)" explainText="$(string.DenyRsopToInteractiveUser_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DenyRsopToInteractiveUser">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DenyRsopToInteractiveUser_2" class="Machine" displayName="$(string.DenyRsopToInteractiveUser)" explainText="$(string.DenyRsopToInteractiveUser_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DenyRsopToInteractiveUser">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableAutoADMUpdate" class="User" displayName="$(string.DisableAutoADMUpdate)" explainText="$(string.DisableAutoADMUpdate_Help)" key="Software\Policies\Microsoft\Windows\Group Policy Editor" valueName="DisableAutoADMUpdate">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="DisableBackgroundPolicy" class="Machine" displayName="$(string.DisableBackgroundPolicy)" explainText="$(string.DisableBackgroundPolicy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableBkGndGroupPolicy">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableUsersFromMachGP" class="Machine" displayName="$(string.DisableUsersFromMachGP)" explainText="$(string.DisableUsersFromMachGP_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DenyUsersFromMachGP">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnforcePoliciesOnly" class="User" displayName="$(string.EnforcePoliciesOnly)" explainText="$(string.EnforcePoliciesOnly_Help)" key="Software\Policies\Microsoft\Windows\Group Policy Editor" valueName="ShowPoliciesOnly">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="GPDCOptions" class="User" displayName="$(string.GPDCOptions)" explainText="$(string.GPDCOptions_Help)" presentation="$(presentation.GPDCOptions)" key="Software\Policies\Microsoft\Windows\Group Policy Editor">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="GPDCOptionsDesc" valueName="DCOption">
+          <item displayName="$(string.GPDCOptionPDC)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.GPDCOptionInherit)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.GPDCOptionAny)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="GPTransferRate_1" class="User" displayName="$(string.GPTransferRate)" explainText="$(string.GPTransferRate_Help)" presentation="$(presentation.GPTransferRate_1)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="TransferRateOp1" valueName="GroupPolicyMinTransferRate" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="GPTransferRate_2" class="Machine" displayName="$(string.GPTransferRate)" explainText="$(string.GPTransferRate_Help)" presentation="$(presentation.GPTransferRate_2)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="TransferRateOp2" valueName="GroupPolicyMinTransferRate" maxValue="4294967200" />
+        <boolean id="CSE_3G_DEFAULT_TO_SLOWLINK_COMPUTER" valueName="SlowLinkDefaultFor3G">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="GroupPolicyRefreshRate" class="Machine" displayName="$(string.GroupPolicyRefreshRate)" explainText="$(string.GroupPolicyRefreshRate_Help)" presentation="$(presentation.GroupPolicyRefreshRate)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="GPRefreshRate1" valueName="GroupPolicyRefreshTime" required="true" maxValue="44640" />
+        <decimal id="GPRefreshRateOffset1" valueName="GroupPolicyRefreshTimeOffset" required="true" maxValue="1440" />
+      </elements>
+    </policy>
+    <policy name="GroupPolicyRefreshRateDC" class="Machine" displayName="$(string.GroupPolicyRefreshRateDC)" explainText="$(string.GroupPolicyRefreshRateDC_Help)" presentation="$(presentation.GroupPolicyRefreshRateDC)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="GPRefreshRate2" valueName="GroupPolicyRefreshTimeDC" required="true" maxValue="44640" />
+        <decimal id="GPRefreshRateOffset2" valueName="GroupPolicyRefreshTimeOffsetDC" required="true" maxValue="1440" />
+      </elements>
+    </policy>
+    <policy name="GroupPolicyRefreshRateUser" class="User" displayName="$(string.GroupPolicyRefreshRateUser)" explainText="$(string.GroupPolicyRefreshRateUser_Help)" presentation="$(presentation.GroupPolicyRefreshRateUser)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="GPRefreshRate3" valueName="GroupPolicyRefreshTime" required="true" maxValue="44640" />
+        <decimal id="GPRefreshRateOffset3" valueName="GroupPolicyRefreshTimeOffset" required="true" maxValue="1440" />
+      </elements>
+    </policy>
+    <policy name="NewGPODisplayName" class="User" displayName="$(string.NewGPODisplayName)" explainText="$(string.NewGPODisplayName_Help)" presentation="$(presentation.NewGPODisplayName)" key="Software\Policies\Microsoft\Windows\Group Policy Editor">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="NewGPODisplayNameHeading" valueName="GPODisplayName" required="true" maxLength="255" />
+      </elements>
+    </policy>
+    <policy name="NewGPOLinksDisabled" class="User" displayName="$(string.NewGPOLinksDisabled)" explainText="$(string.NewGPOLinksDisabled_Help)" key="Software\Policies\Microsoft\Windows\Group Policy Editor" valueName="NewGPOLinksDisabled">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="OnlyUseLocalAdminFiles" class="Machine" displayName="$(string.OnlyUseLocalAdminFiles)" explainText="$(string.OnlyUseLocalAdminFiles_Help)" key="Software\Policies\Microsoft\Windows\Group Policy" valueName="OnlyUseLocalAdminFiles">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOrServerOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RSoPLogging" class="Machine" displayName="$(string.RSoPLogging)" explainText="$(string.RSoPLogging_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="RSoPLogging">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="UserPolicyMode" class="Machine" displayName="$(string.UserPolicyMode)" explainText="$(string.UserPolicyMode_Help)" presentation="$(presentation.UserPolicyMode)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="UserPolicyModeOp" valueName="UserPolicyMode">
+          <item displayName="$(string.UserPolicyMode_Merge)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserPolicyMode_Replace)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CorpConnSyncWaitTime" class="Machine" displayName="$(string.CorpConnSyncWaitTime)" explainText="$(string.CorpConnSyncWaitTime_Help)" presentation="$(presentation.CorpConnSyncWaitTime)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="CorpConnSyncWaitTime_Seconds" valueName="CorpConnStartTimeoutPolicyValue" minValue="1" maxValue="600" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2008 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="biometrics" namespace="Microsoft.Policies.Biometrics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="BiometricsConfiguration" displayName="$(string.BiometricsConfiguration)">
+        <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="FaceConfiguration" displayName="$(string.FaceConfiguration)">
+      <parentCategory ref="BiometricsConfiguration" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Biometrics_EnableBio" class="Machine" displayName="$(string.Biometrics_EnableBio)" explainText="$(string.Biometrics_EnableBio_Help)" key="SOFTWARE\Policies\Microsoft\Biometrics" valueName="Enabled">
+      <parentCategory ref="BiometricsConfiguration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Biometrics_EnableCredProv" class="Machine" displayName="$(string.Biometrics_EnableCredProv)" explainText="$(string.Biometrics_EnableCredProv_Help)" key="SOFTWARE\Policies\Microsoft\Biometrics\Credential Provider" valueName="Enabled">
+      <parentCategory ref="BiometricsConfiguration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Biometrics_EnableDomainCredProv" class="Machine" displayName="$(string.Biometrics_EnableDomainCredProv)" explainText="$(string.Biometrics_EnableDomainCredProv_Help)" key="SOFTWARE\Policies\Microsoft\Biometrics\Credential Provider" valueName="Domain Accounts">
+      <parentCategory ref="BiometricsConfiguration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Biometrics_FUSTimeout" class="Machine" displayName="$(string.Biometrics_FUSTimeout)" explainText="$(string.Biometrics_FUSTimeout_Help)" presentation="$(presentation.Biometrics_FUSTimeout)" key="SOFTWARE\Policies\Microsoft\Biometrics\Credential Provider">
+      <parentCategory ref="BiometricsConfiguration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+          <decimal id="Pol_Biometrics_FUSTimeout" valueName="SwitchTimeoutInSeconds" minValue="5" maxValue="60" />
+      </elements>
+    </policy>
+    <policy name="Face_EnhancedAntiSpoofing" class="Machine" displayName="$(string.Face_EnhancedAntiSpoofing)" explainText="$(string.Face_EnhancedAntiSpoofing_Help)" key="SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures" valueName="EnhancedAntiSpoofing">
+      <parentCategory ref="FaceConfiguration" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

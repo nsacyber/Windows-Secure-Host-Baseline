@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsconnectionmanager" namespace="Microsoft.Policies.WindowsConnectionManager" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WCM_Category" displayName="$(string.WCM_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WCM_BlockNonDomain" class="Machine" displayName="$(string.WCM_BlockNonDomain)" explainText="$(string.WCM_BlockNonDomain_Help)" key="Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy" valueName="fBlockNonDomain">
+      <parentCategory ref="WCM_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WCM_MinimizeConnections" class="Machine" displayName="$(string.WCM_MinimizeConnections)" explainText="$(string.WCM_MinimizeConnections_Help)" key="Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy" valueName="fMinimizeConnections">
+      <parentCategory ref="WCM_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WCM_DisableRoaming" class="Machine" displayName="$(string.WCM_DisableRoaming)" explainText="$(string.WCM_DisableRoaming_Help)" key="Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy" valueName="fBlockRoaming">
+      <parentCategory ref="WCM_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WCM_DisablePowerManagement" class="Machine" displayName="$(string.WCM_DisablePowerManagement)" explainText="$(string.WCM_DisablePowerManagement_Help)" key="Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy" valueName="fDisablePowerManagement">
+      <parentCategory ref="WCM_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

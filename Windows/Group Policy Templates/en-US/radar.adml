@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="WdiScenarioCategory">Windows Resource Exhaustion Detection and Resolution</string>
+      <string id="WdiScenarioExecutionPolicy">Configure Scenario Execution Level</string>
+      <string id="WdiScenarioExecutionPolicyExplain">Determines the execution level for Windows Resource Exhaustion Detection and Resolution.
+
+If you enable this policy setting, you must select an execution level from the dropdown menu. If you select problem detection and troubleshooting only, the Diagnostic Policy Service (DPS) will detect Windows Resource Exhaustion problems and attempt to determine their root causes. These root causes will be logged to the event log when detected, but no corrective action will be taken. If you select detection, troubleshooting and resolution, the DPS will detect Windows Resource Exhaustion problems and indicate to the user that assisted resolution is available.
+
+If you disable this policy setting, Windows will not be able to detect, troubleshoot or resolve any Windows Resource Exhaustion problems that are handled by the DPS.
+
+If you do not configure this policy setting, the DPS will enable Windows Resource Exhaustion for resolution by default.
+
+This policy setting takes effect only if the diagnostics-wide scenario execution policy is not configured.
+
+No system restart or service restart is required for this policy to take effect: changes take effect immediately.
+
+This policy setting will only take effect when the Diagnostic Policy Service is in the running state. When the service is stopped or disabled, diagnostic scenarios will not be executed.  The DPS can be configured with the Services snap-in to the Microsoft Management Console.</string>
+      <string id="WdiScenarioExecutionPolicyLevelResolution">Detection, Troubleshooting and Resolution</string>
+      <string id="WdiScenarioExecutionPolicyLevelTsOnly">Detection and Troubleshooting Only</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="WdiScenarioExecutionPolicy">
+        <dropdownList refId="WdiScenarioExecutionPolicyLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

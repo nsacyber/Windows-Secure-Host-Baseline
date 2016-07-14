@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="MMC_ActiveDirDomTrusts">Active Directory Domains and Trusts</string>
+      <string id="MMC_ActiveDirSitesServices">Active Directory Sites and Services</string>
+      <string id="MMC_ActiveDirUsersComp">Active Directory Users and Computers</string>
+      <string id="MMC_ADMComputers">Administrative Templates (Computers)</string>
+      <string id="MMC_ADMUsers">Administrative Templates (Users)</string>
+      <string id="MMC_ADSI">ADSI Edit</string>
+      <string id="MMC_AppleTalkRouting">AppleTalk Routing</string>
+      <string id="MMC_AuthMan">Authorization Manager</string>
+      <string id="MMC_CertAuth">Certification Authority</string>
+      <string id="MMC_CertAuthPolSet">Certification Authority Policy Settings</string>
+      <string id="MMC_Certs">Certificates</string>
+      <string id="MMC_CertsTemplate">Certificate Templates</string>
+      <string id="MMC_ComponentServices">Component Services</string>
+      <string id="MMC_ComputerManagement">Computer Management</string>
+      <string id="MMC_ConnectionSharingNAT">Connection Sharing (NAT)</string>
+      <string id="MMC_DCOMCFG">DCOM Configuration Extension</string>
+      <string id="MMC_DeviceManager">Device Manager</string>
+      <string id="MMC_DFS">Distributed File System</string>
+      <string id="MMC_DHCPRelayMgmt">DHCP Relay Management</string>
+      <string id="MMC_DiskDefrag">Disk Defragmenter</string>
+      <string id="MMC_DiskMgmt">Disk Management</string>
+      <string id="MMC_EnterprisePKI">Enterprise PKI</string>
+      <string id="MMC_EventViewer">Event Viewer</string>
+      <string id="MMC_EventViewer_2">Event Viewer (Windows Vista)</string>
+      <string id="MMC_FailoverClusters">Failover Clusters Manager</string>
+      <string id="MMC_FAXService">FAX Service</string>
+      <string id="MMC_FolderRedirection">Folder Redirection</string>
+      <string id="MMC_FrontPageExt">FrontPage Server Extensions</string>
+      <string id="MMC_GroupPolicy">Group Policy</string>
+      <string id="MMC_GroupPolicy_GPSnapin">Group Policy snap-in extensions</string>
+      <string id="MMC_GroupPolicy_GPSnapin_Help">Allows you to permit and prohibit the use of the Group Policy Object Editor snap-in and its extensions.</string>
+      <string id="MMC_GroupPolicy_RSoPSnapin">Resultant Set of Policy snap-in extensions</string>
+      <string id="MMC_GroupPolicyManagementSnapIn">Group Policy Management</string>
+      <string id="MMC_GroupPolicySnapIn">Group Policy Object Editor</string>
+      <string id="MMC_GroupPolicyTab">Group Policy tab for Active Directory Tools</string>
+      <string id="MMC_GroupPolicyTab_Explain">Permits or prohibits use of the Group Policy tab in property sheets for the Active Directory Users and Computers and Active Directory Sites and Services snap-ins.
+
+If you enable this setting, the Group Policy tab is displayed in the property sheet for a site, domain, or organizational unit displayed by the Active Directory Users and Computers and Active Directory Sites and Services snap-ins. If you disable the setting, the Group Policy tab is not displayed in those snap-ins.
+
+If this setting is not configured, the setting of the "Restrict users to the explicitly permitted list of snap-ins" setting determines whether this tab is displayed.
+
+--  If "Restrict users to the explicitly permitted list of snap-ins" is enabled, users will not have access to the Group Policy tab.
+
+    To explicitly permit use of the Group Policy tab, enable this setting. If this setting is not configured (or disabled), the Group Policy tab is inaccessible.
+
+--  If "Restrict users to the explicitly permitted list of snap-ins" is disabled or not configured, users will have access to the Group Policy tab.
+
+    To explicitly prohibit use of the Group Policy tab, disable this setting. If this setting is not configured (or enabled), the Group Policy tab is accessible.
+
+When the Group Policy tab is inaccessible, it does not appear in the site, domain, or organizational unit property sheets.</string>
+      <string id="MMC_HRA">Health Registration Authority (HRA)</string>
+      <string id="MMC_IAS">Internet Authentication Service (IAS)</string>
+      <string id="MMC_IASLogging">IAS Logging</string>
+      <string id="MMC_IEMaintenance">Internet Explorer Maintenance</string>
+      <string id="MMC_IGMPRouting">IGMP Routing</string>
+      <string id="MMC_IIS">Internet Information Services</string>
+      <string id="MMC_IndexingService">Indexing Service</string>
+      <string id="MMC_IPRouting">IP Routing</string>
+      <string id="MMC_IpSecManage">IP Security Policy Management</string>
+      <string id="MMC_IpSecMonitor">IP Security Monitor</string>
+      <string id="MMC_IPXRIPRouting">IPX RIP Routing</string>
+      <string id="MMC_IPXRouting">IPX Routing</string>
+      <string id="MMC_IPXSAPRouting">IPX SAP Routing</string>
+      <string id="MMC_LocalUsersGroups">Local Users and Groups</string>
+      <string id="MMC_LogicalMappedDrives">Logical and Mapped Drives</string>
+      <string id="MMC_NapSnap">NAP Client Configuration</string>
+      <string id="MMC_NPSUI">Network Policy Server (NPS)</string>
+      <string id="MMC_Net_Framework">.Net Framework Configuration</string>
+      <string id="MMC_OCSP">Online Responder</string>
+      <string id="MMC_OSPFRouting">OSPF Routing</string>
+      <string id="MMC_PerfLogsAlerts">Performance Logs and Alerts</string>
+      <string id="MMC_PublicKey">Public Key Policies</string>
+      <string id="MMC_QoSAdmission">QoS Admission Control</string>
+      <string id="MMC_RAS_DialinUser">RAS Dialin - User Node</string>
+      <string id="MMC_RemoteAccess">Remote Access</string>
+      <string id="MMC_RemoteDesktop">Remote Desktops</string>
+      <string id="MMC_RemStore">Removable Storage</string>
+      <string id="MMC_Restrict_Explain">This policy setting permits or prohibits the use of this snap-in. 
+
+If you enable this policy setting, the snap-in is permitted and can be added into the Microsoft Management Console or run from the command line as a standalone console. 
+
+If you disable this policy setting, the snap-in is prohibited and cannot be added into the Microsoft Management Console or run from the command line as a standalone console. An error message is displayed stating that policy is prohibiting the use of this snap-in. 
+
+If this policy setting is not configured, the setting of the "Restrict users to the explicitly permitted list of snap-ins" setting determines whether this snap-in is permitted or prohibited. 
+
+--  If the policy setting "Restrict users to the explicitly permitted list of snap-ins" is enabled, users cannot use any snap-in except those explicitly permitted. To explicitly permit use of this snap-in, enable this policy setting. If this policy setting is not configured or disabled, this snap-in is prohibited. 
+
+--  If the policy setting "Restrict users to the explicitly permitted list of snap-ins" is disabled or not configured, users can use any snap-in except those explicitly prohibited. To explicitly prohibit use of this snap-in, disable this policy setting. If this policy setting is not configured or enabled, the snap-in is permitted. 
+
+When a snap-in is prohibited, it does not appear in the Add/Remove Snap-in window in MMC. Also, when a user opens a console file that includes a prohibited snap-in, the console file opens, but the prohibited snap-in does not appear.</string>
+      <string id="MMC_ResultantSetOfPolicySnapIn">Resultant Set of Policy snap-in</string>
+      <string id="MMC_RIPRouting">RIP Routing</string>
+      <string id="MMC_RIS">Remote Installation Services</string>
+      <string id="MMC_Routing">Routing</string>
+      <string id="MMC_RRA">Routing and Remote Access</string>
+      <string id="MMC_RSM">Removable Storage Management</string>
+      <string id="MMC_SCA">Security Configuration and Analysis</string>
+      <string id="MMC_ScriptsMachine">Scripts (Startup/Shutdown)</string>
+      <string id="MMC_ScriptsUser">Scripts (Logon/Logoff)</string>
+      <string id="MMC_SecuritySettings">Security Settings</string>
+      <string id="MMC_SecurityTemplates">Security Templates</string>
+      <string id="MMC_SendConsoleMessage">Send Console Message</string>
+      <string id="MMC_ServerManager">Server Manager</string>
+      <string id="MMC_ServiceDependencies">Service Dependencies</string>
+      <string id="MMC_Services">Services</string>
+      <string id="MMC_SharedFolders">Shared Folders</string>
+      <string id="MMC_SharedFolders_Ext">Shared Folders Ext</string>
+      <string id="MMC_SMTPProtocol">SMTP Protocol</string>
+      <string id="MMC_SNMP">SNMP</string>
+      <string id="MMC_SoftwareInstalationComputers">Software Installation (Computers)</string>
+      <string id="MMC_SoftwareInstallationUsers">Software Installation (Users)</string>
+      <string id="MMC_SysInfo">System Information</string>
+      <string id="MMC_SysProp">System Properties</string>
+      <string id="MMC_Telephony">Telephony</string>
+      <string id="MMC_TerminalServices">Remote Desktop Services Configuration</string>
+      <string id="MMC_TPMManagement">TPM Management</string>
+      <string id="MMC_WindowsFirewall">Windows Firewall with Advanced Security</string>
+      <string id="MMC_WirelessMon">Wireless Monitor</string>
+      <string id="MMC_WirelessNetworkPolicy">Wireless Network (IEEE 802.11) Policies</string>
+      <string id="MMC_WiredNetworkPolicy">Wired Network (IEEE 802.3) Policies</string>
+      <string id="MMC_WMI">WMI Control</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

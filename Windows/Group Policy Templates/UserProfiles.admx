@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="userprofiles" namespace="Microsoft.Policies.UserProfiles" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="UserProfiles" displayName="$(string.UserProfiles)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AddAdminGroupToRUP" class="Machine" displayName="$(string.AddAdminGroupToRUP)" explainText="$(string.AddAdminGroupToRUP_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="AddAdminGroupToRUP">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="CompatibleRUPSecurity" class="Machine" displayName="$(string.CompatibleRUPSecurity)" explainText="$(string.CompatibleRUPSecurity_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="CompatibleRUPSecurity">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP_SP1_W2K_SP4_NETSERVER" />
+    </policy>
+    <policy name="Connect_HomeDir_ToRoot" class="User" displayName="$(string.Connect_HomeDir_ToRoot)" explainText="$(string.Connect_HomeDir_ToRoot_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="ConnectHomeDirToRoot">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeleteRoamingCachedProfiles" class="Machine" displayName="$(string.DeleteRoamingCachedProfiles)" explainText="$(string.DeleteRoamingCachedProfiles_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DeleteRoamingCache">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="EnableSlowLinkDetect" class="Machine" displayName="$(string.EnableSlowLinkDetect)" explainText="$(string.EnableSlowLinkDetect_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="SlowLinkDetectEnabled">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableSlowLinkUI" class="Machine" displayName="$(string.EnableSlowLinkUI)" explainText="$(string.EnableSlowLinkUI_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="SlowLinkUIEnabled">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="ExcludeDirectories" class="User" displayName="$(string.ExcludeDirectories)" explainText="$(string.ExcludeDirectories_Help)" presentation="$(presentation.ExcludeDirectories)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="ExcludeMessage" valueName="ExcludeProfileDirs" maxLength="4096" />
+      </elements>
+    </policy>
+    <policy name="LeaveAppMgmtData" class="Machine" displayName="$(string.LeaveAppMgmtData)" explainText="$(string.LeaveAppMgmtData_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="LeaveAppMgmtData">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+    </policy>
+    <policy name="LimitSize" class="User" displayName="$(string.LimitSize)" explainText="$(string.LimitSize_Help)" presentation="$(presentation.LimitSize)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="EnableProfileQuota">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="SizeMessage" valueName="ProfileQuotaMessage" />
+        <decimal id="ProfileSize" valueName="MaxProfileSize" required="true" minValue="300" maxValue="30000000" />
+        <boolean id="IncludeRegInProQuota" valueName="IncludeRegInProQuota" />
+        <boolean id="WarnUser" valueName="WarnUser" />
+        <decimal id="WarnUserTimeout" valueName="WarnUserTimeout" required="true" />
+      </elements>
+    </policy>
+    <policy name="LocalProfile" class="Machine" displayName="$(string.LocalProfile)" explainText="$(string.LocalProfile_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="LocalProfile">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="ProfileDlgTimeOut" class="Machine" displayName="$(string.ProfileDlgTimeOut)" explainText="$(string.ProfileDlgTimeOut_Help)" presentation="$(presentation.ProfileDlgTimeOut)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <decimal id="ProfileDlgWaitInterval" valueName="ProfileDlgTimeOut" required="true" maxValue="600" />
+      </elements>
+    </policy>
+    <policy name="ProfileErrorAction" class="Machine" displayName="$(string.ProfileErrorAction)" explainText="$(string.ProfileErrorAction_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="ProfileErrorAction">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="ProfileUnloadTimeout" class="Machine" displayName="$(string.ProfileUnloadTimeout)" explainText="$(string.ProfileUnloadTimeout_Help)" presentation="$(presentation.ProfileUnloadTimeout)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <decimal id="ProfileUnloadTimeoutPrompt" valueName="ProfileUnloadTimeout" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="Readonlyuserprofile" class="Machine" displayName="$(string.Readonlyuserprofile)" explainText="$(string.Readonlyuserprofile_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="ReadOnlyProfile">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="SlowLinkDefault" class="Machine" displayName="$(string.SlowLinkDefault)" explainText="$(string.SlowLinkDefault_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="SlowLinkProfileDefault">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="SlowLinkTimeOut" class="Machine" displayName="$(string.SlowLinkTimeOut)" explainText="$(string.SlowLinkTimeOut_Help)" presentation="$(presentation.SlowLinkTimeOut)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="TransferRateOp" valueName="UserProfileMinTransferRate" maxValue="4294967200" />
+        <decimal id="SlowLinkWaitInterval" valueName="SlowLinkTimeOut" required="true" maxValue="20000" />
+      </elements>
+    </policy>
+    <policy name="CleanupProfiles" class="Machine" displayName="$(string.CleanupProfiles)" explainText="$(string.CleanupProfiles_Help)" presentation="$(presentation.CleanupProfiles)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="CleanupProfiles_Days" valueName="CleanupProfiles" required="true" minValue="1" maxValue="99999" />
+      </elements>
+    </policy>
+    <policy name="CscSuspendDirectories" class="User" displayName="$(string.CscSuspendDirectories)" explainText="$(string.CscSuspendDirectories_Help)" presentation="$(presentation.CscSuspendDirectories)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="CscSuspendDirectories_Message" valueName="CscSuspendDirs" maxLength="4096" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="DontForceUnloadHive" class="Machine" displayName="$(string.DontForceUnloadHive)" explainText="$(string.DontForceUnloadHive_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableForceUnload">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+    </policy>
+    <policy name="WaitForNetwork" class="Machine" displayName="$(string.WaitForNetwork)" explainText="$(string.WaitForNetwork_Help)" presentation="$(presentation.WaitForNetwork)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="WaitForNetwork_Seconds" valueName="WaitForNetwork" required="true" minValue="0" maxValue="300" />
+      </elements>
+    </policy>
+    <policy name="MachineProfilePath" class="Machine" displayName="$(string.MachineProfilePath)" explainText="$(string.MachineProfilePath_Help)" presentation="$(presentation.MachineProfilePath)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="MachineProfilePath_Message" valueName="MachineProfilePath" maxLength="260" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="UploadHive" class="Machine" displayName="$(string.UploadHive)" explainText="$(string.UploadHive_Help)" presentation="$(presentation.UploadHive)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="UploadHiveMethod" valueName="UploadHiveMethod">
+          <item displayName="$(string.UploadHiveMethod_Interval)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UploadHiveMethod_Time)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="UploadHiveInterval" valueName="UploadHiveInterval" required="true" minValue="1" maxValue="720" />
+        <enum id="UploadHiveTime" valueName="UploadHiveTime" required="true">
+          <item displayName="$(string.ScheduleTime0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime5)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime6)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime7)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime9)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime10)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime11)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime13)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime14)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime15)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime16)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime17)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime18)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime19)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime20)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime21)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime22)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.ScheduleTime23)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="UserInfoAccessAction" class="Machine" displayName="$(string.UserInfoAccessAction_Name)" explainText="$(string.UserInfoAccessAction_Help)" presentation="$(presentation.UserInfoAccessAction)" key="Software\Policies\Microsoft\Windows\System" valueName="AllowUserInfoAccess">
+      <parentCategory ref="UserProfiles"/>
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <elements>
+        <enum id="AllowUserInfoAccess" valueName="AllowUserInfoAccess" required="true">
+          <item displayName="$(string.Lbl_UserInfoAccessAction_On)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.Lbl_UserInfoAccessAction_Off)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableAdvertisingId" class="Machine" displayName="$(string.DisableAdvertisingId_Name)" explainText="$(string.DisableAdvertisingId_Help)" key="Software\Policies\Microsoft\Windows\AdvertisingInfo" valueName="DisabledByGroupPolicy">
+      <parentCategory ref="UserProfiles"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PrimaryComputer_RUP" class="Machine" displayName="$(string.PrimaryComputerRup)" explainText="$(string.PrimaryComputerRup_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="PrimaryComputerEnabledRUP">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="USER_HOME" class="Machine" displayName="$(string.USER_HOME)" explainText="$(string.USER_HOME_EXPLAIN)" presentation="$(presentation.USER_HOME)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="UserProfiles" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="USER_HOME_LOCATION" valueName="HomeDirLocation">
+          <item displayName="$(string.On_the_Network)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.on_the_Local_Computer)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="HOME_PATH" valueName="HomeDir" required="true" />
+        <enum id="DRIVE_LETTER" valueName="HomeDirDrive">
+          <item displayName="$(string.DRIVE_G)">
+            <value>
+              <string>G:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_H)">
+            <value>
+              <string>H:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_I)">
+            <value>
+              <string>I:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_J)">
+            <value>
+              <string>J:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_K)">
+            <value>
+              <string>K:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_L)">
+            <value>
+              <string>L:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_M)">
+            <value>
+              <string>M:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_N)">
+            <value>
+              <string>N:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_O)">
+            <value>
+              <string>O:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_P)">
+            <value>
+              <string>P:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_Q)">
+            <value>
+              <string>Q:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_R)">
+            <value>
+              <string>R:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_S)">
+            <value>
+              <string>S:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_T)">
+            <value>
+              <string>T:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_U)">
+            <value>
+              <string>U:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_V)">
+            <value>
+              <string>V:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_W)">
+            <value>
+              <string>W:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_X)">
+            <value>
+              <string>X:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_Y)">
+            <value>
+              <string>Y:</string>
+            </value>
+          </item>
+          <item displayName="$(string.DRIVE_Z)">
+            <value>
+              <string>Z:</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

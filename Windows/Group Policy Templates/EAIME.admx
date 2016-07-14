@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="ime" namespace="Microsoft.Policies.IME" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="L_IME" displayName="$(string.L_IME)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="L_TurnOnMisconversionLoggingForMisconversionReport" class="User" displayName="$(string.L_TurnOnMisconversionLoggingForMisconversionReport)" explainText="$(string.L_TurnOnMisconversionLoggingForMisconversionReportExplain)" key="software\policies\microsoft\ime\shared" valueName="misconvlogging">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOffSavingAutoTuningDataToFile" class="User" displayName="$(string.L_TurnOffSavingAutoTuningDataToFile)" explainText="$(string.L_TurnOffSavingAutoTuningDataToFileExplain)" key="software\policies\microsoft\ime\imejp" valueName="SaveAutoTuneDataToFile">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOffHistorybasedPredictiveInput" class="User" displayName="$(string.L_TurnOffHistorybasedPredictiveInput)" explainText="$(string.L_TurnOffHistorybasedPredictiveInputExplain)" key="software\policies\microsoft\ime\imejp" valueName="UseHistorybasedPredictiveInput">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOffOpenExtendedDictionary" class="User" displayName="$(string.L_TurnOffOpenExtendedDictionary)" explainText="$(string.L_TurnOffOpenExtendedDictionaryExplain)" key="software\policies\microsoft\ime\shared" valueName="OpenExtendedDict">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOffInternetSearchIntegration" class="User" displayName="$(string.L_TurnOffInternetSearchIntegration)" explainText="$(string.L_TurnOffInternetSearchIntegrationExplain)" key="software\policies\microsoft\ime\shared" valueName="SearchPlugin">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOffCustomDictionary" class="User" displayName="$(string.L_TurnOffCustomDictionary)" explainText="$(string.L_TurnOffCustomDictionaryExplain)" key="software\policies\microsoft\ime\shared" valueName="UserDict">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="L_RestrictCharacterCodeRangeOfConversion" class="User" displayName="$(string.L_RestrictCharacterCodeRangeOfConversion)" explainText="$(string.L_RestrictCharacterCodeRangeOfConversionExplain)" presentation="$(presentation.L_RestrictCharacterCodeRangeOfConversion)" key="software\policies\microsoft\ime\imejp">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <text id="L_RestrictCharacterCodeRangeOfConversionID" valueName="CodeAreaForConversion" required="true" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="L_DoNotIncludeNonPublishingStandardGlyphInTheCandidateList" class="User" displayName="$(string.L_DoNotIncludeNonPublishingStandardGlyphInTheCandidateList)" explainText="$(string.L_DoNotIncludeNonPublishingStandardGlyphInTheCandidateListExplain)" key="software\policies\microsoft\ime\imejp" valueName="ShowOnlyPublishingStandardGlyph">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOnCloudCandidate" class="User" displayName="$(string.L_TurnOnCloudCandidate)" explainText="$(string.L_TurnOnCloudCandidateExplain)" key="Software\Policies\Microsoft\InputMethod\Settings\Shared" valueName="Enable Cloud Candidate">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

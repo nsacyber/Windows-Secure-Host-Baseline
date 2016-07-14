@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="SR">System Restore</string>
+      <string id="SR_DisableConfig">Turn off Configuration</string>
+      <string id="SR_DisableConfig_Help">Allows you to disable System Restore configuration through System Protection.
+
+This policy setting allows you to turn off System Restore configuration through System Protection.
+
+System Restore enables users, in the event of a problem, to restore their computers to a previous state without losing personal data files. The behavior of this policy setting depends on the "Turn off System Restore" policy setting.
+
+If you enable this policy setting, the option to configure System Restore through System Protection is disabled.
+
+If you disable or do not configure this policy setting, users can change the System Restore settings through System Protection. 
+
+Also, see the "Turn off System Restore" policy setting. If the "Turn off System Restore" policy setting is enabled, the "Turn off System Restore configuration" policy setting is overwritten.</string>
+      <string id="SR_DisableSR">Turn off System Restore</string>
+      <string id="SR_DisableSR_Help">Allows you to disable System Restore.
+
+This policy setting allows you to turn off System Restore.
+
+System Restore enables users, in the event of a problem, to restore their computers to a previous state without losing personal data files. By default, System Restore is turned on for the boot volume.
+
+If you enable this policy setting, System Restore is turned off, and the System Restore Wizard cannot be accessed. The option to configure System Restore or create a restore point through System Protection is also disabled.
+
+If you disable or do not configure this policy setting, users can perform System Restore and configure System Restore settings through System Protection.
+
+Also, see the "Turn off System Restore configuration" policy setting. If the "Turn off System Restore" policy setting is disabled or not configured, the "Turn off System Restore configuration" policy setting is used to determine whether the option to configure System Restore is available.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

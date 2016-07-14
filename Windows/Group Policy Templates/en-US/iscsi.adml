@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="iSCSI_Category">iSCSI</string>
+      <string id="iSCSIDiscovery_Category">iSCSI Target Discovery</string>
+      <string id="iSCSIDiscovery_ConfigureiSNSServers">Do not allow manual configuration of iSNS servers</string>
+      <string id="iSCSIDiscovery_ConfigureiSNSServers_Help">If enabled then new iSNS servers may not be added and thus new targets discovered via those iSNS servers; existing iSNS servers may not be removed. If disabled then new iSNS servers may be added and thus new targets discovered via those iSNS servers; existing iSNS servers may be removed.</string>
+      <string id="iSCSIDiscovery_ConfigureTargetPortals">Do not allow manual configuration of target portals</string>
+      <string id="iSCSIDiscovery_ConfigureTargetPortals_Help">If enabled then new target portals may not be added and thus new targets discovered on those portals; existing target portals may not be removed. If disabled then new target portals may be added and thus new targets discovered on those portals; existing target portals may be removed.</string>
+      <string id="iSCSIDiscovery_ConfigureTargets">Do not allow manual configuration of discovered targets</string>
+      <string id="iSCSIDiscovery_ConfigureTargets_Help">If enabled then discovered targets may not be manually configured. If disabled then discovered targets may be manually configured. Note: if enabled there may be cases where this will break VDS.</string>
+      <string id="iSCSIDiscovery_Help">Policy settings controlling the discovery of iSCSI targets.</string>
+      <string id="iSCSIDiscovery_NewStaticTargets">Do not allow adding new targets via manual configuration</string>
+      <string id="iSCSIDiscovery_NewStaticTargets_Help">If enabled then new targets may not be manually configured by entering the target name and target portal; already discovered targets may be manually configured. If disabled then new and already discovered targets may be manually configured.  Note: if enabled there may be cases where this will break VDS.</string>
+      <string id="iSCSIGeneral_Category">General iSCSI</string>
+      <string id="iSCSIGeneral_ChangeIQNName">Do not allow changes to initiator iqn name</string>
+      <string id="iSCSIGeneral_ChangeIQNName_Help">  If enabled then do not allow the initiator iqn name to be changed. If disabled then the initiator iqn name may be changed.</string>
+      <string id="iSCSIGeneral_Help">Policy settings controlling the iSCSI node name and session logins.</string>
+      <string id="iSCSIGeneral_RestrictAdditionalLogins">Do not allow additional session logins</string>
+      <string id="iSCSIGeneral_RestrictAdditionalLogins_Help">If enabled then only those sessions that are established via a persistent login will be established and no new persistent logins may be created. If disabled then additional persistent and non persistent logins may be established.</string>
+      <string id="iSCSISecurity_Category">iSCSI Security</string>
+      <string id="iSCSISecurity_ChangeCHAPSecret">Do not allow changes to initiator CHAP secret</string>
+      <string id="iSCSISecurity_ChangeCHAPSecret_Help"> If enabled then do not allow the initiator CHAP secret to be changed. If disabled then the initiator CHAP secret may be changed.</string>
+      <string id="iSCSISecurity_Help">Policy settings controlling the security (authentication, encryption, etc) of iSCSI sessions.</string>
+      <string id="iSCSISecurity_RequireIPSec">Do not allow connections without IPSec</string>
+      <string id="iSCSISecurity_RequireIPSec_Help">If enabled then only those connections that are configured for IPSec may be established. If disabled then connections that are configured for IPSec or connections not configured for IPSec may be established.</string>
+      <string id="iSCSISecurity_RequireMutualCHAP">Do not allow sessions without mutual CHAP</string>
+      <string id="iSCSISecurity_RequireMutualCHAP_Help">If enabled then only those sessions that are configured for mutual CHAP may be established. If disabled then sessions that are configured for mutual CHAP or sessions not configured for mutual CHAP may be established.</string>
+      <string id="iSCSISecurity_RequireOneWayCHAP">Do not allow sessions without one way CHAP</string>
+      <string id="iSCSISecurity_RequireOneWayCHAP_Help">If enabled then only those sessions that are configured for one-way CHAP may be established. If disabled then sessions that are configured for one-way CHAP or sessions not configured for one-way CHAP may be established. Note that if the "Do not allow sessions without mutual CHAP" setting is enabled then that setting overrides this one.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="qos" namespace="Microsoft.Policies.QualityofService" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="QosPsched" displayName="$(string.QosPsched)">
+      <parentCategory ref="windows:Network" />
+    </category>
+    <category name="QosDiffservByteMappingConforming" displayName="$(string.QosDiffservByteMappingConforming)">
+      <parentCategory ref="QosPsched" />
+    </category>
+    <category name="QosDiffservByteMappingNonConforming" displayName="$(string.QosDiffservByteMappingNonConforming)">
+      <parentCategory ref="QosPsched" />
+    </category>
+    <category name="QosUserPriorityMapping" displayName="$(string.QosUserPriorityMapping)">
+      <parentCategory ref="QosPsched" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="QosServiceTypeBestEffort_C" class="Machine" displayName="$(string.QosServiceTypeBestEffort_C)" explainText="$(string.QosDBMC_BestEffort_Help)" presentation="$(presentation.QosServiceTypeBestEffort_C)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming">
+      <parentCategory ref="QosDiffservByteMappingConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeBestEffort" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeControlledLoad_C" class="Machine" displayName="$(string.QosServiceTypeControlledLoad_C)" explainText="$(string.QosDBMC_ControlledLoad_Help)" presentation="$(presentation.QosServiceTypeControlledLoad_C)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming">
+      <parentCategory ref="QosDiffservByteMappingConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeControlledLoad" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeGuaranteed_C" class="Machine" displayName="$(string.QosServiceTypeGuaranteed_C)" explainText="$(string.QosDBMC_Guaranteed_Help)" presentation="$(presentation.QosServiceTypeGuaranteed_C)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming">
+      <parentCategory ref="QosDiffservByteMappingConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeGuaranteed" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeNetworkControl_C" class="Machine" displayName="$(string.QosServiceTypeNetworkControl_C)" explainText="$(string.QosDBMC_NetworkControl_Help)" presentation="$(presentation.QosServiceTypeNetworkControl_C)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming">
+      <parentCategory ref="QosDiffservByteMappingConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeNetworkControl" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeQualitative_C" class="Machine" displayName="$(string.QosServiceTypeQualitative_C)" explainText="$(string.QosDBMC_Qualitative_Help)" presentation="$(presentation.QosServiceTypeQualitative_C)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming">
+      <parentCategory ref="QosDiffservByteMappingConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeQualitative" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeBestEffort_NC" class="Machine" displayName="$(string.QosServiceTypeBestEffort_NC)" explainText="$(string.QosDBMNC_BestEffort_Help)" presentation="$(presentation.QosServiceTypeBestEffort_NC)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingNonConforming">
+      <parentCategory ref="QosDiffservByteMappingNonConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeBestEffort" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeControlledLoad_NC" class="Machine" displayName="$(string.QosServiceTypeControlledLoad_NC)" explainText="$(string.QosDBMNC_ControlledLoad_Help)" presentation="$(presentation.QosServiceTypeControlledLoad_NC)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingNonConforming">
+      <parentCategory ref="QosDiffservByteMappingNonConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeControlledLoad" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeGuaranteed_NC" class="Machine" displayName="$(string.QosServiceTypeGuaranteed_NC)" explainText="$(string.QosDBMNC_Guaranteed_Help)" presentation="$(presentation.QosServiceTypeGuaranteed_NC)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingNonConforming">
+      <parentCategory ref="QosDiffservByteMappingNonConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeGuaranteed" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeNetworkControl_NC" class="Machine" displayName="$(string.QosServiceTypeNetworkControl_NC)" explainText="$(string.QosDBMNC_NetworkControl_Help)" presentation="$(presentation.QosServiceTypeNetworkControl_NC)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingNonConforming">
+      <parentCategory ref="QosDiffservByteMappingNonConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeNetworkControl" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeQualitative_NC" class="Machine" displayName="$(string.QosServiceTypeQualitative_NC)" explainText="$(string.QosDBMNC_Qualitative_Help)" presentation="$(presentation.QosServiceTypeQualitative_NC)" key="Software\Policies\Microsoft\Windows\Psched\DiffservByteMappingNonConforming">
+      <parentCategory ref="QosDiffservByteMappingNonConforming" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosDSCPValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeQualitative" required="true" maxValue="63" />
+      </elements>
+    </policy>
+    <policy name="QosMaxOutstandingSends" class="Machine" displayName="$(string.QosMaxOutstandingSends)" explainText="$(string.QosMaxOutstandingSends_Help)" presentation="$(presentation.QosMaxOutstandingSends)" key="Software\Policies\Microsoft\Windows\Psched">
+      <parentCategory ref="QosPsched" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosMaxOutstandingSends_Box" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="MaxOutstandingSends" required="true" maxValue="4000000000" />
+      </elements>
+    </policy>
+    <policy name="QosNonBestEffortLimit" class="Machine" displayName="$(string.QosNonBestEffortLimit)" explainText="$(string.QosNonBestEffortLimit_Help)" presentation="$(presentation.QosNonBestEffortLimit)" key="Software\Policies\Microsoft\Windows\Psched">
+      <parentCategory ref="QosPsched" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosNonBestEffortLimit_Box" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="NonBestEffortLimit" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="QosTimerResolution" class="Machine" displayName="$(string.QosTimerResolution)" explainText="$(string.QosTimerResolution_Help)" presentation="$(presentation.QosTimerResolution)" key="Software\Policies\Microsoft\Windows\Psched">
+      <parentCategory ref="QosPsched" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosTimerResolution_Box" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="TimerResolution" required="true" maxValue="4000000000" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeBestEffort_PV" class="Machine" displayName="$(string.QosServiceTypeBestEffort_PV)" explainText="$(string.QosUPM_BestEffort_Help)" presentation="$(presentation.QosServiceTypeBestEffort_PV)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeBestEffort" required="true" maxValue="7" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeControlledLoad_PV" class="Machine" displayName="$(string.QosServiceTypeControlledLoad_PV)" explainText="$(string.QosUPM_ControlledLoad_Help)" presentation="$(presentation.QosServiceTypeControlledLoad_PV)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeControlledLoad" required="true" maxValue="7" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeGuaranteed_PV" class="Machine" displayName="$(string.QosServiceTypeGuaranteed_PV)" explainText="$(string.QosUPM_Guaranteed_Help)" presentation="$(presentation.QosServiceTypeGuaranteed_PV)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeGuaranteed" required="true" maxValue="7" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeNetworkControl_PV" class="Machine" displayName="$(string.QosServiceTypeNetworkControl_PV)" explainText="$(string.QosUPM_NetworkControl_Help)" presentation="$(presentation.QosServiceTypeNetworkControl_PV)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeNetworkControl" required="true" maxValue="7" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeNonConforming" class="Machine" displayName="$(string.QosServiceTypeNonConforming)" explainText="$(string.QosUPM_NonConforming_Help)" presentation="$(presentation.QosServiceTypeNonConforming)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeNonConforming" required="true" maxValue="7" />
+      </elements>
+    </policy>
+    <policy name="QosServiceTypeQualitative_PV" class="Machine" displayName="$(string.QosServiceTypeQualitative_PV)" explainText="$(string.QosUPM_Qualitative_Help)" presentation="$(presentation.QosServiceTypeQualitative_PV)" key="Software\Policies\Microsoft\Windows\Psched\UserPriorityMapping">
+      <parentCategory ref="QosUserPriorityMapping" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="QosPriorityValue" clientExtension="{426031c0-0b47-4852-b0ca-ac3d37bfcb39}" valueName="ServiceTypeQualitative" required="true" maxValue="7" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

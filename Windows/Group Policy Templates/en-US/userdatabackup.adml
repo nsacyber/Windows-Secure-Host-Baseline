@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Backup</displayName>
+  <description>Windows Backup</description>
+  <resources>
+    <stringTable>
+      <string id="DisableBackupLauncher">Prevent the user from running the Backup Status and Configuration program</string>
+      <string id="DisableBackupLauncher_Help">This setting lets you prevent users from running the Backup Status and Configuration program, which links to the file backup, file restore, and Complete PC Backup applications, and shows backup status. 
+
+
+
+If you enable this policy setting, users cannot start the Backup Status and Configuration program. 
+
+
+
+If you disable or do not configure this policy setting, users can start the Backup Status and Configuration program.</string>
+
+      <string id="DisableBackupToDisk">Prevent backing up to local disks</string>
+      <string id="DisableBackupToDisk_Help">This setting lets you prevent users from selecting a local disk (internal or external) for storing backups. 
+
+
+
+If you enable this policy setting, users are prevented from selecting a local disk as a backup location. 
+
+
+
+If you disable or do not configure this policy setting, users can select a local disk as a backup location.</string>
+      <string id="DisableBackupToNetwork">Prevent backing up to network location</string>
+      <string id="DisableBackupToNetwork_Help">This policy setting lets you prevent users from selecting a network location for storing backups. 
+
+
+If you enable this policy setting, users are blocked from selecting a network location as a backup location. 
+
+
+
+If disable or do not configure this policy setting, users can select a network location as a backup location.</string>
+      <string id="DisableBackupToOptical">Prevent backing up to optical media (CD/DVD)</string>
+      <string id="DisableBackupToOptical_Help">This policy setting lets you prevent users from selecting optical media (CD/DVD) for storing backups. 
+
+
+
+If you enable this policy setting, users are blocked from selecting optical media as a backup location. 
+
+
+
+If you disable or do not configure this policy setting, users can select optical media as a backup location.</string>
+      <string id="DisableBackupUI">Turn off the ability to back up data files</string>
+      <string id="DisableBackupUI_Help">This setting lets you disable the data file backup functionality. 
+
+
+
+If you enable this policy setting, users cannot back up data files. 
+
+
+
+If you disable or do not configure this policy setting, users can back up data files.</string>
+      <string id="DisableRestoreUI">Turn off restore functionality</string>
+      <string id="DisableRestoreUI_Help">This setting lets you disable file restore functionality. 
+
+
+
+If you enable this policy setting, the file restore program is disabled. 
+
+
+
+If you disable or do not configure this policy setting, the file restore program is enabled and users can restore files.</string>
+      <string id="DisableSystemBackupUI">Turn off the ability to create a system image</string>
+      <string id="DisableSystemBackupUI_Help">This setting lets you disable the creation of system images. 
+
+              
+
+If you enable this policy setting, users cannot create system images. 
+
+            
+
+If you disable or do not configure this policy setting, users can create system images.</string>
+      <string id="Backup">Backup</string>
+      <string id="BackupClient">Client</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

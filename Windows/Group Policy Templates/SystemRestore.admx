@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="systemrestore" namespace="Microsoft.Policies.SystemRestore" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="SR" displayName="$(string.SR)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="SR_DisableConfig" class="Machine" displayName="$(string.SR_DisableConfig)" explainText="$(string.SR_DisableConfig_Help)" key="Software\Policies\Microsoft\Windows NT\SystemRestore" valueName="DisableConfig">
+      <parentCategory ref="SR" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SR_DisableSR" class="Machine" displayName="$(string.SR_DisableSR)" explainText="$(string.SR_DisableSR_Help)" key="Software\Policies\Microsoft\Windows NT\SystemRestore" valueName="DisableSR">
+      <parentCategory ref="SR" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

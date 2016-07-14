@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+
+        <policyNamespaces>
+                <target prefix="eventforwarding" namespace="Microsoft.Policies.EventForwarding" />
+                <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+        </policyNamespaces>
+
+	<supersededAdm fileName="EventForwarding.adm"/>
+
+	<resources minRequiredRevision="1.0"/>
+
+	<categories>
+		<category name="EventForwarding" displayName="$(string.EventForwarding)">
+			<parentCategory ref="windows:WindowsComponents"/>
+		</category>
+	</categories>
+
+	<policies>
+		<policy name="SubscriptionManager" class="Machine" displayName="$(string.SubscriptionManager)" explainText="$(string.Subscription_Help)" presentation="$(presentation.SubscriptionManager)" key="Software\Policies\Microsoft\Windows\EventLog\EventForwarding">
+			<parentCategory ref="EventForwarding"/>
+                        <supportedOn ref="windows:SUPPORTED_WindowsVista" />  
+			<elements>
+				<list id="SubscriptionManager_Listbox" key="Software\Policies\Microsoft\Windows\EventLog\EventForwarding\SubscriptionManager" valuePrefix=""/>
+			</elements>
+		</policy>
+		<policy name="ForwarderResourceUsage" class="Machine" displayName="$(string.ForwarderResourceUsage)" explainText="$(string.ForwarderResourceUsage_Help)" presentation="$(presentation.ForwarderResourceUsage)" key="Software\Policies\Microsoft\Windows\EventLog\EventForwarding">
+			<parentCategory ref="EventForwarding"/>
+                        <supportedOn ref="windows:SUPPORTED_WindowsVista" />  
+                        <elements>
+                                <decimal id="MaxForwardingRate" valueName="MaxForwardingRate"/>
+                        </elements>
+                </policy>
+	</policies>
+
+</policyDefinitions>

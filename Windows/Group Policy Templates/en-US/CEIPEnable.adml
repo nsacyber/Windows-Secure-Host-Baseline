@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="WindowsCEIPCat">Windows Customer Experience Improvement Program</string>
+      <string id="CorporateSQM">Allow Corporate redirection of Customer Experience Improvement uploads</string>
+      <string id="CorporateSQMExp">If you enable this setting all Customer Experience Improvement Program uploads are redirected to Microsoft Operations Manager server.
+
+If you disable this setting uploads are not redirected to a Microsoft Operations Manager server.
+
+If you do not configure this setting uploads are not redirected to a Microsoft Operations Manager server.</string>
+      <string id="StudyId">Tag Windows Customer Experience Improvement data with Study Identifier</string>
+      <string id="StudyIdExp">This policy setting will enable tagging of Windows Customer Experience Improvement data when a study is being conducted.
+
+If you enable this setting then Windows CEIP data uploaded will be tagged.
+
+If you do not configure this setting or disable it, then CEIP data will not be tagged with the Study Identifier. 
+</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="CorporateSQM">
+        <textBox refId="CorporateSQMURL">
+          <label>Corporate SQM URL: </label>
+        </textBox>
+      </presentation>
+      <presentation id="StudyId">
+        <decimalTextBox refId="StudyIdVal"> Study Identifier: </decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

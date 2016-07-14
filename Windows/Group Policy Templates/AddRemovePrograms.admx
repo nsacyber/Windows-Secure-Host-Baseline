@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="addremoveprograms" namespace="Microsoft.Policies.AddRemovePrograms" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Arp" displayName="$(string.Arp)">
+      <parentCategory ref="windows:ControlPanel" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DefaultCategory" class="User" displayName="$(string.DefaultCategory)" explainText="$(string.DefaultCategory_Help)" presentation="$(presentation.DefaultCategory)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <text id="DefaultCategoryBox" valueName="DefaultCategory" required="true" />
+      </elements>
+    </policy>
+    <policy name="NoAddFromCDorFloppy" class="User" displayName="$(string.NoAddFromCDorFloppy)" explainText="$(string.NoAddFromCDorFloppy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoAddFromCDorFloppy">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoAddFromInternet" class="User" displayName="$(string.NoAddFromInternet)" explainText="$(string.NoAddFromInternet_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoAddFromInternet">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoAddFromNetwork" class="User" displayName="$(string.NoAddFromNetwork)" explainText="$(string.NoAddFromNetwork_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoAddFromNetwork">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoAddPage" class="User" displayName="$(string.NoAddPage)" explainText="$(string.NoAddPage_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoAddPage">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoAddRemovePrograms" class="User" displayName="$(string.NoAddRemovePrograms)" explainText="$(string.NoAddRemovePrograms_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoAddRemovePrograms">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoChooseProgramsPage" class="User" displayName="$(string.NoChooseProgramsPage)" explainText="$(string.NoChooseProgramsPage_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoChooseProgramsPage">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoRemovePage" class="User" displayName="$(string.NoRemovePage)" explainText="$(string.NoRemovePage_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoRemovePage">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoServices" class="User" displayName="$(string.NoServices)" explainText="$(string.NoServices_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoServices">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoSupportInfo" class="User" displayName="$(string.NoSupportInfo)" explainText="$(string.NoSupportInfo_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoSupportInfo">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoWindowsSetupPage" class="User" displayName="$(string.NoWindowsSetupPage)" explainText="$(string.NoWindowsSetupPage_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Uninstall" valueName="NoWindowsSetupPage">
+      <parentCategory ref="Arp" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="WCN_Category">Windows Connect Now</string>
+      <string id="WCN_DisableWcnUi">Prohibit access of the Windows Connect Now wizards</string>
+      <string id="WCN_DisableWcnUi_Help">This policy setting prohibits access to Windows Connect Now (WCN) wizards. 
+
+If you enable this policy setting, the wizards are turned off and users have no access to any of the wizard tasks. All the configuration related tasks, including "Set up a wireless router or access point" and "Add a wireless device" are disabled. 
+
+If you disable or do not configure this policy setting, users can access the wizard tasks, including "Set up a wireless router or access point" and "Add a wireless device." The default for this policy setting allows users to access all WCN wizards.</string>
+      <string id="WCN_EnableRegistrar">Configuration of wireless settings using Windows Connect Now</string>
+      <string id="WCN_EnableRegistrar_Help">This policy setting allows the configuration of wireless settings using Windows Connect Now (WCN). The WCN Registrar enables the discovery and configuration of devices over Ethernet (UPnP), over In-band 802.11 WLAN, through the Windows Portable Device API (WPD), and via USB Flash drives.
+
+Additional options are available to allow discovery and configuration over a specific medium. 
+
+If you enable this policy setting, additional choices are available to turn off the operations over a specific medium. 
+
+If you disable this policy setting, operations are disabled over all media. 
+
+If you do not configure this policy setting, operations are enabled over all media. 
+
+The default for this policy setting allows operations over all media.</string>
+      <string id="WCN_Higher_Precedence_Registrar_UPnP">WCN over Ethernet (UPnP)</string>
+      <string id="WCN_Higher_Precedence_Registrar_InBand802DOT11">WCN over In-band 802.11 WLAN</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="WCN_EnableRegistrar">
+        <checkBox refId="WCN_EnableRegistrar_DisableUPnP">Turn off ability to configure using WCN over Ethernet (UPnP)</checkBox>
+        <checkBox refId="WCN_EnableRegistrar_DisableInBand802DOT11">Turn off ability to configure using WCN over In-band 802.11 WLAN</checkBox>
+        <checkBox refId="WCN_EnableRegistrar_DisableFlashConfig">Turn off ability to configure using a USB Flash Drive</checkBox>
+        <checkBox refId="WCN_EnableRegistrar_DisableWPD">Turn off ability to configure Windows Portable Device (WPD)</checkBox>
+        <decimalTextBox refId="WCN_EnableRegistrar_MaxWCNDeviceNumber" defaultValue="500">Maximum number of WCN devices allowed:</decimalTextBox>
+        <dropdownList refId="WCN_Higher_Precedence_Registrar" noSort="true" defaultItem="0">Higher precedence medium for devices discovered by multiple media:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

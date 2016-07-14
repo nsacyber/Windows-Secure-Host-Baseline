@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="cpls" namespace="Microsoft.Policies.ControlPanel2" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Users" displayName="$(string.Users)" explainText="$(string.Users_Help)">
+      <parentCategory ref="windows:ControlPanel" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="UseDefaultTile" class="Machine" displayName="$(string.UseDefaultTile)" explainText="$(string.UseDefaultTile_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="UseDefaultTile">
+      <parentCategory ref="Users" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="WF_AllowedPrograms_Help">Allows you to view and change the program exceptions list defined by Group Policy. Windows Firewall uses two program exception lists: one is defined by Group Policy settings and the other is defined by the Windows Firewall component in Control Panel.
+
+If you enable this policy setting, you can view and change the program exceptions list defined by Group Policy. If you add a program to this list and set its status to Enabled, that program can receive unsolicited incoming messages on any port that it asks Windows Firewall to open, even if that port is blocked by another policy setting, such as the "Windows Firewall: Define inbound port exceptions" policy setting. To view the program list, enable the policy setting and then click the Show button. To add a program, enable the policy setting, note the syntax, click the Show button. In the Show Contents dialog box type a definition string that uses the syntax format. To remove a program, click its definition, and then press the DELETE key. To edit a definition, remove the current definition from the list and add a new one with different parameters. To allow administrators to add programs to the local program exceptions list that is defined by the Windows Firewall component in Control Panel, also enable the "Windows Firewall: Allow local program exceptions" policy setting.
+
+If you disable this policy setting, the program exceptions list defined by Group Policy is deleted. If a local program exceptions list exists, it is ignored unless you enable the "Windows Firewall: Allow local program exceptions" policy setting.
+
+If you do not configure this policy setting, Windows Firewall uses only the local program exceptions list that administrators define by using the Windows Firewall component in Control Panel.
+
+Note: If you type an invalid definition string, Windows Firewall adds it to the list without checking for errors. This allows you to add programs that you have not installed yet, but be aware that you can accidentally create multiple entries for the same program with conflicting Scope or Status values. Scope parameters are combined for multiple entries.
+
+Note: If you set the Status parameter of a definition string to "disabled," Windows Firewall ignores port requests made by that program and ignores other definitions that set the Status of that program to "enabled." Therefore, if you set the Status to "disabled," you prevent administrators from allowing the program to ask Windows Firewall to open additional ports. However, even if the Status is "disabled," the program can still receive unsolicited incoming messages through a port if another policy setting opens that port.
+
+Note: Windows Firewall opens ports for the program only when the program is running and "listening" for incoming messages. If the program is not running, or is running but not listening for those messages, Windows Firewall does not open its ports.</string>
+      <string id="WF_AllowedPrograms_Name">Windows Firewall: Define inbound program exceptions</string>
+      <string id="WF_AllowedProgramsLocal_Help">Allows administrators to use the Windows Firewall component in Control Panel to define a local program exceptions list. Windows Firewall uses two program exceptions lists; the other is defined by the "Windows Firewall: Define inbound program exceptions" policy setting.
+
+If you enable this policy setting, the Windows Firewall component in Control Panel allows administrators to define a local program exceptions list.
+
+If you disable this policy setting, the Windows Firewall component in Control Panel does not allow administrators to define a local program exceptions list.  However, local administrators will still be allowed to create firewall rules in the Windows Firewall with Advanced Security snap-in.  If you wish to prevent all locally created rules from applying, use the Group Policy Object Editor snap-in and configure Computer Configuration\Windows Settings\Security Settings\Windows Firewall with Advanced Security to specify that local firewall rules should not apply.</string>
+      <string id="WF_AllowedProgramsLocal_Name">Windows Firewall: Allow local program exceptions</string>
+      <string id="WF_AuthenticatedBypass_Help">Allows unsolicited incoming messages from specified systems that authenticate using the IPsec transport.
+
+If you enable this policy setting, you must type a security descriptor containing a list of computers or groups of computers. If a computer on that list authenticates using IPsec, Windows Firewall does not block its unsolicited messages. This policy setting overrides other policy settings that would block those messages.
+
+If you disable or do not configure this policy setting, Windows Firewall makes no exception for messages sent by computers that authenticate using IPsec. If you enable this policy setting and add systems to the list, upon disabling this policy, Windows Firewall deletes the list.
+
+Note: You define entries in this list by using Security Descriptor Definition Language (SDDL) strings. For more information about the SDDL format, see the Windows Firewall deployment information at the Microsoft Web site (http://go.microsoft.com/fwlink/?LinkId=25131).</string>
+      <string id="WF_AuthenticatedBypass_Name">Windows Firewall: Allow authenticated IPsec bypass</string>
+      <string id="WF_Category">Windows Firewall</string>
+      <string id="WF_EnableFirewall_Help">Turns on Windows Firewall.
+
+If you enable this policy setting, Windows Firewall runs and ignores the "Computer Configuration\Administrative Templates\Network\Network Connections\Prohibit use of Internet Connection Firewall on your DNS domain network" policy setting.
+
+If you disable this policy setting, Windows Firewall does not run. This is the only way to ensure that Windows Firewall does not run and administrators who log on locally cannot start it.
+
+If you do not configure this policy setting, administrators can use the Windows Firewall component in Control Panel to turn Windows Firewall on or off, unless the "Prohibit use of Internet Connection Firewall on your DNS domain network" policy setting overrides.</string>
+      <string id="WF_EnableFirewall_Name">Windows Firewall: Protect all network connections</string>
+      <string id="WF_EnableShield_Help">Specifies that Windows Firewall blocks all unsolicited incoming messages. This policy setting overrides all other Windows Firewall policy settings that allow such messages.
+
+If you enable this policy setting, in the Windows Firewall component of Control Panel, the "Block all incoming connections" check box is selected and administrators cannot clear it. You should also enable the "Windows Firewall: Protect all network connections" policy setting; otherwise, administrators who log on locally can work around the "Windows Firewall: Do not allow exceptions" policy setting by turning off the firewall.
+
+If you disable this policy setting, Windows Firewall applies other policy settings that allow unsolicited incoming messages. In the Windows Firewall component of Control Panel, the "Block all incoming connections" check box is cleared and administrators cannot select it.
+
+If you do not configure this policy setting, Windows Firewall applies other policy settings that allow unsolicited incoming messages. In the Windows Firewall component of Control Panel, the "Block all incoming connections" check box is cleared by default, but administrators can change it.</string>
+      <string id="WF_EnableShield_Name">Windows Firewall: Do not allow exceptions</string>
+      <string id="WF_FileAndPrint_Help">Allows inbound file and printer sharing. To do this, Windows Firewall opens UDP ports 137 and 138, and TCP ports 139 and 445.
+
+If you enable this policy setting, Windows Firewall opens these ports so that this computer can receive print jobs and requests for access to shared files. You must specify the IP addresses or subnets from which these incoming messages are allowed. In the Windows Firewall component of Control Panel, the "File and Printer Sharing" check box is selected and administrators cannot clear it.
+
+If you disable this policy setting, Windows Firewall blocks these ports, which prevents this computer from sharing files and printers. If an administrator attempts to open any of these ports by adding them to a local port exceptions list, Windows Firewall does not open the port. In the Windows Firewall component of Control Panel, the "File and Printer Sharing" check box is cleared and administrators cannot select it.
+
+If you do not configure this policy setting, Windows Firewall does not open these ports. Therefore, the computer cannot share files or printers unless an administrator uses other policy settings to open the required ports. In the Windows Firewall component of Control Panel, the "File and Printer Sharing" check box is cleared. Administrators can change this check box.
+
+Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo requests (the message sent by the Ping utility), even if the "Windows Firewall: Allow ICMP exceptions" policy setting would block them. Policy settings that can open TCP port 445 include "Windows Firewall: Allow inbound file and printer sharing exception," "Windows Firewall: Allow inbound remote administration exception," and "Windows Firewall: Define inbound port exceptions."</string>
+      <string id="WF_FileAndPrint_Name">Windows Firewall: Allow inbound file and printer sharing exception</string>
+      <string id="WF_IcmpSettings_Help">Defines the set of Internet Control Message Protocol (ICMP) message types that Windows Firewall allows. Utilities can use ICMP messages to determine the status of other computers. For example, Ping uses the echo request message. If you do not enable the "Allow inbound echo request" message type, Windows Firewall blocks echo request messages sent by Ping running on other computers, but it does not block outbound echo request messages sent by Ping running on this computer.
+
+If you enable this policy setting, you must specify which ICMP message types Windows Firewall allows this computer to send or receive.
+
+If you disable this policy setting, Windows Firewall blocks all the listed incoming and outgoing ICMP message types. As a result, utilities that use the blocked ICMP messages will not be able to send those messages to or from this computer. If you enable this policy setting and allow certain message types, then later disable this policy setting, Windows Firewall deletes the list of message types that you had enabled.
+
+If you do not configure this policy setting, Windows Firewall behaves as if you had disabled it.
+
+Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound echo requests, even if the "Windows Firewall: Allow ICMP exceptions" policy setting would block them. Policy settings that can open TCP port 445 include "Windows Firewall: Allow file and printer sharing exception," "Windows Firewall: Allow remote administration exception," and "Windows Firewall: Define inbound port exceptions."
+
+Note: Other Windows Firewall policy settings affect only incoming messages, but several of the options of the "Windows Firewall: Allow ICMP exceptions" policy setting affect outgoing communication.</string>
+      <string id="WF_IcmpSettings_Name">Windows Firewall: Allow ICMP exceptions</string>
+      <string id="WF_Logging_Help">Allows Windows Firewall to record information about the unsolicited incoming messages that it receives.
+
+If you enable this policy setting, Windows Firewall writes the information to a log file. You must provide the name, location, and maximum size of the log file. The location can contain environment variables. You must also specify whether to record information about incoming messages that the firewall blocks (drops) and information about successful incoming and outgoing connections. Windows Firewall does not provide an option to log successful incoming messages.
+
+If you are configuring the log file name, ensure that the Windows Firewall service account has write permissions to the folder containing the log file. Default path for the log file is %systemroot%\system32\LogFiles\Firewall\pfirewall.log.
+
+If you disable this policy setting, Windows Firewall does not record information in the log file. If you enable this policy setting, and Windows Firewall creates the log file and adds information, then upon disabling this policy setting, Windows Firewall leaves the log file intact.
+
+If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled.
+
+</string>
+      <string id="WF_Logging_Name">Windows Firewall: Allow logging</string>
+      <string id="WF_Notifications_Help">Prevents Windows Firewall from displaying notifications to the user when a program requests that Windows Firewall add the program to the program exceptions list.
+
+If you enable this policy setting, Windows Firewall prevents the display of these notifications.
+
+If you disable this policy setting, Windows Firewall allows the display of these notifications. In the Windows Firewall component of Control Panel, the "Notify me when Windows Firewall blocks a new program" check box is selected and administrators cannot clear it.
+
+If you do not configure this policy setting, Windows Firewall behaves as if the policy setting were disabled, except that in the Windows Firewall component of Control Panel, the "Notify me when Windows Firewall blocks a new program" check box is selected by default, and administrators can change it.</string>
+      <string id="WF_Notifications_Name">Windows Firewall: Prohibit notifications</string>
+      <string id="WF_OpenPorts_Help">Allows you to view and change the inbound port exceptions list defined by Group Policy. Windows Firewall uses two port exception lists: one is defined by Group Policy settings and the other is defined by the Windows Firewall component in Control Panel.
+
+If you enable this policy setting, you can view and change the inbound port exceptions list defined by Group Policy. To view this port exceptions list, enable the policy setting and then click the Show button. To add a port, enable the policy setting, note the syntax, click the Show button. In the Show Contents dialog box type a definition string that uses the syntax format. To remove a port, click its definition, and then press the DELETE key. To edit a definition, remove the current definition from the list and add a new one with different parameters. To allow administrators to add ports to the local port exceptions list that is defined by the Windows Firewall component in Control Panel, also enable the "Windows Firewall: Allow local port exceptions" policy setting.
+
+If you disable this policy setting, the port exceptions list defined by Group Policy is deleted, but other policy settings can continue to open or block ports. Also, if a local port exceptions list exists, it is ignored unless you enable the "Windows Firewall: Allow local port exceptions" policy setting.
+
+If you do not configure this policy setting, Windows Firewall uses only the local port exceptions list that administrators define by using the Windows Firewall component in Control Panel. Other policy settings can continue to open or block ports.
+
+Note: If you type an invalid definition string, Windows Firewall adds it to the list without checking for errors, and therefore you can accidentally create multiple entries for the same port with conflicting Scope or Status values. Scope parameters are combined for multiple entries. If entries have different Status values, any definition with the Status set to "disabled" overrides all definitions with the Status set to "enabled," and the port does not receive messages. Therefore, if you set the Status of a port to "disabled," you can prevent administrators from using the Windows Firewall component in Control Panel to enable the port.
+
+Note: The only effect of setting the Status value to "disabled" is that Windows Firewall ignores other definitions for that port that set the Status to "enabled." If another policy setting opens a port, or if a program in the program exceptions list asks Windows Firewall to open a port, Windows Firewall opens the port.
+
+Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (the message sent by the Ping utility), even if the "Windows Firewall: Allow ICMP exceptions" policy setting would block them. Policy settings that can open TCP port 445 include "Windows Firewall: Allow inbound file and printer sharing exception," "Windows Firewall: Allow inbound remote administration exception," and "Windows Firewall: Define inbound port exceptions."</string>
+      <string id="WF_OpenPorts_Name">Windows Firewall: Define inbound port exceptions</string>
+      <string id="WF_OpenPortsLocal_Help">Allows administrators to use the Windows Firewall component in Control Panel to define a local port exceptions list. Windows Firewall uses two port exceptions lists; the other is defined by the "Windows Firewall: Define inbound port exceptions" policy setting.
+
+If you enable this policy setting, the Windows Firewall component in Control Panel allows administrators to define a local port exceptions list.
+
+If you disable this policy setting, the Windows Firewall component in Control Panel does not allow administrators to define a local port exceptions list.  However, local administrators will still be allowed to create firewall rules in the Windows Firewall with Advanced Security snap-in.  If you wish to prevent all locally created rules from applying, use the Group Policy Object Editor snap-in and configure Computer Configuration\Windows Settings\Security Settings\Windows Firewall with Advanced Security to specify that local firewall rules should not apply.</string>
+      <string id="WF_OpenPortsLocal_Name">Windows Firewall: Allow local port exceptions</string>
+      <string id="WF_Profile_Domain">Domain Profile</string>
+      <string id="WF_Profile_Standard">Standard Profile</string>
+      <string id="WF_RemoteAdmin_Help">Allows remote administration of this computer using administrative tools such as the Microsoft Management Console (MMC) and Windows Management Instrumentation (WMI). To do this, Windows Firewall opens TCP ports 135 and 445. Services typically use these ports to communicate using remote procedure calls (RPC) and Distributed Component Object Model (DCOM). Additionally, on Windows XP Professional with at least SP2 and Windows Server 2003 with at least SP1, this policy setting also allows SVCHOST.EXE and LSASS.EXE to receive unsolicited incoming messages and allows hosted services to open additional dynamically-assigned ports, typically in the range of 1024 to 1034.  On Windows Vista, this policy setting does not control connections to SVCHOST.EXE and LSASS.EXE.
+
+If you enable this policy setting, Windows Firewall allows the computer to receive the unsolicited incoming messages associated with remote administration. You must specify the IP addresses or subnets from which these incoming messages are allowed.
+
+If you disable or do not configure this policy setting, Windows Firewall does not open TCP port 135 or 445. Also, on Windows XP Professional with at least SP2 and Windows Server 2003 with at least SP1, Windows Firewall prevents SVCHOST.EXE and LSASS.EXE from receiving unsolicited incoming messages, and prevents hosted services from opening additional dynamically-assigned ports. Because disabling this policy setting does not block TCP port 445, it does not conflict with the "Windows Firewall: Allow file and printer sharing exception" policy setting.
+
+Note: Malicious users often attempt to attack networks and computers using RPC and DCOM. We recommend that you contact the manufacturers of your critical programs to determine if they are hosted by SVCHOST.exe or LSASS.exe or if they require RPC and DCOM communication. If they do not, then do not enable this policy setting.
+
+Note: If any policy setting opens TCP port 445, Windows Firewall allows inbound ICMP echo request messages (the message sent by the Ping utility), even if the "Windows Firewall: Allow ICMP exceptions" policy setting would block them. Policy settings that can open TCP port 445 include "Windows Firewall: Allow inbound file and printer sharing exception," "Windows Firewall: Allow inbound remote administration exception," and "Windows Firewall: Define inbound port exceptions."</string>
+      <string id="WF_RemoteAdmin_Name">Windows Firewall: Allow inbound remote administration exception </string>
+      <string id="WF_RemoteDesktop_Help">Allows this computer to receive inbound Remote Desktop requests. To do this, Windows Firewall opens TCP port 3389.
+
+If you enable this policy setting, Windows Firewall opens this port so that this computer can receive Remote Desktop requests. You must specify the IP addresses or subnets from which these incoming messages are allowed. In the Windows Firewall component of Control Panel, the "Remote Desktop" check box is selected and administrators cannot clear it.
+
+If you disable this policy setting, Windows Firewall blocks this port, which prevents this computer from receiving Remote Desktop requests. If an administrator attempts to open this port by adding it to a local port exceptions list, Windows Firewall does not open the port. In the Windows Firewall component of Control Panel, the "Remote Desktop" check box is cleared and administrators cannot select it.
+
+If you do not configure this policy setting, Windows Firewall does not open this port. Therefore, the computer cannot receive Remote Desktop requests unless an administrator uses other policy settings to open the port. In the Windows Firewall component of Control Panel, the "Remote Desktop" check box is cleared. Administrators can change this check box."</string>
+      <string id="WF_RemoteDesktop_Name">Windows Firewall: Allow inbound Remote Desktop exceptions</string>
+      <string id="WF_UnicastResponseToMulticast_Help">Prevents this computer from receiving unicast responses to its outgoing multicast or broadcast messages.
+
+If you enable this policy setting, and this computer sends multicast or broadcast messages to other computers, Windows Firewall blocks the unicast responses sent by those other computers.
+
+If you disable or do not configure this policy setting, and this computer sends a multicast or broadcast message to other computers, Windows Firewall waits as long as three seconds for unicast responses from the other computers and then blocks all later responses.
+
+Note: This policy setting has no effect if the unicast message is a response to a Dynamic Host Configuration Protocol (DHCP) broadcast message sent by this computer. Windows Firewall always permits those DHCP unicast responses. However, this policy setting can interfere with the NetBIOS messages that detect name conflicts.</string>
+      <string id="WF_UnicastResponseToMulticast_Name">Windows Firewall: Prohibit unicast response to multicast or broadcast requests</string>
+      <string id="WF_UniversalPlugAndPlay_Help">Allows this computer to receive unsolicited inbound Plug and Play messages sent by network devices, such as routers with built-in firewalls. To do this, Windows Firewall opens TCP port 2869 and UDP port 1900.
+
+If you enable this policy setting, Windows Firewall opens these ports so that this computer can receive Plug and Play messages. You must specify the IP addresses or subnets from which these incoming messages are allowed. In the Windows Firewall component of Control Panel, the "UPnP framework" check box is selected and administrators cannot clear it.
+
+If you disable this policy setting, Windows Firewall blocks these ports, which prevents this computer from receiving Plug and Play messages. If an administrator attempts to open these ports by adding them to a local port exceptions list, Windows Firewall does not open the ports. In the Windows Firewall component of Control Panel, the "UPnP framework" check box is cleared and administrators cannot select it.
+
+If you do not configure this policy setting, Windows Firewall does not open these ports. Therefore, the computer cannot receive Plug and Play messages unless an administrator uses other policy settings to open the required ports or enable the required programs. In the Windows Firewall component of Control Panel, the "UPnP framework" check box is cleared. Administrators can change this check box."</string>
+      <string id="WF_UniversalPlugAndPlay_Name">Windows Firewall: Allow inbound UPnP framework exceptions</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="WF_AllowedPrograms_Name_1">
+        <listBox refId="WF_AllowedPrograms_Show">Define program exceptions:</listBox>
+        <text>Specify the program to allow or block.</text>
+        <text>Syntax:</text>
+        <text>  &lt;Path&gt;:&lt;Scope&gt;:&lt;Status&gt;:&lt;Name&gt;</text>
+        <text>    &lt;Path&gt; is the program path and file name</text>
+        <text>    &lt;Scope&gt; is either "*" (for all networks) or</text>
+        <text>      a comma-separated list that contains</text>
+        <text>      any number or combination of these:</text>
+        <text>        IP addresses, such as 10.0.0.1</text>
+        <text>        Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>        The string "localsubnet"</text>
+        <text>    &lt;Status&gt; is either "enabled" or "disabled"</text>
+        <text>    &lt;Name&gt; is a text string</text>
+        <text>Example:</text>
+        <text>The following definition string adds the</text>
+        <text>TEST.EXE program to the program exceptions list</text>
+        <text>and allows it to receive messages from 10.0.0.1,</text>
+        <text>or any system on the 10.3.4.x subnet:</text>
+        <text>  %programfiles%\test.exe:10.0.0.1,10.3.4.0/24:enabled:Test program</text>
+      </presentation>
+      <presentation id="WF_AllowedPrograms_Name_2">
+        <listBox refId="WF_AllowedPrograms_Show">Define program exceptions:</listBox>
+        <text>Specify the program to allow or block.</text>
+        <text>Syntax:</text>
+        <text>  &lt;Path&gt;:&lt;Scope&gt;:&lt;Status&gt;:&lt;Name&gt;</text>
+        <text>    &lt;Path&gt; is the program path and file name</text>
+        <text>    &lt;Scope&gt; is either "*" (for all networks) or</text>
+        <text>      a comma-separated list that contains</text>
+        <text>      any number or combination of these:</text>
+        <text>        IP addresses, such as 10.0.0.1</text>
+        <text>        Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>        The string "localsubnet"</text>
+        <text>    &lt;Status&gt; is either "enabled" or "disabled"</text>
+        <text>    &lt;Name&gt; is a text string</text>
+        <text>Example:</text>
+        <text>The following definition string adds the</text>
+        <text>TEST.EXE program to the program exceptions list</text>
+        <text>and allows it to receive messages from 10.0.0.1,</text>
+        <text>or any system on the 10.3.4.x subnet:</text>
+        <text>  %programfiles%\test.exe:10.0.0.1,10.3.4.0/24:enabled:Test program</text>
+      </presentation>
+      <presentation id="WF_AuthenticatedBypass_Name">
+        <textBox refId="WF_AuthenticatedBypass_List_Name">
+          <label>Define IPsec peers to be exempted from firewall policy:</label>
+        </textBox>
+        <text>Specify the IPsec peers to exempt</text>
+        <text>using an SDDL string.</text>
+        <text>Syntax:</text>
+        <text>  O:&lt;OwnerSID&gt;G:&lt;GroupSID&gt;D:&lt;DACLflags&gt;</text>
+        <text>    &lt;OwnerSID&gt; is the owner security descriptor</text>
+        <text>    &lt;GroupSID&gt; is the group security descriptor</text>
+        <text>    &lt;DACLflags&gt; is a list of ACEs</text>
+        <text>Example:</text>
+        <text>  O:DAG:DAD:(A;;RCGW;;;S-1-5-21-2157571284-1609012320)</text>
+      </presentation>
+      <presentation id="WF_FileAndPrint_Name_1">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_FileAndPrint_Name_2">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_IcmpSettings_Name_1">
+        <checkBox refId="WF_IcmpSettings_AllowOutboundDestinationUnreachable">Allow outbound destination unreachable</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundSourceQuench">Allow outbound source quench</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowRedirect">Allow redirect</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundEchoRequest">Allow inbound echo request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundRouterRequest">Allow inbound router request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundTimeExceeded">Allow outbound time exceeded</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundParameterProblem">Allow outbound parameter problem</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundTimestampRequest">Allow inbound timestamp request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundMaskRequest">Allow inbound mask request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundPacketTooBig">Allow outbound packet too big</checkBox>
+      </presentation>
+      <presentation id="WF_IcmpSettings_Name_2">
+        <checkBox refId="WF_IcmpSettings_AllowOutboundDestinationUnreachable">Allow outbound destination unreachable</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundSourceQuench">Allow outbound source quench</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowRedirect">Allow redirect</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundEchoRequest">Allow inbound echo request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundRouterRequest">Allow inbound router request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundTimeExceeded">Allow outbound time exceeded</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundParameterProblem">Allow outbound parameter problem</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundTimestampRequest">Allow inbound timestamp request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowInboundMaskRequest">Allow inbound mask request</checkBox>
+        <checkBox refId="WF_IcmpSettings_AllowOutboundPacketTooBig">Allow outbound packet too big</checkBox>
+      </presentation>
+      <presentation id="WF_Logging_Name_1">
+        <checkBox refId="WF_Logging_LogDroppedPackets">Log dropped packets</checkBox>
+        <checkBox refId="WF_Logging_LogSuccessfulConnections">Log successful connections</checkBox>
+        <textBox refId="WF_Logging_LogFilePathAndName">
+          <label>Log file path and name:</label>
+          <defaultValue>%systemroot%\system32\LogFiles\Firewall\pfirewall.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="WF_Logging_SizeLimit" defaultValue="4096" spinStep="128">Size limit (KB):</decimalTextBox>
+      </presentation>
+      <presentation id="WF_Logging_Name_2">
+        <checkBox refId="WF_Logging_LogDroppedPackets">Log dropped packets</checkBox>
+        <checkBox refId="WF_Logging_LogSuccessfulConnections">Log successful connections</checkBox>
+        <textBox refId="WF_Logging_LogFilePathAndName">
+          <label>Log file path and name:</label>
+          <defaultValue>%systemroot%\system32\LogFiles\Firewall\pfirewall.log</defaultValue>
+        </textBox>
+        <decimalTextBox refId="WF_Logging_SizeLimit" defaultValue="4096" spinStep="128">Size limit (KB):</decimalTextBox>
+      </presentation>
+      <presentation id="WF_OpenPorts_Name_1">
+        <listBox refId="WF_OpenPorts_Show">Define port exceptions:</listBox>
+        <text>Specify the port to open or block.</text>
+        <text>Syntax:</text>
+        <text>  &lt;Port&gt;:&lt;Transport&gt;:&lt;Scope&gt;:&lt;Status&gt;:&lt;Name&gt;</text>
+        <text>    &lt;Port&gt; is a decimal port number</text>
+        <text>    &lt;Transport&gt; is either "TCP" or "UDP"</text>
+        <text>    &lt;Scope&gt; is either "*" (for all networks) or</text>
+        <text>      a comma-separated list that contains</text>
+        <text>      any number or combination of these:</text>
+        <text>        IP addresses, such as 10.0.0.1</text>
+        <text>        Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>        The string "localsubnet"</text>
+        <text>    &lt;Status&gt; is either "enabled" or "disabled"</text>
+        <text>    &lt;Name&gt; is a text string</text>
+        <text>Example:</text>
+        <text>The following definition string adds TCP port 80</text>
+        <text>to the port exceptions list and allows it to</text>
+        <text>receive messages from 10.0.0.1, 10.0.0.2, or any</text>
+        <text>system on the 10.3.4.x subnet:</text>
+        <text>  80:TCP:10.0.0.1,10.0.0.2,10.3.4.0/24:enabled:Web service</text>
+      </presentation>
+      <presentation id="WF_OpenPorts_Name_2">
+        <listBox refId="WF_OpenPorts_Show">Define port exceptions:</listBox>
+        <text>Specify the port to open or block.</text>
+        <text>Syntax:</text>
+        <text>  &lt;Port&gt;:&lt;Transport&gt;:&lt;Scope&gt;:&lt;Status&gt;:&lt;Name&gt;</text>
+        <text>    &lt;Port&gt; is a decimal port number</text>
+        <text>    &lt;Transport&gt; is either "TCP" or "UDP"</text>
+        <text>    &lt;Scope&gt; is either "*" (for all networks) or</text>
+        <text>      a comma-separated list that contains</text>
+        <text>      any number or combination of these:</text>
+        <text>        IP addresses, such as 10.0.0.1</text>
+        <text>        Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>        The string "localsubnet"</text>
+        <text>    &lt;Status&gt; is either "enabled" or "disabled"</text>
+        <text>    &lt;Name&gt; is a text string</text>
+        <text>Example:</text>
+        <text>The following definition string adds TCP port 80</text>
+        <text>to the port exceptions list and allows it to</text>
+        <text>receive messages from 10.0.0.1, 10.0.0.2, or any</text>
+        <text>system on the 10.3.4.x subnet:</text>
+        <text>  80:TCP:10.0.0.1,10.0.0.2,10.3.4.0/24:enabled:Web service</text>
+      </presentation>
+      <presentation id="WF_RemoteAdmin_Name_1">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_RemoteAdmin_Name_2">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_RemoteDesktop_Name_1">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_RemoteDesktop_Name_2">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_UniversalPlugAndPlay_Name_1">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+      <presentation id="WF_UniversalPlugAndPlay_Name_2">
+        <textBox refId="WF_Scope_Name">
+          <label>Allow unsolicited incoming messages from these IP addresses:</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Type "*" to allow messages from any network, or</text>
+        <text>else type a comma-separated list that contains</text>
+        <text>any number or combination of these:</text>
+        <text>   IP addresses, such as 10.0.0.1</text>
+        <text>   Subnet descriptions, such as 10.2.3.0/24</text>
+        <text>   The string "localsubnet"</text>
+        <text>Example: to allow messages from 10.0.0.1,</text>
+        <text>10.0.0.2, and from any system on the</text>
+        <text>local subnet or on the 10.3.4.x subnet,</text>
+        <text>type the following in the "Allow unsolicited" </text>
+        <text>incoming messages from these IP addresses":</text>
+        <text>  10.0.0.1,10.0.0.2,localsubnet,10.3.4.0/24</text>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

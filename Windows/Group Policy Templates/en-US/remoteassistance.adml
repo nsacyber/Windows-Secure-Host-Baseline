@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="RA_Logging">Turn on session logging</string>
+      <string id="RA_Logging_Help">This policy setting allows you to turn logging on or off. Log files are located in the user's Documents folder under Remote Assistance.
+
+If you enable this policy setting, log files are generated.
+
+If you disable this policy setting, log files are not generated.
+
+If you do not configure this setting, application-based settings are used.</string>
+      <string id="RA_Optimize_Bandwidth">Turn on bandwidth optimization</string>
+      <string id="RA_Optimize_Bandwidth_14">No optimization</string>
+      <string id="RA_Optimize_Bandwidth_12">No full window drag</string>
+      <string id="RA_Optimize_Bandwidth_8">Turn off background</string>
+      <string id="RA_Optimize_Bandwidth_0">Full optimization</string>
+      <string id="RA_Optimize_Bandwidth_Help">This policy setting allows you to improve performance in low bandwidth scenarios.
+
+This setting is incrementally scaled from "No optimization" to "Full optimization".  Each incremental setting includes the previous optimization setting.
+
+For example:
+
+"Turn off background" will include the following optimizations:
+-No full window drag
+-Turn off background
+
+"Full optimization" will include the following optimizations:
+-Use 16-bit color (8-bit color in Windows Vista)
+-Turn off font smoothing (not supported in Windows Vista)
+-No full window drag
+-Turn off background
+
+If you enable this policy setting, bandwidth optimization occurs at the level specified.
+
+If you disable this policy setting, application-based settings are used.
+
+If you do not configure this policy setting, application-based settings are used.</string>
+      <string id="RA_Options">Customize warning messages</string>
+      <string id="RA_Options_Help">This policy setting lets you customize warning messages.
+
+The "Display warning message before sharing control" policy setting allows you to specify a custom message to display before a user shares control of his or her computer.
+
+The "Display warning message before connecting" policy setting allows you to specify a custom message to display before a user allows a connection to his or her computer.
+
+If you enable this policy setting, the warning message you specify overrides the default message that is seen by the novice.
+
+If you disable this policy setting, the user sees the default warning message.
+
+If you do not configure this policy setting, the user sees the default warning message.</string>
+      <string id="RA_Solicit">Configure Solicited Remote Assistance</string>
+      <string id="RA_Solicit_Control_Ctrl">Allow helpers to remotely control the computer</string>
+      <string id="RA_Solicit_Control_Days">Days</string>
+      <string id="RA_Solicit_Control_Hours">Hours</string>
+      <string id="RA_Solicit_Control_Minutes">Minutes</string>
+      <string id="RA_Solicit_Control_View">Allow helpers to only view the computer</string>
+      <string id="RA_Solicit_Help">This policy setting allows you to turn on or turn off Solicited (Ask for) Remote Assistance on this computer.
+
+If you enable this policy setting, users on this computer can use email or file transfer to ask someone for help. Also, users can use instant messaging programs to allow connections to this computer, and you can configure additional Remote Assistance settings.
+
+If you disable this policy setting, users on this computer cannot use email or file transfer to ask someone for help. Also, users cannot use instant messaging programs to allow connections to this computer.
+
+If you do not configure this policy setting, users can turn on or turn off Solicited (Ask for) Remote Assistance themselves in System Properties in Control Panel. Users can also configure Remote Assistance settings.
+
+If you enable this policy setting, you have two ways to allow helpers to provide Remote Assistance: "Allow helpers to only view the computer" or "Allow helpers to remotely control the computer."
+
+The "Maximum ticket time" policy setting sets a limit on the amount of time that a Remote Assistance invitation created by using email or file transfer can remain open.
+
+The "Select the method for sending email invitations" setting specifies which email standard to use to send Remote Assistance invitations. Depending on your email program, you can use either the Mailto standard (the invitation recipient connects through an Internet link) or the SMAPI (Simple MAPI) standard (the invitation is attached to your email message). This policy setting is not available in Windows Vista since SMAPI is the only method supported.
+
+If you enable this policy setting you should also enable appropriate firewall exceptions to allow Remote Assistance communications.</string>
+      <string id="RA_Solicit_Mailto">Mailto</string>
+      <string id="RA_Solicit_SimpleMapi">Simple MAPI</string>
+      <string id="RA_Unsolicit">Configure Offer Remote Assistance</string>
+      <string id="RA_Unsolicit_Control_Ctrl">Allow helpers to remotely control the computer</string>
+      <string id="RA_Unsolicit_Control_View">Allow helpers to only view the computer</string>
+      <string id="RA_Unsolicit_Help">This policy setting allows you to turn on or turn off Offer (Unsolicited) Remote Assistance on this computer.
+
+If you enable this policy setting, users on this computer can get help from their corporate technical support staff using Offer (Unsolicited) Remote Assistance.
+
+If you disable this policy setting, users on this computer cannot get help from their corporate technical support staff using Offer (Unsolicited) Remote Assistance.
+
+If you do not configure this policy setting, users on this computer cannot get help from their corporate technical support staff using Offer (Unsolicited) Remote Assistance.
+
+If you enable this policy setting, you have two ways to allow helpers to provide Remote Assistance: "Allow helpers to only view the computer" or "Allow helpers to remotely control the computer." When you configure this policy setting, you also specify the list of users or user groups that are allowed to offer remote assistance.
+
+To configure the list of helpers, click "Show." In the window that opens, you can enter the names of the helpers. Add each user or group one by one. When you enter the name of the helper user or user groups, use the following format:
+
+&lt;Domain Name&gt;\&lt;User Name&gt; or
+
+&lt;Domain Name&gt;\&lt;Group Name&gt;
+
+If you enable this policy setting, you should also enable firewall exceptions to allow Remote Assistance communications. The firewall exceptions required for Offer (Unsolicited) Remote Assistance depend on the version of Windows you are running.
+
+Windows Vista and later
+
+Enable the Remote Assistance exception for the domain profile. The exception must contain:
+Port 135:TCP
+%WINDIR%\System32\msra.exe
+%WINDIR%\System32\raserver.exe
+
+Windows XP with Service Pack 2 (SP2) and Windows XP Professional x64 Edition with Service Pack 1 (SP1)
+
+Port 135:TCP
+%WINDIR%\PCHealth\HelpCtr\Binaries\Helpsvc.exe
+%WINDIR%\PCHealth\HelpCtr\Binaries\Helpctr.exe
+%WINDIR%\System32\Sessmgr.exe
+
+For computers running Windows Server 2003 with Service Pack 1 (SP1)
+
+Port 135:TCP
+%WINDIR%\PCHealth\HelpCtr\Binaries\Helpsvc.exe
+%WINDIR%\PCHealth\HelpCtr\Binaries\Helpctr.exe
+Allow Remote Desktop Exception</string>
+      <string id="RemoteAssist">Remote Assistance</string>
+
+      <string id="RA_EncryptedTicketOnly">Allow only Windows Vista or later connections</string>
+      <string id="RA_EncryptedTicketOnly_Help">This policy setting enables Remote Assistance invitations to be generated with improved encryption so that only computers running this version (or later versions) of the operating system can connect. This policy setting does not affect Remote Assistance connections that are initiated by instant messaging contacts or the unsolicited Offer Remote Assistance.
+
+If you enable this policy setting, only computers running this version (or later versions) of the operating system can connect to this computer.
+
+If you disable this policy setting, computers running this version and a previous version of the operating system can connect to this computer.
+
+If you do not configure this policy setting, users can configure the setting in System Properties in the Control Panel.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="RA_Optimize_Bandwidth">
+        <dropdownList refId="RA_Optimize_Bandwidth_List" noSort="true">Optimize settings for reduced bandwidth:</dropdownList>
+      </presentation>
+      <presentation id="RA_Options">
+        <textBox refId="RA_Options_Share_Control_Message">
+          <label>Display warning message before sharing control:</label>
+        </textBox>
+        <textBox refId="RA_Options_Connect_Message">
+          <label>Display warning message before connecting:</label>
+        </textBox>
+      </presentation>
+      <presentation id="RA_Solicit">
+        <dropdownList refId="RA_Solicit_Control_List" noSort="true" defaultItem="0">Permit remote control of this computer:</dropdownList>
+        <decimalTextBox refId="RA_Solicit_ExpireValue_Edt">Maximum ticket time (value):</decimalTextBox>
+        <dropdownList refId="RA_Solicit_ExpireUnits_List" defaultItem="1">Maximum ticket time (units):</dropdownList>
+        <dropdownList refId="RA_Solicit_Mailto_List" defaultItem="1">Method for sending email invitations:</dropdownList>
+      </presentation>
+      <presentation id="RA_Unsolicit">
+        <dropdownList refId="RA_Unsolicit_Control_List" noSort="true" defaultItem="0">Permit remote control of this computer:</dropdownList>
+        <listBox refId="RA_Unsolicit_DACL_Edit">Helpers:</listBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

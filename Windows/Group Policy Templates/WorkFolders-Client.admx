@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="WorkFolders" namespace="Microsoft.Policies.WorkFolders" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Cat_WorkFolders" displayName="$(string.Cat_WorkFolders)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Pol_MachineEnableWorkFolders" 
+            clientExtension="{4d968b55-cac2-4ff5-983f-0a54603781a3}" 
+            class="Machine" 
+            displayName="$(string.Pol_MachineEnableWorkFolders)" 
+            explainText="$(string.Pol_MachineEnableWorkFolders_Help)" 
+            key="Software\Policies\Microsoft\Windows\WorkFolders"
+            valueName="AutoProvision">
+      <parentCategory ref="Cat_WorkFolders" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Pol_UserEnableWorkFolders" 
+            clientExtension="{4d968b55-cac2-4ff5-983f-0a54603781a3}" 
+            class="User" 
+            displayName="$(string.Pol_UserEnableWorkFolders)" 
+            explainText="$(string.Pol_UserEnableWorkFolders_Help)" 
+            presentation="$(presentation.Pol_EnableWorkFolders)" 
+            key="Software\Policies\Microsoft\Windows\WorkFolders">
+      <parentCategory ref="Cat_WorkFolders" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOSERVER" />
+      <elements>
+        <text id="Lbl_ServerURL_Edit" valueName="SyncUrl" />
+        <boolean id="Lbl_AutoProvision_Chk" valueName="AutoProvision">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

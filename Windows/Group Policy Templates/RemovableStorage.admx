@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="removablestorage" namespace="Microsoft.Policies.RemovableStorageAccess" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DeviceAccess" displayName="$(string.DeviceAccess)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AccessRights_RebootTime_1" class="User" displayName="$(string.AccessRights_RebootTime)" explainText="$(string.AccessRights_RebootTime_Help)" presentation="$(presentation.AccessRights_RebootTime_1)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices" valueName="RebootTimeinSeconds_state">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="AccessRights_RebootTime_seconds" valueName="RebootTimeinSeconds" />
+      </elements>
+    </policy>
+    <policy name="AccessRights_RebootTime_2" class="Machine" displayName="$(string.AccessRights_RebootTime)" explainText="$(string.AccessRights_RebootTime_Help)" presentation="$(presentation.AccessRights_RebootTime_2)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices" valueName="RebootTimeinSeconds_state">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="AccessRights_RebootTime_seconds" valueName="RebootTimeinSeconds" />
+      </elements>
+    </policy>
+    <policy name="CDandDVD_DenyRead_Access_1" class="User" displayName="$(string.CDandDVD_DenyRead_Access)" explainText="$(string.CDandDVD_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CDandDVD_DenyRead_Access_2" class="Machine" displayName="$(string.CDandDVD_DenyRead_Access)" explainText="$(string.CDandDVD_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CDandDVD_DenyWrite_Access_1" class="User" displayName="$(string.CDandDVD_DenyWrite_Access)" explainText="$(string.CDandDVD_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CDandDVD_DenyWrite_Access_2" class="Machine" displayName="$(string.CDandDVD_DenyWrite_Access)" explainText="$(string.CDandDVD_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CDandDVD_DenyExecute_Access_2" class="Machine" displayName="$(string.CDandDVD_DenyExecute_Access)" explainText="$(string.CDandDVD_DenyExecute_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56308-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Execute">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CustomClasses_DenyRead_Access_1" class="User" displayName="$(string.CustomClasses_DenyRead_Access)" explainText="$(string.CustomClasses_DenyRead_Access_help)" presentation="$(presentation.CustomClasses_DenyRead_Access_1)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Read" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="CustomClasses_List" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Read\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="CustomClasses_DenyRead_Access_2" class="Machine" displayName="$(string.CustomClasses_DenyRead_Access)" explainText="$(string.CustomClasses_DenyRead_Access_help)" presentation="$(presentation.CustomClasses_DenyRead_Access_2)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Read" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="CustomClasses_List" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Read\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="CustomClasses_DenyWrite_Access_1" class="User" displayName="$(string.CustomClasses_DenyWrite_Access)" explainText="$(string.CustomClasses_DenyWrite_Access_help)" presentation="$(presentation.CustomClasses_DenyWrite_Access_1)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Write" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="CustomClasses_List" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Write\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="CustomClasses_DenyWrite_Access_2" class="Machine" displayName="$(string.CustomClasses_DenyWrite_Access)" explainText="$(string.CustomClasses_DenyWrite_Access_help)" presentation="$(presentation.CustomClasses_DenyWrite_Access_2)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Write" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="CustomClasses_List" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\Custom\Deny_Write\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="FloppyDrives_DenyRead_Access_1" class="User" displayName="$(string.FloppyDrives_DenyRead_Access)" explainText="$(string.FloppyDrives_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56311-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FloppyDrives_DenyRead_Access_2" class="Machine" displayName="$(string.FloppyDrives_DenyRead_Access)" explainText="$(string.FloppyDrives_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56311-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FloppyDrives_DenyWrite_Access_1" class="User" displayName="$(string.FloppyDrives_DenyWrite_Access)" explainText="$(string.FloppyDrives_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56311-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FloppyDrives_DenyWrite_Access_2" class="Machine" displayName="$(string.FloppyDrives_DenyWrite_Access)" explainText="$(string.FloppyDrives_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56311-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FloppyDrives_DenyExecute_Access_2" class="Machine" displayName="$(string.FloppyDrives_DenyExecute_Access)" explainText="$(string.FloppyDrives_DenyExecute_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f56311-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Execute">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableDisks_DenyRead_Access_1" class="User" displayName="$(string.RemovableDisks_DenyRead_Access)" explainText="$(string.RemovableDisks_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableDisks_DenyRead_Access_2" class="Machine" displayName="$(string.RemovableDisks_DenyRead_Access)" explainText="$(string.RemovableDisks_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableDisks_DenyWrite_Access_1" class="User" displayName="$(string.RemovableDisks_DenyWrite_Access)" explainText="$(string.RemovableDisks_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableDisks_DenyWrite_Access_2" class="Machine" displayName="$(string.RemovableDisks_DenyWrite_Access)" explainText="$(string.RemovableDisks_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableDisks_DenyExecute_Access_2" class="Machine" displayName="$(string.RemovableDisks_DenyExecute_Access)" explainText="$(string.RemovableDisks_DenyExecute_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Execute">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableStorageClasses_DenyAll_Access_1" class="User" displayName="$(string.RemovableStorageClasses_DenyAll_Access)" explainText="$(string.RemovableStorageClasses_DenyAll_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices" valueName="Deny_All">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemovableStorageClasses_DenyAll_Access_2" class="Machine" displayName="$(string.RemovableStorageClasses_DenyAll_Access)" explainText="$(string.RemovableStorageClasses_DenyAll_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices" valueName="Deny_All">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TapeDrives_DenyRead_Access_1" class="User" displayName="$(string.TapeDrives_DenyRead_Access)" explainText="$(string.TapeDrives_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630b-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TapeDrives_DenyRead_Access_2" class="Machine" displayName="$(string.TapeDrives_DenyRead_Access)" explainText="$(string.TapeDrives_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630b-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TapeDrives_DenyWrite_Access_1" class="User" displayName="$(string.TapeDrives_DenyWrite_Access)" explainText="$(string.TapeDrives_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630b-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TapeDrives_DenyWrite_Access_2" class="Machine" displayName="$(string.TapeDrives_DenyWrite_Access)" explainText="$(string.TapeDrives_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630b-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TapeDrives_DenyExecute_Access_2" class="Machine" displayName="$(string.TapeDrives_DenyExecute_Access)" explainText="$(string.TapeDrives_DenyExecute_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630b-b6bf-11d0-94f2-00a0c91efb8b}" valueName="Deny_Execute">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WPDDevices_DenyRead_Access_1" class="User" displayName="$(string.WPDDevices_DenyRead_Access)" explainText="$(string.WPDDevices_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{6AC27878-A6FA-4155-BA85-F98F491D4F33}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Read">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Read">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="WPDDevices_DenyRead_Access_2" class="Machine" displayName="$(string.WPDDevices_DenyRead_Access)" explainText="$(string.WPDDevices_DenyRead_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{6AC27878-A6FA-4155-BA85-F98F491D4F33}" valueName="Deny_Read">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Read">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Read">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="WPDDevices_DenyWrite_Access_1" class="User" displayName="$(string.WPDDevices_DenyWrite_Access)" explainText="$(string.WPDDevices_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{6AC27878-A6FA-4155-BA85-F98F491D4F33}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Write">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Write">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="WPDDevices_DenyWrite_Access_2" class="Machine" displayName="$(string.WPDDevices_DenyWrite_Access)" explainText="$(string.WPDDevices_DenyWrite_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{6AC27878-A6FA-4155-BA85-F98F491D4F33}" valueName="Deny_Write">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Write">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\Windows\RemovableStorageDevices\{F33FDC04-D1AC-4E8E-9A30-19BBD4B108AE}" valueName="Deny_Write">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="Removable_Remote_Allow_Access" class="Machine" displayName="$(string.Removable_Remote_Allow_Access)" explainText="$(string.Removable_Remote_Allow_Access_help)" key="Software\Policies\Microsoft\Windows\RemovableStorageDevices" valueName="AllowRemoteDASD">
+      <parentCategory ref="DeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

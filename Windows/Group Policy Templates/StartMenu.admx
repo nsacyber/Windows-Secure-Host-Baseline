@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="startmenu" namespace="Microsoft.Policies.StartMenu" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_Win7UntilThreshold" displayName="$(string.SUPPORTED_Win7UntilThreshold)" />
+    </definitions>
+  </supportedOn>
+
+  <policies>
+    <policy name="ClearRecentProgForNewUserInStartMenu" class="User" displayName="$(string.ClearRecentProgForNewUserInStartMenu)" explainText="$(string.ClearRecentProgForNewUserInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ClearRecentProgForNewUserInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVistaAndWindows10" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoGamesFolderOnStartMenu" class="User" displayName="$(string.NoGamesFolderOnStartMenu)" explainText="$(string.NoGamesFolderOnStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuMyGames">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchComputerLinkInStartMenu" class="User" displayName="$(string.NoSearchComputerLinkInStartMenu)" explainText="$(string.NoSearchComputerLinkInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSearchComputerLinkInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchEverywhereLinkInStartMenu" class="User" displayName="$(string.NoSearchEverywhereLinkInStartMenu)" explainText="$(string.NoSearchEverywhereLinkInStartMenu_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoSearchEverywhereLinkInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="SUPPORTED_Win7UntilThreshold" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AddSearchInternetLinkInStartMenu" class="User" displayName="$(string.AddSearchInternetLinkInStartMenu)" explainText="$(string.AddSearchInternetLinkInStartMenu_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="AddSearchInternetLinkInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchFilesInStartMenu" class="User" displayName="$(string.NoSearchFilesInStartMenu)" explainText="$(string.NoSearchFilesInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSearchFilesInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchInternetInStartMenu" class="User" displayName="$(string.NoSearchInternetInStartMenu)" explainText="$(string.NoSearchInternetInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSearchInternetInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOrServer2008Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchProgramsInStartMenu" class="User" displayName="$(string.NoSearchProgramsInStartMenu)" explainText="$(string.NoSearchProgramsInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSearchProgramsInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoSearchCommInStartMenu" class="User" displayName="$(string.NoSearchCommInStartMenu)" explainText="$(string.NoSearchCommInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSearchCommInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoUserFolderOnStartMenu" class="User" displayName="$(string.NoUserFolderOnStartMenu)" explainText="$(string.NoUserFolderOnStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoUserFolderInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowRunInStartMenu" class="User" displayName="$(string.ShowRunInStartMenu)" explainText="$(string.ShowRunInStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ForceRunOnStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="QuickLaunchEnabled" class="User" displayName="$(string.QuickLaunchEnabled)" explainText="$(string.QuickLaunchEnabled_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="QuickLaunchEnabled">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ClearRecentDocsOnExit" class="User" displayName="$(string.ClearRecentDocsOnExit)" explainText="$(string.ClearRecentDocsOnExit_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ClearRecentDocsOnExit">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="ForceStartMenuLogOff" class="User" displayName="$(string.ForceStartMenuLogOff)" explainText="$(string.ForceStartMenuLogOff_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ForceStartMenuLogOff">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo2k" />
+    </policy>
+    <policy name="GreyMSIAds" class="User" displayName="$(string.GreyMSIAds)" explainText="$(string.GreyMSIAds_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="GreyMSIAds">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+    </policy>
+    <policy name="Intellimenus" class="User" displayName="$(string.Intellimenus)" explainText="$(string.Intellimenus_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="Intellimenus">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo2k" />
+    </policy>
+    <policy name="LockTaskbar" class="User" displayName="$(string.LockTaskbar)" explainText="$(string.LockTaskbar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="LockTaskbar">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="MemCheckBoxInRunDlg" class="User" displayName="$(string.MemCheckBoxInRunDlg)" explainText="$(string.MemCheckBoxInRunDlg_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="MemCheckBoxInRunDlg">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoAutoTrayNotify" class="User" displayName="$(string.NoAutoTrayNotify)" explainText="$(string.NoAutoTrayNotify_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoAutoTrayNotify">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoBalloonTip" class="User" displayName="$(string.NoBalloonTip)" explainText="$(string.NoBalloonTip_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSMBalloonTip">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOrServerOnly" />
+    </policy>
+    <policy name="NoChangeStartMenu" class="User" displayName="$(string.NoChangeStartMenu)" explainText="$(string.NoChangeStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoChangeStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="ClearTilesOnExit" class="User" displayName="$(string.ClearTilesOnExit)" explainText="$(string.ClearTilesOnExit_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ClearTilesOnExit">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+    </policy>
+    <policy name="StartPinAppsWhenInstalled" class="Both" displayName="$(string.StartPinAppsWhenInstalled)" explainText="$(string.StartPinAppsWhenInstalled_Help)" presentation="$(presentation.StartPinAppsWhenInstalled)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="StartPinAppsWhenInstalled">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <elements>
+        <list id="StartPinAppsWhenInstalled_Name" key="Software\Policies\Microsoft\Windows\Explorer\StartPinAppsWhenInstalled" valuePrefix="" additive="true" />
+      </elements>
+    </policy>
+    <policy name="LockedStartLayout" class="Both" displayName="$(string.LockedStartLayout)" explainText="$(string.LockedStartLayout_Help)" presentation="$(presentation.LockedStartLayout)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="LockedStartLayout">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+         <!--This value will be stored as a REG_EXPAND_SZ. Drop the expandable attrib for a REG_SZ-->       
+        <text id="LockedStartLayout_Name" valueName="StartLayoutFile" expandable="true"/>
+      </elements>
+    </policy>
+    <policy name="NoClose" class="User" displayName="$(string.NoClose)" explainText="$(string.NoClose_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoClose">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoCommonGroups" class="User" displayName="$(string.NoCommonGroups)" explainText="$(string.NoCommonGroups_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoCommonGroups">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoFavoritesMenu" class="User" displayName="$(string.NoFavoritesMenu)" explainText="$(string.NoFavoritesMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoFavoritesMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+    </policy>
+    <policy name="NoFind" class="User" displayName="$(string.NoFind)" explainText="$(string.NoFind_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoFind">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOrServerOnly" />
+    </policy>
+    <policy name="NoFrequentUsedPrograms" class="User" displayName="$(string.NoFrequentUsedPrograms)" explainText="$(string.NoFrequentUsedPrograms_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuMFUprogramsList">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXPAndWindows10" />
+    </policy>
+    <policy name="NoHelp" class="User" displayName="$(string.NoHelp)" explainText="$(string.NoHelp_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSMHelp">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+    </policy>
+    <policy name="NoInstrumentation" class="User" displayName="$(string.NoInstrumentation)" explainText="$(string.NoInstrumentation_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInstrumentation">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo2k" />
+    </policy>
+    <policy name="NoMoreProgramsList" class="User" displayName="$(string.NoMoreProgramsList)" explainText="$(string.NoMoreProgramsList_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuMorePrograms">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoNetAndDialupConnect" class="User" displayName="$(string.NoNetAndDialupConnect)" explainText="$(string.NoNetAndDialupConnect_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoNetworkConnections">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo2k" />
+    </policy>
+    <policy name="NoPinnedPrograms" class="User" displayName="$(string.NoPinnedPrograms)" explainText="$(string.NoPinnedPrograms_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuPinnedList">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+    </policy>
+    <policy name="NoRecentDocsHistory" class="User" displayName="$(string.NoRecentDocsHistory)" explainText="$(string.NoRecentDocsHistory_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRecentDocsHistory">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoRecentDocsMenu" class="User" displayName="$(string.NoRecentDocsMenu)" explainText="$(string.NoRecentDocsMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRecentDocsMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+    </policy>
+    <policy name="NoResolveSearch" class="User" displayName="$(string.NoResolveSearch)" explainText="$(string.NoResolveSearch_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoResolveSearch">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoResolveTrack" class="User" displayName="$(string.NoResolveTrack)" explainText="$(string.NoResolveTrack_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoResolveTrack">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoRun" class="User" displayName="$(string.NoRun)" explainText="$(string.NoRun_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRun">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3To2k" />
+    </policy>
+    <policy name="NoSetFolders" class="User" displayName="$(string.NoSetFolders)" explainText="$(string.NoSetFolders_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSetFolders">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3To2k" />
+    </policy>
+    <policy name="NoSetTaskbar" class="User" displayName="$(string.NoSetTaskbar)" explainText="$(string.NoSetTaskbar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSetTaskbar">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoSMConfigurePrograms" class="User" displayName="$(string.NoSMConfigurePrograms)" explainText="$(string.NoSMConfigurePrograms_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSMConfigurePrograms">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3ToXPSP1_Or_Win2kSP3" />
+    </policy>
+    <policy name="NoSMMyDocuments" class="User" displayName="$(string.NoSMMyDocuments)" explainText="$(string.NoSMMyDocuments_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSMMyDocs">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2k" />
+    </policy>
+    <policy name="NoSMMyMusic" class="User" displayName="$(string.NoSMMyMusic)" explainText="$(string.NoSMMyMusic_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuMyMusic">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+    </policy>
+    <policy name="NoSMMyNetworkPlaces" class="User" displayName="$(string.NoSMMyNetworkPlaces)" explainText="$(string.NoSMMyNetworkPlaces_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuNetworkPlaces">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+    </policy>
+    <policy name="NoSMMyPictures" class="User" displayName="$(string.NoSMMyPictures)" explainText="$(string.NoSMMyPictures_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSMMyPictures">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+    </policy>
+    <policy name="NoStartMenuSubFolders" class="User" displayName="$(string.NoStartMenuSubFolders)" explainText="$(string.NoStartMenuSubFolders_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuSubFolders">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7To2kAndWindows10" />
+    </policy>
+    <policy name="NoStartPage" class="User" displayName="$(string.NoStartPage)" explainText="$(string.NoStartPage_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSimpleStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXP" />
+    </policy>
+    <policy name="NoTaskBarClock" class="User" displayName="$(string.NoTaskBarClock)" explainText="$(string.NoTaskBarClock_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="HideClock">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoTaskGrouping" class="User" displayName="$(string.NoTaskGrouping)" explainText="$(string.NoTaskGrouping_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoTaskGrouping">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoToolbarsOnTaskbar" class="User" displayName="$(string.NoToolbarsOnTaskbar)" explainText="$(string.NoToolbarsOnTaskbar_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoToolbarsOnTaskbar">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoTrayContextMenu" class="User" displayName="$(string.NoTrayContextMenu)" explainText="$(string.NoTrayContextMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoTrayContextMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoTrayItemsDisplay" class="User" displayName="$(string.NoTrayItemsDisplay)" explainText="$(string.NoTrayItemsDisplay_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoTrayItemsDisplay">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoUserNameOnStartMenu" class="User" displayName="$(string.NoUserNameOnStartMenu)" explainText="$(string.NoUserNameOnStartMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoUserNameInStartMenu">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOrServerOnly" />
+    </policy>
+    <policy name="NoWindowsUpdate" class="User" displayName="$(string.NoWindowsUpdate)" explainText="$(string.NoWindowsUpdate_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWindowsUpdate">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows81To2k" />
+    </policy>
+    <policy name="RemoveUnDockPCButton" class="User" displayName="$(string.RemoveUnDockPCButton)" explainText="$(string.RemoveUnDockPCButton_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartMenuEjectPC">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+    </policy>
+    <policy name="StartMenuLogOff" class="User" displayName="$(string.StartMenuLogOff)" explainText="$(string.StartMenuLogOff_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="StartMenuLogOff">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoStartMenuHomegroup" class="User" displayName="$(string.NoStartMenuHomegroup)" explainText="$(string.NoStartMenuHomegroup_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoStartMenuHomegroup">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoStartMenuDownload" class="User" displayName="$(string.NoStartMenuDownload)" explainText="$(string.NoStartMenuDownload_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoStartMenuDownloads">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoStartMenuRecordedTV" class="User" displayName="$(string.NoStartMenuRecordedTV)" explainText="$(string.NoStartMenuRecordedTV_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoStartMenuRecordedTV">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoStartMenuVideos" class="User" displayName="$(string.NoStartMenuVideos)" explainText="$(string.NoStartMenuVideos_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoStartMenuVideos">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoUninstallFromStart" class="User" displayName="$(string.NoUninstallFromStart)" explainText="$(string.NoUninstallFromStart_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoUninstallFromStart">
+        <parentCategory ref="windows:StartMenu" />
+        <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="PowerButtonAction" class="User" displayName="$(string.PowerButtonAction_DisplayName)" explainText="$(string.PowerButtonAction_ExplainText)" presentation="$(presentation.PowerButtonAction)" key="Software\Policies\Microsoft\Windows\Explorer">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <elements>
+        <enum id="PowerButtonActionDropdown" valueName="PowerButtonAction" required="true">
+          <item displayName="$(string.SHTDN_SHUTDOWN)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_SLEEP)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_LOGOFF)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_LOCK)">
+            <value>
+              <decimal value="512" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_RESTART)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_SWITCHUSER)">
+            <value>
+              <decimal value="256" />
+            </value>
+          </item>
+          <item displayName="$(string.SHTDN_HIBERNATE)">
+            <value>
+              <decimal value="64" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ShowRunAsDifferentUserInStart" class="User" displayName="$(string.ShowRunAsDifferentUserInStart)" explainText="$(string.ShowRunAsDifferentUserInStart_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowRunAsDifferentUserInStart">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="GoToDesktopOnSignIn" class="User" displayName="$(string.GoToDesktopOnSignIn)" explainText="$(string.GoToDesktopOnSignIn_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="GoToDesktopOnSignIn">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="2" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowAppsViewOnStart" class="User" displayName="$(string.ShowAppsViewOnStart)" explainText="$(string.ShowAppsViewOnStart_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowAppsViewOnStart">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableGlobalSearchOnAppsView" class="User" displayName="$(string.DisableGlobalSearchOnAppsView)" explainText="$(string.DisableGlobalSearchOnAppsView_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableGlobalSearchOnAppsView">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DesktopAppsFirstInAppsView" class="User" displayName="$(string.DesktopAppsFirstInAppsView)" explainText="$(string.DesktopAppsFirstInAppsView_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DesktopAppsFirstInAppsView">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowStartOnDisplayWithForegroundOnWinKey" class="User" displayName="$(string.ShowStartOnDisplayWithForegroundOnWinKey)" explainText="$(string.ShowStartOnDisplayWithForegroundOnWinKey_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowStartOnDisplayWithForegroundOnWinKey">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ForceStartSize" class="User" displayName="$(string.ForceStartSize_DisplayName)" explainText="$(string.ForceStartSize_ExplainText)" presentation="$(presentation.ForceStartSize)" key="Software\Policies\Microsoft\Windows\Explorer">
+      <parentCategory ref="windows:StartMenu" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <elements>
+        <enum id="ForceStartSizeDropdown" valueName="ForceStartSize" required="true">
+          <item displayName="$(string.ForceLauncherSize_Collapsed)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceLauncherSize_Expanded)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

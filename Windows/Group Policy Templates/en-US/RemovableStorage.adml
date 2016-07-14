@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="AccessRights_RebootTime">Set time (in seconds) to force reboot</string>
+      <string id="AccessRights_RebootTime_Help">This policy setting configures the amount of time (in seconds) that the operating system waits to reboot in order to enforce a change in access rights to removable storage devices.
+
+If you enable this policy setting, you can set the number of seconds you want the system to wait until a reboot.
+
+If you disable or do not configure this setting, the operating system does not force a reboot.
+
+Note: If no reboot is forced, the access right does not take effect until the operating system is restarted.</string>
+      <string id="CDandDVD_DenyRead_Access">CD and DVD: Deny read access</string>
+      <string id="CDandDVD_DenyRead_Access_help">This policy setting denies read access to the CD and DVD removable storage class.
+
+If you enable this policy setting, read access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access is allowed to this removable storage class.</string>
+      <string id="CDandDVD_DenyWrite_Access">CD and DVD: Deny write access</string>
+      <string id="CDandDVD_DenyWrite_Access_help">This policy setting denies write access to the CD and DVD removable storage class.
+
+If you enable this policy setting, write access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access is allowed to this removable storage class.</string>
+      <string id="CDandDVD_DenyExecute_Access">CD and DVD: Deny execute access</string>
+      <string id="CDandDVD_DenyExecute_Access_help">This policy setting denies execute access to the CD and DVD removable storage class.
+
+If you enable this policy setting, execute access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, execute access is allowed to this removable storage class.</string>
+      <string id="CustomClasses_DenyRead_Access">Custom Classes: Deny read access</string>
+      <string id="CustomClasses_DenyRead_Access_help">This policy setting denies read access to custom removable storage classes.
+
+If you enable this policy setting, read access is denied to these removable storage classes.
+
+If you disable or do not configure this policy setting, read access is allowed to these removable storage classes.</string>
+      <string id="CustomClasses_DenyWrite_Access">Custom Classes: Deny write access</string>
+      <string id="CustomClasses_DenyWrite_Access_help">This policy setting denies write access to custom removable storage classes.
+
+If you enable this policy setting, write access is denied to these removable storage classes.
+
+If you disable or do not configure this policy setting, write access is allowed to these removable storage classes.</string>
+      <string id="DeviceAccess">Removable Storage Access</string>
+      <string id="FloppyDrives_DenyRead_Access">Floppy Drives: Deny read access</string>
+      <string id="FloppyDrives_DenyRead_Access_help">This policy setting denies read access to the Floppy Drives removable storage class, including USB Floppy Drives.
+
+If you enable this policy setting, read access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access is allowed to this removable storage class.</string>
+      <string id="FloppyDrives_DenyWrite_Access">Floppy Drives: Deny write access</string>
+      <string id="FloppyDrives_DenyWrite_Access_help">This policy setting denies write access to the Floppy Drives removable storage class, including USB Floppy Drives.
+
+If you enable this policy setting, write access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access is allowed to this removable storage class.</string>
+      <string id="FloppyDrives_DenyExecute_Access">Floppy Drives: Deny execute access</string>
+      <string id="FloppyDrives_DenyExecute_Access_help">This policy setting denies execute access to the Floppy Drives removable storage class, including USB Floppy Drives.
+
+If you enable this policy setting, execute access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, execute access is allowed to this removable storage class.</string>
+      <string id="PAPDevices_DenyRead_Access">PAP Devices: Deny read access</string>
+      <string id="PAPDevices_DenyRead_Access_help">This policy setting denies read access to removable disks, which may include portable media players.
+
+If you enable this policy setting, read access will be denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access will be allowed to this removable storage class.</string>
+      <string id="PAPDevices_DenyWrite_Access">PAP Devices: Deny write access</string>
+      <string id="PAPDevices_DenyWrite_Access_help">This policy setting denies write access to removable disks, which may include portable media players.
+
+If you enable this policy setting, write access will be denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access will be allowed to this removable storage class.</string>
+      <string id="PAPDevices_DenyExecute_Access">PAP Devices: Deny execute access</string>
+      <string id="PAPDevices_DenyExecute_Access_help">This policy setting denies execute access to removable disks, which may include portable media players.
+
+If you enable this policy setting, execute access will be denied to this removable storage class.
+
+If you disable or do not configure this policy setting, execute access will be allowed to this removable storage class.</string>
+      <string id="RemovableDisks_DenyRead_Access">Removable Disks: Deny read access</string>
+      <string id="RemovableDisks_DenyRead_Access_help">This policy setting denies read access to removable disks.
+
+If you enable this policy setting, read access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access is allowed to this removable storage class.</string>
+      <string id="RemovableDisks_DenyWrite_Access">Removable Disks: Deny write access</string>
+      <string id="RemovableDisks_DenyWrite_Access_help">This policy setting denies write access to removable disks.
+
+If you enable this policy setting, write access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access is allowed to this removable storage class.
+
+Note: To require that users write data to BitLocker-protected storage, enable the policy setting "Deny write access to drives not protected by BitLocker," which is located in "Computer Configuration\Administrative Templates\Windows Components\BitLocker Drive Encryption\Removable Data Drives."</string>
+      <string id="RemovableDisks_DenyExecute_Access">Removable Disks: Deny execute access</string>
+      <string id="RemovableDisks_DenyExecute_Access_help">This policy setting denies execute access to removable disks.
+
+If you enable this policy setting, execute access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, execute access is allowed to this removable storage class.</string>
+      <string id="RemovableStorageClasses_DenyAll_Access">All Removable Storage classes: Deny all access</string>
+      <string id="RemovableStorageClasses_DenyAll_Access_help">Configure access to all removable storage classes.
+
+This policy setting takes precedence over any individual removable storage policy settings. To manage individual classes, use the policy settings available for each class.
+
+If you enable this policy setting, no access is allowed to any removable storage class.
+
+If you disable or do not configure this policy setting, write and read accesses are allowed to all removable storage classes.</string>
+      <string id="TapeDrives_DenyRead_Access">Tape Drives: Deny read access</string>
+      <string id="TapeDrives_DenyRead_Access_help">This policy setting denies read access to the Tape Drive removable storage class.
+
+If you enable this policy setting, read access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access is allowed to this removable storage class.</string>
+      <string id="TapeDrives_DenyWrite_Access">Tape Drives: Deny write access</string>
+      <string id="TapeDrives_DenyWrite_Access_help">This policy setting denies write access to the Tape Drive removable storage class.
+
+If you enable this policy setting, write access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access is allowed to this removable storage class.</string>
+      <string id="TapeDrives_DenyExecute_Access">Tape Drives: Deny execute access</string>
+      <string id="TapeDrives_DenyExecute_Access_help">This policy setting denies execute access to the Tape Drive removable storage class.
+
+If you enable this policy setting, execute access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, execute access is allowed to this removable storage class.</string>
+      <string id="WPDDevices_DenyRead_Access">WPD Devices: Deny read access</string>
+      <string id="WPDDevices_DenyRead_Access_help">This policy setting denies read access to removable disks, which may include media players, cellular phones, auxiliary displays, and CE devices.
+
+If you enable this policy setting, read access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, read access is allowed to this removable storage class.</string>
+      <string id="WPDDevices_DenyWrite_Access">WPD Devices: Deny write access</string>
+      <string id="WPDDevices_DenyWrite_Access_help">This policy setting denies write access to removable disks, which may include media players, cellular phones, auxiliary displays, and CE devices.
+
+If you enable this policy setting, write access is denied to this removable storage class.
+
+If you disable or do not configure this policy setting, write access is allowed to this removable storage class.</string>
+      <string id="Removable_Remote_Allow_Access">All Removable Storage: Allow direct access in remote sessions</string>
+      <string id="Removable_Remote_Allow_Access_help">This policy setting grants normal users direct access to removable storage devices in remote sessions.
+
+If you enable this policy setting, remote users can open direct handles to removable storage devices in remote sessions.
+
+If you disable or do not configure this policy setting, remote users cannot open direct handles to removable storage devices in remote sessions.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="AccessRights_RebootTime_1">
+        <decimalTextBox refId="AccessRights_RebootTime_seconds" defaultValue="1800" spinStep="10">Time (in seconds):</decimalTextBox>
+      </presentation>
+      <presentation id="AccessRights_RebootTime_2">
+        <decimalTextBox refId="AccessRights_RebootTime_seconds" defaultValue="1800" spinStep="10">Time (in seconds):</decimalTextBox>
+      </presentation>
+      <presentation id="CustomClasses_DenyRead_Access_1">
+        <text>Enter GUID in format {xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx},</text>
+        <text>include brackets. Each custom GUID must be a separate entry</text>
+        <listBox refId="CustomClasses_List">GUID for custom removable storage class:</listBox>
+      </presentation>
+      <presentation id="CustomClasses_DenyRead_Access_2">
+        <text>Enter GUID in format {xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx},</text>
+        <text>include brackets. Each custom GUID must be a separate entry</text>
+        <listBox refId="CustomClasses_List">GUID for custom removable storage class:</listBox>
+      </presentation>
+      <presentation id="CustomClasses_DenyWrite_Access_1">
+        <text>Enter GUID in format {xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx},</text>
+        <text>include brackets. Each custom GUID must be a separate entry</text>
+        <listBox refId="CustomClasses_List">GUID for custom removable storage class:</listBox>
+      </presentation>
+      <presentation id="CustomClasses_DenyWrite_Access_2">
+        <text>Enter GUID in format {xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx},</text>
+        <text>include brackets. Each custom GUID must be a separate entry</text>
+        <listBox refId="CustomClasses_List">GUID for custom removable storage class:</listBox>
+      </presentation>
+      <presentation id="CustomClasses_DenyExecute_Access_2">
+        <text>Enter GUID in format {xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx},</text>
+        <text>include brackets. Each custom GUID must be a separate entry</text>
+        <listBox refId="CustomClasses_List">GUID for custom removable storage class:</listBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

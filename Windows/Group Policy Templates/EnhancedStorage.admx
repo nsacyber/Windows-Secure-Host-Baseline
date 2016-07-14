@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="enhancedstorage" namespace="Microsoft.Policies.EnhancedStorageAccess" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="EnStorDeviceAccess" displayName="$(string.EnStorDeviceAccess)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="RootHubConnectedEnStorDevices" class="Machine" displayName="$(string.RootHubConnectedEnStorDevices)" explainText="$(string.RootHubConnectedEnStorDevices_Help)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices" valueName="RootHubConnectedEnStorDevices">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LockDeviceOnMachineLock" class="Machine" displayName="$(string.LockDeviceOnMachineLock)" explainText="$(string.LockDeviceOnMachineLock_Help)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices" valueName="LockDeviceOnMachineLock">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowLegacyDiskDevices" class="Machine" displayName="$(string.DisallowLegacyDiskDevices)" explainText="$(string.DisallowLegacyDiskDevices_Help)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices" valueName="DisallowLegacyDiskDevices">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisablePasswordAuthentication" class="Machine" displayName="$(string.DisablePasswordAuthentication)" explainText="$(string.DisablePasswordAuthentication_Help)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices" valueName="DisablePasswordAuthentication">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TCGSecurityActivationDisabled" class="Machine" displayName="$(string.TCGSecurityActivationDisabled)" explainText="$(string.TCGSecurityActivationDisabled_Help)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices" valueName="TCGSecurityActivationDisabled">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ApprovedSilos" class="Machine" displayName="$(string.ApprovedSilos)" explainText="$(string.ApprovedSilos_Help)" presentation="$(presentation.ApprovedSilos)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices\ApprovedSilos" valueName="SiloAllowListPolicy">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="ApprovedSilos_List" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices\ApprovedSilos\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="ApprovedEnStorDevices" class="Machine" displayName="$(string.ApprovedEnStorDevices)" explainText="$(string.ApprovedEnStorDevices_Help)" presentation="$(presentation.ApprovedEnStorDevices)" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices\ApprovedEnStorDevices" valueName="PolicyEnabled">
+      <parentCategory ref="EnStorDeviceAccess" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="ApprovedEnStorDevices_List" key="Software\Policies\Microsoft\Windows\EnhancedStorageDevices\ApprovedEnStorDevices\List" additive="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

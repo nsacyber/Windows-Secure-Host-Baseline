@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="AutoPlay">AutoPlay Policies</string>
+      <string id="AutoPlay_Help">Configure various AutoPlay behaviors.</string>
+      <string id="NoAutorun">Set the default behavior for AutoRun</string>
+      <string id="NoAutorun_Help">This policy setting sets the default behavior for Autorun commands.
+
+          Autorun commands are generally stored in autorun.inf files. They often launch the installation program or other routines.
+
+          Prior to Windows Vista, when media containing an autorun command is inserted, the system will automatically execute the program without user intervention.
+
+          This creates a major security concern as code may be executed without user's knowledge. The default behavior starting with Windows Vista is to prompt the user whether autorun command is to be run. The autorun command is represented as a handler in the Autoplay dialog.
+
+          If you enable this policy setting, an Administrator can change the default Windows Vista or later behavior for autorun to:
+
+          a) Completely disable autorun commands, or
+          b) Revert back to pre-Windows Vista behavior of automatically executing the autorun command.
+
+          If you disable or not configure this policy setting, Windows Vista or later will prompt the user whether autorun command is to be run.</string>
+      <string id="NoAutorun_Disabled">Do not execute any autorun commands</string>
+      <string id="NoAutorun_XP">Automatically execute autorun commands</string>
+      <string id="DontSetAutoplayCheckbox">Prevent AutoPlay from remembering user choices.</string>
+      <string id="DontSetAutoplayCheckbox_Help">This policy setting allows you to prevent AutoPlay from remembering user's choice of what to do when a device is connected.
+
+          If you enable this policy setting, AutoPlay prompts the user to choose what to do when a device is connected.
+
+          If you disable or do not configure this policy setting, AutoPlay  remembers user's choice of what to do when a device is connected.</string>
+      <string id="NoAutoplayfornonVolume">Disallow Autoplay for non-volume devices</string>
+      <string id="NoAutoplayfornonVolume_Help">This policy setting disallows AutoPlay for MTP devices like cameras or phones.
+
+          If you enable this policy setting, AutoPlay is not allowed for MTP devices like cameras or phones.
+
+          If you disable or do not configure this policy setting, AutoPlay is enabled for non-volume devices.</string>
+      <string id="Autorun">Turn off Autoplay</string>
+      <string id="Autorun_Help">This policy setting allows you to turn off the Autoplay feature.
+
+          Autoplay begins reading from a drive as soon as you insert media in the drive. As a result, the setup file of programs and the music on audio media start immediately.
+
+          Prior to Windows XP SP2, Autoplay is disabled by default on removable drives, such as the floppy disk drive (but not the CD-ROM drive), and on network drives.
+
+          Starting with Windows XP SP2, Autoplay is enabled for removable drives as well, including Zip drives and some USB mass storage devices.
+
+          If you enable this policy setting, Autoplay is disabled on CD-ROM and removable media drives, or disabled on all drives.
+
+          This policy setting disables Autoplay on additional types of drives. You cannot use this setting to enable Autoplay on drives on which it is disabled by default.
+
+          If you disable or do not configure this policy setting, AutoPlay is enabled.
+
+          Note: This policy setting appears in both the Computer Configuration and User Configuration folders. If the policy settings conflict, the policy setting in Computer Configuration takes precedence over the policy setting in User Configuration.</string>
+      <string id="Autorun_NoCD">CD-ROM and removable media drives</string>
+      <string id="Autorun_None">All drives</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="NoAutorun">
+        <dropdownList refId="NoAutorun_Dropdown" noSort="true" defaultItem="0">Default AutoRun Behavior</dropdownList>
+      </presentation>
+      <presentation id="Autorun">
+        <dropdownList refId="Autorun_Box" defaultItem="0">Turn off Autoplay on:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

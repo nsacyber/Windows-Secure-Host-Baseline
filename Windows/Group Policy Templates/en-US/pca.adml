@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+
+
+      <!-- Overall category text -->
+      <string id="PcaScenarioCategory">Application Compatibility Diagnostics</string>
+      
+
+      <!-- Generic WDI text -->
+      <string id="WdiScenarioExecutionPolicyLevelResolution">Detection, Troubleshooting and Resolution</string>
+      <string id="WdiScenarioExecutionPolicyLevelTsOnly">Detection and Troubleshooting Only</string>
+
+
+      <!-- Individual scenario text -->
+      <string id="DetectBlockedDriversText">Notify blocked drivers</string>
+      <string id="DetectDeprecatedComponentFailuresText">Detect application failures caused by deprecated Windows DLLs</string>
+      <string id="DetectDeprecatedCOMComponentFailuresText">Detect application failures caused by deprecated COM objects</string> 
+      <string id="DetectInstallFailuresText">Detect application install failures</string>
+      <string id="DetectUpdateFailuresText">Detect applications unable to launch installers under UAC</string>
+      <string id="DetectUndetectedInstallersText">Detect application installers that need to be run as administrator</string>
+      <string id="DisablePcaUIText">Detect compatibility issues for applications and drivers</string>      
+      <!-- End individual scenario text -->
+
+      <!-- Start detailed explain text -->
+      <string id="DetectBlockedDriversExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+      <string id="DetectDeprecatedComponentFailuresExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+      <string id="DetectDeprecatedCOMComponentFailuresExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+      <string id="DetectInstallFailuresExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+      <string id="DetectUpdateFailuresExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+      <string id="DetectUndetectedInstallersExplain">This setting exists only for backward compatibility, and is not valid for this version of Windows. To configure the Program Compatibility Assistant, use the 'Turn off Program Compatibility Assistant' setting under Computer Configuration\Administrative Templates\Windows Components\Application Compatibility.</string>
+
+      <string id="DisablePcaUIExplain">This policy setting configures the Program Compatibility Assistant (PCA) to diagnose failures with application and driver compatibility. 
+
+If you enable this policy setting, the PCA is configured to detect failures during application installation, failures during application runtime, and drivers blocked due to compatibility issues. When failures are detected, the PCA will provide options to run the application in a compatibility mode or get help online through a Microsoft website.
+
+If you disable this policy setting, the PCA does not detect compatibility issues for applications and drivers.
+
+If you do not configure this policy setting, the PCA is configured to detect failures during application installation, failures during application runtime, and drivers blocked due to compatibility issues.
+
+Note: This policy setting has no effect if the "Turn off Program Compatibility Assistant" policy setting is enabled. The Diagnostic Policy Service (DPS) and Program Compatibility Assistant Service must be running for the PCA to run. These services can be configured by using the Services snap-in to the Microsoft Management Console.</string>
+      <!-- End detailed explain text -->
+      
+    </stringTable>
+
+    <presentationTable>
+      <presentation id="DetectUpdateFailuresTable">
+        <dropdownList refId="DetectUpdateFailuresLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="DetectDeprecatedComponentFailuresTable">
+        <dropdownList refId="DetectDeprecatedComponentFailuresLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="DetectDeprecatedCOMComponentFailuresTable">
+        <dropdownList refId="DetectDeprecatedCOMComponentFailuresLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="DetectUndetectedInstallersTable">
+        <dropdownList refId="DetectUndetectedInstallersLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Audit Process Creation</displayName>
+  <description>Configuration settings for auditing process creation.</description>
+  <resources>
+    <stringTable>
+      <string id="AuditSettings">Audit Process Creation</string>
+      <string id="IncludeCmdLine">Include command line in process creation events</string>
+      <string id="IncludeCmdLine_explain">This policy setting determines what information is logged in security audit events when a new process has been created.
+
+This setting only applies when the Audit Process Creation policy is enabled. If you enable this policy setting the command line information for every process will be logged in plain text in the security event log as part of the Audit Process Creation event 4688, "a new process has been created," on the workstations and servers on which this policy setting is applied.
+
+If you disable or do not configure this policy setting, the process's command line information will not be included in Audit Process Creation events.
+
+Default: Not configured
+
+Note: When this policy setting is enabled, any user with access to read the security events will be able to read the command line arguments for any successfully created process. Command line arguments can contain sensitive or private information such as passwords or user data.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="IncludeCmdLine">
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

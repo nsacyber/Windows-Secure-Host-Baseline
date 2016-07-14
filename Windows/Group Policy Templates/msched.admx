@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="msched" namespace="Microsoft.Policies.MaintenanceScheduler" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="MaintenanceScheduler" displayName="$(string.MaintenanceScheduler)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ActivationBoundaryPolicy" class="Machine" displayName="$(string.ActivationBoundary)" explainText="$(string.ActivationBoundaryHelp)" presentation="$(presentation.ActivationBoundaryPolicy)" key="Software\Policies\Microsoft\Windows\Task Scheduler\Maintenance">
+      <parentCategory ref="msched:MaintenanceScheduler" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <text id="ActivationBoundary" valueName="Activation Boundary" />
+      </elements>
+    </policy>
+    <policy name="RandomDelayPolicy" class="Machine" displayName="$(string.RandomDelay)" explainText="$(string.RandomDelayHelp)" presentation="$(presentation.RandomDelayPolicy)" key="Software\Policies\Microsoft\Windows\Task Scheduler\Maintenance" valueName="Randomized">
+      <parentCategory ref="msched:MaintenanceScheduler" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="RandomDelay" valueName="Random Delay" />
+      </elements>
+    </policy>
+    <policy name="WakeUpPolicy" class="Machine" displayName="$(string.WakeUp)" explainText="$(string.WakeUpHelp)" key="Software\Policies\Microsoft\Windows\Task Scheduler\Maintenance" valueName="WakeUp">
+      <parentCategory ref="msched:MaintenanceScheduler" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

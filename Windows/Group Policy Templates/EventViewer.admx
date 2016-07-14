@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="eventviewer" namespace="Microsoft.Policies.EventViewer" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="EventViewer" displayName="$(string.EventViewer)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="EventViewer_RedirectionProgram" class="Machine" displayName="$(string.EventViewer_RedirectionProgram)" explainText="$(string.EventViewer_RedirectionProgram_Help)" presentation="$(presentation.EventViewer_RedirectionProgram)" key="Software\Policies\Microsoft\EventViewer">
+      <parentCategory ref="EventViewer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="EventViewer_RedirectionProgram" valueName="MicrosoftRedirectionProgram" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="EventViewer_RedirectionProgramCommandLineParameters" class="Machine" displayName="$(string.EventViewer_RedirectionProgramCommandLineParameters)" explainText="$(string.EventViewer_RedirectionProgramCommandLineParameters_Help)" presentation="$(presentation.EventViewer_RedirectionProgramCommandLineParameters)" key="Software\Policies\Microsoft\EventViewer">
+      <parentCategory ref="EventViewer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="EventViewer_RedirectionProgramCommandLineParameters" valueName="MicrosoftRedirectionProgramCommandLineParameters" />
+      </elements>
+    </policy>
+    <policy name="EventViewer_RedirectionURL" class="Machine" displayName="$(string.EventViewer_RedirectionURL)" explainText="$(string.EventViewer_RedirectionURL_Help)" presentation="$(presentation.EventViewer_RedirectionURL)" key="Software\Policies\Microsoft\EventViewer">
+      <parentCategory ref="EventViewer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="EventViewer_RedirectionURL" valueName="MicrosoftRedirectionURL" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

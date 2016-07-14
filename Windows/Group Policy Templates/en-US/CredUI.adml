@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="CredUI">Credential User Interface</string>
+      <string id="CredUI_Help">Contains settings to control the behavior of credential collection.</string>
+      <string id="EnumerateAdministrators">Enumerate administrator accounts on elevation</string>
+      <string id="EnumerateAdministrators_Help">This policy setting controls whether administrator accounts are displayed when a user attempts to elevate a running application. By default, administrator accounts are not displayed when the user attempts to elevate a running application.
+
+If you enable this policy setting, all local administrator accounts on the PC will be displayed so the user can choose one and enter the correct password.
+
+If you disable this policy setting, users will always be required to type a user name and password to elevate.</string>
+      <string id="EnableSecureCredentialPrompting">Require trusted path for credential entry</string>
+      <string id="EnableSecureCredentialPrompting_Help">This policy setting requires the user to enter Microsoft Windows credentials using a trusted path, to prevent a Trojan horse or other types of malicious code from stealing the user’s Windows credentials.
+
+Note: This policy affects nonlogon authentication tasks only. As a security best practice, this policy should be enabled.
+
+If you enable this policy setting, users will be required to enter Windows credentials on the Secure Desktop by means of the trusted path mechanism.
+
+If you disable or do not configure this policy setting, users will enter Windows credentials within the user’s desktop session, potentially allowing malicious code access to the user’s Windows credentials.</string>
+      <string id="DisablePasswordReveal">Do not display the password reveal button</string>
+      <string id="DisablePasswordReveal_Help">This policy setting allows you to configure the display of the password reveal button in password entry user experiences.
+
+If you enable this policy setting, the password reveal button will not be displayed after a user types a password in the password entry text box.
+
+If you disable or do not configure this policy setting, the password reveal button will be displayed after a user types a password in the password entry text box.
+
+By default, the password reveal button is displayed after a user types a password in the password entry text box. To display the password, click the password reveal button.
+
+The policy applies to all Windows components and applications that use the Windows system controls, including Internet Explorer.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

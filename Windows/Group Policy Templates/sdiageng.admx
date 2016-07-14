@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="scripteddiagnostics" namespace="Microsoft.Policies.ScriptedDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="ScriptedDiagnosticsCategory" displayName="$(string.ScriptedDiagnosticsCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ScriptedDiagnosticsSecurityPolicy" class="Machine" displayName="$(string.ScriptedDiagnosticsSecurityPolicy)" explainText="$(string.ScriptedDiagnosticsSecurityPolicyExplain)" key="SOFTWARE\Policies\Microsoft\Windows\ScriptedDiagnostics" valueName="ValidateTrust">
+      <parentCategory ref="ScriptedDiagnosticsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ScriptedDiagnosticsExecutionPolicy" class="Machine" displayName="$(string.ScriptedDiagnosticsExecutionPolicy)" explainText="$(string.ScriptedDiagnosticsExecutionPolicyExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\ScriptedDiagnostics" valueName="EnableDiagnostics">
+      <parentCategory ref="ScriptedDiagnosticsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="BetterWhenConnected" class="Machine" displayName="$(string.BetterWhenConnected)" explainText="$(string.BetterWhenConnectedExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\ScriptedDiagnosticsProvider\Policy" valueName="EnableQueryRemoteServer">
+      <parentCategory ref="ScriptedDiagnosticsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

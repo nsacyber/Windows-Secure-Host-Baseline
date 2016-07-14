@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="autoplay" namespace="Microsoft.Policies.AutoPlay" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AutoPlay" displayName="$(string.AutoPlay)" explainText="$(string.AutoPlay_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoAutorun" class="Both" displayName="$(string.NoAutorun)" explainText="$(string.NoAutorun_Help)" presentation="$(presentation.NoAutorun)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="AutoPlay" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="NoAutorun_Dropdown" valueName="NoAutorun">
+          <item displayName="$(string.NoAutorun_Disabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.NoAutorun_XP)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DontSetAutoplayCheckbox" class="Both" displayName="$(string.DontSetAutoplayCheckbox)" explainText="$(string.DontSetAutoplayCheckbox_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DontSetAutoplayCheckbox">
+      <parentCategory ref="AutoPlay" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Autorun" class="Both" displayName="$(string.Autorun)" explainText="$(string.Autorun_Help)" presentation="$(presentation.Autorun)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="AutoPlay" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="Autorun_Box" valueName="NoDriveTypeAutoRun" required="true">
+          <item displayName="$(string.Autorun_NoCD)">
+            <value>
+              <decimal value="181" />
+            </value>
+          </item>
+          <item displayName="$(string.Autorun_None)">
+            <value>
+              <decimal value="255" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="NoAutoplayfornonVolume" class="Both" displayName="$(string.NoAutoplayfornonVolume)" explainText="$(string.NoAutoplayfornonVolume_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoAutoplayfornonVolume">
+      <parentCategory ref="AutoPlay" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="rpc" namespace="Microsoft.Policies.RemoteProcedureCalls" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Rpc" displayName="$(string.Rpc)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="RpcEnableAuthEpResolution" class="Machine" displayName="$(string.RpcEnableAuthEpResolution)" explainText="$(string.RpcEnableAuthEpResolution_Help)" key="Software\Policies\Microsoft\Windows NT\Rpc" valueName="EnableAuthEpResolution">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RpcExtendedErrorInformation" class="Machine" displayName="$(string.RpcExtendedErrorInformation)" explainText="$(string.RpcExtendedErrorInformation_Help)" presentation="$(presentation.RpcExtendedErrorInformation)" key="Software\Policies\Microsoft\Windows NT\Rpc">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="RpcExtendedErrorInformationList" valueName="ExtErrorInformation" required="true">
+          <item displayName="$(string.RpcEEInfoOff)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcEEInfoOnWithExc)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcEEInfoOffWithExc)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcEEInfoOn)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <text id="RpcExtErrorExceptions" valueName="ExtErrorInfoExceptions" />
+      </elements>
+    </policy>
+    <policy name="RpcIgnoreDelegationFailure" class="Machine" displayName="$(string.RpcIgnoreDelegationFailure)" explainText="$(string.RpcIgnoreDelegationFailure_Help)" presentation="$(presentation.RpcIgnoreDelegationFailure)" key="Software\Policies\Microsoft\Windows NT\Rpc">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <enum id="RpcIgnoreDelegationFailureList" valueName="IgnoreDelegationFailure" required="true">
+          <item displayName="$(string.RpcIDFOff)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcIDFOn)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="RpcMinimumHttpConnectionTimeout" class="Machine" displayName="$(string.RpcMinimumHttpConnectionTimeout)" explainText="$(string.RpcMinimumHttpConnectionTimeout_Help)" presentation="$(presentation.RpcMinimumHttpConnectionTimeout)" key="Software\Policies\Microsoft\Windows NT\Rpc">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP1" />
+      <elements>
+        <decimal id="RpcMinimumHttpConnectionTimeoutValue" valueName="MinimumConnectionTimeout" required="true" minValue="90" />
+      </elements>
+    </policy>
+    <policy name="RpcRestrictRemoteClients" class="Machine" displayName="$(string.RpcRestrictRemoteClients)" explainText="$(string.RpcRestrictRemoteClients_Help)" presentation="$(presentation.RpcRestrictRemoteClients)" key="Software\Policies\Microsoft\Windows NT\Rpc">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <enum id="RpcRestrictRemoteClientsList" valueName="RestrictRemoteClients" required="true">
+          <item displayName="$(string.RpcRestrictRemoteClientsNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcRestrictRemoteClientsAuth)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcRestrictRemoteClientsHigh)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="RpcStateInformation" class="Machine" displayName="$(string.RpcStateInformation)" explainText="$(string.RpcStateInformation_Help)" presentation="$(presentation.RpcStateInformation)" key="Software\Policies\Microsoft\Windows NT\Rpc">
+      <parentCategory ref="Rpc" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="RpcStateInformationList" valueName="StateInformation" required="true">
+          <item displayName="$(string.RpcStateInfoNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcStateInfoAuto1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcStateInfoAuto2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcStateInfoServer)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.RpcStateInfoBoth)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="P2P_Disabled">Turn off Microsoft Peer-to-Peer Networking Services</string>
+      <string id="P2P_Disabled_Explain">This setting turns off Microsoft Peer-to-Peer Networking Services in its entirety, and will cause all dependent applications to stop working.
+
+Peer-to-Peer protocols allow for applications in the areas of RTC, collaboration, content distribution and distributed processing.
+
+If you enable this setting, peer-to-peer protocols will be turned off.
+
+If you disable this setting or do not configure it, the peer-to-peer protocols will be turned on.</string>
+      <string id="P2P_Name">Microsoft Peer-to-Peer Networking Services</string>
+      <string id="PNRP_DisableMulticastBootstrap">Turn off Multicast Bootstrap</string>
+      <string id="PNRP_DisableMulticastBootstrapGlobal_Explain">This setting disables PNRP protocol from advertising the computer or from searching other computers on the local subnet in the global cloud.
+
+The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPV6 address and port number. One of the ways in which PNRP bootstraps itself is by using multicast on the same subnet. That is, PNRP publishes itself on the local subnet, so that other computers can find it when needed.
+
+If you enable this setting, PNRP will not use multicast for bootstrapping. Specifying this registry key will break scenarios where there is no seed server for bootstrap (such as ad hoc networking scenarios).
+
+If you disable this setting, PNRP will use multicast for bootstrapping on the same subnet.
+
+If this setting is not configured, the protocol will revert to using a public registry key to determine whether it will publish the computer or will use multicast to search for other computers on the local subnet.
+
+The multicast protocol used for bootstrapping is SSDP (Simple Service Discovery Protocol). The SSDP service must be enabled (which it is by default) for this policy to have effect.</string>
+      <string id="PNRP_Disabled">Turn off PNRP cloud creation</string> 
+      <string id="PNRP_SearchOnly">Set PNRP cloud to resolve only</string> 
+      <string id="PNRP_DisabledGlobal_Explain">This policy setting enables or disables PNRP cloud creation.
+
+PNRP is a distributed name resolution protocol allowing Internet hosts to publish peer names with a corresponding Internet Protocol version 6 (IPv6) address. Other hosts can then resolve the name, retrieve the corresponding address, and establish peer-to-peer (P2P) connections. The PNRP cloud is a group of connected PNRP nodes, in which connections exist between peers so that a node in the PNRP cloud can resolve names published by other nodes.
+
+PNRP creates a global cloud if the computer has a global IPv6 address, but creates a site-local cloud if the computer has a site-local address.
+
+If you enable this policy setting, PNRP does not create a cloud, and applications cannot use this cloud to publish or resolve names regardless of whether the computer has an IPv6 address that matches the cloud scope.
+
+If you disable or do not configure this policy setting, all PNRP clouds are turned on by default, and PNRP creates a cloud if the computer has an IPv6 address compatible with the cloud’s scope.
+</string>
+      <string id="PNRP_SearchOnlyGlobal_Explain">This policy setting limits a node to resolving, but not publishing, names in a specific Peer Name Resolution Protocol (PNRP) cloud.
+
+This policy setting forces computers to act as clients in peer-to-peer (P2P) scenarios. For example, a client computer can detect other computers to initiate chat sessions, but other computers cannot detect that client and initiate sessions with it.
+
+If you enable this policy setting, this computer cannot register PNRP names, and cannot help other computers perform PNRP lookups.
+
+If you disable or do not configure this policy setting, this computer can publish PNRP names and help other computers perform PNRP lookups.
+</string> 
+      <string id="PNRP_DisableMulticastBootstrapLinkLocal_Explain">This setting disables PNRP protocol from advertising the computer or from searching other computers on the local subnet in the link local cloud.
+
+The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPV6 address and port number. One of the ways in which PNRP bootstraps itself is by using multicast on the same subnet. That is, PNRP publishes itself on the local subnet, so that other computers can find it when needed.
+
+If you enable this setting, PNRP will not use multicast for bootstrapping. Specifying this registry key will break scenarios where there is no seed server for bootstrap (such as ad hoc networking scenarios).
+
+If you disable this setting, PNRP will use multicast for bootstrapping on the same subnet.
+
+If this setting is not configured, the protocol will revert to using a public registry key to determine whether it will publish the computer or will use multicast to search for other computers on the local subnet.
+
+The multicast protocol used for bootstrapping is SSDP (Simple Service Discovery Protocol). The SSDP service must enabled (which it is by default) for this policy to have effect.</string>
+      <string id="PNRP_DisabledLinkLocal_Explain">This policy setting enables or disables PNRP cloud creation.
+
+PNRP is a distributed name resolution protocol allowing Internet hosts to publish peer names with a corresponding Internet Protocol version 6 (IPv6) address. Other hosts can then resolve the name, retrieve the corresponding address, and establish peer-to-peer (P2P) connections. The PNRP cloud is a group of connected PNRP nodes, in which connections exist between peers so that a node in the PNRP cloud can resolve names published by other nodes.
+
+PNRP creates a global cloud if the computer has a global IPv6 address, but creates a site-local cloud if the computer has a site-local address.
+
+If you enable this policy setting, PNRP does not create a cloud, and applications cannot use this cloud to publish or resolve names regardless of whether the computer has an IPv6 address that matches the cloud scope.
+
+If you disable or do not configure this policy setting, all PNRP clouds are turned on by default, and PNRP creates a cloud if the computer has an IPv6 address compatible with the cloud’s scope.
+</string>
+      <string id="PNRP_SearchOnlyLinkLocal_Explain">This policy setting limits a node to resolving, but not publishing, names in a specific Peer Name Resolution Protocol (PNRP) cloud.
+
+This policy setting forces computers to act as clients in peer-to-peer (P2P) scenarios. For example, a client computer can detect other computers to initiate chat sessions, but other computers cannot detect that client and initiate sessions with it.
+
+If you enable this policy setting, this computer cannot register PNRP names, and cannot help other computers perform PNRP lookups.
+
+If you disable or do not configure this policy setting, this computer can publish PNRP names and help other computers perform PNRP lookups.
+</string> 
+      <string id="PNRP_DisableMulticastBootstrapSiteLocal_Explain">This setting disables PNRP protocol from advertising the computer or from searching other computers on the local subnet in the site local cloud.
+
+The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPV6 address and port number. One of the ways in which PNRP bootstraps itself is by using multicast on the same subnet. That is, PNRP publishes itself on the local subnet, so that other computers can find it when needed.
+
+If you enable this setting, PNRP will not use multicast for bootstrapping. Specifying this registry key will break scenarios where there is no seed server for bootstrap (such as ad hoc networking scenarios).
+
+If you disable this setting, PNRP will use multicast for bootstrapping on the same subnet.
+
+If this setting is not configured, the protocol will revert to using a public registry key to determine whether it will publish the computer or will use multicast to search for other computers on the local subnet.
+
+The multicast protocol used for bootstrapping is SSDP (Simple Service Discovery Protocol). The SSDP service must be enabled (which it is by default) for this policy to have effect.</string>
+      <string id="PNRP_DisabledSiteLocal_Explain">This policy setting enables or disables PNRP cloud creation.
+
+PNRP is a distributed name resolution protocol allowing Internet hosts to publish peer names with a corresponding Internet Protocol version 6 (IPv6) address. Other hosts can then resolve the name, retrieve the corresponding address, and establish peer-to-peer (P2P) connections. The PNRP cloud is a group of connected PNRP nodes, in which connections exist between peers so that a node in the PNRP cloud can resolve names published by other nodes.
+
+PNRP creates a global cloud if the computer has a global IPv6 address, but creates a site-local cloud if the computer has a site-local address.
+
+If you enable this policy setting, PNRP does not create a cloud, and applications cannot use this cloud to publish or resolve names regardless of whether the computer has an IPv6 address that matches the cloud scope.
+
+If you disable or do not configure this policy setting, all PNRP clouds are turned on by default, and PNRP creates a cloud if the computer has an IPv6 address compatible with the cloud’s scope.
+</string>
+      <string id="PNRP_SearchOnlySiteLocal_Explain">This policy setting limits a node to resolving, but not publishing, names in a specific Peer Name Resolution Protocol (PNRP) cloud.
+
+This policy setting forces computers to act as clients in peer-to-peer (P2P) scenarios. For example, a client computer can detect other computers to initiate chat sessions, but other computers cannot detect that client and initiate sessions with it.
+
+If you enable this policy setting, this computer cannot register PNRP names, and cannot help other computers perform PNRP lookups.
+
+If you disable or do not configure this policy setting, this computer can publish PNRP names and help other computers perform PNRP lookups.
+</string> 
+      <string id="PNRP_Global">Global Clouds</string>
+      <string id="PNRP_LinkLocal">Link-Local Clouds</string>
+      <string id="PNRP_Name">Peer Name Resolution Protocol</string>
+      <string id="PNRP_SeedServer">Set the Seed Server</string>
+      <string id="PNRP_SeedServerGlobal_Explain">This setting sets the seed server for the global cloud to a specified node in the enterprise. The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPv6 address and port number. The protocol, in some cases, requires a seed server from which to get bootstrapped.
+
+Any node running peer to peer can be used as a seed server. No configuration is needed for the seed server itself.
+
+This setting provides the added flexibility of allowing your users to use their peer-to-peer applications at home as well. Here are the four ways in which you can use this setting to control the seed server used in your corporation.
+
+1. In order to use the global, well known seed server on the Internet only; enable the setting, leave the seed server list empty, leave the checkbox unchecked.
+
+2. In order to use a corporate seed server only, enable the setting; insert the fully qualified domain name or IPv6 address of the corporate seed server; and check the checkbox. Using the corporate seed server only will prevent your mobile users from being able to use their peer to peer applications at home.
+
+3. In order to use a corporate seed server and the global seed server, enable the setting; insert the fully qualified domain name or IPv6 address of the corporate seed server, leave the checkbox unchecked. This is the setting which will allow your mobile users to use peer to peer applications at both work and home seamlessly.
+
+4. In order to not use any seed server, enable the setting; do not insert a seed server name; and check the check box.
+
+If this setting is disabled or not configured, the protocol will revert to using a public registry key to determine the seed server to bootstrap from.</string>
+      <string id="PNRP_SeedServerLinkLocal_Explain">This setting sets the seed server for the link local cloud to a specified node in the enterprise.
+
+The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPV6 address and port number. The protocol, in some cases, requires a seed server from which to get bootstrapped. This setting allows for setting the seed server to a specified node in an enterprise.
+
+To use this setting, click Enable, and then enter a semicolon-delimited list of IPV6 addresses in the available field. If you enable this setting and you don’t enter any address, no seed server will be used.
+
+If this setting is not configured, the protocol will revert to using a public registry key to determine the seed server to bootstrap from.</string>
+      <string id="PNRP_SeedServerSiteLocal_Explain">This setting sets the seed server for the site local cloud to a specified node in the enterprise.
+
+The Peer Name Resolution Protocol (PNRP) allows for distributed resolution of a name to an IPV6 address and port number. The protocol, in some cases, requires a seed server from which to get bootstrapped. This setting allows for setting the seed server to a specified node in an enterprise.
+
+To use this setting, click Enable, and then enter a semicolon-delimited list of DNS names or IPV6 addresses in the available field. If you enable this setting and you don’t enter any address, no seed server will be used.
+
+If this setting is not configured, the protocol will revert to using a public registry key to determine the seed server to bootstrap from.</string>
+      <string id="PNRP_SiteLocal">Site-Local Clouds</string>
+      <string id="GROUPING_DisablePasswordPolicyEnforcement">Disable password strength validation for Peer Grouping</string>
+      <string id="GROUPING_DisablePasswordPolicyEnforcement_Explain">By default, when a Peer Group is created that allows for password-authentication (or the password for such a Group is changed), Peer Grouping validates that the password meets the password complexity requirements for the local system.  Thus, it will not allow any passwords to be used for a Peer Group that are weaker than what would be allowed for a login password.
+
+This setting controls this validation behavior.  If set to 1, then this validation will not be performed and any password will be allowed.  If set to 0, the validation will be performed.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="PNRP_SeedServer_1">
+        <textBox refId="PNRP_SeedServer_Name">
+          <label>Seed Server</label>
+        </textBox>
+        <checkBox refId="PNRP_Dont_Include_Microsoft_SeedServer">Do not use the Microsoft global PNRP seed server</checkBox>
+      </presentation>
+      <presentation id="PNRP_SeedServer_2">
+        <textBox refId="PNRP_SeedServer_Name">
+          <label>Seed Server</label>
+        </textBox>
+      </presentation>
+      <presentation id="PNRP_SeedServer_3">
+        <textBox refId="PNRP_SeedServer_Name">
+          <label>Seed Server</label>
+        </textBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

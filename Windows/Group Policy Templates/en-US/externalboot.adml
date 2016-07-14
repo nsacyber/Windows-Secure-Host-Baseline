@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Portable Workspace</displayName>
+  <description>This file contains Portable Workspace policy settings.</description>
+  <resources>
+    <stringTable>
+      <string id="PortableOperatingSystem">Portable Operating System</string>
+      <string id="PortableOperatingSystem_Launcher_DisplayName">Windows To Go Default Startup Options</string>
+      <string id="PortableOperatingSystem_Launcher_Help">
+
+This policy setting controls whether the PC will boot to Windows To Go if a USB device containing a Windows To Go workspace is connected, and controls whether users can make changes using the Windows To Go Startup Options Control Panel item.
+
+If you enable this setting, booting to Windows To Go when a USB device is connected will be enabled, and users will not be able to make changes using the Windows To Go Startup Options Control Panel item.
+
+If you disable this setting, booting to Windows To Go when a USB device is connected will not be enabled unless a user configures the option manually in the BIOS or other boot order configuration.
+
+If you do not configure this setting, users who are members of the Administrators group can make changes using the Windows To Go Startup Options Control Panel item.</string>
+      <string id="PortableOperatingSystem_Hibernate_DisplayName">Allow hibernate (S4) when starting from a Windows To Go workspace</string>
+      <string id="PortableOperatingSystem_Hibernate_Help">
+
+Specifies whether the PC can use the hibernation sleep state (S4) when started from a Windows To Go workspace.
+
+If you enable this setting, Windows, when started from a Windows To Go workspace, can hibernate the PC.
+
+If you disable or don't configure this setting, Windows, when started from a Windows To Go workspace, can't hibernate the PC.</string>
+      <string id="PortableOperatingSystem_Sleep_DisplayName">Disallow standby sleep states (S1-S3) when starting from a Windows to Go workspace</string>
+      <string id="PortableOperatingSystem_Sleep_Help">
+
+Specifies whether the PC can use standby sleep states (S1-S3) when starting from a Windows To Go workspace.
+
+If you enable this setting, Windows, when started from a Windows To Go workspace, can't use standby states to make the PC sleep.
+
+If you disable or don't configure this setting, Windows, when started from a Windows To Go workspace, can use standby states to make the PC sleep.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

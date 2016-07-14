@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DeviceRedirect_Category">Device Redirection</string>
+      <string id="DeviceRedirect_Restrictions_Category">Device Redirection Restrictions</string>
+      <string id="DeviceRedirect_Restrictions_Help">These policy settings lets you specify whether alternate drivers for USB devices can be loaded.</string>
+      <string id="USBRedirect_Prevent">Prevent redirection of USB devices</string>
+      <string id="USBRedirect_Prevent_Help">This policy setting prevents redirection of USB devices.
+
+If you enable this setting, an alternate driver for USB devices cannot be loaded.
+
+If you disable or do not configure this setting, an alternate driver for USB devices can be loaded.
+</string>
+      <string id="DeviceRedirect_IDS_Prevent">Prevent redirection of devices that match any of these device Ids</string>
+      <string id="DeviceRedirect_IDS_Prevent_Help">This policy setting prevents redirection of specific USB devices.
+
+If you enable this setting, an alternate driver for the USB device cannot be loaded.
+
+If you disable or do not configure this setting, an alternate driver for the USB device can be loaded.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="DeviceRedirect_IDS_Prevent">
+        <listBox refId="Redirect_IDS_Deny_List">Prevent redirection of devices that match any of these Device IDs:</listBox>
+        <text>To create a list of devices, click Show, specify a USB device hardware ID, and then click OK.</text>
+        <text>For example, to specify a device that has a VID 058F, PID 6387 and Revision 0142, type the value in the following format "VID_058F&amp;&amp;PID_6387&amp;&amp;REV_0142".  You can use Device Manager to determine the VID, PID, and revision of a USB device. On the Details tab, select "Hardware Ids" to list the IDs of all USB devices connected to the computer.</text>
+        <text>As an alternative, you can use class and protocol information to block USB devices. To specify a device that has a value of Class 08, SubClass 06, and Protocol 50, type the value in the following format: "Class_08&amp;&amp;SubClass_06&amp;&amp;Prot_50". This information also is available in Device Manager. On the Details tab, select "Compatible Ids" to list the class and protocol values of all USB devices connected to the computer.</text>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

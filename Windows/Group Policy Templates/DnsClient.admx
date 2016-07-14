@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="dnsclient" namespace="Microsoft.Policies.DNSClient" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DNS_Client" displayName="$(string.DNS_Client)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DNS_Domain" class="Machine" displayName="$(string.DNS_Domain)" explainText="$(string.DNS_Domain_Help)" presentation="$(presentation.DNS_Domain)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOnly" />
+      <elements>
+        <text id="DNS_DomainLabel" valueName="AdapterDomainName" required="true" />
+      </elements>
+    </policy>
+    <policy name="DNS_NameServer" class="Machine" displayName="$(string.DNS_NameServer)" explainText="$(string.DNS_NameServer_Help)" presentation="$(presentation.DNS_NameServer)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOnly" />
+      <elements>
+        <text id="DNS_NameServerLabel" valueName="NameServer" required="true" />
+      </elements>
+    </policy>
+    <policy name="DNS_PrimaryDnsSuffix" class="Machine" displayName="$(string.DNS_PrimaryDnsSuffix)" explainText="$(string.DNS_PrimaryDnsSuffix_Help)" presentation="$(presentation.DNS_PrimaryDnsSuffix)" key="Software\Policies\Microsoft\System\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="DNS_PrimaryDnsSuffixBox" valueName="NV PrimaryDnsSuffix" />
+      </elements>
+    </policy>
+    <policy name="DNS_RegisterAdapterName" class="Machine" displayName="$(string.DNS_RegisterAdapterName)" explainText="$(string.DNS_RegisterAdapterName_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="RegisterAdapterName">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_RegisterReverseLookup" class="Machine" displayName="$(string.DNS_RegisterReverseLookup)" explainText="$(string.DNS_RegisterReverseLookup_Help)" presentation="$(presentation.DNS_RegisterReverseLookup)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="DNS_RegisterReverseLookup_Box" valueName="RegisterReverseLookup" required="true">
+          <item displayName="$(string.DNS_RegisterReverseLookup_RegisterOnlyIfASucceeds)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.DNS_RegisterReverseLookup_Register)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DNS_RegisterReverseLookup_DoNotRegister)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DNS_RegistrationEnabled" class="Machine" displayName="$(string.DNS_RegistrationEnabled)" explainText="$(string.DNS_RegistrationEnabled_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="RegistrationEnabled">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_RegistrationOverwritesInConflict" class="Machine" displayName="$(string.DNS_RegistrationOverwritesInConflict)" explainText="$(string.DNS_RegistrationOverwritesInConflict_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="RegistrationOverwritesInConflict">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_RegistrationRefreshInterval" class="Machine" displayName="$(string.DNS_RegistrationRefreshInterval)" explainText="$(string.DNS_RegistrationRefreshInterval_Help)" presentation="$(presentation.DNS_RegistrationRefreshInterval)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="DNS_RegistrationRefreshIntervalLabel" valueName="RegistrationRefreshInterval" minValue="1800" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="DNS_RegistrationTtl" class="Machine" displayName="$(string.DNS_RegistrationTtl)" explainText="$(string.DNS_RegistrationTtl_Help)" presentation="$(presentation.DNS_RegistrationTtl)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="DNS_RegistrationTtlLabel" valueName="RegistrationTtl" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="DNS_SearchList" class="Machine" displayName="$(string.DNS_SearchList)" explainText="$(string.DNS_SearchList_Help)" presentation="$(presentation.DNS_SearchList)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="DNS_SearchListLabel" valueName="SearchList" required="true" />
+      </elements>
+    </policy>
+    <policy name="DNS_UpdateSecurityLevel" class="Machine" displayName="$(string.DNS_UpdateSecurityLevel)" explainText="$(string.DNS_UpdateSecurityLevel_Help)" presentation="$(presentation.DNS_UpdateSecurityLevel)" key="Software\Policies\Microsoft\Windows NT\DNSClient">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="DNS_UpdateSecurityLevel_Box" valueName="UpdateSecurityLevel" required="true">
+          <item displayName="$(string.DNS_UpdateSecurityLevel_OnlySecure)">
+            <value>
+              <decimal value="256" />
+            </value>
+          </item>
+          <item displayName="$(string.DNS_UpdateSecurityLevel_OnlyUnsecure)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.DNS_UpdateSecurityLevel_UnsecureFollowedBySecure)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DNS_UpdateTopLevelDomainZones" class="Machine" displayName="$(string.DNS_UpdateTopLevelDomainZones)" explainText="$(string.DNS_UpdateTopLevelDomainZones_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="UpdateTopLevelDomainZones">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_UseDomainNameDevolution" class="Machine" displayName="$(string.DNS_UseDomainNameDevolution)" explainText="$(string.DNS_UseDomainNameDevolution_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="UseDomainNameDevolution">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_DomainNameDevolutionLevel" class="Machine" displayName="$(string.DNS_DomainNameDevolutionLevel)" explainText="$(string.DNS_DomainNameDevolutionLevel_Help)" presentation="$(presentation.DNS_DomainNameDevolutionLevel)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="EnableDevolutionLevelControl">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="DNS_DomainNameDevolutionLevelLabel" valueName="DomainNameDevolutionLevel" minValue="2" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Turn_Off_Multicast" class="Machine" displayName="$(string.DNS_TurnOffMulticast)" explainText="$(string.DNS_TurnOffMulticast_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="EnableMulticast">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_AppendToMultiLabelName" class="Machine" displayName="$(string.DNS_AppendToMultiLabelName)" explainText="$(string.DNS_AppendToMultiLabelName_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="AppendToMultiLabelName">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_SmartMultiHomedNameResolution" class="Machine" displayName="$(string.DNS_SmartMultiHomedNameResolution)" explainText="$(string.DNS_SmartMultiHomedNameResolution_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="DisableSmartNameResolution">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_SmartProtocolReorder" class="Machine" displayName="$(string.DNS_SmartProtocolReorder)" explainText="$(string.DNS_SmartProtocolReorder_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="DisableSmartProtocolReordering">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_AllowFQDNNetBiosQueries" class="Machine" displayName="$(string.DNS_AllowFQDNNetBiosQueries)" explainText="$(string.DNS_AllowFQDNNetBiosQueries_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="QueryNetBTFQDN">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_PreferLocalResponsesOverLowerOrderDns" class="Machine" displayName="$(string.DNS_PreferLocalResponsesOverLowerOrderDns)" explainText="$(string.DNS_PreferLocalResponsesOverLowerOrderDns_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="PreferLocalOverLowerBindingDNS">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_IdnEncoding" class="Machine" displayName="$(string.DNS_IdnEncoding)" explainText="$(string.DNS_IdnEncoding_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="DisableIdnEncoding">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DNS_IdnMapping" class="Machine" displayName="$(string.DNS_IdnMapping)" explainText="$(string.DNS_IdnMapping_Help)" key="Software\Policies\Microsoft\Windows NT\DNSClient" valueName="EnableIdnMapping">
+      <parentCategory ref="DNS_Client" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

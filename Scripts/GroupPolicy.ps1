@@ -439,7 +439,7 @@ Function Invoke-ApplySecureHostBaseline() {
     }
 
     # get SHB GPO template folders
-    $gptFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -eq 'Group Policy Template' }
+    $gptFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Template*' }
 
     # filter based on $PolicyName
     $gptNameFolders = $gptFolders | Where-Object { @( Get-Intersection -Left ([string[]]@($_.FullName -split '\\')) $PolicyName ).Count -ne 0 }
@@ -449,9 +449,6 @@ Function Invoke-ApplySecureHostBaseline() {
     #todo: if existing template is different (use file size or hash) than the SHB template, then rename existing template first and then copy the template over
     # use similar rename logic as described https://github.com/iadgov/Secure-Host-Baseline/blob/master/Scripts/GitHub.ps1#L672
 
-    #todo: put adml files into en-us folders
-    #todo: office x86 and x64 files are identical so remove one
-    #todo: add Windows 10 version 1511 templates
     #todo: add domain and local folders in Windows GPO folder
 
 

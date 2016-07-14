@@ -1,0 +1,52 @@
+﻿<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+
+<!--  (c) Microsoft Corporation  --><policyDefinitions
+    xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    revision="1.0"
+    schemaVersion="1.0"
+    >
+  <!-- Namespace definition for file revocation.-->
+  <policyNamespaces>
+    <target
+        namespace="Microsoft.Policies.FileRevocation"
+        prefix="filerevocation"
+        />
+    <using
+        namespace="Microsoft.Policies.Windows"
+        prefix="windows"
+        />
+  </policyNamespaces>
+  <!-- Specify minimum revision level of corresponding ADML file -->
+  <resources minRequiredRevision="1.0"/>
+  <!-- Specify a FileRevocation Catagory for these settings -->
+  <categories>
+    <category
+        displayName="$(string.FileRevocationCategory)"
+        name="FileRevocationCategory"
+        >
+      <parentCategory ref="windows:WindowsComponents"/>
+    </category>
+  </categories>
+  <!-- Define policy values -->
+  <policies>
+    <policy
+        class="User"
+        displayName="$(string.DelegatedPackageFamilyNames_Name)"
+        explainText="$(string.DelegatedPackageFamilyNames_Help)"
+        key="Software\Policies\Microsoft\Windows\FileRevocation"
+        name="DelegatedPackageFamilyNames"
+        presentation="$(presentation.DelegatedPackageFamilyNames)"
+        >
+      <parentCategory ref="FileRevocationCategory"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3"/>
+      <elements>
+        <multiText
+            id="DelegatedPackageFamilyNames_EIDs"
+            valueName="DelegatedTuples"
+            />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

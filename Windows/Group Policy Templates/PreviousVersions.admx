@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="previousversions" namespace="Microsoft.Policies.PreviousVersions" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+      <definitions>
+          <definition name="SUPPORTED_Vista_through_Win7" displayName="$(string.SUPPORTED_Vista_through_Win7)">
+              <or>
+                  <range     ref="products:MicrosoftWindowsVista" />
+                  <!-- All of Windows Vista -->
+                  <reference ref="products:MicrosoftWindows7"/>
+                  <!-- All of Windows 7 -->
+              </or>
+          </definition>
+      </definitions>
+  </supportedOn>
+  <categories>
+    <category name="PreviousVersions" displayName="$(string.PreviousVersions)">
+      <parentCategory ref="windows:WindowsExplorer" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableBackupRestore_1" class="User" displayName="$(string.DisableBackupRestore)" explainText="$(string.DisableBackupRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableBackupRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableBackupRestore_2" class="Machine" displayName="$(string.DisableBackupRestore)" explainText="$(string.DisableBackupRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableBackupRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocalPage_1" class="User" displayName="$(string.DisableLocalPage)" explainText="$(string.DisableLocalPage_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableLocalPage">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocalPage_2" class="Machine" displayName="$(string.DisableLocalPage)" explainText="$(string.DisableLocalPage_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableLocalPage">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocalRestore_1" class="User" displayName="$(string.DisableLocalRestore)" explainText="$(string.DisableLocalRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableLocalRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocalRestore_2" class="Machine" displayName="$(string.DisableLocalRestore)" explainText="$(string.DisableLocalRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableLocalRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRemotePage_1" class="User" displayName="$(string.DisableRemotePage)" explainText="$(string.DisableRemotePage_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableRemotePage">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRemotePage_2" class="Machine" displayName="$(string.DisableRemotePage)" explainText="$(string.DisableRemotePage_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableRemotePage">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRemoteRestore_1" class="User" displayName="$(string.DisableRemoteRestore)" explainText="$(string.DisableRemoteRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableRemoteRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRemoteRestore_2" class="Machine" displayName="$(string.DisableRemoteRestore)" explainText="$(string.DisableRemoteRestore_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="DisableRemoteRestore">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideBackupEntries_1" class="User" displayName="$(string.HideBackupEntries)" explainText="$(string.HideBackupEntries_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="HideBackupEntries">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideBackupEntries_2" class="Machine" displayName="$(string.HideBackupEntries)" explainText="$(string.HideBackupEntries_Help)" key="Software\Policies\Microsoft\PreviousVersions" valueName="HideBackupEntries">
+      <parentCategory ref="PreviousVersions" />
+      <supportedOn ref="SUPPORTED_Vista_through_Win7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

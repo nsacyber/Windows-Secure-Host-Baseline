@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+  <policyNamespaces>
+    <target prefix="fci" namespace="Microsoft.Policies.FileServerClassificationInfrastructure"/>
+    <using prefix="windows" namespace="Microsoft.Policies.Windows"/>
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0"/>
+  <categories>  
+    <category name="ADR" displayName="$(string.AdrCat)">  
+      <parentCategory ref="windows:System" />  
+    </category>  
+    <category name="FCI" displayName="$(string.FciCat)">  
+      <parentCategory ref="windows:System" />  
+    </category>  
+  </categories>  
+  <policies>
+    <policy name="EnableManualUX" class="Machine" key="SOFTWARE\Policies\Microsoft\Windows\FCI" valueName="EnableManualUX" displayName="$(string.EnableManualUXDisplay)" explainText="$(string.EnableManualUXExplain)">
+      <parentCategory ref="FCI" />
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+    </policy>
+    <policy name="CentralClassificationList" class="Machine" key="SOFTWARE\Policies\Microsoft\Windows\FCI" displayName="$(string.CentralClassificationListDisplay)" explainText="$(string.CentralClassificationListExplain)" presentation="$(presentation.CentralClassificationListPresentation)">
+      <parentCategory ref="FCI" />
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <elements>
+        <text id="CentralClassificationListTextElement" valueName="CentralClassificationList"/>
+      </elements>
+    </policy>
+    <policy name="AccessDeniedConfiguration" class="Machine" key="SOFTWARE\Policies\Microsoft\Windows\ADR\AccessDenied" valueName="Enabled" displayName="$(string.AccessDeniedConfigurationDisplay)" explainText="$(string.AccessDeniedConfigurationExplain)" presentation="$(presentation.AccessDeniedConfigurationPresentation)">
+      <parentCategory ref="ADR" />
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>  
+        <decimal value="1" />  
+      </enabledValue>  
+      <disabledValue>  
+        <decimal value="0" />  
+      </disabledValue>  
+      <elements>
+        <multiText id="ErrorMessageText" valueName="ErrorMessage" maxStrings="15" maxLength="10240"/>
+        <multiText id="EmailMessageText" valueName="EmailMessage" maxStrings="15" maxLength="10240"/>
+        <boolean id="AllowEmailRequestsCheck" valueName="AllowEmailRequests"/>
+        <boolean id="PutDataOwnerOnToCheck" valueName="PutDataOwnerOnTo"/>
+        <boolean id="PutAdminOnToCheck" valueName="PutAdminOnTo"/>
+        <boolean id="IncludeDeviceClaimsCheck" valueName="IncludeDeviceClaims"/>
+        <boolean id="IncludeUserClaimsCheck" valueName="IncludeUserClaims"/>
+        <boolean id="GenerateLogCheck" valueName="GenerateLog"/>
+        <text id="AdditonalEmailToText" valueName="AdditonalEmailTo" maxLength="2048"/>
+      </elements>
+    </policy>
+    <policy name="EnableShellAccessCheck" class="Machine" key="SOFTWARE\Policies\Microsoft\Windows\Explorer" valueName="EnableShellExecuteFileStreamCheck" displayName="$(string.EnableShellExecuteFileStreamCheck)" explainText="$(string.EnableShellExecuteFileStreamCheck_Descr)">
+      <parentCategory ref="ADR" />
+      <supportedOn ref="windows:SUPPORTED_Windows8"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>
+

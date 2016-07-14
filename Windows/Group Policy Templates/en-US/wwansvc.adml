@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2010 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>WWAN Service Group Policy Settings</displayName>
+  <description>WWAN Service Group Policy Settings</description>
+  <resources>
+    <stringTable>
+      <string id="WwanSvc_Category">WWAN Service</string>
+      <string id="NetworkCost_Category">WWAN Media Cost</string>
+      <string id="SetCost3G">Set 3G Cost</string>
+      <string id="SetCost3G_Help">This policy setting configures the cost of 3G connections on the local machine.
+
+If this policy setting is enabled, a drop-down list box presenting possible cost values will be active.  Selecting one of the following values from the list will set the cost of all 3G connections on the local machine:
+
+- Unrestricted: Use of this connection is unlimited and not restricted by usage charges and capacity constraints. 
+
+- Fixed: Use of this connection is not restricted by usage charges and capacity constraints up to a certain data limit. 
+
+- Variable: This connection is costed on a per byte basis.
+
+If this policy setting is disabled or is not configured, the cost of 3G connections is Fixed by default.
+      </string>
+      <string id="SetCost4G">Set 4G Cost</string>
+      <string id="SetCost4G_Help">This policy setting configures the cost of 4G connections on the local machine.      
+
+If this policy setting is enabled, a drop-down list box presenting possible cost values will be active. Selecting one of the following values from the list will set the cost of all 4G connections on the local machine:
+
+- Unrestricted: Use of this connection is unlimited and not restricted by usage charges and capacity constraints. 
+
+- Fixed: Use of this connection is not restricted by usage charges and capacity constraints up to a certain data limit. 
+
+- Variable: This connection is costed on a per byte basis.
+
+If this policy setting is disabled or is not configured, the cost of 4G connections is Fixed by default.
+      </string>
+      <string id="Cost_DropDownList_Unrestricted">Unrestricted</string>
+      <string id="Cost_DropDownList_Fixed">Fixed</string>
+      <string id="Cost_DropDownList_Variable">Variable</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="SetCost3G_Presentation">
+        <dropdownList refId="Cost3G_Dropdownlist" defaultItem="0">Please select a 3G connection cost value to set:</dropdownList>
+      </presentation>
+      <presentation id="SetCost4G_Presentation">
+        <dropdownList refId="Cost4G_Dropdownlist" defaultItem="0">Please select a 4G connection cost value to set:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

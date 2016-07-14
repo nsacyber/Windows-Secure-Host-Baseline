@@ -1,0 +1,1111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="mmcsnapins" namespace="Microsoft.Policies.MMCSnapIns" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="mmc" namespace="Microsoft.Policies.ManagementConsole" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="MMC_GroupPolicy" displayName="$(string.MMC_GroupPolicy)">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+    </category>
+    <category name="MMC_GroupPolicy_GPSnapin" displayName="$(string.MMC_GroupPolicy_GPSnapin)" explainText="$(string.MMC_GroupPolicy_GPSnapin_Help)">
+      <parentCategory ref="MMC_GroupPolicy" />
+    </category>
+    <category name="MMC_GroupPolicy_RSoPSnapin" displayName="$(string.MMC_GroupPolicy_RSoPSnapin)">
+      <parentCategory ref="MMC_GroupPolicy" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="MMC_AppleTalkRouting" class="User" displayName="$(string.MMC_AppleTalkRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{1AA7F83C-C7F5-11D0-A376-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_AuthMan" class="User" displayName="$(string.MMC_AuthMan)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{1F5EEC01-1214-4D94-80C5-4BDCD2014DDD}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_CertAuthPolSet" class="User" displayName="$(string.MMC_CertAuthPolSet)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{3F276EB4-70EE-11D1-8A0F-00C04FB93753}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ConnectionSharingNAT" class="User" displayName="$(string.MMC_ConnectionSharingNAT)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE450B-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DCOMCFG" class="User" displayName="$(string.MMC_DCOMCFG)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{9EC88934-C774-11d1-87F4-00C04FC2C17B}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DeviceManager_1" class="User" displayName="$(string.MMC_DeviceManager)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{90087284-d6d6-11d0-8353-00a0c90640bf}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DHCPRelayMgmt" class="User" displayName="$(string.MMC_DHCPRelayMgmt)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE4502-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_EnterprisePKI" class="User" displayName="$(string.MMC_EnterprisePKI)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{634BDE40-E5E1-49A1-B2CD-140FFFC830F9}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+ <policy name="MMC_EventViewer_1" class="User" displayName="$(string.MMC_EventViewer)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{394C052E-B830-11D0-9A86-00C04FD8DBF7}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_EventViewer_2" class="User" displayName="$(string.MMC_EventViewer_2)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{b05566ae-fe9c-4363-be05-7a4cbb7cb510}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IASLogging" class="User" displayName="$(string.MMC_IASLogging)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{2E19B602-48EB-11d2-83CA-00104BCA42CF}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IGMPRouting" class="User" displayName="$(string.MMC_IGMPRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE4508-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IPRouting" class="User" displayName="$(string.MMC_IPRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE4500-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IPXRIPRouting" class="User" displayName="$(string.MMC_IPXRIPRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{90810502-38F1-11D1-9345-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IPXRouting" class="User" displayName="$(string.MMC_IPXRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{90810500-38F1-11D1-9345-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IPXSAPRouting" class="User" displayName="$(string.MMC_IPXSAPRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{90810504-38F1-11D1-9345-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_LogicalMappedDrives" class="User" displayName="$(string.MMC_LogicalMappedDrives)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{6E8E0081-19CD-11D1-AD91-00AA00B8E05A}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_OCSP" class="User" displayName="$(string.MMC_OCSP)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{6d8880af-e518-43a8-986c-1ad21c4c976e}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_OSPFRouting" class="User" displayName="$(string.MMC_OSPFRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE4506-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_PublicKey" class="User" displayName="$(string.MMC_PublicKey)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{34AB8E82-C27E-11D1-A6C0-00C04FB94F17}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RAS_DialinUser" class="User" displayName="$(string.MMC_RAS_DialinUser)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B52C1E50-1DD2-11D1-BC43-00C04FC31FD3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RemoteAccess" class="User" displayName="$(string.MMC_RemoteAccess)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{5880CD5C-8EC0-11d1-9570-0060B0576642}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RemStore" class="User" displayName="$(string.MMC_RemStore)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{243E20B0-48ED-11D2-97DA-00A024D77700}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RIPRouting" class="User" displayName="$(string.MMC_RIPRouting)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C2FE4504-D6C2-11D0-A37B-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Routing" class="User" displayName="$(string.MMC_Routing)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{DAB1A262-4FD7-11D1-842C-00C04FB6C218}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SendConsoleMessage" class="User" displayName="$(string.MMC_SendConsoleMessage)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B1AFF7D0-0C49-11D1-BB12-00C04FC9A3A3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ServiceDependencies" class="User" displayName="$(string.MMC_ServiceDependencies)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SharedFolders_Ext" class="User" displayName="$(string.MMC_SharedFolders_Ext)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{58221C69-EA27-11CF-ADCF-00AA00A80033}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SMTPProtocol" class="User" displayName="$(string.MMC_SMTPProtocol)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{03f1f940-a0f2-11d0-bb77-00aa00a1eab7}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SNMP" class="User" displayName="$(string.MMC_SNMP)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{7AF60DD3-4979-11D1-8A6C-00C04FC33566}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SysProp" class="User" displayName="$(string.MMC_SysProp)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_ExtensionSnapins" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GroupPolicyManagementSnapIn" class="User" displayName="$(string.MMC_GroupPolicyManagementSnapIn)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{E12BBB5D-D59D-4E61-947A-301D25AE8C23}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP1" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GroupPolicySnapIn" class="User" displayName="$(string.MMC_GroupPolicySnapIn)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{8FC0B734-A0E1-11D1-A7D3-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GroupPolicyTab" class="User" displayName="$(string.MMC_GroupPolicyTab)" explainText="$(string.MMC_GroupPolicyTab_Explain)" key="Software\Policies\Microsoft\MMC\{D70A2BEA-A63E-11D1-A7D4-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ResultantSetOfPolicySnapIn" class="User" displayName="$(string.MMC_ResultantSetOfPolicySnapIn)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{6DC3804B-7212-458D-ADB0-9A07E2AE1FA2}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ADMComputers_1" class="User" displayName="$(string.MMC_ADMComputers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{0F6B957D-509E-11D1-A7CC-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\MMC\{D02B1F72-3407-48ae-BA88-E8213C6761F1}" valueName="Restrict_Run">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\MMC\{84DE202D-5D95-4764-9014-A46F994CE856}" valueName="Restrict_Run">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\MMC\{D02B1F72-3407-48ae-BA88-E8213C6761F1}" valueName="Restrict_Run">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\MMC\{84DE202D-5D95-4764-9014-A46F994CE856}" valueName="Restrict_Run">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MMC_ADMUsers_1" class="User" displayName="$(string.MMC_ADMUsers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{0F6B957E-509E-11D1-A7CC-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\MMC\{D02B1F73-3407-48ae-BA88-E8213C6761F1}" valueName="Restrict_Run">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\MMC\{84DE202E-5D95-4764-9014-A46F994CE856}" valueName="Restrict_Run">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\MMC\{D02B1F73-3407-48ae-BA88-E8213C6761F1}" valueName="Restrict_Run">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\MMC\{84DE202E-5D95-4764-9014-A46F994CE856}" valueName="Restrict_Run">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MMC_FolderRedirection_1" class="User" displayName="$(string.MMC_FolderRedirection)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{88E729D6-BDC1-11D1-BD2A-00C04FB9603F}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IEMaintenance_1" class="User" displayName="$(string.MMC_IEMaintenance)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{FC715823-C5FB-11D1-9EEF-00A0C90347FF}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IPSecManage_GP" class="User" displayName="$(string.MMC_IpSecManage)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{DEA8AFA0-CC85-11d0-9CE2-0080C7221EBD}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WindowsFirewall_GP" class="User" displayName="$(string.MMC_WindowsFirewall)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{0E752416-F29E-4195-A9DD-7F0D4D5A9D71}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_NapSnap_GP" class="User" displayName="$(string.MMC_NapSnap)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{a1bc4ecb-66b2-44e8-9915-be02e84438ba}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RIS" class="User" displayName="$(string.MMC_RIS)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{3060E8CE-7020-11D2-842D-00C04FA372D4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ScriptsMachine_1" class="User" displayName="$(string.MMC_ScriptsMachine)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{40B6664F-4972-11D1-A7CA-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ScriptsUser_1" class="User" displayName="$(string.MMC_ScriptsUser)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{40B66650-4972-11D1-A7CA-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SecuritySettings_1" class="User" displayName="$(string.MMC_SecuritySettings)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{803E14A0-B4FB-11D0-A0D0-00A0C90F574B}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SoftwareInstalationComputers_1" class="User" displayName="$(string.MMC_SoftwareInstalationComputers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{942A8E4F-A261-11D1-A760-00C04FB9603F}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SoftwareInstallationUsers_1" class="User" displayName="$(string.MMC_SoftwareInstallationUsers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{BACF5C8A-A3C7-11D1-A760-00C04FB9603F}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WiredNetworkPolicy" class="User" displayName="$(string.MMC_WiredNetworkPolicy)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{06993B16-A5C7-47EB-B61C-B1CB7EE600AC}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WirelessNetworkPolicy" class="User" displayName="$(string.MMC_WirelessNetworkPolicy)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{2DA6AA7F-8C88-4194-A558-0D36E7FD3E64}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_GPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ADMComputers_2" class="User" displayName="$(string.MMC_ADMComputers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B6F9C8AE-EF3A-41C8-A911-37370C331DD4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ADMUsers_2" class="User" displayName="$(string.MMC_ADMUsers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B6F9C8AF-EF3A-41C8-A911-37370C331DD4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_FolderRedirection_2" class="User" displayName="$(string.MMC_FolderRedirection)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{c40d66a0-e90c-46c6-aa3b-473e38c72bf2}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IEMaintenance_2" class="User" displayName="$(string.MMC_IEMaintenance)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{d524927d-6c08-46bf-86af-391534d779d3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ScriptsMachine_2" class="User" displayName="$(string.MMC_ScriptsMachine)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{40B66660-4972-11d1-A7CA-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ScriptsUser_2" class="User" displayName="$(string.MMC_ScriptsUser)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{40B66661-4972-11d1-A7CA-0000F87571E3}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SecuritySettings_2" class="User" displayName="$(string.MMC_SecuritySettings)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{fe883157-cebd-4570-b7a2-e4fe06abe626}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SoftwareInstalationComputers_2" class="User" displayName="$(string.MMC_SoftwareInstalationComputers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{7E45546F-6D52-4D10-B702-9C2E67232E62}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SoftwareInstallationUsers_2" class="User" displayName="$(string.MMC_SoftwareInstallationUsers)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{1BC972D6-555C-4FF7-BE2C-C584021A0A6A}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_GroupPolicy_RSoPSnapin" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ActiveDirDomTrusts" class="User" displayName="$(string.MMC_ActiveDirDomTrusts)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{EBC53A38-A23F-11D0-B09B-00C04FD8DCA6}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ActiveDirSitesServices" class="User" displayName="$(string.MMC_ActiveDirSitesServices)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{D967F824-9968-11D0-B936-00C04FD8D5B0}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ActiveDirUsersComp" class="User" displayName="$(string.MMC_ActiveDirUsersComp)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{E355E538-1C2E-11D0-8C37-00C04FD8FE93}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ADSI" class="User" displayName="$(string.MMC_ADSI)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{1C5DACFA-16BA-11D2-81D0-0000F87A7AA3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_CertAuth" class="User" displayName="$(string.MMC_CertAuth)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{de751566-4cc6-11d1-8ca0-00c04fc297eb}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Certs" class="User" displayName="$(string.MMC_Certs)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{53D6AB1D-2488-11D1-A28C-00C04FB94F17}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_CertsTemplate" class="User" displayName="$(string.MMC_CertsTemplate)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{A994E107-6854-4F3D-917C-E6F01670F6D3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ComponentServices" class="User" displayName="$(string.MMC_ComponentServices)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{C9BC92DF-5B9A-11D1-8F00-00C04FC2C17B}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ComputerManagement" class="User" displayName="$(string.MMC_ComputerManagement)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{58221C67-EA27-11CF-ADCF-00AA00A80033}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DeviceManager_2" class="User" displayName="$(string.MMC_DeviceManager)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{74246bfc-4c96-11d0-abef-0020af6b0b7a}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DFS" class="User" displayName="$(string.MMC_DFS)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{677A2D94-28D9-11D1-A95B-008048918FB1}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DiskDefrag" class="User" displayName="$(string.MMC_DiskDefrag)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{43668E21-2636-11D1-A1CE-0080C88593A5}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_DiskMgmt" class="User" displayName="$(string.MMC_DiskMgmt)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_EventViewer_3" class="User" displayName="$(string.MMC_EventViewer)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{975797FC-4E2A-11D0-B702-00C04FD8DBF7}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_EventViewer_4" class="User" displayName="$(string.MMC_EventViewer_2)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{b05566ad-fe9c-4363-be05-7a4cbb7cb510}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_FailoverClusters" class="User" displayName="$(string.MMC_FailoverClusters)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{D2779945-405B-4ACE-8618-508F3E3054AC}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_FAXService" class="User" displayName="$(string.MMC_FAXService)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{753EDB4D-2E1B-11D1-9064-00A0C90AB504}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_FrontPageExt" class="User" displayName="$(string.MMC_FrontPageExt)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{FF5903A8-78D6-11D1-92F6-006097B01056}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_HRA" class="User" displayName="$(string.MMC_HRA)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{89cc9588-7628-4d29-8e4a-6550d0087059}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IAS" class="User" displayName="$(string.MMC_IAS)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{8F8F8DC0-5713-11D1-9551-0060B0576642}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNETOnly" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IIS" class="User" displayName="$(string.MMC_IIS)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{A841B6C2-7577-11D0-BB1F-00A0C922E79C}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IndexingService" class="User" displayName="$(string.MMC_IndexingService)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{95AD72F0-44CE-11D0-AE29-00AA004B9986}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IpSecManage" class="User" displayName="$(string.MMC_IpSecManage)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{DEA8AFA2-CC85-11d0-9CE2-0080C7221EBD}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_IpSecMonitor" class="User" displayName="$(string.MMC_IpSecMonitor)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{57C596D0-9370-40C0-BA0D-AB491B63255D}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_LocalUsersGroups" class="User" displayName="$(string.MMC_LocalUsersGroups)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{5D6179C8-17EC-11D1-9AA9-00C04FD8FE93}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_NapSnap" class="User" displayName="$(string.MMC_NapSnap)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{a1bc4eca-66b2-44e8-9915-be02e84438ba}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Net_Framework" class="User" displayName="$(string.MMC_Net_Framework)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{18BA7139-D98B-43c2-94DA-2604E34E175D}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_NPSUI" class="User" displayName="$(string.MMC_NPSUI)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{6630f2d7-bd52-4072-bfa7-863f3d0c5da0}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_PerfLogsAlerts" class="User" displayName="$(string.MMC_PerfLogsAlerts)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{7478EF61-8C46-11d1-8D99-00A0C913CAD4}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_QoSAdmission" class="User" displayName="$(string.MMC_QoSAdmission)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{FD57D297-4FD9-11D1-854E-00C04FC31FD3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RemoteDesktop" class="User" displayName="$(string.MMC_RemoteDesktop)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{3D5D035E-7721-4B83-A645-6C07A3D403B7}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RRA" class="User" displayName="$(string.MMC_RRA)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{1AA7F839-C7F5-11D0-A376-00C04FC9DA04}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_RSM" class="User" displayName="$(string.MMC_RSM)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{3CB6973D-3E6F-11D0-95DB-00A024D77700}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SCA" class="User" displayName="$(string.MMC_SCA)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{011BE22D-E453-11D1-945A-00C04FB984F9}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SecurityTemplates" class="User" displayName="$(string.MMC_SecurityTemplates)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{5ADF5BF6-E452-11D1-945A-00C04FB984F9}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_ServerManager" class="User" displayName="$(string.MMC_ServerManager)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{18ea3f92-d6aa-41d9-a205-2023400c8fbb}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Services" class="User" displayName="$(string.MMC_Services)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{58221C66-EA27-11CF-ADCF-00AA00A80033}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SharedFolders" class="User" displayName="$(string.MMC_SharedFolders)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{58221C65-EA27-11CF-ADCF-00AA00A80033}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_SysInfo" class="User" displayName="$(string.MMC_SysInfo)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{45ac8c63-23e2-11d1-a696-00c04fd58bc3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_Telephony" class="User" displayName="$(string.MMC_Telephony)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{E26D02A0-4C1F-11D1-9AA1-00C04FC3357A}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_TerminalServices" class="User" displayName="$(string.MMC_TerminalServices)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{B91B6008-32D2-11D2-9888-00A0C925F917}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_TPMManagement" class="User" displayName="$(string.MMC_TPMManagement)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{7d3830aa-e69e-4e17-8bd1-1b87b97099da}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WindowsFirewall" class="User" displayName="$(string.MMC_WindowsFirewall)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\FX:{b05566ac-fe9c-4368-be02-7a4cbb7cbe11}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WirelessMon" class="User" displayName="$(string.MMC_WirelessMon)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{23DC5869-BD9F-46fd-AADD-1F869BA64FC3}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_WMI" class="User" displayName="$(string.MMC_WMI)" explainText="$(string.MMC_Restrict_Explain)" key="Software\Policies\Microsoft\MMC\{5C659257-E236-11D2-8899-00104B2AFB46}" valueName="Restrict_Run">
+      <parentCategory ref="mmc:MMC_RESTRICT" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

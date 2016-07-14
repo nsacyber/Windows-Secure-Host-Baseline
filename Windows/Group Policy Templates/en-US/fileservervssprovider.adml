@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.2" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <!-- Component name -->
+      <string id="Cat_FileShareShadowCopyProvider">File Share Shadow Copy Provider</string>
+      <!-- Component name -->
+
+      <string id="Pol_EncryptProtocol">Allow or Disallow use of encryption to protect the RPC protocol messages between File Share Shadow Copy Provider running on application server and File Share Shadow Copy Agent running on the file servers.</string>
+      <string id="Pol_EncryptProtocol_Help">Determines whether the RPC protocol messagese used by VSS for SMB2 File Shares feature is enabled.
+
+VSS for SMB2 File Shares feature enables VSS aware backup applications to perform application consistent backup and restore of VSS aware applications storing data on SMB2 File Shares.
+
+By default, the RPC protocol message between File Server VSS provider and File Server VSS Agent is signed but not encrypted. 
+
+Note: To make changes to this setting effective, you must restart Volume Shadow Copy (VSS) Service .</string>
+
+     </stringTable>
+   </resources>
+</policyDefinitionResources>

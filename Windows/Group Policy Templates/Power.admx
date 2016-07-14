@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="power" namespace="Microsoft.Policies.PowerManagement" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>                                                                   
+    <category name="PowerManagementCat" displayName="$(string.PowerManagementCat)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="PowerBatteryAlarmSettingsCat" displayName="$(string.PowerBatteryAlarmSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
+    <category name="PowerButtonActionSettingsCat" displayName="$(string.PowerButtonActionSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
+    <category name="PowerHardDiskSettingsCat" displayName="$(string.PowerHardDiskSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
+    <category name="PowerSleepSettingsCat" displayName="$(string.PowerSleepSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
+    <category name="PowerVideoSettingsCat" displayName="$(string.PowerVideoSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DCBatteryDischargeAction0_2" class="Machine" displayName="$(string.DCBatteryDischargeAction0)" explainText="$(string.BatteryDischargeAction0Explain)" presentation="$(presentation.DCBatteryDischargeAction0_2)" key="Software\Policies\Microsoft\Power\PowerSettings\637EA02F-BBCB-4015-8E2C-A1C7B9C0B546">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectDCBatteryDischargeAction0" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCBatteryDischargeAction1_2" class="Machine" displayName="$(string.DCBatteryDischargeAction1)" explainText="$(string.BatteryDischargeAction1Explain)" presentation="$(presentation.DCBatteryDischargeAction1_2)" key="Software\Policies\Microsoft\Power\PowerSettings\d8742dcb-3e6a-4b3c-b3fe-374623cdcf06">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectDCBatteryDischargeAction1" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCBatteryDischargeLevel0_2" class="Machine" displayName="$(string.DCBatteryDischargeLevel0)" explainText="$(string.BatteryDischargeLevel0Explain)" presentation="$(presentation.DCBatteryDischargeLevel0_2)" key="Software\Policies\Microsoft\Power\PowerSettings\9A66D8D7-4FF7-4EF9-B5A2-5A326CA2A469">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDCBatteryDischargeLevel0" valueName="DCSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="DCBatteryDischargeLevel1_2" class="Machine" displayName="$(string.DCBatteryDischargeLevel1)" explainText="$(string.BatteryDischargeLevel1Explain)" presentation="$(presentation.DCBatteryDischargeLevel1_2)" key="Software\Policies\Microsoft\Power\PowerSettings\8183ba9a-e910-48da-8769-14ae6dc1170a">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDCBatteryDischargeLevel1" valueName="DCSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="DCBatteryDischargeLevel1UINotification_2" class="Machine" displayName="$(string.DCBatteryDischargeLevel1UINotification)" explainText="$(string.BatteryDischargeLevel1UINotificationExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\bcded951-187b-4d05-bccc-f7e51960c258" valueName="DCSettingIndex">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="ACPowerButtonAction_2" class="Machine" displayName="$(string.ACPowerButtonAction)" explainText="$(string.PowerButtonActionExplain)" presentation="$(presentation.ACPowerButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\7648EFA3-DD9C-4E3E-B566-50F929386280">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectACPowerButtonAction" valueName="ACSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ACSleepButtonAction_2" class="Machine" displayName="$(string.ACSleepButtonAction)" explainText="$(string.SleepButtonActionExplain)" presentation="$(presentation.ACSleepButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\96996BC0-AD50-47EC-923B-6F41874DD9EB">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectACSleepButtonAction" valueName="ACSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ACSystemLidAction_2" class="Machine" displayName="$(string.ACSystemLidAction)" explainText="$(string.SystemLidActionExplain)" presentation="$(presentation.ACSystemLidAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\5CA83367-6E45-459F-A27B-476B1D01C936">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectACSystemLidAction" valueName="ACSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="ACStartMenuButtonAction_2" class="Machine" displayName="$(string.ACStartMenuButtonAction)" explainText="$(string.StartMenuButtonActionExplain)" presentation="$(presentation.ACStartMenuButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\A7066653-8D6C-40A8-910E-A1F54B84C7E5">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <elements>
+        <enum id="SelectACStartMenuButtonAction" valueName="ACSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCPowerButtonAction_2" class="Machine" displayName="$(string.DCPowerButtonAction)" explainText="$(string.PowerButtonActionExplain)" presentation="$(presentation.DCPowerButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\7648EFA3-DD9C-4E3E-B566-50F929386280">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectDCPowerButtonAction" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCSleepButtonAction_2" class="Machine" displayName="$(string.DCSleepButtonAction)" explainText="$(string.SleepButtonActionExplain)" presentation="$(presentation.DCSleepButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\96996BC0-AD50-47EC-923B-6F41874DD9EB">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectDCSleepButtonAction" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCSystemLidAction_2" class="Machine" displayName="$(string.DCSystemLidAction)" explainText="$(string.SystemLidActionExplain)" presentation="$(presentation.DCSystemLidAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\5CA83367-6E45-459F-A27B-476B1D01C936">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SelectDCSystemLidAction" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionNone)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DCStartMenuButtonAction_2" class="Machine" displayName="$(string.DCStartMenuButtonAction)" explainText="$(string.StartMenuButtonActionExplain)" presentation="$(presentation.DCStartMenuButtonAction_2)" key="Software\Policies\Microsoft\Power\PowerSettings\A7066653-8D6C-40A8-910E-A1F54B84C7E5">
+      <parentCategory ref="PowerButtonActionSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <elements>
+        <enum id="SelectDCStartMenuButtonAction" valueName="DCSettingIndex" required="true">
+          <item displayName="$(string.ButtonActionStandby)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionHibernate)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ButtonActionShutdown)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DiskACPowerDownTimeOut_2" class="Machine" displayName="$(string.DiskACPowerDownTimeOut)" explainText="$(string.DiskPowerDownTimeOutExplain)" presentation="$(presentation.DiskACPowerDownTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\6738E2C4-E8A5-4A42-B16A-E040E769756E">
+      <parentCategory ref="PowerHardDiskSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDiskACPowerDownTimeOut" valueName="ACSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="DiskDCPowerDownTimeOut_2" class="Machine" displayName="$(string.DiskDCPowerDownTimeOut)" explainText="$(string.DiskPowerDownTimeOutExplain)" presentation="$(presentation.DiskDCPowerDownTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\6738E2C4-E8A5-4A42-B16A-E040E769756E">
+      <parentCategory ref="PowerHardDiskSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDiskDCPowerDownTimeOut" valueName="DCSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="CustomActiveSchemeOverride_2" class="Machine" displayName="$(string.CustomActiveSchemeOverride)" explainText="$(string.CustomActiveSchemeOverrideExplain)" presentation="$(presentation.CustomActiveSchemeOverride_2)" key="Software\Policies\Microsoft\Power\PowerSettings">
+      <parentCategory ref="PowerManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="CustomActiveSchemeOverrideEnter" valueName="ActivePowerScheme" required="true" maxLength="36" />
+      </elements>
+    </policy>
+    <policy name="InboxActiveSchemeOverride_2" class="Machine" displayName="$(string.InboxActiveSchemeOverride)" explainText="$(string.InboxActiveSchemeOverrideExplain)" presentation="$(presentation.InboxActiveSchemeOverride_2)" key="Software\Policies\Microsoft\Power\PowerSettings">
+      <parentCategory ref="PowerManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="InboxActiveSchemeOverrideEnter" valueName="ActivePowerScheme" required="true">
+          <item displayName="$(string.Power_Plan_GUID_Typical_Savings)">
+            <value>
+              <string>381b4222-f694-41f0-9685-ff5bb260df2e</string>
+            </value>
+          </item>
+          <item displayName="$(string.Power_Plan_GUID_Max_Power_Savings)">
+            <value>
+              <string>a1841308-3541-4fab-bc81-f71556f20b4a</string>
+            </value>
+          </item>
+          <item displayName="$(string.Power_Plan_GUID_Min_Power_Savings)">
+            <value>
+              <string>8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="PW_PromptPasswordOnResume" class="User" displayName="$(string.PW_PromptPasswordOnResume)" explainText="$(string.PW_PromptPasswordOnResume_Help)" key="Software\Policies\Microsoft\Windows\System\Power" valueName="PromptPasswordOnResume">
+      <parentCategory ref="PowerManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="ACCriticalSleepTransitionsDisable_2" class="Machine" displayName="$(string.ACCriticalSleepTransitionsDisable)" explainText="$(string.CriticalSleepTransitionsDisableExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\B7A27025-E569-46c2-A504-2B96CAD225A1" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ACHibernateTimeOut_2" class="Machine" displayName="$(string.ACHibernateTimeOut)" explainText="$(string.HibernateTimeOutExplain)" presentation="$(presentation.ACHibernateTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\9D7815A6-7EE4-497E-8888-515A05F02364">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterACHibernateTimeOut" valueName="ACSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="ACPromptForPasswordOnResume_2" class="Machine" displayName="$(string.ACPromptForPasswordOnResume)" explainText="$(string.PromptForPasswordOnResumeExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ACStandbyTimeOut_2" class="Machine" displayName="$(string.ACStandbyTimeOut)" explainText="$(string.StandbyTimeOutExplain)" presentation="$(presentation.ACStandbyTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\29F6C1DB-86DA-48C5-9FDB-F2B67B1F44DA">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterACStandbyTimeOut" valueName="ACSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="ACStandbyWithHiberfileEnable_2" class="Machine" displayName="$(string.ACStandbyWithHiberfileEnable)" explainText="$(string.StandbyWithHiberfileEnableExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\94ac6d29-73ce-41a6-809f-6363ba21b47e" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DCCriticalSleepTransitionsDisable_2" class="Machine" displayName="$(string.DCCriticalSleepTransitionsDisable)" explainText="$(string.CriticalSleepTransitionsDisableExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\B7A27025-E569-46c2-A504-2B96CAD225A1" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DCHibernateTimeOut_2" class="Machine" displayName="$(string.DCHibernateTimeOut)" explainText="$(string.HibernateTimeOutExplain)" presentation="$(presentation.DCHibernateTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\9D7815A6-7EE4-497E-8888-515A05F02364">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDCHibernateTimeOut" valueName="DCSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="DCPromptForPasswordOnResume_2" class="Machine" displayName="$(string.DCPromptForPasswordOnResume)" explainText="$(string.PromptForPasswordOnResumeExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DCStandbyTimeOut_2" class="Machine" displayName="$(string.DCStandbyTimeOut)" explainText="$(string.StandbyTimeOutExplain)" presentation="$(presentation.DCStandbyTimeOut_2)" key="Software\Policies\Microsoft\Power\PowerSettings\29F6C1DB-86DA-48C5-9FDB-F2B67B1F44DA">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterDCStandbyTimeOut" valueName="DCSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="DCStandbyWithHiberfileEnable_2" class="Machine" displayName="$(string.DCStandbyWithHiberfileEnable)" explainText="$(string.StandbyWithHiberfileEnableExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\94ac6d29-73ce-41a6-809f-6363ba21b47e" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="VideoAdaptivePowerDownTimeOutAC_2" class="Machine" displayName="$(string.VideoAdaptivePowerDownTimeOutAC)" explainText="$(string.VideoAdaptivePowerDownTimeOutExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\90959D22-D6A1-49B9-AF93-BCE885AD335B" valueName="ACSettingIndex">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="VideoAdaptivePowerDownTimeOutDC_2" class="Machine" displayName="$(string.VideoAdaptivePowerDownTimeOutDC)" explainText="$(string.VideoAdaptivePowerDownTimeOutExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\90959D22-D6A1-49B9-AF93-BCE885AD335B" valueName="DCSettingIndex">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="VideoPowerDownTimeOutAC_2" class="Machine" displayName="$(string.VideoPowerDownTimeOutAC)" explainText="$(string.VideoPowerDownTimeOutExplain)" presentation="$(presentation.VideoPowerDownTimeOutAC_2)" key="Software\Policies\Microsoft\Power\PowerSettings\3C0BC021-C8A8-4E07-A973-6B14CBCB2B7E">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterVideoACPowerDownTimeOut" valueName="ACSettingIndex" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="VideoPowerDownTimeOutDC_2" class="Machine" displayName="$(string.VideoPowerDownTimeOutDC)" explainText="$(string.VideoPowerDownTimeOutExplain)" presentation="$(presentation.VideoPowerDownTimeOutDC_2)" key="Software\Policies\Microsoft\Power\PowerSettings\3C0BC021-C8A8-4E07-A973-6B14CBCB2B7E">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="EnterVideoDCPowerDownTimeOut" valueName="DCSettingIndex" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="AllowStandbyStatesAC_2" class="Machine" displayName="$(string.AllowStandbyStatesAC)" explainText="$(string.AllowStandbyStatesExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowStandbyStatesDC_2" class="Machine" displayName="$(string.AllowStandbyStatesDC)" explainText="$(string.AllowStandbyStatesExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Dont_PowerOff_AfterShutdown" class="Machine" displayName="$(string.Dont_PowerOff_AfterShutdown)" explainText="$(string.Dont_PowerOff_AfterShutdown_Help)" key="Software\Policies\Microsoft\Windows NT" valueName="DontPowerOffAfterShutdown">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP1" />
+    </policy>
+    <policy name="AllowSystemSleepWithRemoteFilesOpenAC" class="Machine" displayName="$(string.AllowSystemSleepWithRemoteFilesOpenAC)" explainText="$(string.AllowSystemSleepWithRemoteFilesOpenExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\d4c1d4c8-d5cc-43d3-b83e-fc51215cb04d" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowSystemSleepWithRemoteFilesOpenDC" class="Machine" displayName="$(string.AllowSystemSleepWithRemoteFilesOpenDC)" explainText="$(string.AllowSystemSleepWithRemoteFilesOpenExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\d4c1d4c8-d5cc-43d3-b83e-fc51215cb04d" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisplayDimTimeOutAC" class="Machine" displayName="$(string.DisplayDimTimeOutAC)" explainText="$(string.DisplayDimTimeOutExplain)" presentation="$(presentation.DisplayDimTimeOut)" key="Software\Policies\Microsoft\Power\PowerSettings\17aaa29b-8b43-4b94-aafe-35f64daaf1ee">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterDisplayDimTimeOut" valueName="ACSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="DisplayDimTimeOutDC" class="Machine" displayName="$(string.DisplayDimTimeOutDC)" explainText="$(string.DisplayDimTimeOutExplain)" presentation="$(presentation.DisplayDimTimeOut)" key="Software\Policies\Microsoft\Power\PowerSettings\17aaa29b-8b43-4b94-aafe-35f64daaf1ee">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterDisplayDimTimeOut" valueName="DCSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="DisplayDimBrightnessAC" class="Machine" displayName="$(string.DisplayDimBrightnessAC)" explainText="$(string.DisplayDimBrightnessExplain)" presentation="$(presentation.DisplayDimBrightness)" key="Software\Policies\Microsoft\Power\PowerSettings\f1fbfde2-a960-4165-9f88-50667911ce96">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterDisplayDimBrightness" valueName="ACSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="DisplayDimBrightnessDC" class="Machine" displayName="$(string.DisplayDimBrightnessDC)" explainText="$(string.DisplayDimBrightnessExplain)" presentation="$(presentation.DisplayDimBrightness)" key="Software\Policies\Microsoft\Power\PowerSettings\f1fbfde2-a960-4165-9f88-50667911ce96">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterDisplayDimBrightness" valueName="DCSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="EnableDesktopSlideShowAC" class="Machine" displayName="$(string.EnableDesktopSlideShowAC)" explainText="$(string.EnableDesktopSlideShowExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\309dce9b-bef4-4119-9921-a851fb12f0f4" valueName="ACSettingIndex">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableDesktopSlideShowDC" class="Machine" displayName="$(string.EnableDesktopSlideShowDC)" explainText="$(string.EnableDesktopSlideShowExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\309dce9b-bef4-4119-9921-a851fb12f0f4" valueName="DCSettingIndex">
+      <parentCategory ref="PowerVideoSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="UnattendedSleepTimeOutAC" class="Machine" displayName="$(string.UnattendedSleepTimeOutAC)" explainText="$(string.UnattendedSleepTimeOutExplain)" presentation="$(presentation.UnattendedSleepTimeOut)" key="Software\Policies\Microsoft\Power\PowerSettings\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterUnattendedSleepTimeOut" valueName="ACSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="UnattendedSleepTimeOutDC" class="Machine" displayName="$(string.UnattendedSleepTimeOutDC)" explainText="$(string.UnattendedSleepTimeOutExplain)" presentation="$(presentation.UnattendedSleepTimeOut)" key="Software\Policies\Microsoft\Power\PowerSettings\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterUnattendedSleepTimeOut" valueName="DCSettingIndex" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>    
+    <policy name="AllowSystemPowerRequestAC" class="Machine" displayName="$(string.AllowSystemPowerRequestAC)" explainText="$(string.AllowSystemPowerRequestExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\A4B195F5-8225-47D8-8012-9D41369786E2" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowSystemPowerRequestDC" class="Machine" displayName="$(string.AllowSystemPowerRequestDC)" explainText="$(string.AllowSystemPowerRequestExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\A4B195F5-8225-47D8-8012-9D41369786E2" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ReserveBatteryNotificationLevel" class="Machine" displayName="$(string.ReserveBatteryNotificationLevel)" explainText="$(string.ReserveBatteryNotificationLevelExplain)" presentation="$(presentation.ReserveBatteryNotificationLevel)" key="Software\Policies\Microsoft\Power\PowerSettings\F3C5027D-CD16-4930-AA6B-90DB844A8F00">
+      <parentCategory ref="PowerBatteryAlarmSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="EnterReserveBatteryNotificationLevel" valueName="DCSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

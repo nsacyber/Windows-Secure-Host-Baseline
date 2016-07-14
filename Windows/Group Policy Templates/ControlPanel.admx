@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="controlpanel" namespace="Microsoft.Policies.ControlPanel" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="DisallowCpls" class="User" displayName="$(string.DisallowCpls)" explainText="$(string.DisallowCpls_Help)" presentation="$(presentation.DisallowCpls)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisallowCpl">
+      <parentCategory ref="windows:ControlPanel" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <list id="DisallowCplsList" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowCpl" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="ForceClassicControlPanel" class="User" displayName="$(string.ForceClassicControlPanel)" explainText="$(string.ForceClassicControlPanel_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ForceClassicControlPanel">
+      <parentCategory ref="windows:ControlPanel" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoControlPanel" class="User" displayName="$(string.NoControlPanel)" explainText="$(string.NoControlPanel_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoControlPanel">
+      <parentCategory ref="windows:ControlPanel" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="RestrictCpls" class="User" displayName="$(string.RestrictCpls)" explainText="$(string.RestrictCpls_Help)" presentation="$(presentation.RestrictCpls)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="RestrictCpl">
+      <parentCategory ref="windows:ControlPanel" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <list id="RestrictCplsList" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\RestrictCpl" valuePrefix="" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

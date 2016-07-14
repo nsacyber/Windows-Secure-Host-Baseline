@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="sensors" namespace="Microsoft.Policies.Sensors" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="LocationAndSensors" displayName="$(string.LocationAndSensors)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableSensors_1" class="User" displayName="$(string.DisableSensors)" explainText="$(string.DisableSensors_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableSensors">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSensors_2" class="Machine" displayName="$(string.DisableSensors)" explainText="$(string.DisableSensors_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableSensors">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocation_1" class="User" displayName="$(string.DisableLocation)" explainText="$(string.DisableLocation_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableLocation">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocation_2" class="Machine" displayName="$(string.DisableLocation)" explainText="$(string.DisableLocation_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableLocation">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocationScripting_1" class="User" displayName="$(string.DisableLocationScripting)" explainText="$(string.DisableLocationScripting_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableLocationScripting">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLocationScripting_2" class="Machine" displayName="$(string.DisableLocationScripting)" explainText="$(string.DisableLocationScripting_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableLocationScripting">
+      <parentCategory ref="LocationAndSensors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

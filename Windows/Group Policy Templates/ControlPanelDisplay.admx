@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0" schemaVersion="1.0"
+                   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="controlpaneldisplay" namespace="Microsoft.Policies.ControlPanelDisplay" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Display" displayName="$(string.Display)">
+      <parentCategory ref="windows:ControlPanel" />
+    </category>
+    <category name="Personalization" displayName="$(string.Personalization)">
+      <parentCategory ref="windows:ControlPanel" />
+    </category>
+  </categories>
+  <policies>
+    <!-- Display CPL -->
+    <policy name="CPL_Display_Disable" class="User"
+            displayName="$(string.CPL_Display_Disable)"
+            explainText="$(string.CPL_Display_Disable_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoDispCPL">
+      <parentCategory ref="Display" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="CPL_Display_HideSettings" class="User"
+            displayName="$(string.CPL_Display_HideSettings)"
+            explainText="$(string.CPL_Display_HideSettings_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoDispSettingsPage">
+      <parentCategory ref="Display" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <!-- Personalization CPL -->
+    <policy name="CPL_Personalization_NoColorAppearanceUI" class="User"
+            displayName="$(string.CPL_Personalization_NoColorAppearanceUI)"
+            explainText="$(string.CPL_Personalization_NoColorAppearanceUI_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoDispAppearancePage">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="CPL_Personalization_NoScreenSaverUI" class="User"
+            displayName="$(string.CPL_Personalization_NoScreenSaverUI)"
+            explainText="$(string.CPL_Personalization_NoScreenSaverUI_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoDispScrSavPage">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="CPL_Personalization_EnableScreenSaver" class="User"
+            displayName="$(string.CPL_Personalization_EnableScreenSaver)"
+            explainText="$(string.CPL_Personalization_EnableScreenSaver_Help)"
+            key="Software\Policies\Microsoft\Windows\Control Panel\Desktop"
+            valueName="ScreenSaveActive">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP1" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="CPL_Personalization_SetScreenSaver" class="User"
+            displayName="$(string.CPL_Personalization_SetScreenSaver)"
+            explainText="$(string.CPL_Personalization_SetScreenSaver_Help)"
+            presentation="$(presentation.ScreenSaverFilename)"
+            key="Software\Policies\Microsoft\Windows\Control Panel\Desktop">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP1" />
+      <elements>
+        <text id="ScreenSaverFilename" valueName="SCRNSAVE.EXE" />
+      </elements>
+    </policy>
+    <policy name="CPL_Personalization_ScreenSaverIsSecure" class="User"
+            displayName="$(string.CPL_Personalization_ScreenSaverIsSecure)"
+            explainText="$(string.CPL_Personalization_ScreenSaverIsSecure_Help)"
+            key="Software\Policies\Microsoft\Windows\Control Panel\Desktop"
+            valueName="ScreenSaverIsSecure">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP1" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="CPL_Personalization_ScreenSaverTimeOut" class="User"
+            displayName="$(string.CPL_Personalization_ScreenSaverTimeOut)"
+            explainText="$(string.CPL_Personalization_ScreenSaverTimeOut_Help)"
+            presentation="$(presentation.ScreenSaverTimeOut)"
+            key="Software\Policies\Microsoft\Windows\Control Panel\Desktop">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP1" />
+      <elements>
+        <decimal id="ScreenSaverTimeOutFreqSpin" valueName="ScreenSaveTimeOut" maxValue="599940" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="CPL_Personalization_NoDesktopBackgroundUI" class="User"
+            displayName="$(string.CPL_Personalization_NoDesktopBackgroundUI)"
+            explainText="$(string.CPL_Personalization_NoDesktopBackgroundUI_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop"
+            valueName="NoChangingWallPaper">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="CPL_Personalization_NoSoundSchemeUI" class="User"
+            displayName="$(string.CPL_Personalization_NoSoundSchemeUI)"
+            explainText="$(string.CPL_Personalization_NoSoundSchemeUI_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoChangingSoundScheme">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+    </policy>
+    <policy name="CPL_Personalization_NoMousePointersUI" class="User"
+            displayName="$(string.CPL_Personalization_NoMousePointersUI)"
+            explainText="$(string.CPL_Personalization_NoMousePointersUI_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoChangingMousePointers">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+    </policy>
+    <policy name="CPL_Personalization_NoDesktopIconsUI" class="User"
+            displayName="$(string.CPL_Personalization_NoDesktopIconsUI)"
+            explainText="$(string.CPL_Personalization_NoDesktopIconsUI_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoDispBackgroundPage">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="CPL_Personalization_DisableColorSchemeChoice" class="User"
+            displayName="$(string.CPL_Personalization_DisableColorSchemeChoice)"
+            explainText="$(string.CPL_Personalization_DisableColorSchemeChoice_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoColorChoice">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXP" />
+    </policy>
+    <policy name="CPL_Personalization_DisableThemeChange" class="User"
+            displayName="$(string.CPL_Personalization_DisableThemeChange)"
+            explainText="$(string.CPL_Personalization_DisableThemeChange_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
+            valueName="NoThemesTab">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="CPL_Personalization_SetTheme" class="User"
+            displayName="$(string.CPL_Personalization_SetTheme)"
+            explainText="$(string.CPL_Personalization_SetTheme_Help)"
+            presentation="$(presentation.ThemeFilename)"
+            key="Software\Policies\Microsoft\Windows\Personalization">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="ThemeFilename" valueName="ThemeFile" />
+      </elements>
+    </policy>
+    <policy name="CPL_Personalization_DisableVisualStyle" class="User"
+            displayName="$(string.CPL_Personalization_DisableVisualStyle)"
+            explainText="$(string.CPL_Personalization_DisableVisualStyle_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoVisualStyleChoice">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="CPL_Personalization_SetVisualStyle" class="User"
+            displayName="$(string.CPL_Personalization_SetVisualStyle)"
+            explainText="$(string.CPL_Personalization_SetVisualStyle_Help)"
+            presentation="$(presentation.Themes_Load_Theme)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Themes_Name" valueName="SetVisualStyle" />
+      </elements>
+    </policy>
+    <policy name="CPL_Personalization_LockFontSize" class="User"
+            displayName="$(string.CPL_Personalization_LockFontSize)"
+            explainText="$(string.CPL_Personalization_LockFontSize_Help)"
+            key="Software\Microsoft\Windows\CurrentVersion\Policies\System"
+            valueName="NoSizeChoice">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="CPL_Personalization_NoLockScreen" class="Machine"
+            displayName="$(string.CPL_Personalization_NoLockScreen)"
+            explainText="$(string.CPL_Personalization_NoLockScreen_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoLockScreen">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+    </policy>
+    <policy name="CPL_Personalization_NoChangingLockScreen" class="Machine"
+            displayName="$(string.CPL_Personalization_NoChangingLockScreen)"
+            explainText="$(string.CPL_Personalization_NoChangingLockScreen_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoChangingLockScreen">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+    </policy>
+    <policy name="CPL_Personalization_NoLockScreenSlideshow" class="Machine"
+            displayName="$(string.CPL_Personalization_NoLockScreenSlideshow)"
+            explainText="$(string.CPL_Personalization_NoLockScreenSlideshow_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoLockScreenSlideshow">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+    </policy>
+    <policy name="CPL_Personalization_NoLockScreenCamera" class="Machine"
+            displayName="$(string.CPL_Personalization_NoLockScreenCamera)"
+            explainText="$(string.CPL_Personalization_NoLockScreenCamera_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoLockScreenCamera">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+    </policy>
+    <policy name="CPL_Personalization_PersonalColors" class="Machine" 
+            displayName="$(string.CPL_Personalization_PersonalColors)" 
+            explainText="$(string.CPL_Personalization_PersonalColors_Help)" 
+            presentation="$(presentation.PersonalColors)" 
+            key="Software\Policies\Microsoft\Windows\Personalization">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <elements>
+        <text id="PersonalColors_Background" valueName="PersonalColors_Background" required="true" />
+        <text id="PersonalColors_Accent" valueName="PersonalColors_Accent" required="true" />
+      </elements>
+    </policy> 
+    <policy name="CPL_Personalization_StartBackground" class="Machine"
+            displayName="$(string.CPL_Personalization_StartBackground)"
+            explainText="$(string.CPL_Personalization_StartBackground_Help)"
+            presentation="$(presentation.StartBackground)"
+            key="Software\Policies\Microsoft\Windows\Personalization">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <elements>
+        <decimal id="StartBackgroundSpin" valueName="ForceStartBackground" maxValue="20" storeAsText="false" />
+      </elements>
+    </policy>
+    <policy name="CPL_Personalization_NoChangingStartMenuBackground" class="Machine"
+            displayName="$(string.CPL_Personalization_NoChangingStartMenuBackground)"
+            explainText="$(string.CPL_Personalization_NoChangingStartMenuBackground_Help)"
+            key="Software\Policies\Microsoft\Windows\Personalization"
+            valueName="NoChangingStartMenuBackground">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+    </policy>
+    <policy name="CPL_Personalization_ForceDefaultLockScreen" class="Machine"
+            displayName="$(string.CPL_Personalization_ForceDefaultLockScreen)"
+            explainText="$(string.CPL_Personalization_ForceDefaultLockScreen_Help)"
+            presentation="$(presentation.ForceDefaultLockScreen)"
+            key="Software\Policies\Microsoft\Windows\Personalization">
+      <parentCategory ref="Personalization" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <text id="LockScreenImage" valueName="LockScreenImage" required="true" />
+        <boolean id="LockScreenOverlaysDisabled" valueName="LockScreenOverlaysDisabled" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="startmenu" namespace="Microsoft.Policies.Notifications" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="NotificationsCategory" displayName="$(string.NotificationsCategory)">
+      <parentCategory ref="windows:StartMenu" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoTileNotification" class="User" displayName="$(string.NoTileNotification)" explainText="$(string.NoTileNotificationExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" valueName="NoTileApplicationNotification">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+            <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+            <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="NoToastNotification" class="User" displayName="$(string.NoToastNotification)" explainText="$(string.NoToastNotificationExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" valueName="NoToastApplicationNotification">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="NoLockScreenToastNotification" class="User" displayName="$(string.NoLockScreenToastNotification)" explainText="$(string.NoLockScreenToastNotificationExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" valueName="NoToastApplicationNotificationOnLockScreen">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="NoCloudNotification" class="User" displayName="$(string.NoCloudNotification)" explainText="$(string.NoCloudNotificationExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" valueName="NoCloudApplicationNotification">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="NoQuietHours" class="User" displayName="$(string.NoQuietHours)" explainText="$(string.NoQuietHoursExplain)" key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\QuietHours" valueName="Enable">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+        <enabledValue>
+          <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="1" />
+        </disabledValue>
+    </policy>
+
+    <policy name="QuietHoursDailyBeginMinute" class="User" displayName="$(string.QuietHoursDailyBeginMinute)" explainText="$(string.QuietHoursDailyBeginMinuteExplain)" presentation="$(presentation.QuietHoursBeginTimePicker)" key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\QuietHours">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <elements>
+        <decimal id="QuietHoursDailyBeginMinuteControl" valueName="EntryTime" minValue="0" maxValue="1439" />
+      </elements>
+    </policy>
+
+    <policy name="QuietHoursDailyEndMinute" class="User" displayName="$(string.QuietHoursDailyEndMinute)" explainText="$(string.QuietHoursDailyEndMinuteExplain)" presentation="$(presentation.QuietHoursEndTimePicker)" key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\QuietHours">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <elements>
+        <decimal id="QuietHoursDailyEndMinuteControl" valueName="ExitTime" minValue="0" maxValue="1439" />
+      </elements>
+    </policy>
+
+    <policy name="NoCallsDuringQuietHours" class="User" displayName="$(string.NoCallsDuringQuietHours)" explainText="$(string.NoCallsDuringQuietHoursExplain)" key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\QuietHours" valueName="AllowCalls">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="performancediagnostics" namespace="Microsoft.Policies.PerformanceDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="BootScenarioCategory" displayName="$(string.BootScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+    <category name="ResumeScenarioCategory" displayName="$(string.ResumeScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+    <category name="ShellScenarioCategory" displayName="$(string.ShellScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+    <category name="ShutdownScenarioCategory" displayName="$(string.ShutdownScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WdiScenarioExecutionPolicy_1" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.BootScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiScenarioExecutionPolicy_1)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{67144949-5132-4859-8036-a737b43825d8}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="BootScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{86432a0b-3c7d-4ddf-a89c-172faa90485d}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{86432a0b-3c7d-4ddf-a89c-172faa90485d}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <enum id="WdiScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="WdiScenarioExecutionPolicy_4" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.ResumeScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiScenarioExecutionPolicy_4)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{ffc42108-4920-4acf-a4fc-8abdcc68ada4}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="ResumeScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="WdiScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="WdiScenarioExecutionPolicy_2" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.ShellScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiScenarioExecutionPolicy_2)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{a7a5847a-7511-4e4e-90b1-45ad2a002f51}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="ShellScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{186f47ef-626c-4670-800a-4a30756babad}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{ecfb03d1-58ee-4cc7-a1b5-9bc6febcb915}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{186f47ef-626c-4670-800a-4a30756babad}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{ecfb03d1-58ee-4cc7-a1b5-9bc6febcb915}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <enum id="WdiScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="WdiScenarioExecutionPolicy_3" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.ShutdownScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiScenarioExecutionPolicy_3)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{2698178D-FDAD-40AE-9D3C-1371703ADC5B}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="ShutdownScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="WdiScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

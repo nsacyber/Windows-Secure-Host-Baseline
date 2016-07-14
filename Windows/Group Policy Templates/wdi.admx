@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wdi" namespace="Microsoft.Policies.WindowsDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="WdiDpsScenarioDataSizeLimitPolicy" class="Machine" displayName="$(string.WdiDpsScenarioDataSizeLimitPolicy)" explainText="$(string.WdiDpsScenarioDataSizeLimitPolicyExplain)" presentation="$(presentation.WdiDpsScenarioDataSizeLimitPolicy)" key="SOFTWARE\Policies\Microsoft\Windows\WDI" valueName="DataRetentionBySizeEnabled">
+      <parentCategory ref="windows:Troubleshooting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="WdiDpsScenarioDataSizeLimitPolicyValue" valueName="DirSizeLimit" required="true" />
+      </elements>
+    </policy>
+    <policy name="WdiDpsScenarioExecutionPolicy" class="Machine" displayName="$(string.WdiDpsScenarioExecutionPolicy)" explainText="$(string.WdiDpsScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiDpsScenarioExecutionPolicy)" key="SOFTWARE\Policies\Microsoft\Windows\WDI" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="windows:Troubleshooting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="WdiDpsScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiDpsScenarioExecutionLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiDpsScenarioExecutionLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Allow Uninstallation of Language Features</displayName>
+  <description>This policy enables</description>
+  <resources>
+    <stringTable>
+      <string id="TextInput">Text Input</string>
+      <string id="TextInput_AllowLanguageFeaturesUninstall_Help">This policy setting controls whether some language features (for example, spell checking dictionaries, handwriting recognizers) can be uninstalled from the machine. </string>
+      <string id="TextInput_AllowLanguageFeaturesUninstall">Allow Uninstallation of Language Features</string>  
+    </stringTable>
+  </resources>
+</policyDefinitionResources>
