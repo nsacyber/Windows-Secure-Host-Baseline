@@ -160,3 +160,229 @@ Function Get-GPOBackupFolders() {
 
     return [System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $true } | Where-Object { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where-Object { try { [System.Guid]::Parse($_.Name) | Out-Null; $true } catch { $false } })
 }
+
+Function Test-IsAdministrator() {
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param (
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The type of administrator')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
+        [string[]]$AdministratorType
+    )
+
+    $currentPrincipal = New-Object System.Security.Principal.WindowsPrincipal -ArgumentList ([System.Security.Principal.WindowsIdentity]::GetCurrent())
+
+    $isAdministrator = $false
+
+    $builtInAdministratorRid = 0x220
+    $domainAdministratorsRid = 0x200
+
+    switch ($AdministratorType.ToLower()) {
+        'domain' { 
+            $isAdministrator = $currentPrincipal.IsInRole($builtInAdministratorRid)
+            break 
+         }
+        'local' { 
+            $isAdministrator = $currentPrincipal.IsInRole($domainAdministratorsRid) 
+            break 
+        }
+        default { 
+            throw "Unexpected administrator type of $AdministratorType" 
+        }
+    }
+
+    return $isAdministrator
+}
+
+Function Test-IsElevated() {
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param()
+
+    # todo: P\Invoke OpenProcessToken, GetTokenInformation with TokenIntegrityLevel instead. TOKEN_GROUP.Groups (SID_AND_ATTRIBUTES) see https://msdn.microsoft.com/en-us/library/bb625963.aspx
+
+    $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
+    $processInfo.FileName = 'whoami.exe'
+    $processInfo.RedirectStandardError = $true 
+    $processInfo.RedirectStandardOutput = $true 
+    $processInfo.UseShellExecute = $false 
+    $processInfo.Arguments = '/all' 
+    $process = New-Object System.Diagnostics.Process 
+    $process.StartInfo = $processInfo 
+    $process.Start() | Out-Null 
+    $process.WaitForExit() 
+    $output = $process.StandardOutput.ReadToEnd() 
+
+    $highIntegrityLevel = 'S-1-16-12288'
+
+    $isElevated = $output -match $highIntegrityLevel
+
+    return $isElevated
+}
+
+Function Test-IsDomainController() {
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param()
+
+    $os = Get-WmiObject -Class 'Win32_OperatingSystem' -Filter 'Primary=true' | Select-Object ProductType
+
+    # 1 = workstation, 2 = domain controller, 3 = member server
+    return $os.ProductType -eq 2
+}
+
+Function Test-IsModuleAvailable() {
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name.')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name    
+    )
+
+    $isAvailable = $false
+
+    $error.Clear()
+    Import-Module -Name $Name -ErrorAction SilentlyContinue
+    $isAvailable = ($error.Count -eq 0)
+    $error.Clear()
+
+    return $isAvailable
+}
+
+Function Import-LocalPolicyObject() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to lgpo tool.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='A path to the GPO.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$PolicyPath
+    )
+
+    Start-Process -FilePath $Path -ArgumentList "/g $PolicyPath" -Wait -WindowStyle Hidden # -NoNewWindow
+}
+
+
+Function Import-GroupPolicyObject() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to GPO.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path
+    )
+
+    Import-Module GroupPolicy
+
+    Import-GPO -Path $Path
+}
+
+Function Import-PolicyObject() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to GPO.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The types of the policies to apply.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
+        [string]$PolicyType
+    )
+
+        switch ($PolicyType.ToLower()) {
+        'domain' { 
+            Import-GroupPolicyObject -Path $Path
+            break 
+         }
+        'local' { 
+            Import-LocalPolicyObject -Path (Get-ChildItem -Path 'lgpo.exe' -Recurse) -PolicyPath $Path
+            break 
+        }
+        default { 
+            throw "Unexpected policy type of $PolicyType" 
+        }
+    }
+}
+
+Function Invoke-ApplySecureHostBaseline() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the download SHB package.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
+        [string[]]$Policy,
+
+        [Parameter(Position=2, Mandatory=$true, HelpMessage='The types of the policies to apply.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
+        [string]$PolicyType
+    )
+
+    # todo add 'Certificates' and 'Defender' once those GPOs are added
+
+    if(-not(Test-IsAdministrator -AdministratorType $PolicyType)) {
+        throw "Must be running as a $PolicyType administrator"
+    }
+
+    if(-not(Test-IsElevated)) {
+        throw "Must be running in an elevated prompt"
+    }
+
+    # technically this could be made to work if it wasn't on a DC but it is much easier to do this from a DC
+    # this way we can hopefully guarantee the Group Policy cmdlets will exist
+    if ('Domain' -eq $PolicyType -and -not(Test-IsDomainController)) {
+        throw "Must be running on a domain controller"
+    }
+
+    # just in case we can't guarentee the Group Policy cmdlets are available, explicitly check for them
+    if ('Domain' -eq $PolicyType -and -not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
+        throw "Group Policy cmdlets must be installed"
+    }
+
+    # get SHB GPO folders based on $Policy
+    # Windows Firewall is the only case where the folder is named 'Group Policy Object' instead of 'Group Policy Objects'
+    # Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Object*' } | ForEach-Object { $_.Parent }
+    #$gpoFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Object*' -and $_.Parent -in $Policy }
+    #$gpoFolders = Get-GPOBackupFolders -Path $Path | Where-Object  { $_.FullName -match ".*\\$Policy\\.*"} #need to handle policy array
+    $gpoFolders = Get-GPOBackupFolders -Path $Path | Where-Object  { $_.FullName -match ".*\\$Policy\\.*"} # Policy | ForEach { '\',$_,'\' -join '' }
+
+    # get SHB GPO folders based on $PolicyType
+    # this is tricky since some GPOs apply to both domain and local. we accomplish this by filter out folders that match the opposite of what we're looking for
+    # $PolicyType
+
+    # get SHB GPO template folders based on $Policy and $PolicyType
+    $templateFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -eq 'Group Policy Template' -and $_.Parent -in $Policy }
+
+    $gpoFolders | ForEach-Object {
+        # copy templates to the correct location based on $PolicyType. for domain check if domain GPO central store exists (https://support.microsoft.com/en-us/kb/929841), if not then copy to local path, make backup copies of exist templates if they aren't the same file size or hash
+
+        # backup current GPO based on $Policy and $PolicyType, might be only relevant for Local context
+
+        # for domain context we might want to see if GPO exists first, not sure if that is done by Name or GUID
+
+        # import GPO based on on $Policy and $PolicyType
+        Import-PolicyObject -Path $_.FullName -PolicyType $PolicyType     
+    }
+}
