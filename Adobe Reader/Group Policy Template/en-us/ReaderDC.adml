@@ -52,6 +52,9 @@
       <string id="trustedOSsites">Allow OS Trusted Sites</string>
       <string id="trustedOSsites_Explain">Enable/Disable OS Trsuted sites (from IE Zones) and use them as Reader DC Trusted sites. IE Trusted Sites are generally already under IT control. Setting to Enabled will allow PDF files openned from OS Trusted Sites to open normally without any security restrictions.</string>
       
+      <string id="trustedCertificate">Allow Certified Documents as Trusted</string>
+      <string id="trustedCertificate_Explain">Enable/Disable Certified Documents as Trusted. Setting to Enabled will allow signed PDF files to open normally without any security restrictions.</string>
+      
       
       <!-- CLOUD SETTINGS --> 
       <string id="cloudsharepoint">Allow SharePoint Services</string>
@@ -94,6 +97,10 @@
       
       <string id="updatersetting4">Accept EULA</string>
       <string id="EULA_Explain">Enable/Disable acceptance of of end user license agreement (EULA) for the end user. Setting to Enabled will prevent the EULA from being displayed. The EULA must be accepted before the updater can download product updates.</string>
+
+      <string id="updatersetting5">Ignore EULA for Updates</string>
+      <string id="updatersetting5_Explain">Enable/Disable ignoring the end user license agreement (EULA) for product updates. Setting to Enabled will skip the EULA check and perform product updates regardless if the user has accepted the EULA.</string>
+
 
       <!-- EMBEDDED CONTENT SETTINGS --> 
       <string id="attachmentsetting">Allow Attachments</string>
@@ -139,6 +146,9 @@ For example: Util.CharToByte|App.alert|Collab.getIcon
       
       <string id="splashscreen">Display Splash Screen at Startup</string>
       <string id="splashscreen_Explain">Enable/Disable showing the adobe splash screen everytime the product launches. Setting to Enabled or Not Configured will show the splash screen. Setting to Disabled will prevent the splash screen.</string>
+      
+      <string id="DisableMaintenance">Disable Maintenance Feature</string>
+      <string id="DisableMaintenance_Explain">Enable/Disable maintenance/re-install of Adobe Reader DC to fix installation problems. Setting to Enabled will prevent users from performing maintenance. </string>
       
     </stringTable>
     

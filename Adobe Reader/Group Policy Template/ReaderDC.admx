@@ -158,6 +158,18 @@
         <decimal value="1"/>
       </disabledValue>
     </policy>
+
+    <policy class="Machine" displayName="$(string.trustedCertificate)" explainText="$(string.trustedCertificate_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="trustedCertificate" valueName="bEnableCertificateBasedTrust">
+      <parentCategory ref="trustedloc_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     
     <!-- CLOUD SETTINGS --> 
     
@@ -308,6 +320,18 @@
       </disabledValue>
     </policy>
 
+   <policy class="Machine" displayName="$(string.updatersetting5)" explainText="$(string.updatersetting5_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\1.0\ARM" 
+      name="updatersetting5" valueName="iDisableCheckEula">
+      <parentCategory ref="updater_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>    
+
     <policy class="Machine" displayName="$(string.updatersetting4)" explainText="$(string.EULA_Explain)" key="Software\Wow6432Node\Adobe\Acrobat Reader\DC\AdobeViewer" 
       name="updatersetting4" valueName="EULA">
       <parentCategory ref="updater_group"/>
@@ -318,7 +342,8 @@
       <disabledValue>
         <decimal value="0"/>
       </disabledValue>
-    </policy>    
+    </policy> 
+
 
     <!-- EMBEDDED CONTENT SETTINGS --> 
     
@@ -476,6 +501,18 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>    
+
+    <policy class="Machine" displayName="$(string.DisableMaintenance)" explainText="$(string.DisableMaintenance_Explain)" key="SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" 
+      name="DisableMaintenance" valueName="DisableMaintenance">
+      <parentCategory ref="other_group"/>
+      <supportedOn ref="SUPPORTED_READERDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>   
          
   </policies>
 </policyDefinitions>
