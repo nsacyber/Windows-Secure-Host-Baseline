@@ -2,15 +2,15 @@
 # Author: NSA Information Assurance
 # Revision: 1.1.1	
 # Date: 06/28/2016
-# Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm
+# NSA IA Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Chrome/Compliance/GoogleChrome.audit
-
+# DISA STIG: Aligns with Google Chrome STIG Version 1 Release 4
 
 <check_type : "Windows" version : "2">
-<group_policy: "Google Chrome Web Broswer Audit Policy">
+<group_policy: "Google Chrome Web Broswer">
 
 
-#### CHECK FOR CHROME and CHROME VERSION
+#### CHECK FOR GOOGLE CHROME VERSION
 
 <if>
 <condition type: "or">
@@ -21,7 +21,6 @@
 	value_type: POLICY_TEXT 
 	value_data: "%programfiles% (x86)\Google\Chrome\Application\chrome.exe"
 	file_option: MUST_EXIST
-	severity: LOW
 </custom_item>
 <custom_item>
 	type: REG_CHECK
@@ -40,200 +39,199 @@
 	description: "Chrome Version"
 	info: "Running the latest version of Chrome protects users from known vulnerabilities."
 	value_type: POLICY_FILE_VERSION
-	value_data: "51.0.2704.103"       
+	value_data: "51.0.2704.106"       
 	file: "%programfiles% (x86)\Google\Chrome\Application\chrome.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
 
 ####
-#### DISA STIG REGISTRY CHECKS
+#### RECOMMENDED REGISTRY SETTING CHECKS
 ####
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Block Outdated Plugins"
- info	                : "SV-57579r1"
- info               	: "Severity: CAT I"
+ description	        : "DTBC-0013: Block Outdated Plugins"
+ info               	: "V-44745 Severity: CAT I"
  info               	: "HKLM\Software\Policies\Google\Chrome\AllowOutdatedPlugins (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "AllowOutdatedPlugins"
- severity: HIGH
+ severity		: HIGH
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Automatically Authorize Plugins"
- info	                : "SV-57583r1"
- info               	: "Severity: CAT I"
+ description	        : "DTBC-0014: Automatically Authorize Plugins"
+ info               	: "V-44749 Severity: CAT I"
  info               	: "HKLM\Software\Policies\Google\Chrome\AlwaysAuthorizePlugins (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "AlwaysAuthorizePlugins"
- severity: HIGH
+ severity		: HIGH
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: 3D APIs Disabled"
- info	                : "SV-57591r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0019: 3D APIs Disabled"
+ info               	: "V-44757 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\Disable3DAPIs (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "Disable3DAPIs"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Enforce Default Search Provider Name"
- info	                : "SV-57567r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0007: Enforce Default Search Provider Name"
+ info               	: "V-44733 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultSearchProviderName (REG_SZ)"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Google\Chrome"
  reg_option		: MUST_EXIST 
  key_item		: "DefaultSearchProviderName"
- severity: LOW
+ severity		: LOW
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "DTBC-0009: Enforce Default Search Provider Enabled"
+ info               	: "V-44737 Severity: CAT II"
+ info               	: "HKLM\Software\Policies\Google\Chrome\DefaultSearchProviderEnabled (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\Software\Policies\Google\Chrome\"
+ reg_item		: "DefaultSearchProviderEnabled"
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Enforce Default Search Provider URL"
- info	                : "SV-57569r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0008: Enforce Default Search Provider URL"
+ info               	: "V-44735 Severity: CAT II"
+ info               	: "Verify default search provider URL is set to perform encrypted searches (ex. https://www.google.com/#q={searchTerms} or https://www.bing.com/search?q={searchTerms} )"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultSearchProviderSearchURL (REG_SZ)"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Google\Chrome"
  reg_option		: MUST_EXIST
  key_item		: "DefaultSearchProviderSearchURL"
- severity: LOW
+ severity		: LOW
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Search Suggestions"
- info	                : "SV-57607r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0027: Disbale Search Suggestions"
+ info               	: "V-44773 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\SearchSuggestEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "SearchSuggestEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Incognito Mode"
- info	                : "SV-57611r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0030: Disbale Incognito Mode"
+ info               	: "V-44777 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\IncognitoModeAvailability (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "IncognitoModeAvailability"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Data Synchronization"
- info	                : "SV-57593r1"
+ description	        : "DTBC-0020: Disable Data Synchronization"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\SyncDisabled (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "SyncDisabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Save Browser History"
- info	                : "SV-57627r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0039: Save Browser History"
+ info               	: "V-44793 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\SavingBrowserHistoryDisabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "SavingBrowserHistoryDisabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Firewall Traversal"
- info	                : "SV-57545r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0001: Disable Firewall Traversal"
+ info	                : "V-44711 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\RemoteAccessHostFirewallTraversal (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "RemoteAccessHostFirewallTraversal"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Block Webpages From Automatically Running Plugins"
- info	                : "SV-57629r2"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0040: Block Webpages From Automatically Running Plugins"
+ info               	: "V-44795 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\DefaultPluginsSetting (DWORD:3)"
  value_type		: POLICY_DWORD
  value_data		: "3"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DefaultPluginsSetting"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Importing Passwords"
- info	                : "SV-57609r2"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0029: Disable Importing Passwords"
+ info               	: "V-44775 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\ImportSavedPasswords (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "ImportSavedPasswords"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Enforce a HomePage Location"
- info	                : "SV-57635r2"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0048: Enforce a HomePage Location"
+ info               	: "V-44801 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\HomepageLocation (REG_SZ)"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Google\Chrome"
  reg_option		: MUST_EXIST
  key_item		: "HomepageLocation"
- severity: LOW
+ severity		: LOW
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Metrics Reporting"
- info	                : "SV-57605r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0026: Disable Metrics Reporting"
+ info               	: "V-44771 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\MetricsReportingEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "MetricsReportingEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 
-##   if check auto update service running
+##   Check Chrome auto updates are configured, STIG ID DTBC-0050
 ##   then
 ##     if
 ##       check AutoUpdateCheckPeriodMinutes to make sure not do exist or
@@ -242,7 +240,7 @@
 ##     then
 ##       pass
 ##   else
-##     -fail service disable
+##      fail updates disabled
 ##
 <if>
 <condition type: "and">
@@ -269,7 +267,6 @@
 		<custom_item>
 		 type			: REGISTRY_SETTING
 		 description	        : "Chrome: Update Settings"
-		 info	                : "SV-57573r1"
 		 info               	: "Severity: CAT II"
 		 value_type		: POLICY_DWORD
 		 value_data		: [1..43200]
@@ -280,7 +277,6 @@
 		<custom_item>
 		 type			: REGISTRY_SETTING
 		 description	        : "Chrome: Update Settings"
-		 info	                : "SV-57573r1"
 		 info               	: "Severity: CAT II"
 		 value_type		: POLICY_DWORD
 		 value_data		: "0"
@@ -291,35 +287,33 @@
 	</condition>
 	<then>
 		<report type: "PASSED">
-		description: "Google Automatic Updates Passed"
-		info: "Severity: CAT I"
+		description: "DTBC-0050: Chrome Automatic Updates"
+		info: "Severity: CAT II"
 		</report>
 	</then>
 	<else>
 		<report type: "FAILED">
-		description: "Google Automatic Updates Failed"
-		info: "Severity: CAT I"
+		description: "DTBC-0050: Chrome Automatic Updates"
+		info: "Severity: CAT II"
 		</report>
 	</else>
 	</if>
 </then>
 <else>
 <report type: "FAILED">
-	description: "Google Automatic Updates Failed"
-	info: "Severity: CAT I"
+	description: "DTBC-0050: Chrome Automatic Updates"
+	info: "Severity: CAT II"
 </report>
 </else>
 </if>
 
-## This is a STIG setting, but not having the key set is not a finding
-## as not whitelisting plugins for an entire domain is actually more
-## secure then the recommended STIG setting.
+## This is STIG ID DTBC0051. Not having the key set is not a finding
+## as not allowing any plugins at all is more secure then whitelisting allowed plugins
 <if>
 <condition type: "or">
 <custom_item>
  type			: REG_CHECK
  description	        : "Chrome: Enforce Plugin Whitelisting for URLs"
- info	                : "SV-67011r1"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls\1"
  value_type		: POLICY_TEXT
@@ -331,7 +325,6 @@
 <custom_item>
  type			: REG_CHECK
  description	        : "Chrome: Enforce Plugin Whitelisting for URLs"
- info	                : "SV-67011r1"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
  value_type		: POLICY_TEXT
@@ -342,14 +335,14 @@
 </condition>
 <then>
 <report type: "PASSED">
-description: "Chrome: Enforce Plugin Whitelisting for URLs - Passed"
+description: "DTBC0051: Enforce Plugin Whitelisting for URLs"
 info: "Severity: CAT II"
 info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 </report>
 </then>
 <else>
 <report type: "FAILED">
-description: "Chrome: Enforce Plugin Whitelisting for URLs - Failed"
+description: "DTBC0051: Enforce Plugin Whitelisting for URLs"
 info: "Severity: CAT II"
 info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 </report>
@@ -358,67 +351,62 @@ info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Showing of Cleartext Passwords"
- info	                : "SV-57573r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0010: Disable Cleartext Passwords"
+ info               	: "V-44739 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\PasswordManagerAllowShowPasswords (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "PasswordManagerAllowShowPasswords"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable AutoFill"
- info	                : "SV-57597r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0022: Disable AutoFill"
+ info               	: "V-44763 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\AutoFillEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "AutoFillEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Geolocation"
- info	                : "SV-57557r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0002: Disallow Location Tracking"
+ info               	: "V-44723 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultGeolocationSetting (DWORD:2)"
  value_type		: POLICY_DWORD
  value_data		: "2"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DefaultGeolocationSetting"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item> 
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Enforce Safe Browsing"
- info	                : "SV-57625r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0038: Enforce Safe Browsing"
+ info               	: "V-44791 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\SafeBrowsingEnabled (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "SafeBrowsingEnabled"
- severity: HIGH
+ severity		: HIGH
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Enforce Extension Whitelisting"
- info	                : "SV-57561r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0005: Enforce Extension Whitelisting"
+ info               	: "V-44727 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallBlacklist\1 (REG_SZ:*)"
  value_type		: POLICY_TEXT
  value_data		: "*"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallBlacklist"
  reg_item		: "1"
- severity: HIGH
+ severity		: MEDIUM
 </custom_item>
 
 ## Extension Whitelisting is a best practice, but the use of extensions are optional. For example
@@ -428,8 +416,7 @@ info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 <condition type: "or">
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Extension Whitelisting Detected"
- info	                : "SV-57563r1"
+ description	        : "DTBC-0006: Extension Whitelisting Detected"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  value_type		: POLICY_TEXT
@@ -440,8 +427,7 @@ info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 </custom_item>
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Extension Whitelisting Detected"
- info	                : "SV-57563r1"
+ description	        : "DTBC-0006: Extension Whitelisting Detected"
  info               	: "Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist"
  value_type		: POLICY_TEXT
@@ -452,14 +438,14 @@ info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 </condition>
 <then>
 <report type: "PASSED">
-description: "Chrome: Extension Whitelisting - Passed"
+description: "DTBC-0006: Extension Whitelisting"
 info: "Severity: CAT II"
 info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 </report>
 </then>
 <else>
 <report type: "FAILED">
-description: "Chrome: Extension Whitelisting - Failed"
+description: "DTBC-0006: Extension Whitelisting"
 info: "Severity: CAT II"
 info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 </report>
@@ -468,164 +454,151 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Auto Install of Plugins"
- info	                : "SV-57621r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0036: Disable Auto-Install of Plugins"
+ info               	: "V-44787 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DisablePluginFinder (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DisablePluginFinder"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Enforce Plugin Whitelisting"
- info	                : "SV-57615r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0034: Enforce Plugin Whitelisting"
+ info               	: "V-44781 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DisabledPlugins\1 (REG_SZ:*)"
  value_type		: POLICY_TEXT
  value_data		: "*"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\DisabledPlugins"
  reg_item		: "1"
- severity: HIGH
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Network Prediction"
- info	                : "SV-57603r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0025: Disable Network Prediction"
+ info               	: "V-44769 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DnsPrefetchingEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DnsPrefetchingEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REG_CHECK
- description	        : "Chrome: Enforce Plugin Whitelisting"
- info	                : "SV-57615r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0035: Enforce Plugin Whitelisting"
+ info               	: "V-44783 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\EnabledPlugins"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Google\Chrome\EnabledPlugins"
  reg_option		: MUST_EXIST
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Password Manager"
- info	                : "SV-57575r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0011: Disable Password Manager"
+ info               	: "V-44741 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\PasswordManagerEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "PasswordManagerEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: HTTP Authentication"
- info	                : "SV-57577r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0012: HTTP Authentication"
+ info               	: "V-44743 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\AuthSchemes (REG_SZ:negotiate)"
  value_type		: POLICY_TEXT
  value_data		: "negotiate"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "AuthSchemes"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Enforce Cert Revocation Checks"
- info	                : "SV-57623r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0037: Enforce Cert Revocation Checks"
+ info               	: "V-44789 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\EnableOnlineRevocationChecks (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "EnableOnlineRevocationChecks"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Javascript for certain URL Schema"
- info	                : "SV-57595r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0021: Disbale Javascript for certain URL Schema"
+ info               	: "V-44761 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\URLBlacklist (REG_SZ:javascript://*)"
  value_type		: POLICY_TEXT
  value_data		: "javascript://*"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\URLBlacklist"
  reg_item		: "1"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Pop-Ups"
- info	                : "SV-57553r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0004: Disbale Pop-Ups"
+ info               	: "V-44719 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultPopupsSetting (DWORD:2)"
  value_type		: POLICY_DWORD
  value_data		: "2"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DefaultPopupsSetting"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Cloud Printing"
- info	                : "SV-57599r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC0023: Disbale Cloud Printing"
+ info               	: "V-44765 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\CloudPrintProxyEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "CloudPrintProxyEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Background Processing"
- info	                : "SV-57587r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0017: Disbale Background Processing"
+ info               	: "V-44753 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\BackgroundModeEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "BackgroundModeEnabled"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale 3rd Party Cookies"
- info	                : "SV-57585r1"
- info               	: "Severity: CAT III"
+ description	        : "DTBC-0015: Disbale 3rd Party Cookies"
+ info               	: "V-44751 Severity: CAT III"
  info			: "HKLM\Software\Policies\Google\Chrome\BlockThirdPartyCookies (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "BlockThirdPartyCookies"
- severity: LOW
+ severity		: LOW
 </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disbale Desktop Notifications"
- info	                : "SV-57547r1"
- info               	: "Severity: CAT III"
+ description	        : "DTBC-0003: Disbale Desktop Notifications"
+ info               	: "V-44713 Severity: CAT III"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultNotificationsSetting (DWORD:2)"
  value_type		: POLICY_DWORD
  value_data		: "2"
@@ -637,9 +610,8 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 ## SETTING REMOVED FROM CHROME, BUT STILL IN STIG
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Session Only Based Cookies"
- info	                : "SV-57633r1"
- info               	: "Severity: CAT II"
+ description	        : "DTBC-0045: Disable Session Only Based Cookies"
+ info               	: "V-44799 Severity: CAT II"
  info               	: "This setting has been deprecated"
  info               	: "HKLM\Software\Policies\Google\Chrome\CookiesSessionOnlyForUrls (DWORD:0)"
  value_type		: POLICY_DWORD
@@ -647,20 +619,20 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "CookiesSessionOnlyForUrls"
  reg_option		: CAN_BE_NULL
- severity: LOW
+ severity		: LOW
 </custom_item>
 
 ### NOT CURRENTLY A STIG CHECK
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "Chrome: Disable Proceed Anyways Option (NOT A STIG CHECK)"
+ description	        : "NO STIG ID: Disable Proceed Anyways Option"
  info               	: "Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DisableSafeBrowsingProceedAnyway (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "DisableSafeBrowsingProceedAnyway"
- severity: MEDIUM
+ severity		: MEDIUM
 </custom_item>
 
 </then>
