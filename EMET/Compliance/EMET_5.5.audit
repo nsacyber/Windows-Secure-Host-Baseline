@@ -1,10 +1,10 @@
 # EMET 5.5
-# Author: NSA Information Assurance
+# Author: IAD
 # Revision: 1.1	
 # Date: 05/06/2016
-# Guidance: https://github.com/iadgov/Secure-Host-Baseline/tree/master/EMET
+# NSA IA Guidance: https://github.com/iadgov/Secure-Host-Baseline/tree/master/EMET
 # Source: https://github.com/iadgov/Secure-Host-Baseline/EMET/Compliance/EMET_5.5.audit
-
+# DISA STIG: Aligns with EMET settings from the Windows 10 STIG version 1 release 4
 
 <check_type : "Windows" version : "2">
 <group_policy: "Enhanced Mitigation Experience Toolkit (EMET) v5.5">
@@ -35,18 +35,18 @@
 
 <custom_item>
  type            : AUDIT_POWERSHELL
- description     : "EMET 5.5 Installed"
+ description     : "WN10-EM-000005: EMET 5.5 Installed"
+ info		 : "STIG ID: V-63379  Severity: CAT I"
  value_type	 : POLICY_TEXT
  value_data	 : "5.5"
  powershell_args : "get-itemproperty HKLM:\Software\Wow6432Node\microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, InstallDate | where DisplayName -Like '*EMET 5.5*' | Select-Object -ExpandProperty DisplayVersion"
  only_show_cmd_output : YES
  check_type	: CHECK_EQUAL
- ##powershell_option : CAN_NOT_BE_NULL
 </custom_item>
 
 <custom_item>
  type			: REG_CHECK
- description	        : "EMET: Internet Explorer Protections Enabled"
+ description	        : "WN10-EM-000010: Internet Explorer Protections Enabled"
  info	                : "STIG ID: V-63387"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
@@ -60,7 +60,7 @@
 <condition type: "and">
 <custom_item>
  type			: REG_CHECK
- description	        : "EMET: Popular Software Protections Enabled"
+ description	        : "WN10-EM-000015: Popular Software Protections Enabled"
  info	                : "STIG ID: V-63391"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
@@ -70,7 +70,7 @@
 </custom_item>
 <custom_item>
  type			: REG_CHECK
- description	        : "EMET: Popular Software Protections Enabled"
+ description	        : "WN10-EM-000015: Popular Software Protections Enabled"
  info	                : "STIG ID: V-63391"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
@@ -81,13 +81,13 @@
 </condition>
 <then>
 	<report type: "PASSED">
-	description: "EMET: Popular Software Protections Enabled"
+	description: "WN10-EM-000015: Popular Software Protections Enabled"
 	info: "Severity: CAT II"
 	</report>
 </then>
 <else>
 	<report type: "FAILED">
-	description: "EMET: Popular Software Protections Enabled"
+	description: "WN10-EM-000015: Popular Software Protections Enabled"
 	info: "Severity: CAT II"
 	</report>
 </else>
@@ -98,7 +98,7 @@
 <condition type: "and">
 <custom_item>
  type			: REG_CHECK
- description	        : "EMET: Recommended Software Protections Enabled"
+ description	        : "WN10-EM-000020: Recommended Software Protections Enabled"
  info	                : "STIG ID: V-63397"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
@@ -108,7 +108,7 @@
 </custom_item>
 <custom_item>
  type			: REG_CHECK
- description	        : "EMET: Recommended Software Protections Enabled"
+ description	        : "WN10-EM-000020: Recommended Software Protections Enabled"
  info	                : "STIG ID: V-63397"
  value_type		: POLICY_TEXT
  value_data		: "HKLM\Software\Policies\Microsoft\EMET\Defaults"
@@ -119,13 +119,13 @@
 </condition>
 <then>
 	<report type: "PASSED">
-	description: "EMET: Recommended Software Protections Enabled"
+	description: "WN10-EM-000020: Recommended Software Protections Enabled"
 	info: "Severity: CAT II"
 	</report>
 </then>
 <else>
 	<report type: "FAILED">
-	description: "EMET: Recommended Software Protections Enabled"
+	description: "WN10-EM-000020: Recommended Software Protections Enabled"
 	info: "Severity: CAT II"
 	</report>
 </else>
@@ -133,8 +133,8 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: System-wide ASLR Set to Opt-In"
- info	                : "STIG ID: 43"
+ description	        : "WN10-EM-000025: System-wide ASLR Set to Opt-In"
+ info	                : "STIG ID: V-63401"
  value_type		: POLICY_DWORD
  value_data		: "3"
  reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
@@ -144,7 +144,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: System-wide DEP Set to Opt-Out"
+ description	        : "WN10-EM-000030: System-wide DEP Set to Opt-Out"
  info	                : "STIG ID: V-63407"
  value_type		: POLICY_DWORD
  value_data		: "2"
@@ -155,7 +155,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: System-wide SEHOP Set to Opt-Out"
+ description	        : "WN10-EM-000035: System-wide SEHOP Set to Opt-Out"
  info	                : "STIG ID: V-63411"
  value_type		: POLICY_DWORD
  value_data		: "2"
@@ -166,7 +166,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: AntiDetours Enabled"
+ description	        : "WN10-EM-000045: AntiDetours Enabled"
  info	                : "STIG ID: V-63425"
  value_type		: POLICY_DWORD
  value_data		: "1"
@@ -177,7 +177,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: BannedFunctions Enabled"
+ description	        : "WN10-EM-000050: BannedFunctions Enabled"
  info	                : "STIG ID: V-63433"
  value_type		: POLICY_DWORD
  value_data		: "1"
@@ -188,7 +188,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: DeepHooks Enabled"
+ description	        : "WN10-EM-000040: DeepHooks Enabled"
  info	                : "STIG ID: V-63417"
  value_type		: POLICY_DWORD
  value_data		: "1"
@@ -197,10 +197,10 @@
  severity		: MEDIUM
 </custom_item>
 
-# NOT A STIG SETTING
+# NOT CURRENTLY A STIG SETTING
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "EMET: ExploitAction Set to Block"
+ description	        : "NO STIG ID: Exploit Action Set to Block"
  value_type		: POLICY_DWORD
  value_data		: "2"
  reg_key		: "HKLM\Software\Policies\Microsoft\EMET\SysSettings"
@@ -211,7 +211,8 @@
 </then>
 <else>
 		<report type: "FAILED">
-		description: "EMET 5.5 NOT INSTALLED"
+		 description     : "WN10-EM-000005: EMET 5.5 Not Installed"
+ 		 info		 : "STIG ID: V-63379  Severity: CAT I"
 		</report>
 </else>
 </if>
