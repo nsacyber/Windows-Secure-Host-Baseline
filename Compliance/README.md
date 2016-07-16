@@ -17,7 +17,7 @@ Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in th
 1. On the **Compliance** tab, select **Windows** and then select **Upload a custom Windows audit file**
 1. Run the scan and review the results
 
-A paid version of Nessus Professional or Nessus Manager must be used in order to use .audit files with Nessus. Alternatively, you can use the provided PowerShell script to scan a single system.
+A paid version of Nessus Professional or Nessus Manager must be used in order to use .audit files with Nessus. The .audit files have been tested and work on Nessus Professional version 6.7. They may work on older versions as well but have not been tested. Alternatively, you can use the provided PowerShell script to locally scan a single system.
 
 ### Standalone Scan with PowerShell
 
