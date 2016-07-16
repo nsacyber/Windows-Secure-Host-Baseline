@@ -1,9 +1,9 @@
 # Windows 10 STIG
 # Author: IAD
-# Revision: 1.0.1
-# Date: 07/14/2016
+# Revision: 1.0.2
+# Date: 07/16/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/Windows 10.audit
-
+# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 4
 
 #--------------------------------------#
 #  ACL Permissions Templates
@@ -11,6 +11,26 @@
 
 <check_type	: "Windows" version : "2">
 <group_policy	: "Windows 10 STIG">
+
+<file_acl: "LOG_ACL">
+  <user: "Administrators">
+  acl_inheritance: "not inherited" 
+  acl_apply	: "This folder, subfolders and files" 
+  acl_allow	: "Full Control"
+ </user> 
+
+  <user: "SYSTEM">
+  acl_inheritance: "not inherited" 
+  acl_apply	: "This folder, subfolders and files" 
+  acl_allow	: "Full Control"
+ </user> 
+
+  <user: "Eventlog">
+  acl_inheritance: "not inherited" 
+  acl_apply	: "This folder, subfolders and files" 
+  acl_allow	: "Full Control"
+ </user> 
+</acl>
 
 <file_acl: "ROOT_ACL">
   <user: "Administrators">
@@ -890,24 +910,8 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 </custom_item>
 
 # STIG ID	: WN10-AU-000045
-#<custom_item>
-# type		: AUDIT_POLICY_SUBCATEGORY
-# description	: "WN10-AU-000045: The system must be configured to audit Detailed Tracking - PNP Activity successes."
-# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
-#
-#		Plug and Play activity records events related to the successful connection of external devices.
-#
-#		STIG ID: WN10-AU-000045
-#		Vuln ID:  V-63451
-# 		Rule ID:  SV-77941r1_rule
-#		Severity: CAT II"
-# value_type	: AUDIT_SET
-# value_data	: "Success"
-# audit_policy_subcategory: "Plug and Play Events"
-#</custom_item>
-
 <custom_item>
- type		: AUDIT_POWERSHELL
+ type		: AUDIT_POLICY_SUBCATEGORY
  description	: "WN10-AU-000045: The system must be configured to audit Detailed Tracking - PNP Activity successes."
  info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
 
@@ -917,9 +921,9 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 		Vuln ID:  V-63451
  		Rule ID:  SV-77941r1_rule
 		Severity: CAT II"
- value_type	: POLICY_TEXT
- value_data	: "True"
- powershell_args: "(auditpol /get /Category:* /r | select-string 'Plug and Play Events') -like '*Success*'"
+ value_type	: AUDIT_SET
+ value_data	: "Success" || "Success, Failure"
+ audit_policy_subcategory: "Plug and Play Events"
 </custom_item>
 
 # STIG ID	: WN10-AU-000050
@@ -952,29 +956,13 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  		Rule ID:  SV-77945r1_rule
 		Severity: CAT II"
  value_type	: AUDIT_SET 
- value_data	: "Success"
+ value_data	: "Success" || "Success, Failure"
  audit_policy_subcategory: "Account Lockout" 
 </custom_item>
 
 # STIG ID	: WN10-AU-000060
-#<custom_item>
-# type		: AUDIT_POLICY_SUBCATEGORY
-# description	: "WN10-AU-000060: The system must be configured to audit Logon/Logoff - Group Membership successes."
-# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
-#
-#		Audit Group Membership records information related to the group membership of a user's logon token.
-#
-#		STIG ID: WN10-AU-000060
-#		Vuln ID:  V-63457
-# 		Rule ID:  SV-77947r1_rule
-#		Severity: CAT II"
-# value_type	: AUDIT_SET
-# value_data	: "Success"
-# audit_policy_subcategory: "Group Membership"
-#</custom_item>
-
 <custom_item>
- type		: AUDIT_POWERSHELL
+ type		: AUDIT_POLICY_SUBCATEGORY
  description	: "WN10-AU-000060: The system must be configured to audit Logon/Logoff - Group Membership successes."
  info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior. 
 
@@ -984,9 +972,9 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 		Vuln ID:  V-63457
  		Rule ID:  SV-77947r1_rule
 		Severity: CAT II"
- value_type	: POLICY_TEXT
- value_data	: "True"
- powershell_args: "(auditpol /get /Category:* /r | select-string 'Group Membership') -like '*Success*'"
+ value_type	: AUDIT_SET
+ value_data	: "Success" || "Success, Failure"
+ audit_policy_subcategory: "Group Membership"
 </custom_item>
 
 # STIG ID	: WN10-AU-000065
@@ -1169,7 +1157,7 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  		Rule ID:  SV-77997r1_rule
 		Severity: CAT II"
  value_type	: AUDIT_SET
- value_data	: "Success"
+ value_data	: "Success" || "Success, Failure"
  audit_policy_subcategory: "Security State Change"
 </custom_item>
 
@@ -1271,52 +1259,53 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  check_type	: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
-#  Nessus may not have access to the following files to check permissions. 
+
+#  TODO Nessus may not have access to the following files to check permissions. 
 
 # STIG ID	: WN10-AU-000515
-#<custom_item>
-# type		: FILE_PERMISSIONS
-# description	: "WN10-AU-000515: Permissions for the Application event log must prevent access by non-privileged accounts."
-# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Application event log may be susceptible to tampering if proper permissions are not applied.
-#
-#		STIG ID: WN10-AU-000515
-#		Vuln ID:  V-63533
-#		Rule ID:  SV-78023r1_rule
-#		Severity: CAT II"	
-# value_type	: FILE_ACL
-# value_data	: "LOG"
-# file		: "%systemroot%\system32\winevt\Log\Application.evtx"
-#</custom_item>
+<custom_item>
+ type		: FILE_PERMISSIONS
+ description	: "WN10-AU-000515: Permissions for the Application event log must prevent access by non-privileged accounts."
+ info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Application event log may be susceptible to tampering if proper permissions are not applied.
+
+		STIG ID: WN10-AU-000515
+		Vuln ID:  V-63533
+		Rule ID:  SV-78023r1_rule
+		Severity: CAT II"	
+ value_type	: FILE_ACL
+ value_data	: "LOG_ACL"
+ file		: "%systemroot%\system32\winevt\Log\Application.evtx"
+</custom_item>
 
 # STIG ID	: WN10-AU-000520
-#<custom_item>
-# type		: FILE_PERMISSIONS
-# description	: "WN10-AU-000520: Permissions for the Security event log must prevent access by non-privileged accounts."
-# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Security event log may be susceptible to tampering if proper permissions are not applied.
-#
-#		STIG ID: WN10-AU-000520
-#		Vuln ID:  V-63537
-#		Rule ID:  SV-78073r1_rule
-# 		Severity: CAT II"	
-# value_type	: FILE_ACL
-# value_data	: "LOG"
-# file		: "%systemroot%\system32\winevt\Log\Security.evtx"
-#</custom_item>
+<custom_item>
+ type		: FILE_PERMISSIONS
+ description	: "WN10-AU-000520: Permissions for the Security event log must prevent access by non-privileged accounts."
+ info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Security event log may be susceptible to tampering if proper permissions are not applied.
+
+		STIG ID: WN10-AU-000520
+		Vuln ID:  V-63537
+		Rule ID:  SV-78073r1_rule
+ 		Severity: CAT II"	
+ value_type	: FILE_ACL
+ value_data	: "LOG_ACL"
+ file		: "%systemroot%\system32\winevt\Log\Security.evtx"
+</custom_item>
 
 # STIG ID	: WN10-AU-000525
-#<custom_item>
-# type		: FILE_PERMISSIONS
-# description	: "WN10-AU-000525: Permissions for the System event log must prevent access by non-privileged accounts."
-# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The System event log may be susceptible to tampering if proper permissions are not applied.
-#
-#		STIG ID: WN10-AU-000515
-#		Vuln ID:  V-63541
-#		Rule ID:  SV-780231r1_rule
-# 		Severity: CAT II"	
-# value_type	: FILE_ACL
-# value_data	: "LOG"
-# file		: "%systemroot%\system32\winevt\Log\System.evtx"
-#</custom_item>
+<custom_item>
+ type		: FILE_PERMISSIONS
+ description	: "WN10-AU-000525: Permissions for the System event log must prevent access by non-privileged accounts."
+ info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The System event log may be susceptible to tampering if proper permissions are not applied.
+
+		STIG ID: WN10-AU-000515
+		Vuln ID:  V-63541
+		Rule ID:  SV-780231r1_rule
+ 		Severity: CAT II"	
+ value_type	: FILE_ACL
+ value_data	: "LOG_ACL"
+ file		: "%systemroot%\system32\winevt\Log\System.evtx"
+</custom_item>
 
 
 #--------------------------------------#
@@ -2676,20 +2665,37 @@ a finding.
 #--------------------------------------#
 
 # STIG ID	: WN10-ER-000005
+<if>
+<condition type: "and">
 <custom_item>
  type		: AUDIT_POWERSHELL
- description	: "WN10-ER-000005: The Windows Error Reporting Service must be running and configured to start automatically." 
- info		: "Windows Error Reporting information can be used to help diagnose day-to-day software issues, as well as help discover malicious code and possibly zero-day attacks on systems.
-
-		STIG ID:  WN10-ER-000005
-		Vuln ID:  V-63437
-		Rule ID:  SV-77927r1_rule
- 		Severity: CAT II"
+ description	: "WN10-ER-000005: The Windows Error Reporting Service must be running."
  value_type	: POLICY_TEXT
  value_data	: "True"
- powershell_args: 'CgAoAEcAZQB0AC0AVwBtAGkATwBiAGoAZQBjAHQAIAAtAEMAbABhAHMAcwAgAFcAaQBuADMAMgBfAFMAZQByAHYAaQBjAGUAIAAtAFAAcgBvAHAAZQByAHQAeQAgAFMAdABhAHIAdABNAG8AZABlACAALQBGAGkAbAB0AGUAcgAgACIATgBhAG0AZQA9ACcAVwBlAHIAUwB2AGMAJwAiACAAfAAgAFMAZQBsAGUAYwB0AC0ATwBiAGoAZQBjAHQAIABTAHQAYQByAHQATQBvAGQAZQAgAHwAIABTAGUAbABlAGMAdAAtAE8AYgBqAGUAYwB0ACAALQBFAHgAcABhAG4AZABQAHIAbwBwAGUAcgB0AHkAIABTAHQAYQByAHQATQBvAGQAZQApACAALQBlAHEAIAAiAEEAdQB0AG8AIgAgAC0AYQBuAGQAIAAoACgARwBlAHQALQBTAGUAcgB2AGkAYwBlACAALQBOAGEAbQBlACAAJwBXAGUAcgBTAHYAYwAnACkALgBTAHQAYQB0AHUAcwApACAALQBlAHEAIAAiAFIAdQBuAG4AaQBuAGcAIgAKAA=='
- ps_encoded_args: YES
+ powershell_args: "(Get-Service -Name 'WerSvc').Status -eq 'Running'"
 </custom_item>
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "WN10-ER-000005: The Windows Error Reporting Service must be configured to start automatically."
+ value_type	: POLICY_DWORD
+ value_data	: 2
+ reg_key	: "HKLM\SYSTEM\CurrentControlSet\Services\WerSvc"
+ reg_item	: "Start"
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		 description     : "WN10-ER-000005: The Windows Error Reporting Service must be running and configured to start automatically"
+ 		 info		 : "Vuln ID:  V-63437  Severity: CAT II"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		 description     : "WN10-ER-000005: The Windows Error Reporting Service must be running and configured to start automatically"
+ 		 info		 : "Vuln ID:  V-63437  Severity: CAT II"
+		</report>
+</else>
+</if>
 
 # STIG ID	: WN10-ER-000010
 <custom_item>
