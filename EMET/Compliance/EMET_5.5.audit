@@ -1,7 +1,7 @@
 # EMET 5.5
-# Author: IAD
-# Revision: 1.1	
-# Date: 05/06/2016
+# Author: NSA Information Assurance
+# Revision: 1.0.2	
+# Date: 07/16/2016
 # NSA IA Guidance: https://github.com/iadgov/Secure-Host-Baseline/tree/master/EMET
 # Source: https://github.com/iadgov/Secure-Host-Baseline/EMET/Compliance/EMET_5.5.audit
 # DISA STIG: Aligns with EMET settings from the Windows 10 STIG version 1 release 4
