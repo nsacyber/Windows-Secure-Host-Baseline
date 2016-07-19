@@ -1,0 +1,15 @@
+{
+    "PolicyName":  "Adobe Reader",
+    "PolicyScopes":  [
+                         "Computer"
+                     ],
+    "PolicyTypes":  [
+                        "Domain",
+                        "Local"
+                    ],
+    "PolicyModes":  [
+                        "Audit",
+                        "Enforced"
+                    ],
+    "PolicyTemplatePath":  ".\\..\\..\\"
+}

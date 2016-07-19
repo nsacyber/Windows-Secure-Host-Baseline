@@ -1,0 +1,16 @@
+{
+    "PolicyName":  "Office",
+    "PolicyScopes":  [
+                         "Computer",
+                         "User"
+                     ],
+    "PolicyTypes":  [
+                        "Domain",
+                        "Local"
+                    ],
+    "PolicyModes":  [
+                        "Audit",
+                        "Enforced"
+                    ],
+    "PolicyTemplatePath":  ".\\..\\"
+}

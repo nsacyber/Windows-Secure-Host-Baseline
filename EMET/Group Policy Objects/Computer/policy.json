@@ -1,0 +1,15 @@
+{
+    "PolicyName":  "EMET",
+    "PolicyScopes":  [
+                         "Computer"
+                     ],
+    "PolicyTypes":  [
+                        "Domain",
+                        "Local"
+                    ],
+    "PolicyModes":  [
+                        "Audit",
+                        "Enforced"
+                    ],
+    "PolicyTemplatePath":  ".\\..\\..\\"
+}

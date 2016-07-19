@@ -1,0 +1,14 @@
+{
+    "PolicyName":  "AppLocker",
+    "PolicyScopes":  [
+                         "Computer"
+                     ],
+    "PolicyTypes":  [
+                        "Domain",
+                        "Local"
+                    ],
+    "PolicyModes":  [
+                        "Enforced"
+                    ],
+    "PolicyTemplatePath":  ".\\..\\..\\..\\..\\Windows\\"
+}
