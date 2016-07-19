@@ -58,6 +58,8 @@ To force an update check to occur within the 3 day time period, delete the follo
 
 The updater will also not execute if the Adobe Reader EULA has not been accepted which may result in some systems not getting updated. This behavior can be prevented by creating a **DWORD** registry value named **iDisableCheckEula** under **HKLM\Software\Adobe\Adobe ARM\1.0\ARM** and setting the value to **1**. This value can be configured using the provided Group Policy template.
 
+There is a log in each user's %TEMP% folder at **%TEMP%\AdobeARM.log** that can be used for troubleshooting the update process.
+
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)
 
