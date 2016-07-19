@@ -101,6 +101,7 @@ Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in th
 * [EMET](./EMET/Compliance/)
 * [Internet Explorer](./Internet Explorer/Compliance/)
 * [Windows](./Windows/Compliance/)
+* [Windows](./Windows Firewall/Compliance/)
 
 ## Importing a GPO
 Importing a GPO varies depending on whether it is being imported for a domain versus a standalone system.

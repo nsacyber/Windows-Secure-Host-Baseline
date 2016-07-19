@@ -6,6 +6,7 @@ Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in th
 * [EMET](./../EMET/Compliance/)
 * [Internet Explorer](./../Internet Explorer/Compliance/)
 * [Windows](./../Windows/Compliance/)
+* [Windows Firewall](./../Windows Firewall/Compliance/)
 
 ## Running Compliance Checks
 
@@ -24,16 +25,17 @@ A paid version of Nessus Professional or Nessus Manager must be used in order to
 The Test-Compliance command in the [Scripts\Compliance.ps1](./Scripts/Compliance.ps1) file can be used to verify system compliance against any of the above listed .audit files. This powershell script makes it simple to scan a single standalone system and verify a configuration has been applied correctly. The following instructions can be used to execute a compliance check locally.
 
 1. Open a PowerShell prompt as an administrator
-2. Change directory to the Compliance\Scripts directory (e.g. cd Secure-Host-Baseline\Compliance\Scripts)
-3. Dot source the script into the PowerShell session (e.g. . .\Compliance.ps1)
-4. Copy and paste the desired line(s) below into the PowerShell prompt and press Enter twice.
+1. Change directory to the Compliance\Scripts directory (e.g. cd Secure-Host-Baseline\Compliance\Scripts)
+1. Dot source the script into the PowerShell session (e.g. . .\Compliance.ps1)
+1. Copy and paste the desired line(s) below into the PowerShell prompt and press Enter twice.
 
 ```
-Test-Compliance "..\..\Adobe Reader\Compliance\AdobeReaderDC.audit"
-Test-Compliance "..\..\Chrome\Compliance\GoogleChrome.audit"
-Test-Compliance "..\..\EMET\Compliance\EMET_5.5.audit"
-Test-Compliance "..\..\Internet Explorer\Compliance\InternetExplorer11.audit"
-Test-Compliance "..\..\Windows\Compliance\Windows 10.audit"
+Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit'
+Test-Compliance -Path '..\..\Chrome\Compliance\GoogleChrome.audit'
+Test-Compliance -Path '..\..\EMET\Compliance\EMET_5.5.audit'
+Test-Compliance -Path '..\..\Internet Explorer\Compliance\InternetExplorer11.audit'
+Test-Compliance -Path '..\..\Windows\Compliance\Windows 10.audit'
+Test-Compliance -Path '..\..\Windows Firewall\Compliance\WindowsFirewall.audit'
 ```
 Below is a screenshot of the [Compliance.ps1](./Scripts/Compliance.ps1) script running the Internet Explorer audit file.
 ![compliance_script_example](./images/compliance_script_example.jpg?raw=true)
@@ -41,7 +43,7 @@ Below is a screenshot of the [Compliance.ps1](./Scripts/Compliance.ps1) script r
 The [Compliance.ps1](./Scripts/Compliance.ps1) script supports a verbose flag which will show details for checks that fail. Without the verbose flag a simple pass/fail is displayed for each compliance check as shown in image above. 
 
 ```
-Test-Compliance "..\..\Adobe Reader\Compliance\AdobeReaderDC.audit" -verbose
+Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit' -Verbose
 ```
 
 
