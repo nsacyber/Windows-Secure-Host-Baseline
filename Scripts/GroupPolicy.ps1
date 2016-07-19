@@ -172,6 +172,7 @@ Function Get-GPODefinitions() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
+    #todo: function documentation
 
     $policyFiles = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $false -and $_.Name -eq 'policy.json' }
 
@@ -257,6 +258,7 @@ Function Test-IsElevated() {
     #todo: function documentation
     #todo: P\Invoke OpenProcessToken, GetTokenInformation with TokenIntegrityLevel instead. TOKEN_GROUP.Groups (SID_AND_ATTRIBUTES) see https://msdn.microsoft.com/en-us/library/bb625963.aspx
 
+    #todo: abstract into generic Invoke-ExecuteProcess function
     $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
     $processInfo.FileName = 'whoami.exe'
     $processInfo.RedirectStandardError = $true 
@@ -373,6 +375,7 @@ Function Import-LocalPolicyObject() {
         [string]$PolicyPath
     )
     #todo: function documentation
+    #todo: use system.diagnostics
     Start-Process -FilePath $Path -ArgumentList "/g $PolicyPath" -Wait -WindowStyle Hidden # -NoNewWindow
 }
 
@@ -483,48 +486,21 @@ Function Invoke-ApplySecureHostBaseline() {
         throw 'Group Policy cmdlets must be installed'
     }
 
-    # these parens are important, don't remove them
+    # these parens are important, don't remove them otherwise Where-Object doesn't work, need to pipeline
     $policyDefinitions = (Get-GPODefinitions -Path $Path) | Where-Object{ $_.PolicyName -in $PolicyNames -and (@( Get-Intersection -Left ($PolicyScopes) -Right ($_.PolicyScopes)).Count -ge 1) -and $PolicyType -in $_.PolicyTypes -and $PolicyMode -in $_.PolicyModes}
-
-    # get SHB GPO template folders
-    #$gptFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Template*' }
-
-    # filter based on $PolicyName
-    #$gptNameFolders = $gptFolders | Where-Object { @( Get-Intersection -Left ([string[]]@($_.FullName -split '\\')) $PolicyName ).Count -ne 0 }
 
     $templateFolderPath = Get-GroupPolicyTemplateFolderPath -TemplatePathType $PolicyType
 
-    #todo: if existing template is different (use file size or hash) than the SHB template, then rename existing template first and then copy the template over
-    # use similar rename logic as described https://github.com/iadgov/Secure-Host-Baseline/blob/master/Scripts/GitHub.ps1#L672
-
     #todo: add domain and local folders in Windows GPO folder
-
-
-    # Windows Firewall is the only case where the folder is named 'Group Policy Object' instead of 'Group Policy Objects'
-    # Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Object*' } | ForEach-Object { $_.Parent }
-    #$gpoFolders = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -and $_.Name -like '*Group Policy Object*' -and $_.Parent -in $Policy }
-    #$gpoFolders = Get-GPOBackupFolders -Path $Path | Where-Object  { $_.FullName -match ".*\\$Policy\\.*"} #need to handle policy array
-    #$gpoFolders = Get-GPOBackupFolders -Path $Path | Where-Object  { $_.FullName -match ".*\\$Policy\\.*"} # Policy | ForEach { '\',$_,'\' -join '' }
-    #$gpoFolders = Get-GPOBackupFolders -Path $Path 
-
-    # get SHB GPO folders based on $PolicyName    
-    #$gpoNameFolders = $gpoFolders | Where-Object { @( Get-Intersection -Left ([string[]]@($_.FullName -split '\\')) $PolicyName ).Count -ne 0 }
-
-    # filter out folders based on $PolicyType
-    # this is tricky since some GPOs apply to both domain and local. we accomplish this by filter out folders that match the opposite of what we're looking for
-    #$typeFolders = $gpoNameFolders | Where-Object { @( Get-Intersection -Left ([string[]]@($_.FullName -split '\\')) @('DomainLocal'.Replace($PolicyType,'')) ).Count -eq 0 }
-
-    # filter out folders based on $PolicyMode
-    # 'flip' the PolicyMode value. this allows us to keep folders that don't have the value we're looking for along with the actual value
-    # keep all folders that don't contain audit. in effect, remove any folders that contain enforced which is the 'opposite' of audit
-    #$modeFolders | Where-Object { @( Get-Intersection -Left ([string[]]@($_.FullName -split '\\')) @('AuditEnforced'.Replace($PolicyMode,'')) ).Count -eq 0 }
 
     $policyDefinitions | ForEach-Object {
         #todo: backup current GPO based on $Policy and $PolicyType, might be only relevant for Local context
 
         #todo: for domain context we might want to see if GPO exists first, not sure if that is done by Name or GUID
 
-        #todo: import templates if they haven't been already
+        #todo: copy templates if they haven't been already
+        #todo: if existing template is different (use file size or hash) than the SHB template, then rename existing template first and then copy the template over
+        # use similar rename logic as described https://github.com/iadgov/Secure-Host-Baseline/blob/master/Scripts/GitHub.ps1#L672
 
         # import GPO based on on $Policy and $PolicyType
         #Import-PolicyObject -Path $_.PolicyObjectPath -PolicyType $PolicyType  
