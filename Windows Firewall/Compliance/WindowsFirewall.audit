@@ -1,0 +1,1107 @@
+# Windows Firewall
+# Author: NSA Information Assurance
+# Revision: 1.0.0	
+# Date: 07/17/2016
+# Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/WindowsFirewall.audit
+# DISA STIG: Aligns with Windows Firewall STIG Version 1 Release 3
+
+<check_type : "Windows" version : "2">
+<group_policy: "Windows Firewall">
+
+
+#### IS MACHINE DOMAIN JOINED
+<if>
+<condition type: "and">
+
+<custom_item>
+ type		: AUDIT_POWERSHELL
+ description	: "CHECK IF MACHINE IS DOMAIN JOINED"
+ value_type	: POLICY_TEXT
+ value_data	: "True"
+ powershell_args: "Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object -ExpandProperty PartOfDomain"
+</custom_item>
+
+<custom_item>
+ type		: AUDIT_POWERSHELL
+ description	: "CHECK IF MACHINE IS DOMAIN JOINED"
+ value_type	: POLICY_TEXT
+ value_data	: "True"
+ powershell_args: "Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object -ExpandProperty PartOfDomain"
+</custom_item>
+
+</condition>
+<then>
+ 
+####
+#### RECOMMENDED DOMAIN JOINED FIREWALL SETTING
+####
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000001: Domain Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000001: Domain Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000001: Domain Profile Enabled"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000001: Domain Profile Enabled"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000004: Domain Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000004: Domain Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000004: Domain Block Unsolicited Inbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000004: Domain Block Unsolicited Inbound Connections"
+		</report>
+</else>
+</if>
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000005: Domain Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000005: Domain Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000005: Domain Allow Outbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000005: Domain Allow Outbound Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000006: Domain Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000006: Domain Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000006: Domain Display Notifications"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000006: Domain Display Notifications"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000007: Domain Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000007: Domain Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000007: Domain Block Unicast Response"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000007: Domain Block Unicast Response"
+		</report>
+</else>
+</if>
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000008: Domain Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\domainfirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\domainfirewall.log"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000008: Domain Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\domainfirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\domainfirewall.log"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000008: Domain Log File"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000008: Domain Log File"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000009: Domain Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000009: Domain Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000009: Domain Log Size"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000009: Domain Log Size"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000010: Domain Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000010: Domain Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000010: Domain Log Dropped Packets"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000010: Domain Log Dropped Packets"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000011: Domain Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000011: Domain Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000011: Domain Log Successful Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000011: Domain Log Successful Connections"
+		</report>
+</else>
+</if>
+
+</then>
+<else>
+		<report type: "PASSED">
+		description: "WNFWA-000001: Domain Firewall Settings are N/A"
+		</report>
+</else>
+</if>
+
+
+####
+#### RECOMMENDED FIREWALL SETTING
+####
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000002: Private Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000002: Private Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000002: Private Profile Enabled"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000002: Private Profile Enabled"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000012: Private Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000012: Private Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000012: Private Block Unsolicited Inbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000012: Private Block Unsolicited Inbound Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000013:Private Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000013:Private Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000013:Private Allow Outbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000013:Private Allow Outbound Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000014: Private Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000014: Private Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000014: Private Display Notifications"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000014: Private Display Notifications"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000015: Private Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000015: Private Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000015: Private Block Unicast Response"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000015: Private Block Unicast Response"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000016: Private Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\privatefirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\privatefirewall.log"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000016: Private Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\privatefirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\privatefirewall.log"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000016: Private Log File"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000016: Private Log File"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000017: Private Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000017: Private Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000017: Private Log Size"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000017: Private Log Size"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000018: Private Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000018: Private Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000018: Private Log Dropped Packets"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000018: Private Log Dropped Packets"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000019: Private Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000019: Private Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000019: Private Log Successful Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000019: Private Log Successful Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000003: Public Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000003: Public Profile Enabled"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\EnableFirewall (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\"
+ reg_item		: "EnableFirewall"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000003: Public Profile Enabled"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000003: Public Profile Enabled"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000020: Public Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000020: Public Block Unsolicited Inbound Connections"
+ info               	: "Severity: CAT I"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\DefaultInboundAction (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\"
+ reg_item		: "DefaultInboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000020: Public Block Unsolicited Inbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000020: Public Block Unsolicited Inbound Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000021: Public Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000021: Public Allow Outbound Connections"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\DefaultOutboundAction (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\"
+ reg_item		: "DefaultOutboundAction"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000021: Public Allow Outbound Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000021: Public Allow Outbound Connections"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000022: Public Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000022: Public Display Notifications"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\DisableNotifications (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\"
+ reg_item		: "DisableNotifications"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000022: Public Display Notifications"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000022: Public Display Notifications"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000023: Public Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000023: Public Block Unicast Response"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\DisableUnicastResponsesToMulticastBroadcast (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\"
+ reg_item		: "DisableUnicastResponsesToMulticastBroadcast"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000023: Public Block Unicast Response"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000023: Public Block Unicast Response"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000026: Public Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\publicfirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\publicfirewall.log"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000026: Public Log File"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\publicfirewall.log)"
+ value_type		: POLICY_TEXT
+ value_data		: "%systemroot%\system32\logfiles\firewall\publicfirewall.log"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\"
+ reg_item		: "LogFilePath"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000026: Public Log File"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000026: Public Log File"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000027: Public Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000027: Public Log Size"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
+ value_type		: POLICY_DWORD
+ value_data		: 16384
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\"
+ reg_item		: "LogFileSize"
+ severity		: MEDIUM
+ check_type		: CHECK_GREATER_THAN_OR_EQUAL
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000027: Public Log Size"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000027: Public Log Size"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000028: Public Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000028: Public Log Dropped Packets"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogDroppedPackets (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\"
+ reg_item		: "LogDroppedPackets"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000028: Public Log Dropped Packets"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000028: Public Log Dropped Packets"
+		</report>
+</else>
+</if>
+
+
+<if>
+<condition type: "or">
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000029: Public Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000029: Public Log Successful Connections"
+ info               	: "Severity: CAT III"
+ info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogSuccessfulConnections (DWORD:1)"
+ value_type		: POLICY_DWORD
+ value_data		: "1"
+ reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\"
+ reg_item		: "LogSuccessfulConnections"
+ severity		: MEDIUM
+</custom_item>
+</condition>
+<then>
+		<report type: "PASSED">
+		description: "WNFWA-000029: Public Log Successful Connections"
+		</report>
+</then>
+<else>
+		<report type: "FAILED">
+		description: "WNFWA-000029: Public Log Successful Connections"
+		</report>
+</else>
+</if>
+
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000024: Public Local Firewall Rules"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\AllowLocalPolicyMerge (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "AllowLocalPolicyMerge"
+ severity		: MEDIUM
+</custom_item>
+
+<custom_item>
+ type			: REGISTRY_SETTING
+ description	        : "WNFWA-000025: Public Local Connection Rules"
+ info               	: "Severity: CAT II"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\AllowLocalIPsecPolicyMerge (DWORD:0)"
+ value_type		: POLICY_DWORD
+ value_data		: "0"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\"
+ reg_item		: "AllowLocalIPsecPolicyMerge"
+ severity		: MEDIUM
+</custom_item>
+
+</group_policy>
+</check_type>
