@@ -34,7 +34,7 @@ Questions or comments can be submitted to the [issue tracker](https://github.com
 ### Group Policy Objects
 
 * The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group Policy Objects/User) and [Computer](./Windows/Group Policy Objects/Computer/) policies for the latest version of Windows 10.
-* The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group Policy Object/Computer/) policy for the latest version of Windows 10.
+* The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [AppLocker folder](./AppLocker/README.md) contains AppLocker [Computer](./AppLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [BitLocker folder](./BitLocker/README.md) contains BitLocker [Computer](./BitLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [EMET folder](./EMET/README.md) contains EMET 5.5 [Computer](./EMET/Group Policy Objects/Computer/) policy for any version of Windows.
