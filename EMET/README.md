@@ -3,6 +3,7 @@
 
 
 EMET 5.5 added official support for Windows 10. Other significant changes of interest in EMET 5.5 are:
+
 1. Full support for configuring all EMET features through Group Policy.
 1. Changing the system DEP setting through Group Policy no longer causes a BitLocker key recovery prompt since the DEP setting is no longer changed in that case.
 1. The ability to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings.
@@ -11,9 +12,9 @@ Note that EMET 5.5 supports ends on [January 27, 2017](https://support.microsoft
 
 ## Downloads for EMET 5.5
 
-* [EMET 5.5](https://www.microsoft.com/en-us/download/details.aspx?id=50766) 
-* [EMET 5.5 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802) 
-* [EMET 5.5 converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True) 
+* [EMET 5.5](https://www.microsoft.com/en-us/download/details.aspx?id=50766)
+* [EMET 5.5 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802)
+* [EMET 5.5 converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True)
 
 ## Updating the EMET Group Policy templates
 
@@ -24,20 +25,20 @@ The latest version of the Group Policy template files for EMET are included in *
 
 The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
 
-### Updating the EMET Group Policy templates for a domain 
+### Updating the EMET Group Policy templates for a domain
 
 If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **EMET.admx** file to **\\\\_Fully Qualified Domain Name_\SYSVOL\\_Fully Qualified Domain Name_\Policies\PolicyDefinitions\\** and copy the **EMET.adml** file to **\\\\_Fully Qualified Domain Name_\SYSVOL\\_Fully Qualified Domain Name_\Policies\PolicyDefinitions\en-us\\**
 
 
 If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **EMET.admx** file to **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, and copy the **EMET.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
-### Updating the EMET Group Policy templates for a standalone system 
+### Updating the EMET Group Policy templates for a standalone system
 
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **EMET.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **EMET.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
 ## EMET configuration tips
 In EMET 5.5 the Application Configuration policy setting can be used to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings. Prior to EMET 5.5 administrators would have likely directly edited the EMET.admx file to make changes but that is no longer necessary. The following examples assume these EMET Group Policy settings are enabled:
-* Default Protections for Internet Explorer 
+* Default Protections for Internet Explorer
 * Default Protections for Popular Software
 * Default Protections for Recommended Software
 
@@ -55,8 +56,8 @@ Assuming the above policies are enabled, the following example overrides Interne
 1. Run **gpupdate /force** from the command line on a test system
 
 
-Another common scenario is using ASR to temporarily disable Flash due to a zero day. Changing the ASR configuration can be used to block Flash from loading in Internet Explorer. Follow the same steps above but change the **Value** entry for Internet Explorer to 
-**+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx asr_zones:1;2** to block Flash from loading in Internet Explorer. 
+Another common scenario is using ASR to temporarily disable Flash due to a zero day. Changing the ASR configuration can be used to block Flash from loading in Internet Explorer. Follow the same steps above but change the **Value** entry for Internet Explorer to
+**+ASR asr_modules:npjpi\*.dll;jp2iexp.dll;vgx.dll;msxml4\*.dll;wshom.ocx;scrrun.dll;vbscript.dll;Flash\*.ocx asr_zones:1;2** to block Flash from loading in Internet Explorer.
 
 
 Note that the asr_zones option **exempts** certain Internet Explorer security zones from ASR protection. The values for the asr_zones option are:
@@ -131,7 +132,7 @@ Another application whitelisting bypass technique uses rundll32.exe to execute J
 You can also use **+ASR asr_modules:mshtml.dll;jscript\*.dll** for step 6 but that may block too many legitimate use cases of regsvr32 loading jscript. Administrators may want to test with both combinations to determine the operational impact from additionally blocking jscript from loading.
 
 ### Blocking malicious OLE packages in Microsoft Office products
-Object Linking and Embedding (OLE) packages can be used to embed executable content in Microsoft Office documents. OLE packages have been shown to be useful in [executing potentially malicious content that Outlook would normally prevent](https://medium.com/@networksecurity/oleoutlook-bypass-almost-every-corporate-security-control-with-a-point-n-click-gui-37f4cbc107d0). The configuration below overrides the built-in default EMET policies for Excel, PowerPoint, Word, Outlook, InfoPath, Publisher, and Visio by adding the OLE unpacking library to the list of modules to block from loading. This configuration prevents this technique from being used in those applications. 
+Object Linking and Embedding (OLE) packages can be used to embed executable content in Microsoft Office documents. OLE packages have been shown to be useful in [executing potentially malicious content that Outlook would normally prevent](https://medium.com/@networksecurity/oleoutlook-bypass-almost-every-corporate-security-control-with-a-point-n-click-gui-37f4cbc107d0). The configuration below overrides the built-in default EMET policies for Excel, PowerPoint, Word, Outlook, InfoPath, Publisher, and Visio by adding the OLE unpacking library to the list of modules to block from loading. This configuration prevents this technique from being used in those applications.
 
 1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
