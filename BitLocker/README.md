@@ -2,6 +2,8 @@
 
 [Microsoft BitLocker](https://technet.microsoft.com/en-us/library/cc731549.aspx) is a full volume encryption feature built into Windows. BitLocker is intended to protect data on devices that have been lost or stolen. BitLocker is available in the Ultimate and Enterprise editions of Windows Vista and Windows 7 and in the Professional and Enterprise editions of Windows 8 and later. A [Group Policy Object](./Group Policy Objects/Computer/) for BitLocker is included in the SHB. The Group Policy Object contains recommended security settings for BitLocker on Windows 10 Version 1511 and later.
 
+[NIST](http://www.nist.gov/) [FIPS 140-2](http://csrc.nist.gov/groups/STM/cmvp/index.html) validation of Windows 10 BitLocker modules was completed on June 2, 2016 as evidenced in certificate numbers [2601](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2601), [2602](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2602), and [2603](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2603).
+
 ## Importing the BitLocker Group Policy
 
 ### Importing the BitLocker domain Group Policy
