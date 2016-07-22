@@ -37,7 +37,7 @@ Function Test-RegistryValue() {
     Test-RegistryValue 'hklm' 'Software\Microsoft\Windows\CurrentVersion' 'ProgramFilesDir'
     #>
     [CmdletBinding()]
-    [OutputType([System.Boolean])]
+    [OutputType([bool])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The registry hive to check.')]
         [ValidateNotNullOrEmpty()]
@@ -63,13 +63,40 @@ Function Test-RegistryValue() {
     return $exists
 }
 
+Function Test-WindowsOptionalFeature() {
+    <#
+    .SYNOPSIS
+    Test whether a Windows feature exists.
+
+    .DESCRIPTION
+    Tests whether a Windows feature exists.
+
+    .PARAMETER FeatureName
+    The feature name to check.
+
+    .EXAMPLE
+    Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol'
+    #>
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The feature name to check.')]
+        [ValidateNotNullOrEmpty()]
+        [string]$FeatureName
+    )
+
+    $present = (Get-WindowsOptionalFeature -Online -FeatureName $FeatureName -ErrorAction SilentlyContinue) -ne $null
+
+    return $present
+}
+
 Function Uninstall-Powershell2() {
     <#
     .SYNOPSIS
-    Uninstalls PowerShell 2.0.
+    Uninstalls PowerShell 2.0 engine.
 
     .DESCRIPTION
-    Uninstalls PowerShell 2.0 to prevent downgrade to avoid PowerShell script blocking logging introduced in PowerShell 5.0.
+    Uninstalls PowerShell 2.0 engine in order to prevent downgrading to using the PowerShell 2.0 engine which can be used to avoid PowerShell script blocking logging introduced in PowerShell 5.0.
 
     .EXAMPLE
     Uninstall-PowerShell2
@@ -80,7 +107,9 @@ Function Uninstall-Powershell2() {
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
-    Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue | Out-Null
+    if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
+        Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue | Out-Null
+    }
 }
 
 Function Uninstall-SMB1() {
@@ -100,7 +129,9 @@ Function Uninstall-SMB1() {
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
-    Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart | Out-Null
+    if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
+        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart | Out-Null
+    }
 }
 
 Function Disable-NetBIOS() {
