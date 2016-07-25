@@ -14,6 +14,9 @@ In [some](https://support.microsoft.com/en-us/kb/3077013) [cases](https://social
 ## Hardware
 See the [Hardware page](./../Hardware/README.md) for more information about hardware and firmware requirements to take full advantage of Windows 10 security features.
 
+## Remove Legacy Features
+It is highly recommended to remove legacy features and protocols as known and unknown vulnerabilities in them expose the network to severe risk. NSA Information Assurance has issued security guidance for the removal of [Outdated Software and Protocols](https://www.iad.gov/iad/library/ia-advisories-alerts/outdated-software-and-protocols-update.cfm). The [RemoveLegacyComponents.ps1](./Scripts/RemoveLegacyComponents.ps1) script can be used to help with the removal of legacy components from Windows 10, like PowerShell 2.0, SMBv1, and NetBIOS.
+
 ## Downloads for Windows 10
 * [Group Policy templates](https://www.microsoft.com/en-us/download/details.aspx?id=48257)
 * [Group Policy reference](https://www.microsoft.com/en-us/download/details.aspx?id=25250)
