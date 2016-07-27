@@ -1580,6 +1580,24 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  reg_item	: "AutoConnectAllowedOEM"
 </custom_item>	
 
+# STIG ID	: WN10-CC-000066
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "WN10-CC-000066: Command line data must be included in process creation events."
+ info 		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+		Enabling Include command line data for process creation events will record the command line information with the process creation events in the log. This can provide additional detail when malware has run on a system.
+
+		STIG ID: WN10-CC-000066
+		Vuln ID:  V-68817
+		Rule ID:  SV-83409r1_rule
+ 		Severity: CAT II"
+ value_type	: POLICY_DWORD
+ value_data	: 1
+ reg_key	: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\"
+ reg_item	: "ProcessCreationIncludeCmdLine_Enabled"
+</custom_item>	
+
 # STIG ID	: WN10-CC-000070
 <custom_item>
  type		: AUDIT_POWERSHELL
@@ -2550,6 +2568,23 @@ a finding.
  value_data	: 1
  reg_key	: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\"
  reg_item	: "DisableAutomaticRestartSignOn"
+</custom_item>
+
+# STIG ID	: WN10-CC-000326
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "WN10-CC-000326: PowerShell script block logging must be enabled."
+ info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case 
+		  the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+		STIG ID: WN10-CC-000326
+		Vuln ID:  V-68819
+		Rule ID:  SV-83411r1_rule
+ 		Severity: CAT II"
+ value_type	: POLICY_DWORD
+ value_data	: 1
+ reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\"
+ reg_item	: "EnableScriptBlockLogging"
 </custom_item>
 
 # STIG ID	: WN10-CC-000330
