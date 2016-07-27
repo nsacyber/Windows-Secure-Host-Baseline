@@ -1,7 +1,7 @@
 # Internet Explorer 11
-# Author: IAD
-# Revision: 1.0	
-# Date: 05/10/2016
+# Author: NSA Information Assurance
+# Revision: 1.0.1
+# Date: 07/27/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Internet Explorer/Compliance/InternetExplorer11.audit
 
 <check_type : "Windows" version : "2">
@@ -54,13 +54,14 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description    : "The Internet Explorer SSL/TLS parameter must be set correctly"
+ description    : "DTBI014-IE11: Turn off Encryption Support must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\SecureProtocols"
  info		: "STIG ID: V-46473, CAT II"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings"
  reg_item	: "SecureProtocols"
- value_data	: "2688" || "2560" || "2176" || "2048" || "640" || "512" || "128"
+# value_data	: "2688" || "2560" || "2176" || "2048" || "640" || "512" || "128"
+ value_data	: "2688" 
  check_type	: CHECK_EQUAL
  severity	: MEDIUM
  reg_option	: CAN_NOT_BE_NULL
@@ -68,7 +69,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "The warning about certificate address mismatch must be enforced"
+ description	: "DTBI015-IE11: The Internet Explorer warning about certificate address mismatch must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\WarnOnBadCertRecving"
  info		: "STIG ID: V-46475, CAT II"
  value_type	: POLICY_DWORD
@@ -82,7 +83,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Prevent ignoring certificate errors"
+ description	: "DTBI1075-IE11:Prevent ignoring certificate errors option must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\PreventIgnoreCertErrors"
  info		: "STIG ID: V-64717, CAT II"
  value_type	: POLICY_DWORD
@@ -97,7 +98,7 @@
 ## For forensics, not security
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Histroy: Days to keep pages in history set to 40"
+ description	: "DTBI300-IE11: Configuring History setting must be set to 40 days."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Url History\DaysToKeep"
  info		: "STIG ID: V-46609, CAT II" 
  value_type	: POLICY_DWORD
@@ -111,21 +112,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "History: Disable Configuring History"
- info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Control Panel\History"
- info		: "STIG ID: V-46609, CAT II"  
- value_type	: POLICY_DWORD
- reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Control Panel"
- reg_item	: "History"
- value_data	: "1"
- check_type	: CHECK_EQUAL
- severity	: MEDIUM
- reg_option	: CAN_NOT_BE_NULL
-</custom_item>
-
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "Deleting websites that the user has visited must be disallowed"
+ description	: "DTBI770-IE11: Deleting websites that the user has visited must be disallowed."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Privacy\CleanHistory"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Privacy"
@@ -138,7 +125,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Browser must retain history on exit"
+ description	: "DTBI760-IE11: Browser must retain history on exit."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Privacy\ClearBrowsingHistoryOnExit"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Privacy"
@@ -151,7 +138,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	:  "Disable InPrivate Browsing"
+ description	: "DTBI780-IE11: InPrivate Browsing must be disallowed."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Policy\EnableInPrivateBrowsing"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Privacy"
@@ -164,7 +151,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Participation in the Customer Experience Improvement Program must be disallowed"
+ description	: "DTBI315-IE11: Participation in the Customer Experience Improvement Program must be disallowed"
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\SQM\DisableCustomerImprovementProgram"
  info		: "STIG ID: V-46613, CAT II" 
  value_type	: POLICY_DWORD
@@ -178,7 +165,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Turn off Crash Detection"
+ description	: "DTBI715-IE11: Crash Detection management must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Restrictions\NoCrashDetection"
  info		: "STIG ID: V-46811, CAT II" 
  value_type	: POLICY_DWORD
@@ -192,21 +179,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Ability for users to enable or disable add-ons must be managed"
- info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Restrictions\NoExtensionManagement"
- info		: "STIG ID: V-46809, CAT II" 
- value_type	: POLICY_DWORD
- reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Restrictions"
- reg_item	: "NoExtensionManagement"
- value_data	: "1"
- check_type	: CHECK_NOT_EQUAL
- severity	: LOW
- reg_option	: CAN_BE_NULL
-</custom_item>
-
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "Do not allow users to add/delete sites"
+ description	: "DTBI318-IE11: Internet Explorer must be set to disallow users to add/delete sites."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Security_zones_map_edit"
  info		: "STIG ID: V-46617, CAT II" 
  value_type	: POLICY_DWORD
@@ -220,7 +193,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Do not allow users to change policies"
+ description	: "DTBI319-IE11: Internet Explorer must be configured to disallow users to change policies."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Security_options_edit"
  info		: "STIG ID: V-46615, CAT II" 
  value_type	: POLICY_DWORD
@@ -234,7 +207,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Use only machine settings"
+ description	: "DTBI320-IE11: Internet Explorer must be configured to use machine settings."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Security_HKLM_only"
  info		: "STIG ID: V-46619, CAT II" 
  value_type	: POLICY_DWORD
@@ -248,7 +221,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Turn on Enhanced Protected Mode"
+ description	: "DTBI995-IE11: Enhanced Protected Mode functionality must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\Isolation"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main"
@@ -261,7 +234,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Enhanced Protect Mode for 64-bit tab processes"
+ description	: "DTBI356-IE11: The 64-bit tab processes, when running in Enhanced Protected Mode on 64-bit versions of Windows, must be turned on."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main"
@@ -274,7 +247,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Do not allow ActiveX controls to run in Protected Mode when Enhanced Protected Mode is enabled"
+ description	: "DTBI985-IE11: When Enhanced Protected Mode is enabled, ActiveX controls must be disallowed to run in Protected Mode."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\DisableEPMCompat"
  info		: "STIG ID: V-46975, CAT II" 
  value_type	: POLICY_DWORD
@@ -288,7 +261,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Prevent per-user installation of ActiveX controls"
+ description	: "DTBI1070-IE11: Prevent per-user installation of ActiveX controls must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Security\ActiveX\BlockNonAdminActiveXInstall"
  info		: "STIG ID: V-64715, CAT II"
  value_type	: POLICY_DWORD
@@ -302,7 +275,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Security checking features must be enforced"
+ description	: "DTBI325-IE11: Security checking features must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Security\DisableSecuritySettingsCheck"
  info		: "STIG ID: V-46621, CAT II" 
  value_type	: POLICY_DWORD
@@ -316,7 +289,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Software must be disallowed to run or install with invalid signatures"
+ description	: "DTBI350-IE11: Software must be disallowed to run or install with invalid signatures."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Download\RunInvalidSignatures"
  info		: "STIG ID: V-46625, CAT II" 
  value_type	: POLICY_DWORD
@@ -330,7 +303,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Check for signatures on downloaded programs"
+ description	: "DTBI370-IE11: Checking for signatures on downloaded programs must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Download\CheckExeSignatures"
  info		: "STIG ID: V-46633, CAT II" 
  value_type	: POLICY_TEXT
@@ -344,7 +317,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Check for server certificate revocation"
+ description	: "DTBI365-IE11: Checking for server certificate revocation must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\CertificateRevocation"
  info		: "STIG ID: V-46629, CAT II" 
  value_type	: POLICY_DWORD
@@ -358,7 +331,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "All network paths (UNCs) for Intranet sites must be disallowed"
+ description	: "DTBI375-IE11: All network paths (UNCs) for Intranet sites must be disallowed."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\UNCAsIntranet"
  info		: "STIG ID: V-46635, CAT II" 
  value_type	: POLICY_DWORD
@@ -373,7 +346,7 @@
 ## Smart Screen
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Prevent SmartScreen Filter from being disabled"
+ description	: "DTBI740-IE11: Managing SmartScreen Filter use must be enforced."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter\EnabledV9" 
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter"
@@ -386,7 +359,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Prevent Bypassing SmartScreen Filter Warnings"
+ description	: "DTBI1060-IE11: Prevent bypassing SmartScreen Filter warnings must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter\PreventOverride"
  info		: "STIG ID: V-64711, CAT II"  
  value_type	: POLICY_DWORD
@@ -400,7 +373,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Prevent bypassing SmartScreen Filter warnings about files not commonly downloaded"
+ description	: "DTBI1065-IE11: Prevent bypassing SmartScreen Filter warnings about files that are not commonly downloaded from the internet must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter\PreventOverrideAppRepUnknown"
  info		: "STIG ID: V-64713, CAT II"  
  value_type	: POLICY_DWORD
@@ -412,10 +385,11 @@
  reg_option	: CAN_NOT_BE_NULL
 </custom_item>
 
+
 #STIG ID V-46477, but HKCU so can not be checked by nessus
 #<custom_item>
 # type		: REGISTRY_SETTING
-# description: "Check for publishers certificate revocation must be enforced.- 65536"
+# description	: "DTBI018-IE11: Check for publishers certificate revocation must be enforced."
 # info		: "HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing"
 # value_type	: POLICY_DWORD
 # reg_key	: "HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing"
@@ -429,7 +403,7 @@
 #STIG ID V-46807, but HKCU so can not be checked by nessus
 #<custom_item>
 # type		: REGISTRY_SETTING
-# description	: "Disable AutoComplete for forms"
+# description	: "DTBI690-IE11: AutoComplete feature for forms must be disallowed."
 # info		: "HKCU\Software\Policies\Microsoft\Internet Explorer\Control Panel\FormSuggest"
 # value_type	: POLICY_DWORD
 # reg_key	: "HKCU\Software\Policies\Microsoft\Internet Explorer\Control Panel"
@@ -442,7 +416,7 @@
 
 #<custom_item>
 # type		: REGISTRY_SETTING
-# description	: "Turn on the auto-complete feature for user names and passwords on forms"
+# description	: "DTBI725-IE11: Turn on the auto-complete feature for user names and passwords on forms must be disabled."
 # info		: "HKCU\Software\Policies\Microsoft\Internet Explorer\Main\FormSuggest Passwords"
 # value_type	: POLICY_TEXT
 # reg_key	: "HKCU\Software\Policies\Microsoft\Internet Explorer\Main"
@@ -456,12 +430,12 @@
 #STIG ID V-64729
 #<custom_item>
 # type		: REGISTRY_SETTING
-# description	: "Prevent SSL 3.0 Fallback"
+# description	: "DTBI1100-IE11: Allow Fallback to SSL 3.0 (Internet Explorer) must be disabled."
 # info		: "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 # value_type	: POLICY_DWORD
 # reg_key	: "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
-# reg_item	: "EnableSSL3Fallback"
-# value_data	: "0"
+# reg_item	: "SecureProtocols"
+# value_data	: "2688"
 # check_type	: CHECK_EQUAL
 # severity	: MEDIUM
 # reg_option	: CAN_NOT_BE_NULL
@@ -473,7 +447,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict ActiveX Install - iexplore.exe"
+ description	: "DTBI1020-IE11: Internet Explorer Processes Restrict ActiveX Install must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL\iexplore.exe"
  info		: "STIG ID: V-46553, CAT II"
  value_type	: POLICY_TEXT
@@ -487,7 +461,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict ActiveX Install - explorer.exe"
+ description	: "DTBI1010-IE11: Internet Explorer Processes Restrict ActiveX Install must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL\explorer.exe"
  info		: "STIG ID: V-46549, CAT II"
  value_type	: POLICY_TEXT
@@ -501,7 +475,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict ActiveX Install - reserved"
+ description	: "DTBI900-IE11: Internet Explorer Processes Restrict ActiveX Install must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL\(Reserved)"
  info		: "REG_SZ:1, STIG-ID: DTBI900, NIST Controls: CP-9"
  value_type	: POLICY_TEXT
@@ -515,7 +489,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME handling must be enforced - explorer.exe"
+ description	: "DTBI592-IE11: Internet Explorer Processes for MIME handling must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING"
@@ -528,7 +502,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME handling must be enforced - iexplore.exe"
+ description	: "DTBI594-IE11:Internet Explorer Processes for MIME handling must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING"
@@ -541,7 +515,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME handling must be enforced - reserved"
+ description	: "DTBI590-IE11:  Internet Explorer Processes for MIME handling must be enforced. (Reserved)"
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING\(Reserved)"
  info		: "REG_SZ:1"
  value_type	: POLICY_TEXT
@@ -555,7 +529,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME sniffing must be enforced - explorer.exe"
+ description	: "DTBI596-IE11: Internet Explorer Processes for MIME sniffing must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING"
@@ -568,7 +542,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME sniffing must be enforced - iexplore.exe"
+ description	: "DTBI597-IE11: Internet Explorer Processes for MIME sniffing must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING"
@@ -581,7 +555,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MIME sniffing must be enforced - reserved"
+ description	: "DTBI595-IE11:  Internet Explorer Processes for MIME sniffing must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING\(Reserved)"
  info		: "REG_SZ:1"
  value_type	: POLICY_TEXT
@@ -596,7 +570,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MK protocol disabled must be enforced - explorer.exe"
+ description	: "DTBI600-IE11: Internet Explorer Processes for MK protocol must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL"
@@ -609,7 +583,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MK protocol disabled must be enforced - iexplore.exe"
+ description	: "DTBI605-IE11: Internet Explorer Processes for MK protocol must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL"
@@ -622,7 +596,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: MK protocol disabled must be enforced - reserved"
+ description	: "DTBI599-IE11:  Internet Explorer Processes for MK protocol must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL\(Reserved)"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL"
@@ -635,7 +609,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Zone Elevation protection must be enforced - explorer.exe"
+ description	: "DTBI612-IE11:  Internet Explorer Processes for Zone Elevation must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION"
@@ -648,7 +622,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Zone Elevation protection must be enforced - iexplore.exe"
+ description	: "DTBI614-IE11:  Internet Explorer Processes for Zone Elevation must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION"
@@ -661,7 +635,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Zone Elevation protection must be enforced - reserved"
+ description	: "DTBI610-IE11: Internet Explorer Processes for Zone Elevation must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION\(Reserved)"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION"
@@ -674,7 +648,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict File Download must be enforced - explorer.exe"
+ description	: "DTBI635-IE11: Internet Explorer Processes for Restrict File Download must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD"
@@ -687,7 +661,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict File Download must be enforced - iexplore.exe"
+ description	: "DTBI640-IE11: Internet Explorer Processes for Restrict File Download must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD"
@@ -700,7 +674,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restrict File Download must be enforced - reserved"
+ description	: "DTBI630-IE11: Internet Explorer Processes for Restrict File Download must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD\(Reserved)"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD"
@@ -713,7 +687,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting pop-up windows - explorer.exe"
+ description	: "DTBI647-IE11: Internet Explorer Processes for restricting pop-up windows must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS"
@@ -726,7 +700,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting pop-up windows - iexplore.exe"
+ description	: "DTBI649-IE11: Internet Explorer Processes for restricting pop-up windows must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS\iexplore.exe"
  info		: "REG_SZ:1, STIG-ID: DTBI649, NIST Controls: CM-6"
  value_type	: POLICY_TEXT
@@ -740,7 +714,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting pop-up windows - reserved"
+ description	: "DTBI645-IE11: Internet Explorer Processes for restricting pop-up windows must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS\(Reserved)"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS"
@@ -753,7 +727,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting Notification Bars must be enforced - explorer.exe"
+ description	: "DTBI825-IE11: Internet Explorer Processes for Notification Bars must be enforced (Explorer)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND\explorer.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND"
@@ -766,7 +740,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting Notification Bars must be enforced - iexplore.exe"
+ description	: "DTBI835-IE11:  Internet Explorer Processes for Notification Bars must be enforced (iexplore)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND\iexplore.exe"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND"
@@ -779,7 +753,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "FC: Restricting Notification Bars must be enforced - reserved"
+ description	: "DTBI815-IE11:  Internet Explorer Processes for Notification Bars must be enforced (Reserved)."
  info		: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND\(Reserved)"
  value_type	: POLICY_TEXT
  reg_key	: "HKLM\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND"
@@ -801,7 +775,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Initialize and script ActiveX controls not marked as safe (Zone 4)"
+ description	: "DTBI114-IE11: The Initialize and script ActiveX controls not marked as safe property must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1201"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -814,7 +788,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Initialize and script ActiveX controls not marked as safe (Zone 1)"
+ description	: "DTBI1090-IE11: The Initialize and script ActiveX controls not marked as safe must be disallowed (Intranet Zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1\1201"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1"
@@ -827,7 +801,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Initialize and script ActiveX controls not marked as safe (Zone 2)"
+ description	: "DTBI1095-IE11: The Initialize and script ActiveX controls not marked as safe must be disallowed (Trusted Sites Zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2\1201"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2"
@@ -840,7 +814,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Initialize and script ActiveX controls not marked as safe (Zone 3)"
+ description	: "DTBI024-IE11: The Initialize and script ActiveX controls not marked as safe property must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1201"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -853,7 +827,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent font downloads (Zone 4)"
+ description	: "DTBI120-IE11: Font downloads must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1604"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -866,7 +840,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent font downloads (Zone 3)"
+ description	: "DTBI030-IE11: Font downloads must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1604"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -880,7 +854,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions (Zone 4)"
+ description	: "DTBI121-IE11: Java permissions must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -893,7 +867,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions (Zone 3)"
+ description	: "DTBI031-IE11: The Java permissions must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -906,7 +880,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions (Zone 2)"
+ description	: "DTBI091-IE11: Java permissions must be configured with High Safety (Trusted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2"
@@ -919,7 +893,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions (Zone 1)"
+ description	: "DTBI061-IE11: Java permissions must be configured with High Safety (Intranet zone). "
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1"
@@ -932,7 +906,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions (Zone 0)"
+ description	: "DTBI425-IE11: Java permissions must be disallowed (Local Machine zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0"
@@ -945,7 +919,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions must be disallowed (Locked Down - Zone 4)"
+ description	: "DTBI450-IE11: Java permissions must be disallowed (Locked Down Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4\1C00"
  info		: "REG_DWORD:0, STIG-ID:DTBI450, NIST Controls: CM-7"
  value_type	: POLICY_DWORD
@@ -959,7 +933,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions must be disallowed (Locked Down - Zone 2)"
+ description	: "DTBI440-IE11: Java permissions must be disallowed (Locked Down Trusted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2\1C00"
  info		: "REG_DWORD:0, STIG-ID: DTBI440, NIST Controls: CM-7"
  value_type	: POLICY_DWORD
@@ -973,7 +947,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions must be disallowed (Locked Down - Zone 1)"
+ description	: "DTBI435-IE11: Java permissions must be disallowed (Locked Down Intranet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1"
@@ -986,7 +960,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Java permissions must be disallowed (Locked Down - Zone 0)"
+ description	: "DTBI430-IE11: Java permissions must be disallowed (Local Machine zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0\1C00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0"
@@ -999,7 +973,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Access data sources across domains (Zone 3)"
+ description	: "DTBI032-IE11: Accessing data sources across domains must be disallowed (Internet zone)"
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1406"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1012,7 +986,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Access data sources across domains (Zone 4)"
+ description	: "DTBI122-IE11: Accessing data sources across domains must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1406"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1025,7 +999,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent drag and drop or copy and paste files (Zone 3)"
+ description	: "DTBI036-IE11: Functionality to drag and drop or copy and paste files must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1802"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1038,7 +1012,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent drag and drop or copy and paste files (Zone 4)"
+ description	: "DTBI126-IE11: Functionality to drag and drop or copy and paste files must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1802"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1051,7 +1025,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Launching applications and files in an IFRAME (Zone 3)"
+ description	: "DTBI038-IE11: Launching programs and files in IFRAME must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1804"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1064,7 +1038,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Launching applications and files in an IFRAME (Zone 4)"
+ description	: "DTBI128-IE11: Launching programs and files in IFRAME must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1804"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1077,7 +1051,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Navigate windows and frames across domains (Zone 4)"
+ description	: "DTBI129-IE11: Navigating windows and frames across different domains must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1607"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1090,7 +1064,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Navigate windows and frames across domains (Zone 3)"
+ description	: "DTBI039-IE11: Navigating windows and frames across different domains must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1607"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1103,7 +1077,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Userdata persistence (Zone 3)"
+ description	: "DTBI042-IE11: Userdata persistence must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1606"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1116,7 +1090,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Userdata persistence (Zone 4)"
+ description	: "DTBI132-IE11: Userdata persistence must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1606"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1129,7 +1103,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent cut, copy or paste operations from the clipboard via script (Zone 3)"
+ description	: "DTBI044-IE11: Clipboard operations via script must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1407"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1142,7 +1116,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent cut, copy or paste operations from the clipboard via script (Zone 4)"
+ description	: "DTBI134-IE11: Clipboard operations via script must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1407"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1155,7 +1129,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: User Authentication Logon (Zone 4)"
+ description	: "DTBI136-IE11: Logon options must be configured and enforced (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1A00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1168,7 +1142,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: User Authentication Logon (Zone 3)"
+ description	: "DTBI046-IE11: Logon options must be configured to prompt (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1A00"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1181,34 +1155,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent Content from different domains within windows (Zone 3)"
- info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2709"
- value_type	: POLICY_DWORD
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
- reg_item	: "2709"
- value_data	: "3"
- check_type	: CHECK_EQUAL
- severity	: MEDIUM
- reg_option	: CAN_NOT_BE_NULL
-</custom_item>
-
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "Zone: Prevent Content from different domains within windows (Zone 4)"
- info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2709"
- value_type	: POLICY_DWORD
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
- reg_item	: "2709"
- value_data	: "3"
- check_type	: CHECK_EQUAL
- severity	: MEDIUM
- reg_option	: CAN_NOT_BE_NULL
-</custom_item>
-
-
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "Zone: Download signed ActiveX control (Zone 3)"
+ description	: "DTBI022-IE11: The Download signed ActiveX controls property must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1001"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1221,7 +1168,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Download signed ActiveX control (Zone 4)"
+ description	: "DTBI112-IE11: The Download signed ActiveX controls property must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1001"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1234,7 +1181,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Download unsigned ActiveX controls (Zone 4)"
+ description	: "DTBI113-IE11: The Download unsigned ActiveX controls property must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1004"
  info		: "STIG ID: V-46483, CAT II"
  value_type	: POLICY_DWORD
@@ -1248,7 +1195,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Download unsigned ActiveX controls (Zone 3)"
+ description	: "DTBI023-IE11: The Download unsigned ActiveX controls property must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1004"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1261,7 +1208,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Block ActiveX controls and plugins (Zone 4)"
+ description	: "DTBI115-IE11: ActiveX controls and plug-ins must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1200"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1274,7 +1221,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: ActiveX controls marked safe for scripting must be disallowed (Zone 4)"
+ description	: "DTBI116-IE11: ActiveX controls marked safe for scripting must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1405"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1287,7 +1234,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Block file downloads (Zone 4)"
+ description	: "DTBI119-IE11: File downloads must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1803"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1300,7 +1247,34 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent dragging of content from different domains across windows (Zone 3)"
+ description	: "DTBI1000-IE11: Dragging of content from different domains within a window must be disallowed (Internet zone)."
+ info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2708"
+ value_type	: POLICY_DWORD
+ reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
+ reg_item	: "2708"
+ value_data	: "3"
+ check_type	: CHECK_EQUAL
+ severity	: MEDIUM
+ reg_option	: CAN_NOT_BE_NULL
+</custom_item>
+
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "DTBI1025-IE11: Dragging of content from different domains within a window must be disallowed (Restricted Sites zone)."
+ info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2708"
+ value_type	: POLICY_DWORD
+ reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
+ reg_item	: "2708"
+ value_data	: "3"
+ check_type	: CHECK_EQUAL
+ severity	: MEDIUM
+ reg_option	: CAN_NOT_BE_NULL
+</custom_item>
+
+
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "DTBI990-IE11: Dragging of content from different domains across windows must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2709"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1313,7 +1287,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent dragging of content from different domains across windows (Zone 4)"
+ description	: "DTBI1005-IE11: Dragging of content from different domains across windows must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2709"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1326,7 +1300,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: META REFRESH property must be disallowed (Zone 4)"
+ description	: "DTBI123-IE11: The Allow META REFRESH property must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1608"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1339,7 +1313,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Active scripting must be disallowed (Zone 4)"
+ description	: "DTBI133-IE11: Active scripting must be disallowed (Restricted Sites Zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1400"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1352,7 +1326,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Script-initiated windows without size or position constraints must be disallowed (Zone 3)"
+ description	: "DTBI385-IE11: Script-initiated windows without size or position constraints must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2102"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1365,7 +1339,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Script-initiated windows without size or position constraints must be disallowed (Zone 4)"
+ description	: "DTBI390-IE11: Script-initiated windows without size or position constraints must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2102"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1378,7 +1352,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Scriptlets must be disallowed (Zone 4)"
+ description	: "DTBI940-IE11: Scriptlets must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1209"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1391,7 +1365,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Scriptlets must be disallowed (Zone 3)"
+ description	: "DTBI395-IE11: Scriptlets must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1209"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1404,7 +1378,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Automatic prompting for file downloads must be disallowed (Zone 4)"
+ description	: "DTBI580-IE11: Automatic prompting for file downloads must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2200"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1417,7 +1391,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Automatic prompting for file downloads must be disallowed (Zone 3)"
+ description	: "DTBI415-IE11: Automatic prompting for file downloads must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2200"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1430,7 +1404,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: XAML files must be disallowed (Zone 3)"
+ description	: "DTBI455-IE11: XAML files must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2402"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1443,7 +1417,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: XAML files must be disallowed (Zone 4)"
+ description	: "DTBI460-IE11: XAML files must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2402"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1456,7 +1430,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: MIME sniffing must be disallowed (Zone 4)"
+ description	: "DTBI470-IE11: MIME sniffing must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2100"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1469,7 +1443,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: MIME sniffing must be disallowed (Zone 3)"
+ description	: "DTBI465-IE11: MIME sniffing must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2100"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1482,7 +1456,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on Protected Mode (Zone 4)"
+ description	: "DTBI490-IE11: Protected Mode must be enforced (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2500"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1495,7 +1469,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on Protected Mode (Zone 3)"
+ description	: "DTBI485-IE11: Protected Mode must be enforced (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2500"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1508,7 +1482,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Use Pop-up Blocker (Zone 3)"
+ description	: "DTBI495-IE11: Pop-up Blocker must be enforced (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1809"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1521,7 +1495,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Use Pop-up Blocker (Zone 4)"
+ description	: "DTBI500-IE11: Pop-up Blocker must be enforced (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1809"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1534,7 +1508,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Less privileged content prevented from navigating into the Restricted Sites zone (Zone 4)"
+ description	: "DTBI520-IE11: Websites in less privileged web content zones must be prevented from navigating into the Restricted Sites zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2101"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1547,7 +1521,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Less privileged content prevented from navigating into the Internet Sites zone (Zone 3)"
+ description	: "DTBI515-IE11: Websites in less privileged web content zones must be prevented from navigating into the Internet zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2101"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1560,7 +1534,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Allow binary and script behaviors must be disallowed (Zone 4)"
+ description	: "DTBI575-IE11: Allow binary and script behaviors must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2000"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1573,7 +1547,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent .NET Framework components not signed with Authenticode (Zone 3)"
+ description	: "DTBI920-IE11: .NET Framework-reliant components not signed with Authenticode must be disallowed to run (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2004"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1586,7 +1560,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent .NET Framework components not signed with Authenticode (Zone 4)"
+ description	: "DTBI650-IE11: .NET Framework-reliant components not signed with Authenticode must be disallowed to run (Restricted Sites Zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2004"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1599,7 +1573,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent .NET Framework components signed with Authenticode (Zone 3)"
+ description	: "DTBI930-IE11: .NET Framework-reliant components signed with Authenticode must be disallowed to run (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2001"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1612,7 +1586,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent .NET Framework components signed with Authenticode (Zone 4)"
+ description	: "DTBI655-IE11: .NET Framework-reliant components signed with Authenticode must be disallowed to run (Restricted Sites Zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2001"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1625,7 +1599,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Scripting of Java applets (Zone 4)"
+ description	: "DTBI670-IE11: Scripting of Java applets must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1402"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1638,7 +1612,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Disable scripting of Internet Explorer WebBrowser Control (Zone 3)"
+ description	: "DTBI800-IE11: Scripting of Internet Explorer WebBrowser control property must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1206"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1651,7 +1625,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Disable scripting of Internet Explorer WebBrowser Control (Zone 4)"
+ description	: "DTBI850-IE11: Scripting of Internet Explorer WebBrowser Control must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1206"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1664,7 +1638,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Local directory paths must be excluded when uploading files (Zone 3)"
+ description	: "DTBI810-IE11: When uploading files to a server, the local directory path must be excluded (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\160A"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1677,7 +1651,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Local directory paths must be excluded when uploading files (Zone 4)"
+ description	: "DTBI860-IE11: When uploading files to a server, the local directory path must be excluded (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\160A"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1690,7 +1664,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Security Warning for unsafe files must be set to prompt (Zone 3)"
+ description	: "DTBI820-IE11: Security Warning for unsafe files must be set to prompt (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1806"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1703,7 +1677,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Security Warning for unsafe files must be set to prompt (Zone 4)"
+ description	: "DTBI870-IE11: Security Warning for unsafe files must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1806"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1716,7 +1690,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Allow only approved domains to use ActiveX controls without prompt (Zone 3)"
+ description	: "DTBI830-IE11: ActiveX controls without prompt property must be used in approved domains only (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\120b"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1729,7 +1703,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Allow only approved domains to use ActiveX controls without prompt (Zone 4)"
+ description	: "DTBI880-IE11: ActiveX controls without prompt property must be used in approved domains only (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\120b" 
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1742,7 +1716,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on Cross-Site Scripting Filter (Zone 3)"
+ description	: "DTBI890-IE11: Cross-Site Scripting Filter property must be enforced (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\1409"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1755,7 +1729,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on Cross-Site Scripting Filter (Zone 3)"
+ description	: "DTBI840-IE11: Cross-Site Scripting Filter must be enforced (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\1409"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1768,7 +1742,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent updates to status bar via script (Zone 3)"
+ description	: "DTBI910-IE11: Status bar updates via script must be disallowed (Internet zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2103"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1781,7 +1755,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Prevent updates to status bar via script (Zone 3)"
+ description	: "DTBI950-IE11: Status bar updates via script must be disallowed (Restricted Sites zone)."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2103"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1794,7 +1768,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Anti-Malware programs must run against ActiveX controls (Zone 0)"
+ description	: "DTBI426-IE11: Anti-Malware programs against ActiveX controls must be run for the Local Machine zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0\270C"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0"
@@ -1807,7 +1781,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Anti-Malware programs must run against ActiveX controls (Zone 1)"
+ description	: "DTBI062-IE11: Anti-Malware programs against ActiveX controls must be run for the Intranet zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1\270C"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1"
@@ -1820,7 +1794,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Anti-Malware programs must run against ActiveX controls (Zone 2)"
+ description	: "DTBI092-IE11: Anti-Malware programs against ActiveX controls must be run for the Trusted Sites zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2\270C"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2"
@@ -1833,7 +1807,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Anti-Malware programs must run against ActiveX controls (Zone 3)"
+ description	: "DTBI1046-IE11: Anti-Malware programs against ActiveX controls must be run for the Internet zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\270C"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
@@ -1846,7 +1820,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Anti-Malware programs must run against ActiveX controls (Zone 4)"
+ description	: "DTBI1051-IE11: Anti-Malware programs against ActiveX controls must be run for the Restricted Sites zone."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\270C"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1859,7 +1833,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on SmartScreen Filter scan (Zone 4)"
+ description	: "DTBI1085-IE11: Turn on SmartScreen Filter scan option for the Restricted Sites Zone must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4\2301"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4"
@@ -1872,7 +1846,7 @@
 
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "Zone: Turn on SmartScreen Filter scan (Zone 3)"
+ description	: "DTBI1080-IE11: Turn on SmartScreen Filter scan option for the Internet Zone must be enabled."
  info		: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3\2301"
  value_type	: POLICY_DWORD
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3"
