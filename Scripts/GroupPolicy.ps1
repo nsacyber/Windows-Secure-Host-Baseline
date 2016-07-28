@@ -439,7 +439,7 @@ Function Invoke-ApplySecureHostBaseline() {
 
         [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply.')]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
+        [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
         [Parameter(Position=2, Mandatory=$true, HelpMessage='The scope of the policies to apply.')]

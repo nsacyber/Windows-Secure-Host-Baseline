@@ -103,14 +103,14 @@ $policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encodin
 
 
 $policy = [pscustomobject]@{
-    'PolicyName' = 'Office'
+    'PolicyName' = 'Office 2013'
     'PolicyScopes' = [string[]]@('Computer','User');
     'PolicyTypes' = [string[]]@('Domain','Local');
     'PolicyModes' = [string[]]@('Audit','Enforced');
-    'PolicyTemplatePath' = '.\..\';
+    'PolicyTemplatePath' = '.\..\..\';
 }
 
-$policyPath = "$basePath\Office\Group Policy Objects"
+$policyPath = "$basePath\Office\Office 2013\Group Policy Objects"
 $policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
 
 

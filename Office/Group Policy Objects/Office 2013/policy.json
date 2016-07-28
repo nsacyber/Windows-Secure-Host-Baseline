@@ -1,5 +1,5 @@
 {
-    "PolicyName":  "Office",
+    "PolicyName":  "Office 2013",
     "PolicyScopes":  [
                          "Computer",
                          "User"
@@ -12,5 +12,5 @@
                         "Audit",
                         "Enforced"
                     ],
-    "PolicyTemplatePath":  ".\\..\\"
+    "PolicyTemplatePath":  ".\\..\\..\\"
 }
