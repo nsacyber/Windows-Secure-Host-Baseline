@@ -9,7 +9,12 @@ System device driver updates resolve compatibility issues with Virtualization-ba
 
 System BIOS/firmware updates resolve compatibility issues with Device Guard when assigning a Device Guard code integrity policy would cause the system to lock up on boot and also prevent system shutdown unless a hard reset was performed.
 
-These updates were discovered via a search for ["Device Guard" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Device+Guard"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Device+Guard"+site%3Adell.com+inurl%3Adrivers) and ["HVCI" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="HVCI"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="HVCI"+site%3Adell.com+inurl%3Adrivers) 
+These updates were discovered using the following searches:
+
+* ["Device Guard" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Device+Guard"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Device+Guard"+site%3Adell.com+inurl%3Adrivers)
+* ["Windows 10 Enterprise" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Windows+10+Enterprise"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Windows+10+Enterprise"+site%3Adell.com+inurl%3Adrivers)
+* ["HVCI" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="HVCI"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="HVCI"+site%3Adell.com+inurl%3Adrivers)
+* ["Secure MOR" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Secure+MOR"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Secure+MOR"+site%3Adell.com+inurl%3Adrivers)
 
 | Description | Version | Date | Applies to | Link | Notes |
 | --- | --- | --- | --- | --- | --- |
@@ -46,3 +51,10 @@ These updates were discovered via a search for ["Device Guard" site:dell.com inu
 | Dell Latitude 3550 System BIOS | A11 | 05 July 2016 | Latitude 3550 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=KF8JY) | Adds support for Device Guard on Microsoft Windows 10 Enterprise OS |
 | Realtek High Definition Audio ALC3266 Driver | 6.0.1.7829, A05 | 25 July 2016 | Precision 5510, XPS 13 9350, XPS 15 9550" | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=FFMX5) | Added support to Device Guard in Windows 10 |
 | Dell OptiPlex 9010 System BIOS | A23 | 20 July 2016 | OptiPlex 9010 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=TP37T) | Added the support for Device Guard on Microsoft Windows 10 Enterprise OS |
+| Precision 5510 A10 System BIOS | A10 01.02.10 | 05 July 2016 | Precision 5510 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=V13GG) | Support for Windows 10 Enterprise features |
+| Dell Latitude E5270/E5470/E5570 and Precision 3510 System BIOS | 1.7.3 | 07 July 2016 | Latitude E5270, Latitude E5470, Latitude E5570, Precision 3510 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=P5G550) | Supported Microsoft Windows 10 Enterprise |
+| Dell Latitude E7270/E7470 System BIOS | 1.6.3 | 18 July 2016 | Latitude E7270, Latitude E7470 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=WPG5R) | Supported Microsoft Windows 10 Enterprise |
+| Dell Latitude 7370 System BIOS | 01.04.05 | 13 July 2016 | Latitude 7370 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=FYR67) | Supported Microsoft Windows 10 Enterprise |
+| Intel 17265/18260 WiGig Application | 1.0.0.16, A05 | 19 July 2016 | Latitude 7350 2-in-1, Latitude 7370, Latitude E5250/5250, Latitude E5270 Laptop, Latitude E5450/5450, Latitude E5470, Latitude E5550/5550, Latitude E5570, Latitude E7250/7250, Latitude E7270, Latitude E7450, Latitude E7470 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=22DDD) | Add support for Windows 10 Enterprise |
+| Dell XPS 15 9550 A10 System BIOS | 01.02.10 | 05 July 2016 | XPS 15 9550 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=96T2K) | Support for Windows 10 Enterprise features |
+| Dell OptiPlex 7010 System BIOS | A22 | 20 July 2016 | OptiPlex 7010 | [Download](http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=J1MRT) | Added the support for Device Guard on Microsoft Windows 10 Enterprise OS |
