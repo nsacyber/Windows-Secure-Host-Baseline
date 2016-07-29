@@ -227,3 +227,79 @@ Function Restore-NetBIOS() {
         }
     }
 }
+
+Function Disable-SMB1 {
+    <#
+    .SYNOPSIS
+    Disable the SMB 1.0 protocol.
+
+    .DESCRIPTION
+    Disable the SMB 1.0 protocol. Since a system can act as an SMB server and client, SMB is disabled for both.
+
+    .EXAMPLE
+    Disable-SMB1
+    #>
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='Disable NetBIOS on standalone systems')]
+        [switch]$IncludeStandalone    
+    )
+
+    # since any system can potentially be a SMB server and client, configure both the server and client to disable SMB
+
+    $serverConfig = Get-SmbServerConfiguration
+
+    if ($serverConfig.EnableSMB1Protocol) {
+        Set-SmbServerConfiguration -EnableSMB1Protocol $false
+
+        # the SMB1 registry value name does not exist by default so only create a Previous_SMB1 value name if SMB1 already exists
+        if (Test-RegistryValue -Hive hklm -Path 'System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1') {
+            $smb1Value = Get-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1' 
+            Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'Previous_SMB1' -Type DWORD -Value $smb1Value -Force
+        }
+
+        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1' -Type DWORD -Value 0 -Force # 0 = Disabled, 1 = Enabled
+    }
+
+    if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
+        $startValue = Get-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Start'
+        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Previous_Start' -Type DWORD -Value $startValue -Force
+
+        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Start' -Type DWORD -Value 4 -Force # 4 = Disabled, 2 = Automatic (normal value)
+
+        $dependOnValue = Get-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'DependOnService' 
+        Set-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'Previous_DependOnService' -Type MultiString -Value $dependOnValue -Force
+
+        if ('mrxsmb10' -in $dependOnValue) {
+            $newDependOnValue = ((($dependOnValue -join ',') -replace 'mrxsmb10','') -replace ',,',',') -split ','
+            Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'DependOnService' -Type MultiString -Value $newDependOnValue -Force
+        }
+    }
+}
+
+Function Get-SMBDialect() {
+    <#
+    .SYNOPSIS
+    Gets the SMB dialect.
+
+    .DESCRIPTION
+    Gets the SMB dialect.
+
+    .EXAMPLE
+    Get-SMBDialect
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Version])]
+    Param()
+
+    $drive = $env:SystemDrive -replace ':',''
+
+    $drive = '{0}$' -f $drive
+
+    Get-ChildItem -Path "\\localhost\$drive" | Out-Null
+
+    $dialect = Get-SmbConnection -ServerName 'localhost' | Where-Object { $_.ShareName -eq $drive } | Select-Object Dialect -ExpandProperty Dialect
+
+    return [System.Version]$dialect
+}
