@@ -22,6 +22,7 @@ It is highly recommended to remove legacy features and protocols as known and un
 * [Group Policy reference](https://www.microsoft.com/en-us/download/details.aspx?id=25250)
 * [Microsoft Security Baseline for Windows 10 Version 1511](https://blogs.technet.microsoft.com/secguide/2016/01/22/security-baseline-for-windows-10-v1511-threshold-2-final/)
 * [Microsoft Security Baseline for Windows 10 Version 1507](https://blogs.technet.microsoft.com/secguide/2016/01/22/security-baseline-for-windows-10-v1507-build-10240-th1-ltsb-update/)
+* [Security Compliance Manager 4.0](http://go.microsoft.com/fwlink/?LinkId=823534)
 
 ## Guidance
 NSA Information Assurance guidance for Windows 10:
