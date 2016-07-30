@@ -15,6 +15,9 @@ Function Get-AdobeReaderManifest() {
     .PARAMETER Path
     The folder path to save the manifest to.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-AdobeReaderManifest -ManifestType 'ARM'
 
@@ -23,6 +26,9 @@ Function Get-AdobeReaderManifest() {
 
     .EXAMPLE
     Get-AdobeReaderManifest -ManifestType 'ReaderServices' -Path 'C:\AdobeReader'
+
+    .EXAMPLE
+    Get-AdobeReaderManifest -ManifestType 'ReaderServices' -Path 'C:\AdobeReader' -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -32,7 +38,10 @@ Function Get-AdobeReaderManifest() {
         [string]$ManifestType,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the manifest to')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
@@ -48,18 +57,24 @@ Function Get-AdobeReaderManifest() {
         throw "$installerFolder does not exist"
     }
 
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
     $baseUri = ''
     
     $installer = ''
 
     switch($ManifestType.ToLower()) {
-        'arm' { $installer = 'ArmManifest.msi' ; $baseUri = ' http://armmf.adobe.com/arm-manifests/win/{0}' ; break }
-        'reader' { $installer = 'ReaderDCManifest.msi' ;  $baseUri = ' http://armmf.adobe.com/arm-manifests/win/{0}'; break }
-        'readerservices' { $installer = 'RdrManifest.msi' ; $baseUri = 'http://armmf.adobe.com/arm-manifests/win/ServicesUpdater/DC/{0}' ; break }
+        'arm' { $installer = 'ArmManifest.msi' ; $baseUri = '{0}://armmf.adobe.com/arm-manifests/win/{1}' ; break }
+        'reader' { $installer = 'ReaderDCManifest.msi' ;  $baseUri = '{0}://armmf.adobe.com/arm-manifests/win/{1}'; break }
+        'readerservices' { $installer = 'RdrManifest.msi' ; $baseUri = '{0}://armmf.adobe.com/arm-manifests/win/ServicesUpdater/DC/{1}' ; break }
         default { $installer = '' }
     }
 
-    $uri = ($baseUri -f $installer)
+    $uri = ($baseUri -f $protocol,$installer)
   
     $params = @{
         Uri = $uri;
@@ -102,10 +117,13 @@ Function Get-AdobeReaderInstaller() {
     Specifies a Adobe Reader version.
 
     .PARAMETER Multilingual
-    Get the Multilingual User Intrace (MUI) version of Adobe Reader.
+    Get the Multilingual User Interface (MUI) version of Adobe Reader.
 
     .PARAMETER Path
     The folder path to save the installer to.
+
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
 
     .EXAMPLE
     Get-AdobeReaderInstaller -ReaderVersion '15.010.20060.0'
@@ -115,6 +133,9 @@ Function Get-AdobeReaderInstaller() {
 
     .EXAMPLE
     Get-AdobeReaderInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader'
+
+    .EXAMPLE
+    Get-AdobeReaderInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([void])]
@@ -126,7 +147,10 @@ Function Get-AdobeReaderInstaller() {
         [switch]$Multilingual,     
 
         [Parameter(Position=2, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
@@ -164,7 +188,13 @@ Function Get-AdobeReaderInstaller() {
         $installer = 'AcroRdrDCUpd{0}_MUI.msp' -f $formattedVersion
     }
 
-    $uri = ('http://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/{0}/{1}' -f $formattedVersion,$installer)
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = ('{0}://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/{1}/{2}' -f $protocol,$formattedVersion,$installer)
   
     $params = @{
         Uri = $uri;
@@ -360,7 +390,8 @@ Function Invoke-AdobeUpdate() {
             }
 
             # make sure systems where the user hasn't accepted the EULA will update
-            Set-ItemProperty -Path $armPath -Name 'iDisableCheckEula' -Value 1 -Type DWORD -Force
+            # if running as a regular user then suppress the access denied error since this is in HKLM unlike the other values above
+            Set-ItemProperty -Path $armPath -Name 'iDisableCheckEula' -Value 1 -Type DWORD -Force -ErrorAction SilentlyContinue
         }
 
         Start-Process -FilePath $file.FullName -NoNewWindow
