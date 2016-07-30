@@ -76,3 +76,4 @@ Microsoft's [Credential Guard documentation](https://technet.microsoft.com/en-us
 * [Protect derived domain credentials with Credential Guard](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/credential-guard)
 * [What's new in Credential Guard?](https://technet.microsoft.com/en-us/itpro/windows/whats-new/credential-guard)
 * [Credential Guard and WDigest](https://social.technet.microsoft.com/Forums/en-US/a428cc98-934d-49b0-89ec-56913e1f99f4/credentialguard-and-wdigest?forum=WinPreview2014General)
+* [Device Guard and Credential Guard hardware readiness tool](https://www.microsoft.com/en-us/download/details.aspx?id=53337)
