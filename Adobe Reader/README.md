@@ -50,15 +50,26 @@ Adobe Reader DC installs a task that executes an update check every time a user 
 Register-ScheduledTask -Xml ((Get-Content -Path '.\Secure-Host-Baseline\Adobe Reader\Adobe Reader x64 Update Task.xml') | Out-String) -TaskName 'Adobe Reader x64 Update Task'
 ```
 
-To force an update check to occur within the 3 day time period, delete the following registry value names under **HKCU\Software\Adobe\Adobe ARM\1.0\ARM**:
+Alternatively, the provided **Install-AdobeUpdateTask** command from the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file can be used to install the task on a system.
+
+
+To force an update check to occur within the 3 day waiting period, delete the following registry value names under **HKCU\Software\Adobe\Adobe ARM\1.0\ARM**:
 * tLastT_AdobeARM
 * tLastT_Reader
 * tTimeWaitedFilesInUse_AdobeARM
 * tTimeWaitedFilesInUse_Reader
 
-The updater will also not execute if the Adobe Reader EULA has not been accepted which may result in some systems not getting updated. This behavior can be prevented by creating a **DWORD** registry value named **iDisableCheckEula** under **HKLM\Software\Adobe\Adobe ARM\1.0\ARM** and setting the value to **1**. This value can be configured using the provided Group Policy template.
+The updater will also not execute if the Adobe Reader EULA has not been accepted which may result in some systems not getting updated. This behavior can be prevented by creating a **DWORD** registry value named **iDisableCheckEula** under **HKLM\Software\Adobe\Adobe ARM\1.0\ARM** or **HKLM\Software\WOW6432Node\Adobe\Adobe ARM\1.0\ARM** and setting the value to **1**. This value can be configured using the provided Group Policy template.
 
-There is a log in each user's %TEMP% folder at **%TEMP%\AdobeARM.log** that can be used for troubleshooting the update process.
+There is a log in each user's %TEMP% folder at **%TEMP%\AdobeARM.log** that can be used for troubleshooting the update process. An example log excerpt of when an update does not occur due to the 3 day waiting period:
+
+```
+[2016-07-30 12:21:05:0030] Too soon to check for arm update
+[2016-07-30 12:21:05:0062] Last check for updates not expired
+[2016-07-30 12:21:05:0062]    Error Code: 120300
+```
+
+Use the **Invoke-AdobeUpdate -Force** command from the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file to force an update to occur without having to wait for the waiting period to expire.
 
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)

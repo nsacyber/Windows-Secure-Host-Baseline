@@ -194,3 +194,175 @@ Function Get-AdobeReaderInstaller() {
         throw 'Request failed with status code $statusCode'
     }
 }
+
+Function Install-AdobeUpdateTask() {
+    <#
+    .SYNOPSIS
+    Installs a schedule task that will trigger the Adobe Reader updater.
+
+    .DESCRIPTION
+    Installs a schedule task that will trigger the Adobe Reader updater. The task installed by Adobe Reader does not work on Windows 10.
+
+    .PARAMETER Force
+    Force the task installation to occur even if Adobe Reader is not installed on the system.
+
+    .PARAMETER Update
+    Update the existing task.
+
+    .EXAMPLE
+    Install-AdobeUpdateTask
+
+    .EXAMPLE
+    Install-AdobeUpdateTask -Update
+
+    .EXAMPLE
+    Install-AdobeUpdateTask -Force
+
+    .EXAMPLE
+    Install-AdobeUpdateTask -Force -Update
+    #>
+    [CmdletBinding()] 
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='Force the task installation to occur even if Adobe Reader is not installed on the system')]
+        [switch]$Force,
+        
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Update the existing task')]
+        [switch]$Update  
+    )
+
+    $xml = @'
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Date>2016-07-14T14:26:25.9610162</Date>
+    <Author></Author>
+    <URI>\Adobe Reader x64 Update Task</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <LogonTrigger>
+      <Enabled>true</Enabled>
+    </LogonTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <GroupId>S-1-5-4</GroupId> <!-- S-1-5-32-545 -->
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>false</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>true</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <DisallowStartOnRemoteAppSession>false</DisallowStartOnRemoteAppSession>
+    <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT1H</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>"%ProgramFiles(x86)%\Common Files\Adobe\ARM\1.0\AdobeARM.exe"</Command>
+    </Exec>
+  </Actions>
+</Task>
+'@
+
+    $paths = [string[]]@("$env:ProgramFiles\Common Files\Adobe\ARM\1.0","${env:ProgramFiles(x86)}\Common Files\Adobe\ARM\1.0","$env:ProgramW6432\Common Files\Adobe\ARM\1.0")
+    $executable = 'AdobeARM.exe'
+
+    $files = [System.IO.FileInfo[]]@(Get-ChildItem -Path $paths -Filter $executable -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PsIsContainer -eq $false } | Get-Unique)
+
+    if($Force -or ($files.Count -ne 0)) {
+        $taskName = 'Adobe Reader x64 Update Task'
+
+        if (-not([System.Environment]::Is64BitOperatingSystem)) {
+            $xml = $xml -replace $taskName,'Adobe Reader x86 Update Task'
+            $xml = $xml -replace '%ProgramFiles\(x86\)%','%ProgramFiles%'
+            $taskName = 'Adobe Reader x86 Update Task'
+        }
+
+        if ($Update -or ((Get-ScheduledTask -TaskName  $taskName -ErrorAction SilentlyContinue) -eq $null)) {
+            Register-ScheduledTask -Xml $xml -TaskName $taskName -Force | Out-Null
+        }
+    }
+}
+
+Function Invoke-AdobeUpdate() {
+    <#
+    .SYNOPSIS
+    Invokes the Adobe Reader update mechanism.
+
+    .DESCRIPTION
+    Invokes the Adobe Reader update mechanism.
+
+    .PARAMETER Force
+    Force the update to occur even if the update waiting time period has not elapsed.
+
+    .EXAMPLE
+    Invoke-AdobeUpdate
+
+    .EXAMPLE
+    Invoke-AdobeUpdate -Force
+    #>
+    [CmdletBinding()] 
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='Force the update to occur even if the update waiting time period has not elapsed')]
+        [switch]$Force  
+    )
+
+    $paths = [string[]]@("$env:ProgramFiles\Common Files\Adobe\ARM\1.0","${env:ProgramFiles(x86)}\Common Files\Adobe\ARM\1.0","$env:ProgramW6432\Common Files\Adobe\ARM\1.0")
+    $executable = 'AdobeARM.exe'
+
+    $files = [System.IO.FileInfo[]]@(Get-ChildItem -Path $paths -Filter $executable -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PsIsContainer -eq $false } | Get-Unique)
+
+    if($files.Count -ne 0) {
+        $file = $files[0]
+
+        $armRegistryPath = 'hkcu:\Software\Adobe\Adobe ARM\1.0\ARM'
+
+        if($Force -and (Test-Path -Path $armRegistryPath)) {
+            $armDataPath = "$env:ProgramData\Adobe\ARM"
+
+            if (Test-Path -Path $armDataPath) {
+                $folders = [System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $armDataPath | Where-Object {$_.Name.StartsWith('{')})
+
+                if($folders.Count -ne 0) {
+                    $folder = $folders[0]
+                    $guid = $folder.Name
+
+                    Remove-ItemProperty -Path $armRegistryPath -Name "tLastT_$guid" -Force -ErrorAction SilentlyContinue
+                    Remove-ItemProperty -Path $armRegistryPath -Name "tTimeWaitedFilesInUse_$guid" -Force -ErrorAction SilentlyContinue
+                } 
+            }
+
+            Remove-ItemProperty -Path $armRegistryPath -Name 'tLastT_AdobeARM' -Force -ErrorAction SilentlyContinue
+            Remove-ItemProperty -Path $armRegistryPath -Name 'tLastT_Reader' -Force -ErrorAction SilentlyContinue
+            Remove-ItemProperty -Path $armRegistryPath -Name 'tTimeWaitedFilesInUse_AdobeARM' -Force -ErrorAction SilentlyContinue
+            Remove-ItemProperty -Path $armRegistryPath -Name 'tTimeWaitedFilesInUse_Reader' -Force -ErrorAction SilentlyContinue
+            
+            if([System.Environment]::Is64BitOperatingSystem) {
+                $armPath = 'hklm:\Software\WOW6432Node\Adobe\Adobe ARM\1.0\ARM'
+            } else {
+                $armPath = 'hklm:\Software\Adobe\Adobe ARM\1.0\ARM'
+            }
+
+            # make sure systems where the user hasn't accepted the EULA will update
+            Set-ItemProperty -Path $armPath -Name 'iDisableCheckEula' -Value 1 -Type DWORD -Force
+        }
+
+        Start-Process -FilePath $file.FullName -NoNewWindow
+    }
+}
