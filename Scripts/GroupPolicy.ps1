@@ -134,6 +134,38 @@ Function Update-GPOBackup() {
     }
 }
 
+Function Test-IsGuid() {
+    <#
+    .SYNOPSIS
+    Tests is the value is a GUID.
+
+    .DESCRIPTION
+    Tests is the value is a GUID.
+
+    .PARAMETER Value
+    A value to test.
+
+    .EXAMPLE
+    Test-IsGuid -Value '{AC662460-6494-4818-A303-FADC513B9876}'
+    #>
+    [CmdletBinding()] 
+    [OutputType([System.IO.DirectoryInfo[]])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A value to test')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Value
+    )
+
+    $isGuid = $false;
+
+    try { 
+        [System.Guid]::Parse($Value) | Out-Null
+        $isGuid = $true 
+    } catch { } 
+
+    return $isGuid
+}
+
 Function Get-GPOBackupFolders() {
     <#
     .SYNOPSIS
@@ -158,13 +190,56 @@ Function Get-GPOBackupFolders() {
         [string]$Path
     )
 
-    return ,[System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $true } | Where-Object { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where-Object { try { [System.Guid]::Parse($_.Name) | Out-Null; $true } catch { $false } })
+    return ,[System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $true } | Where-Object { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where-Object { (Test-IsGuid -Value ($_.Name)) -eq $true })
+}
+
+Function Test-IsGPOBackupFolder() {
+    <#
+    .SYNOPSIS
+    Tests if a path is a Group Policy Object backup folder.
+
+    .DESCRIPTION
+    Tests if a path is a Group Policy Object backup folder.
+
+    .PARAMETER Path
+    A path of a GPO backup folder.
+
+    .EXAMPLE
+    Test-IsGPOBackupFolder -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+    #>
+    [CmdletBinding()] 
+    [OutputType([System.IO.DirectoryInfo[]])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path of a GPO backup folders.')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path
+    )
+
+    $folder = [System.IO.DirectoryInfo[]]$Path
+
+    $backupFiles = [System.IO.FileInfo[]]@(Get-ChildItem -Path $Path | Where-Object { $_.Name -eq 'bkupInfo.xml' })
+
+    return ($backupFiles.Count -eq 1) -and (Test-IsGuid -Value ($folder.Name))
 }
 
 Function Get-GPODefinitions() {
+    <#
+    .SYNOPSIS
+    Gets the definitions of the Group Policy Objects.
 
+    .DESCRIPTION
+    Gets the definitions of the Group Policy Objects based on policy.json files that describe them.
+
+    .PARAMETER Path
+    A path the contains policy.json files.
+
+    .EXAMPLE
+    Get-GPODefinitions -Path '.\Secure-Host-Baseline\'
+    #>
     [CmdletBinding()] 
-    [OutputType([System.IO.DirectoryInfo[]])]
+    [OutputType([System.Collections.Generic.List[object]])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='A path containing policy.json files.')]
         [ValidateNotNullOrEmpty()]
@@ -172,61 +247,95 @@ Function Get-GPODefinitions() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
-    #todo: function documentation
 
-    $policyFiles = Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $false -and $_.Name -eq 'policy.json' }
+    $policyFiles = [System.IO.FileInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $false -and $_.Name -eq 'policy.json' })
 
     $policyDefinitions = New-Object System.Collections.Generic.List[object]
 
     $policyFiles | ForEach-Object {
-       $policyDefinition = Get-Content -Path $_.FullName | ConvertFrom-Json
+        $policyDefinition = Get-Content -Path $_.FullName | ConvertFrom-Json
      
-       $gpoPaths = Get-GPOBackupFolders -Path $_.DirectoryName
-       $gpoPath = $gpoPaths[0].FullName
+        $gpoPaths = Get-GPOBackupFolders -Path $_.DirectoryName
+        $gpoPath = $gpoPaths[0].FullName
 
-       Write-Verbose -Message ('GPO Path: {0}' -f $gpoPath)
+        $policyDefinition | Add-Member -MemberType NoteProperty -Name 'PolicyObjectPath' -Value $gpoPath 
 
-       $policyDefinition | Add-Member -MemberType NoteProperty -Name 'PolicyObjectPath' -Value $gpoPath 
+        Write-Verbose -Message ('GPO Path: {0}' -f $gpoPath)
 
-       # Resolve-Path will throw an error if the path is wrong (does not exist) which is good
-       $gptPath = Resolve-Path -Path (@($_.DirectoryName,$policyDefinition.PolicyTemplatePath,'Group Policy Templates') -join '\')
-       $policyDefinition.PolicyTemplatePath = $gptPath
+        # Resolve-Path will throw an error if the path is wrong (does not exist) which is the desired behavior
+        $gptPath = Resolve-Path -Path (@($_.DirectoryName,$policyDefinition.PolicyTemplatePath,'Group Policy Templates') -join '\')
+        $policyDefinition.PolicyTemplatePath = $gptPath
 
-       Write-Verbose -Message ('GPT Path: {0}' -f $gptPath)
+        Write-Verbose -Message ('GPT Path: {0}' -f $gptPath)
 
-       $policyDefinitions.Add($policyDefinition)
+        $policyDefinitions.Add($policyDefinition)
     }
 
     return ,[System.Collections.Generic.List[object]]$policyDefinitions
 }
 
 Function Get-Intersection() {
+    <#
+    .SYNOPSIS
+    Gets the set intersection of two string arrays.
+
+    .DESCRIPTION
+    Gets the set intersection of two string arrays.
+
+    .PARAMETER Left
+    The left value.
+    
+    .PARAMETER Right
+    The right value. 
+
+    .EXAMPLE
+    Get-Intersection -Left 'test1','test2' -Right 'test1','test3'
+    #>
     [CmdletBinding()]
     [OutputType([string[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='Left.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The left value.')]
         [ValidateNotNullOrEmpty()]
         [string[]]$Left,
 
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='Right.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The right value.')]
         [ValidateNotNullOrEmpty()]
         [string[]]$Right
     )
-    #todo: function documentation
+
     $result = [string[]]@(Compare-Object $Left $Right -PassThru -IncludeEqual -ExcludeDifferent)
     return $result
 }
 
 Function Test-IsAdministrator() {
+    <#
+    .SYNOPSIS
+    Tests if current user is an administrator. 
+
+    .DESCRIPTION
+    Tests if current user is an administrator.
+
+    .PARAMETER AdministratorType
+    The type of administrator to test for.
+
+    .EXAMPLE
+    Test-IsAdministrator
+
+    .EXAMPLE
+    Test-IsAdministrator -AdministratorType 'Domain'
+
+    .EXAMPLE
+    Test-IsAdministrator -AdministratorType 'Local'
+    #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The type of administrator')]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The type of administrator to test for')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
-        [string[]]$AdministratorType
+        [string]$AdministratorType
     )
-    #todo: function documentation
+
     $currentPrincipal = New-Object System.Security.Principal.WindowsPrincipal -ArgumentList ([System.Security.Principal.WindowsIdentity]::GetCurrent())
 
     $isAdministrator = $false
@@ -243,6 +352,10 @@ Function Test-IsAdministrator() {
             $isAdministrator = $currentPrincipal.IsInRole($builtInAdministratorRid) 
             break 
         }
+        '' {
+            $isAdministrator = $currentPrincipal.IsInRole($domainAdministratorsRid) -or $currentPrincipal.IsInRole($builtInAdministratorRid) 
+            break
+        }
         default { 
             throw "Unexpected administrator type of $AdministratorType" 
         }
@@ -252,10 +365,20 @@ Function Test-IsAdministrator() {
 }
 
 Function Test-IsElevated() {
+    <#
+    .SYNOPSIS
+    Tests if the current user is running in an elevated context.
+
+    .DESCRIPTION
+    Tests if the current user is running in an elevated context.
+
+    .EXAMPLE
+    Test-IsElevated
+    #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param()
-    #todo: function documentation
+
     #todo: P\Invoke OpenProcessToken, GetTokenInformation with TokenIntegrityLevel instead. TOKEN_GROUP.Groups (SID_AND_ATTRIBUTES) see https://msdn.microsoft.com/en-us/library/bb625963.aspx
 
     #todo: abstract into generic Invoke-ExecuteProcess function
@@ -281,10 +404,20 @@ Function Test-IsElevated() {
 }
 
 Function Test-IsDomainController() {
+    <#
+    .SYNOPSIS
+    Tests if the system is a domain controller.
+
+    .DESCRIPTION
+    Tests if the system is a domain controller.
+
+    .EXAMPLE
+     Test-IsDomainController
+    #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param()
-    #todo: function documentation
+
     $os = Get-WmiObject -Class 'Win32_OperatingSystem' -Filter 'Primary=true' | Select-Object ProductType
 
     # 1 = workstation, 2 = domain controller, 3 = member server
@@ -292,10 +425,23 @@ Function Test-IsDomainController() {
 }
 
 Function Test-IsModuleAvailable() {
+    <#
+    .SYNOPSIS
+    Tests if a PowerShell module is available on a system.
+
+    .DESCRIPTION
+    Tests if a PowerShell module is available on a system.
+
+    .PARAMETER Name
+    The module name.
+
+    .EXAMPLE
+    Test-IsModuleAvailable -Name 'ActiveDirectory'
+    #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name')]
         [ValidateNotNullOrEmpty()]
         [string]$Name    
     )
@@ -311,25 +457,54 @@ Function Test-IsModuleAvailable() {
 }
 
 Function Test-IsDomainJoined() {
+    <#
+    .SYNOPSIS
+    Tests if a system is joined to a domain. 
+
+    .DESCRIPTION
+    Tests if a system is joined to a domain. 
+
+    .EXAMPLE
+    Test-IsDomainJoined
+    #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param()
-    #todo: function documentation
+
     $computer = Get-WmiObject -Class 'Win32_ComputerSystem' | Select-Object PartOfDomain
 
     return $computer.PartOfDomain
 }
 
 Function Get-GroupPolicyTemplateFolderPath() {
+    <#
+    .SYNOPSIS
+    Gets the path where Group Policy templates are stored.
+
+    .DESCRIPTION
+    Gets the path where Group Policy templates are stored. For a domain joined system, it will check if a Group Policy Central Store exists.
+
+    .PARAMETER TemplatePathType
+    The type of the template folder path to get.
+
+    .EXAMPLE
+    Get-GroupPolicyTemplateFolderPath
+
+    .EXAMPLE
+    Get-GroupPolicyTemplateFolderPath TemplatePathType 'Domain'
+
+    .EXAMPLE
+    Get-GroupPolicyTemplateFolderPath TemplatePathType 'Local'
+    #>
     [CmdletBinding()]
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The type of the template folder path to get.')]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The type of the template folder path to get.')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$TemplatePathType
     )
-    #todo: function documentation
+
     # default to using the local template path
     $path = '{0}\PolicyDefinitions' -f $env:SystemRoot
 
@@ -337,12 +512,16 @@ Function Get-GroupPolicyTemplateFolderPath() {
         throw "Unable to access policy template path of $path"
     }
 
-    if ('Domain' -eq $TemplatePathType) {
+    if (('Domain' -eq $TemplatePathType) -or (Test-IsDomainJoined)) {
         if(-not(Test-IsDomainJoined)) {
             throw 'Must be joined to a domain'
         }
 
         # UserDnsDomain only has a value when a user is logged in but this script is only going to be used in an interactive context
+        # if this assumption needs to change, then get information from the registry
+        # hklm:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+        # Domain or NV Domain - NV Domain registry value contains the computer's primary DNS suffix. The Domain registry value contains the computer's primary DNS domain. 
+
         $dnsDomain = $env:UserDnsDomain
 
         # central store format: \\Fully Qualified Domain Name\SYSVOL\Fully Qualified Domain Name\Policies\PolicyDefinitions\
@@ -359,38 +538,78 @@ Function Get-GroupPolicyTemplateFolderPath() {
 }
 
 Function Import-LocalPolicyObject() {
+    <#
+    .SYNOPSIS
+    Imports a Local Group Policy Object.
+
+    .DESCRIPTION
+    Imports a Local Group Policy Object.
+
+    .PARAMETER Path
+    The path of the GPO to import.
+
+    .PARAMETER ToolPath
+    The path to LGPO tool.
+
+    .EXAMPLE
+    Import-LocalPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\lgpo.exe'
+    #>
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to lgpo tool.')]
-        [ValidateNotNullOrEmpty()]
-        [ValidateScript({Test-Path -Path $_ -PathType Container})]
-        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$Path,
-
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='A path to the GPO.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$PolicyPath
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to LGPO tool')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
+        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$ToolPath
     )
-    #todo: function documentation
+
+    $file = [System.IO.FileInfo]$Path
+
+    $folder = [System.IO.DirectoryInfo]$PolicyPath
+
+    if ($file.Name -ne 'lgpo.exe') {
+        throw "$Path is not lgpo.exe"
+    }
+
+    if (-not(Test-IsGPOBackupFolder -Path $PolicyPath)) {
+        throw "$PolicyPath is not a Group Policy backup folder path"
+    }
+
     #todo: use system.diagnostics
     Start-Process -FilePath $Path -ArgumentList "/g $PolicyPath" -Wait -WindowStyle Hidden # -NoNewWindow
 }
 
 
-Function Import-GroupPolicyObject() {
+Function Import-DomainPolicyObject() {
+   <#
+    .SYNOPSIS
+    Imports a Domain Group Policy Object.
+
+    .DESCRIPTION
+    Imports a Domain Group Policy Object.
+
+    .PARAMETER Path
+    The path of the GPO to import.
+
+    .EXAMPLE
+    Import-DomainPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+    #>
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to GPO.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO to import.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
-    #todo: function documentation
     Import-Module GroupPolicy
 
     Import-GPO -Path $Path
@@ -414,11 +633,11 @@ Function Import-PolicyObject() {
     #todo: function documentation
     switch ($PolicyType.ToLower()) {
         'domain' { 
-            Import-GroupPolicyObject -Path $Path
+            Import-DomainPolicyObject -Path $Path
             break 
          }
         'local' { 
-            Import-LocalPolicyObject -Path (Get-ChildItem -Path 'lgpo.exe' -Recurse) -PolicyPath $Path
+            Import-LocalPolicyObject -Path $Path -ToolPath (Get-ChildItem -Path 'lgpo.exe' -Recurse)
             break 
         }
         default { 

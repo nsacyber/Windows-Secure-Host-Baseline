@@ -127,7 +127,7 @@ Import-GPO -Path "path to GPO backup folder"
 
 ### Importing a GPO for a standalone system
 
-1. Download the [LGPO tool](http://blogs.technet.com/cfs-filesystemfile.ashx/__key/telligent-evolution-components-attachments/01-4062-00-00-03-65-94-11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and copy it to the standalone system
+1. Download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and copy it to the standalone system
 1. Copy the GPO backup folder for the GPO you want to import to the standalone system
 1. Open an administrative command prompt and type **lgpo.exe /g "_path to GPO backup folder_"**
 
