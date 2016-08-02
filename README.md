@@ -38,8 +38,8 @@ Questions or comments can be submitted to the [issue tracker](https://github.com
 * The [AppLocker folder](./AppLocker/README.md) contains AppLocker [Computer](./AppLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [BitLocker folder](./BitLocker/README.md) contains BitLocker [Computer](./BitLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
 * The [EMET folder](./EMET/README.md) contains EMET 5.5 [Computer](./EMET/Group Policy Objects/Computer/) policy for any version of Windows.
-* The [Internet Explorer folder](./Internet Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet Explorer/Group Policy Objects/Computer/) and [User](./Internet Explorer/Group Policy Objects/User/) policies for the latest version of Windows 10.
-* The [Office folder](./Office/README.md) contains Office 2013 [Group Policy Object](./Office/Group Policy Objects/).
+* The [Internet Explorer folder](./Internet Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet Explorer/Group Policy Objects/Computer/) and [User](./Internet Explorer/Group Policy Objects/User/) policies for latest version of Windows 10.
+* The [Office folder](./Office/README.md) contains Office 2013/2016 [Group Policy Object](./Office/Group Policy Objects/).
 * The [Chrome folder](./Chrome/README.md) contains Chrome browser [Computer](./Chrome/Group Policy Objects/Computer/) policy for the latest version of Chrome.
 * The [Adobe Reader folder](./Adobe Reader/README.md) contains Adobe Reader DC [Computer](./Adobe Reader/Group Policy Objects/Computer/) and [User](./Adobe Reader/Group Policy Objects/User/) policies for the latest version of Adobe Reader DC.
 
@@ -101,7 +101,7 @@ Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in th
 * [EMET](./EMET/Compliance/)
 * [Internet Explorer](./Internet Explorer/Compliance/)
 * [Windows](./Windows/Compliance/)
-* [Windows](./Windows Firewall/Compliance/)
+* [Windows Firewall](./Windows Firewall/Compliance/)
 
 ## Importing a GPO
 Importing a GPO varies depending on whether it is being imported for a domain versus a standalone system.
