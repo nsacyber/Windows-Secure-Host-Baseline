@@ -14,3 +14,5 @@ NSA Information Assurance has a security guide for [Implementing a Secure Admini
 
 * [Microsoft Device Guard Deployment Guide](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/device-guard-deployment-guide)
 * [Device Guard and Credential Guard hardware readiness tool](https://www.microsoft.com/en-us/download/details.aspx?id=53337)
+* [Securing Privileged Access](https://technet.microsoft.com/en-us/windows-server-docs/security/securing-privileged-access/securing-privileged-access)
+* [Privileged Access Workstations](https://technet.microsoft.com/en-us/windows-server-docs/security/securing-privileged-access/privileged-access-workstations)
