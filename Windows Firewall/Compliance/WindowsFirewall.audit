@@ -53,10 +53,10 @@
  type			: REGISTRY_SETTING
  description	        : "WNFWA-000001: Domain Profile Enabled"
  info               	: "Severity: CAT II"
- info			: "HKLM\\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall (DWORD:1)"
+ info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall (DWORD:1)"
  value_type		: POLICY_DWORD
  value_data		: "1"
- reg_key		: "HKLM\\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
+ reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\"
  reg_item		: "EnableFirewall"
  severity		: MEDIUM
 </custom_item>
