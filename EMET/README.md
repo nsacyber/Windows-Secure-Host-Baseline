@@ -95,7 +95,7 @@ The above example disables Export Address Table Access Filtering (EAF) and Expor
 Other examples of how to configure the Application Configuration policy can be taken from the registry path under **HKLM\\Software\\Policies\\Microsoft\\Defaults\\**. The **Name** value is what is entered in **Value name** field in the GPO and the **Data** value is what is entered in the **Value** field in the GPO.
 
 ### Blocking the regsvr32 application whitelisting bypass technique
-EMET's ASR protection can be used to block the [regsvr32 application whitelisting bypass technique](http://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html). This technique is not specific to AppLocker.
+EMET's ASR protection can be used to block the [regsvr32 application whitelisting bypass technique](http://subt0x10.blogspot.com/2016/04/bypass-application-whitelisting-script.html). This technique is not specific to AppLocker. A similar bypass technique can be [achieved with rundll32](http://www.labofapenetrationtester.com/2016/05/practical-use-of-javascript-and-com-for-pentesting.html).
 
 1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
 1. Double click **Application Configuration**
@@ -106,6 +106,7 @@ EMET's ASR protection can be used to block the [regsvr32 application whitelistin
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line
+1. **Repeat the same steps for rundll32.exe**
 
 Below is a screenshot of the Group Policy configuration.
 ![EMET Group Policy configuration to block regsvr32 application whitelisting bypass](./images/emet group policy block regsvr32 sct file.png?raw=true)
