@@ -3,7 +3,7 @@
 Performs a system compliance check given an audit file. For accurate checks, must be running script in Administrator mode.
 
 .DESCRIPTION
-Version 1.0
+Version 1.1
 Parses/Compiles an audit file to perform system compliance check. This script is a standalone way of parsing and running .audit file compliance checks on Windows.
 
 Script currently supports following audit items:
@@ -12,10 +12,12 @@ AUDIT_POLICY_SUBCATEGORY
 AUDIT_POWERSHELL
 CHECK_ACCOUNT
 FILE_CHECK
+FILE_PERMISSIONS
 FILE_VERSION
 LOCKOUT_POLICY
 PASSWORD_POLICY
 REG_CHECK
+REGISTRY_PERMISSIONS
 REGISTRY_SETTING
 REPORT
 SERVICE_POLICY
@@ -66,6 +68,9 @@ $script:ADMIN_ACCOUNT = 1
 $script:GUEST_ACCOUNT = 2
 
 $script:UF_ACCOUNTDISABLE = 2
+
+$script:FILE = 0
+$script:REGISTRY = 1
 
 
 #Some declarations are from pinvoke.net
@@ -825,12 +830,114 @@ function checkDWORD {
                 if ([convert]::ToInt32($valueData, 10) -eq $valToCheck) {
                     return $true
                 } else {
-                    Write-Verbose "[$funcName] Expected < $valueData >: Received < $valToCheck >"
+                    Write-Verbose "[$funcName] Expected <$valueData>: Received <$valToCheck>"
                     return $false
                 }
             }
         }
     }
+}
+
+function checkPolicySet {
+    <#
+    .SYNOPSIS
+    Checks if the data is enabled or disabled
+
+    .DESCRIPTION
+    (Helper Function) Takes in two values to compare boolean values. Translates "Enabled" and "Disabled" into boolean values and compares with valToCheck
+
+    .PARAMETER funcName
+    (optional) function name that called this function. Used to display origin for debug prints
+
+    .PARAMETER valueData
+    String value of setting status. Can be of the following values:
+    Enabled
+    Disabled
+
+    .PARAMETER valToCheck
+    (optional) Value to be checked from valueData
+
+    .PARAMETER checkType
+    (optional) If valueData should meet the following criteria based on valToCheck.
+    CHECK_EQUAL (default)
+    CHECK_NOT_EQUAL
+
+    .EXAMPLE
+    checkPolicySet -funcName "Test" -valueData 'Enabled' -valToCheck $true -checkType 'CHECK_EQUAL'
+    checkPolicySet -funcName "Test" -valueData 'Disabled' -valToCheck $true -checkType 'CHECK_NOT_EQUAL'
+
+    #>
+    [OutputType([bool])]
+    param(
+        [String]$funcName, 
+        [ValidateSet('Enabled', 'Disabled')][String]$valueData, 
+        [bool]$valToCheck,
+        [ValidateSet('CHECK_EQUAL', 'CHECK_NOT_EQUAL', '')][String]$checkType
+    )
+
+        $setting = $(switch -Regex ($valueData) {
+            "Enabled" {$true; break;}
+            "Disabled" {$false; break;}
+        })
+
+        $status =  (!($setting -xor $valToCheck))
+        if (!$status) {
+            if ($checkType -like "CHECK_NOT_EQUAL") {
+                $status = $true
+            } else {
+                Write-Verbose "[$funcName] Settings do not match. Expect <$valueData>. Received <$valToCheck>"
+            }
+        }
+        return $status
+
+}
+
+
+function translateRegRoot {
+    <#
+    .SYNOPSIS
+    Converts Audit file's Registry path to Powershell path format
+
+    .DESCRIPTION
+    (Helper Function) Takes in registry path and converts the root (HKLM, HKCU, etc) to Powershell format.
+    Not all root paths are defaulted as an alias like HKLM -> HKEY_LOCAL_MACHINE. This method ensures we get to the root path
+    using the Registry::ROOT_PATH format
+
+    .PARAMETER regKey
+    Registry path in the format of ROOT\... where ROOT can be:
+    HKLM
+    HKCU
+    HKU
+    HKCR
+
+    .EXAMPLE
+    translateRegRoot 'HKLM\Software'
+        -> 'Registry::HKEY_LOCAL_MACHINE\Software'
+
+    #>
+    [OutputType([String])]
+    param([String]$regKey)
+
+    $idx = $regKey.IndexOf("\")
+    if ($idx -eq -1) {
+        $root = $regKey
+    } else {
+        $root = $regKey.Substring(0, $idx)
+    }
+    $newRoot = $(switch ($root) {
+        "HKLM" {"Registry::HKEY_LOCAL_MACHINE"; break;}
+        "HKCU" {"Registry::HKEY_CURRENT_USER"; break;}
+        "HKU"  {"Registry::HKEY_USERS"; break;}
+        "HKCR" {"Registry::HKEY_CLASSES_ROOT"; break;}
+        default {$root; break;}
+    })
+
+    if ($idx -eq -1) {
+        return $newRoot
+    } else {
+        return ($newRoot + $regKey.Substring($idx))
+    }
+
 }
 
 function AuditPowershell {
@@ -921,9 +1028,7 @@ function RegCheck {
     POLICY_TEXT: String
 
     .PARAMETER valueData
-    The Path to Registry. Use Audit file registry path syntax. Must Contain "\"
-    Example: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings
-             HKLM\
+    The Path to Registry. 
 
     .PARAMETER regOption
     (optional) Strict Registry Path Option. Default is 'MUST_EXIST'
@@ -951,7 +1056,7 @@ function RegCheck {
         [ValidateSet('POLICY_TEXT', 'POLICY_DWORD', '', IgnoreCase=$false)][String]$checkType = "", 
         [String]$keyItem = "")
 
-        $valueData = $valueData.Insert($valueData.IndexOf("\"), ":")          #Must add ":" to registry HIVE because Nessus audit uses different syntax for reg paths
+        $valueData = translateRegRoot $valueData      
         if (Test-Path $valueData) {                       
             if ($keyItem.Length -ne 0) {           
                 $val = Get-Item -LiteralPath $valueData    
@@ -1040,22 +1145,8 @@ function checkRegSetting {
     
     #Checking RegData with valueData passed in
     if ($valueType.CompareTo("POLICY_SET") -eq 0) {     
-        if ($valueData.CompareTo("Enabled") -eq 0) {
-            if ($keyData -eq 1) {
-                return $true
-            } else {
-                Write-Verbose "[Check-RegSettings] <$valueData> is Disabled"
-                return $false
-            }
-        } else { #"Disabled"
-            if ($keyData -eq 0) {
-                return $true
-            } else {
-                Write-Verbose "[Check-RegSettings] <$valueData> is Enabled"
-                return $false
-            }
-        }
-
+        $keyData = if ($keyData -eq 1) {$true} else {$false}
+        return (checkPolicySet "Check-RegSetting" $valueData $keyData)
     } elseif ($valueType.CompareTo("POLICY_DWORD") -eq 0) {     
         return (checkDWORD "Check-RegSettings" $valueData $keyData $checkType)
     } elseif (($valueType.CompareTo("POLICY_TEXT") -eq 0) -or ($valueType.CompareTo("POLICY_MULTI_TEXT") -eq 0)) {
@@ -1142,7 +1233,7 @@ function RegistrySetting {
         [ValidateSet('CAN_BE_NULL', 'CAN_NOT_BE_NULL','', IgnoreCase=$false)][String]$regOption="",
         [ValidateSet('ENUM_SUBKEYS', '', IgnoreCase=$false)][String]$regEnum="")
 
-    $regKey = $regKey.Insert($regKey.IndexOf("\"), ":")          #Must add ":" to registry HIVE because Nessus audit uses different syntax for reg paths
+    $regKey = translateRegRoot $regKey   
     if (Test-Path $regKey) {
         if ($regEnum.CompareTo("ENUM_SUBKEYS") -eq 0) {
             #enumerate subkeys
@@ -1202,7 +1293,7 @@ function FileCheck {
     } elseif($fileOption.CompareTo("MUST_NOT_EXIST") -eq 0 -and -not $fileExist) {
         return $true
     } else {
-        Write-Verbose "[FileCheck] Expected < $fileOption > : Received [exists: $fileExist]"
+        Write-Verbose "[FileCheck] Expected <$fileOption> : Received [exists: $fileExist]"
         return $false
     }
 
@@ -1458,27 +1549,15 @@ function PasswordPolicy {
         if (!($valueType -like "POLICY_SET")) {
             return (checkDWORD "PasswordPolicy" $valueData $policyItems[$policy] $checkType)
         } else {
-            $isSet = $(switch -Regex ($valueData) {
-                "Enabled" {$true; break;}
-                "Disabled" {$false; break;}
-            })
-            $status = $false
-            $value = $false
             if ($policy -eq $script:REV_ENCRYPT) {
-                $value = $net.hasRevEncryption()
-                $status =  (!($isSet -xor $value))
+                return (checkPolicySet "PasswordPolicy" $valueData $net.hasRevEncryption())
             } elseif ($policy -eq $script:PASS_COMPLEX) {
-                $value = $net.hasComplexity()
-                $status =  (!($isSet -xor $value))
+                 return (checkPolicySet "PasswordPolicy" $valueData $net.hasComplexity())
             } elseif ($policy -eq $script:FORCE_LOGOFF) {
-               $value = $policyItems[$policy] 
-               $status = (!($isSet -xor $value))  
+               $value = if ($policyItems[$policy] -eq 1) {$true} else {$false} 
+                return (checkPolicySet "PasswordPolicy" $valueData $value)
             }
-            
-            if (!$status) {
-                Write-Verbose "[PasswordPolicy] Policy is not set. Received <$isSet>. Expected <$value>"
-            }
-            return $status
+
         }
     }
 }
@@ -1592,21 +1671,10 @@ function CheckAccount {
         if ($valueType -like "POLICY_TEXT") {
             return (checkTEXT "CheckAccount" $valueData $accName $checkType)
         } else {
-            $setting = $(switch -Regex ($valueData) {
-                "Enabled" {$true; break;}
-                "Disabled" {$false; break;}
-            })
             $flags = $net.GetFlags($accName)
             $accEnabled  = !(($flags -band $script:UF_ACCOUNTDISABLE) -eq  $script:UF_ACCOUNTDISABLE)
-            $status =  (!($setting -xor $accEnabled))
-            if (!$status) {
-                if ($checkType -like "CHECK_NOT_EQUAL") {
-                    $status = $true
-                } else {
-                    Write-Verbose "[CheckAccount] Settings do not match. Expect <$valueData>. Received <$accEnabled>"
-                }
-            }
-            return $status
+
+            return (checkPolicySet "CheckAccount" $valueData $accEnabled $checkType)
         }
     }
 }
@@ -1649,7 +1717,6 @@ function UserRightsPolicy {
         $lsa = New-Object LSASecurity.LsaWrapper("")
         $output = $lsa.LSAEnurmerateAccountsWithUserRight($rightType)
         if ($output -eq $null -and $valueData.Length -eq 0) {
-           # Write-Verbose "[UserRightsPolicy] Computer does not contain <$rightType>, but its okay."
             return $true
         }
         if ($output -eq $null) {
@@ -1702,20 +1769,350 @@ function AnonymousSidSetting {
     )
     process {
         $net = New-Object NetSecurity.NetWrapper
-        $isEnabled = $net.isAnonymousSIDAllowed()
-        $status = $(switch -Regex ($valueData) {
-            "Enabled" {$true; break;}
-            "Disabled" {$false; break;}
-        })
-        if ($isEnabled -eq $status) {
-            return $true
-        }
-
-        Write-Verbose "[AnonymousSidSetting] Allow Anonymous SID/Name translation is <$isEnabled>. Expected <$status>"
-        return $false
+        return (checkPolicySet "AnonymousSidSetting" $valueData $net.isAnonymousSIDAllowed() $checkType)
     }
 }
 
+function CompareACL {
+    <#
+    .SYNOPSIS
+    Compares ACL Flags to Audit file ACL Values
+
+    .DESCRIPTION
+    (Helper Function) Takes the System's ACL values (Rights, InheritanceFlags, and PropagationFlags)
+     and compares then to audit file ACL values 
+
+    .PARAMETER access
+    [System.Security.AccessControl] Object that contains access properties of a ACL
+
+    .PARAMETER aclStr
+    String version of ACL from NESSUS' Audit file to be compared with the access parameter 
+
+    .PARAMETER type
+    Whether the access is a FILE ACL or a REGISTRY ACL. Type can be either:
+    $script:FILE = 0
+    $script:REGISTRY = 1
+
+    #>
+    [OutputType([bool])]
+    param(
+        $access,
+        [string]$aclStr,
+        [int]$type
+    )
+    
+    $rightsArr = $aclStr.Split("|", [System.StringSplitOptions]::RemoveEmptyEntries)
+    $containVal = $true; 
+    foreach ($rights in $rightsArr) {
+        if ($type -eq $script:FILE) { #for file_acl
+            $isVal = $(switch ($rights.Trim()) {
+                "change permissions"                {($access.FileSystemRights.value__ -band 0x00040000) -eq 0x00040000; break;}
+                "create files / write data"         {($access.FileSystemRights.value__ -band 0x00000002) -eq 0x00000002; break;}
+                "create folders / append data"      {($access.FileSystemRights.value__ -band 0x00000004) -eq 0x00000004; break;}
+                "delete"                            {($access.FileSystemRights.value__ -band 0x00010000) -eq 0x00010000; break;}
+                "delete subfolders and files"       {($access.FileSystemRights.value__ -band 0x00000040) -eq 0x00000040; break;}
+                "full control"                      {((($access.FileSystemRights.value__ -band 0x000F01FF) -eq 0x000F01FF) -or ($access.FileSystemRights.value__ -eq 268435456)); break;}
+                "inherited"                         {($access.IsInherited -eq 0x00000001); break;}
+                "list folder contents"              {($access.FileSystemRights.value__ -band 0x000200a9) -eq 0x000200a9; break;}
+                "list folder / read data"           {($access.FileSystemRights.value__ -band 0x00000001) -eq 0x00000001; break;}
+                "modify"                            {(($access.FileSystemRights.value__ -band 0x000301bf) -eq 0x000301bf) -or (($access.FileSystemRights.value__ -band -536805376) -eq -536805376); break;}                   
+                "not inherited"                     {($access.IsInherited -eq 0x00000000); break;}
+                "not used"                          {($true); break;}               
+                "read"                              {($access.FileSystemRights.value__ -band 0x00020089) -eq 0x00020089; break;}
+                "read attributes"                   {($access.FileSystemRights.value__ -band 0x00000080) -eq 0x00000080; break;}
+                "read extended attributes"          {($access.FileSystemRights.value__ -band 0x00000008) -eq 0x00000008; break;}            
+                "read & execute"                    {((($access.FileSystemRights.value__ -band 0x000200a9) -eq 0x000200a9) -or ($access.FileSystemRights.value__ -eq -1610612736)); break;}
+                "read permissions"                  {($access.FileSystemRights.value__ -band 0x00040000) -eq 0x00040000; break;}            
+                "take ownership"                    {($access.FileSystemRights.value__ -band 0x00080000) -eq 0x00080000; break;}           
+                "this folder only"                  {(($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::None.value__) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None.value__)); break;}
+                # "this object only"                  {"Unknown"; break;}
+                "this folder and files"             {(($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ObjectInherit.value__) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None.value__)); break;}
+                "this folder and subfolders"        {(($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ContainerInherit.value__) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None.value__)); break;}
+                "this folder, subfolders and files" {(($access.InheritanceFlags.value__ -eq ([System.Security.AccessControl.InheritanceFlags]::ObjectInherit.value__ -bor [System.Security.AccessControl.InheritanceFlags]::ContainerInherit.value__)) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None.value__)); break;}
+                "files only"                        {(($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ObjectInherit.value__) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::InheritOnly.value__)); break;}
+                "subfolders only"                   {(($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ContainerInherit.value__) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::InheritOnly.value__)); break;}
+                "subfolders and files only"         {(($access.InheritanceFlags.value__ -eq ([System.Security.AccessControl.InheritanceFlags]::ObjectInherit.value__ -bor [System.Security.AccessControl.InheritanceFlags]::ContainerInherit.value__)) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::InheritOnly.value__)); break;}
+                "traverse folder / execute file"    {($access.FileSystemRights.value__ -band 0x00000020) -eq 0x00000020; break;}
+                "write"                             {($access.FileSystemRights.value__ -band 0x00000116) -eq 0x00000116; break;}
+                "write attributes"                  {($access.FileSystemRights.value__ -band 0x00000100) -eq 0x00000100; break;}
+                "write extended attributes"         {($access.FileSystemRights.value__ -band 0x00000010) -eq 0x00000010; break;}
+                default                             {$false;break;} 
+            });
+        } else {
+            $isVal = $(switch ($rights.Trim()) {
+                "full control"                      {($access.RegistryRights -band 0x000f003f) -eq 0x000f003f; break;}
+                "create link"                       {($access.RegistryRights -band 0x00000020) -eq 0x00000020; break;}
+                "create subkey"                     {($access.RegistryRights -band 0x00000004) -eq 0x00000004; break;}
+                "delete"                            {($access.RegistryRights -band 0x00010000) -eq 0x00010000; break;}
+                "enumerate subkeys"                 {($access.RegistryRights -band 0x00000008) -eq 0x00000008; break;}
+                "inherited"                         {$access.IsInherited -eq 0x00000001; break;}
+                "not inherited"                     {$access.IsInherited -eq 0x00000000; break;}
+                "not used"                          {$true; break;}
+                "notify"                            {($access.RegistryRights -band 0x00000010) -eq 0x00000010; break;}
+                "query value"                       {($access.RegistryRights -band 0x00000001) -eq 0x00000001; break;}
+                "read"                              {($access.RegistryRights -band 0x00020019) -eq 0x00020019; break;}
+                "Read Control"                      {($access.RegistryRights -band 0x00060000) -eq 0x00060000; break;}
+                "set value"                         {($access.RegistryRights -band 0x00000002) -eq 0x00000002; break;}
+                "subkeys only"                      {(($access.InheritanceFlags.value__ -eq ([System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [System.Security.AccessControl.InheritanceFlags]::ObjectInherit)) -or ($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ContainerInherit)) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::InheritOnly); break;}
+                "this key only"                     {(($access.InheritanceFlags.value__ -eq ([System.Security.AccessControl.InheritanceFlags]::None -bor [System.Security.AccessControl.InheritanceFlags]::ObjectInherit)) -or ($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::None)) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None); break;}
+                "this key and subkeys"              {(($access.InheritanceFlags.value__ -eq ([System.Security.AccessControl.InheritanceFlags]::ContainerInherit -bor [System.Security.AccessControl.InheritanceFlags]::ObjectInherit)) -or ($access.InheritanceFlags.value__ -eq [System.Security.AccessControl.InheritanceFlags]::ContainerInherit)) -and ($access.PropagationFlags.value__ -eq [System.Security.AccessControl.PropagationFlags]::None); break;}
+                "write dac"                         {($access.RegistryRights -band 0x00040000) -eq 0x00040000; break;}
+                "write owner"                       {($access.RegistryRights -band 0x00080000) -eq 0x00080000; break;}
+                default                             {$false;break;}
+            });
+        }
+        $containVal = $containVal -and $isVal
+    }
+    return $containVal
+}
+
+function CombineACLDuplicate {
+    <#
+    .SYNOPSIS
+    Takes an Array of [System.Security.AccessControl] Objects, combine similar ACL and returns a new list of HashTables with the new ACLs
+
+    .DESCRIPTION
+    (Helper Function) Takes an array of ACL objects and combine similar ACLs. Similar ACLs means that they have the same Rights (FileSystemRights or RegistryRights),
+    IsInherited flag, IdentityReference, and AccessControlType. This function takes those similar ACLs and combine the InheritanceFlags and PropagationFlags to get the
+    correct value of the Inheritance Hierachy. This also translate some FileSystemRights special privilages to a more readable format (ie: Full Control, Modify, etc)
+
+    .PARAMETER accessList
+    Array of[System.Security.AccessControl] Object that contains access properties of a ACL
+
+    .PARAMETER type
+    Whether the access is a FILE ACL or a REGISTRY ACL. Type can be either:
+    $script:FILE = 0
+    $script:REGISTRY = 1
+
+    #>
+    param(
+        $accessList,
+        [int]$type
+    )
+    if ($accessList -eq $null) {
+        return @()
+    }
+    $i = 0; $access = @(1..$accessList.Length)
+    $aclTable = @{}
+    $accessList | foreach {$_.psobject.properties; $i++; $aclTable=@{};} | foreach {$aclTable[$_.Name] = $_.Value; $access[$i] = $aclTable}
+
+    if ($type -eq $script:FILE) {
+        foreach ($acl in $access) {
+            $acl.FileSystemRights = $(switch ($acl.FileSystemRights.value__) {
+                268435456 {[System.Security.AccessControl.FileSystemRights]::FullControl}
+                -536805376 {[System.Security.AccessControl.FileSystemRights]::Modify -bor [System.Security.AccessControl.FileSystemRights]::Synchronize}
+                -1610612736 {[System.Security.AccessControl.FileSystemRights]::ReadAndExecute -bor [System.Security.AccessControl.FileSystemRights]::Synchronize}
+                default {$acl.FileSystemRights}
+            })
+        }
+        $rightsType = 'FileSystemRights'
+    } else {
+        $rightsType = 'RegistryRights'
+    }
+    $dupRights = $access | group {$_.IsInherited},{ $_.$rightsType}
+    foreach ($dupAcl in $dupRights) {
+        if ($dupAcl.Count -gt 1) {
+            $inheritanceFlag = $dupAcl.Group[0].InheritanceFlags
+            $propagationFlags = $dupAcl.Group[0].PropagationFlags
+            $rights = $dupAcl.Group[0].$rightsType
+            $user = $dupAcl.Group[0].IdentityReference
+            $isInherited = $dupAcl.Group[0].IsInherited
+            $AccessControlType = $dupAcl.Group[0].AccessControlType
+            for ($i = 1; $i -lt $dupAcl.Count; $i++) {
+                $inheritanceFlag = $inheritanceFlag -bor $dupAcl.Group[$i].InheritanceFlags
+                $propagationFlags = $propagationFlags -band $dupAcl.Group[$i].PropagationFlags
+            }
+            $objACE = @{
+                "InheritanceFlags"=$inheritanceFlag
+                "PropagationFlags"=$propagationFlags
+                "IsInherited"=$isInherited
+                "AccessControlType"=$AccessControlType
+                $rightsType=$rights
+                "IdentityReference"=$user}
+            $access += $objACE
+        }
+    }
+    return $access
+}
+
+function FilePermissions {
+     <#
+    .SYNOPSIS
+    Checks file and directory ACL based on Audit file configurations 
+
+    .DESCRIPTION
+    Uses Get-ACL to grab ACL information to compare with audit file ACL specifications
+
+    .PARAMETER valueType
+    Define the type of valueData. Must be of type FILE_ACL
+
+    .PARAMETER valueData
+    The name of the Global ACL defined in the Audit file (will not be used in this function. @See aclUserList) 
+    
+    .PARAMETER path
+    String path of the file or directory
+
+    .PARAMETER aclUserList
+    The list of ACLs to search and compare. Must be in the following format:
+    ACL_ITEM:
+        [{user:string, acl_inheritance:string, acl_apply:string, acl_allow:string, acl_deny:string},
+        {user:string, acl_inheritance:string, acl_apply:string, acl_allow:string, acl_deny:string},
+        ...]
+
+    .PARAMETER aclOption
+    (optional) Whether the path can exist or not. Values can be:
+    CAN_BE_NULL
+    CANNOT_BE_NULL
+
+    .PARAMETER checkType
+    (not used)
+
+    .EXAMPLE
+    FilePermissions FILE_ACL 'ACL_NAME' 'C:\' $aclUserListStruct CANNOT_BE_NULL
+    #>
+    [OutputType([bool])]
+    param(
+        [ValidateSet('FILE_ACL', IgnoreCase=$false)][String]$valueType, 
+        [Parameter(Mandatory=$true)][String]$valueData,
+        [Parameter(Mandatory=$true)][String]$path,
+        [Parameter(Mandatory=$true)]$aclUserList,
+        [ValidateSet('CAN_BE_NULL', 'CANNOT_BE_NULL', '')][AllowEmptyString()][String]$aclOption, 
+        [String]$checkType=""
+    )
+
+    $path = [System.Environment]::ExpandEnvironmentVariables($path)
+
+    if (!(Test-Path $path) -and $aclOption -like 'CAN_BE_NULL') {
+        return $true
+    }
+
+    foreach ($aclitem in $aclUserList) {
+        if ($aclitem.contains("acl_allow")) {
+            $passed = $false
+            $accessList = Get-Acl $path | Select-Object -ExpandProperty Access | where {($_.IdentityReference -match ("^"+$aclitem["user"]+"|\\+"+$aclitem["user"])) -and ($_.AccessControlType -match "Allow")} 
+            $access = CombineACLDuplicate $accessList $script:FILE
+            foreach ($acl in $access) {
+                if ((CompareACL $acl $aclitem["acl_allow"] $script:FILE) -and (CompareACL $acl $aclitem["acl_apply"] $script:FILE)) {
+                    $passed = $true
+                    break
+                }
+            }     
+            if (!$passed) {
+                Write-Verbose "[FilePermissions] Unable to find matching ACL in <$path>"
+                Write-Verbose ($aclitem | Out-String)
+                return $false
+            }       
+        }
+        if ($aclitem.contains("acl_deny")) {
+            $passed = $false
+            $accessList = Get-Acl $path | Select-Object -ExpandProperty Access | where {($_.IdentityReference -match ("^"+$aclitem["user"]+"|\\+"+$aclitem["user"])) -and ($_.AccessControlType -match "Deny")} 
+            $access = CombineACLDuplicate $accessList $script:FILE
+            foreach ($acl in $access) {
+                       
+                if ((CompareACL $acl $aclitem["acl_deny"] $script:FILE) -and (CompareACL $acl $aclitem["acl_apply"] $script:FILE)) {
+                    $passed =  $true
+                    break
+                }
+            }
+            if (!$passed) {
+                Write-Verbose "[FilePermissions] Unable to find matching ACL in <$path>"
+                Write-Verbose ($aclitem | Out-String)
+                return $false
+            }    
+        }
+
+
+    }
+    return $true
+}
+
+function RegistryPermissions {
+     <#
+    .SYNOPSIS
+    Checks REgistry ACL based on Audit file configurations 
+
+    .DESCRIPTION
+    Uses Get-ACL to grab ACL information to compare with audit file ACL specifications
+
+    .PARAMETER valueType
+    Define the type of valueData. Must be of type REG_ACL
+
+    .PARAMETER valueData
+    The name of the Global ACL defined in the Audit file (will not be used in this function. @See aclUserList) 
+    
+    .PARAMETER regKey
+    String path of the registry
+
+    .PARAMETER aclUserList
+    The list of ACLs to search and compare. Must be in the following format:
+    ACL_ITEM:
+        [{user:string, acl_inheritance:string, acl_apply:string, acl_allow:string, acl_deny:string},
+        {user:string, acl_inheritance:string, acl_apply:string, acl_allow:string, acl_deny:string},
+        ...]
+
+    .PARAMETER aclOption
+    (optional) Whether the path can exist or not. Values can be:
+    CAN_BE_NULL
+    CANNOT_BE_NULL
+
+    .PARAMETER checkType
+    (not used)
+
+    .EXAMPLE
+    RegistryPermissions REG_ACL 'ACL_NAME' 'HKLM\SOFTWARE' $aclUserListStruct CANNOT_BE_NULL
+    #>
+    [OutputType([bool])]
+    param(
+        [ValidateSet('REG_ACL', IgnoreCase=$false)][String]$valueType, 
+        [Parameter(Mandatory=$true)][String]$valueData,
+        [Parameter(Mandatory=$true)][String]$regKey,
+        [Parameter(Mandatory=$true)]$aclUserList,
+        [ValidateSet('CAN_BE_NULL', 'CANNOT_BE_NULL', '')][AllowEmptyString()][String]$aclOption, 
+        [String]$checkType=""
+    )
+    $regKey = translateRegRoot $regKey
+
+    if (!(Test-Path $regKey) -and $aclOption -like 'CAN_BE_NULL') {
+        return $true
+    }
+
+    foreach ($aclitem in $aclUserList) {
+        if ($aclitem.contains("acl_allow")) {
+            $passed = $false
+            $accessList = Get-Acl $regKey | Select-Object -ExpandProperty Access | where {($_.IdentityReference -match ("^"+$aclitem["user"]+"|\\+"+$aclitem["user"])) -and ($_.AccessControlType -match "Allow")} 
+            $access = CombineACLDuplicate $accessList $script:REGISTRY
+            foreach ($acl in $access) {
+                if ((CompareACL $acl $aclitem["acl_allow"] $script:REGISTRY) -and (CompareACL $acl $aclitem["acl_apply"] $script:REGISTRY)) {
+                    $passed = $true
+                    break
+                }
+            }     
+            if (!$passed) {
+                Write-Verbose "[RegistryPermissions] Unable to find matching ACL in <$regKey>"
+                Write-Verbose ($aclitem | Out-String)
+                return $false
+            }       
+        }
+        if ($aclitem.contains("acl_deny")) {
+            $passed = $false
+            $accessList = Get-Acl $regKey | Select-Object -ExpandProperty Access | where {($_.IdentityReference -match ("^"+$aclitem["user"]+"|\\+"+$aclitem["user"])) -and ($_.AccessControlType -match "Deny")} 
+            $access = CombineACLDuplicate $accessList $script:REGISTRY
+            foreach ($acl in $access) {
+                       
+                if ((CompareACL $acl $aclitem["acl_deny"] $script:REGISTRY) -and (CompareACL $acl $aclitem["acl_apply"] $script:REGISTRY)) {
+                    $passed =  $true
+                    break
+                }
+            }
+            if (!$passed) {
+                Write-Verbose "[RegistryPermissions] Unable to find matching ACL in <$regKey>"
+                Write-Verbose ($aclitem | Out-String)
+                return $false
+            }    
+        }
+    }
+    return $true
+}
 
 function Report {
      <#
@@ -1766,21 +2163,23 @@ function ProcessAudit {
     )
     [array]$conditionList = @()
     foreach ($customItem in $node.items) {
-        $passed = $(switch -Regex ($customItem["type"]) {
+        $passed = $(switch -Regex ($customItem["type"]) { #Append your own custom audit item here
             "ANONYMOUS_SID_SETTING" {AnonymousSidSetting $customItem["value_type"] $customItem["value_data"] $customItem["check_type"]; break;}
             "AUDIT_POLICY_SUBCATEGORY" {AuditPolicySubCategory $customItem["value_type"] $customItem["value_data"] $customItem["audit_policy_subcategory"] $customItem["check_type"];break;}
             "AUDIT_POWERSHELL" {AuditPowershell $customItem["value_type"] $customItem["value_data"] $customItem["powershell_args"] $customItem["only_show_cmd_output"] $customItem["ps_encoded_args"] $customItem["check_type"];break}
             "CHECK_ACCOUNT" {CheckAccount $customItem["value_type"] $customItem["value_data"] $customItem["account_type"] $customItem["check_type"];break;}
             "FILE_CHECK" {  FileCheck $customItem["value_type"] $customItem["value_data"] $customItem["file_option"]; break }
+            "FILE_PERMISSIONS" {FilePermissions $customItem["value_type"] $customItem["value_data"] $customItem["file"] $FileAclList[$customItem["value_data"]] $customItem["acl_option"]}
             "FILE_VERSION" {FileVersion $customItem["value_type"] $customItem["value_data"] $customItem["file"] $customItem["file_option"] $customItem["check_type"]; break}
             "LOCKOUT_POLICY" {LockoutPolicy $customItem["value_type"] $customItem["value_data"] $customItem["lockout_policy"] $customItem["check_type"]; break;}
             "PASSWORD_POLICY" {PasswordPolicy $customItem["value_type"] $customItem["value_data"] $customItem["password_policy"] $customItem["check_type"]; break;}
             "REG_CHECK" {RegCheck $customItem["value_type"] $customItem["value_data"] $customItem["reg_option"] -keyItem $customItem["key_item"]; break}
+            "REGISTRY_PERMISSIONS" {RegistryPermissions $customItem["value_type"] $customItem["value_data"] $customItem["reg_key"] $RegAclList[$customItem["value_data"]] $customItem["acl_option"] $customItem["check_type"]}
             "REGISTRY_SETTING" { RegistrySetting $customItem["value_type"] $customItem["value_data"] $customItem["reg_key"] $customItem["reg_item"] $customItem["check_type"] $customItem["reg_option"] $customItem["reg_enum"];break}
             "REPORT" {Report $customItem["status"]; break}
             "SERVICE_POLICY" {ServicePolicy $customItem["value_type"] $customItem["value_data"] $customItem["service_name"]; break}
             "USER_RIGHTS_POLICY" {UserRightsPolicy $customItem["value_type"] $customItem["value_data"] $customItem["right_type"] $customItem["check_type"]; break;}
-            default { $false; Write-Host "#####Unknown Type#####" -BackgroundColor Red}
+            default { $false; Write-Host ("#####Unknown Type#####" + $customItem["type"]) -BackgroundColor Red}
         })
         if ($node.type -ne $script:IF_NODE) {
             if ((-not $passed)) {
@@ -1839,6 +2238,17 @@ function ProcessAudit {
     }
 }
 
+
+<#
+    Top ACL Structure:
+        { "ACL_NAME": [ACL_ITEM, ...], "ACL_NAME_2":[ACL_ITEM, ...], ... }
+    ACL_ITEM:
+        {user:string, acl_inheritance:string, acl_apply:string, acl_allow:string, acl_deny:string}
+
+
+    Nodes { type:int, condition:string, items:[CUSTOM_ITEM], thenNode:Nodes, elseNode:Nodes, ifNodes:[Nodes], parent:Node}
+    CUSTOM_ITEM: {variable:value, ...}
+#>
 
 
 function Test-Compliance {
@@ -2089,3 +2499,4 @@ function Test-Compliance {
 
     $VerbosePreference = $oldVerbose
 }
+
