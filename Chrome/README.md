@@ -30,14 +30,16 @@ If the domain administrators have configured a [Group Policy Central Store](http
 
 If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy the **chrome.admx** file to **%SystemRoot%\\PolicyDefinitions\\**, typically **C:\\Windows\\PolicyDefinitions\\**, and copy the **chrome.adml** file to **%SystemRoot%\\PolicyDefinitions\\en-us\\** folder on the domain controller.
 
+Follow the same steps for the Google Update Group Policy templates (GoogleUpdate.admx and GoogleUpdate.adml).
+
 ### Updating the Chrome Group Policy templates for a standalone system 
 
 **%SystemRoot%\\PolicyDefinitions\\**, typically **C:\Windows\\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **chrome.admx** file to **%SystemRoot%\\PolicyDefinitions\\** and copy the **chrome.adml** file to **%SystemRoot%\\PolicyDefinitions\\en-us\\** folder on the domain controller.
 
+Follow the same steps for the Google Update Group Policy templates (GoogleUpdate.admx and GoogleUpdate.adml).
 
-# Google Update Group Policy template
-Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from https://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes. This template is included as a convenience.
-
+# Google Update Group Policy templates
+Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template files for Google Update can be downloaded from http://dl.google.com/dl/update2/enterprise/googleupdateadmx.zip but this template rarely changes. This template is included in this repository as a convenience.
 
 You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
 

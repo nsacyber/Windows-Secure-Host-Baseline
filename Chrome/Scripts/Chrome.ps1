@@ -467,7 +467,7 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
         $protocol = 'http'
     }
 
-    $uri = '{0}://dl.google.com/update2/enterprise/GoogleUpdate.adm' -f $protocol
+    $uri = '{0}://dl.google.com/update2/enterprise/googleupdateadmx.zip' -f $protocol
   
     $params = @{
         Uri = $uri;
@@ -489,9 +489,9 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     if ($statusCode -eq 200) {
         $bytes = $response.Content
 
-        $admFile = $templateFolder,'GoogleUpdate.adm' -join '\'
+        $zipFile = $templateFolder,'GoogleUpdatePolicyTemplate.zip' -join '\'
 
-        Set-Content -Path $admFile -Value $bytes -Encoding Byte -Force -NoNewline
+        Set-Content -Path $zipFile -Value $bytes -Encoding Byte -Force -NoNewline
     } else {
         throw 'Request failed with status code $statusCode'
     }
