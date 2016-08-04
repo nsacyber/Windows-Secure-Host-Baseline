@@ -1260,8 +1260,6 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 </custom_item>
 
 
-#  TODO Nessus may not have access to the following files to check permissions. 
-
 # STIG ID	: WN10-AU-000515
 <custom_item>
  type		: FILE_PERMISSIONS
@@ -1274,7 +1272,7 @@ info		: "A system is more vulnerable to unauthorized access when system users re
 		Severity: CAT II"	
  value_type	: FILE_ACL
  value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Log\Application.evtx"
+ file		: "%systemroot%\system32\winevt\Logs\Application.evtx"
 </custom_item>
 
 # STIG ID	: WN10-AU-000520
@@ -1289,7 +1287,7 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  		Severity: CAT II"	
  value_type	: FILE_ACL
  value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Log\Security.evtx"
+ file		: "%systemroot%\system32\winevt\Logs\Security.evtx"
 </custom_item>
 
 # STIG ID	: WN10-AU-000525
@@ -1304,7 +1302,7 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  		Severity: CAT II"	
  value_type	: FILE_ACL
  value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Log\System.evtx"
+ file		: "%systemroot%\system32\winevt\Logs\System.evtx"
 </custom_item>
 
 
