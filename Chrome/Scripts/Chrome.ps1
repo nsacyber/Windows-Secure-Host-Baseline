@@ -12,21 +12,36 @@ Function Get-ChromeVersion() {
     .PARAMETER Channel
     The Chrome release channel. Defaults to 'stable'. Valid values are 'dev', 'canary', 'beta', 'stable'.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-ChromeVersion
 
     .EXAMPLE
     Get-ChromeVersion -Channel 'dev'
+
+    .EXAMPLE
+    Get-ChromeVersion -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([System.Version])]
     Param(
         [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
-        [string]$Channel = 'stable'
+        [string]$Channel = 'stable',
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
-    $uri = ('https://omahaproxy.appspot.com/win?channel={0}' -f $Channel.ToLower())
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = ('{0}://omahaproxy.appspot.com/win?channel={1}' -f $protocol,$Channel.ToLower())
   
     $params = @{
         Uri = $uri;
@@ -77,8 +92,14 @@ Function Get-ChromeExtension() {
     .PARAMETER Path
     The folder path to save the extension to.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43'
+
+    .EXAMPLE
+    Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43' -UseHTTP
 
     .EXAMPLE
     Get-ChromeExtension -ExtensionID 'djflhoibgkdhkhhcedjiklpkjnoahfmg' -ExtensionTitle 'User-Agent Switcher for Chrome' -ExtensionVersion '1.0.43' -ChromeVersion '49.0.2623.110'
@@ -102,14 +123,21 @@ Function Get-ChromeExtension() {
         [SYstem.Version]$ChromeVersion,
 
         [Parameter(Position=4, Mandatory=$false, HelpMessage='The folder path to save the extension to')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=5, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
     $parameters = $PSBoundParameters
 
     if (-not($parameters.ContainsKey('ChromeVersion'))) {
-        $ChromeVersion = Get-ChromeVersion
+        if($UseHTTP) {
+            $ChromeVersion = Get-ChromeVersion -UseHTTP
+        } else {
+            $ChromeVersion = Get-ChromeVersion 
+        }
     }
     
     $extensionFolder = $env:USERPROFILE,'Downloads' -join '\'
@@ -122,7 +150,13 @@ Function Get-ChromeExtension() {
         throw "$extensionFolder does not exist"
     }
 
-    $uri = ('https://clients2.google.com/service/update2/crx?response=redirect&prodversion={0}&x=id%3D{1}%26uc' -f $ChromeVersion,$ExtensionID)
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = ('{0}://clients2.google.com/service/update2/crx?response=redirect&prodversion={1}&x=id%3D{2}%26uc' -f $protocol,$ChromeVersion,$ExtensionID)
   
     $params = @{
         Uri = $uri;
@@ -174,11 +208,17 @@ Function Get-ChromeInstaller() {
     .PARAMETER Path
     The folder path to save the installer to.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-ChromeInstaller -Architecture 32
 
     .EXAMPLE
     Get-ChromeInstaller -Architecture 64
+
+    .EXAMPLE
+    Get-ChromeInstaller -Architecture 64 -UseHTTP
 
     .EXAMPLE
     Get-ChromeInstaller -Architecture 64 -Channel 'beta'
@@ -204,14 +244,21 @@ Function Get-ChromeInstaller() {
         [string]$Channel = 'stable',
 
         [Parameter(Position=3, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
     $parameters = $PSBoundParameters
 
     if (-not($parameters.ContainsKey('ChromeVersion'))) {
-        $ChromeVersion = Get-ChromeVersion -Channel $Channel
+        if ($UseHTTP) {
+            $ChromeVersion = Get-ChromeVersion -Channel $Channel -UseHTTP
+        } else {
+            $ChromeVersion = Get-ChromeVersion -Channel $Channel
+        }
     }
     
     $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
@@ -230,7 +277,13 @@ Function Get-ChromeInstaller() {
         $installer = 'GoogleChromeStandaloneEnterprise64.msi'
     }
 
-    $uri = ('https://dl.google.com/edgedl/chrome/install/{0}' -f $installer)
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = ('{0}://dl.google.com/edgedl/chrome/install/{1}' -f $protocol,$installer)
   
     $params = @{
         Uri = $uri;
@@ -277,8 +330,14 @@ Function Get-ChromeGroupPolicyTemplate() {
     .PARAMETER Path
     The folder path to save the template zip file to.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-ChromeGroupPolicyTemplate
+
+    .EXAMPLE
+    Get-ChromeGroupPolicyTemplate -UseHTTP
 
     .EXAMPLE
     Get-ChromeGroupPolicyTemplate -ChromeVersion '49.0.2623.110'
@@ -293,14 +352,21 @@ Function Get-ChromeGroupPolicyTemplate() {
         [System.Version]$ChromeVersion,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the template zip file to')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
     $parameters = $PSBoundParameters
 
     if (-not($parameters.ContainsKey('ChromeVersion'))) {
-        $ChromeVersion = Get-ChromeVersion
+        if ($UseHTTP) {
+            $ChromeVersion = Get-ChromeVersion -UseHTTP
+        } else {
+            $ChromeVersion = Get-ChromeVersion
+        }
     }
     
     $templateFolder = $env:USERPROFILE,'Downloads' -join '\'
@@ -313,7 +379,13 @@ Function Get-ChromeGroupPolicyTemplate() {
         throw "$templateFolder does not exist"
     }
 
-    $uri = 'http://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip'
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = '{0}://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip' -f $protocol
   
     $params = @{
         Uri = $uri;
@@ -354,8 +426,14 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     .PARAMETER Path
     The folder path to save the template file to.
 
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
     .EXAMPLE
     Get-GoogleUpdateGroupPolicyTemplate
+
+    .EXAMPLE
+    Get-GoogleUpdateGroupPolicyTemplate -UseHTTP
 
     .EXAMPLE
     Get-GoogleUpdateGroupPolicyTemplate -Path 'C:\Chrome'
@@ -364,7 +442,10 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$false, HelpMessage='The folder path to save the template file to')]
-        [string]$Path    
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
     )
 
     # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
@@ -380,7 +461,13 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
         throw "$templateFolder does not exist"
     }
 
-    $uri = 'http://dl.google.com/update2/enterprise/GoogleUpdate.adm'
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = '{0}://dl.google.com/update2/enterprise/GoogleUpdate.adm' -f $protocol
   
     $params = @{
         Uri = $uri;

@@ -1,10 +1,10 @@
 # Chrome
 
-[Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Templates/) for the Chrome browser are included in the SHB. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are included as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release. The templates currently included in the SHB correspond to Chrome 51.0.2704.106 [released on June 23, 2016](http://googlechromereleases.blogspot.com/2016/06/stable-channel-update_23.html).
+[Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Templates/) for the Chrome browser are included in the SHB. The Group Policy template files typically change when a major version of Chrome is released but not all major releases change the templates. A file diffing tool can be used to determine if changes were made to the templates between major Chrome releases. The templates are included as a convenience and may not always be updated to the templates that correspond to the latest major Chrome release. The templates currently included in this repository correspond to Chrome 52.0.2743.116 [released on August 3, 2016](https://googlechromereleases.blogspot.com/2016/08/stable-channel-update-for-desktop.html).
 
 ## Updating the Chrome Group Policy templates
 
-The latest version of the Group Policy template files can be downloaded from http://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip The VERSION file inside the zip file should match the latest version listed at http://omahaproxy.appspot.com/win Once the zip file has been extracted, copy the following files:
+The latest version of the Group Policy template files can be downloaded from https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip The VERSION file inside the zip file should match the latest version listed at https://omahaproxy.appspot.com/win. Once the zip file has been extracted, copy the following files:
 * \windows\admx\chrome.admx
 * \windows\admx\en-us\chrome.adml
 
@@ -36,7 +36,7 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 
 # Google Update Group Policy template
-Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from http://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes. This template is included as a convenience.
+Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template file for Google Update can be downloaded from https://dl.google.com/update2/enterprise/GoogleUpdate.adm but this template rarely changes. This template is included as a convenience.
 
 
 You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
@@ -49,12 +49,7 @@ Download the latest enterprise/business version of Google Chrome:
 * [64-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi) (recommended)
 * [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
 
-
-
-The version number of Chrome the download represents is available at http://omahaproxy.appspot.com/win
-
-
-You can use the Get-ChromeInstaller command in the [Chrome.ps1](./Scripts/Chrome.ps1)  file in the [scripts folder](./Scripts) to download Chrome. Examples: **Get-ChromeInstaller -Architecture 64** or **Get-ChromeInstaller -Architecture 32**
+The version number of Chrome the download represents is available at https://omahaproxy.appspot.com/win. You can use the Get-ChromeInstaller command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download Chrome and automatically have the file named after the current Chrome version. Examples: **Get-ChromeInstaller -Architecture 64** or **Get-ChromeInstaller -Architecture 32**
 
 # Guidance
 NSA Information Assurance has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm). Google has also published a [Chrome for Work Deployment Guide](https://support.google.com/chrome/a/answer/3115278?hl=en) for Windows enterprises.
