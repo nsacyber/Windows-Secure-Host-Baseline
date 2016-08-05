@@ -1,7 +1,5 @@
-#requires -RunAsAdministrator
 #requires -Version 5
 Set-StrictMode -Version 5
-
 
 Function Test-IsDomainJoined() {
     [CmdletBinding()]
@@ -13,48 +11,41 @@ Function Test-IsDomainJoined() {
     return $computer.PartOfDomain
 }
 
-Function Test-RegistryValue() {
+Function Test-RegistryValueName() {
 <#
     .SYNOPSIS  
-    Tests if a registry value exists.
+    Tests if a registry value name exists.
    
     .DESCRIPTION
-    Tests if a registry value exists in the specified hive at the specified path.
-   
-    .PARAMETER Hive
-    The registry hive to check.
+    Tests if a registry value name exists in the specified hive at the specified path.
    
     .PARAMETER Path
-    The path of the registry key to check, not including the hive.
+    The path of the registry key to check, including the hive.
    
     .PARAMETER Name
     The name of the registry value to check.
      
     .EXAMPLE
-    Test-RegistryValue -Hive 'hklm' -Path 'Software\Microsoft\Windows\CurrentVersion' -Name 'ProgramFilesDir'
+    Test-RegistryValueName -Path 'hklm:\Software\Microsoft\Windows\CurrentVersion' -Name 'ProgramFilesDir'
 
     .EXAMPLE
-    Test-RegistryValue 'hklm' 'Software\Microsoft\Windows\CurrentVersion' 'ProgramFilesDir'
+    Test-RegistryValueName 'hklm:\Software\Microsoft\Windows\CurrentVersion' 'ProgramFilesDir'
     #>
     [CmdletBinding()]
     [OutputType([bool])]
-    Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The registry hive to check.')]
-        [ValidateNotNullOrEmpty()]
-        [string]$Hive,
-      
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path of the registry key, not including the hive.')]
+    Param(     
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the registry key, including the hive.')]
         [ValidateNotNullOrEmpty()]
         [string]$Path,
       
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The name of the registry value to check.')]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the registry value to check.')]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
         $exists = $false
 
     try {
-        Get-ItemProperty -Path ('{0}:\{1}' -f $Hive,$Path) -ErrorAction stop | Select-Object -ExpandProperty $Name -ErrorAction stop | Out-Null
+        Get-ItemProperty -Path $Path -ErrorAction stop | Select-Object -ExpandProperty $Name -ErrorAction stop | Out-Null
         $exists = $true
     } catch [System.Management.Automation.PSArgumentException],[System.Management.Automation.ItemNotFoundException],[System.Management.Automation.ActionPreferenceStopException] {
         $exists = $false
@@ -107,8 +98,9 @@ Function Uninstall-Powershell2() {
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
+    #todo: it is much faster to check the registry to see if the PowerShell 2.0 engine is installed, ref: http://stackoverflow.com/questions/1825585/determine-installed-powershell-version
     if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
-        Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue | Out-Null
+        Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
     }
 }
 
@@ -129,8 +121,12 @@ Function Uninstall-SMB1() {
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
-    if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
-        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart | Out-Null
+    # it is much faster just to check if the mrxsmb10 registry key value exists or not rather than using Test-WindowsOptionalFeature
+    # note that mrxsmb10 still exists when Disable-WindowsOptionalFeature is used. it is not deleted until a reboot, but SMB1 also continues to work until a reboot for that case
+    # can't avoid the slowness of Disable-WindowsOptionalFeature, but at least by not using the Test- function, it will be as fast as it can be
+    #if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
+    if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
+        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
     }
 }
 
@@ -162,8 +158,7 @@ Function Disable-NetBIOS() {
     # see also: https://support.microsoft.com/en-us/kb/313314
 
     if((Test-IsDomainJoined) -or $IncludeStandalone) {
-        $hive = 'hklm'
-        $keyPath = 'SYSTEM\CurrentControlSet\Services\NetBT\Parameters\Interfaces'
+        $interfacePath = 'hklm:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters\Interfaces'
         $valueName = 'NetbiosOptions'
         $previousValueName = 'Previous_NetbiosOptions'
 
@@ -171,15 +166,15 @@ Function Disable-NetBIOS() {
         # 0 = Use DHCP server setting, 1 = Enabled, 2 = Disabled
         $disabledValue = 2
 
-        Get-ChildItem -Path ('{0}:\{1}' -f $hive,$keyPath) -Recurse | Where-Object { $_.GetValue($valueName) -ne $disabledValue } | ForEach-Object { 
+        Get-ChildItem -Path $interfacePath -Recurse | Where-Object { $_.GetValue($valueName) -ne $disabledValue } | ForEach-Object { 
             $currentValue = $_.GetValue($valueName)
 
             # create a backup value, if it doesn't exist, so that we can use it to restore the setting to the previous value
-            if (-not(Test-RegistryValue -Hive $hive -Path ('{0}\{1}' -f $keyPath,$_.PSChildName) -Name $previousValueName)) {        
-                Set-ItemProperty -Path ('{0}:\{1}\{2}' -f $hive,$keyPath,$_.PSChildName) -Name $previousValueName -Value $currentValue
+            if (-not(Test-RegistryValueName -Path ('{0}\{1}' -f $interfacePath,$_.PSChildName) -Name $previousValueName)) {        
+                Set-ItemProperty -Path ('{0}\{1}' -f $interfacePath,$_.PSChildName) -Name $previousValueName -Value $currentValue
             }
 
-            Set-ItemProperty -Path ('{0}:\{1}\{2}' -f $hive,$keyPath,$_.PSChildName) -Name $valueName -Value $disabledValue 
+            Set-ItemProperty -Path ('{0}\{1}' -f $interfacePath,$_.PSChildName) -Name $valueName -Value $disabledValue 
         }
     }
 }
@@ -209,21 +204,20 @@ Function Restore-NetBIOS() {
     )
 
     if((Test-IsDomainJoined) -or $IncludeStandalone) {
-        $hive = 'hklm'
-        $keyPath = 'SYSTEM\CurrentControlSet\Services\NetBT\Parameters\Interfaces'
+        $interfacePath = 'hklm:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters\Interfaces'
         $valueName = 'NetbiosOptions'
         $previousValueName = 'Previous_NetbiosOptions'
 
-        Get-ChildItem -Path ('{0}:\{1}' -f $hive,$keyPath) -Recurse | Where-Object { $_.GetValue($previousValueName) -ne $null } | ForEach-Object { 
+        Get-ChildItem -Path $interfacePath -Recurse | Where-Object { $_.GetValue($previousValueName) -ne $null } | ForEach-Object { 
             $currentValue = $_.GetValue($valueName)
             $previousValue = $_.GetValue($previousValueName)
 
             # create a backup value, if it doesn't exist, so that we can use it to restore the setting to the previous value
-            if ($currentValue-ne  $previousValue) {        
-                Set-ItemProperty -Path ('{0}:\{1}\{2}' -f $hive,$keyPath,$_.PSChildName) -Name $valueName -Value $previousValue
+            if ($currentValue -ne $previousValue) {        
+                Set-ItemProperty -Path ('{0}\{1}' -f $interfacePath,$_.PSChildName) -Name $valueName -Value $previousValue
             }
 
-            Remove-ItemProperty -Path ('{0}:\{1}\{2}' -f $hive,$keyPath,$_.PSChildName) -Name $previousValueName
+            Remove-ItemProperty -Path ('{0}\{1}' -f $interfacePath,$_.PSChildName) -Name $previousValueName
         }
     }
 }
@@ -234,7 +228,7 @@ Function Disable-SMB1 {
     Disable the SMB 1.0 protocol.
 
     .DESCRIPTION
-    Disable the SMB 1.0 protocol. Since a system can act as an SMB server and client, SMB is disabled for both.
+    Disable the SMB 1.0 protocol. Since a system can act as an SMB server and client, SMB is disabled for both. If SMB1 is uninstalled, then the this function does nothing since there is nothing to disable.
 
     .EXAMPLE
     Disable-SMB1
@@ -246,34 +240,40 @@ Function Disable-SMB1 {
         [switch]$IncludeStandalone    
     )
 
-    # since any system can potentially be a SMB server and client, configure both the server and client to disable SMB
+    $smb1Path = 'hklm:\System\CurrentControlSet\Services\mrxsmb10'
+    $smbClientPath = 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation'
+    $smbServerPath = 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters'
 
-    $serverConfig = Get-SmbServerConfiguration
+    # checking if the registry key exists MUCH faster than using Get-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' and checking its State value
+    # if using Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' to uninstall SMB1, then the mrxsmb10 value is removed after reboot 
+    # technically SMB1 still works until a reboot happens due to the driver still being loaded
+    if (Test-Path -Path $smb1Path) {
 
-    if ($serverConfig.EnableSMB1Protocol) {
-        Set-SmbServerConfiguration -EnableSMB1Protocol $false
+        # the SMB1 registry value name used below does not exist by default which means SMB1 is enabled (ONLY if the SMB1Protocol feature State is Enabled as returned by Get-WindowsOptionalFeature OR mrxsmb10 exists)
+        # SMB1 is disabled when the SMB1 registry value exists AND it is set to 0 (OR if SMB1Protocol feature State is Disabled as returned by Get-WindowsOptionalFeature or mrxsmb10 does not exist) and a reboot has occured 
+        # (Get-SmbServerConfiguration).EnableSMB1Protocol merely reflects the regsitry value information (returns $true if not exist OR exists and value is 1. returns $false if exists and value is 0)
+        # Get-SmbServerConfiguration does not reflect the Windows feature state which could lead to false positives by solely using that command
 
-        # the SMB1 registry value name does not exist by default so only create a Previous_SMB1 value name if SMB1 already exists
-        if (Test-RegistryValue -Hive hklm -Path 'System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1') {
-            $smb1Value = Get-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1' 
-            Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'Previous_SMB1' -Type DWORD -Value $smb1Value -Force
+        if (Test-RegistryValueName -Path $smbServerPath -Name 'SMB1') {
+            $smb1Value = Get-ItemPropertyValue -Path $smbServerPath -Name 'SMB1' 
+            Set-ItemProperty -Path $smbServerPath -Name 'Previous_SMB1' -Type DWORD -Value $smb1Value -Force
         }
 
-        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'SMB1' -Type DWORD -Value 0 -Force # 0 = Disabled, 1 = Enabled
-    }
+        Set-ItemProperty -Path $smbServerPath -Name 'SMB1' -Type DWORD -Value 0 -Force # 0 = Disabled, 1 = Enabled
 
-    if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
-        $startValue = Get-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Start'
-        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Previous_Start' -Type DWORD -Value $startValue -Force
+        # technically we don't have to disable the driver but we will anyway to be safe
 
-        Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10' -Name 'Start' -Type DWORD -Value 4 -Force # 4 = Disabled, 2 = Automatic (normal value)
+        $startValue = Get-ItemProperty -Path $smb1Path -Name 'Start'
+        Set-ItemProperty -Path $smb1Path  -Name 'Previous_Start' -Type DWORD -Value $startValue -Force
 
-        $dependOnValue = Get-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'DependOnService' 
-        Set-ItemPropertyValue -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'Previous_DependOnService' -Type MultiString -Value $dependOnValue -Force
+        Set-ItemProperty -Path $smb1Path  -Name 'Start' -Type DWORD -Value 4 -Force # 4 = Disabled, 2 = Automatic (normal value)
+
+        $dependOnValue = Get-ItemPropertyValue -Path $smbClientPath -Name 'DependOnService' 
+        Set-ItemPropertyValue -Path $smbClientPath -Name 'Previous_DependOnService' -Type MultiString -Value $dependOnValue -Force
 
         if ('mrxsmb10' -in $dependOnValue) {
-            $newDependOnValue = ((($dependOnValue -join ',') -replace 'mrxsmb10','') -replace ',,',',') -split ','
-            Set-ItemProperty -Path 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation' -Name 'DependOnService' -Type MultiString -Value $newDependOnValue -Force
+            $newDependOnValue = ((($dependOnValue -join ',') -replace 'mrxsmb10','') -replace ',,',',') -split ',' # remove the dependency on SMB1
+            Set-ItemProperty -Path $smbClientPath  -Name 'DependOnService' -Type MultiString -Value $newDependOnValue -Force
         }
     }
 }
@@ -281,10 +281,10 @@ Function Disable-SMB1 {
 Function Get-SMBDialect() {
     <#
     .SYNOPSIS
-    Gets the SMB dialect.
+    Gets the highest SMB dialect supported by the system.
 
     .DESCRIPTION
-    Gets the SMB dialect.
+    Gets the highest SMB dialect supported by the system.
 
     .EXAMPLE
     Get-SMBDialect
@@ -303,3 +303,7 @@ Function Get-SMBDialect() {
 
     return [System.Version]$dialect
 }
+
+#todo: Get-SMBDialectsInUse function. use Get-SMBConnection for client side and Get-SMBSession for server side. return unique list of dialects in use @([Server,1.1],[Client,2.0])
+#Get-SMBConnection is the client side of SMB connections
+#Get-SMBSession is the server side of SMB connections
