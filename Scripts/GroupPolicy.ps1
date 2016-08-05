@@ -555,7 +555,7 @@ Function Import-LocalPolicyObject() {
     The path to LGPO tool.
 
     .EXAMPLE
-    Import-LocalPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\lgpo.exe'
+    Import-LocalPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -578,7 +578,6 @@ Function Import-LocalPolicyObject() {
         throw "$Path is not a Group Policy backup folder path"
     }
 
-    #todo: use system.diagnostics and check exit code
     #Start-Process -FilePath $ToolPath -ArgumentList "/g `"$Path`"" -Wait -WindowStyle Hidden # -NoNewWindow
 
     #todo: abstract into generic Invoke-ExecuteProcess function
@@ -604,7 +603,6 @@ Function Import-LocalPolicyObject() {
        Write-Warning -Message ('LGPO message: {0}{1}' -f [System.Environment]::NewLine,$output)
     }
 }
-
 
 Function Import-DomainPolicyObject() {
    <#
@@ -662,6 +660,9 @@ Function Import-PolicyObject() {
 
     .EXAMPLE
     Import-PolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+
+    .EXAMPLE
+    Import-PolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -689,6 +690,10 @@ Function Import-PolicyObject() {
         throw "$Path is not a Group Policy backup folder path"
     }
 
+    if (('Local' -eq $PolicyType -or -not(Test-IsDomainJoined)) -and -not($parameters.ContainsKey('ToolPath'))) {
+        throw 'Must specify the path of the LPGO executable'
+    }
+
     $parameters = $PSBoundParameters
 
     switch ($PolicyType.ToLower()) {
@@ -696,11 +701,7 @@ Function Import-PolicyObject() {
             Import-DomainPolicyObject -Path $Path
             break 
          }
-        'local' { 
-            if (-not($parameters.ContainsKey('ToolPath'))) {
-                throw 'Must specify the path of the LPGO executable'
-            }
-
+        'local' {
             Import-LocalPolicyObject -Path $Path -ToolPath $ToolPath
             break 
         }
@@ -708,13 +709,8 @@ Function Import-PolicyObject() {
             if (Test-IsDomainJoined) {
                 Import-DomainPolicyObject -Path $Path
             } else {
-                if (-not($parameters.ContainsKey('ToolPath'))) {
-                    throw 'Must specify the path of the LPGO executable'
-                }
-
                 Import-LocalPolicyObject -Path $Path -ToolPath $ToolPath
             }
-
             break
         }
         default { 
@@ -722,7 +718,6 @@ Function Import-PolicyObject() {
         }
     }
 }
-
 
 Function New-LocalPolicyObjectBackup() {
     <#
@@ -739,7 +734,7 @@ Function New-LocalPolicyObjectBackup() {
     The path to LGPO tool.
 
     .EXAMPLE
-    New-LocalPolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer' -ToolPath '.\Secure-Host-Baseline\lgpo.exe'
+    New-LocalPolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -845,6 +840,9 @@ Function New-PolicyObjectBackup() {
 
     .EXAMPLE
     New-PolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+
+    .EXAMPLE
+    New-PolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -870,16 +868,16 @@ Function New-PolicyObjectBackup() {
 
     $parameters = $PSBoundParameters
 
+    if (('Local' -eq $PolicyType -or -not(Test-IsDomainJoined)) -and -not($parameters.ContainsKey('ToolPath'))) {
+        throw 'Must specify the path of the LPGO executable'
+    }
+
     switch ($PolicyType.ToLower()) {
         'domain' { 
             New-DomainPolicyObjectBackup -Path $Path
             break 
          }
         'local' { 
-            if (-not($parameters.ContainsKey('ToolPath'))) {
-                throw 'Must specify the path of the LPGO executable'
-            }
-
             New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath
             break 
         }
@@ -887,12 +885,8 @@ Function New-PolicyObjectBackup() {
             if (Test-IsDomainJoined) {
                 New-DomainPolicyObjectBackup -Path $Path
             } else {
-                if (-not($parameters.ContainsKey('ToolPath'))) {
-                    throw 'Must specify the path of the LPGO executable'
-                }
                 New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath
             }
-
             break
         }
         default { 
@@ -945,8 +939,35 @@ Function Invoke-ApplySecureHostBaseline() {
     .DESCRIPTION
     Applies the Secure Host Baseline Group Policy Objects. In the domain case, the GPOs are merely imported into the domain. In the local/standalone system case, the GPOs are applied to the system.
 
+    .PARAMETER Path
+    Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
+
+    .PARAMETER PolicyNames
+    Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
+
+    .PARAMETER PolicyScopes
+    Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
+
+    .PARAMETER PolicyType
+    Optional. The type of policies to apply. Available types: 'Domain', 'Local'. Defaults to 'Domain' when joined to a domain. Defaults to 'Local' when not joined to a domain.
+
+    .PARAMETER PolicyMode
+    Optional. The mode of policies to apply, if supported by the specific policy. For example, AppLocker supports audit and enforcement modes. Available modes: 'Audit', 'Enforced'. Defaults to 'Audit'.
+
+    .PARAMETER BackupPath
+    Optional. The path to a folder to save backups of Group Policy Objects and Group Policy Templates to in case a rollback is needed. Defaults to $env:USERPROFILE\Desktop\Backup_yyyyMMddHHmmss for when the script was executed.
+
+    .PARAMETER ToolPath
+    Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
+
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath 'C:\Users\user\Desktop'
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBacku"' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding(SupportsShouldProcess=$true)]
     [OutputType([void])]
@@ -972,7 +993,7 @@ Function Invoke-ApplySecureHostBaseline() {
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The types of the policies to apply.')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply.')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Audit', 'Enforced', IgnoreCase=$true)]
         [string]$PolicyMode = 'Audit',
@@ -1093,6 +1114,7 @@ Function Invoke-ApplySecureHostBaseline() {
                 }
             }
 
+            #todo: simplify the above so this doesn't always copy
             Copy-Item -Path $newTemplate -Destination $existingTemplate -Force
         }
 
