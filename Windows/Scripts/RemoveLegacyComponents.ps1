@@ -45,8 +45,8 @@ Function Test-RegistryValueName() {
         $exists = $false
 
     try {
-        Get-ItemProperty -Path $Path -ErrorAction stop | Select-Object -ExpandProperty $Name -ErrorAction stop | Out-Null
-        $exists = $true
+        $value = Get-ItemProperty -Path $Path -ErrorAction stop | Select-Object -ExpandProperty $Name -ErrorAction stop
+        $exists = ($value -ne $null) # catch the case where key exists but value name does not
     } catch [System.Management.Automation.PSArgumentException],[System.Management.Automation.ItemNotFoundException],[System.Management.Automation.ActionPreferenceStopException] {
         $exists = $false
     }
@@ -98,8 +98,9 @@ Function Uninstall-Powershell2() {
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
-    #todo: it is much faster to check the registry to see if the PowerShell 2.0 engine is installed, ref: http://stackoverflow.com/questions/1825585/determine-installed-powershell-version
-    if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
+    # it is much faster to check the registry to see if the PowerShell 2.0 engine is installed, ref: http://stackoverflow.com/questions/1825585/determine-installed-powershell-version
+    # this is slow: if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
+    if (Test-RegistryValueName -Path 'hklm:\Software\Microsoft\PowerShell\1\PowerShellEngine' -Name 'PowerShellVersion') {
         Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
     }
 }
