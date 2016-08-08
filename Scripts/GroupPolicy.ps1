@@ -367,6 +367,90 @@ Function Test-IsAdministrator() {
     return $isAdministrator
 }
 
+Function Invoke-Process() {
+    <#
+    .SYNOPSIS
+    Executes a process. 
+
+    .DESCRIPTION
+    Executes a process and waits for it to exit.
+
+    .PARAMETER Path
+    The path of the file to execute.
+
+    .PARAMETER Arguments
+    THe arguments to pass to the executable. Arguments with spaces in them are automatically quoted.
+
+    .PARAMETER PassTHru
+    Return the results as an object.
+
+    .EXAMPLE
+    Invoke-Process -Path 'C:\Windows\System32\whoami.exe'
+
+    .EXAMPLE
+    Invoke-Process -Path 'C:\Windows\System32\whoami.exe' -Arguments '/groups'
+
+    .EXAMPLE
+    Invoke-Process -Path 'C:\Windows\System32\whoami.exe' -Arguments '/groups' -PassThru
+
+    .EXAMPLE
+    Invoke-Process -Path 'lgpo.exe' -Arguments '/g','C:\path to gpo folder' -PassThru
+    #>
+    [CmdletBinding()]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the file to execute')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
+        [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The arguments to pass to the executable')]
+        [ValidateNotNullOrEmpty()]
+        [string[]]$Arguments,
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='Return the results as an object')]
+        [switch]$PassThru
+    )
+
+    $parameters = $PSBoundParameters
+
+    $escapedArguments = ''
+
+    if ($parameters.ContainsKey('Arguments')) {
+        $Arguments | ForEach-Object {
+            if ($_.Contains(' ')) {
+                $escapedArguments = $escapedArguments,("`"{0}`"" -f $_) -join ' '
+            } else {
+                $escapedArguments = $escapedArguments,$_ -join ' '
+            }
+        }
+    }
+
+    $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
+    $processInfo.FileName = $Path
+    $processInfo.RedirectStandardError = $true 
+    $processInfo.RedirectStandardOutput = $true 
+    $processInfo.UseShellExecute = $false 
+    $processInfo.CreateNoWindow = $true
+    $processInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
+    $processInfo.Arguments = $escapedArguments.Trim()
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $processInfo 
+    $process.Start() | Out-Null 
+    $output = $process.StandardOutput.ReadToEnd() 
+    $process.WaitForExit()
+    
+    $exitCode = $process.ExitCode
+
+    if($PassThru) {
+        return [pscustomobject]@{
+            'ExitCode' = $exitCode;
+            'Output' = $output;
+            'Process' = $process;
+        }
+    }
+}
+
 Function Test-IsElevated() {
     <#
     .SYNOPSIS
@@ -384,24 +468,13 @@ Function Test-IsElevated() {
 
     #todo: P\Invoke OpenProcessToken, GetTokenInformation with TokenIntegrityLevel instead. TOKEN_GROUP.Groups (SID_AND_ATTRIBUTES) see https://msdn.microsoft.com/en-us/library/bb625963.aspx
 
-    #todo: abstract into generic Invoke-ExecuteProcess function
-    $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
-    $processInfo.FileName = 'whoami.exe'
-    $processInfo.RedirectStandardError = $true 
-    $processInfo.RedirectStandardOutput = $true 
-    $processInfo.UseShellExecute = $false 
-    $processInfo.CreateNoWindow = $true
-    $processInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
-    $processInfo.Arguments = '/all' 
-    $process = New-Object System.Diagnostics.Process 
-    $process.StartInfo = $processInfo 
-    $process.Start() | Out-Null 
-    $output = $process.StandardOutput.ReadToEnd() 
-    $process.WaitForExit() 
+    $path = $env:SYSTEMROOT,'System32','whoami.exe' -join [System.IO.Path]::DirectorySeparatorChar
+
+    $result = Invoke-Process -Path $path -Arguments '/groups' -PassThru
 
     $highIntegrityLevel = 'S-1-16-12288'
 
-    $isElevated = $output -match $highIntegrityLevel
+    $isElevated = ($result.Output) -match $highIntegrityLevel
 
     return $isElevated
 }
@@ -578,29 +651,18 @@ Function Import-LocalPolicyObject() {
         throw "$Path is not a Group Policy backup folder path"
     }
 
-    #Start-Process -FilePath $ToolPath -ArgumentList "/g `"$Path`"" -Wait -WindowStyle Hidden # -NoNewWindow
-
-    #todo: abstract into generic Invoke-ExecuteProcess function
-    $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
-    $processInfo.FileName = $ToolPath
-    $processInfo.RedirectStandardError = $true 
-    $processInfo.RedirectStandardOutput = $true 
-    $processInfo.UseShellExecute = $false 
-    $processInfo.CreateNoWindow = $true
-    $processInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
-    $processInfo.Arguments = "/g `"$Path`""
-    $process = New-Object System.Diagnostics.Process 
-    $process.StartInfo = $processInfo 
-    $process.Start() | Out-Null 
-    $output = $process.StandardOutput.ReadToEnd() 
-    $process.WaitForExit()
+    $result = Invoke-Process -Path $ToolPath -Arguments '/g',$Path -PassThru
     
-    $exitCode = $process.ExitCode
+    $exitCode = $result.ExitCode
+    $output = $result.Output
 
     if (0 -ne $exitCode) {
-       Write-Warning -Message 'LGPO import might have not executed correctly'
-       Write-Warning -Message ('LGPO exit code: {0}' -f $exitCode)
-       Write-Warning -Message ('LGPO message: {0}{1}' -f [System.Environment]::NewLine,$output)
+        Write-Warning -Message 'LGPO import might have not executed correctly'
+        Write-Warning -Message ('{Exit code: {1}' -f $exitCode)
+
+        if ($output -ne $null -and $output -ne '') {
+            Write-Warning -Message ('Output: {0}{1}' -f [System.Environment]::NewLine,$output)
+        }
     }
 }
 
@@ -756,32 +818,19 @@ Function New-LocalPolicyObjectBackup() {
     $date = Get-Date
     $policyName = 'Local Group Policy Backup - {0:MM/dd/yyyy HH:mm:ss}' -f $date
 
-    #todo: use system.diagnostics and check exit code
-    #Start-Process -FilePath $ToolPath -ArgumentList "/b `"$Path`" /n `"$policyName`"" -Wait -WindowStyle Hidden # -NoNewWindow
+    $result = Invoke-Process -Path $ToolPath -Arguments '/b',$Path,'/n',$policyName -PassThru
 
-    #todo: abstract into generic Invoke-ExecuteProcess function
-    $processInfo = New-Object System.Diagnostics.ProcessStartInfo 
-    $processInfo.FileName = $ToolPath
-    $processInfo.RedirectStandardError = $true 
-    $processInfo.RedirectStandardOutput = $true 
-    $processInfo.UseShellExecute = $false 
-    $processInfo.CreateNoWindow = $true
-    $processInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
-    $processInfo.Arguments = "/b `"$Path`" /n `"$policyName`""
-    $process = New-Object System.Diagnostics.Process 
-    $process.StartInfo = $processInfo 
-    $process.Start() | Out-Null 
-    $output = $process.StandardOutput.ReadToEnd() 
-    $process.WaitForExit()
-
-    $exitCode = $process.ExitCode
+    $exitCode = $result.ExitCode
+    $output = $result.Output
 
     if (0 -ne $exitCode) {
-       Write-Warning -Message 'LGPO backup might have not executed correctly'
-       Write-Warning -Message ('LGPO exit code: {0}' -f $exitCode)
-       Write-Warning -Message ('LGPO message: {0}{1}' -f [System.Environment]::NewLine,$output)
-    }
+        Write-Warning -Message 'LGPO backup might have not executed correctly'
+        Write-Warning -Message ('{Exit code: {1}' -f $exitCode)
 
+        if ($output -ne $null -and $output -ne '') {
+            Write-Warning -Message ('Output: {0}{1}' -f [System.Environment]::NewLine,$output)
+        }
+    }
 }
 
 Function New-DomainPolicyObjectBackup() {
@@ -961,13 +1010,13 @@ Function Invoke-ApplySecureHostBaseline() {
     Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -$PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBacku"' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBacku"' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding(SupportsShouldProcess=$true)]
     [OutputType([void])]
