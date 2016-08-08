@@ -1016,7 +1016,7 @@ Function Invoke-ApplySecureHostBaseline() {
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBacku"' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBackup" -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding(SupportsShouldProcess=$true)]
     [OutputType([void])]
@@ -1145,26 +1145,22 @@ Function Invoke-ApplySecureHostBaseline() {
         
         #todo: for domain context we might want to see if GPO exists first, not sure if that should be done by Name or GUID
 
-        #todo: copy templates if they haven't been already
-        #todo: if existing template is different (use file size or hash) than the SHB template, then could rename existing template first and then copy the template over
-        # could use similar rename logic as described https://github.com/iadgov/Secure-Host-Baseline/blob/master/Scripts/GitHub.ps1#L672
-
         $newTemplatePath = $_.PolicyTemplatePath
         $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
          $newTemplates | ForEach-Object {
             $newTemplate = $_.FullName
-            $existingTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
+            $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
 
-            # copy the template so there is a backup copy
-            if (Test-Path -Path $existingTemplate -PathType Leaf) {
-                if (-not(Test-FilesEqual -FileOne $existingTemplate -FileTwo $newTemplate)) {
-                    Copy-Item -Path $existingTemplate -Destination $gptBackupFolder
+            
+            if (Test-Path -Path $targetTemplate -PathType Leaf) {
+                if (-not(Test-FilesEqual -FileOne $targetTemplate -FileTwo $newTemplate)) {                
+                    Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy
+                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
                 }
+            } else {
+                Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
             }
-
-            #todo: simplify the above so this doesn't always copy
-            Copy-Item -Path $newTemplate -Destination $existingTemplate -Force
         }
 
         if ('Local' -eq $PolicyType) {

@@ -316,7 +316,7 @@
       </elements>
     </policy>
 
-    <policy name="Office" class="Both" displayName="$(string.EMET_Office)" explainText="$(string.EMET_Office_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Office_Text)">
+    <policy name="Office" class="Machine" displayName="$(string.EMET_Office)" explainText="$(string.EMET_Office_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Office_Text)">
       <parentCategory ref="EMET" />
       <supportedOn ref="SUPPORTED_ProductOnly" />
       <enabledList>
@@ -519,7 +519,7 @@
 	  </disabledList>
     </policy>
 
-    <policy name="IE" class="Both" displayName="$(string.EMET_IE)" explainText="$(string.EMET_IE_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.IE_Text)">
+    <policy name="IE" class="Machine" displayName="$(string.EMET_IE)" explainText="$(string.EMET_IE_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.IE_Text)">
       <parentCategory ref="EMET" />
       <supportedOn ref="SUPPORTED_ProductOnly" />
        <enabledList>
@@ -538,7 +538,7 @@
       </disabledList>
     </policy>
 
-    <policy name="Other" class="Both" displayName="$(string.EMET_MISC)" explainText="$(string.EMET_MISC_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Misc_Text)">
+    <policy name="Other" class="Machine" displayName="$(string.EMET_MISC)" explainText="$(string.EMET_MISC_HELP)" key="Software\Policies\Microsoft\EMET\Defaults" presentation="$(presentation.Misc_Text)">
       <parentCategory ref="EMET" />
       <supportedOn ref="SUPPORTED_ProductOnly" />
       <enabledList>
