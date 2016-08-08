@@ -8,13 +8,13 @@ EMET 5.5 added official support for Windows 10. Other significant changes of int
 1. Changing the system DEP setting through Group Policy no longer causes a BitLocker key recovery prompt since the DEP setting is no longer changed in that case.
 1. The ability to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings.
 
-Note that EMET 5.5 supports ends on [January 27, 2017](https://support.microsoft.com/en-us/kb/2458544).
-
 ## Downloads for EMET 5.5
+EMET 5.51 was released on August 1, 2016. It appears to be a minor update for fixing bugs listed in the **Known issues in EMET 5.5 and 5.51** section of the [EMET support article](https://support.microsoft.com/en-us/kb/2458544#mt1).
+* [EMET 5.51](<https://www.microsoft.com/en-us/download/details.aspx?id=53354>)
+* [EMET 5.5+ User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802)
+* [EMET 5.5+ converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True)
 
-* [EMET 5.5](https://www.microsoft.com/en-us/download/details.aspx?id=50766)
-* [EMET 5.5 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=50802)
-* [EMET 5.5 converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True)
+Note that EMET 5.5/5.51 supports ends on [January 27, 2017](https://support.microsoft.com/en-us/kb/2458544).
 
 ## Updating the EMET Group Policy templates
 
