@@ -992,7 +992,7 @@ Function Invoke-ApplySecureHostBaseline() {
     Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
 
     .PARAMETER PolicyNames
-    Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
+    Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
 
     .PARAMETER PolicyScopes
     Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
@@ -1029,7 +1029,7 @@ Function Invoke-ApplySecureHostBaseline() {
 
         [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply.')]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
+        [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
         [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply.')]
@@ -1058,8 +1058,6 @@ Function Invoke-ApplySecureHostBaseline() {
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$ToolPath
     )
-
-    #todo: add 'Certificates' and 'Defender' to PolicyName once those GPOs are added
 
     #todo: add Prepare-SecureHostBaseline -Path $Path, currently might only need it to download LGPO.exe
 
@@ -1119,7 +1117,9 @@ Function Invoke-ApplySecureHostBaseline() {
     # these parens are important, don't remove them otherwise Where-Object doesn't work, need to pipeline
     $policyDefinitions = (Get-GPODefinitions -Path $Path) | Where-Object { $_.PolicyName -in $PolicyNames -and (@( Get-Intersection -Left ($PolicyScopes) -Right ($_.PolicyScopes)).Count -ge 1) -and $PolicyType -in $_.PolicyTypes -and $PolicyMode -in $_.PolicyModes}
 
-    #todo: consider adding a throw for when no matches (0 policies found)
+    if (0 -eq $policyDefinitions.Count) {
+        throw 'Unable to apply policies because no policies matched'
+    }
 
     $templateFolderPath = Get-GroupPolicyTemplateFolderPath -TemplatePathType $PolicyType
 
@@ -1148,15 +1148,14 @@ Function Invoke-ApplySecureHostBaseline() {
         $newTemplatePath = $_.PolicyTemplatePath
         $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
-         $newTemplates | ForEach-Object {
+        $newTemplates | ForEach-Object {
             $newTemplate = $_.FullName
             $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
-
-            
+        
             if (Test-Path -Path $targetTemplate -PathType Leaf) {
                 if (-not(Test-FilesEqual -FileOne $targetTemplate -FileTwo $newTemplate)) {                
                     Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy
-                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force #todo: differentiate between adml and admx
                 }
             } else {
                 Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
@@ -1167,6 +1166,21 @@ Function Invoke-ApplySecureHostBaseline() {
             Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
         } else {
             Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType
+        }
+
+        # no local policy support for certificates so we have to manually import them
+        if ($_.PolicyName -eq 'Certificates' -and 'Local' -eq $PolicyType) {
+            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Root') -and $_.PsIsContainer -eq $false})
+
+            $certificateFiles | ForEach {
+                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\Root # Trusted Root Certification Authories
+            }
+
+            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Intermediate') -and $_.PsIsContainer -eq $false})
+
+            $certificateFiles | ForEach {
+                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\CA # Intermediate Certification Authories
+            }
         }
     }
 }

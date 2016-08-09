@@ -6,6 +6,8 @@ Set-StrictMode -Version 3
 #todo: removed hardcoded path
 $basePath = "$env:USERPROFILE\Documents\GitHub\Secure-Host-Baseline"
 
+Set-Location -Path $basePath
+
 $policy = [pscustomobject]@{
     'PolicyName' = 'Adobe Reader'
     'PolicyScopes' = [string[]]@('Computer');
@@ -110,7 +112,7 @@ $policy = [pscustomobject]@{
     'PolicyTemplatePath' = '.\..\..\';
 }
 
-$policyPath = "$basePath\Office\Office 2013\Group Policy Objects"
+$policyPath = "$basePath\Office\Group Policy Objects\Office 2013"
 $policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
 
 
@@ -149,4 +151,15 @@ $policy = [pscustomobject]@{
 $policyPath = "$basePath\Windows Firewall\Group Policy Objects\Computer"
 $policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
 
+
+$policy = [pscustomobject]@{
+    'PolicyName' = 'Certificates'
+    'PolicyScopes' = [string[]]@('Computer');
+    'PolicyTypes' = [string[]]@('Domain', 'Local');
+    'PolicyModes' = [string[]]@('Audit','Enforced');
+    'PolicyTemplatePath' = '.\..\..\..\Windows';
+}
+
+$policyPath = "$basePath\Certificates\Group Policy Objects\Computer"
+$policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
 
