@@ -29,4 +29,5 @@ NSA Information Assurance guidance for Windows 10:
 * [Security Highlights of Windows 10](https://www.iad.gov/iad/library/ia-guidance/security-configuration/operating-systems/security-highlights-of-windows-10.cfm)
 
 ## Links
-* [Group Policy Search](http://gpsearch.azurewebsites.net/)
+* [Group Policy search](http://gpsearch.azurewebsites.net/)
+* [Windows 10 release information](https://technet.microsoft.com/en-us/windows/release-info.aspx)
