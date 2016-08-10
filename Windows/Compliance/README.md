@@ -9,9 +9,6 @@ The following checks must be performed manually because there is currently no au
 * WN10-00-000030 - Mobile systems must encrypt all discs to protect the confidentiality and integrity of all information at rest.
 * WN10-00-000130 - Software certificate installation files must be removed from a system.
 * WN10-00-000140 - Inbound exceptions to the firewall on domain workstations must only allow authorized remote management hosts.
-* WN10-AU-000515 - Permissions for the Application event log must prevent access by non-privileged accounts.
-* WN10-AU-000520 - Permissions for the Security event log must prevent access by non-privileged accounts.
-* WN10-AU-000525 - Permissions for the System event log must prevent access by non-privileged accounts.
 * WN10-UC-000005 - A screen saver must be enabled on the system.
 * WN10-UC-000010 - The screen saver must be password protected. 
 * WN10-UC-000015 - Toast notifications to the lock screen must be turned off.
