@@ -247,7 +247,7 @@
     </policy>
  
     <policy class="Machine" displayName="$(string.cloudprefsync)" explainText="$(string.cloudprefsync_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
-      name="cloudprefsync" valueName="bTogglePerfSync">
+      name="cloudprefsync" valueName="bTogglePrefsSync">
       <parentCategory ref="cloud_group"/>
       <supportedOn ref="SUPPORTED_READERDC"/>
       <enabledValue>
