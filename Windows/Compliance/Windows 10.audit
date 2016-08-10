@@ -1259,52 +1259,109 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  check_type	: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
-
+#Nessus cannot currently run these three File Permission checks on event log files, but equivilant checks are done below with PowerShell
+#
 # STIG ID	: WN10-AU-000515
+#<custom_item>
+# type		: FILE_PERMISSIONS
+# description	: "WN10-AU-000515: Permissions for the Application event log must prevent access by non-privileged accounts."
+# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Application event log may be susceptible to tampering if proper permissions are not applied.
+#
+#		STIG ID: WN10-AU-000515
+#		Vuln ID:  V-63533
+#		Rule ID:  SV-78023r1_rule
+#		Severity: CAT II"	
+# value_type	: FILE_ACL
+# value_data	: "LOG_ACL"
+# file		: "%systemroot%\system32\winevt\Logs\Application.evtx"
+#</custom_item>
+
+# STIG ID	: WN10-AU-000520
+#<custom_item>
+# type		: FILE_PERMISSIONS
+# description	: "WN10-AU-000520: Permissions for the Security event log must prevent access by non-privileged accounts."
+# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Security event log may be susceptible to tampering if proper permissions are not applied.
+#
+#		STIG ID: WN10-AU-000520
+#		Vuln ID:  V-63537
+#		Rule ID:  SV-78073r1_rule
+# 		Severity: CAT II"	
+# value_type	: FILE_ACL
+# value_data	: "LOG_ACL"
+# file		: "%systemroot%\system32\winevt\Logs\Security.evtx"
+#</custom_item>
+
+# STIG ID	: WN10-AU-000525
+#<custom_item>
+# type		: FILE_PERMISSIONS
+# description	: "WN10-AU-000525: Permissions for the System event log must prevent access by non-privileged accounts."
+# info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The System event log may be susceptible to tampering if proper permissions are not applied.
+#
+#		STIG ID: WN10-AU-000515
+#		Vuln ID:  V-63541
+#		Rule ID:  SV-780231r1_rule
+# 		Severity: CAT II"	
+# value_type	: FILE_ACL
+# value_data	: "LOG_ACL"
+# file		: "%systemroot%\system32\winevt\Logs\System.evtx"
+#</custom_item>
+
 <custom_item>
- type		: FILE_PERMISSIONS
+ type		: AUDIT_POWERSHELL
  description	: "WN10-AU-000515: Permissions for the Application event log must prevent access by non-privileged accounts."
  info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Application event log may be susceptible to tampering if proper permissions are not applied.
+
+		Accesses must be:
+		EventLog - Full Control
+		SYSTEM - Full Control
+		Administrators - Full Control
 
 		STIG ID: WN10-AU-000515
 		Vuln ID:  V-63533
 		Rule ID:  SV-78023r1_rule
 		Severity: CAT II"	
- value_type	: FILE_ACL
- value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Logs\Application.evtx"
+ value_type	: POLICY_TEXT
+ value_data	: "True"
+ powershell_args: "(Get-ACL C:\windows\system32\winevt\Logs\Application.evtx | select -ExpandProperty AccessToString) -like '*EventLog Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\Application.evtx | select -ExpandProperty AccessToString) -like '*SYSTEM Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\Application.evtx | select -ExpandProperty AccessToString) -like '*Administrators Allow  FullControl*'"
 </custom_item>
 
-# STIG ID	: WN10-AU-000520
 <custom_item>
- type		: FILE_PERMISSIONS
+ type		: AUDIT_POWERSHELL
  description	: "WN10-AU-000520: Permissions for the Security event log must prevent access by non-privileged accounts."
  info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The Security event log may be susceptible to tampering if proper permissions are not applied.
+
+		Accesses must be:
+		EventLog - Full Control
+		SYSTEM - Full Control
+		Administrators - Full Control
 
 		STIG ID: WN10-AU-000520
 		Vuln ID:  V-63537
 		Rule ID:  SV-78073r1_rule
  		Severity: CAT II"	
- value_type	: FILE_ACL
- value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Logs\Security.evtx"
+ value_type	: POLICY_TEXT
+ value_data	: "True"
+ powershell_args: "(Get-ACL C:\windows\system32\winevt\Logs\Security.evtx | select -ExpandProperty AccessToString) -like '*EventLog Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\Security.evtx | select -ExpandProperty AccessToString) -like '*SYSTEM Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\Security.evtx | select -ExpandProperty AccessToString) -like '*Administrators Allow  FullControl*'"
 </custom_item>
 
-# STIG ID	: WN10-AU-000525
 <custom_item>
- type		: FILE_PERMISSIONS
+ type		: AUDIT_POWERSHELL
  description	: "WN10-AU-000525: Permissions for the System event log must prevent access by non-privileged accounts."
  info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. The System event log may be susceptible to tampering if proper permissions are not applied.
 
-		STIG ID: WN10-AU-000515
+		Accesses must be:
+		EventLog - Full Control
+		SYSTEM - Full Control
+		Administrators - Full Control
+
+		STIG ID: WN10-AU-000525
 		Vuln ID:  V-63541
 		Rule ID:  SV-780231r1_rule
- 		Severity: CAT II"	
- value_type	: FILE_ACL
- value_data	: "LOG_ACL"
- file		: "%systemroot%\system32\winevt\Logs\System.evtx"
+ 		Severity: CAT II"
+ value_type	: POLICY_TEXT
+ value_data	: "True"
+ powershell_args: "(Get-ACL C:\windows\system32\winevt\Logs\System.evtx | select -ExpandProperty AccessToString) -like '*EventLog Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\System.evtx | select -ExpandProperty AccessToString) -like '*SYSTEM Allow  FullControl*' -and (Get-ACL C:\windows\system32\winevt\Logs\System.evtx | select -ExpandProperty AccessToString) -like '*Administrators Allow  FullControl*'"
 </custom_item>
-
 
 #--------------------------------------#
 #  STIG CC settings
