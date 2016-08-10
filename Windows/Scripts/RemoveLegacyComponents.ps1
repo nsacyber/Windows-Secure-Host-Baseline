@@ -81,54 +81,76 @@ Function Test-WindowsOptionalFeature() {
     return $present
 }
 
-Function Uninstall-Powershell2() {
+Function Uninstall-PowerShellEngine() {
     <#
     .SYNOPSIS
-    Uninstalls PowerShell 2.0 engine.
+    Uninstalls the PowerShell engine.
 
     .DESCRIPTION
-    Uninstalls PowerShell 2.0 engine in order to prevent downgrading to using the PowerShell 2.0 engine which can be used to avoid PowerShell script blocking logging introduced in PowerShell 5.0.
+    Uninstalls the PowerShell engine. Only the PowerShell 1.0/2.0 engine can be uninstalled. This prevents downgrading to the PowerShell 2.0 engine which can be used to avoid PowerShell script blocking logging introduced in PowerShell 5.0.
+
+    .PARAMETER
+    The PowerShell engine version.
 
     .EXAMPLE
-    Uninstall-PowerShell2
+    Uninstall-PowerShellEngine
+
+    .EXAMPLE
+    Uninstall-PowerShellEngine -Version 2
     #>
     [CmdletBinding()] 
     [OutputType([void])]
-    Param()
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The PowerShell engine version')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateRange(1,2)]
+        [UInt32]$Version = 2      
+    )
+
+    $key = 0
+    $features = [string[]]@()
+
+    switch ($Version) {
+        { $_ -in @(1,2) } { $key = 1 ; $features = [string[]]@('MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root') ; break }
+        default { throw "Unsupported PowerShell engine version $Version" }
+    }
+
+    $path = 'hklm:\Software\Microsoft\PowerShell\{0}\PowerShellEngine' -f $key
 
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     # it is much faster to check the registry to see if the PowerShell 2.0 engine is installed, ref: http://stackoverflow.com/questions/1825585/determine-installed-powershell-version
     # this is slow: if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
-    if (Test-RegistryValueName -Path 'hklm:\Software\Microsoft\PowerShell\1\PowerShellEngine' -Name 'PowerShellVersion') {
-        Disable-WindowsOptionalFeature -Online -FeatureName 'MicrosoftWindowsPowerShellV2','MicrosoftWindowsPowerShellV2Root' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
+    if (Test-RegistryValueName -Path $path -Name 'PowerShellVersion') {
+        Disable-WindowsOptionalFeature -Online -FeatureName $features -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
     }
 }
 
-Function Uninstall-SMB1() {
+Function Test-IsNetBIOSEnabled() {
     <#
     .SYNOPSIS
-    Uninstalls SMB 1.0.
+    Tests if any network interface has NetBIOS enabled.
 
     .DESCRIPTION
-    Uninstalls Server Message Block 1.0 protocol since SMB 1.0 is only required for communicating with Windows XP and Windows Server 2003 both of which are end of life.
+    Tests if any network interface has NetBIOS enabled.
 
     .EXAMPLE
-    Uninstall-SMB1
+    Test-IsNetBIOSEnabled
     #>
-    [CmdletBinding()] 
-    [OutputType([void])]
+    [CmdletBinding()]
+    [OutputType([bool])]
     Param()
 
-    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+    $interfacePath = 'hklm:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters\Interfaces'
+    $valueName = 'NetbiosOptions'
 
-    # it is much faster just to check if the mrxsmb10 registry key value exists or not rather than using Test-WindowsOptionalFeature
-    # note that mrxsmb10 still exists when Disable-WindowsOptionalFeature is used. it is not deleted until a reboot, but SMB1 also continues to work until a reboot for that case
-    # can't avoid the slowness of Disable-WindowsOptionalFeature, but at least by not using the Test- function, it will be as fast as it can be
-    #if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
-    if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
-        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
-    }
+    # https://msdn.microsoft.com/en-us/library/windows/hardware/dn923165(v=vs.85).aspx
+    # 0 = Use DHCP server setting, 1 = Enabled, 2 = Disabled
+    $disabledValue = 2
+
+    $enabledInterfaces = @(Get-ChildItem -Path $interfacePath -Recurse | Where-Object { $_.GetValue($valueName) -ne $disabledValue })
+
+    return ($enabledInterfaces.Count -eq 0)
 }
 
 Function Disable-NetBIOS() {
@@ -223,6 +245,37 @@ Function Restore-NetBIOS() {
     }
 }
 
+Function Test-IsSMBEnabled() {
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The SMB version')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateRange(1,3)]
+        [UInt32]$Version   
+    )
+
+    $enabled = $false
+
+    $path = 'hklm:\System\CurrentControlSet\Services\{0}'
+    $service = ''
+
+    switch($Version) {
+        1 { $service = 'mrxsmb10' ; break }
+        { $_ -in @(2,3) } { $service = 'mrxsmb20' ; break }
+        default { throw "Invalid SMB driver version of $Version" }
+    }
+
+    $path = $path -f $service
+
+    if (Test-Path -Path $path) {
+        $startValue = Get-ItemPropertyValue -Path $path -Name 'Start'
+        $enabled = ($startValue -ne 4)
+    }
+
+    return $enabled
+}
+
 Function Disable-SMB1 {
     <#
     .SYNOPSIS
@@ -247,7 +300,7 @@ Function Disable-SMB1 {
 
     # checking if the registry key exists MUCH faster than using Get-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' and checking its State value
     # if using Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' to uninstall SMB1, then the mrxsmb10 value is removed after reboot 
-    # technically SMB1 still works until a reboot happens due to the driver still being loaded
+    # SMB1 still works until a reboot happens due to the driver still being loaded
     if (Test-Path -Path $smb1Path) {
 
         # the SMB1 registry value name used below does not exist by default which means SMB1 is enabled (ONLY if the SMB1Protocol feature State is Enabled as returned by Get-WindowsOptionalFeature OR mrxsmb10 exists)
@@ -262,8 +315,6 @@ Function Disable-SMB1 {
 
         Set-ItemProperty -Path $smbServerPath -Name 'SMB1' -Type DWORD -Value 0 -Force # 0 = Disabled, 1 = Enabled
 
-        # technically we don't have to disable the driver but we will anyway to be safe
-
         $startValue = Get-ItemProperty -Path $smb1Path -Name 'Start'
         Set-ItemProperty -Path $smb1Path  -Name 'Previous_Start' -Type DWORD -Value $startValue -Force
 
@@ -276,6 +327,40 @@ Function Disable-SMB1 {
             $newDependOnValue = ((($dependOnValue -join ',') -replace 'mrxsmb10','') -replace ',,',',') -split ',' # remove the dependency on SMB1
             Set-ItemProperty -Path $smbClientPath  -Name 'DependOnService' -Type MultiString -Value $newDependOnValue -Force
         }
+    }
+}
+
+Function Uninstall-SMB() {
+    <#
+    .SYNOPSIS
+    Uninstalls Server Message Block protocol.
+
+    .DESCRIPTION
+    Uninstalls Server Message Block protocol. Only SMB 1.0 can be uninstalled. SMB 1.0 is only required for communicating with Windows XP and Windows Server 2003 both of which are end of life.
+
+    .EXAMPLE
+    Uninstall-SMB
+
+    .EXAMPLE
+    Uninstall-SMB -Version 1
+    #>
+    [CmdletBinding()] 
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The SMB version')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateRange(1,1)]
+        [UInt32]$Version = 1    
+    )
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
+    # it is much faster just to check if the mrxsmb10 registry key value exists or not rather than using Test-WindowsOptionalFeature
+    # note that mrxsmb10 still exists when Disable-WindowsOptionalFeature is used. it is not deleted until a reboot, but SMB1 also continues to work until a reboot for that case
+    # can't avoid the slowness of Disable-WindowsOptionalFeature, but at least by not using the Test- function, it will be as fast as it can be
+    #if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
+    if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
+        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
     }
 }
 
