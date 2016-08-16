@@ -12,7 +12,7 @@ Please [submit an update](./../README.md#request-for-answers) if inaccuracies ar
 | OptiPlex 9020 | [Core i7-4790](http://ark.intel.com/products/80806/Intel-Core-i7-4790-Processor-8M-Cache-up-to-4_00-GHz) | Haswell | Yes | Yes | No | Unknown | Yes | No | N/A | Unknown | Yes | Yes | Yes | No | Yes | Yes | 1.2 | No | No | Yes | Unknown | Yes | Yes | Yes | A16 | No | No | Yes | Yes | Windows 8 | 
 
 ## Compatible systems
-Using information from the **Applies To** and **Compatible Systems** sections from Dell driver download pages suggests the following systems support Device Guard and Credential Guard:
+Using information from the **Applies To** and **Compatible Systems** sections from Dell driver download pages suggests the following systems support Device Guard and Credential Guard once BIOS/firmware and driver [updates](.\Updates.md) have been applied and the system firmware has been configured to enable required technologies (virtualization, Secure Boot, etc):
 * Dell Precision Tower 7810
 * Dell Precision Tower 7810XL
 * Inspiron 15 7000 Series 7559
