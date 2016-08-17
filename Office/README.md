@@ -9,3 +9,7 @@ The Office template files can be downloaded from Microsoft. They are also includ
 ## Downloads
 * [Group Policy templates for Office 2016](https://www.microsoft.com/en-us/download/details.aspx?id=49030)
 * [Group Policy templates for Office 2013](https://www.microsoft.com/en-us/download/details.aspx?id=35554)
+
+# Links
+* [Office 2013 update history](https://support.microsoft.com/en-us/gp/office-2013-365-update)
+* [Office 2016 update history](https://technet.microsoft.com/en-us/office/mt465751)
