@@ -11,5 +11,7 @@
                         "Audit",
                         "Enforced"
                     ],
-    "PolicyTemplatePath":  ".\\..\\..\\..\\Windows\\"
+    "PolicyTemplatePath":  ".\\..\\..\\..\\Windows\\",
+    "PolicyTemplateType":  "OS",
+    "PolicyTemplateVersion":  "10.0.10586.0"
 }

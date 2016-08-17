@@ -271,6 +271,10 @@ Function Get-GPODefinitions() {
 
         Write-Verbose -Message ('GPT Path: {0}' -f $gptPath)
 
+        $gpoInformation = Get-GPOBackupInformation -Path $gpoPath
+
+        $policyDefinition | Add-Member -MemberType NoteProperty -Name 'PolicyInformation' -Value $gpoInformation
+
         $policyDefinitions.Add($policyDefinition)
     }
 
@@ -1140,10 +1144,9 @@ Function Invoke-ApplySecureHostBaseline() {
     $policyDefinitions | ForEach-Object {
         $newPolicyPath = $_.PolicyObjectPath
 
-        $gpoInformation = Get-GPOBackupInformation -Path $newPolicyPath
-        # will use DisplayName and/or Guid/ID
+        # will use $_.PolicyInformation.DisplayName and/or $_.PolicyInformation.Guid or $_.PolicyInformation.ID
         
-        #todo: for domain context we might want to see if GPO exists first, not sure if that should be done by Name or GUID
+        #todo: for domain context we might want to see if GPO exists first, not sure if that should be done by Name or GUID (check for both)
 
         $newTemplatePath = $_.PolicyTemplatePath
         $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')

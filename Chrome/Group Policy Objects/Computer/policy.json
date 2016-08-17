@@ -11,5 +11,7 @@
                         "Audit",
                         "Enforced"
                     ],
-    "PolicyTemplatePath":  ".\\..\\..\\"
+    "PolicyTemplatePath":  ".\\..\\..\\",
+    "PolicyTemplateType":  "Application",
+    "PolicyTemplateVersion":  "52.0.2743.116"
 }
