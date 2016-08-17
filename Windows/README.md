@@ -9,7 +9,7 @@ Group Policy Objects for [Computer](./Group Policy Objects/Computer/) and [User]
 * WindowsStore.admx
 * WinMaps.admx
 
-In [some](https://support.microsoft.com/en-us/kb/3077013) [cases](https://social.technet.microsoft.com/Forums/office/en-US/b4c68086-d348-45ae-aa48-4bd8fd9c3959/upgrading-central-store-error-message-namespace?forum=winserverGP) templates were renamed leading to error messages (e.g. *Namespace 'Microsoft.Policies.WindowsStore' is already defined as the target namespace for another file in the store*) when different template files contained the same Group Policy definitions.
+In [some](https://support.microsoft.com/en-us/kb/3077013) [cases](https://social.technet.microsoft.com/Forums/office/en-US/b4c68086-d348-45ae-aa48-4bd8fd9c3959/upgrading-central-store-error-message-namespace?forum=winserverGP) templates were renamed leading to error messages (e.g. *Namespace 'Microsoft.Policies.WindowsStore' is already defined as the target namespace for another file in the store*, *Namespace 'Microsoft.Policies.Sensors.WindowsLocationProvider' is already defined as the target namespace for another file in the store*) when [different template files contain the same Group Policy definitions](https://support.microsoft.com/en-us/kb/3077013).
 
 ## Hardware
 See the [Hardware page](./../Hardware/README.md) for more information about hardware and firmware requirements to take full advantage of Windows 10 security features.
