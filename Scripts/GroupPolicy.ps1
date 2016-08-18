@@ -52,7 +52,7 @@ Function Get-GPOBackupInformation() {
         DomainGuid = $gpoDomainGuid;
         DomainContoller = $gpoDC;
         BackupTime = $backupTime;
-        ID = $id;
+        BackupGuid = $id;
         Comment = $comment;
         DisplayName = $gpoDisplayName
     }
@@ -140,10 +140,10 @@ Function Update-GPOBackup() {
 Function Test-IsGuid() {
     <#
     .SYNOPSIS
-    Tests is the value is a GUID.
+    Tests if the value is a GUID.
 
     .DESCRIPTION
-    Tests is the value is a GUID.
+    Tests if the value is a GUID.
 
     .PARAMETER Value
     A value to test.
@@ -256,7 +256,7 @@ Function Get-GPODefinitions() {
     $policyDefinitions = New-Object System.Collections.Generic.List[object]
 
     $policyFiles | ForEach-Object {
-        $policyDefinition = Get-Content -Path $_.FullName | ConvertFrom-Json
+        $policyDefinition = Get-Content -Path $_.FullName -Raw | ConvertFrom-Json
      
         $gpoPaths = Get-GPOBackupFolders -Path $_.DirectoryName
         $gpoPath = $gpoPaths[0].FullName
@@ -289,29 +289,94 @@ Function Get-Intersection() {
     .DESCRIPTION
     Gets the set intersection of two string arrays.
 
-    .PARAMETER Left
-    The left value.
+    .PARAMETER ReferenceObject
+    An array of string objects used as a reference for comparison.
     
-    .PARAMETER Right
-    The right value. 
+    .PARAMETER DifferenceObject
+    An array of string objects compared to the reference objects. 
 
     .EXAMPLE
-    Get-Intersection -Left 'test1','test2' -Right 'test1','test3'
+    Get-Intersection -ReferenceObject 'test1','test2' -DifferenceObject 'test1','test3'
     #>
     [CmdletBinding()]
     [OutputType([string[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The left value.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='An array of string objects used as a reference for comparison')]
         [ValidateNotNullOrEmpty()]
-        [string[]]$Left,
+        [string[]]$ReferenceObject,
 
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The right value.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='An array of string objects compared to the reference objects')]
         [ValidateNotNullOrEmpty()]
-        [string[]]$Right
+        [string[]]$DifferenceObject
     )
 
-    $result = [string[]]@(Compare-Object $Left $Right -PassThru -IncludeEqual -ExcludeDifferent)
+    $result = [string[]]@(Compare-Object $ReferenceObject $DifferenceObject -PassThru -IncludeEqual -ExcludeDifferent)
     return $result
+}
+
+Function Test-IsModuleAvailable() {
+    <#
+    .SYNOPSIS
+    Tests if a PowerShell module is available on a system.
+
+    .DESCRIPTION
+    Tests if a PowerShell module is available on a system.
+
+    .PARAMETER Name
+    The module name.
+
+    .EXAMPLE
+    Test-IsModuleAvailable -Name 'ActiveDirectory'
+    #>
+    [CmdletBinding()]
+    [OutputType([bool])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name    
+    )
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
+    $isAvailable = $false
+
+    $error.Clear()
+    Import-Module -Name $Name -ErrorAction SilentlyContinue
+    $isAvailable = ($error.Count -eq 0)
+    $error.Clear()
+
+    return $isAvailable
+}
+
+Function Get-DomainSecurityIdentifier() {
+<#
+    .SYNOPSIS
+    Gets the domain specific security identifier (SID) value. 
+
+    .DESCRIPTION
+    Gets the domain specific security identifier (SID) value. 
+
+    .EXAMPLE
+    Get-DomainSecurityIdentifier
+    #>
+    [CmdletBinding()]
+    [OutputType([string])]
+    Param()
+
+    #$context = ([adsi]'LDAP://RootDSE').defaultNamingContext
+    #$domainSidBytes = ([adsi]"LDAP://$context").Properties['objectsid'].Value
+    #$domainSid = New-Object -TypeName System.Security.Principal.SecurityIdentifier -ArgumentList $domainSidBytes,0 
+    #return $domainSid.Value
+
+    if (-not(Test-IsModuleAvailable -Name 'ActiveDirectory')) {
+        throw 'ActiveDirectory module not available'
+    }
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
+    Import-Module ActiveDirectory
+
+    return (Get-ADDomain).DomainSid.Value
 }
 
 Function Test-IsAdministrator() {
@@ -347,20 +412,32 @@ Function Test-IsAdministrator() {
 
     $isAdministrator = $false
 
-    $builtInAdministratorRid = 0x220
+    $builtInAdministratorSid = [System.Security.Principal.SecurityIdentifier]'S-1-5-32-544'
     $domainAdministratorsRid = 0x200
+    
+    if ('Domain' -eq $AdministratorType -or (Test-IsDomainJoined)) {
+        $domainSid = Get-DomainSecurityIdentifier
+        $domainAdministratorsSid = [System.Security.Principal.SecurityIdentifier]('{0}-{1}' -f $domainSid,$domainAdministratorsRid)
+    }
+
+    # using a SID for IsInRole has a number of advantages: 
+    # 1. using RID  method didn't work when on a domain and using the domain admin RID 
+    # 2. don't have to worry about name ambiguity 
+    # 3. don't have to prepend names with domain name 
+    # 4. documentation says its more efficient
+    # https://msdn.microsoft.com/en-us/library/86wd8zba(v=vs.110).aspx
 
     switch ($AdministratorType.ToLower()) {
         'domain' { 
-            $isAdministrator = $currentPrincipal.IsInRole($domainAdministratorsRid)
+            $isAdministrator = $currentPrincipal.IsInRole($domainAdministratorsSid)
             break 
          }
         'local' { 
-            $isAdministrator = $currentPrincipal.IsInRole($builtInAdministratorRid) 
+            $isAdministrator = $currentPrincipal.IsInRole($builtInAdministratorSid) 
             break 
         }
         '' {
-            $isAdministrator = $currentPrincipal.IsInRole($domainAdministratorsRid) -or $currentPrincipal.IsInRole($builtInAdministratorRid) 
+            $isAdministrator = $currentPrincipal.IsInRole($builtInAdministratorSid) -or $currentPrincipal.IsInRole($domainAdministratorsSid) 
             break
         }
         default { 
@@ -385,7 +462,7 @@ Function Invoke-Process() {
     .PARAMETER Arguments
     THe arguments to pass to the executable. Arguments with spaces in them are automatically quoted.
 
-    .PARAMETER PassTHru
+    .PARAMETER PassThru
     Return the results as an object.
 
     .EXAMPLE
@@ -476,9 +553,9 @@ Function Test-IsElevated() {
 
     $result = Invoke-Process -Path $path -Arguments '/groups' -PassThru
 
-    $highIntegrityLevel = 'S-1-16-12288'
+    $highIntegrityLevelSid = 'S-1-16-12288'
 
-    $isElevated = ($result.Output) -match $highIntegrityLevel
+    $isElevated = ($result.Output) -match $highIntegrityLevelSid
 
     return $isElevated
 }
@@ -502,38 +579,6 @@ Function Test-IsDomainController() {
 
     # 1 = workstation, 2 = domain controller, 3 = member server
     return $os.ProductType -eq 2
-}
-
-Function Test-IsModuleAvailable() {
-    <#
-    .SYNOPSIS
-    Tests if a PowerShell module is available on a system.
-
-    .DESCRIPTION
-    Tests if a PowerShell module is available on a system.
-
-    .PARAMETER Name
-    The module name.
-
-    .EXAMPLE
-    Test-IsModuleAvailable -Name 'ActiveDirectory'
-    #>
-    [CmdletBinding()]
-    [OutputType([bool])]
-    Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name')]
-        [ValidateNotNullOrEmpty()]
-        [string]$Name    
-    )
-
-    $isAvailable = $false
-
-    $error.Clear()
-    Import-Module -Name $Name -ErrorAction SilentlyContinue
-    $isAvailable = ($error.Count -eq 0)
-    $error.Clear()
-
-    return $isAvailable
 }
 
 Function Test-IsDomainJoined() {
@@ -571,10 +616,10 @@ Function Get-GroupPolicyTemplateFolderPath() {
     Get-GroupPolicyTemplateFolderPath
 
     .EXAMPLE
-    Get-GroupPolicyTemplateFolderPath TemplatePathType 'Domain'
+    Get-GroupPolicyTemplateFolderPath -TemplatePathType 'Domain'
 
     .EXAMPLE
-    Get-GroupPolicyTemplateFolderPath TemplatePathType 'Local'
+    Get-GroupPolicyTemplateFolderPath -TemplatePathType 'Local'
     #>
     [CmdletBinding()]
     [OutputType([string])]
@@ -592,17 +637,16 @@ Function Get-GroupPolicyTemplateFolderPath() {
         throw "Unable to access policy template path of $path"
     }
 
+    if ('Domain' -eq $TemplatePathType -and -not(Test-IsDomainJoined)) {
+        throw 'Must be joined to a domain'
+    }
+
     if (('Domain' -eq $TemplatePathType) -or (Test-IsDomainJoined)) {
-        if(-not(Test-IsDomainJoined)) {
-            throw 'Must be joined to a domain'
-        }
+        # $env:UserDnsDomain only has a value when a user is logged
+        # NV Domain registry value contains the computer's primary DNS suffix. The Domain registry value contains the computer's primary DNS domain. 
+        # NV Domain is the domain the system is joined to
 
-        # UserDnsDomain only has a value when a user is logged in but this script is only going to be used in an interactive context
-        # if this assumption needs to change, then get information from the registry
-        # hklm:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
-        # Domain or NV Domain - NV Domain registry value contains the computer's primary DNS suffix. The Domain registry value contains the computer's primary DNS domain. 
-
-        $dnsDomain = $env:UserDnsDomain
+        $dnsDomain = Get-ItemProperty -Path hklm:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters | Select-Object -ExpandProperty 'NV Domain'
 
         # central store format: \\Fully Qualified Domain Name\SYSVOL\Fully Qualified Domain Name\Policies\PolicyDefinitions\
         # see https://support.microsoft.com/en-us/kb/3087759
@@ -620,16 +664,16 @@ Function Get-GroupPolicyTemplateFolderPath() {
 Function Import-LocalPolicyObject() {
     <#
     .SYNOPSIS
-    Imports a Local Group Policy Object.
+    Imports a local Group Policy object.
 
     .DESCRIPTION
-    Imports a Local Group Policy Object.
+    Imports a local Group Policy object.
 
     .PARAMETER Path
     The path of the GPO to import.
 
     .PARAMETER ToolPath
-    The path to LGPO tool.
+    The path to the LGPO tool.
 
     .EXAMPLE
     Import-LocalPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
@@ -643,7 +687,7 @@ Function Import-LocalPolicyObject() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to LGPO tool')]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
@@ -670,62 +714,140 @@ Function Import-LocalPolicyObject() {
     }
 }
 
-Function Import-DomainPolicyObject() {
-   <#
+Function Test-DomainPolicyExists() {
+    <#
     .SYNOPSIS
-    Imports a Domain Group Policy Object.
+    Checks if a domain Group Policy object exists.
 
     .DESCRIPTION
-    Imports a Domain Group Policy Object.
+    Checks if a domain Group Policy object exists by policy name or policy GUID.
 
-    .PARAMETER Path
-    The path of the GPO to import.
+    .PARAMETER Guid
+    The GUID of the domain policy object.
+
+    .PARAMETER Name
+    The display name of the domain policy object.
 
     .EXAMPLE
-    Import-DomainPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+    Test-DomainPolicyExists -Guid '{343866EE-1828-4BB7-B706-4989C511FEE9}'
+
+    .EXAMPLE
+    Test-DomainPolicyExists -Name 'Adobe Reader DC'
     #>
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO to import.')]
+        [Parameter(Position=0, Mandatory=$false, HelpMessage='The GUID of the domain policy object')]
+        [ValidateNotNullOrEmpty()]
+        [System.Guid]$Guid,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The display name of the domain policy object')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name
+    )
+
+    $parameters = $PSBoundParameters
+
+    if (-not($parameters.ContainsKey('Guid')) -and -not($parameters.ContainsKey('Name'))) {
+        throw 'Must specified a domain policy name or domain policy guid'
+    }
+
+    $gpo = $null
+
+    if ($parameters.ContainsKey('Guid')) {
+        $gpo = Get-GPO -Guid $guid -ErrorAction SilentlyContinue
+    }
+
+    if ($parameters.ContainsKey('Name')) {
+        $gpo = Get-GPO -Name $Name -ErrorAction SilentlyContinue
+    }
+
+    return $gpo -ne $null
+}
+
+Function Import-DomainPolicyObject() {
+   <#
+    .SYNOPSIS
+    Imports a domain Group Policy object.
+
+    .DESCRIPTION
+    Imports a domain Group Policy object.
+
+    .PARAMETER Path
+    The path of the Group Policy object to import.
+
+    .PARAMETER Name
+    The display name of the Group Policy object.
+
+    .PARAMETER BackupGuid
+    The GUID of the Group Policy object backup.
+
+    .EXAMPLE
+    Import-DomainPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\' -Name 'DoD Windows 10 STIG - Computer' -BackupGuid '{AC662460-6494-4818-A303-FADC513B9876}'
+    #>
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the Group Policy object to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name,
+
+        [Parameter(Position=2, Mandatory=$true, HelpMessage='The GUID of the Group Policy object backup')]
+        [ValidateNotNullOrEmpty()]
+        [System.Guid]$BackupGuid
     )
 
     if (-not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
         throw 'GroupPolicy module not available on this system'
     }
 
-    if (-not(Test-IsGPOBackupFolder -Path $Path)) {
-        throw "$Path is not a Group Policy backup folder path"
-    }
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     Import-Module GroupPolicy
 
-    Import-GPO -Path $Path
+    # Import-GPO works differently than LGPO, they expect a different folder (Import-GPO needs parent folder of GPO, LGPO needs actual folder of GPO)
+    #if (-not(Test-IsGPOBackupFolder -Path $Path)) {
+    #    throw "$Path is not a Group Policy backup folder path"
+    #}
+
+
+    # this does not work even through the documentation says it should: Import-GPO -Path $Path -BackupId $BackupGuid -TargetGuid $Guid -CreateIfNeeded
+    # it throws an error of 'Import-GPO : A GPO with ID {0} was not found in the {1} domain.'
+    # it obviously wants the GUID to exist already and does not create the GPO if it does not exist
+    Import-GPO -Path $Path -BackupId $BackupGuid -TargetName $Name -CreateIfNeeded | Out-Null
 }
 
 Function Import-PolicyObject() {
    <#
     .SYNOPSIS
-    Imports a Group Policy Object.
+    Imports a Group Policy object.
 
     .DESCRIPTION
-    Imports a Group Policy Object.
+    Imports a Group Policy object.
 
     .PARAMETER Path
-    The path of the Group Policy Object to import.
+    The path of the Group Policy object to import.
 
     .PARAMETER PolicyType
     The type of the policy to import.
 
     .PARAMETER ToolPath
-    The path to LGPO tool.
+    The path to the LGPO tool.
+
+    .PARAMETER Name
+    The display name of the Group Policy object.
+
+    .PARAMETER BackupGuid
+    The GUID of the Group Policy object backup.
 
     .EXAMPLE
-    Import-PolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
+    Import-PolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\' -Name 'DoD Windows 10 STIG - Computer' -BackupGuid '{AC662460-6494-4818-A303-FADC513B9876}'
 
     .EXAMPLE
     Import-PolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
@@ -733,38 +855,59 @@ Function Import-PolicyObject() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the Group Policy Object to import.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the Group Policy Object to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to import.')]
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to LGPO tool')]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$ToolPath
+        [string]$ToolPath,
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name,
+
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='The GUID of the Group Policy object backup')]
+        [ValidateNotNullOrEmpty()]
+        [System.Guid]$BackupGuid
     )
 
-    if (-not(Test-IsGPOBackupFolder -Path $Path)) {
-        throw "$Path is not a Group Policy backup folder path"
-    }
+    $parameters = $PSBoundParameters
+
+    # Import-GPO works differently than LGPO, they expect a different folder (Import-GPO needs parent folder of GPO, LGPO needs actual folder of GPO)
+    #if (-not(Test-IsGPOBackupFolder -Path $Path)) {
+    #    throw "$Path is not a Group Policy backup folder path"
+    #}
 
     if (('Local' -eq $PolicyType -or -not(Test-IsDomainJoined)) -and -not($parameters.ContainsKey('ToolPath'))) {
         throw 'Must specify the path of the LPGO executable'
     }
 
-    $parameters = $PSBoundParameters
+    if ('Domain' -eq $PolicyType -and -not($parameters.ContainsKey('Name'))) {
+        throw 'Must specify the domain policy object display name'
+    }
+
+    if ('Domain' -eq $PolicyType -and -not($parameters.ContainsKey('BackupGuid'))) {
+        throw 'Must specify the domain policy object backup Guid'
+    }
+
+    if ('Domain' -eq $PolicyType -and -not($parameters.ContainsKey('Name'))) {
+        throw 'Must specify the display name of the domain policy object'
+    }
 
     switch ($PolicyType.ToLower()) {
         'domain' { 
-            Import-DomainPolicyObject -Path $Path
+            Import-DomainPolicyObject -Path $Path -BackupGuid $BackupGuid -Name $Name
             break 
          }
         'local' {
@@ -773,7 +916,7 @@ Function Import-PolicyObject() {
         }
         '' {
             if (Test-IsDomainJoined) {
-                Import-DomainPolicyObject -Path $Path
+                Import-DomainPolicyObject -Path $Path -BackupGuid $BackupGuid -Name $Name
             } else {
                 Import-LocalPolicyObject -Path $Path -ToolPath $ToolPath
             }
@@ -788,19 +931,19 @@ Function Import-PolicyObject() {
 Function New-LocalPolicyObjectBackup() {
     <#
     .SYNOPSIS
-    Creates a backup of the current Local Group Policy.
+    Creates a backup of the current local Group Policy.
 
     .DESCRIPTION
-    Creates a backup of the current Local Group Policy.
+    Creates a backup of the current local Group Policy.
 
     .PARAMETER Path
     The path to save the backup to.
 
     .PARAMETER ToolPath
-    The path to LGPO tool.
+    The path to the LGPO tool.
 
     .EXAMPLE
-    New-LocalPolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+    New-LocalPolicyObjectBackup -Path '.\LocalPolicyBackup' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -820,7 +963,7 @@ Function New-LocalPolicyObjectBackup() {
     )
 
     $date = Get-Date
-    $policyName = 'Local Group Policy Backup - {0:MM/dd/yyyy HH:mm:ss}' -f $date
+    $policyName = 'Local Group Policy Backup for {0} - {1:MM/dd/yyyy HH:mm:ss}' -f $env:COMPUTERNAME,$date
 
     $result = Invoke-Process -Path $ToolPath -Arguments '/b',$Path,'/n',$policyName -PassThru
 
@@ -840,47 +983,59 @@ Function New-LocalPolicyObjectBackup() {
 Function New-DomainPolicyObjectBackup() {
    <#
     .SYNOPSIS
-    Creates a backup of the current Domain Group Policy.
+    Creates a backup of the specified domain Group Policy object.
 
     .DESCRIPTION
-    Creates a backup of the current Domain Group Policy.
+    Creates a backup of the specified domain Group Policy object.
 
     .PARAMETER Path
     The path to save the backup to.
 
+    .PARAMETER Name
+    The display name of the Group Policy object.
+
     .EXAMPLE
-    Import-DomainPolicyObject -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer'
+    Import-DomainPolicyObject -Path '.\DomainPolicy\Backup\Windows\Computer' -Name 'DoD Windows 10 STIG - Computer'
     #>
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO to import.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name
     )
 
     if (-not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
         throw 'GroupPolicy module not available on this system'
     }
 
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
     Import-Module GroupPolicy
 
-    # -Name is displayname of GPO. it is not guaranteed to be unique
-    # -GUID is the unique ID but not displayed 
-    # -All a seems little overkill
-    # todo: come up with something better
-    Backup-GPO -All -Path $Path
+    # -Name is DisplayName of GPO. it is not guaranteed to be unique
+    # -Guid is the unique ID that is only displayed in Details tab of Group Policy Managementy snap-in 
+    # -All is overkill for our needs
+    # Import-GPO has a bug where -CreateIfNeeded does not work for a non-existent -TargetGuid value
+    # this bug forces the use of -Name instead of -Guid for Backup-GPO to be consistent with Import-GPO
+    if (Test-DomainPolicyExists -Name $Name) {
+        Backup-GPO -Path $Path -Name $Name | Out-Null
+    }
 }
 
 Function New-PolicyObjectBackup() {
    <#
     .SYNOPSIS
-    Creates a backup of the current Group Policy.
+    Creates a backup of a Group Policy object.
 
     .DESCRIPTION
-    Creates a backup of the current Group Policy.
+    Creates a backup of a Group Policy object.
 
     .PARAMETER Path
     The path to save the backup to.
@@ -889,7 +1044,10 @@ Function New-PolicyObjectBackup() {
     The type of the policy to backup.
 
     .PARAMETER ToolPath
-    The path to LGPO tool.
+    The path to the LGPO tool.
+
+    .PARAMETER Name
+    The display name of the Group Policy object.
 
     .EXAMPLE
     New-PolicyObjectBackup -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
@@ -900,23 +1058,27 @@ Function New-PolicyObjectBackup() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to backup.')]
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to backup')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to LGPO tool')]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$ToolPath
+        [string]$ToolPath,
+
+         [Parameter(Position=3, Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Name
     )
 
     $parameters = $PSBoundParameters
@@ -925,9 +1087,13 @@ Function New-PolicyObjectBackup() {
         throw 'Must specify the path of the LPGO executable'
     }
 
+    if ('Domain' -eq $PolicyType -and -not($parameters.ContainsKey('Name'))) {
+        throw 'Must specify the domain policy object display name'
+    }
+
     switch ($PolicyType.ToLower()) {
         'domain' { 
-            New-DomainPolicyObjectBackup -Path $Path
+            New-DomainPolicyObjectBackup -Path $Path -Name $Name
             break 
          }
         'local' { 
@@ -936,9 +1102,9 @@ Function New-PolicyObjectBackup() {
         }
         '' {
             if (Test-IsDomainJoined) {
-                New-DomainPolicyObjectBackup -Path $Path
+                New-DomainPolicyObjectBackup -Path $Path -Name $Name
             } else {
-                New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath
+                New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath 
             }
             break
         }
@@ -946,6 +1112,62 @@ Function New-PolicyObjectBackup() {
             throw "Unexpected policy type of $PolicyType" 
         }
     }
+}
+
+Function Get-FipsFileHash() {
+   <#
+    .SYNOPSIS
+    Gets a file hash using FIPS compliant hash algorithms.
+
+    .DESCRIPTION
+    Gets a file hash using FIPS compliant hash algorithms. Requires .Net 3.5 is installed.
+
+    .PARAMETER Path
+    The path of the file to hash.
+
+    .PARAMETER Algorithm
+    The name of the algorithm.
+
+    .EXAMPLE
+    Get-FipsFileHash -Path 'C:\Windows\regedit.exe' -Algorithm 'SHA1'
+    #>
+    [CmdletBinding()]
+    [OutputType([string])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the file to hash')]
+        [ValidateNotNullOrEmpty()]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the algorithm')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('SHA1','SHA256','SHA384','SHA512',IgnoreCase=$true)]
+        [string]$Algorithm
+    )
+
+    $provider = $null
+
+    switch($Algorithm.ToLower()){
+        'sha1' { $provider = New-Object System.Security.Cryptography.SHA1Cng ; break }
+        'sha256' { $provider = New-Object System.Security.Cryptography.SHA256Cng ; break }
+        'sha384' { $provider = New-Object System.Security.Cryptography.SHA384Cng ; break }
+        'sha512' { $provider = New-Object System.Security.Cryptography.SHA512Cng ; break }
+        default { throw "$Algorithm not supported" }
+    }
+
+    if (-not(Test-Path -Path $Path -PathType Leaf)) {
+        throw "$Path not found"
+    }
+
+    [System.IO.FileStream]$stream = [System.IO.File]::Open($Path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read)
+    $bytes = $provider.ComputeHash($stream)
+
+    $hash = ''
+    $bytes | ForEach { $hash += ('{0:X2}' -f $_) }
+
+    $stream.Dispose()
+    [System.IDisposable].GetMethod('Dispose').Invoke($provider,@()) | Out-Null
+
+    return $hash
 }
 
 Function Test-FilesEqual() {
@@ -956,32 +1178,43 @@ Function Test-FilesEqual() {
     .DESCRIPTION
     Tests is two files are equa by comparing the hash of their content.
 
-    .PARAMETER FileOne
-    A file to test.
+    .PARAMETER ReferenceFile
+    The reference file.
 
-    .PARAMETER FileOne
-    The other file to test.
+    .PARAMETER DifferenceFile
+    The other file to test the reference against.
 
     .EXAMPLE
-    Test-FilesEqual -FileOne 'file1.txt' -FileTwo 'file2.txt'
+    Test-FilesEqual -ReferenceFile 'file1.txt' -DifferenceFile 'file2.txt'
     #>
     [CmdletBinding()]
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A file to test')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The reference file')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$FileOne,
+        [string]$ReferenceFile,
 
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The other file to test')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The other file to test the reference against')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$FileTwo
+        [string]$DifferenceFile
     )
 
-    return (Get-FileHash -Path $FileOne -Algorithm SHA256).Hash -eq (Get-FileHash -Path $FileTwo -Algorithm SHA256).Hash
+    $isEqual = $false
+
+    if ($PSVersionTable.PSVersion -ge ([System.Version]'5.0')) {
+        $isEqual = (Get-FileHash -Path $ReferenceFile -Algorithm SHA256).Hash -eq (Get-FileHash -Path $DifferenceFile -Algorithm SHA256).Hash
+    } else {
+        # PowerShell 4.0 Get-FileHash doesn't work when FIPS is enabled
+        # PowerShell 3.0 and earlier do not have Get-FileHash
+
+        $isEqual = (Get-FipsFileHash -Path $ReferenceFile -Algorithm SHA256) -eq (Get-FipsFileHash -Path $DifferenceFile -Algorithm SHA256)
+    }
+
+    return $isEqual
 }
 
 Function Invoke-ApplySecureHostBaseline() {
@@ -1021,6 +1254,9 @@ Function Invoke-ApplySecureHostBaseline() {
 
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBackup" -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader' -PolicyType 'Domain'
     #>
     [CmdletBinding(SupportsShouldProcess=$true)]
     [OutputType([void])]
@@ -1082,7 +1318,7 @@ Function Invoke-ApplySecureHostBaseline() {
             New-Item -Path $baseBackupPath -ItemType Directory | Out-Null
         }
 
-        $date= Get-Date
+        $date = Get-Date
 
         $BackupPath = $baseBackupPath,('Backup_{0:yyyyMMddHHmmss}' -f $date) -join [System.IO.Path]::DirectorySeparatorChar
 
@@ -1100,26 +1336,29 @@ Function Invoke-ApplySecureHostBaseline() {
     }
 
     if(-not(Test-IsElevated)) {
-        throw 'Must be running in an elevated prompt'
+        throw 'Must be running at an elevated prompt'
+    }
+
+    if ('Local' -eq $PolicyType -and (Test-IsDomainJoined)) {
+        throw 'Must not be joined to a domain to apply local policy'
     }
 
     if ('Domain' -eq $PolicyType -and -not(Test-IsDomainJoined)) {
-        throw 'Must be joined to a domain'
+        throw 'Must be joined to a domain to apply domain policy'
     }
 
-    # technically this could be made to work if it wasn't on a DC but it is much easier to do this from a DC
-    # this way we can hopefully guarantee the Group Policy cmdlets will exist
+    # technically this could be made to work if it wasn't on a DC but it is much easier to do this from a DC since the Group Policy cmdlets will exist
     if ('Domain' -eq $PolicyType -and -not(Test-IsDomainController)) {
         throw 'Must be running on a domain controller'
     }
-
-    # just in case we can't guarentee the Group Policy cmdlets are available, explicitly check for them
+    
+    # explicitly check for Group Policy cmdlets just to be sure
     if ('Domain' -eq $PolicyType -and -not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
         throw 'Group Policy cmdlets must be installed'
     }
 
     # these parens are important, don't remove them otherwise Where-Object doesn't work, need to pipeline
-    $policyDefinitions = (Get-GPODefinitions -Path $Path) | Where-Object { $_.PolicyName -in $PolicyNames -and (@( Get-Intersection -Left ($PolicyScopes) -Right ($_.PolicyScopes)).Count -ge 1) -and $PolicyType -in $_.PolicyTypes -and $PolicyMode -in $_.PolicyModes}
+    $policyDefinitions = @((Get-GPODefinitions -Path $Path) | Where-Object { $_.PolicyName -in $PolicyNames -and (@( Get-Intersection -ReferenceObject ($PolicyScopes) -DifferenceObject ($_.PolicyScopes)).Count -ge 1) -and $PolicyType -in $_.PolicyTypes -and $PolicyMode -in $_.PolicyModes})
 
     if (0 -eq $policyDefinitions.Count) {
         throw 'Unable to apply policies because no policies matched'
@@ -1135,18 +1374,19 @@ Function Invoke-ApplySecureHostBaseline() {
     $gptBackupFolder = "$BackupPath\Group Policy Templates"
     New-Item -Path $gptBackupFolder -ItemType Container | Out-Null
 
+    # there's only 1 policy object for local policy so only 1 backup needs to occur unlike domain policy
     if ('Local' -eq $PolicyType) {
         New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -ToolPath $ToolPath
-    } else {
-        New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType
     }
 
     $policyDefinitions | ForEach-Object {
         $newPolicyPath = $_.PolicyObjectPath
 
-        # will use $_.PolicyInformation.DisplayName and/or $_.PolicyInformation.Guid or $_.PolicyInformation.ID
-        
-        #todo: for domain context we might want to see if GPO exists first, not sure if that should be done by Name or GUID (check for both)
+        $gpoGuid = $_.PolicyInformation.Guid
+        $gpoBackupGuid = $_.PolicyInformation.BackupGuid
+        $gpoName = $_.PolicyInformation.DisplayName
+
+        New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
 
         $newTemplatePath = $_.PolicyTemplatePath
         $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
@@ -1156,9 +1396,9 @@ Function Invoke-ApplySecureHostBaseline() {
             $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
         
             if (Test-Path -Path $targetTemplate -PathType Leaf) {
-                if (-not(Test-FilesEqual -FileOne $targetTemplate -FileTwo $newTemplate)) {                
-                    Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy
-                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force #todo: differentiate between adml and admx
+                if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {                
+                    Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
+                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force 
                 }
             } else {
                 Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
@@ -1168,10 +1408,11 @@ Function Invoke-ApplySecureHostBaseline() {
         if ('Local' -eq $PolicyType) {
             Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
         } else {
-            Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType
+            $newPolicyPathParent = ([System.IO.DirectoryInfo]$newPolicyPath).Parent.FullName 
+            Import-PolicyObject -Path $newPolicyPathParent  -PolicyType $PolicyType -BackupGuid $gpoBackupGuid -Name $gpoName
         }
 
-        # no local policy support for certificates so we have to manually import them
+        # no local policy support for certificates so manually import them
         if ($_.PolicyName -eq 'Certificates' -and 'Local' -eq $PolicyType) {
             $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Root') -and $_.PsIsContainer -eq $false})
 
