@@ -36,6 +36,22 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 
 **%SystemRoot%\PolicyDefinitions\\**, typically **C:\Windows\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **EMET.admx** file to **%SystemRoot%\PolicyDefinitions\\** and copy the **EMET.adml** file to **%SystemRoot%\PolicyDefinitions\en-us\\** folder on the domain controller.
 
+## Importing the EMET Group Policy
+
+### Importing the EMET domain Group Policy
+Use the PowerShell Group Policy commands to import the EMET Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'EMET'
+```
+
+### Importing the EMET local Group Policy
+Use Microsoft's LGPO tool to apply the EMET Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'EMET' -ToolPath '.\LGPO\lgpo.exe'
+```
+
 ## EMET configuration tips
 In EMET 5.5 the Application Configuration policy setting can be used to selectively override individual application mitigation settings for applications that are configured via one of the "Default Protections for" Group Policy settings. Prior to EMET 5.5 administrators would have likely directly edited the EMET.admx file to make changes but that is no longer necessary. The following examples assume these EMET Group Policy settings are enabled:
 * Default Protections for Internet Explorer
@@ -153,6 +169,19 @@ Object Linking and Embedding (OLE) packages can be used to embed executable cont
 1. For **Value** enter **+ASR asr_modules:packager.dll**
 1. For **Value name** enter **\*\OFFICE1\*\VISIO.EXE**
 1. For **Value** enter **+ASR asr_modules:packager.dll**
+1. Click **OK**
+1. Click **OK**
+1. Run **gpupdate /force** from the command line
+
+### Blocking rundll32 from loading PowerShell
+[Rundll32.exe can be used to execute PowerShell code](https://github.com/p3nt4/PowerShdll). This can be blocked with EMET's ASR feature.
+
+1. Go to **Computer Policy** > **Administrative Templates** > **Windows Components** > **EMET**
+1. Double click **Application Configuration**
+1. Select the **Enabled** radio button
+1. Click the **Show** button
+1. For **Value name** enter **\*\\rundll32.exe**
+1. For **Value** enter **+ASR asr_modules:System.Management.Automation.dll**
 1. Click **OK**
 1. Click **OK**
 1. Run **gpupdate /force** from the command line

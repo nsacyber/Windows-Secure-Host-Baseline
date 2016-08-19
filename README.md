@@ -63,7 +63,7 @@ To get started using the tools:
 
 1. [Download](#downloading-the-repository) the repository as a zip file 
 1. [Configure PowerShell](#configuring-the-powershell-environment) 
-1. [Loading the code](#loading-the-code) 
+1. [Load the code](#loading-the-code) 
 1. [Apply the policies](#applying-the-policies) 
 1. [Check compliance](#checking-compliance)
 
@@ -114,14 +114,23 @@ Now extract the downloaded zip file and load the PowerShell code used for apply 
 1. Rename the **Secure-Host-Baseline-master** folder to **Secure-Host-Baseline**
 1. Open a PowerShell prompt as an administrator
 1. Change directory into the **Secure-Host-Baseline** folder
-1. Dot source the Group Policy PowerShell file (e.g. **. .\Scripts\GroupPolicy.ps1**) to load the code into the PowerShell session
+1. Dot source the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) (e.g. **. .\Scripts\GroupPolicy.ps1**) to load the code into the PowerShell session
 
 ### Applying the policies
 
-The **Invoke-ApplySecureHostBaseline** command is the main command for applying policies. By default this command will:
+The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) is the main command for applying policies. By default this command will:
 * Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
 * Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
 * Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
+
+Option for the command are:
+* **-Path** - Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
+* **-PolicyNames** - Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
+* **-PolicyScopes** - Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
+* **-PolicyType** - Optional. The type of policies to apply. Available types: 'Domain', 'Local'. Defaults to 'Domain' when joined to a domain. Defaults to 'Local' when not joined to a domain.
+* **-PolicyMode** - Optional. The mode of policies to apply, if supported by the specific policy. For example, AppLocker supports audit and enforcement modes. Available modes: 'Audit', 'Enforced'. Defaults to 'Audit'.
+* **-BackupPath** - Optional. The path to a folder to save backups of Group Policy Objects and Group Policy Templates to in case a rollback is needed. Defaults to $env:USERPROFILE\Desktop\Backup_yyyyMMddHHmmss for when the script was executed.
+* **-ToolPath** - Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 
 Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues).
 

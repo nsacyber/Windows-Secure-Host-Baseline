@@ -10,15 +10,14 @@
 Use the PowerShell Group Policy commands to import the BitLocker Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
 
 ```
-Import-Module GroupPolicy
-
-Import-GPO -Path ".\BitLocker\Group Policy Objects\Computer\{9D614C55-E361-45A1-87CB-09A2B1EED0C4}"
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'BitLocker'
 ```
-### Importing the BitLocker local Group Policy
+
+### Importing the AppLocker local Group Policy
 Use Microsoft's LGPO tool to apply the BitLocker Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
 
 ```
-lgpo.exe /g ".\BitLocker\Group Policy Objects\Computer\{9D614C55-E361-45A1-87CB-09A2B1EED0C4}"
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'BitLocker' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
 ## Common issues

@@ -23,15 +23,14 @@ If the domain administrators have **not** configured a Group Policy Central Stor
 Use the PowerShell Group Policy commands to import the Adobe Reader DC Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
 
 ```
-Import-Module GroupPolicy
-
-Import-GPO -Path ".\Adobe Reader\Group Policy Objects\Computer\{659E383E-BA08-4166-9A33-60EC86176370}"
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader'
 ```
+
 ### Importing the Adobe Reader DC local Group Policy
 Use Microsoft's LGPO tool to apply the Adobe Reader DC Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
 
 ```
-lgpo.exe /g ".\Adobe Reader\Group Policy Objects\Computer\{659E383E-BA08-4166-9A33-60EC86176370}"
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
 ## Compliance

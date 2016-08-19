@@ -9,10 +9,10 @@ Using the methods described on this page removes the need for running the [Insta
 Using the provided certificates removes the need for running the [FBCA Cross-Certificate Remover](http://iase.disa.mil/pki-pke/Pages/tools.aspx) tool (available under the **Certification Validation** tab at that link) that [removes old DoD cross certificates](http://iasecontent.disa.mil/pki-pke/unclass-fbca_cross_cert_remover_user_guide_v113.pdf) from systems unless an organization is still deploying old DoD certificates.
 
 
-## Importing certificates
+## Importing DoD certificates manually
 Importing certificates varies depending on whether they are being imported for a domain versus a standalone system.
 
-### Importing certificates for a domain
+### Importing DoD certificates for a domain
 
 1. On a domain controller, go to **Start** > **Administrative Tools** or **Start** > **Control Panel** > **System and Security** > **Administrative Tools**
 1. Select **Group Policy Management**
@@ -22,7 +22,7 @@ Importing certificates varies depending on whether they are being imported for a
 1. Repeat the same steps for **Intermediate Certification Authorities** and import the certificates from the Intermediate folder
 
 
-### Importing certificates for a standalone system
+### Importing DoD certificates for a standalone system
 
 You can use PowerShell's [Import-Certificate command](https://technet.microsoft.com/en-us/%5Clibrary/hh848630(v=wps.630).aspx) to import the certificates. 
 
@@ -60,6 +60,22 @@ You can also use the Microsoft Management Console Certificates snap-in to import
 1. Right click on **Certificates** and select **All Tasks** > **Import...**
 1. Follow the steps in the Certificate Import Wizard to import the certificates from the Root folder
 1. Repeat the same steps for **Intermediate Certification Authorities** and import the certificates from the Intermediate folder
+
+## Importing DoD certificates automatically
+
+### Importing the DoD certificates domain Group Policy
+Use the PowerShell Group Policy commands to import the DoD certificates Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Certificates'
+```
+
+### Importing the DoD certificates local Group Policy
+Use Microsoft's LGPO tool to apply the DoD certificates Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Certificates' -PolicyNames 'AppLocker' -ToolPath '.\LGPO\lgpo.exe'
+```
 
 ## Fixing iad.gov certificate warnings
 Non-DoD users may not want to import all the DoD Certificate Authority (CA) certificates as outlined above. Non-DoD users who visit https://www.iad.gov will receive a certificate warning (NET:ERR_CERT_AUTHORITY_INVALID) about www.iad.gov being an insecure web site when it is accessed since it does not use a certificate from a commercial CA that is already trusted by the browser. The browser's certificate store does not have the specific DoD CA certificate that issued the www.iad.gov certificate. To fix this issue import the **DoD Root CA 3** and **DoD ID SW CA-37** certificates into the browser certificate store.

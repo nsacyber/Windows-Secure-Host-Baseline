@@ -43,6 +43,22 @@ Google Update, based on the open source [Omaha project](https://github.com/googl
 
 You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
 
+## Importing the Chrome Group Policy
+
+### Importing the Chrome domain Group Policy
+Use the PowerShell Group Policy commands to import the Chrome Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome'
+```
+
+### Importing the Chrome local Group Policy
+Use Microsoft's LGPO tool to apply the Chrome Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -ToolPath '.\LGPO\lgpo.exe'
+```
+
 ## Compliance
 The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) .audit file to check compliance with the settings implemented in the Group Policy Object.
 

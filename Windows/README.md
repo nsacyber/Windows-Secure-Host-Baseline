@@ -11,6 +11,22 @@ Group Policy Objects for [Computer](./Group Policy Objects/Computer/) and [User]
 
 In [some](https://support.microsoft.com/en-us/kb/3077013) [cases](https://social.technet.microsoft.com/Forums/office/en-US/b4c68086-d348-45ae-aa48-4bd8fd9c3959/upgrading-central-store-error-message-namespace?forum=winserverGP) templates were renamed leading to error messages (e.g. *Namespace 'Microsoft.Policies.WindowsStore' is already defined as the target namespace for another file in the store*, *Namespace 'Microsoft.Policies.Sensors.WindowsLocationProvider' is already defined as the target namespace for another file in the store*) when [different template files contain the same Group Policy definitions](https://support.microsoft.com/en-us/kb/3077013).
 
+## Importing the Windows Group Policy
+
+### Importing the Windows domain Group Policy
+Use the PowerShell Group Policy commands to import the Windows Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Windows'
+```
+
+### Importing the Windows local Group Policy
+Use Microsoft's LGPO tool to apply the Windows Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Windows' -ToolPath '.\LGPO\lgpo.exe'
+```
+
 ## Hardware
 See the [Hardware page](./../Hardware/README.md) for more information about hardware and firmware requirements to take full advantage of Windows 10 security features.
 
