@@ -83,7 +83,13 @@ Users may need to change the default PowerShell execution policy. This can be ac
 * Open an administrative PowerShell prompt and run **Set-ExecutionPolicy Unrestricted** and run scripts from any PowerShell session. 
 
 ### Unblocking the PowerShell scripts
-Users will need to unblock the downloaded zip file since it will be marked as having been downloaded from the Internet which PowerShell will block by default. Running the PowerShell scripts inside the zip file without unblocking the file will result in the following warning:
+Users will need to unblock the downloaded zip file since it will be marked as having been downloaded from the Internet which PowerShell will block from executing by default. Open a PowerShell prompt and run the following commands to unblock the PowerShell code in the zip file:
+
+1. **cd $env:USERPROFILE** 
+1. **cd Downloads** 
+1. **Unblock-File -Path '.\Secure-Host-Baseline-master.zip'** 
+
+Running the PowerShell scripts inside the zip file without unblocking the file will result in the following warning:
 
 ```
 Security warning
@@ -91,17 +97,16 @@ Run only scripts that you trust. While scripts from the internet can be useful, 
 [D] Do not run [R] Run once [S] Suspend [?] Help (default is "D"):
 ```
 
-Open a PowerShell prompt and run the following commands to unblock the PowerShell code in the zip file:
+If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run the following command:
 
-1. **cd $env:USERPROFILE** 
-1. **cd Downloads** 
-1. **Unblock-File -Path '.\Secure-Host-Baseline-master.zip'** 
-
-If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline-master') -Recurse -Filter '\*.ps1' | Unblock-File**
+```
+[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline') -Recurse -Filter '\*.ps1' | Unblock-File**
+```
 
 See the [Unblock-File command's documentation](https://technet.microsoft.com/en-us/library/hh849924.aspx) for more information on how to use it.
 
 ### Loading the code
+Now extract the downloaded zip file and load the PowerShell code used for apply the policies.
 
 1. Right click on the zip file and select **Extract All**
 1. At the dialog remove **Secure-Host-Baseline-master** from the end of the path since it will extract the files to a Secure-Host-Baseline-master folder by default
@@ -113,28 +118,26 @@ See the [Unblock-File command's documentation](https://technet.microsoft.com/en-
 
 ### Applying the policies
 
-If you are applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
-
-The **Invoke-ApplySecureHostBaseline** command is the main command for applying policies. Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for help and examples.
-
-By default this command will:
+The **Invoke-ApplySecureHostBaseline** command is the main command for applying policies. By default this command will:
 * Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
-* Import policies, that have an audit option, in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
+* Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
 * Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
 
+Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues).
+
 **Applying the SHB policies to a standalone system**
+If applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
 
 ```
 Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
 **Applying the SHB policies to a domain**
+If applying the SHB policies to a domain, note that the Group Policy Objects are only loaded into Active Directory. The policies are not linked to any OUs so the settings do not automatically take affect.
 
 ```
 Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall'
 ``` 
-
-Note that this only loads the Group Policy Objects into Active Directory. It does not link the policies to any OUs so the settings do not automatically take affect.
 
 ### Checking compliance
 Once the policies have been applied (and linked to appropriate OUs in the domain case), see the [Compliance page](/Compliance.md) for instructions on how to check compliance to the policies.
