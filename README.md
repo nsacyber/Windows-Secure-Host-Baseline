@@ -64,7 +64,7 @@ To get started using the tools:
 1. [Download](#downloading-the-repository) the repository as a zip file 
 1. [Configure PowerShell](#configuring-the-powershell-environment) 
 1. [Loading the code](#loading-the-code) 
-1. [Apply the SHB policies](#applying-the-shb-policies) 
+1. [Apply the policies](#applying-the-policies) 
 1. [Check compliance](#checking-compliance)
 
 ## Downloading the repository
@@ -97,43 +97,47 @@ Open a PowerShell prompt and run the following commands to unblock the PowerShel
 1. **cd Downloads** 
 1. **Unblock-File -Path '.\Secure-Host-Baseline-master.zip'** 
 
-If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Pass-the-Hash-Guidance-master') -Recurse -Filter '\*.ps1' | Unblock-File**
+If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run **[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline-master') -Recurse -Filter '\*.ps1' | Unblock-File**
 
 See the [Unblock-File command's documentation](https://technet.microsoft.com/en-us/library/hh849924.aspx) for more information on how to use it.
 
 ### Loading the code
 
-1. Right clicking on the zip file and select **Extract All**
-1. At next screen remove **Secure-Host-Baseline-master** from the end of the path since it will extract the files to a Secure-Host-Baseline-master folder by default
-1. Click **Next**
+1. Right click on the zip file and select **Extract All**
+1. At the dialog remove **Secure-Host-Baseline-master** from the end of the path since it will extract the files to a Secure-Host-Baseline-master folder by default
+1. Click the **Extract** button
 1. Rename the **Secure-Host-Baseline-master** folder to **Secure-Host-Baseline**
 1. Open a PowerShell prompt as an administrator
 1. Change directory into the **Secure-Host-Baseline** folder
-1. Dot source the Group Policy PowerShell file (e.g. **. .\Scripts\GroupPolicy.ps1**)
+1. Dot source the Group Policy PowerShell file (e.g. **. .\Scripts\GroupPolicy.ps1**) to load the code into the PowerShell session
 
-### Applying the SHB policies
+### Applying the policies
 
-If you are apply the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
+If you are applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
 
 The **Invoke-ApplySecureHostBaseline** command is the main command for applying policies. Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for help and examples.
 
-By default:
-* Both Computer and User policies will be imported. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value.
-* Any policies that have an audit option will be imported. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
-* Existing Group Policy Objects and Group Policy Templates will be backed up to a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
+By default this command will:
+* Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
+* Import policies, that have an audit option, in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
+* Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
 
 **Applying the SHB policies to a standalone system**
 
-```Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'```
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
+```
 
 **Applying the SHB policies to a domain**
 
-```Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall''``` 
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall'
+``` 
 
-Note that this merely loads the Group Policy Objects in Active Directory. It does not link the policies to any OUs so the settings will not automatically take affect.
+Note that this only loads the Group Policy Objects into Active Directory. It does not link the policies to any OUs so the settings do not automatically take affect.
 
 ### Checking compliance
-Once the policies have been applied (and linked to appropriate OUs in the domain case), see the [Compliance page](/Compliance.md) for instructions how to check compliance to the policies.
+Once the policies have been applied (and linked to appropriate OUs in the domain case), see the [Compliance page](/Compliance.md) for instructions on how to check compliance to the policies.
 
 ## License
 See [LICENSE](./LICENSE.md).
