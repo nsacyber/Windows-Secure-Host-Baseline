@@ -123,7 +123,7 @@ The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerS
 * Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
 * Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
 
-Option for the command are:
+Options for the command are:
 * **-Path** - Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
 * **-PolicyNames** - Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
 * **-PolicyScopes** - Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
