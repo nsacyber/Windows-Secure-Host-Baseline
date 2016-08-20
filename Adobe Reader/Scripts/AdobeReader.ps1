@@ -113,7 +113,7 @@ Function Get-AdobeReaderOfflineInstaller() {
     .DESCRIPTION
     Gets the Adobe Reader offline installer file.
 
-    .PARAMETER ReaderVersion
+    .PARAMETER Version
     Specifies an Adobe Reader version.
 
     .PARAMETER Multilingual
@@ -126,22 +126,22 @@ Function Get-AdobeReaderOfflineInstaller() {
     Use HTTP instead of HTTPS.
 
     .EXAMPLE
-    Get-AdobeReaderOfflineInstaller -ReaderVersion '15.010.20060.0'
+    Get-AdobeReaderOfflineInstaller -Version '15.010.20060.0'
 
     .EXAMPLE
-    Get-AdobeReaderOfflineInstaller -ReaderVersion '2015.010.20060' -Multilingual
+    Get-AdobeReaderOfflineInstaller -Version '2015.010.20060' -Multilingual
 
     .EXAMPLE
-    Get-AdobeReaderOfflineInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader'
+    Get-AdobeReaderOfflineInstaller -Version '2015.10.20060.0' -Path 'C:\AdobeReader'
 
     .EXAMPLE
-    Get-AdobeReaderOfflineInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
+    Get-AdobeReaderOfflineInstaller -Version '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
-        [System.Version]$ReaderVersion,
+        [System.Version]$Version,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
         [switch]$Multilingual,     
@@ -166,19 +166,19 @@ Function Get-AdobeReaderOfflineInstaller() {
         throw "$installerFolder does not exist"
     }
 
-    $major = [string]$ReaderVersion.Major
+    $major = [string]$Version.Major
 
     if ($major.Length -gt 2) {
         $major = $major[-2,-1] -join '' # we only want the last 2 numbers
     }
 
-    $minor = [string]$ReaderVersion.Minor
+    $minor = [string]$Version.Minor
 
     if ($minor.Length -lt 3) {
         $minor = '{0:000}' -f [Int32]$minor # force 0 padding to work
     }
 
-    $build = [string]$ReaderVersion.Build
+    $build = [string]$Version.Build
 
     $formattedVersion = '{0}{1:000}{2}' -f $major,$minor,$build
 
@@ -234,7 +234,7 @@ Function Get-AdobeReaderPatch() {
     .DESCRIPTION
     Gets the Adobe Reader .msp patch file.
 
-    .PARAMETER ReaderVersion
+    .PARAMETER Version
     Specifies an Adobe Reader version.
 
     .PARAMETER Multilingual
@@ -247,22 +247,22 @@ Function Get-AdobeReaderPatch() {
     Use HTTP instead of HTTPS.
 
     .EXAMPLE
-    Get-AdobeReaderPatch -ReaderVersion '15.010.20060.0'
+    Get-AdobeReaderPatch -Version '15.010.20060.0'
 
     .EXAMPLE
-    Get-AdobeReaderPatch -ReaderVersion '2015.010.20060' -Multilingual
+    Get-AdobeReaderPatch -Version '2015.010.20060' -Multilingual
 
     .EXAMPLE
-    Get-AdobeReaderPatch -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader'
+    Get-AdobeReaderPatch -Version '2015.10.20060.0' -Path 'C:\AdobeReader'
 
     .EXAMPLE
-    Get-AdobeReaderPatch -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
+    Get-AdobeReaderPatch -Version '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
-        [System.Version]$ReaderVersion,
+        [System.Version]$Version,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
         [switch]$Multilingual,     
@@ -287,19 +287,19 @@ Function Get-AdobeReaderPatch() {
         throw "$installerFolder does not exist"
     }
 
-    $major = [string]$ReaderVersion.Major
+    $major = [string]$Version.Major
 
     if ($major.Length -gt 2) {
         $major = $major[-2,-1] -join '' # we only want the last 2 numbers
     }
 
-    $minor = [string]$ReaderVersion.Minor
+    $minor = [string]$Version.Minor
 
     if ($minor.Length -lt 3) {
         $minor = '{0:000}' -f [Int32]$minor # force 0 padding to work
     }
 
-    $build = [string]$ReaderVersion.Build
+    $build = [string]$Version.Build
 
     $formattedVersion = '{0}{1:000}{2}' -f $major,$minor,$build
 
