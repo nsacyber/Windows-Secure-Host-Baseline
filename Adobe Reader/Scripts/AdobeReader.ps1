@@ -87,9 +87,9 @@ Function Get-AdobeReaderManifest() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -207,9 +207,9 @@ Function Get-AdobeReaderInstaller() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 

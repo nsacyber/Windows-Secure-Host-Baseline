@@ -53,9 +53,9 @@ Function Get-ChromeVersion() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -170,9 +170,9 @@ Function Get-ChromeExtension() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -298,9 +298,9 @@ Function Get-ChromeInstaller() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -397,9 +397,9 @@ Function Get-ChromeGroupPolicyTemplate() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -479,9 +479,9 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
