@@ -211,7 +211,7 @@ Function Test-IsGPOBackupFolder() {
     Test-IsGPOBackupFolder -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
     #>
     [CmdletBinding()] 
-    [OutputType([System.IO.DirectoryInfo[]])]
+    [OutputType([bool])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='A path of a GPO backup folders.')]
         [ValidateNotNullOrEmpty()]
@@ -762,7 +762,7 @@ Function Test-DomainPolicyExists() {
         $gpo = Get-GPO -Name $Name -ErrorAction SilentlyContinue
     }
 
-    return $gpo -ne $null
+    return $null -ne $gpo
 }
 
 Function Import-DomainPolicyObject() {
@@ -1162,7 +1162,7 @@ Function Get-FipsFileHash() {
     $bytes = $provider.ComputeHash($stream)
 
     $hash = ''
-    $bytes | ForEach { $hash += ('{0:X2}' -f $_) }
+    $bytes | ForEach-Object { $hash = ($hash,('{0:X2}' -f $_)) -join '' }
 
     $stream.Dispose()
     [System.IDisposable].GetMethod('Dispose').Invoke($provider,@()) | Out-Null
