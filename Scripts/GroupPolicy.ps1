@@ -1389,7 +1389,9 @@ Function Invoke-ApplySecureHostBaseline() {
         $gpoBackupGuid = $_.PolicyInformation.BackupGuid
         $gpoName = $_.PolicyInformation.DisplayName
 
-        New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
+        if ('Domain' -eq $PolicyType) {
+            New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
+        }
 
         $newTemplatePath = $_.PolicyTemplatePath
         $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
