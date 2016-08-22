@@ -1302,6 +1302,9 @@ Function Invoke-ApplySecureHostBaseline() {
     .PARAMETER ToolPath
     Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 
+    .PARAMETER UpdateTemplates
+    Optional. Update Group Policy templates that correspond to the applied Group Policy objects.
+
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
 
@@ -1316,6 +1319,12 @@ Function Invoke-ApplySecureHostBaseline() {
 
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced' -UpdateTemplates
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
     #>
     [CmdletBinding(SupportsShouldProcess=$true)]
     [OutputType([void])]
@@ -1355,7 +1364,11 @@ Function Invoke-ApplySecureHostBaseline() {
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$ToolPath
+        [string]$ToolPath,
+
+        [Parameter(Position=7, Mandatory=$false, HelpMessage='Update the Group Policy templates')]
+        [ValidateNotNullOrEmpty()]
+        [switch]$UpdateTemplates
     )
 
     #todo: add Prepare-SecureHostBaseline -Path $Path, currently might only need it to download LGPO.exe
@@ -1449,21 +1462,23 @@ Function Invoke-ApplySecureHostBaseline() {
             New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
         }
 
-        if (-not('Local' -eq $PolicyType -and $_.PolicyName -eq 'Certificates' )) {
-            $newTemplatePath = $_.PolicyTemplatePath
-            $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
+        if ($UpdateTemplates) {
+            if (-not('Local' -eq $PolicyType -and $_.PolicyName -eq 'Certificates' )) {
+                $newTemplatePath = $_.PolicyTemplatePath
+                $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
-            $newTemplates | ForEach-Object {
-                $newTemplate = $_.FullName
-                $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
+                $newTemplates | ForEach-Object {
+                    $newTemplate = $_.FullName
+                    $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
         
-                if (Test-Path -Path $targetTemplate -PathType Leaf) {
-                    if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
-                        Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
+                    if (Test-Path -Path $targetTemplate -PathType Leaf) {
+                        if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
+                            Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
+                            Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                        }
+                    } else {
                         Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
                     }
-                } else {
-                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
                 }
             }
         }
