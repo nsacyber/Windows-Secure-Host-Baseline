@@ -1309,7 +1309,7 @@ Function Invoke-ApplySecureHostBaseline() {
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
 
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBackup" -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
@@ -1326,36 +1326,36 @@ Function Invoke-ApplySecureHostBaseline() {
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
     #>
-    [CmdletBinding(SupportsShouldProcess=$true)]
+    [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply.')]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply.')]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Computer', 'User', IgnoreCase=$true)]
         [string[]]$PolicyScopes = @('Computer','User'),
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The types of the policies to apply.')]
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='The types of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply.')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Audit', 'Enforced', IgnoreCase=$true)]
         [string]$PolicyMode = 'Audit',
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed.')]
+        [Parameter(Position=5, Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed')]
         [ValidateNotNullOrEmpty()]
         [string]$BackupPath,
 
@@ -1452,18 +1452,19 @@ Function Invoke-ApplySecureHostBaseline() {
     }
 
     $policyDefinitions | ForEach-Object {
-        $newPolicyPath = $_.PolicyObjectPath
+        $policyDefinition = $_
+        $newPolicyPath = $policyDefinition.PolicyObjectPath
 
-        #$gpoGuid = $_.PolicyInformation.Guid
-        $gpoBackupGuid = $_.PolicyInformation.BackupGuid
-        $gpoName = $_.PolicyInformation.DisplayName
+        #$gpoGuid = $_$policyDefinitionolicyInformation.Guid
+        $gpoBackupGuid = $policyDefinition.PolicyInformation.BackupGuid
+        $gpoName = $policyDefinition.PolicyInformation.DisplayName
 
         if ('Domain' -eq $PolicyType) {
             New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
         }
 
         if ($UpdateTemplates) {
-            if (-not('Local' -eq $PolicyType -and $_.PolicyName -eq 'Certificates' )) {
+            if (-not('Local' -eq $PolicyType -and $policyDefinition.PolicyName -eq 'Certificates' )) {
                 $newTemplatePath = $_.PolicyTemplatePath
                 $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
@@ -1471,13 +1472,21 @@ Function Invoke-ApplySecureHostBaseline() {
                     $newTemplate = $_.FullName
                     $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
         
-                    if (Test-Path -Path $targetTemplate -PathType Leaf) {
-                        if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
-                            Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
+                    # todo: change to better strategy, json file with sha256 hash and osVersion template is for?
+                    # prevent overwriting newer OS group policy templates with older OS group policy templates, policy template version must be newer than OS version
+                    # https://technet.microsoft.com/en-us/windows/release-info.aspx Version 1511 as of 08/09/2016
+                    if (($policyDefinition.PolicyTemplateType -eq 'Application') -or ($policyDefinition.PolicyTemplateType -eq 'OS' -and ([System.Version]$policyDefinition.PolicyTemplateVersion).CompareTo([System.Version]'10.0.10586.545') -ge 0)) {
+                        if (Test-Path -Path $targetTemplate -PathType Leaf) {
+                            if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
+                                Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: add en-us folder for .adml/.admx files
+                                Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                            }
+                        } else {
                             Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
                         }
+
                     } else {
-                        Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                        Write-Verbose -Message ('Skipped updating {0} since the OS Group Policy template is newer than the repository version of the Group Policy template' -f $newTemplate)
                     }
                 }
             }
@@ -1485,7 +1494,7 @@ Function Invoke-ApplySecureHostBaseline() {
 
         if ('Local' -eq $PolicyType) {
             # no local policy support for certificates so manually import them
-            if ($_.PolicyName -eq 'Certificates' ) {
+            if ($_.PolicyName -eq 'Certificates') {
                 Import-LocalCertificate -Path $Path -Store 'Root'
                 Import-LocalCertificate -Path $Path -Store 'Intermediate'
             } else {
