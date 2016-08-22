@@ -1217,6 +1217,62 @@ Function Test-FilesEqual() {
     return $isEqual
 }
 
+Function Import-LocalCertificate() {
+   <#
+    .SYNOPSIS
+    Imports certificates into a local certificate store.
+
+    .DESCRIPTION
+    Imports certificates into a local certificate store.
+
+    .PARAMETER Path
+    The path to the folder containing the downloaded and extracted GitHub SHB repository.
+
+    .PARAMETER Store
+    The name of the certificate store.
+
+    .EXAMPLE
+    Import-LocalCertificate -Path '.\Secure-Host-Baseline' -Store 'Root'
+
+    .EXAMPLE
+    Import-LocalCertificate -Path '.\Secure-Host-Baseline' -Store 'Intermediate'
+    #>
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the certificate store')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Root','Intermediate', IgnoreCase = $true)]
+        [string]$Store
+    )
+
+    $certSearchPath = ''
+    $certStorePath = ''
+
+    switch($Store.ToLower()) {
+        'root' { $certSearchPath = 'Certificates\Root' ; $certStorePath = 'cert:\LocalMachine\Root'; break }
+        'intermediate' { $certSearchPath = 'Certificates\Intermediate' ; $certStorePath = 'cert:\LocalMachine\CA' ; break }
+        default { throw "Unsupported certificate store name of $Store" }
+    }
+
+    $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains($certSearchPath) -and $_.PsIsContainer -eq $false})
+
+    $certificateFiles | ForEach {
+        $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $_.FullName
+
+        # test if certificate exists so we don't try to import it again. you will get access denied errors
+        if ((Get-ChildItem -Path $certStorePath | Where-Object { $_.Thumbprint -eq $certificate.Thumbprint }) -eq $null ) {
+            Import-Certificate -FilePath $_.FullName -CertStoreLocation $certStorePath | Out-Null
+        }
+    }
+}
+
 Function Invoke-ApplySecureHostBaseline() {
    <#
     .SYNOPSIS
@@ -1385,7 +1441,7 @@ Function Invoke-ApplySecureHostBaseline() {
     $policyDefinitions | ForEach-Object {
         $newPolicyPath = $_.PolicyObjectPath
 
-        $gpoGuid = $_.PolicyInformation.Guid
+        #$gpoGuid = $_.PolicyInformation.Guid
         $gpoBackupGuid = $_.PolicyInformation.BackupGuid
         $gpoName = $_.PolicyInformation.DisplayName
 
@@ -1393,43 +1449,38 @@ Function Invoke-ApplySecureHostBaseline() {
             New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
         }
 
-        $newTemplatePath = $_.PolicyTemplatePath
-        $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
+        if (-not('Local' -eq $PolicyType -and $_.PolicyName -eq 'Certificates' )) {
+            $newTemplatePath = $_.PolicyTemplatePath
+            $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
-        $newTemplates | ForEach-Object {
-            $newTemplate = $_.FullName
-            $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
+            $newTemplates | ForEach-Object {
+                $newTemplate = $_.FullName
+                $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
         
-            if (Test-Path -Path $targetTemplate -PathType Leaf) {
-                if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {                
-                    Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
-                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force 
+                if (Test-Path -Path $targetTemplate -PathType Leaf) {
+                    if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
+                        Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
+                        Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                    }
+                } else {
+                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
                 }
-            } else {
-                Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
             }
         }
 
         if ('Local' -eq $PolicyType) {
-            Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
+            # no local policy support for certificates so manually import them
+            if ($_.PolicyName -eq 'Certificates' ) {
+                Import-LocalCertificate -Path $Path -Store 'Root'
+                Import-LocalCertificate -Path $Path -Store 'Intermediate'
+            } else {
+                Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
+            }
+
         } else {
             $newPolicyPathParent = ([System.IO.DirectoryInfo]$newPolicyPath).Parent.FullName 
             Import-PolicyObject -Path $newPolicyPathParent  -PolicyType $PolicyType -BackupGuid $gpoBackupGuid -Name $gpoName
         }
 
-        # no local policy support for certificates so manually import them
-        if ($_.PolicyName -eq 'Certificates' -and 'Local' -eq $PolicyType) {
-            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Root') -and $_.PsIsContainer -eq $false})
-
-            $certificateFiles | ForEach {
-                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\Root # Trusted Root Certification Authories
-            }
-
-            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Intermediate') -and $_.PsIsContainer -eq $false})
-
-            $certificateFiles | ForEach {
-                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\CA # Intermediate Certification Authories
-            }
-        }
     }
 }
