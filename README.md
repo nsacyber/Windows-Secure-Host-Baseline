@@ -122,8 +122,9 @@ The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerS
 * Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
 * Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
 * Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
+* **not** update the Group Policy template files that correspond to the applied Group Policy  objects. Use the **-UpdateTemplates** option to update the Group Policy templates.
 
-Options for the Invoke-ApplySecureHostBaseline command are:
+Options for the command are:
 * **-Path** - Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
 * **-PolicyNames** - Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
 * **-PolicyScopes** - Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
@@ -131,6 +132,7 @@ Options for the Invoke-ApplySecureHostBaseline command are:
 * **-PolicyMode** - Optional. The mode of policies to apply, if supported by the specific policy. For example, AppLocker supports audit and enforcement modes. Available modes: 'Audit', 'Enforced'. Defaults to 'Audit'.
 * **-BackupPath** - Optional. The path to a folder to save backups of Group Policy Objects and Group Policy Templates to in case a rollback is needed. Defaults to $env:USERPROFILE\Desktop\Backup_yyyyMMddHHmmss for when the script was executed.
 * **-ToolPath** - Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
+* **-UpdateTemplates** - Optional. Update Group Policy templates that correspond to the applied Group Policy objects.
 
 Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues).
 

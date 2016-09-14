@@ -87,9 +87,9 @@ Function Get-AdobeReaderManifest() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -105,16 +105,16 @@ Function Get-AdobeReaderManifest() {
     }
 }
 
-Function Get-AdobeReaderInstaller() {
+Function Get-AdobeReaderOfflineInstaller() {
     <#
     .SYNOPSIS
-    Gets the Adobe Reader installer file.
+    Gets the Adobe Reader offline installer file.
 
     .DESCRIPTION
-    Gets the Adobe Reader installer file.
+    Gets the Adobe Reader offline installer file.
 
-    .PARAMETER ReaderVersion
-    Specifies a Adobe Reader version.
+    .PARAMETER Version
+    Specifies an Adobe Reader version.
 
     .PARAMETER Multilingual
     Get the Multilingual User Interface (MUI) version of Adobe Reader.
@@ -126,22 +126,22 @@ Function Get-AdobeReaderInstaller() {
     Use HTTP instead of HTTPS.
 
     .EXAMPLE
-    Get-AdobeReaderInstaller -ReaderVersion '15.010.20060.0'
+    Get-AdobeReaderOfflineInstaller -Version '15.010.20060.0'
 
     .EXAMPLE
-    Get-AdobeReaderInstaller -ReaderVersion '2015.010.20060' -Multilingual
+    Get-AdobeReaderOfflineInstaller -Version '2015.010.20060' -Multilingual
 
     .EXAMPLE
-    Get-AdobeReaderInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader'
+    Get-AdobeReaderOfflineInstaller -Version '2015.10.20060.0' -Path 'C:\AdobeReader'
 
     .EXAMPLE
-    Get-AdobeReaderInstaller -ReaderVersion '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
+    Get-AdobeReaderOfflineInstaller -Version '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
     #>
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
-        [System.Version]$ReaderVersion,
+        [System.Version]$Version,
 
         [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
         [switch]$Multilingual,     
@@ -166,19 +166,140 @@ Function Get-AdobeReaderInstaller() {
         throw "$installerFolder does not exist"
     }
 
-    $major = [string]$ReaderVersion.Major
+    $major = [string]$Version.Major
 
     if ($major.Length -gt 2) {
         $major = $major[-2,-1] -join '' # we only want the last 2 numbers
     }
 
-    $minor = [string]$ReaderVersion.Minor
+    $minor = [string]$Version.Minor
 
     if ($minor.Length -lt 3) {
         $minor = '{0:000}' -f [Int32]$minor # force 0 padding to work
     }
 
-    $build = [string]$ReaderVersion.Build
+    $build = [string]$Version.Build
+
+    $formattedVersion = '{0}{1:000}{2}' -f $major,$minor,$build
+
+    $installer = 'AcroRdrDC{0}_en_US.exe' -f $formattedVersion
+
+    if ($Multilingual) {
+        $installer = 'AcroRdrDC{0}_MUI.exe' -f $formattedVersion
+    }
+
+    $protocol = 'https'
+
+    if($UseHTTP) {
+        $protocol = 'http'
+    }
+
+    $uri = ('{0}://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/{1}/{2}' -f $protocol,$formattedVersion,$installer)
+  
+    $params = @{
+        Uri = $uri;
+        Method = 'Get';
+        UserAgent = 'ARM WinINet Downloader'
+    }
+
+    $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
+
+    $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
+    if(([string]$proxyUri) -ne $uri) {
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
+    } else {
+        $response = Invoke-WebRequest @params -UseBasicParsing
+    }
+
+    $statusCode = $response.StatusCode 
+
+    if ($statusCode -eq 200) {
+        $bytes = $response.Content
+
+        $installerFile = ($installerFolder,$installer) -join '\'
+
+        Set-Content -Path $installerFile -Value $bytes -Encoding Byte -Force -NoNewline
+    } else {
+        throw 'Request failed with status code $statusCode'
+    }
+}
+
+#todo: investigate incremental updates: http://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1501720053/AcroRdrDCUpd1501720053_incr.msp
+Function Get-AdobeReaderPatch() {
+    <#
+    .SYNOPSIS
+    Gets the Adobe Reader .msp patch file.
+
+    .DESCRIPTION
+    Gets the Adobe Reader .msp patch file.
+
+    .PARAMETER Version
+    Specifies an Adobe Reader version.
+
+    .PARAMETER Multilingual
+    Get the Multilingual User Interface (MUI) version of Adobe Reader.
+
+    .PARAMETER Path
+    The folder path to save the patch file to.
+
+    .PARAMETER UseHTTP
+    Use HTTP instead of HTTPS.
+
+    .EXAMPLE
+    Get-AdobeReaderPatch -Version '15.010.20060.0'
+
+    .EXAMPLE
+    Get-AdobeReaderPatch -Version '2015.010.20060' -Multilingual
+
+    .EXAMPLE
+    Get-AdobeReaderPatch -Version '2015.10.20060.0' -Path 'C:\AdobeReader'
+
+    .EXAMPLE
+    Get-AdobeReaderPatch -Version '2015.10.20060.0' -Path 'C:\AdobeReader' -UseHTTP
+    #>
+    [CmdletBinding()] 
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
+        [System.Version]$Version,
+
+        [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
+        [switch]$Multilingual,     
+
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The folder path to save the patch file to')]
+        [string]$Path,
+
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [switch]$UseHTTP
+    )
+
+    # force PSBoundParameters to exist during debugging https://technet.microsoft.com/en-us/library/dd347652.aspx 
+    $parameters = $PSBoundParameters
+
+    $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
+
+    if ($parameters.ContainsKey('Path')) {
+        $installerFolder = $Path
+    }
+    
+    if (-not(Test-Path -Path $installerFolder -PathType Container)) {
+        throw "$installerFolder does not exist"
+    }
+
+    $major = [string]$Version.Major
+
+    if ($major.Length -gt 2) {
+        $major = $major[-2,-1] -join '' # we only want the last 2 numbers
+    }
+
+    $minor = [string]$Version.Minor
+
+    if ($minor.Length -lt 3) {
+        $minor = '{0:000}' -f [Int32]$minor # force 0 padding to work
+    }
+
+    $build = [string]$Version.Build
 
     $formattedVersion = '{0}{1:000}{2}' -f $major,$minor,$build
 
@@ -207,9 +328,9 @@ Function Get-AdobeReaderInstaller() {
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     if(([string]$proxyUri) -ne $uri) {
-        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials 
+        $response = Invoke-WebRequest @params -Proxy $proxyUri -ProxyUseDefaultCredentials -UseBasicParsing
     } else {
-        $response = Invoke-WebRequest @params 
+        $response = Invoke-WebRequest @params -UseBasicParsing
     }
 
     $statusCode = $response.StatusCode 
@@ -228,10 +349,10 @@ Function Get-AdobeReaderInstaller() {
 Function Install-AdobeUpdateTask() {
     <#
     .SYNOPSIS
-    Installs a schedule task that will trigger the Adobe Reader updater.
+    Installs a scheduled task that will trigger the Adobe Reader updater.
 
     .DESCRIPTION
-    Installs a schedule task that will trigger the Adobe Reader updater. The task installed by Adobe Reader does not work on Windows 10.
+    Installs a scheduled task that will trigger the Adobe Reader updater. The task installed by Adobe Reader does not work on Windows 10.
 
     .PARAMETER Force
     Force the task installation to occur even if Adobe Reader is not installed on the system.
@@ -338,7 +459,7 @@ Function Invoke-AdobeUpdate() {
     Invokes the Adobe Reader update mechanism.
 
     .PARAMETER Force
-    Force the update to occur even if the update waiting time period has not elapsed.
+    Force the update to occur even if the update waiting time period has not elapsed and the EULA has not been accepted.
 
     .EXAMPLE
     Invoke-AdobeUpdate

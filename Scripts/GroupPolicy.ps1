@@ -211,7 +211,7 @@ Function Test-IsGPOBackupFolder() {
     Test-IsGPOBackupFolder -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{AC662460-6494-4818-A303-FADC513B9876}'
     #>
     [CmdletBinding()] 
-    [OutputType([System.IO.DirectoryInfo[]])]
+    [OutputType([bool])]
     Param(
         [Parameter(Position=0, Mandatory=$true, HelpMessage='A path of a GPO backup folders.')]
         [ValidateNotNullOrEmpty()]
@@ -762,7 +762,7 @@ Function Test-DomainPolicyExists() {
         $gpo = Get-GPO -Name $Name -ErrorAction SilentlyContinue
     }
 
-    return $gpo -ne $null
+    return $null -ne $gpo
 }
 
 Function Import-DomainPolicyObject() {
@@ -1162,7 +1162,7 @@ Function Get-FipsFileHash() {
     $bytes = $provider.ComputeHash($stream)
 
     $hash = ''
-    $bytes | ForEach { $hash += ('{0:X2}' -f $_) }
+    $bytes | ForEach-Object { $hash = ($hash,('{0:X2}' -f $_)) -join '' }
 
     $stream.Dispose()
     [System.IDisposable].GetMethod('Dispose').Invoke($provider,@()) | Out-Null
@@ -1217,6 +1217,62 @@ Function Test-FilesEqual() {
     return $isEqual
 }
 
+Function Import-LocalCertificate() {
+   <#
+    .SYNOPSIS
+    Imports certificates into a local certificate store.
+
+    .DESCRIPTION
+    Imports certificates into a local certificate store.
+
+    .PARAMETER Path
+    The path to the folder containing the downloaded and extracted GitHub SHB repository.
+
+    .PARAMETER Store
+    The name of the certificate store.
+
+    .EXAMPLE
+    Import-LocalCertificate -Path '.\Secure-Host-Baseline' -Store 'Root'
+
+    .EXAMPLE
+    Import-LocalCertificate -Path '.\Secure-Host-Baseline' -Store 'Intermediate'
+    #>
+    [CmdletBinding()]
+    [OutputType([void])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path,
+
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the certificate store')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('Root','Intermediate', IgnoreCase = $true)]
+        [string]$Store
+    )
+
+    $certSearchPath = ''
+    $certStorePath = ''
+
+    switch($Store.ToLower()) {
+        'root' { $certSearchPath = 'Certificates\Root' ; $certStorePath = 'cert:\LocalMachine\Root'; break }
+        'intermediate' { $certSearchPath = 'Certificates\Intermediate' ; $certStorePath = 'cert:\LocalMachine\CA' ; break }
+        default { throw "Unsupported certificate store name of $Store" }
+    }
+
+    $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains($certSearchPath) -and $_.PsIsContainer -eq $false})
+
+    $certificateFiles | ForEach {
+        $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $_.FullName
+
+        # test if certificate exists so we don't try to import it again. you will get access denied errors
+        if ((Get-ChildItem -Path $certStorePath | Where-Object { $_.Thumbprint -eq $certificate.Thumbprint }) -eq $null ) {
+            Import-Certificate -FilePath $_.FullName -CertStoreLocation $certStorePath | Out-Null
+        }
+    }
+}
+
 Function Invoke-ApplySecureHostBaseline() {
    <#
     .SYNOPSIS
@@ -1246,11 +1302,14 @@ Function Invoke-ApplySecureHostBaseline() {
     .PARAMETER ToolPath
     Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 
+    .PARAMETER UpdateTemplates
+    Optional. Update Group Policy templates that correspond to the applied Group Policy objects.
+
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -Verbose -WhatIf
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader' -PolicyType 'Local' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
 
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBackup" -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
@@ -1260,37 +1319,43 @@ Function Invoke-ApplySecureHostBaseline() {
 
     .EXAMPLE
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced' -UpdateTemplates
+
+    .EXAMPLE
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
     #>
-    [CmdletBinding(SupportsShouldProcess=$true)]
+    [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package.')]
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply.')]
+        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply.')]
+        [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Computer', 'User', IgnoreCase=$true)]
         [string[]]$PolicyScopes = @('Computer','User'),
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The types of the policies to apply.')]
+        [Parameter(Position=3, Mandatory=$false, HelpMessage='The types of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply.')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Audit', 'Enforced', IgnoreCase=$true)]
         [string]$PolicyMode = 'Audit',
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed.')]
+        [Parameter(Position=5, Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed')]
         [ValidateNotNullOrEmpty()]
         [string]$BackupPath,
 
@@ -1299,7 +1364,11 @@ Function Invoke-ApplySecureHostBaseline() {
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
-        [string]$ToolPath
+        [string]$ToolPath,
+
+        [Parameter(Position=7, Mandatory=$false, HelpMessage='Update the Group Policy templates')]
+        [ValidateNotNullOrEmpty()]
+        [switch]$UpdateTemplates
     )
 
     #todo: add Prepare-SecureHostBaseline -Path $Path, currently might only need it to download LGPO.exe
@@ -1383,51 +1452,59 @@ Function Invoke-ApplySecureHostBaseline() {
     }
 
     $policyDefinitions | ForEach-Object {
-        $newPolicyPath = $_.PolicyObjectPath
+        $policyDefinition = $_
+        $newPolicyPath = $policyDefinition.PolicyObjectPath
 
-        $gpoGuid = $_.PolicyInformation.Guid
-        $gpoBackupGuid = $_.PolicyInformation.BackupGuid
-        $gpoName = $_.PolicyInformation.DisplayName
+        #$gpoGuid = $_$policyDefinitionolicyInformation.Guid
+        $gpoBackupGuid = $policyDefinition.PolicyInformation.BackupGuid
+        $gpoName = $policyDefinition.PolicyInformation.DisplayName
 
-        New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
+        if ('Domain' -eq $PolicyType) {
+            New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -Name $gpoName
+        }
 
-        $newTemplatePath = $_.PolicyTemplatePath
-        $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
+        if ($UpdateTemplates) {
+            if (-not('Local' -eq $PolicyType -and $policyDefinition.PolicyName -eq 'Certificates' )) {
+                $newTemplatePath = $_.PolicyTemplatePath
+                $newTemplates = [System.IO.FileInfo[]]@(Get-ChildItem -Path $newTemplatePath -Recurse -Include '*.adml','*.admx')
 
-        $newTemplates | ForEach-Object {
-            $newTemplate = $_.FullName
-            $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
+                $newTemplates | ForEach-Object {
+                    $newTemplate = $_.FullName
+                    $targetTemplate = $newTemplate.Replace($newTemplatePath,$templateFolderPath)
         
-            if (Test-Path -Path $targetTemplate -PathType Leaf) {
-                if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {                
-                    Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: ad en-us folder for .adml files
-                    Copy-Item -Path $newTemplate -Destination $targetTemplate -Force 
+                    # todo: change to better strategy, json file with sha256 hash and osVersion template is for?
+                    # prevent overwriting newer OS group policy templates with older OS group policy templates, policy template version must be newer than OS version
+                    # https://technet.microsoft.com/en-us/windows/release-info.aspx Version 1511 as of 08/09/2016
+                    if (($policyDefinition.PolicyTemplateType -eq 'Application') -or ($policyDefinition.PolicyTemplateType -eq 'OS' -and ([System.Version]$policyDefinition.PolicyTemplateVersion).CompareTo([System.Version]'10.0.10586.545') -ge 0)) {
+                        if (Test-Path -Path $targetTemplate -PathType Leaf) {
+                            if (-not(Test-FilesEqual -ReferenceFile $targetTemplate -DifferenceFile $newTemplate)) {
+                                Copy-Item -Path $targetTemplate -Destination $gptBackupFolder # make a backup copy # todo: add en-us folder for .adml/.admx files
+                                Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                            }
+                        } else {
+                            Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
+                        }
+
+                    } else {
+                        Write-Verbose -Message ('Skipped updating {0} since the OS Group Policy template is newer than the repository version of the Group Policy template' -f $newTemplate)
+                    }
                 }
-            } else {
-                Copy-Item -Path $newTemplate -Destination $targetTemplate -Force
             }
         }
 
         if ('Local' -eq $PolicyType) {
-            Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
+            # no local policy support for certificates so manually import them
+            if ($_.PolicyName -eq 'Certificates') {
+                Import-LocalCertificate -Path $Path -Store 'Root'
+                Import-LocalCertificate -Path $Path -Store 'Intermediate'
+            } else {
+                Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
+            }
+
         } else {
             $newPolicyPathParent = ([System.IO.DirectoryInfo]$newPolicyPath).Parent.FullName 
             Import-PolicyObject -Path $newPolicyPathParent  -PolicyType $PolicyType -BackupGuid $gpoBackupGuid -Name $gpoName
         }
 
-        # no local policy support for certificates so manually import them
-        if ($_.PolicyName -eq 'Certificates' -and 'Local' -eq $PolicyType) {
-            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Root') -and $_.PsIsContainer -eq $false})
-
-            $certificateFiles | ForEach {
-                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\Root # Trusted Root Certification Authories
-            }
-
-            $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains('Certificates\Intermediate') -and $_.PsIsContainer -eq $false})
-
-            $certificateFiles | ForEach {
-                Import-Certificate -FilePath $_.FullName -CertStoreLocation cert:\LocalMachine\CA # Intermediate Certification Authories
-            }
-        }
     }
 }
