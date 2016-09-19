@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RegistrySettings clsid="{A3CCFC41-DFDB-43a5-8D26-0FE8B954DA51}"><Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="LocalAccountTokenFilterPolicy" status="LocalAccountTokenFilterPolicy" image="12" changed="2013-02-15 13:44:45" uid="{BBB8A965-9D77-4F0B-A533-2EA1DAE3A3EC}" bypassErrors="1"><Properties action="U" displayDecimal="1" default="0" hive="HKEY_LOCAL_MACHINE" key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" name="LocalAccountTokenFilterPolicy" type="REG_DWORD" value="00000000"/></Registry>
-</RegistrySettings>
