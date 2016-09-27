@@ -15,6 +15,7 @@ These updates were discovered using the following searches:
 * ["Windows 10 Enterprise" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Windows+10+Enterprise"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Windows+10+Enterprise"+site%3Adell.com+inurl%3Adrivers)
 * ["HVCI" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="HVCI"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="HVCI"+site%3Adell.com+inurl%3Adrivers)
 * ["Secure MOR" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Secure+MOR"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Secure+MOR"+site%3Adell.com+inurl%3Adrivers)
+* ["SecureMOR" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="SecureMOR"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="SecureMOR"+site%3Adell.com+inurl%3Adrivers)
 * ["Win10 Enterprise" site:dell.com inurl:drivers](https://encrypted.google.com/search?oq="Win10+Enterprise"+site%3Adell.com+inurl%3Adrivers&ie=UTF-8&q="Win10+Enterprise"+site%3Adell.com+inurl%3Adrivers) 
 
 | Description | Version | Date | Applies to | Link | Notes |
@@ -66,3 +67,8 @@ These updates were discovered using the following searches:
 | Dell Latitude 5175/5179 System BIOS | 1.0.11 | 15 June 2016 | Latitude 5175 2-in-1,  Latitude 5179 2-in-1 | [Download](https://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=CRHPY) | Support Win10 Enterprise |
 | Dell Latitude 7275 and XPS 12 9250 System BIOS | 1.1.13 | 14 June 2016 | Latitude 7275, XPS 12 9250 | [Download](https://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=0YVM5) | Support Win10 Enterprise |
 | Intel HD Graphics 530/P530 Driver | 20.19.15.4454, A06 | 29 June 2016 | Precision 5510, XPS 15 9550 | [Download](https://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverID=FK4F6) | Added Win10 Enterprise OS Feature support |
+|Dell Optiplex 9010 AIO System BIOS | A20 | 25 August 2016 | OptiPlex 9010A | [Download](https://http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=8NVD0) | Updated SecureMOR for Credential Guard |
+| Dell Precision Workstation T3610 System BIOS | A12 | 22 September 2016 | Precision T3610 | [Download](https://http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=V1C0R) | Addressed Windows 10 Device Guard cannot reboot,Updated SecureMOR for Credential Guard |
+| Dell Precision Workstation T5610 System BIOS | A12 | 22 September 2016 | Precision T5610 | [Download](https://http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=44V99) | Addressed Windows 10 Device Guard cannot reboot,Updated SecureMOR for Credential Guard |
+| Dell Precision Workstation T7610 System BIOS | A12 | 22 September 2016 | Precision T7610 | [Download](https://http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=RDC9H) | Addressed Windows 10 Device Guard cannot reboot,Updated SecureMOR for Credential Guard | 
+| Dell Precision Workstation R7610 System BIOS | A11 | 22 September 2016 | Precision R7610 | [Download](https://http://www.dell.com/support/home/us/en/04/Drivers/DriversDetails?driverId=83XFT) | Addressed Windows 10 Device Guard cannot reboot,Updated SecureMOR for Credential Guard |
