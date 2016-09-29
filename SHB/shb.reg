@@ -1,13 +1,5 @@
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\DOD SHB]
-"DisplayName"="DoD Secure Host Baseline"
-"DisplayVersion"="10.0"
-"VersionMajor"=dword:0000000a
-"VersionMinor"=dword:00000000
-"Publisher"="U.S. Department of Defense"
-"SystemComponent"=dword:00000001
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\DOD\SHB]
 "MajorVersion"=dword:0000000a
 "MinorVersion"=dword:00000000
@@ -18,3 +10,11 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\DOD\SHB\ImageRev]
 "StartBuild"="10.0"
 "CurrentBuild"="10.0"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\DOD SHB]
+"DisplayName"="DoD Secure Host Baseline"
+"DisplayVersion"="10.0"
+"VersionMajor"=dword:0000000a
+"VersionMinor"=dword:00000000
+"Publisher"="U.S. Department of Defense"
+"SystemComponent"=dword:00000001
