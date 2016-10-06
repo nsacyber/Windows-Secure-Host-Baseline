@@ -18,3 +18,7 @@ Windows Registry Editor Version 5.00
 "VersionMinor"=dword:00000000
 "Publisher"="U.S. Department of Defense"
 "SystemComponent"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation]
+"Manufacturer"="DoD Secure Host Baseline"
+"Model"="v10.0.2"
