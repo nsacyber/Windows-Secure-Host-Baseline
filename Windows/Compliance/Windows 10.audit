@@ -1,9 +1,9 @@
 # Windows 10 STIG
 # Author: NSA Information Assurance
-# Revision: 1.0.2
-# Date: 07/16/2016
+# Revision: 1.0.3
+# Date: 10/11/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/Windows 10.audit
-# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 4
+# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 5
 
 #--------------------------------------#
 #  ACL Permissions Templates
@@ -692,7 +692,40 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
 		Severity: CAT II"
  value_type	: POLICY_TEXT
  value_data	: "True"
- powershell_args: "Get-NetFirewallProfile  -name Public | Select-Object Enabled | Select-Object -ExpandProperty Enabled"
+ powershell_args: "Get-NetFirewallProfile -name Public | Select-Object Enabled | Select-Object -ExpandProperty Enabled"
+</custom_item>
+
+# STIG ID	: WN10-00-000145
+<custom_item>
+ type		: AUDIT_POWERSHELL
+ description	: "WN10-00-000145: Data Execution Prevention (DEP) must be configured to at least OptOut."
+ info		: "Attackers are constantly looking for vulnerabilities in systems and applications. Data Execution Prevention (DEP) prevents harmful 
+   		   code from running in protected memory locations reserved for Windows and other programs.
+
+		STIG ID: WM10-00-000145
+		Vuln ID: V-68845
+		Rule ID: SV-83439r1_rule
+		Severity: CAT I"
+ value_type	: POLICY_TEXT
+ value_data	: "3"
+ powershell_args: "Get-WmiObject -Class Win32_OperatingSystem -Property DataExecutionPrevention_SupportPolicy | Select-Object DataExecutionPrevention_SupportPolicy | ft -HideTableHeaders"
+</custom_item>
+
+# STIG ID	: WN10-00-000150
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "WN10-00-000150: Structured Exception Handling Overwrite Protection (SEHOP) must be turned on."
+ info 		: "Attackers are constantly looking for vulnerabilities in systems and applications. Structured Exception Handling Overwrite Protection (SEHOP) blocks exploits 
+		   that use the Structured Exception Handling overwrite technique, a common buffer overflow attack.
+
+		STIG ID: WN10-00-000150
+		Vuln ID:  V-68849
+		Rule ID:  SV-83445r1_rule
+ 		Severity: CAT I"
+ value_type	: POLICY_DWORD
+ value_data	: 0
+ reg_key	: "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel"
+ reg_item	: "DisableExceptionChainValidation"
 </custom_item>
 
 #--------------------------------------#
@@ -2122,7 +2155,7 @@ a finding.
  reg_item	: "NoDriveTypeAutorun"
 </custom_item>
 
-# STIG ID	: WIN-CC-000195
+# STIG ID	: WN-CC-000195
 <custom_item>
  type		: REGISTRY_SETTING
  description	: "WN10-CC-000195: Enhanced anti-spoofing when available must be enabled for facial recognition."
