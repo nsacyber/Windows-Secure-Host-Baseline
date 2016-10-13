@@ -122,7 +122,7 @@ Function Uninstall-PowerShellEngine() {
     # it is much faster to check the registry to see if the PowerShell 2.0 engine is installed, ref: http://stackoverflow.com/questions/1825585/determine-installed-powershell-version
     # this is slow: if ((Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2') -and (Test-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2Root')) {
     if (Test-RegistryValueName -Path $path -Name 'PowerShellVersion') {
-        Disable-WindowsOptionalFeature -Online -FeatureName $features -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
+        Disable-WindowsOptionalFeature -Online -FeatureName $features -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart | Out-Null
     }
 }
 
@@ -360,7 +360,7 @@ Function Uninstall-SMB() {
     # can't avoid the slowness of Disable-WindowsOptionalFeature, but at least by not using the Test- function, it will be as fast as it can be
     #if (Test-WindowsOptionalFeature -FeatureName 'SMB1Protocol') {
     if (Test-Path -Path 'hklm:\System\CurrentControlSet\Services\mrxsmb10') {
-        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart -Confirm:$false | Out-Null
+        Disable-WindowsOptionalFeature -Online -FeatureName 'SMB1Protocol' -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -NoRestart | Out-Null
     }
 }
 
