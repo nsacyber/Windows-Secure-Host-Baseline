@@ -1,7 +1,7 @@
 # Adobe Reader DC
 # Author: NSA Information Assurance
-# Revision: 1.1.4	
-# Date: 07/12/2016
+# Revision: 1.1.5	
+# Date: 10/17/2016
 # NSA IA Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
 # DISA STIG: Aligns with Adobe Acrobat Reader DC Continuous Track STIG Version 1 Release 2
@@ -49,7 +49,7 @@
 	description: "ARDC-CN-000340: Version Check"
 	info: "V-65677 Running the latest version of Reader protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
-	value_data: "15.17.20050.61080"
+	value_data: "15.20.20039.7108"
 	file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>

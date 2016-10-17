@@ -1,7 +1,7 @@
 # Google Chrome
 # Author: NSA Information Assurance
-# Revision: 1.1.2	
-# Date: 09/14/2016
+# Revision: 1.1.4	
+# Date: 10/17/2016
 # NSA IA Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Chrome/Compliance/GoogleChrome.audit
 # DISA STIG: Aligns with Google Chrome STIG Version 1 Release 4
