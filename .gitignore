@@ -7,3 +7,6 @@
 
 # ignore executables e.g lgpo.exe
 **/*.exe
+
+# ignore old style .adm files
+**/*.adm
