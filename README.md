@@ -114,7 +114,7 @@ Now extract the downloaded zip file and load the PowerShell code used for apply 
 1. Rename the **Secure-Host-Baseline-master** folder to **Secure-Host-Baseline**
 1. Open a PowerShell prompt as an administrator
 1. Change directory into the **Secure-Host-Baseline** folder
-1. Dot source the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) (e.g. **. .\Scripts\GroupPolicy.ps1**) to load the code into the PowerShell session
+1. Dot source the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) to load the code into the PowerShell session: **. .Secure-Host-Baseline\Scripts\GroupPolicy.ps1**
 
 ### Applying the policies
 
