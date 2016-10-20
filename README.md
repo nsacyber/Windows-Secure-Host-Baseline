@@ -97,10 +97,10 @@ Run only scripts that you trust. While scripts from the internet can be useful, 
 [D] Do not run [R] Run once [S] Suspend [?] Help (default is "D"):
 ```
 
-If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. Open a PowerShell prompt and run the following command:
+If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. You will need to run the following command after Step 5 in the [Loading the code](#loading-the-code) section:
 
 ```
-[System.IO.FileInfo[]]@(Get-ChildItem -Path '.\Secure-Host-Baseline') -Recurse -Filter '\*.ps1' | Unblock-File**
+Get-ChildItem -Path '.\Secure-Host-Baseline' -Recurse -Include '*.ps1','*.psm1' | Unblock-File -Verbose
 ```
 
 See the [Unblock-File command's documentation](https://technet.microsoft.com/en-us/library/hh849924.aspx) for more information on how to use it.
