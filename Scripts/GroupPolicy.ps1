@@ -1385,18 +1385,20 @@ Function Invoke-ApplySecureHostBaseline() {
 
     if (-not($parameters.ContainsKey('BackupPath'))) {
         $baseBackupPath = $env:USERPROFILE,'Desktop' -join [System.IO.Path]::DirectorySeparatorChar
+    } else {
+        $baseBackupPath = $BackupPath
+    }
 
-        if (-not(Test-Path -Path $baseBackupPath -PathType Container)) {
-            New-Item -Path $baseBackupPath -ItemType Directory | Out-Null
-        }
+    if (-not(Test-Path -Path $baseBackupPath)) {
+        throw "$baseBackupPath does not exist"
+    }
 
-        $date = Get-Date
+    $date = Get-Date
 
-        $BackupPath = $baseBackupPath,('Backup_{0:yyyyMMddHHmmss}' -f $date) -join [System.IO.Path]::DirectorySeparatorChar
+    $backupPathInstance = $baseBackupPath,('Backup_{0:yyyyMMddHHmmss}' -f $date) -join [System.IO.Path]::DirectorySeparatorChar
 
-        if (-not(Test-Path -Path $BackupPath -PathType Container)) {
-            New-Item -Path $BackupPath -ItemType Directory | Out-Null
-        }
+    if (-not(Test-Path -Path $backupPathInstance -PathType Container)) {
+        New-Item -Path $backupPathInstance -ItemType Directory | Out-Null
     }
 
     if ('Local' -eq $PolicyType -and -not($parameters.ContainsKey('ToolPath'))) {
@@ -1440,10 +1442,10 @@ Function Invoke-ApplySecureHostBaseline() {
 
     #todo: add domain and local folders inside Windows GPO folder to resolve import errors for the local case
 
-    $gpoBackupFolder = "$BackupPath\Group Policy Objects"
+    $gpoBackupFolder = "$backupPathInstance\Group Policy Objects"
     New-Item -Path $gpoBackupFolder -ItemType Container | Out-Null
 
-    $gptBackupFolder = "$BackupPath\Group Policy Templates"
+    $gptBackupFolder = "$backupPathInstance\Group Policy Templates"
     New-Item -Path $gptBackupFolder -ItemType Container | Out-Null
 
     # there's only 1 policy object for local policy so only 1 backup needs to occur unlike domain policy
@@ -1506,5 +1508,11 @@ Function Invoke-ApplySecureHostBaseline() {
             Import-PolicyObject -Path $newPolicyPathParent  -PolicyType $PolicyType -BackupGuid $gpoBackupGuid -Name $gpoName
         }
 
+    }
+
+    # if we didn't actually backup any GPOs or GPTs, then delete the empty backup instance folder
+    # this is really only relevant in domain case where the SHB GPOs might not exist OR the -UpdateTemplates parameter was used (it isn't by default)
+    if (@(Get-ChildItem -Path $backupPathInstance -Recurse | Where-Object { $_.PsIsContainer -eq $false }).Count -eq 0) {
+        Remove-Item -Path $backupPathInstance -Recurse -Force -ErrorAction SilentlyContinue -Confirm:$false 
     }
 }

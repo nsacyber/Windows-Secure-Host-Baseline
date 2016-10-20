@@ -15,7 +15,7 @@ Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/secur
 
 ## About this repository
 
-This repository hosts Group Policy Objects, compliance checks, and configuration tools in support of the DoD Secure Host Baseline (SHB) framework for Windows 10. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework for Windows 10](https://disa.deps.mil/ext/cop/iase/dod-images/Pages/Win10.aspx) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
+This repository hosts Group Policy objects, compliance checks, and configuration tools in support of the DoD Secure Host Baseline (SHB) framework for Windows 10. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework for Windows 10](https://disa.deps.mil/ext/cop/iase/dod-images/Pages/Win10.aspx) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
 Questions or comments can be submitted to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) or posted on  [Windows 10 Secure Host Baseline project](https://software.forge.mil/sf/projects/win10shb) forums on Software Forge which requires a CAC or PIV smart card to access.
 
@@ -120,7 +120,7 @@ Now extract the downloaded zip file and load the PowerShell code used for apply 
 The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) is the main command for applying policies. By default this command will:
 * Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
 * Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
-* Make a backup copy of existing Group Policy Objects and Group Policy Templates. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder.
+* Make a backup copy of existing imported SHB Group Policy objects (and Group Policy templates if the -UpdateTemplates option is used) if they exist. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder where the Backup_yyyyMMddHHmmss will be created.
 * **not** update the Group Policy template files that correspond to the applied Group Policy  objects. Use the **-UpdateTemplates** option to update the Group Policy templates.
 
 Options for the command are:
@@ -129,7 +129,7 @@ Options for the command are:
 * **-PolicyScopes** - Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
 * **-PolicyType** - Optional. The type of policies to apply. Available types: 'Domain', 'Local'. Defaults to 'Domain' when joined to a domain. Defaults to 'Local' when not joined to a domain.
 * **-PolicyMode** - Optional. The mode of policies to apply, if supported by the specific policy. For example, AppLocker supports audit and enforcement modes. Available modes: 'Audit', 'Enforced'. Defaults to 'Audit'.
-* **-BackupPath** - Optional. The path to a folder to save backups of Group Policy Objects and Group Policy Templates to in case a rollback is needed. Defaults to $env:USERPROFILE\Desktop\Backup_yyyyMMddHHmmss for when the script was executed.
+* **-BackupPath** - Optional. The path to a folder to save backups of existing imported SHB Group Policy objects (and Group Policy templates if the -UpdateTemplates option is used) if they exist in case a rollback is needed. Defaults to $env:USERPROFILE\Desktop\Backup_yyyyMMddHHmmss corresponding to when the script was executed.
 * **-ToolPath** - Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 * **-UpdateTemplates** - Optional. Update Group Policy templates that correspond to the applied Group Policy objects.
 
@@ -143,7 +143,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adob
 ```
 
 **Applying the SHB policies to a domain**
-If applying the SHB policies to a domain, note that the Group Policy Objects are only loaded into Active Directory. The policies are not linked to any OUs so the settings do not automatically take affect.
+If applying the SHB policies to a domain, note that the Group Policy objects are only loaded into Active Directory. The policies are not linked to any OUs so the settings do not automatically take affect.
 
 ```
 Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall'
