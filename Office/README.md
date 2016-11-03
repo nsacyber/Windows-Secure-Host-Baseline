@@ -4,7 +4,7 @@ Group Policy Objects for Computer and User policies for Office are included in t
  * [Office 2013 Group Policy Objects](./Group Policy Objects/Office 2013).
 
 ## Group Policy templates
-The Office template files can be downloaded from Microsoft. They are also included the [Group Policy Templates](./Group Policy Templates/) folder as a convenience.
+The Office template files can be downloaded from Microsoft. They are also included in the [Group Policy Templates](./Group Policy Templates/) folder as a convenience.
 
 ## Importing the Office Group Policy
 
