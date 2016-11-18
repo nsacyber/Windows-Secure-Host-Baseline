@@ -23,7 +23,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Offi
 ```
 ## Office Macros
 
-Office Macros have proven themselves to be an increasingly popular attack vector. In Office 2016 a new group policy setting was added to [Block Macros from the Internet Zone](https://blogs.technet.microsoft.com/mmpc/2016/03/22/new-feature-in-office-2016-can-block-macros-and-help-prevent-infection/). The new setting was backported to Office 2013 in as part of a patch, [MS16-099](https://support.microsoft.com/en-us/kb/3177451). This [Information Assurance Advisory](https://www.iad.gov/iad/library/ia-advisories-alerts/blocking-macros-from-internet-originated-microsoft-office-files.cfm) was developed to recommend blocking Office macros from the Internet Zone.
+Office Macros have proven themselves to be an increasingly popular attack vector. In Office 2016 a new group policy setting was added to [Block Macros from the Internet Zone](https://blogs.technet.microsoft.com/mmpc/2016/03/22/new-feature-in-office-2016-can-block-macros-and-help-prevent-infection/). The new setting was backported to Office 2013 as part of patch [MS16-099](https://support.microsoft.com/en-us/kb/3177451). This [Information Assurance Advisory](https://www.iad.gov/iad/library/ia-advisories-alerts/blocking-macros-from-internet-originated-microsoft-office-files.cfm) was published to recommend blocking Office macros from the Internet Zone.
 
 ## Downloads
 * [Group Policy templates for Office 2016](https://www.microsoft.com/en-us/download/details.aspx?id=49030)
