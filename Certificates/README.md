@@ -74,7 +74,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Cert
 Use Microsoft's LGPO tool to apply the DoD certificates Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
 
 ```
-Invoke-ApplySecureHostBaseline -Path '.\Certificates' -PolicyNames 'AppLocker' -ToolPath '.\LGPO\lgpo.exe'
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Certificates' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
 ## Fixing iad.gov certificate warnings
