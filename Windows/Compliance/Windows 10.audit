@@ -1,9 +1,9 @@
 # Windows 10 STIG
 # Author: NSA Information Assurance
 # Revision: 1.0.3
-# Date: 10/11/2016
+# Date: 12/02/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/Windows 10.audit
-# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 5
+# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 7
 
 #--------------------------------------#
 #  ACL Permissions Templates
@@ -285,7 +285,7 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Rule ID:  SV-77839r1_rule
  		Severity: CAT I"
  value_type	: POLICY_TEXT
- value_data	: "1511"  || "1607"
+ value_data	: "1607"
  reg_key	: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\"
  reg_item	: "ReleaseID"
  check_type	: CHECK_EQUAL
@@ -726,6 +726,40 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
  value_data	: 0
  reg_key	: "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel"
  reg_item	: "DisableExceptionChainValidation"
+</custom_item>
+
+# STIG ID	: WN10-00-000155
+<custom_item>
+ type		: REG_CHECK
+ description	: "WN10-00-000155: The Windows PowerShell 2.0 feature must be disabled on the system."
+ info 		: "Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system. 
+                   Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.
+
+		STIG ID: WN10-00-000155
+		Vuln ID:  V-70637
+		Rule ID:  SV-85259r1_rule
+ 		Severity: CAT II"
+ value_type	: POLICY_TEXT
+ value_data	: "HKLM\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine"
+ reg_option	: MUST_NOT_EXIST
+ key_item	: "PowerShellVersion"
+</custom_item>
+
+# STIG ID	: WN10-00-000160
+<custom_item>
+ type		: REG_CHECK
+ description	: "WN10-00-000160: The Server Message Block (SMB) v1 protocol must be disabled on the system."
+ info 		: "SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known 
+                   to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
+
+		STIG ID: WN10-00-000160
+		Vuln ID:  V-70639
+		Rule ID:  SV-85261r1_rule
+ 		Severity: CAT II"
+ value_type	: POLICY_TEXT
+ value_data	: "HKLM\SYSTEM\CurrentControlSet\Services\mrxsmb10"
+ reg_option	: MUST_NOT_EXIST
+ key_item	: "Start"
 </custom_item>
 
 #--------------------------------------#
@@ -2781,347 +2815,6 @@ a finding.
  value_data	: 1
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\WinRM\Service\"
  reg_item	: "DisableRunAs"
-</custom_item>
-
-#--------------------------------------#
-#  STIG ER settings
-#--------------------------------------#
-
-# STIG ID	: WN10-ER-000005
-<if>
-<condition type: "and">
-<custom_item>
- type		: AUDIT_POWERSHELL
- description	: "WN10-ER-000005: The Windows Error Reporting Service must be running."
- value_type	: POLICY_TEXT
- value_data	: "True"
- powershell_args: "(Get-Service -Name 'WerSvc').Status -eq 'Running'"
-</custom_item>
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000005: The Windows Error Reporting Service must be configured to start automatically."
- value_type	: POLICY_DWORD
- value_data	: 2
- reg_key	: "HKLM\SYSTEM\CurrentControlSet\Services\WerSvc"
- reg_item	: "Start"
-</custom_item>
-</condition>
-<then>
-		<report type: "PASSED">
-		 description     : "WN10-ER-000005: The Windows Error Reporting Service must be running and configured to start automatically"
- 		 info		 : "Vuln ID:  V-63437  Severity: CAT II"
-		</report>
-</then>
-<else>
-		<report type: "FAILED">
-		 description     : "WN10-ER-000005: The Windows Error Reporting Service must be running and configured to start automatically"
- 		 info		 : "Vuln ID:  V-63437  Severity: CAT II"
-		</report>
-</else>
-</if>
-
-# STIG ID	: WN10-ER-000010
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000010: The system must be configured to generate error reports." 
- info		: "Enabling Windows Error Reporting generates information useful to system administrators and forensics analysts for diagnosing system problems and investigating intrusions. If Windows Error Reporting is turned off, valuable system diagnostic and vulnerability information may be lost.
-
-		STIG ID: WN10-ER-000010
-		Vuln ID:  V-63461
-		Rule ID:  SV-77949r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 0
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting"
- reg_item	: "Disabled"
-</custom_item>
-
-# STIG ID	: WN10-ER-000015
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000015: The system must be configured to save Error Reporting events and messages to the system event log."
- info		: "Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. This setting ensures that Error Reporting events will be saved in the system event log.
-
-		STIG ID: WN10-ER-000015
-		Vuln ID:  V-63489
-		Rule ID:  SV-77979r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 0
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "LoggingDisabled"
- reg_option	: CAN_BE_NULL
-</custom_item>
-
-# STIG ID	: WN10-ER-000020
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000020: The system must be configured to allow a local or DOD-wide collector to request additional error reporting diagnosic data to be sent."
- info		: "Sending additional error reporting data provides valuable system diagnostic and vulnerability information that would otherwise not be generated nor collected. This setting controls whether additional data in support of error reports can be sent to a local or DOD-wide reporting site.
-
-		STIG ID: WN10-ER-000020
-		Vuln ID:  V-63493
-		Rule ID:  SV-77983r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 0
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "DontSendAdditionalData"
- reg_option	: CAN_BE_NULL
-</custom_item>
-
-# STIG ID	: WN10-ER-000025
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000025: The system must be configured to collect multiple error reports of the same event type."
- info		: "Multiple error reports of the same error type are useful in diagnosing potential system configuration issues, as well as intrusion activity. This setting controls whether error reporting collects additional, second-level report data even if a CAB file containing data about the event types has already been collected.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000025
-		Vuln ID:  V-63497
-		Rule ID:  SV-77987r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "BypassDataThrottling"
-</custom_item>
-
-# STIG ID	: WN10-ER-000030
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000030: The system must be configured to prevent the display of error messages to the user."
- info		: "Displaying error messages to users provides them the option of sending the reports. Error reports should be sent silently, unknown to the user. This setting controls whether users are shown an error dialog box that lets them report an error.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000030
-		Vuln ID:  V-63505
-		Rule ID:  SV-77995r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting"
- reg_item	: "DontShowUI"
-</custom_item>
-
-# STIG ID	: WN10-ER-000035
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000035: The system must be configured to store error reports locally, on the system or in the enclave, and not send them to Microsoft."
- info		: "Forwarding error reports to vendors could expose sensitive information. This setting controls the configuration of a local or DOD-wide error reporting site. In order to not send the data to any system at this time, yet create the reports locally on the system, this value needs to be a single blank character. To forward error reports to a collection server, the site's error reporting server name or IP address must be defined.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000035
-		Vuln ID:  V-63521
-		Rule ID:  SV-78011r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_TEXT
- value_data	: ""
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "CorporateWerServer"
- check_type	: CHECK_NOT_EQUAL
-</custom_item>
-
-# STIG ID	: WN10-ER-000040
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000040: The system must be configured to use SSL to forward error reports."
- info		: "The use of SSL enables the secure forwarding of error reporting data from the local systems to a reporting site.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000040
-		Vuln ID:  V-63525
-		Rule ID:  SV-78015r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "CorporateWerUseSSL"
-</custom_item>
-
-# STIG ID	: WN10-ER-000045
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000045: The system must be configured to send error reports on TCP Port 1232."
- info		: "An error report site's TCO port must be defined in the local system in order to forward data from local systems via TCP. Port 1232 is the recommeded port setting.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000045
-		Vuln ID:  V-63529
-		Rule ID:  SV-78019r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1232
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "CorporateWerPortNumber"
-</custom_item>
-
-# STIG ID	: WN10-ER-000050
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000050: The system must be configured to archive error reports."
- info		: "The error reporting archive is stored locally on the system, and is created after an error report has been sent to the local collector or DOD-wide collector (if defined). This creates a backof of the error reporting.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000050
-		Vuln ID:  V-63535
-		Rule ID:  SV-78025r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 0
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "DisableArchive"
-</custom_item>
-
-# STIG ID	: WN10-ER-000055
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000055: The system must be configured to store all data in the error report archive."
- info		: "The error reporting archive is stored locally on the system and is created after an error report has been sent to the local collector or DOD-wide collector (if defined). Storing all data, including memory contents, adds data that is very helpful in analyzing the errors.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000055
-		Vuln ID:  V-63539
-		Rule ID:  SV-78029r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 2
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "ConfigureArchive"
-</custom_item>
-
-# STIG ID	: WN10-ER-000060
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000060: The maximum number of error reports to archive on a system must be configured to 100 or greater."
- info		: "The retension of archive reports provides a history. Older reports are automatically deleted as new reports are generated once the maximum limit has been met. The archive is stored locally on the system and is created after the error report has been sent to the local collector or DOD-wide collector (if defined).
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000060
-		Vuln ID:  V-63543
-		Rule ID:  SV-78033r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 100
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "MaxArchiveCount"
- check_type	: CHECK_GREATER_THAN_OR_EQUAL
-</custom_item>
-
-# STIG ID	: WN10-ER-000065
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000065: The system must be configured to queue error reports until a local or DOD-wide collector is available."
- info		: "Queueing error reports provides the ability for a systm to collect reports locally or until a collection server can be contacted. Valuable system diagnostic and vulnerability information may be lost if the report queue is disabled.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000065
-		Vuln ID:  V-63547
-		Rule ID:  SV-78037r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 0
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "DisableQueue"
-</custom_item>
-
-# STIG ID	: WN10-ER-000070
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000070: The system must be configured to add all error reports to the queue."
- info		: "Error reports are queued for sending to an error reporting site when the queueing behavior is set to Always Queue. This will maintain the reports in the queue until a connection can be made to the collection server.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000070
-		Vuln ID:  V-63557
-		Rule ID:  SV-78047r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "ForceQueue"
-</custom_item>
-
-# STIG ID	: WN10-ER-000075
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000075: The maximum number of error reports to queue on a system must be configured to 50 or greater."
- info		: "The error reporting queue is stored locally on the system and contains the error reports until they have been manually removed or automatically sent to the local collector or DOD-wide collector (if defined). Once a report has been sent to a collector, it is moved to the report archive. Old reports are deleted as new ones arrive once the maximum limite has been met.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000075
-		Vuln ID:  V-63561
-		Rule ID:  SV-78051r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 50
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "MaxQueueCount"
-</custom_item>
-
-# STIG ID	: WN10-ER-000080
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000080: The system mmust be configured to attempt to forward queued error reports once a day."
- info		: "Error reports stored in the queue should be forwarded to a local or DOD-wide collection site when the system can connect to the site. This setting controls the frequency a system will use to try forwarding queued reports to the local or DOD-wide collector.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000080
-		Vuln ID:  V-63565
-		Rule ID:  SV-78055r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\"
- reg_item	: "QueuePesterInterval"
-</custom_item>
-
-# STIG ID	: WN10-ER-000085
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000085: The system must be configured to automatically consent to send all data requested by a local or DOD-wide error collection site."
- info		: "Configuring error reporting to send all requested data ensures all relevant data associated with the error report is captured for later analysis. This setting determines the default consent behavior of Windows Error Reporting.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000085
-		Vuln ID:  V-63571
-		Rule ID:  SV-78061r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 4
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent\"
- reg_item	: "DefaultConsent"
-</custom_item>
-
-# STIG ID	: WN10-ER-000090
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-ER-000090: The system must be configured to permit the default consent levels of Windows Error Reporting to override any other consent policy setting."
- info		: "This setting determines the behavior of the 'Configure Default Consent' setting in relation to custom consent settings. Enabling this allows the default consent levels of Windows Error Reporting to always override any other consent policy setting.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-ER-000090
-		Vuln ID:  V-63575
-		Rule ID:  SV-78065r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent\"
- reg_item	: "DefaultOverrideBehavior"
 </custom_item>
 
 #--------------------------------------#
