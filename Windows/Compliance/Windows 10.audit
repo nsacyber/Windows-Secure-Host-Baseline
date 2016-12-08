@@ -708,7 +708,7 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
 		Severity: CAT I"
  value_type	: POLICY_TEXT
  value_data	: "3"
- powershell_args: "Get-WmiObject -Class Win32_OperatingSystem -Property DataExecutionPrevention_SupportPolicy | Select-Object DataExecutionPrevention_SupportPolicy | ft -HideTableHeaders"
+ powershell_args: "(Get-WmiObject -Class Win32_OperatingSystem -Property DataExecutionPrevention_SupportPolicy | Select-Object DataExecutionPrevention_SupportPolicy | ft -HideTableHeaders | Out-String).trim()"
 </custom_item>
 
 # STIG ID	: WN10-00-000150
@@ -1582,23 +1582,6 @@ info		: "A system is more vulnerable to unauthorized access when system users re
  reg_item	: "AllowInsecureGuestAuth"
 </custom_item>
 
-# STIG ID	: WN10-CC-000045
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-CC-000045: All Direct Access traffic must be routed through the internal network."
- info 		: "Routing all Direct Access traffic through the internal network allows monitoring and prevents split tunneling.
-
-		If the registry value does not exist or is not configured correctly, this is a finding.
-		STIG ID: WN10-CC-000045
-		Vuln ID:  V-63573
-		Rule ID:  SV-78063r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_TEXT
- value_data	: "Enabled"
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\TCPIP\v6Transition\"
- reg_item	: "Force_Tunneling"
-</custom_item>
-
 # STIG ID	: WN10-CC-000050
 <if>
   <condition type: "and">
@@ -1798,7 +1781,7 @@ a finding.
 # STIG ID	: WN10-CC-000085
 <custom_item>
  type		: REGISTRY_SETTING
- description	: "WN10-CC-000085: Early Launch Antimalware, Boot-Start Driver Initialization Policy must prevent bot drivers identified as bad."
+ description	: "WN10-CC-000085: Early Launch Antimalware, Boot-Start Driver Initialization Policy must prevent boot drivers identified as bad."
  info 		: "Compromised boot drivers can introduce malware prior to protection mechanisms that load after initialization. The Early Launch Antimalware driver can limit allowed drivers based on classifications determined by the malware protection application. At a minimum, drivers determined to be bad must not be allowed.
 
 		STIG ID: WN10-CC-000085
@@ -1936,24 +1919,6 @@ a finding.
  reg_item	: "DontDisplayNetworkSelectionUI"
 </custom_item>
 
-# STIG ID	: WN10-CC-000125
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-CC-000125: Connected users on domain-joined computers must not be enumerated."
- info		: "The username is one part of logon credentials that could be used to gain access to a system. Preventing the enumeration of users limits this information to unauthorized personnel.
-
-		If the registry value does not exist or is not configured as specified, this is a finding. 
-
-		STIG ID: WN10-CC-000125
-		Vuln ID:  V-63631
-		Rule ID:  SV-78121r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows\System\"
- reg_item	: "DontEnumerateConnectedUsers"
-</custom_item>
-
 # STIG ID	: WN10-CC-000130
 <custom_item>
  type		: REGISTRY_SETTING
@@ -2061,24 +2026,6 @@ a finding.
  value_data	: 0
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\"
  reg_item	: "fAllowToGetHelp"
-</custom_item>
-
-# STIG ID	: WN10-CC-000160
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-CC-000160: Client computers must be required to authenticate for RPC communication."
- info		: "Configuring RPC to require authentication to the RPC Endpoint Mapper will force clients to provide authentication before RPC communication is established.
-
-		If the registry value does not exist or is not configured as specified, this is a finding. 
-
-		STIG ID: WN10-CC-000160
-		Vuln ID:  V-63655
-		Rule ID:  SV-78145r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 1
- reg_key	: "HKLM\Software\Policies\Microsoft\Windows NT\Rpc\"
- reg_item	: "EnableAuthEpResolution"
 </custom_item>
 
 # STIG ID	: WN10-CC-000165
@@ -2238,7 +2185,7 @@ a finding.
 		Rule ID:  SV-78173r1_rule
  		Severity: CAT II"
  value_type	: POLICY_DWORD
- value_data	: 0
+ value_data	: "0" || "1"
  reg_key	: "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection"
  reg_item	: "AllowTelemetry"
 </custom_item>
@@ -2276,7 +2223,7 @@ a finding.
  		Severity: CAT II"
  value_type	: POLICY_DWORD
  #value_data	: 0
- value_data	: 2
+ value_data	: 1
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\System\"
  reg_item	: "EnableSmartScreen"
 </custom_item>
@@ -2314,6 +2261,7 @@ a finding.
  value_data	: 0
  reg_key	: "HKLM\Software\Policies\Microsoft\Windows\Explorer\"
  reg_item	: "NoHeapTerminationOnCorruption"
+ reg_option	: CAN_BE_NULL
 </custom_item>
 
 # STIG ID	: WN10-CC-000225
@@ -2866,10 +2814,10 @@ a finding.
  powershell_args: "if (($c = (Get-ChildItem -Path cert:\LocalMachine\Disallowed -DNSName '*DoD Root CA 2*' | where-object {$_.Issuer -like '*DoD Interoperability Root CA 1*'} | Select-Object Issuer | Select-Object Issuer | Select-Object -ExpandProperty Issuer)) -eq $NULL) {write-output 'NULL'} else {write-output $c.Substring(3,30)}"
 </custom_item>
 
-# STIG ID	: WN10-PK-0000020
+# STIG ID	: WN10-PK-000020
 <custom_item>
  type		: AUDIT_POWERSHELL
- description	: "WN10-PK-0000020: The US DoD CCEB Interoperability Root CA 1 to DoD Root CA 2 cross certificate must be installed into the Untrusted Certificate Store."
+ description	: "WN10-PK-000020: The US DoD CCEB Interoperability Root CA 1 to DoD Root CA 2 cross certificate must be installed into the Untrusted Certificate Store."
  info		: "To ensure users do not experience denial of service on NIPRNet when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root 2, the US DoD CCEB Interoperability Root CA 1 to DoD Root CA 2 cross certificate must be installed in the Untrusted Certificate Store. This requirement only applies to NIPRNet systems.
 
 		STIG ID: WN10-PK-000015
@@ -3194,24 +3142,6 @@ a finding.
  reg_key	: "HKLM\System\CurrentControlSet\Services\Netlogon\Parameters"
  reg_item	: "RequireStrongKey"
  reg_type	: REG_DWORD
-</custom_item>
-
-# STIG ID	: WN10-SO-000065
-<custom_item>
- type		: REGISTRY_SETTING
- description	: "WN10-SO-000065: The machine account lockout threshold must be set to 10 on systems with BitLocker enabled."
- info		: "The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts should be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.
-
-		If the registry value does not exist or is not configured as specified, this is a finding.
-
-		STIG ID: WN10-SO-000065
-		Vuln ID:  V-63957
-		Rule ID:  SV-78447r1_rule
- 		Severity: CAT II"
- value_type	: POLICY_DWORD
- value_data	: 10
- reg_key	: "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\"
- reg_item	: "MaxDevicePasswordFailedAttempts"
 </custom_item>
 
 # STIG ID	: WN10-SO-000070
@@ -4484,7 +4414,7 @@ info		: "Inappropriate granting of user rights can provide system, administrativ
 # STIG ID	: WN10-UR-000105
 <custom_item>
  type		: USER_RIGHTS_POLICY
- description	: "WN10-UR-000105: The geneerate security audits user right must only be assigned to Local Service and Network Service."
+ description	: "WN10-UR-000105: The Generate security audits user right must only be assigned to Local Service and Network Service."
  info		: "Inappropriate granting of user rights can provide system, administrative, and other high level capabilities.
 
 		The 'Generate security audits' user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.
