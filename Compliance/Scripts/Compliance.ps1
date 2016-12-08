@@ -1247,8 +1247,12 @@ function RegistrySetting {
             return checkRegSetting $regKey $regItem $valueType $valueData $regOption $checkType
         }
     } else {
-        Write-Verbose "[RegistrySetting] Path does not exist $regKey"
-        return $false
+        if ($regOption.CompareTo("CAN_BE_NULL") -eq 0) {  
+            return $true
+        } else {
+            Write-Verbose "[RegistrySetting] Path does not exist $regKey"
+            return $false
+        }
     }
 }
 
