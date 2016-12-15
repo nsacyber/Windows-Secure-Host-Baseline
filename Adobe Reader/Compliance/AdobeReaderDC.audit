@@ -46,7 +46,7 @@
 	description: "ARDC-CN-000340: Version Check"
 	info: "V-65677 Running the latest version of Reader protects users from known vulnerabilies."
 	value_type: POLICY_FILE_VERSION
-	value_data: "15.20.20039.7108"
+	value_data: "15.20.20042.205528"
 	file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
