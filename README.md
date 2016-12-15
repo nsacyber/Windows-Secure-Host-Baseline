@@ -88,17 +88,16 @@ Users may need to change the default PowerShell execution policy. This can be ac
 ### Unblocking the PowerShell scripts
 Users will need to unblock the downloaded zip file since it will be marked as having been downloaded from the Internet which PowerShell will block from executing by default. Open a PowerShell prompt and run the following commands to unblock the PowerShell code in the zip file:
 
-1. **cd $env:USERPROFILE** 
-1. **cd Downloads** 
-1. **Unblock-File -Path '.\Secure-Host-Baseline-master.zip'** 
+1. `cd $env:USERPROFILE` 
+1. `cd Downloads` 
+1. `Unblock-File -Path '.\Secure-Host-Baseline-master.zip'`
 
 Running the PowerShell scripts inside the zip file without unblocking the file will result in the following warning:
 
-```
-Security warning
-Run only scripts that you trust. While scripts from the internet can be useful, this script can potentially harm your computer. If you trust this script, use the Unblock-File cmdlet to allow the script to run without this warning message. Do you want to run C:\users\user\Downloads\script.ps1?
-[D] Do not run [R] Run once [S] Suspend [?] Help (default is "D"):
-```
+*Security warning*
+*Run only scripts that you trust. While scripts from the internet can be useful, this script can potentially harm your computer. If you trust this script, use the Unblock-File cmdlet to allow the script to run without this warning message. Do you want to run C:\users\user\Downloads\script.ps1?*
+*[D] Do not run [R] Run once [S] Suspend [?] Help (default is "D"):*
+
 
 If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. You will need to run the following command after Step 5 in the [Loading the code](#loading-the-code) section:
 
@@ -116,11 +115,11 @@ Now extract the downloaded zip file and load the PowerShell code used for apply 
 1. Click the **Extract** button
 1. Rename the **Secure-Host-Baseline-master** folder to **Secure-Host-Baseline**
 1. Open a PowerShell prompt as an administrator
-1. Dot source the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) to load the code into the PowerShell session: **. .\Secure-Host-Baseline\Scripts\GroupPolicy.ps1**
+1. Import the [Group Policy PowerShell module](./Scripts/GroupPolicy.psm1) to load the code into the PowerShell session: `Import-Module -Name .\Secure-Host-Baseline\Scripts\GroupPolicy.psm1`
 
 ### Applying the policies
 
-The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerShell file](./Scripts/GroupPolicy.ps1) is the main command for applying policies. By default this command will:
+The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerShell module](./Scripts/GroupPolicy.psm1) is the main command for applying policies. By default this command will:
 * Import both Computer and User policies. Use the **-PolicyScopes** option and specify only the **'User'** or **'Computer'** value to import only User or Computer policies.
 * Import policies, that have an audit option (e.g. AppLocker), in audit mode. To import those policies in enforcement mode, use the **-PolicyMode** option and specify the **'Enforced'** value.
 * Make a backup copy of existing imported SHB Group Policy objects (and Group Policy templates if the -UpdateTemplates option is used) if they exist. The backups will be in a directory located at **%UERPROFILE%\\Desktop\\Backup_yyyyMMddHHmmss** corresponding to the time when the command was executed. To change this location use the **-BackupPath** option and specify a path to an existing folder where the Backup_yyyyMMddHHmmss will be created.
