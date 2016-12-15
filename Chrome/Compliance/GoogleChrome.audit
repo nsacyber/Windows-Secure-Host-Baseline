@@ -36,7 +36,7 @@
 	description: "Chrome Version"
 	info: "Running the latest version of Chrome protects users from known vulnerabilities."
 	value_type: POLICY_FILE_VERSION
-	value_data: "53.0.2785.113"       
+	value_data: "55.0.2883.87"       
 	file: "%programfiles% (x86)\Google\Chrome\Application\chrome.exe"
 	check_type: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
