@@ -1,9 +1,7 @@
-# Windows 10 STIG
+# DISA STIG: Windows 10 STIG version 1 release 7
 # Author: NSA Information Assurance
-# Revision: 1.0.3
-# Date: 12/02/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/Windows 10.audit
-# DISA STIG: Aligns with settings from the Windows 10 STIG version 1 release 7
+
 
 #--------------------------------------#
 #  ACL Permissions Templates

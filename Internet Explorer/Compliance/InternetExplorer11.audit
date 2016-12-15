@@ -1,7 +1,5 @@
-# Internet Explorer 11
+# DISA STIG: Internet Explorer 11 version 1 release 10 
 # Author: NSA Information Assurance
-# Revision: 1.0.1
-# Date: 07/27/2016
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Internet Explorer/Compliance/InternetExplorer11.audit
 
 <check_type : "Windows" version : "2">

@@ -1,10 +1,7 @@
-# Adobe Reader DC
+# DISA STIG: Adobe Acrobat Reader DC Continuous Track STIG Version 1 Release 2
 # Author: NSA Information Assurance
-# Revision: 1.1.5	
-# Date: 10/17/2016
-# NSA IA Guidance: https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
-# DISA STIG: Aligns with Adobe Acrobat Reader DC Continuous Track STIG Version 1 Release 2
+
 
 
 <check_type : "Windows" version : "2">

@@ -1,9 +1,7 @@
-# Windows Firewall
+# DISA STIG: Windows Firewall STIG Version 1 Release 5
 # Author: NSA Information Assurance
-# Revision: 1.0.0	
-# Date: 07/17/2016
-# Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows/Compliance/WindowsFirewall.audit
-# DISA STIG: Aligns with Windows Firewall STIG Version 1 Release 3
+# Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Windows Firewall/Compliance/WindowsFirewall.audit
+
 
 <check_type : "Windows" version : "2">
 <group_policy: "Windows Firewall">

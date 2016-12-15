@@ -1,10 +1,7 @@
-# EMET 5.5
+# DISA STIG: Windows 10 STIG version 1 release 5
 # Author: NSA Information Assurance
-# Revision: 1.0.2	
-# Date: 07/16/2016
-# NSA IA Guidance: https://github.com/iadgov/Secure-Host-Baseline/tree/master/EMET
 # Source: https://github.com/iadgov/Secure-Host-Baseline/EMET/Compliance/EMET_5.5.audit
-# DISA STIG: Aligns with EMET settings from the Windows 10 STIG version 1 release 4
+
 
 <check_type : "Windows" version : "2">
 <group_policy: "Enhanced Mitigation Experience Toolkit (EMET) v5.5">
