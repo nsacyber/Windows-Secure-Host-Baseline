@@ -1,4 +1,4 @@
-# DISA STIG: Google Chrome STIG Version 1 Release 4
+# DISA STIG: Google Chrome STIG Version 1 Release 7
 # Author: NSA Information Assurance
 # Source: https://github.com/iadgov/Secure-Host-Baseline/tree/master/Chrome/Compliance/GoogleChrome.audit
 
@@ -204,18 +204,6 @@
 </custom_item> 
 
 <custom_item>
- type			: REG_CHECK
- description	        : "DTBC-0048: Enforce a HomePage Location"
- info               	: "V-44801 Severity: CAT II"
- info			: "HKLM\Software\Policies\Google\Chrome\HomepageLocation (REG_SZ)"
- value_type		: POLICY_TEXT
- value_data		: "HKLM\Software\Policies\Google\Chrome"
- reg_option		: MUST_EXIST
- key_item		: "HomepageLocation"
- severity		: LOW
-</custom_item>
-
-<custom_item>
  type			: REGISTRY_SETTING
  description	        : "DTBC-0026: Disable Metrics Reporting"
  info               	: "V-44771 Severity: CAT II"
@@ -228,11 +216,11 @@
 </custom_item> 
 
 
-##   Check Chrome auto updates are configured, STIG ID DTBC-0050
+##   Check Chrome auto updates are configured, STIG ID V-44805
 ##   then
 ##     if
 ##       check AutoUpdateCheckPeriodMinutes to make sure not do exist or
-##       is set to AutoUpdateCheckPeriodMinutes > 0 < 43200
+##       is set to AutoUpdateCheckPeriodMinutes > 0 < 10080
 ##       and DisableAutoUpdateChecksCheckboxValue must equal 0
 ##     then
 ##       pass
@@ -266,7 +254,7 @@
 		 description	        : "Chrome: Update Settings"
 		 info               	: "Severity: CAT II"
 		 value_type		: POLICY_DWORD
-		 value_data		: [1..43200]
+		 value_data		: [1..10080]
 		 reg_key		: "HKLM\Software\Policies\Google\Update\"
 		 reg_item		: "AutoUpdateCheckPeriodMinutes"
 		 reg_option		: CAN_BE_NULL
@@ -345,18 +333,6 @@ info: "HKLM\Software\Policies\Google\Chrome\PluginsAllowedForUrls"
 </report>
 </else>
 </if>
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "DTBC-0010: Disable Cleartext Passwords"
- info               	: "V-44739 Severity: CAT II"
- info			: "HKLM\Software\Policies\Google\Chrome\PasswordManagerAllowShowPasswords (DWORD:0)"
- value_type		: POLICY_DWORD
- value_data		: "0"
- reg_key		: "HKLM\Software\Policies\Google\Chrome\"
- reg_item		: "PasswordManagerAllowShowPasswords"
- severity		: MEDIUM
-</custom_item> 
 
 <custom_item>
  type			: REGISTRY_SETTING
@@ -477,11 +453,11 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  type			: REGISTRY_SETTING
  description	        : "DTBC-0025: Disable Network Prediction"
  info               	: "V-44769 Severity: CAT II"
- info			: "HKLM\Software\Policies\Google\Chrome\DnsPrefetchingEnabled (DWORD:0)"
+ info			: "HKLM\Software\Policies\Google\Chrome\NetworkPredictionOptions (DWORD:2)"
  value_type		: POLICY_DWORD
- value_data		: "0"
+ value_data		: "2"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
- reg_item		: "DnsPrefetchingEnabled"
+ reg_item		: "NetworkPredictionOptions"
  severity		: MEDIUM
 </custom_item>
 
@@ -505,18 +481,6 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  value_data		: "0"
  reg_key		: "HKLM\Software\Policies\Google\Chrome\"
  reg_item		: "PasswordManagerEnabled"
- severity		: MEDIUM
-</custom_item>
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "DTBC-0012: HTTP Authentication"
- info               	: "V-44743 Severity: CAT II"
- info			: "HKLM\Software\Policies\Google\Chrome\AuthSchemes (REG_SZ:negotiate)"
- value_type		: POLICY_TEXT
- value_data		: "negotiate"
- reg_key		: "HKLM\Software\Policies\Google\Chrome\"
- reg_item		: "AuthSchemes"
  severity		: MEDIUM
 </custom_item>
 
@@ -604,7 +568,6 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  severity: LOW
 </custom_item>
 
-## SETTING REMOVED FROM CHROME, BUT STILL IN STIG
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "DTBC-0045: Disable Session Only Based Cookies"
@@ -619,7 +582,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  severity		: LOW
 </custom_item>
 
-### NOT CURRENTLY A STIG CHECK
+### Recommended Setting
 <custom_item>
  type			: REGISTRY_SETTING
  description	        : "NO STIG ID: Disable Proceed Anyways Option"
@@ -631,6 +594,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
  reg_item		: "DisableSafeBrowsingProceedAnyway"
  severity		: MEDIUM
 </custom_item>
+
 
 </then>
 <else>
