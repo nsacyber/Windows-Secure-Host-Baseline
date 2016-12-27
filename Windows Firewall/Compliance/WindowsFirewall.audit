@@ -222,43 +222,6 @@
 </else>
 </if>
 
-<if>
-<condition type: "or">
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "WNFWA-000008: Domain Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\domainfirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\domainfirewall.log"
- reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "WNFWA-000008: Domain Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\domainfirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\domainfirewall.log"
- reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-</condition>
-<then>
-		<report type: "PASSED">
-		description: "WNFWA-000008: Domain Log File"
-		</report>
-</then>
-<else>
-		<report type: "FAILED">
-		description: "WNFWA-000008: Domain Log File"
-		</report>
-</else>
-</if>
-
 
 <if>
 <condition type: "or">
@@ -583,44 +546,6 @@
 <condition type: "or">
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "WNFWA-000016: Private Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\privatefirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\privatefirewall.log"
- reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "WNFWA-000016: Private Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\privatefirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\privatefirewall.log"
- reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-</condition>
-<then>
-		<report type: "PASSED">
-		description: "WNFWA-000016: Private Log File"
-		</report>
-</then>
-<else>
-		<report type: "FAILED">
-		description: "WNFWA-000016: Private Log File"
-		</report>
-</else>
-</if>
-
-
-<if>
-<condition type: "or">
-<custom_item>
- type			: REGISTRY_SETTING
  description	        : "WNFWA-000017: Private Log Size"
  info               	: "Severity: CAT III"
  info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogFileSize (DWORD: 16384 or greater)"
@@ -918,44 +843,6 @@
 <else>
 		<report type: "FAILED">
 		description: "WNFWA-000023: Public Block Unicast Response"
-		</report>
-</else>
-</if>
-
-
-<if>
-<condition type: "or">
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "WNFWA-000026: Public Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\publicfirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\publicfirewall.log"
- reg_key		: "HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging\"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "WNFWA-000026: Public Log File"
- info               	: "Severity: CAT III"
- info			: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFilePath (SZ: %systemroot%\system32\logfiles\firewall\publicfirewall.log)"
- value_type		: POLICY_TEXT
- value_data		: "%systemroot%\system32\logfiles\firewall\publicfirewall.log"
- reg_key		: "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\"
- reg_item		: "LogFilePath"
- severity		: MEDIUM
-</custom_item>
-</condition>
-<then>
-		<report type: "PASSED">
-		description: "WNFWA-000026: Public Log File"
-		</report>
-</then>
-<else>
-		<report type: "FAILED">
-		description: "WNFWA-000026: Public Log File"
 		</report>
 </else>
 </if>

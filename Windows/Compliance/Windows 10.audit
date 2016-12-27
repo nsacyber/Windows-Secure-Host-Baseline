@@ -352,8 +352,8 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Rule ID: SV-77847r1_rule
 		Severity: CAT II"
  value_type	: POLICY_TEXT
- value_data	: "Admin$ C$ IPC$"
- powershell_args: "$shares = ''; $ctr = 0; $shared_drives = (get-wmiobject -class 'win32_Share'  -namespace 'root\CIMV2' -computername '.' | sort-object Name); foreach ($drive in $shared_drives) { if ($ctr -eq 0) { $shares = $drive.Name; } else { $shares = $shares + ' ' + $drive.Name; } $ctr++;}; write-output $shares;"
+ value_data	: "TRUE"
+ powershell_args: "if ((Get-SMBShare).Count - (Get-SMBShare -Special 1).Count -gt 0) {(Get-SMBShare -Special 0).Path} else {echo TRUE}"
 </custom_item>
 
 # STIG ID	: WN10-00-000065
@@ -3530,6 +3530,22 @@ By using this IS (which includes any device attached to this IS), you consent to
  reg_key	: "HKLM\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters"
  reg_item	: "RestrictNullSessAccess"
  reg_type	: REG_DWORD
+</custom_item>
+
+# STIG ID	: WN10-SO-000167
+<custom_item>
+ type		: REGISTRY_SETTING
+ description	: "WN10-SO-000167: Remote calls to the Security Account Manager (SAM) must be restricted to Administrators."
+ info		: "The Windows Security Account Manager (SAM) stores users' passwords. Restricting remote rpc connections to the SAM to Administrators helps protect those credentials.
+
+		STIG ID: WN10-SO-000167
+		Vuln ID:  V-71769
+		Rule ID:  SV-86393r1_rule
+ 		Severity: CAT II"
+ value_type	: POLICY_TEXT
+ value_data	: "O:BAG:BAD:(A;;RC;;;BA)"
+ reg_key	: "HKLM\SYSTEM\CurrentControlSet\Control\Lsa"
+ reg_item	: "RestrictRemoteSAM"
 </custom_item>
 
 # STIG ID	: WN10-SO-000170
