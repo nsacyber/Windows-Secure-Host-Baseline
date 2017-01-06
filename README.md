@@ -152,7 +152,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adob
 ``` 
 
 ### Checking compliance
-Once the policies have been applied (and linked to appropriate OUs in the domain case), see the [Compliance page](/Compliance.md) for instructions on how to check compliance to the policies.
+Once the policies have been applied (and linked to appropriate OUs in the domain case), see the [Compliance page](./Compliance/README.md) for instructions on how to check compliance to the policies.
 
 ## License
 See [LICENSE](./LICENSE.md).
