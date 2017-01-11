@@ -36,7 +36,7 @@ The **Test-Compliance** command in the [Compliance script](./Scripts/Compliance.
     * ```Test-Compliance -Path '..\..\Chrome\Compliance\GoogleChrome.audit'```
     * ```Test-Compliance -Path '..\..\EMET\Compliance\EMET_5.5.audit'```
     * ```Test-Compliance -Path '..\..\Internet Explorer\Compliance\InternetExplorer11.audit'```    
-    * ```Test-Compliance -Path '..\..\Windows\Compliance\Windows 10.audit'```
+    * ```Test-Compliance -Path '..\..\Windows\Compliance\Windows10.audit'```
     * ```
 Test-Compliance -Path '..\..\Windows Firewall\Compliance\WindowsFirewall.audit'```
     

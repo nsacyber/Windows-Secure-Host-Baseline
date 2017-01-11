@@ -1,5 +1,5 @@
 # Windows 10 Compliance
-The Windows 10 [audit file](./Windows 10.audit) can be used to verify compliance of the Windows 10 configuration portion of the SHB. The Nessus audit file provides an automatic way to verify as many checks as possible. There are a few remaining [manual checks](#Manual-Checks) that can not be automated. Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](./../../Compliance/README.md) page.
+The Windows 10 [audit file](./Windows10.audit) can be used to verify compliance of the Windows 10 configuration portion of the SHB. The Nessus audit file provides an automatic way to verify as many checks as possible. There are a few remaining [manual checks](#Manual-Checks) that can not be automated. Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](./../../Compliance/README.md) page.
 
 ## Manual Checks
 The following checks must be performed manually because there is currently no automated way of performing these checks. These checks are not covered by the current .audit file, hence these must be performed manually.
