@@ -306,7 +306,7 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Severity: CAT I"
  value_type	: POLICY_TEXT
  value_data	: "8.8"
- powershell_args: "(Get-ChildItem ${env:ProgramFiles(x86)}\McAfee\'VirusScan Enterprise'\x64\scan64.exe | Select-Object -ExpandProperty VersionInfo | Select-Object FileVersion | Select-Object -ExpandProperty FileVersion).Substring(0,3)"
+ powershell_args: "try {(Get-ChildItem ${env:ProgramFiles(x86)}\McAfee\'VirusScan Enterprise'\x64\scan64.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty VersionInfo).FileVersion.Substring(0,3) } catch { '0.0' }"
 </custom_item>
 
 # STIG ID	: WN10-00-000050
@@ -633,15 +633,15 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
      type	: AUDIT_POWERSHELL
      description: "WN10-00-000125: The HBSS McAfee agent must be installed."
      value_type	: POLICY_TEXT
-     value_data	: "4" || "5"
-     powershell_args: "(Get-ChildItem ${env:ProgramFiles(x86)}\McAfee\'Common Framework'\FrameworkService.exe | Select-Object -ExpandProperty VersionInfo | Select-Object FileVersion | Select-Object -ExpandProperty FileVersion).Substring(0,1)"
+     value_data	: "True"
+     powershell_args: "(Test-Path -Path ${env:ProgramFiles(x86)}\McAfee\'Common Framework'\FrameworkService.exe) -or (Test-Path -Path ${env:ProgramFiles(x86)}\McAfee\'Common Framework'\masvc.exe)"
    </custom_item>
    <custom_item>
      type	: AUDIT_POWERSHELL
      description: "WN10-00-000125: The HBSS McAfee agent must be installed."
      value_type	: POLICY_TEXT       
      value_data	: "Running"
-     powershell_args: "(Get-Service -Name 'McAfee Framework Service').Status"
+     powershell_args: "try { (Get-Service -Name 'McAfee Framework Service' -ErrorActionSilentlyContinue).Status} catch { 'Not Installed'}"
    </custom_item>
  </condition>
 
