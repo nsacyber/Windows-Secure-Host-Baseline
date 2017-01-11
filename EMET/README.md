@@ -1,4 +1,7 @@
 # EMET 5.5
+**EMET is no longer part of the SHB as of SHB version 10.1.0.**
+
+
 [Group Policy Object](./Group Policy Objects/Computer/) and [Group Policy template files](./Group Policy Templates/) for EMET 5.5 policies are included in the SHB. [EMET](https://technet.microsoft.com/en-us/security/jj653751) is one way of enabling anti-exploitation features in Windows. [Enabling anti-exploitation features](https://www.iad.gov/iad/library/ia-guidance/security-tips/anti-exploitation-features.cfm) is on of the [Top 10 Information Assurance mitigation strategies](https://www.iad.gov/iad/library/ia-guidance/iads-top-10-information-assurance-mitigation-strategies.cfm).
 
 
@@ -14,7 +17,7 @@ EMET 5.51 was released on August 1, 2016. It appears to be a minor update for fi
 * [EMET 5.51 User Guide](https://www.microsoft.com/en-us/download/details.aspx?id=53355)
 * [EMET 5.5+ converter script](https://www.microsoft.com/en-us/download/details.aspx?id=50801) and [instructions](https://www.microsoft.com/en-us/download/details.aspx?id=50801&fa43d42b-25b5-4a42-fe9b-1634f450f5ee=True)
 
-Note that EMET 5.5/5.51 supports ends on [January 27, 2017](https://support.microsoft.com/en-us/kb/2458544).
+Note that EMET 5.5/5.51 supports ends on [July 31, 2018](https://support.microsoft.com/en-us/kb/2458544).
 
 ## Updating the EMET Group Policy templates
 
