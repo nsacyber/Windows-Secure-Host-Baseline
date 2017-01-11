@@ -42,8 +42,15 @@ Below is a screenshot of the script running the Internet Explorer audit file.
 
 The [Compliance.ps1](./Scripts/Compliance.ps1) script supports a verbose flag which will show details for checks that fail. Without the verbose flag a simple pass/fail is displayed for each compliance check as shown in image above. 
 
+Verbose example:
 ```
 Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit' -Verbose
+```
+
+Verbose example with capturing the output into a file:
+
+```
+Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit' -Verbose .\*>ComplianceReport.txt
 ```
 
 ### Domain Scan with PowerShell
