@@ -29,17 +29,6 @@ The Test-Compliance command in the [Compliance.ps1 file](./Scripts/Compliance.ps
 1. Dot source the script into the PowerShell session (e.g. **. .\Compliance.ps1**)
 1. Copy and paste the desired line(s) below into the PowerShell prompt and press Enter twice.
 
-```
-Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit'
-Test-Compliance -Path '..\..\Chrome\Compliance\GoogleChrome.audit'
-Test-Compliance -Path '..\..\EMET\Compliance\EMET_5.5.audit'
-Test-Compliance -Path '..\..\Internet Explorer\Compliance\InternetExplorer11.audit'
-Test-Compliance -Path '..\..\Windows\Compliance\Windows 10.audit'
-Test-Compliance -Path '..\..\Windows Firewall\Compliance\WindowsFirewall.audit'
-```
-Below is a screenshot of the script running the Internet Explorer audit file.
-![compliance_script_example](./images/compliance_script_example.jpg?raw=true)
-
 The [Compliance.ps1](./Scripts/Compliance.ps1) script supports a verbose flag which will show details for checks that fail. Without the verbose flag a simple pass/fail is displayed for each compliance check as shown in image above. 
 
 Verbose example:
@@ -53,6 +42,23 @@ Verbose example with capturing the output into a file:
 Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit' -Verbose .\*>ComplianceReport.txt
 ```
 
+Failed STIG checks can then be filtered using this PowerShell command:
+
+```
+Select-String -Path .\ComplianceReport.txt -Pattern 'FAILED'
+```
+
+More examples:
+```
+Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit'
+Test-Compliance -Path '..\..\Chrome\Compliance\GoogleChrome.audit'
+Test-Compliance -Path '..\..\EMET\Compliance\EMET_5.5.audit'
+Test-Compliance -Path '..\..\Internet Explorer\Compliance\InternetExplorer11.audit'
+Test-Compliance -Path '..\..\Windows\Compliance\Windows 10.audit'
+Test-Compliance -Path '..\..\Windows Firewall\Compliance\WindowsFirewall.audit'
+```
+Below is a screenshot of the script running the Internet Explorer audit file.
+![compliance_script_example](./images/compliance_script_example.jpg?raw=true)
 ### Domain Scan with PowerShell
 
 
