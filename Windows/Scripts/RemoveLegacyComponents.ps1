@@ -282,17 +282,14 @@ Function Disable-SMB1 {
     Disable the SMB 1.0 protocol.
 
     .DESCRIPTION
-    Disable the SMB 1.0 protocol. Since a system can act as an SMB server and client, SMB is disabled for both. If SMB1 is uninstalled, then the this function does nothing since there is nothing to disable.
+    Disable the SMB 1.0 protocol. Since a system can act as an SMB server and client, SMB is disabled for both. If SMB1 is uninstalled, then the this function does nothing since there is nothing to disable. SMB1 is not actually disabled until the system reboots.
 
     .EXAMPLE
     Disable-SMB1
     #>
     [CmdletBinding()]
     [OutputType([void])]
-    Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Disable NetBIOS on standalone systems')]
-        [switch]$IncludeStandalone    
-    )
+    Param()
 
     $smb1Path = 'hklm:\System\CurrentControlSet\Services\mrxsmb10'
     $smbClientPath = 'hklm:\System\CurrentControlSet\Services\LanmanWorkstation'
