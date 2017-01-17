@@ -37,7 +37,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adob
 The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) .audit file to check compliance with the settings implemented in the Group Policy Object.
 
 ## Download Adobe Reader DC
-An offline installer for Adobe Reader DC can be downloaded from the [Adobe Reader DC enterprise download site](https://get.adobe.com/reader/enterprise/). The latest version (Version 2015.020.20042) can also be directly downloaded [here](https://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1502320053/AcroRdrDC1502320053_en_US.exe).
+An offline installer for Adobe Reader DC can be downloaded from the [Adobe Reader DC enterprise download site](https://get.adobe.com/reader/enterprise/). The latest version (Version 2015.023.20053) can also be directly downloaded [here](https://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1502320053/AcroRdrDC1502320053_en_US.exe).
 
 You can use the **Get-AdobeReaderOfflineInstaller** command in the Adobe Reader PowerShell module in the [scripts folder](./Scripts) to download a specific version of Adobe Reader DC. Example: **Get-AdobeReaderOfflineInstaller -Version '2015.023.20053'**. Adobe Reader DC version numbers that can be used with this script can be found on the [Adobe Reader for Windows 10 page](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10). You can also use the **Get-AdobeReaderPatch -Version '2015.023.20053'** command to download just the .msp file to update an existing Adobe Reader install.
 

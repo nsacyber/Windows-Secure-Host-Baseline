@@ -18,7 +18,7 @@ $policy = [pscustomobject]@{
     'PolicyModes' = [string[]]@('Audit','Enforced');
     'PolicyTemplatePath' = '.\..\..\';
     'PolicyTemplateType' = 'Application';
-    'PolicyTemplateVersion' = '15.17.0.0';
+    'PolicyTemplateVersion' = '15.23.0.0';
 }
 
 $policyPath = "$basePath\Adobe Reader\Group Policy Objects\Computer"
@@ -86,7 +86,7 @@ $policy = [pscustomobject]@{
     'PolicyModes' = [string[]]@('Audit','Enforced');
     'PolicyTemplatePath' = '.\..\..\';
     'PolicyTemplateType' = 'Application';
-    'PolicyTemplateVersion' = '52.0.2743.116';
+    'PolicyTemplateVersion' = '55.0.2883.87';
 }
 
 $policyPath = "$basePath\Chrome\Group Policy Objects\Computer"
@@ -140,12 +140,38 @@ $policy = [pscustomobject]@{
     'PolicyScopes' = [string[]]@('Computer','User');
     'PolicyTypes' = [string[]]@('Domain','Local');
     'PolicyModes' = [string[]]@('Audit','Enforced');
-    'PolicyTemplatePath' = '.\..\..\';
+    'PolicyTemplatePath' = '.\..\';
     'PolicyTemplateType' = 'Application';
     'PolicyTemplateVersion' = '15.0.0.0';
 }
 
-$policyPath = "$basePath\Office\Group Policy Objects\Office 2013"
+$policyPath = "$basePath\Office\Office 2013\Group Policy Objects"
+$policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
+
+$policy = [pscustomobject]@{
+    'PolicyName' = 'Office 2016'
+    'PolicyScopes' = [string[]]@('Computer');
+    'PolicyTypes' = [string[]]@('Domain','Local');
+    'PolicyModes' = [string[]]@('Audit','Enforced');
+    'PolicyTemplatePath' = '.\..\..\';
+    'PolicyTemplateType' = 'Application';
+    'PolicyTemplateVersion' = '16.0.0.0';
+}
+
+$policyPath = "$basePath\Office\Office 2016\Group Policy Objects\Computer"
+$policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
+
+$policy = [pscustomobject]@{
+    'PolicyName' = 'Office 2016'
+    'PolicyScopes' = [string[]]@('User');
+    'PolicyTypes' = [string[]]@('Domain','Local');
+    'PolicyModes' = [string[]]@('Audit','Enforced');
+    'PolicyTemplatePath' = '.\..\..\';
+    'PolicyTemplateType' = 'Application';
+    'PolicyTemplateVersion' = '16.0.0.0';
+}
+
+$policyPath = "$basePath\Office\Office 2016\Group Policy Objects\User"
 $policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
 
 

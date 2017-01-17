@@ -1,5 +1,5 @@
 {
-    "PolicyName":  "Chrome",
+    "PolicyName":  "Office 2016",
     "PolicyScopes":  [
                          "Computer"
                      ],
@@ -13,5 +13,5 @@
                     ],
     "PolicyTemplatePath":  ".\\..\\..\\",
     "PolicyTemplateType":  "Application",
-    "PolicyTemplateVersion":  "55.0.2883.87"
+    "PolicyTemplateVersion":  "16.0.0.0"
 }

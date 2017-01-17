@@ -13,5 +13,5 @@
                     ],
     "PolicyTemplatePath":  ".\\..\\..\\",
     "PolicyTemplateType":  "Application",
-    "PolicyTemplateVersion":  "15.17.0.0"
+    "PolicyTemplateVersion":  "15.23.0.0"
 }
