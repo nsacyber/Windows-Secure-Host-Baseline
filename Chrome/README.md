@@ -9,7 +9,7 @@ The latest version of the Group Policy template files can be downloaded from htt
 * \windows\admx\en-us\chrome.adml
 
 
-You can use the Get-ChromeGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Chrome Group Policy templates. Example: **Get-ChromeGroupPolicyTemplate**
+You can use the Get-ChromeGroupPolicyTemplate command in the [Chrome PowerShell module](./Scripts/) in the [scripts folder](./Scripts/) to download the Chrome Group Policy templates. Example: **Get-ChromeGroupPolicyTemplate**
 
 
 Unlike Windows Group Policy templates, the Chrome Group Policy templates change fairly often. Major Chrome releases may have new policies added or current policies removed due to being deprecated. Administrators should compare the policy templates for the current version of Chrome they are using against the newly downloaded policy templates and note any additions or removals. This can be achieved by using a file comparison tool to review the changes between the two versions of the templates.
@@ -41,7 +41,7 @@ Follow the same steps for the Google Update Group Policy templates (GoogleUpdate
 # Google Update Group Policy templates
 Google Update, based on the open source [Omaha project](https://github.com/google/omaha), automatically updates Chrome to the latest version. The Group Policy template files for Google Update can be downloaded from https://dl.google.com/dl/update2/enterprise/googleupdateadmx.zip but this template rarely changes. This template is included in this repository as a convenience.
 
-You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
+You can use the Get-GoogleUpdateGroupPolicyTemplate command in the [Chrome PowerShell module](./Scripts/) file in the [scripts folder](./Scripts/) to download the Google Update Group Policy template. Example: **Get-GoogleUpdateGroupPolicyTemplate**
 
 ## Importing the Chrome Group Policy
 
@@ -67,7 +67,7 @@ Download the latest enterprise/business version of Google Chrome:
 * [64-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise64.msi) (recommended)
 * [32-bit](https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi)
 
-The version number of Chrome the download represents is available at https://omahaproxy.appspot.com/win. You can use the Get-ChromeInstaller command in the [Chrome.ps1](./Scripts/Chrome.ps1) file in the [scripts folder](./Scripts) to download Chrome and automatically have the file named after the current Chrome version. Examples: **Get-ChromeInstaller -Architecture 64** or **Get-ChromeInstaller -Architecture 32**
+The version number of Chrome the download represents is available at https://omahaproxy.appspot.com/win. You can use the Get-ChromeInstaller command in the [Chrome PowerShell module](./Scripts/) in the [scripts folder](./Scripts) to download Chrome and automatically have the file named after the current Chrome version. Examples: **Get-ChromeInstaller -Architecture 64** or **Get-ChromeInstaller -Architecture 32**
 
 # Guidance
 NSA Information Assurance has a security guide for Chrome called [Deploying and Securing Google Chrome in a Windows Enterprise](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/deploying-and-securing-google-chrome-in-a-windows-enterprise.cfm). Google has also published a [Chrome for Work Deployment Guide](https://support.google.com/chrome/a/answer/3115278?hl=en) for Windows enterprises.
