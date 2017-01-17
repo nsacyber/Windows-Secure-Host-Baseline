@@ -89,9 +89,6 @@ Function Start-BitLockerEncryption() {
     .PARAMETER RecoveryPath
     The path of a folder to store recovery password information.
 
-    .PARAMETER UseActiveDirectory
-    Specifies to store the recovery password in Active Directory.
-
     .PARAMETER Restart
     Specifies to restart the system, if needed, so the BitLocker encryption process can start.
 
@@ -103,9 +100,6 @@ Function Start-BitLockerEncryption() {
 
     .EXAMPLE
     Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin ('12345678' | ConvertTo-SecureString -AsPlainText -Force)
-
-    .EXAMPLE
-    Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UseActiveDirectory
 
     .EXAMPLE
     Start-BitLockerEncryption -Drive $env:SYSTEMDRIVE -RecoveryPath ($env:USERPROFILE,'Desktop' -join '\') -UsePin -Pin  ('12345678' | ConvertTo-SecureString -AsPlainText -Force) -UseActiveDirectory -Restart
@@ -130,10 +124,7 @@ Function Start-BitLockerEncryption() {
         [ValidateNotNullOrEmpty()]
         [System.IO.DirectoryInfo]$RecoveryPath,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='Specifies to store the recovery password in Active Directory')]
-        [switch]$UseActiveDirectory,
-
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies to restart the system so the BitLocker encryption process can start')]
+        [Parameter(Position=4, Mandatory=$false, HelpMessage='Specifies to restart the system so the BitLocker encryption process can start')]
         [switch]$Restart 
     )
 
@@ -158,14 +149,6 @@ Function Start-BitLockerEncryption() {
     }
 
     $isDomainJoined = (Get-WmiObject -Class 'Win32_ComputerSystem').PartOfDomain
-
-    #if ($UseActiveDirectory -and $isDomainJoined) {
-        # TODO: might want to check that the required AD schema is present. Server 2008 and later support it natively. Server 2003 SP1 needs a schema extension but since it is end of life, we won't check
-        # https://technet.microsoft.com/en-us/library/dd875529(v=ws.10).aspx "Backing Up BitLocker and TPM Recovery Information to AD DS"
-        # https://technet.microsoft.com/en-us/library/cc722309(WS.10).aspx "Append A: Checking BitLocker and TPM Schema Objects"
-
-        #TODO: check if computer object can write to AD. This is only required for backing up the TPM Owner information, NOT the BitLocker recovery password information so may not need to do this
-    #}
 
     $volume = Get-BitLockerVolume -MountPoint $Drive
 
