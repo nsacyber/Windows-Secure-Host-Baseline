@@ -39,7 +39,7 @@ The [Compliance](./Compliance/) folder contains a Nessus (aka [ACAS](http://www.
 ## Download Adobe Reader DC
 An offline installer for Adobe Reader DC can be downloaded from the [Adobe Reader DC enterprise download site](https://get.adobe.com/reader/enterprise/). The latest version (Version 2015.020.20042) can also be directly downloaded [here](https://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1502320053/AcroRdrDC1502320053_en_US.exe).
 
-You can use the **Get-AdobeReaderOfflineInstaller** command in the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file in the [scripts folder](./Scripts) to download a specific version of Adobe Reader DC. Example: **Get-AdobeReaderOfflineInstaller -Version '2015.023.20053'**. Adobe Reader DC version numbers that can be used with this script can be found on the [Adobe Reader for Windows 10 page](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10). You can also use the **Get-AdobeReaderPatch -Version '2015.023.20053'** command to download just the .msp file to update an existing Adobe Reader install.
+You can use the **Get-AdobeReaderOfflineInstaller** command in the Adobe Reader PowerShell module in the [scripts folder](./Scripts) to download a specific version of Adobe Reader DC. Example: **Get-AdobeReaderOfflineInstaller -Version '2015.023.20053'**. Adobe Reader DC version numbers that can be used with this script can be found on the [Adobe Reader for Windows 10 page](http://www.adobe.com/support/downloads/product.jsp?platform=windows&product=10). You can also use the **Get-AdobeReaderPatch -Version '2015.023.20053'** command to download just the .msp file to update an existing Adobe Reader install.
 
 ## Managing updates
 Adobe Reader DC installs a task that executes an update check every time a user logs in. After a successful update check, another update check will not occur for 3 days even though the task runs at every user login. Manually running the installed task named **Adobe Acrobat Update Task** will result in an error of *The user account does not have permission to run this task*. Systems may rarely automatically update since the task can't successfully execute. A [new task](./Adobe Reader x64 Update Task.xml?raw=true) has been included in this repository which can be imported to a system using the [Register-ScheduledTask command](https://technet.microsoft.com/en-us/library/jj649811(v=wps.630).aspx).
@@ -48,7 +48,7 @@ Adobe Reader DC installs a task that executes an update check every time a user 
 Register-ScheduledTask -Xml ((Get-Content -Path '.\Secure-Host-Baseline\Adobe Reader\Adobe Reader x64 Update Task.xml') | Out-String) -TaskName 'Adobe Reader x64 Update Task'
 ```
 
-Alternatively, the provided **Install-AdobeUpdateTask** command from the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file can be used to install the task on a system.
+Alternatively, the provided **Install-AdobeUpdateTask** command from the [Adobe Reader PowerShell module](./Scripts/) can be used to install the task on a system.
 
 
 To force an update check to occur within the 3 day waiting period, delete the following registry value names under **HKCU\Software\Adobe\Adobe ARM\1.0\ARM**:
@@ -67,7 +67,7 @@ There is a log in each user's %TEMP% folder at **%TEMP%\AdobeARM.log** that can 
 [2016-07-30 12:21:05:0062]    Error Code: 120300
 ```
 
-Use the **Invoke-AdobeUpdate -Force** command from the [AdobeReader.ps1](./Scripts/AdobeReader.ps1) file to force an update to occur without having to wait for the waiting period to expire.
+Use the **Invoke-AdobeUpdate -Force** command from the [Adobe ReaderPoweShell module](./Scripts/) to force an update to occur without having to wait for the waiting period to expire.
 
 ## Guidance
 NSA Information Assurance has a security guide for Adobe Reader DC called [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm)
