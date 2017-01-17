@@ -137,14 +137,16 @@ Options for the command are:
 
 Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues).
 
-**Applying the SHB policies to a standalone system**
+#### Applying the SHB policies to a standalone system
+
 If applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
 
 ```
 Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
-**Applying the SHB policies to a domain**
+#### Applying the SHB policies to a domain
+
 If applying the SHB policies to a domain, note that the Group Policy objects are only loaded into Active Directory. The policies are not linked to any OUs so the settings do not automatically take affect.
 
 ```
