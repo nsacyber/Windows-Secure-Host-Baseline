@@ -85,7 +85,7 @@ Even after importing the correct certificates, users who browse to https://iad.g
 The instructions below will resolve the NET:ERR_CERT_AUTHORITY_INVALID error for Internet Explorer, Microsoft Edge, and Chrome browser on Windows. Users of other browser and operating system combinations may be able to use instructions [here](http://wiki.cacert.org/FAQ/ImportRootCert) and [here](http://wiki.cacert.org/FAQ/BrowserClients) by replacing references to **cacert-root** with **DoD Root CA 3** and references to **cacert-class3** with **DoD ID SW CA-37**.
 
 ### Automatically importing iad.gov certificates
-1. Download (right click on the link and select Save As/Save Target As/Save Link As) the [iadgov.ps1 file](./Scripts/iadgov.ps1?raw=true) to your **Downloads** folder
+1. Download (right click on the link and select Save As/Save Target As/Save Link As) the [iadgov PowerShell module](./Scripts/iadgov.psm1?raw=true) to your **Downloads** folder
 1. Open a PowerShell prompt
 1. Change directory to the location that you saved the file to (e.g. **cd Downloads**)
 1. Type **Unblock-File -Path 'iadgov.ps1'** and press Enter to allow the file to execute
