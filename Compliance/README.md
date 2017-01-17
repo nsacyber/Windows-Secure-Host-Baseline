@@ -26,11 +26,11 @@ A paid version of Nessus Professional or Nessus Manager must be used in order to
 
 ### Standalone Scan with PowerShell
 
-The **Test-Compliance** command in the [Compliance script](./Scripts/Compliance.psm1) can be used to verify compliance against using any of the above listed .audit files. This PowerShell script makes it simple to scan a single standalone system and verify a configuration has been applied to a system in a non-domain context. Note that Nessus is not required to be installed on the system that is being checked with the script. The following instructions can be used to execute a compliance check locally.
+The **Test-Compliance** command in the [Compliance PowerShell module](./Scripts/) can be used to verify compliance against using any of the above listed .audit files. This PowerShell script makes it simple to scan a single standalone system and verify a configuration has been applied to a system in a non-domain context. Note that Nessus is not required to be installed on the system that is being checked with the script. The following instructions can be used to execute a compliance check locally.
 
 1. Open a PowerShell prompt as an administrator
 1. Change directory to the Compliance\Scripts directory (e.g. **cd Secure-Host-Baseline\Compliance\Scripts**)
-1. Import the [Compliance PowerShell module](./Scripts/Compliance.psm1) to load the code into the PowerShell session: `Import-Module -Name .\Secure-Host-Baseline\Compliance\Scripts\Compliance.psm1`
+1. Import the [Compliance PowerShell module](./Scripts/) to load the code into the PowerShell session: `Import-Module -Name .\Secure-Host-Baseline\Compliance\Scripts\Compliance.psm1`
 1. Copy and paste the desired line(s) below into the PowerShell prompt and press Enter twice
     * ```Test-Compliance -Path '..\..\Adobe Reader\Compliance\AdobeReaderDC.audit'```
     * ```Test-Compliance -Path '..\..\Chrome\Compliance\GoogleChrome.audit'```
