@@ -4,6 +4,8 @@
 
 [NIST](http://www.nist.gov/) [FIPS 140-2](http://csrc.nist.gov/groups/STM/cmvp/index.html) validation of Windows 10 BitLocker modules was completed on June 2, 2016 as evidenced in certificate numbers [2601](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2601), [2602](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2602), and [2603](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm#2603).
 
+A [BitLocker PowerShell module](./Scripts) has been provided to aid in provisioning BitLocker. [Microsoft BitLocker Administration and Monitoring](https://technet.microsoft.com/en-us/windows/hh826072.aspx) is another option for provisioning BitLocker.
+
 ## Importing the BitLocker Group Policy
 
 ### Importing the BitLocker domain Group Policy
