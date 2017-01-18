@@ -38,10 +38,25 @@
             </value>
           </item>
         </enum>
-        <boolean
-          id="HypervisorEnforcedCodeIntegrityCheck"
-          valueName="HypervisorEnforcedCodeIntegrity"
-          />
+        <enum
+          id="HypervisorEnforcedCodeIntegrityDrop"
+          valueName="HypervisorEnforcedCodeIntegrity">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithUefiLock)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithoutLock)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>          
+        </enum>
         <enum
           id="CredentialIsolationDrop"
           valueName="LsaCfgFlags">

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Microsoft Windows Device Guard</displayName>
+  <description>Windows Device Guard Security</description>
+  <resources>
+    <stringTable>
+      <string id="DeviceGuard">Device Guard</string>
+      <string id="VirtualizationBasedSecurity">Turn On Virtualization Based Security</string>
+      <string id="VirtualizationBasedSecurityHelp">Specifies whether Virtualization Based Security is enabled.
+
+Virtualization Based Security uses the Windows Hypervisor to provide support for security services. Virtualization Based Security requires Secure Boot, and can optionally be enabled with the use of DMA Protections. DMA protections require hardware support and will only be enabled on correctly configured devices.
+
+Virtualization Based Protection of Code Integrity
+
+This setting enables virtualization based protection of Kernel Mode Code Integrity. When this is enabled, kernel mode memory protections are enforced and the Code Integrity validation path is protected by the Virtualization Based Security feature.
+
+The "Disabled" option turns off Virtualization Based Protection of Code Integrity remotely if it was previously turned on with the "Enabled without lock" option.
+ 
+The "Enabled with UEFI lock" option ensures that Virtualization Based Protection of Code Integrity cannot be disabled remotely. In order to disable the feature, you must set the Group Policy to "Disabled" as well as remove the security functionality from each computer, with a physically present user, in order to clear configuration persisted in UEFI.
+ 
+The "Enabled without lock" option allows Virtualization Based Protection of Code Integrity to be disabled remotely by using Group Policy. 
+
+Warning: All drivers on the system must be compatible with this feature or the system may crash. Ensure that this policy setting is only deployed to computers which are known to be compatible. 
+
+Credential Guard
+
+This setting lets users turn on Credential Guard with virtualization-based security to help protect credentials.
+
+The "Disabled" option turns off Credential Guard remotely if it was previously turned on with the "Enabled without lock" option.
+
+The "Enabled with UEFI lock" option ensures that Credential Guard cannot be disabled remotely. In order to disable the feature, you must set the Group Policy to "Disabled" as well as remove the security functionality from each computer, with a physically present user, in order to clear configuration persisted in UEFI.
+
+The "Enabled without lock" option allows Credential Guard to be disabled remotely by using Group Policy. The devices that use this setting must be running at least Windows 10 (Version 1511).
+      </string>
+      <string id="SecureBoot">Secure Boot</string>
+      <string id="SecureBootAndDmaProtection">Secure Boot and DMA Protection</string>
+      <string id="Disabled">Disabled</string>
+      <string id="Enabled">Enabled</string>
+      <string id="EnabledWithoutLock">Enabled without lock</string>
+      <string id="EnabledWithUefiLock">Enabled with UEFI lock</string>
+      <string id="ConfigCIPolicy">Deploy Code Integrity Policy</string>
+      <string id="ConfigCIPolicyHelp">Deploy Code Integrity Policy
+
+This policy setting lets you deploy a Code Integrity Policy to a machine to control what is allowed to run on that machine.
+
+If you deploy a Code Integrity Policy, Windows will restrict what can run in both kernel mode and on the Windows Desktop based on the policy. To enable this policy the machine must be rebooted. 
+
+The file path must be either a UNC path (for example, \\ServerName\ShareName\SIPolicy.p7b), or a locally valid path (for example, C:\FolderName\SIPolicy.p7b).  The local machine account (LOCAL SYSTEM) must have access permission to the policy file.
+ 
+If using a signed and protected policy then disabling this policy setting doesn't remove the feature from the computer. Instead, you must either:
+
+   1) first update the policy to a non-protected policy and then disable the setting, or
+   2) disable the setting and then remove the policy from each computer, with a physically present user.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="VirtualizationBasedSecurity">
+        <dropdownList refId="RequirePlatformSecurityFeaturesDrop" defaultItem="1">Select Platform Security Level:</dropdownList>
+        <dropdownList refId="HypervisorEnforcedCodeIntegrityDrop" defaultItem="0">Virtualization Based Protection of Code Integrity:</dropdownList>
+        <dropdownList refId="CredentialIsolationDrop" defaultItem="0">Credential Guard Configuration:</dropdownList>
+      </presentation>
+      <presentation id="ConfigCIPolicy">
+        <textBox refId="ConfigCIPolicyFilePathText">
+          <label>Code Integrity Policy file path:</label>
+        </textBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -66,7 +66,7 @@
     </policy>
     <policy name="DisableRoamedProfileInit" class="Machine" displayName="$(string.DisableRoamedProfileInit)" explainText="$(string.DisableRoamedProfileInit_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableRoamedProfileInit">
       <parentCategory ref="windows:WindowsExplorer" />
-      <supportedOn ref="windows:SUPPORTED_Windows_6_2" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
       <enabledValue>
         <decimal value="1" />
       </enabledValue>

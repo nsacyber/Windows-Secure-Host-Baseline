@@ -728,5 +728,22 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy
+        class="User"
+        displayName="$(string.SetDefaultPrinterMRUModeOff)"
+        explainText="$(string.SetDefaultPrinterMRUModeOff_Help)"
+        key="Software\Microsoft\Windows NT\CurrentVersion\Windows"
+        name="LegacyDefaultPrinterMode"
+        valueName="LegacyDefaultPrinterMode"
+      >
+      <parentCategory ref="CplPrinters"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>

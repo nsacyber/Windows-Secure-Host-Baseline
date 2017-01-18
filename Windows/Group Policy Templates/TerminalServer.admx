@@ -1909,7 +1909,7 @@
     <!--AVC HW Encode Preferred Mode; Introduced Win10+-->
     <policy name="TS_SERVER_AVC_HW_ENCODE_PREFERRED" class="Machine" displayName="$(string.TS_SERVER_AVC_HW_ENCODE_PREFERRED)" explainText="$(string.TS_SERVER_AVC_HW_ENCODE_PREFERRED_EXPLAIN)" presentation="$(presentation.TS_SERVER_AVC_HW_ENCODE_PREFERRED)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
         <parentCategory ref="TS_SESSIONS" />
-        <supportedOn ref="windows:TS_SUPPORTED_Windows10" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
         <elements>
             <enum id="TS_AVC_HW_ENCODE_ENUM" valueName="AVCHardwareEncodePreferred">
                 <item displayName="$(string.TS_AVC_HW_ENCODE_ALWAYS)">
@@ -1934,7 +1934,7 @@
     <!--AVC444 Preferred Mode; Introduced Win10+-->
     <policy name="TS_SERVER_AVC444_MODE_PREFERRED" class="Machine" displayName="$(string.TS_SERVER_AVC444_MODE_PREFERRED)" explainText="$(string.TS_SERVER_AVC444_MODE_PREFERRED_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AVC444ModePreferred">
         <parentCategory ref="TS_SESSIONS" />
-        <supportedOn ref="windows:TS_SUPPORTED_Windows10" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
         <enabledValue>
             <decimal value="1" />
         </enabledValue>
@@ -1946,7 +1946,7 @@
     <!--Disable Client Hardware Mode; Introduced Win10+-->
     <policy name="TS_CLIENT_DISABLE_HARDWARE_MODE" class="Machine" displayName="$(string.TS_CLIENT_DISABLE_HARDWARE_MODE)" explainText="$(string.TS_CLIENT_DISABLE_HARDWARE_MODE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client" valueName="EnableHardwareMode">
         <parentCategory ref="TS_CLIENT" />
-        <supportedOn ref="windows:TS_SUPPORTED_Windows10" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
         <enabledValue>
             <decimal value="0" />
         </enabledValue>
@@ -2125,6 +2125,17 @@
     <policy name="TS_CLIENT_TURN_OFF_UDP" class="Machine" displayName="$(string.TS_CLIENT_TURN_OFF_UDP)" explainText="$(string.TS_CLIENT_TURN_OFF_UDP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client" valueName="fClientDisableUDP">
       <parentCategory ref="TS_CLIENT" />
       <supportedOn ref="terminalserver:TS_SUPPORTED_Windows8_or_ARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    
+    <policy name="TS_DX_USE_FULL_HWGPU" class="Machine" displayName="$(string.TS_DX_USE_FULL_HWGPU)" explainText="$(string.TS_DX_USE_FULL_HWGPU_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="bEnumerateHWBeforeSW">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
       <enabledValue>
         <decimal value="1" />
       </enabledValue>

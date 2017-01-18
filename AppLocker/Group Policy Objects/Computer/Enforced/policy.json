@@ -12,5 +12,5 @@
                     ],
     "PolicyTemplatePath":  ".\\..\\..\\..\\..\\Windows\\",
     "PolicyTemplateType":  "OS",
-    "PolicyTemplateVersion":  "10.0.10586.0"
+    "PolicyTemplateVersion":  "10.0.14393.0"
 }

@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<!--  (c) 2013 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName></displayName>
+  <description></description>
+  <resources>
+    <stringTable>
+      <string id="AppV">App-V</string>
+      <string id="AppV_ComputerHelp">Contains settings for Microsoft App-V.</string>
+      <string id="Streaming">Streaming</string>
+      <string id="Publishing">Publishing</string>
+      <string id="Reporting">Reporting</string>
+      <string id="PublishingServer1">Publishing Server 1 Settings</string>
+      <string id="PublishingServer2">Publishing Server 2 Settings</string>
+      <string id="PublishingServer3">Publishing Server 3 Settings</string>
+      <string id="PublishingServer4">Publishing Server 4 Settings</string>
+      <string id="PublishingServer5">Publishing Server 5 Settings</string>
+      <string id="ClientCoexistence">Client Coexistence</string>
+      <string id="Scripting">Scripting</string>
+      <string id="Integration">Integration</string>
+      <string id="CEIP">CEIP</string>
+      <string id="Virtualization">Virtualization</string>
+      <string id="True">True</string>
+      <string id="False">False</string>    
+      <string id="Hour">Hour</string>
+      <string id="Day">Day</string>
+      <string id="Streaming_Package_Installation_Root">Package Installation Root</string>
+      <string id="Streaming_Package_Installation_Root_Help">Specifies directory where all new applications and updates will be installed.</string>
+      <string id="Steaming_Autoload">Specify what to load in background (aka AutoLoad)</string>
+      <string id="Steaming_AutoloadHelp">Specifies how new packages should be loaded automatically by App-V on a specific computer.</string>
+      <string id="Steaming_Autoload_Options">Autoload Options</string>
+      <string id="Steaming_Autoload_None">None</string>
+      <string id="Steaming_Autoload_PreviouslyUsed">Previously Used</string>
+      <string id="Steaming_Autoload_All">All</string>
+      <string id="Streaming_Package_Source_Root">Package Source Root</string>
+      <string id="Streaming_Package_Source_Root_Help">Overrides source location for downloading package content.</string>
+      <string id="Streaming_Reestablishment_Retries">Reestablishment Retries</string>
+      <string id="Streaming_Reestablishment_Retries_Help">Specifies the number of times to retry a dropped session.</string>
+      <string id="Streaming_Reestablishment_Interval">Reestablishment Interval</string>
+      <string id="Streaming_Reestablishment_Interval_Help">Specifies the number of seconds between attempts to reestablish a dropped session.</string>
+      <string id="Streaming_Location_Provider">Location Provider</string>
+      <string id="Streaming_Location_Provider_Help">Specifies the CLSID for a compatible implementation of the IAppvPackageLocationProvider interface.</string>
+      <string id="Streaming_Certificate_Filter_For_Client_SSL">Certificate Filter For Client SSL</string>
+      <string id="Streaming_Certificate_Filter_For_Client_SSL_Help">Specifies the path to a valid certificate in the certificate store.</string>
+      <string id="Streaming_Verify_Certificate_Revocation_List">Verify certificate revocation list</string>
+      <string id="Streaming_Verify_Certificate_Revocation_List_Help">Verifies Server certificate revocation status before streaming using HTTPS.</string>
+      <string id="Streaming_Shared_Content_Store_Mode">Shared Content Store (SCS) mode</string>
+      <string id="Streaming_Shared_Content_Store_Mode_Help">Specifies that streamed package contents will be not be saved to the local hard disk.</string>
+      <string id="Streaming_Allow_High_Cost_Launch">Allow First Time Application Launches if on a High Cost Windows 8 Metered Connection</string>
+      <string id="Streaming_Allow_High_Cost_Launch_Help">This setting controls whether virtualized applications are launched on Windows 8 machines connected via a metered network connection (e.g. 4G).</string>
+      <string id="Streaming_Require_Publish_As_Admin">Require Publish As Admin</string>
+      <string id="Streaming_Require_Publish_As_Admin_Help">Requires admin privileges to publish and unpublish packages and connection groups.</string>
+      <string id="Streaming_Support_Branch_Cache">Enable Support for BranchCache</string>
+      <string id="Streaming_Support_Branch_Cache_Help">If enabled, the App-V client will support BrancheCache compatible HTTP streaming. If BranchCache support is not desired, this should be disabled. The client can then apply HTTP optimizations which are incompatible with BranchCache</string>
+      <string id="Client_Coexistence_Enable_Migration_mode">Enable Migration Mode</string>
+      <string id="Client_Coexistence_Enable_Migration_mode_Help">Migration mode allows the App-V client to modify shortcuts and FTA's for packages created using a previous version of App-V.</string>
+      <string id="Scripting_Enable_Package_Scripts">Enable Package Scripts</string>
+      <string id="Scripting_Enable_Package_Scripts_Help">Enables scripts defined in the package manifest of configuration files that should run.</string>
+      <string id="Integration_Roaming_File_Exclusions">Roaming File Exclusions</string>
+      <string id="Integration_Roaming_File_Exclusions_Help">Specifies the file paths relative to %userprofile% that do not roam with a user's profile. Example usage: /FILEEXCLUSIONLIST='desktop;my pictures'.</string>
+      <string id="Integration_Roaming_Registry_Exclusions">Roaming Registry Exclusions</string>
+      <string id="Integration_Roaming_Registry_Exclusions_Help">Specifies the registry paths that do not roam with a user profile. Example usage: /REGISTRYEXCLUSIONLIST=software\classes;software\clients.</string>
+      <string id="Integration_Root_User">Integration Root User</string>
+      <string id="Integration_Root_User_Help">Specifies the location where symbolic links are created to the current version of a per-user published package. Shortcuts, file type associations, etc. are created pointing to this path. If empty, symbolic links are not used during publishing. Example: %localappdata%\Microsoft\AppV\Client\Integration.</string>
+      <string id="Integration_Root_Global">Integration Root Global</string>
+      <string id="Integration_Root_Global_Help">Specifies the location where symbolic links are created to the current version of a globally published package. Shortcuts, file type associations, etc. are created pointing to this path. If empty, symbolic links are not used during publishing. Example: %allusersprofile%\Microsoft\AppV\Client\Integration.</string>
+      <string id="ReportingServer">Reporting Server</string>
+      <string id="Reporting_Server_Help">Reporting Server URL: Displays the URL of reporting server.
+
+      Reporting Time: When the client data should be reported to the server. Acceptable range is 0~23, corresponding to the 24 hours in a day. A good practice is, don't set this time to a busy hour, e.g. 9AM.
+      
+      Delay reporting for the random minutes: The maximum minutes of random delay on top of the reporting time. For a busy system, the random delay will help reduce the server load.
+      
+      Repeat reporting for every (days): The periodical interval in days for sending the reporting data.
+      
+      Data Cache Limit: This value specifies the maximum size in megabytes (MB) of the XML cache for storing reporting information. The default value is 20 MB. The size applies to the cache in memory. When the limit is reached, the log file will roll over. When a new record is to be added (bottom of the list), one or more of the oldest records (top of the list) will be deleted to make room. A warning will be logged to the Client log and the event log the first time this occurs, and will not be logged again until after the cache has been successfully cleared on transmission and the log has filled up again.
+
+      Data Block Size: This value specifies the maximum size in bytes to transmit to the server at once on a reporting upload, to avoid permanent transmission failures when the log has reached a significant size. The  default value is 65536. When transmitting report data to the server, one block at a time of application records that is less than or equal to the block size in bytes of XML data will be removed from the cache and sent to the server. Each block will have the general Client data and global package list data prepended, and these will not factor into the block size calculations; the potential exists for an extremely large package list to result in transmission failures over low bandwidth or unreliable connections.
+      </string>
+      <string id="Publishing_Server_Help">      Publishing Server Display Name: Displays the name of publishing server.
+      
+      Publishing Server URL: Displays the URL of publishing server.
+      
+      Global Publishing Refresh: Enables global publishing refresh (Boolean).
+      
+      Global Publishing Refresh On Logon: Triggers a global publishing refresh on logon (Boolean).
+      
+      Global Publishing Refresh Interval: Specifies the publishing refresh interval using the GlobalRefreshIntervalUnit. To disable package refresh, select 0.
+      
+      Global Publishing Refresh Interval Unit: Specifies the interval unit (Hour 0-23, Day 0-31).
+      
+      User Publishing Refresh: Enables user publishing refresh (Boolean).
+      
+      User Publishing Refresh On Logon: Triggers a user publishing refresh on logon (Boolean).
+      
+      User Publishing Refresh Interval: Specifies the publishing refresh interval using the UserRefreshIntervalUnit. To disable package refresh, select 0.
+      
+      User Publishing Refresh Interval Unit: Specifies the interval unit (Hour 0-23, Day 0-31).
+      </string>
+      <string id="CEIP_Enable">Microsoft Customer Experience Improvement Program (CEIP)</string>
+      <string id="CEIP_Enable_Help">The program collects information about computer hardware and how you use Microsoft Application Virtualization without interrupting you. This helps Microsoft identify which Microsoft Application Virtualization features to improve. No information collected is used to identify or contact you. 
+
+For more details, read about the program online at http://go.microsoft.com/fwlink/?LinkID=184686.</string>
+      <string id="Virtualization_JITVAllowList">Virtual Component Process Allow List</string>
+      <string id="Virtualization_JITVAllowList_Help">Specifies a list of process paths (may contain wildcards) which are candidates for using virtual components (shell extensions, browser helper objects, etc). Only processes whose full path matches one of these items can use virtual components.</string>
+      <string id="Virtualization_JITVEnable">Enable Dynamic Virtualization</string>
+      <string id="Virtualization_JITVEnable_Help">Enables Dynamic Virtualization of supported shell extensions, browser helper objects, and ActiveX controls.</string>
+      <string id="Publishing_Enable_Refresh_UX">Enable Publishing Refresh UX</string>
+      <string id="Publishing_Enable_Refresh_UX_Help">Enables a UX to display to the user when a publishing refresh is performed on the client.</string>
+      <string id="EnableAppV">Enable App-V Client</string>
+      <string id="EnableAppV_Help">This policy setting allows you to enable or disable Microsoft Application Virtualization (App-V) feature. Reboot is needed for disable to take effect.</string>
+    </stringTable>
+    
+    <presentationTable>
+    <!--  Streaming -->
+      <presentation id="Steaming_Autoload">
+        <dropdownList refId="Steaming_Autoload_Options" noSort="true" defaultItem="1">Autoload Options</dropdownList>
+      </presentation>
+      <presentation id="Streaming_Package_Source_Root">
+        <textBox refId="Package_Source_Root_Prompt">
+          <label>Package Source Root</label>
+        </textBox>
+      </presentation>
+      <presentation id="Streaming_Package_Installation_Root">
+        <textBox refId="Streaming_Package_Installation_Root_Prompt">
+          <label>Package Installation Root</label>
+          <defaultValue>%programdata%\App-V</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="Streaming_Reestablishment_Retries">
+        <text> </text>
+        <decimalTextBox refId="Streaming_Reestablishment_Retries_Prompt" defaultValue="3" spinStep="3">Reestablishment Retries:</decimalTextBox>
+      </presentation>
+      <presentation id="Streaming_Reestablishment_Interval">
+        <text> </text>
+        <decimalTextBox refId="Streaming_Reestablishment_Interval_Prompt" defaultValue="15" spinStep="15">Reestablishment Interval:</decimalTextBox>
+      </presentation>
+      <presentation id="Streaming_Location_Provider">
+        <textBox refId="Streaming_Location_Provider_Prompt">
+          <label>Location Provider</label>
+        </textBox>
+      </presentation>
+      <presentation id="Streaming_Certificate_Filter_For_Client_SSL">
+        <textBox refId="Streaming_Certificate_Filter_For_Client_SSL_Prompt">
+          <label>Certificate Filter For Client SSL</label>
+        </textBox>
+      </presentation>
+
+      <!--  Reporting Server -->
+      <presentation id="Reporting_Server">
+        <textBox refId="Reporting_Server_URL_Prompt">
+          <label xml:space="preserve">Reporting Server URL                                  </label>
+        </textBox>
+        <decimalTextBox refId="Start_Time" defaultValue="3" spinStep="1" xml:space="preserve">Reporting Time               </decimalTextBox>
+        <decimalTextBox refId="Random_Delay" defaultValue="30" spinStep="10" xml:space="preserve">Delay reporting for the random minutes              </decimalTextBox>
+        <decimalTextBox refId="Interval" defaultValue="1" spinStep="1" xml:space="preserve">Repeat reporting for every (days)              </decimalTextBox>
+        <decimalTextBox refId="Data_Cache_Limit" defaultValue="20" spinStep="10" xml:space="preserve">Data Cache Limit               </decimalTextBox>
+        <decimalTextBox refId="Data_Block_Size" defaultValue="65536" spinStep="10" xml:space="preserve">Data Block Size               </decimalTextBox>
+      </presentation>
+
+      <!--  Publishing Server 1 -->
+      <presentation id="Publishing_Server1">
+        <textBox refId="Publishing_Server1_Name_Prompt">
+          <label xml:space="preserve">Publishing Server Display Name                  </label>
+          <defaultValue>Server 1</defaultValue>
+        </textBox>
+        <textBox refId="Publishing_Server_URL_Prompt">
+          <label xml:space="preserve">Publishing Server URL                                  </label>
+        </textBox>
+        <dropdownList refId="Global_Publishing_Refresh_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh                            </dropdownList>
+        <dropdownList refId="Global_Refresh_OnLogon_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh On Logon           </dropdownList>
+        <decimalTextBox refId="Global_Refresh_Interval_Prompt" defaultValue="0" spinStep="3" xml:space="preserve">Global Publishing Refresh Interval               </decimalTextBox>
+        <dropdownList refId="Global_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">Global Publishing Refresh Interval Unit       </dropdownList>
+        <dropdownList refId="User_Publishing_Refresh_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh                               </dropdownList>
+        <dropdownList refId="User_Refresh_OnLogon_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh On Logon              </dropdownList>
+        <decimalTextBox refId="User_Refresh_Interval_Prompt" defaultValue="1" spinStep="3" xml:space="preserve">User Publishing Refresh Interval                  </decimalTextBox>
+        <dropdownList refId="User_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh Interval Unit          </dropdownList>
+      </presentation>
+      <!--  Publishing Server 2 -->      
+      <presentation id="Publishing_Server2">
+        <textBox refId="Publishing_Server2_Name_Prompt">
+          <label xml:space="preserve">Publishing Server Display Name                  </label>
+          <defaultValue>Server 2</defaultValue>
+        </textBox>
+        <textBox refId="Publishing_Server_URL_Prompt">
+          <label xml:space="preserve">Publishing Server URL                                  </label>
+        </textBox>
+        <dropdownList refId="Global_Publishing_Refresh_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh                            </dropdownList>
+        <dropdownList refId="Global_Refresh_OnLogon_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh On Logon           </dropdownList>
+        <decimalTextBox refId="Global_Refresh_Interval_Prompt" defaultValue="0" spinStep="3" xml:space="preserve">Global Publishing Refresh Interval               </decimalTextBox>
+        <dropdownList refId="Global_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">Global Publishing Refresh Interval Unit       </dropdownList>
+        <dropdownList refId="User_Publishing_Refresh_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh                               </dropdownList>
+        <dropdownList refId="User_Refresh_OnLogon_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh On Logon              </dropdownList>
+        <decimalTextBox refId="User_Refresh_Interval_Prompt" defaultValue="1" spinStep="3" xml:space="preserve">User Publishing Refresh Interval                  </decimalTextBox>
+        <dropdownList refId="User_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh Interval Unit          </dropdownList>
+      </presentation>
+      <!--  Publishing Server 3 -->      
+      <presentation id="Publishing_Server3">
+        <textBox refId="Publishing_Server3_Name_Prompt">
+          <label xml:space="preserve">Publishing Server Display Name                  </label>
+          <defaultValue>Server 3</defaultValue>
+        </textBox>
+        <textBox refId="Publishing_Server_URL_Prompt">
+          <label xml:space="preserve">Publishing Server URL                                  </label>
+        </textBox>
+        <dropdownList refId="Global_Publishing_Refresh_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh                            </dropdownList>
+        <dropdownList refId="Global_Refresh_OnLogon_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh On Logon           </dropdownList>
+        <decimalTextBox refId="Global_Refresh_Interval_Prompt" defaultValue="0" spinStep="3" xml:space="preserve">Global Publishing Refresh Interval               </decimalTextBox>
+        <dropdownList refId="Global_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">Global Publishing Refresh Interval Unit       </dropdownList>
+        <dropdownList refId="User_Publishing_Refresh_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh                               </dropdownList>
+        <dropdownList refId="User_Refresh_OnLogon_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh On Logon              </dropdownList>
+        <decimalTextBox refId="User_Refresh_Interval_Prompt" defaultValue="1" spinStep="3" xml:space="preserve">User Publishing Refresh Interval                  </decimalTextBox>
+        <dropdownList refId="User_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh Interval Unit          </dropdownList>
+      </presentation>
+      <!--  Publishing Server 4 -->      
+      <presentation id="Publishing_Server4">
+        <textBox refId="Publishing_Server4_Name_Prompt">
+          <label xml:space="preserve">Publishing Server Display Name                  </label>
+          <defaultValue>Server 4</defaultValue>
+        </textBox>
+        <textBox refId="Publishing_Server_URL_Prompt">
+          <label xml:space="preserve">Publishing Server URL                                  </label>
+        </textBox>
+        <dropdownList refId="Global_Publishing_Refresh_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh                            </dropdownList>
+        <dropdownList refId="Global_Refresh_OnLogon_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh On Logon           </dropdownList>
+        <decimalTextBox refId="Global_Refresh_Interval_Prompt" defaultValue="0" spinStep="3" xml:space="preserve">Global Publishing Refresh Interval               </decimalTextBox>
+        <dropdownList refId="Global_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">Global Publishing Refresh Interval Unit       </dropdownList>
+        <dropdownList refId="User_Publishing_Refresh_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh                               </dropdownList>
+        <dropdownList refId="User_Refresh_OnLogon_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh On Logon              </dropdownList>
+        <decimalTextBox refId="User_Refresh_Interval_Prompt" defaultValue="1" spinStep="3" xml:space="preserve">User Publishing Refresh Interval                  </decimalTextBox>
+        <dropdownList refId="User_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh Interval Unit          </dropdownList>
+      </presentation>
+      <!--  Publishing Server 5 -->      
+      <presentation id="Publishing_Server5">
+        <textBox refId="Publishing_Server5_Name_Prompt">
+          <label xml:space="preserve">Publishing Server Display Name                  </label>
+          <defaultValue>Server 5</defaultValue>
+        </textBox>
+        <textBox refId="Publishing_Server_URL_Prompt">
+          <label xml:space="preserve">Publishing Server URL                                  </label>
+        </textBox>
+        <dropdownList refId="Global_Publishing_Refresh_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh                            </dropdownList>
+        <dropdownList refId="Global_Refresh_OnLogon_Options" noSort="true" defaultItem="0" xml:space="preserve">Global Publishing Refresh On Logon           </dropdownList>
+        <decimalTextBox refId="Global_Refresh_Interval_Prompt" defaultValue="0" spinStep="3" xml:space="preserve">Global Publishing Refresh Interval               </decimalTextBox>
+        <dropdownList refId="Global_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">Global Publishing Refresh Interval Unit       </dropdownList>
+        <dropdownList refId="User_Publishing_Refresh_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh                               </dropdownList>
+        <dropdownList refId="User_Refresh_OnLogon_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh On Logon              </dropdownList>
+        <decimalTextBox refId="User_Refresh_Interval_Prompt" defaultValue="1" spinStep="3" xml:space="preserve">User Publishing Refresh Interval                  </decimalTextBox>
+        <dropdownList refId="User_Refresh_Unit_Options" noSort="true" defaultItem="1" xml:space="preserve">User Publishing Refresh Interval Unit          </dropdownList>
+      </presentation>
+      <!--  Integration -->
+      <presentation id="Integration_Roaming_File_Exclusions">
+        <textBox refId="Integration_Roaming_File_Exclusions_Prompt">
+          <label>Roaming Registry Exclusions</label>
+        </textBox>
+      </presentation>
+      <presentation id="Integration_Roaming_Registry_Exclusions">
+        <textBox refId="Integration_Roaming_Registry_Exclusions_Prompt">
+          <label>Roaming File Exclusions</label>
+          <defaultValue>Software\Classes</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="Integration_Root_User">
+        <textBox refId="Integration_Root_User_Prompt">
+          <label>Integration Root User</label>
+          <defaultValue>%localappdata%\Microsoft\AppV\Client\Integration</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="Integration_Root_Global">
+        <textBox refId="Integration_Root_Global_Prompt">
+          <label>Integration Root Global</label>
+          <defaultValue>%allusersprofile%\Microsoft\AppV\Client\Integration</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="Virtualization_JITVAllowList">
+        <multiTextBox refId="Virtualization_JITVAllowList_Prompt">
+        </multiTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -91,7 +91,17 @@
     </policy>
     <policy name="L_TurnOnCloudCandidate" class="User" displayName="$(string.L_TurnOnCloudCandidate)" explainText="$(string.L_TurnOnCloudCandidateExplain)" key="Software\Policies\Microsoft\InputMethod\Settings\Shared" valueName="Enable Cloud Candidate">
       <parentCategory ref="L_IME" />
-      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="L_TurnOnCloudCandidateCHS" class="User" displayName="$(string.L_TurnOnCloudCandidateCHS)" explainText="$(string.L_TurnOnCloudCandidateCHSExplain)" key="Software\Policies\Microsoft\InputMethod\Settings\CHS" valueName="Enable Cloud Candidate for CHS">
+      <parentCategory ref="L_IME" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
       <enabledValue>
         <decimal value="1" />
       </enabledValue>

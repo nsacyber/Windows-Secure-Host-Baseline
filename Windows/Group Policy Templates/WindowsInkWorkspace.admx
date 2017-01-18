@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsinkworkspace" namespace="Microsoft.Policies.WindowsInkWorkspace" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <definition name="SUPPORTED_WIN10_RS1" displayName="$(string.SUPPORTED_WIN10_RS1)" />
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="WindowsInkWorkspace" displayName="$(string.WindowsInkWorkspace)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowWindowsInkWorkspace" class="Machine" displayName="$(string.AllowWindowsInkWorkspace_DisplayName)" explainText="$(string.AllowWindowsInkWorkspace_ExplainText)" key="Software\Policies\Microsoft\WindowsInkWorkspace" valueName="AllowWindowsInkWorkspace" presentation="$(presentation.AllowWindowsInkWorkspace)">
+      <parentCategory ref="WindowsInkWorkspace" />
+      <supportedOn ref="SUPPORTED_WIN10_RS1" />
+      <elements>
+        <enum id="AllowWindowsInkWorkspaceDropdown" valueName="AllowWindowsInkWorkspace" required="true">
+          <item displayName="$(string.AllowWindowsInkWorkspace_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.AllowWindowsInkWorkspace_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AllowWindowsInkWorkspace_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AllowSuggestedAppsInWindowsInkWorkspace" class="Machine" displayName="$(string.AllowSuggestedAppsInWindowsInkWorkspace)" explainText="$(string.AllowSuggestedAppsInWindowsInkWorkspace_Help)" key="Software\Policies\Microsoft\WindowsInkWorkspace" valueName="AllowSuggestedAppsInWindowsInkWorkspace">
+      <parentCategory ref="WindowsInkWorkspace" />
+      <supportedOn ref="SUPPORTED_WIN10_RS1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

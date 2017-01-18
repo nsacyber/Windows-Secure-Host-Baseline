@@ -20,7 +20,7 @@
             key="Software\Policies\Microsoft\Windows\WorkFolders"
             valueName="AutoProvision">
       <parentCategory ref="Cat_WorkFolders" />
-      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOSERVER" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
       <enabledValue>
         <decimal value="1" />
       </enabledValue>
@@ -36,7 +36,7 @@
             presentation="$(presentation.Pol_EnableWorkFolders)" 
             key="Software\Policies\Microsoft\Windows\WorkFolders">
       <parentCategory ref="Cat_WorkFolders" />
-      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOSERVER" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
       <elements>
         <text id="Lbl_ServerURL_Edit" valueName="SyncUrl" />
         <boolean id="Lbl_AutoProvision_Chk" valueName="AutoProvision">

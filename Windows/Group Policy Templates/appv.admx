@@ -1,0 +1,744 @@
+<?xml version="1.0"?>
+<!--  (c) 2013 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="appv" namespace="Microsoft.Policies.AppV"/>
+    <using prefix="windows" namespace="Microsoft.Policies.Windows"/>
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0"/>
+  <categories>
+    <category name="CAT_AppV" displayName="$(string.AppV)" explainText="$(string.AppV_ComputerHelp)">
+      <parentCategory ref="windows:System"/>
+    </category>
+    <category name="CAT_Streaming" displayName="$(string.Streaming)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_Publishing" displayName="$(string.Publishing)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_Reporting" displayName="$(string.Reporting)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_Client_Coexistence" displayName="$(string.ClientCoexistence)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_Scripting" displayName="$(string.Scripting)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_Integration" displayName="$(string.Integration)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+    <category name="CAT_CEIP" displayName="$(string.CEIP)">
+      <parentCategory ref="CAT_AppV" />
+    </category>
+    <category name="CAT_Virtualization" displayName="$(string.Virtualization)">
+      <parentCategory ref="CAT_AppV"/>
+    </category>
+  </categories>
+  <policies>
+    <policy name="EnableAppV" clientExtension="{2BFCC077-22D2-48DE-BDE1-2F618D9B476D}" class="Machine" displayName="$(string.EnableAppV)" explainText="$(string.EnableAppV_Help)" key="Software\Policies\Microsoft\AppV\Client" valueName="Enabled">
+      <parentCategory ref="CAT_AppV" />
+      <supportedOn ref="windows: SUPPORTED_Windows_10_0_NOARM" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="Streaming_Package_Installation_Root" class="Machine" displayName="$(string.Streaming_Package_Installation_Root)" 
+            explainText="$(string.Streaming_Package_Installation_Root_Help)" presentation="$(presentation.Streaming_Package_Installation_Root)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Streaming_Package_Installation_Root_Prompt" valueName="PackageInstallationRoot" />
+      </elements>
+    </policy>
+    <policy name="Steaming_Autoload" class="Machine" displayName="$(string.Steaming_Autoload)" explainText="$(string.Steaming_AutoloadHelp)" 
+            presentation="$(presentation.Steaming_Autoload)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming"/>
+      <supportedOn ref="windows:SUPPORTED_Windows7"/>
+      <elements><enum id="Steaming_Autoload_Options" valueName="Autoload">
+        <item displayName="$(string.Steaming_Autoload_None)">
+          <value>
+            <decimal value="0"/>
+          </value>
+        </item>
+        <item displayName="$(string.Steaming_Autoload_PreviouslyUsed)">
+          <value>
+            <decimal value="1"/>
+          </value>
+        </item>
+        <item displayName="$(string.Steaming_Autoload_All)">
+          <value>
+            <decimal value="2"/>
+          </value>
+        </item>
+      </enum>
+      </elements>
+    </policy>
+    <policy name="Streaming_Package_Source_Root" class="Machine" displayName="$(string.Streaming_Package_Source_Root)" 
+            explainText="$(string.Streaming_Package_Source_Root_Help)" presentation="$(presentation.Streaming_Package_Source_Root)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Package_Source_Root_Prompt" valueName="PackageSourceRoot" />
+      </elements>
+    </policy>
+    <policy name="Streaming_Reestablishment_Retries" class="Machine" displayName="$(string.Streaming_Reestablishment_Retries)" 
+            explainText="$(string.Streaming_Reestablishment_Retries_Help)" presentation="$(presentation.Streaming_Reestablishment_Retries)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="Streaming_Reestablishment_Retries_Prompt" valueName="ReestablishmentRetries" minValue="0" maxValue="99"/>
+      </elements>
+    </policy>
+    <policy name="Streaming_Reestablishment_Interval" class="Machine" displayName="$(string.Streaming_Reestablishment_Interval)" 
+            explainText="$(string.Streaming_Reestablishment_Interval_Help)" presentation="$(presentation.Streaming_Reestablishment_Interval)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="Streaming_Reestablishment_Interval_Prompt" valueName="ReestablishmentInterval" minValue="0" maxValue="3600"/>
+      </elements>
+    </policy>
+    <policy name="Streaming_Location_Provider" class="Machine" displayName="$(string.Streaming_Location_Provider)" 
+            explainText="$(string.Streaming_Location_Provider_Help)" presentation="$(presentation.Streaming_Location_Provider)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Streaming_Location_Provider_Prompt" valueName="LocationProvider"/>
+      </elements>
+    </policy>
+    <policy name="Streaming_Certificate_Filter_For_Client_SSL" class="Machine" displayName="$(string.Streaming_Certificate_Filter_For_Client_SSL)" 
+            explainText="$(string.Streaming_Certificate_Filter_For_Client_SSL_Help)" 
+            presentation="$(presentation.Streaming_Certificate_Filter_For_Client_SSL)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Streaming_Certificate_Filter_For_Client_SSL_Prompt" valueName="CertFilterForClientSsl"/>
+      </elements>
+    </policy>
+    <policy name="Streaming_Verify_Certificate_Revocation_List" class="Machine" displayName="$(string.Streaming_Verify_Certificate_Revocation_List)" 
+            explainText="$(string.Streaming_Verify_Certificate_Revocation_List_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming" 
+            valueName="VerifyCertificateRevocationList">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Streaming_Shared_Content_Store_Mode" class="Machine" displayName="$(string.Streaming_Shared_Content_Store_Mode)" 
+            explainText="$(string.Streaming_Shared_Content_Store_Mode_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming" 
+            valueName="SharedContentStoreMode">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Streaming_Allow_High_Cost_Launch" class="Machine" displayName="$(string.Streaming_Allow_High_Cost_Launch)"
+            explainText="$(string.Streaming_Allow_High_Cost_Launch_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming"
+            valueName="AllowHighCostLaunch">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Streaming_Require_Publish_As_Admin" class="Machine" displayName="$(string.Streaming_Require_Publish_As_Admin)"
+            explainText="$(string.Streaming_Require_Publish_As_Admin_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming"
+            valueName="RequirePublishAsAdmin">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Streaming_Support_Branch_Cache" class="Machine" displayName="$(string.Streaming_Support_Branch_Cache)"
+            explainText="$(string.Streaming_Support_Branch_Cache_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Streaming"
+            valueName="SupportBranchCache">
+      <parentCategory ref="CAT_Streaming" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <!--  Reporting Server  -->
+    <policy name="Reporting_Server_Policy" class="Machine" displayName="$(string.ReportingServer)" 
+            explainText="$(string.Reporting_Server_Help)" presentation="$(presentation.Reporting_Server)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Reporting" valueName="ReportingEnabled">
+      <parentCategory ref="CAT_Reporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="Reporting_Server_URL_Prompt" valueName="ReportingServerURL"/>
+        <decimal id="Start_Time" valueName="ReportingStartTime" minValue="0" maxValue="23"/>
+        <decimal id="Random_Delay" valueName="ReportingRandomDelay" minValue="0" maxValue="60"/>
+        <decimal id="Interval" valueName="ReportingInterval" minValue="1" maxValue="30"/>
+        <decimal id="Data_Cache_Limit" valueName="ReportingDataCacheLimit" minValue="1" maxValue="1024"/>
+        <decimal id="Data_Block_Size" valueName="ReportingDataBlockSize" minValue="1024" maxValue="4294967295"/>
+      </elements>
+    </policy>
+
+    <!--  Publishing Server 1  -->
+    <policy name="Publishing_Server1_Policy" class="Machine" displayName="$(string.PublishingServer1)" 
+            explainText="$(string.Publishing_Server_Help)" presentation="$(presentation.Publishing_Server1)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing\Servers\1">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Publishing_Server1_Name_Prompt" valueName="Name" required="true"/>
+        <text id="Publishing_Server_URL_Prompt" valueName="URL" required="true"/>
+        <enum id="Global_Publishing_Refresh_Options" valueName="GlobalEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>  
+        <enum id="Global_Refresh_OnLogon_Options" valueName="GlobalLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="Global_Refresh_Interval_Prompt" valueName="GlobalPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="Global_Refresh_Unit_Options" valueName="GlobalPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+        <enum id="User_Publishing_Refresh_Options" valueName="UserEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum id="User_Refresh_OnLogon_Options" valueName="UserLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="User_Refresh_Interval_Prompt" valueName="UserPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="User_Refresh_Unit_Options" valueName="UserPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+      </elements>
+    </policy>
+    <!--  Publishing Server 2  -->
+    <policy name="Publishing_Server2_Policy" class="Machine" displayName="$(string.PublishingServer2)" 
+            explainText="$(string.Publishing_Server_Help)" presentation="$(presentation.Publishing_Server2)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing\Servers\2">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Publishing_Server2_Name_Prompt" valueName="Name" required="true"/>
+        <text id="Publishing_Server_URL_Prompt" valueName="URL" required="true"/>
+        <enum id="Global_Publishing_Refresh_Options" valueName="GlobalEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>  
+        <enum id="Global_Refresh_OnLogon_Options" valueName="GlobalLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="Global_Refresh_Interval_Prompt" valueName="GlobalPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="Global_Refresh_Unit_Options" valueName="GlobalPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+        <enum id="User_Publishing_Refresh_Options" valueName="UserEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum id="User_Refresh_OnLogon_Options" valueName="UserLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="User_Refresh_Interval_Prompt" valueName="UserPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="User_Refresh_Unit_Options" valueName="UserPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+      </elements>
+    </policy>
+    <!--  Publishing Server 3  -->
+    <policy name="Publishing_Server3_Policy" class="Machine" displayName="$(string.PublishingServer3)" 
+            explainText="$(string.Publishing_Server_Help)" presentation="$(presentation.Publishing_Server3)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing\Servers\3">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Publishing_Server3_Name_Prompt" valueName="Name" required="true"/>
+        <text id="Publishing_Server_URL_Prompt" valueName="URL" required="true"/>
+        <enum id="Global_Publishing_Refresh_Options" valueName="GlobalEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>  
+        <enum id="Global_Refresh_OnLogon_Options" valueName="GlobalLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="Global_Refresh_Interval_Prompt" valueName="GlobalPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="Global_Refresh_Unit_Options" valueName="GlobalPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+        <enum id="User_Publishing_Refresh_Options" valueName="UserEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum id="User_Refresh_OnLogon_Options" valueName="UserLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="User_Refresh_Interval_Prompt" valueName="UserPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="User_Refresh_Unit_Options" valueName="UserPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+      </elements>
+    </policy>
+    <!--  Publishing Server 4  -->
+    <policy name="Publishing_Server4_Policy" class="Machine" displayName="$(string.PublishingServer4)" 
+            explainText="$(string.Publishing_Server_Help)" presentation="$(presentation.Publishing_Server4)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing\Servers\4">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Publishing_Server4_Name_Prompt" valueName="Name" required="true"/>
+        <text id="Publishing_Server_URL_Prompt" valueName="URL" required="true"/>
+        <enum id="Global_Publishing_Refresh_Options" valueName="GlobalEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>  
+        <enum id="Global_Refresh_OnLogon_Options" valueName="GlobalLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="Global_Refresh_Interval_Prompt" valueName="GlobalPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="Global_Refresh_Unit_Options" valueName="GlobalPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+        <enum id="User_Publishing_Refresh_Options" valueName="UserEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum id="User_Refresh_OnLogon_Options" valueName="UserLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="User_Refresh_Interval_Prompt" valueName="UserPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="User_Refresh_Unit_Options" valueName="UserPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+      </elements>
+    </policy>
+    <!--  Publishing Server 5  -->
+    <policy name="Publishing_Server5_Policy" class="Machine" displayName="$(string.PublishingServer5)" 
+            explainText="$(string.Publishing_Server_Help)" presentation="$(presentation.Publishing_Server5)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing\Servers\5">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Publishing_Server5_Name_Prompt" valueName="Name" required="true"/>
+        <text id="Publishing_Server_URL_Prompt" valueName="URL" required="true"/>
+        <enum id="Global_Publishing_Refresh_Options" valueName="GlobalEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>  
+        <enum id="Global_Refresh_OnLogon_Options" valueName="GlobalLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="Global_Refresh_Interval_Prompt" valueName="GlobalPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="Global_Refresh_Unit_Options" valueName="GlobalPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+        <enum id="User_Publishing_Refresh_Options" valueName="UserEnabled">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>
+        <enum id="User_Refresh_OnLogon_Options" valueName="UserLogonRefresh">
+          <item displayName="$(string.False)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.True)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>      
+        <decimal id="User_Refresh_Interval_Prompt" valueName="UserPeriodicRefreshInterval" minValue="0" maxValue="31"/>
+        <enum id="User_Refresh_Unit_Options" valueName="UserPeriodicRefreshIntervalUnit">
+          <item displayName="$(string.Hour)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.Day)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+        </enum>        
+      </elements>
+    </policy>
+    <policy name="Enable_Publishing_Refresh_UX" class="Machine" displayName="$(string.Publishing_Enable_Refresh_UX)"
+            explainText="$(string.Publishing_Enable_Refresh_UX_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Publishing"
+            valueName="EnablePublishingRefreshUI">
+      <parentCategory ref="CAT_Publishing" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Client_Coexistence_Enable_Migration_mode" class="Machine" displayName="$(string.Client_Coexistence_Enable_Migration_mode)" 
+            explainText="$(string.Client_Coexistence_Enable_Migration_mode_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Coexistence" 
+            valueName="MigrationMode">
+      <parentCategory ref="CAT_Client_Coexistence" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Scripting_Enable_Package_Scripts" class="Machine" displayName="$(string.Scripting_Enable_Package_Scripts)" 
+            explainText="$(string.Scripting_Enable_Package_Scripts_Help)" key="SOFTWARE\Policies\Microsoft\AppV\Client\Scripting" 
+            valueName="EnablePackageScripts">
+      <parentCategory ref="CAT_Scripting" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Integration_Roaming_File_Exclusions" class="Machine" displayName="$(string.Integration_Roaming_File_Exclusions)" 
+            explainText="$(string.Integration_Roaming_File_Exclusions_Help)" presentation="$(presentation.Integration_Roaming_File_Exclusions)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Integration">
+      <parentCategory ref="CAT_Integration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Integration_Roaming_File_Exclusions_Prompt" valueName="RoamingFileExclusions" />
+      </elements>
+    </policy>
+    <policy name="Integration_Roaming_Registry_Exclusions" class="Machine" displayName="$(string.Integration_Roaming_Registry_Exclusions)" 
+            explainText="$(string.Integration_Roaming_Registry_Exclusions_Help)" presentation="$(presentation.Integration_Roaming_Registry_Exclusions)" 
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Integration">
+      <parentCategory ref="CAT_Integration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Integration_Roaming_Registry_Exclusions_Prompt" valueName="RoamingRegistryExclusions" />
+      </elements>
+    </policy>
+    <policy name="Integration_Root_User" class="Machine" displayName="$(string.Integration_Root_User)"
+            explainText="$(string.Integration_Root_User_Help)" presentation="$(presentation.Integration_Root_User)"
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Integration">
+      <parentCategory ref="CAT_Integration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Integration_Root_User_Prompt" valueName="IntegrationRootUser" />
+      </elements>
+    </policy>
+    <policy name="Integration_Root_Global" class="Machine" displayName="$(string.Integration_Root_Global)"
+            explainText="$(string.Integration_Root_Global_Help)" presentation="$(presentation.Integration_Root_Global)"
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Integration">
+      <parentCategory ref="CAT_Integration" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="Integration_Root_Global_Prompt" valueName="IntegrationRootGlobal" />
+      </elements>
+    </policy>
+    <policy name="CEIP_Enable" class="Machine" displayName="$(string.CEIP_Enable)"
+            explainText="$(string.CEIP_Enable_Help)" key="SOFTWARE\Policies\Microsoft\AppV\CEIP"
+            valueName="CEIPEnable">
+      <parentCategory ref="CAT_CEIP" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+      <policy name="Virtualization_JITVAllowList" class="Machine" displayName="$(string.Virtualization_JITVAllowList)"
+            explainText="$(string.Virtualization_JITVAllowList_Help)" presentation="$(presentation.Virtualization_JITVAllowList)"
+              key="SOFTWARE\Policies\Microsoft\AppV\Client\Virtualization"
+              valueName="ProcessesUsingVirtualComponents">
+        <parentCategory ref="CAT_Virtualization" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <multiText id="Virtualization_JITVAllowList_Prompt" valueName="ProcessesUsingVirtualComponents" />
+      </elements>
+    </policy>
+    <policy name="Virtualization_JITVEnable" class="Machine" displayName="$(string.Virtualization_JITVEnable)"
+          explainText="$(string.Virtualization_JITVEnable_Help)"
+            key="SOFTWARE\Policies\Microsoft\AppV\Client\Virtualization"
+            valueName="EnableDynamicVirtualization">
+      <parentCategory ref="CAT_Virtualization" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

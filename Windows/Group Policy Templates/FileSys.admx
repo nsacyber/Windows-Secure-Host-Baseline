@@ -6,7 +6,7 @@
     <using prefix="windows" namespace="Microsoft.Policies.Windows" />
   </policyNamespaces>
   <resources minRequiredRevision="1.0" />
-  <categories>
+  <categories>
     <category name="Filesystem" displayName="$(string.Filesystem)">
       <parentCategory ref="windows:System"/>
     </category>
@@ -58,6 +58,21 @@
           </falseValue>
         </boolean>
       </elements>
+    </policy>
+    <policy name="LongPathsEnabled" class="Machine" 
+    displayName="$(string.LongPathsEnabled)" 
+    explainText="$(string.LongPathsEnabledText)" 
+    presentation="$(presentation.LongPathsEnabledOptions)" 
+    key="System\CurrentControlSet\Control\FileSystem" 
+    valueName="LongPathsEnabled">
+      <parentCategory ref="Filesystem" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
     </policy>
     <policy name="DisableCompression" class="Machine" 
     displayName="$(string.DisableCompression)" 

@@ -93,6 +93,28 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
+    <policy name="PKINITFreshness" class="Machine" displayName="$(string.PKINITFreshness)" explainText="$(string.PKINITFreshness_explain)" presentation="$(presentation.PKINITFreshness)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <enum id="PKINITFreshness_Levels" valueName="PKINITFreshness">
+          <item displayName="$(string.NoPKINITFreshness)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.SupportPKINITFreshness)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RequirePKINITFreshness)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
   </policies>
-
 </policyDefinitions>

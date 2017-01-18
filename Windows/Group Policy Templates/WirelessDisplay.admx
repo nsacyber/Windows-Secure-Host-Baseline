@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="connect" namespace="Microsoft.Policies.Connect" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Connect" displayName="$(string.Connect)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowProjectionToPC" class="Machine" displayName="$(string.AllowProjectionToPC)" explainText="$(string.AllowProjectionToPC_help)" key="Software\Policies\Microsoft\Windows\Connect" valueName="AllowProjectionToPC">
+      <parentCategory ref="Connect" />
+	  <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="RequirePinForPairing" class="Machine" displayName="$(string.RequirePinForPairing)" explainText="$(string.RequirePinForPairing_help)" key="Software\Policies\Microsoft\Windows\Connect" valueName="RequirePinForPairing">
+      <parentCategory ref="Connect" />
+	  <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

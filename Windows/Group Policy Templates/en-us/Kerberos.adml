@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Kerberos Settings</displayName>
+  <description>Configuration settings for the Kerberos authentication protocol.</description>
+  <resources>
+    <stringTable>
+      <string id="kerberos">Kerberos</string>
+      <string id="forestsearch">Use forest search order</string>
+      <string id="forestsearch_explain">This policy setting defines the list of trusting forests that the Kerberos client searches when attempting to resolve two-part service principal names (SPNs).
+
+If you enable this policy setting, the Kerberos client searches the forests in this list, if it is unable to resolve a two-part SPN. If a match is found, the Kerberos client requests a referral ticket to the appropriate domain.
+
+If you disable or do not configure this policy setting, the Kerberos client does not search the listed forests to resolve the SPN. If the Kerberos client is unable to resolve the SPN because the name is not found, NTLM authentication might be used.</string>
+      <string id="hosttorealm">Define host name-to-Kerberos realm mappings</string>
+      <string id="hosttorealm_explain">This policy setting allows you to specify which DNS host names and which DNS suffixes are mapped to a Kerberos realm.
+
+If you enable this policy setting, you can view and change the list of DNS host names and DNS suffixes mapped to a Kerberos realm as defined by Group Policy. To view the list of mappings, enable the policy setting and then click the Show button. To add a mapping, enable the policy setting, note the syntax, and then click Show. In the Show Contents dialog box in the Value Name column, type a realm name. In the Value column, type the list of DNS host names and DNS suffixes using the appropriate syntax format. To remove a mapping from the list, click the mapping entry to be removed, and then press the DELETE key. To edit a mapping, remove the current entry from the list and add a new one with different parameters.
+
+If you disable this policy setting, the host name-to-Kerberos realm mappings list defined by Group Policy is deleted.
+
+If you do not configure this policy setting, the system uses the host name-to-Kerberos realm mappings that are defined in the local registry, if they exist.</string>
+      <string id="MitRealms">Define interoperable Kerberos V5 realm settings</string>
+      <string id="MitRealms_explain">This policy setting configures the Kerberos client so that it can authenticate with interoperable Kerberos V5 realms, as defined by this policy setting.
+      
+If you enable this policy setting, you can view and change the list of interoperable Kerberos V5 realms and their settings. To view the list of interoperable Kerberos V5 realms, enable the policy setting and then click the Show button. To add an interoperable Kerberos V5 realm, enable the policy setting, note the syntax, and then click Show. In the Show Contents dialog box in the Value Name column, type the interoperable Kerberos V5 realm name. In the Value column, type the realm flags and host names of the host KDCs using the appropriate syntax format. To remove an interoperable Kerberos V5 realm Value Name or Value entry from the list, click the entry, and then press the DELETE key. To edit a mapping, remove the current entry from the list and add a new one with different parameters.
+
+If you disable this policy setting, the interoperable Kerberos V5 realm settings defined by Group Policy are deleted.
+
+If you do not configure this policy setting, the system uses the interoperable Kerberos V5 realm settings that are defined in the local registry, if they exist.</string>
+      <string id="ValidateKDC">Require strict KDC validation</string>
+      <string id="ValidateKDC_explain">This policy setting controls the Kerberos client's behavior in validating the KDC certificate for smart card and system certificate logon.  
+
+If you enable this policy setting, the Kerberos client requires that the KDC's X.509 certificate contains the KDC key purpose object identifier in the Extended Key Usage (EKU) extensions, and that the KDC's X.509 certificate contains a dNSName subjectAltName (SAN) extension that matches the DNS name of the domain. If the computer is joined to a domain, the Kerberos client requires that the KDC's X.509 certificate must be signed by a Certificate Authority (CA) in the NTAuth store. If the computer is not joined to a domain, the Kerberos client allows the root CA certificate on the smart card to be used in the path validation of the KDC's X.509 certificate.
+
+If you disable or do not configure this policy setting, the Kerberos client requires only that the KDC certificate contain the Server Authentication purpose object identifier in the EKU extensions which can be issued to any server.
+</string>
+      <string id="StrictTarget">Require strict target SPN match on remote procedure calls</string>
+      <string id="StrictTarget_explain"> This policy setting allows you to configure this server so that Kerberos can decrypt a ticket that contains this system-generated SPN. When an application attempts to make a remote procedure call (RPC) to this server with a NULL value for the service principal name (SPN), computers running Windows 7 or later attempt to use Kerberos by generating an SPN.
+              
+If you enable this policy setting, only services running as LocalSystem or NetworkService are allowed to accept these connections. Services running as identities different from LocalSystem or NetworkService might fail to authenticate.
+
+If you disable or do not configure this policy setting, any service is allowed to accept incoming connections by using this system-generated SPN.</string>
+      <string id="KdcProxyServer">Specify KDC proxy servers for Kerberos clients</string>
+      <string id="KdcProxyServer_explain">This policy setting configures the Kerberos client's mapping to KDC proxy servers for domains based on their DNS suffix names.
+
+If you enable this policy setting, the Kerberos client will use the KDC proxy server for a domain when a domain controller cannot be located based on the configured mappings. To map a KDC proxy server to a domain, enable the policy setting, click Show, and then map the KDC proxy server name(s) to the DNS name for the domain using the syntax described in the options pane. In the Show Contents dialog box in the Value Name column, type a DNS suffix name. In the Value column, type the list of proxy servers using the appropriate syntax format. To view the list of mappings, enable the policy setting and then click the Show button. To remove a mapping from the list, click the mapping entry to be removed, and then press the DELETE key. To edit a mapping, remove the current entry from the list and add a new one with different parameters.
+
+If you disable or do not configure this policy setting, the Kerberos client does not have KDC proxy servers settings defined by Group Policy.
+</string>
+      <string id="KdcProxyDisableServerRevocationCheck">Disable revocation checking for the SSL certificate of KDC proxy servers</string>
+      <string id="KdcProxyDisableServerRevocationCheck_explain">This policy setting allows you to disable revocation check for the SSL certificate of the targeted KDC proxy server.
+
+If you enable this policy setting, revocation check for the SSL certificate of the KDC proxy server is ignored by the Kerberos client. This policy setting should only be used in troubleshooting KDC proxy connections. 
+Warning: When revocation check is ignored, the server represented by the certificate is not guaranteed valid. 
+
+If you disable or do not configure this policy setting, the Kerberos client enforces the revocation check for the SSL certificate. The connection to the KDC proxy server is not established if the revocation check fails.
+</string>
+      <string id="ClientRequireFast">Fail authentication requests when Kerberos armoring is not available</string>
+      <string id="ClientRequireFast_explain">This policy setting controls whether a computer requires that Kerberos message exchanges be armored when communicating with a domain controller.
+
+Warning: When a domain does not support Kerberos armoring by enabling "Support Dynamic Access Control and Kerberos armoring", then all authentication for all its users will fail from computers with this policy setting enabled.
+
+If you enable this policy setting, the client computers in the domain enforce the use of Kerberos armoring in only authentication service (AS) and ticket-granting service (TGS) message exchanges with the domain controllers. 
+
+Note: The Kerberos Group Policy "Kerberos client support for claims, compound authentication and Kerberos armoring" must also be enabled to support Kerberos armoring. 
+
+If you disable or do not configure this policy setting, the client computers in the domain enforce the use of Kerberos armoring when possible as supported by the target domain.
+</string>
+      <string id="ServerAcceptsCompound">Support compound authentication</string>
+      <string id="ServerAcceptsCompound_explain">This policy setting controls configuring the device's Active Directory account for compound authentication.
+
+Support for providing compound authentication which is used for access control will require enough domain controllers in the resource account domains to support the requests. The Domain Administrator must configure the policy "Support Dynamic Access Control and Kerberos armoring" on all the domain controllers to support this policy.
+
+If you enable this policy setting, the device's Active Directory account will be configured for compound authentication by the following options:
+
+Never: Compound authentication is never provided for this computer account.
+
+Automatic: Compound authentication is provided for this computer account when one or more applications are configured for Dynamic Access Control.
+
+Always: Compound authentication is always provided for this computer account.
+
+If you disable this policy setting, Never will be used.
+If you do not configure this policy setting, Automatic will be used.
+</string>
+      <string id="CompoundIdEnable_No">Never</string>
+      <string id="CompoundIdEnable_Auto">Automatic</string>
+      <string id="CompoundIdEnable_Yes">Always</string>
+
+      <string id="MaxTokenSize">Set maximum Kerberos SSPI context token buffer size</string>
+      <string id="MaxTokenSize_explain">This policy setting allows you to set the value returned to applications which request the maximum size of the SSPI context token buffer size.
+              
+The size of the context token buffer determines the maximum size of SSPI context tokens an application expects and allocates. Depending upon authentication request processing and group memberships, the buffer might be smaller than the actual size of the SSPI context token. 
+
+If you enable this policy setting, the Kerberos client or server uses the configured value, or the locally allowed maximum value, whichever is smaller.
+
+If you disable or do not configure this policy setting, the Kerberos client or server uses the locally configured value or the default value. 
+
+Note: This policy setting configures the existing MaxTokenSize registry value in HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\Kerberos\Parameters, which was added in Windows XP and Windows Server 2003, with a default value of 12,000 bytes. Beginning with Windows 8 the default is 48,000 bytes. Due to HTTP's base64 encoding of authentication context tokens, it is not advised to set this value more than 48,000 bytes.
+
+</string>
+      <string id="EnableCbacAndArmor">Kerberos client support for claims, compound authentication and Kerberos armoring</string>
+      <string id="EnableCbacAndArmor_explain">This policy setting controls whether a device will request claims and compound authentication for Dynamic Access Control and Kerberos armoring using Kerberos authentication with domains that support these features. 
+If you enable this policy setting, the client computers will request claims, provide information required to create compounded authentication and armor Kerberos messages in domains which support claims and compound authentication for Dynamic Access Control and Kerberos armoring.
+
+If you disable or do not configure this policy setting, the client devices will not request claims, provide information required to create compounded authentication and armor Kerberos messages. Services hosted on the device will not be able to retrieve claims for clients using Kerberos protocol transition.  
+</string>
+      <string id="AlwaysSendCompoundId">Always send compound authentication first</string>
+      <string id="AlwaysSendCompoundId_explain">This policy setting controls whether a device always sends a compound authentication request when the resource domain requests compound identity.
+
+Note: For a domain controller to request compound authentication, the policies "KDC support for claims, compound authentication, and Kerberos armoring" and "Request compound authentication" must be configured and enabled in the resource account domain. 
+
+If you enable this policy setting and the resource domain requests compound authentication, devices that support compound authentication always send a compound authentication request. 
+
+If you disable or do not configure this policy setting and the resource domain requests compound authentication, devices will send a non-compounded authentication request first then a compound authentication request when the service requests compound authentication.
+</string>
+      <string id="DevicePKInitEnabled">Support device authentication using certificate</string>
+      <string id="DevicePKInitEnabled_explain">Support for device authentication using certificate will require connectivity to a DC in the device account domain which supports certificate authentication for computer accounts. 
+
+This policy setting allows you to set support for Kerberos to attempt authentication using the certificate for the device to the domain.
+
+If you enable this policy setting, the devices credentials will be selected based on the following options:
+
+Automatic: Device will attempt to authenticate using its certificate. If the DC does not support computer account authentication using certificates then authentication with password will be attempted.
+
+Force: Device will always authenticate using its certificate. If a DC cannot be found which support computer account authentication using certificates then authentication will fail.
+
+If you disable this policy setting, certificates will never be used.
+If you do not configure this policy setting, Automatic will be used.
+</string>
+      <string id="DevicePKInitBehavior_Automatic">Automatic</string>
+      <string id="DevicePKInitBehavior_Force">Force</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="hosttorealm">
+        <listBox refId="hosttorealm">Define host name-to-realm mappings:</listBox>
+        <text></text>
+        <text>Syntax:</text>
+        <text>Enter the Kerberos realm name as the Value Name.</text>
+        <text>Enter the host names and DNS suffixes, that you want to</text>
+        <text>map to the Kerberos realm, as the Value.  To add multiple</text>
+        <text>names, separate entries with ";".</text>
+        <text></text>
+        <text>Note: To specify a DNS suffix prepend the entry with a '.' period.</text>
+        <text>For a host name entry do not specify a leading '.' period.</text>
+        <text></text>
+        <text>Example:</text>
+        <text>Value Name: MICROSOFT.COM</text>
+        <text>Value: .microsoft.com; .ms.com; computer1.fabrikam.com;</text>
+        <text></text>
+        <text>In the example above. All principals with either the DNS suffix</text>
+        <text>of *.microsoft.com or *.ms.com will be mapped to the</text>
+        <text>MICROSOFT.COM Kerberos realm.  In addition the host name</text>
+        <text>computer1.fabrikam.com will also be mapped to the </text>
+        <text>MICROSOFT.COM Kerberos realm.</text>
+      </presentation>
+      <presentation id="MitRealms">
+        <listBox refId="MitRealms">Define interoperable Kerberos V5 realm settings:</listBox>
+        <text></text>
+        <text>Syntax:</text>
+        <text>Enter the interoperable Kerberos V5 realm name as the Value Name.</text>
+        <text>Enter the realm flags and the host names of the KDCs as</text>
+        <text>the Value.  Enclose the realm flags with the following</text>
+        <text>tags &lt;f&gt; &lt;/f&gt;.  Enclose the list of KDCs with the tags &lt;k&gt; &lt;/k&gt;</text>
+        <text>To add multiple KDC names, separate entries with</text>
+        <text>a semi-colon ";".</text>
+        <text></text>
+        <text>Example:</text>
+        <text>Value Name: TEST.COM</text>
+        <text>Value: &lt;f&gt;0x00000004&lt;/f&gt;&lt;k&gt;kdc1.test.com; kdc2.test.com&lt;/k&gt;</text>
+        <text></text>
+        <text>Another Example:</text>
+        <text>Value Name: REALM.FABRIKAM.COM</text>
+        <text>Value: &lt;f&gt;0x0000000E&lt;/f&gt;</text>
+      </presentation>
+      <presentation id="ValidateKDC">
+        <dropdownList refId="ValidateKDCOp" noSort="true" defaultItem="0">Mode:</dropdownList>
+      </presentation>
+      <presentation id="ForestSearch">
+        <textBox refId="ForestSearchList">
+          <label>Forests to Search</label>
+        </textBox>
+        <text>Syntax:</text>
+        <text>Enter the list of forests to be searched when this policy is enabled.</text>
+        <text>Use the Fully Qualified Domain Name (FQDN)  naming format.</text>
+        <text>Separate multiple search entries with a semi-colon ";".</text>
+        <text>Details:</text>
+        <text>The current forest need not be listed because Forest Search Order uses the global catalog first then searches in the order listed.</text>
+        <text>You do not need to separately list all the domains in the forest.</text>
+        <text>If a trusting forest is listed, all the domains in that forest will be searched.</text>
+        <text>For best performance, list the forests in probability of success order. </text>
+      </presentation>
+      <presentation id="KdcProxyServer">
+        <listBox refId="KdcProxyServer">Define KDC proxy servers settings:</listBox>
+        <text></text>
+        <text>Syntax:</text>
+        <text></text>
+        <text>Enter the DNS suffix name as the Value Name.</text>
+        <text>DNS suffix name allows three formats with decreasing preference order:</text>
+        <text>Full Match: host.contoso.com</text>
+        <text>Suffix Match: .contoso.com</text>
+        <text>Default Match: *</text>
+        <text></text>
+        <text>Enter the proxy server names as the Value.</text>
+        <text>The proxy server names must be enclosed with tags &lt;https /&gt;</text>
+        <text>To add multiple proxy server names, separate entries with a space or comma ","</text>
+        <text></text>
+        <text>Example:</text>
+        <text>Value Name: .contoso.com</text>
+        <text>Value: &lt;https proxy1.contoso.com proxy2.contoso.com /&gt;</text>
+        <text></text>
+        <text>Another Example:</text>
+        <text>Value Name: *</text>
+        <text>Value: &lt;https proxy.contoso.com /&gt;</text>
+      </presentation>
+      <presentation id="ClientRequireFast">
+      </presentation>
+      <presentation id="ServerAcceptsCompound">
+       <dropdownList refId="CompoundIdEnabled" noSort="true" defaultItem="2">Support authorization with client device information:</dropdownList>  
+      </presentation>
+      <presentation id="MaxTokenSize">
+        <decimalTextBox refId="MaxTokenSize" defaultValue="48000" spinStep="1000">Maximum size</decimalTextBox>
+      </presentation>
+      <presentation id="EnableCbacAndArmor">
+      </presentation>
+      <presentation id="DevicePKInitBehavior">
+        <dropdownList refId="DevicePKInitBehavior" noSort="true" defaultItem="0">Device authentication behavior using certificate:</dropdownList>  
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -50,7 +50,7 @@
     <policies>
         <policy name="DisableAutoExclusions" class="Machine" displayName="$(string.DisableAutoExclusions)" explainText="$(string.DisableAutoExclusions_Explain)" key="Software\Policies\Microsoft\Windows Defender\Exclusions" valueName="DisableAutoExclusions">
             <parentCategory ref="Exclusions" />
-            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
             <enabledValue>
                 <decimal value="1" />
             </enabledValue>
@@ -98,14 +98,21 @@
                 <decimal value="0" />
             </disabledValue>
         </policy>
-        <policy name="ProxyBypass" class="Machine" displayName="$(string.ProxyBypass)" explainText="$(string.ProxyBypass_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="ProxyBypass" presentation="$(presentation.ProxyBypass)">
+        <policy name="ProxyBypass" class="Machine" displayName="$(string.ProxyBypass)" explainText="$(string.ProxyBypass_Explain)" key="Software\Policies\Microsoft\Windows Defender" presentation="$(presentation.ProxyBypass)">
             <parentCategory ref="AntiSpywareDefender" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <elements>
                 <text id="ProxyBypass" valueName="ProxyBypass" required="true" />
             </elements>
         </policy>
-        <policy name="ProxyServer" class="Machine" displayName="$(string.ProxyServer)" explainText="$(string.ProxyServer_Explain)" key="Software\Policies\Microsoft\Windows Defender" valueName="ProxyServer" presentation="$(presentation.ProxyServer)">
+        <policy name="ProxyPacUrl" class="Machine" displayName="$(string.ProxyPacUrl)" explainText="$(string.ProxyPacUrl_Explain)" key="Software\Policies\Microsoft\Windows Defender" presentation="$(presentation.ProxyPacUrl)">
+          <parentCategory ref="AntiSpywareDefender" />
+          <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+          <elements>
+            <text id="ProxyPacUrl" valueName="ProxyPacUrl" required="true" />
+          </elements>
+        </policy>
+        <policy name="ProxyServer" class="Machine" displayName="$(string.ProxyServer)" explainText="$(string.ProxyServer_Explain)" key="Software\Policies\Microsoft\Windows Defender" presentation="$(presentation.ProxyServer)">
             <parentCategory ref="AntiSpywareDefender" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <elements>
@@ -173,41 +180,6 @@
                 <decimal value="1" />
             </disabledValue>
         </policy>
-        <policy name="Nis_Consumers_IPS_ThrottleDetectionEventsRate" class="Machine" displayName="$(string.Nis_Consumers_IPS_ThrottleDetectionEventsRate)" explainText="$(string.Nis_Consumers_IPS_ThrottleDetectionEventsRate_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS" valueName="ThrottleDetectionEventsRate" presentation="$(presentation.Nis_Consumers_IPS_ThrottleDetectionEventsRate)">
-            <parentCategory ref="NetworkRealtimeInspection" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <elements>
-                <decimal id="Nis_Consumers_IPS_ThrottleDetectionEventsRate" valueName="ThrottleDetectionEventsRate" minValue="0" maxValue="10000000" />
-            </elements>
-        </policy>
-        <policy name="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\IP Ranges" valueName="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_Range)">
-            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <elements>
-                <list id="Nis_Consumers_IPS_Exclusions_Ip_Ranges_Ip_RangeList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\IP Ranges\IP Range" />
-            </elements>
-        </policy>
-        <policy name="Nis_Consumers_IPS_Exclusions_Ports_Port_Number" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Ports_Port_Number)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Ports_Port_Number_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Ports" valueName="Nis_Consumers_IPS_Exclusions_Ports_Port_Number" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Ports_Port_Number)">
-            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <elements>
-                <list id="Nis_Consumers_IPS_Exclusions_Ports_Port_NumberList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Ports\Port Number" />
-            </elements>
-        </policy>
-        <policy name="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Processes" valueName="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_Name)">
-            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <elements>
-                <list id="Nis_Consumers_IPS_Exclusions_Processes_executable_Path_and_NameList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Processes\Executable Path and name" />
-            </elements>
-        </policy>
-        <policy name="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id" class="Machine" displayName="$(string.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id)" explainText="$(string.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Threat IDs" valueName="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id" presentation="$(presentation.Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_Id)">
-            <parentCategory ref="NetworkRealtimeInspection_Exclusions" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <elements>
-                <list id="Nis_Consumers_IPS_Exclusions_Threat_Ids_Threat_IdList" additive="true" explicitValue="true" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\Exclusions\Threat IDs\Threat Id" />
-            </elements>
-        </policy>
         <policy name="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid" class="Machine" displayName="$(string.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid)" explainText="$(string.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid_Explain)" key="Software\Policies\Microsoft\Windows Defender\NIS\Consumers\IPS\SKU Differentiation" valueName="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid" presentation="$(presentation.Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid)">
             <parentCategory ref="NetworkRealtimeInspection" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
@@ -233,26 +205,6 @@
             </elements>
         </policy>
         <policy name="RealtimeProtection_DisableBehaviorMonitoring" class="Machine" displayName="$(string.RealtimeProtection_DisableBehaviorMonitoring)" explainText="$(string.RealtimeProtection_DisableBehaviorMonitoring_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableBehaviorMonitoring">
-            <parentCategory ref="RealtimeProtection" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <enabledValue>
-                <decimal value="0" />
-            </enabledValue>
-            <disabledValue>
-                <decimal value="1" />
-            </disabledValue>
-        </policy>
-        <policy name="RealtimeProtection_DisableInformationProtectionControl" class="Machine" displayName="$(string.RealtimeProtection_DisableInformationProtectionControl)" explainText="$(string.RealtimeProtection_DisableInformationProtectionControl_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableInformationProtectionControl">
-            <parentCategory ref="RealtimeProtection" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <enabledValue>
-                <decimal value="0" />
-            </enabledValue>
-            <disabledValue>
-                <decimal value="1" />
-            </disabledValue>
-        </policy>
-        <policy name="RealtimeProtection_DisableIntrusionPreventionSystem" class="Machine" displayName="$(string.RealtimeProtection_DisableIntrusionPreventionSystem)" explainText="$(string.RealtimeProtection_DisableIntrusionPreventionSystem_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="DisableIntrusionPreventionSystem">
             <parentCategory ref="RealtimeProtection" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <enabledValue>
@@ -330,16 +282,6 @@
             </disabledValue>
         </policy>
         <policy name="RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableOnAccessProtection">
-            <parentCategory ref="RealtimeProtection" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
-            <enabledValue>
-                <decimal value="1" />
-            </enabledValue>
-            <disabledValue>
-                <decimal value="0" />
-            </disabledValue>
-        </policy>
-        <policy name="RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem" class="Machine" displayName="$(string.RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem)" explainText="$(string.RealtimeProtection_LocalSettingOverrideDisableIntrusionPreventionSystem_Explain)" key="Software\Policies\Microsoft\Windows Defender\Real-Time Protection" valueName="LocalSettingOverrideDisableIntrusionPreventionSystem">
             <parentCategory ref="RealtimeProtection" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <enabledValue>
@@ -486,6 +428,16 @@
                 <decimal id="Reporting_CriticalFailureTimeout" valueName="CriticalFailureTimeout" minValue="0" maxValue="4294967295" />
             </elements>
         </policy>
+        <policy name="Reporting_DisablegenericrePorts" class="Machine" displayName="$(string.Reporting_DisablegenericrePorts)" explainText="$(string.Reporting_DisablegenericrePorts_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="DisableGenericRePorts">
+        <parentCategory ref="Reporting" />
+        <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+          <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="1" />
+        </disabledValue>
+      </policy>
         <policy name="Reporting_NonCriticalTimeout" class="Machine" displayName="$(string.Reporting_NonCriticalTimeout)" explainText="$(string.Reporting_NonCriticalTimeout_Explain)" key="Software\Policies\Microsoft\Windows Defender\Reporting" valueName="NonCriticalTimeout" presentation="$(presentation.Reporting_NonCriticalTimeout)">
             <parentCategory ref="Reporting" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
@@ -845,7 +797,7 @@
                 <decimal id="SignatureUpdate_AVSignatureDue" valueName="AVSignatureDue" minValue="0" maxValue="4294967295" />
             </elements>
         </policy>
-        <policy name="SignatureUpdate_DefinitionUpdateFileSharesSources" class="Machine" displayName="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources)" explainText="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="DefinitionUpdateFileSharesSources" presentation="$(presentation.SignatureUpdate_DefinitionUpdateFileSharesSources)">
+        <policy name="SignatureUpdate_DefinitionUpdateFileSharesSources" class="Machine" displayName="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources)" explainText="$(string.SignatureUpdate_DefinitionUpdateFileSharesSources_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" presentation="$(presentation.SignatureUpdate_DefinitionUpdateFileSharesSources)">
             <parentCategory ref="SignatureUpdate" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <elements>
@@ -882,7 +834,7 @@
                 <decimal value="1" />
             </disabledValue>
         </policy>
-        <policy name="SignatureUpdate_FallbackOrder" class="Machine" displayName="$(string.SignatureUpdate_FallbackOrder)" explainText="$(string.SignatureUpdate_FallbackOrder_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" valueName="FallbackOrder" presentation="$(presentation.SignatureUpdate_FallbackOrder)">
+        <policy name="SignatureUpdate_FallbackOrder" class="Machine" displayName="$(string.SignatureUpdate_FallbackOrder)" explainText="$(string.SignatureUpdate_FallbackOrder_Explain)" key="Software\Policies\Microsoft\Windows Defender\Signature Updates" presentation="$(presentation.SignatureUpdate_FallbackOrder)">
             <parentCategory ref="SignatureUpdate" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <elements>
@@ -1003,6 +955,16 @@
                 <decimal value="0" />
             </disabledValue>
         </policy>
+        <policy name="DisableBlockAtFirstSeen" class="Machine" displayName="$(string.DisableBlockAtFirstSeen)" explainText="$(string.DisableBlockAtFirstSeen_Explain)" key="Software\Policies\Microsoft\Windows Defender\Spynet" valueName="DisableBlockAtFirstSeen">
+            <parentCategory ref="Spynet" />
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+            <enabledValue>
+              <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+              <decimal value="1" />
+            </disabledValue>
+        </policy>
         <policy name="Spynet_LocalSettingOverrideSpynetReporting" class="Machine" displayName="$(string.Spynet_LocalSettingOverrideSpynetReporting)" explainText="$(string.Spynet_LocalSettingOverrideSpynetReporting_Explain)" key="Software\Policies\Microsoft\Windows Defender\Spynet" valueName="LocalSettingOverrideSpynetReporting">
             <parentCategory ref="Spynet" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
@@ -1100,15 +1062,15 @@
         </policy>
         <policy name="UX_Configuration_Notification_Suppress" class="Machine" displayName="$(string.UX_Configuration_Notification_Suppress)" explainText="$(string.UX_Configuration_Notification_Suppress_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="Notification_Suppress">
             <parentCategory ref="ClientInterface" />
-            <supportedOn ref="windows:SUPPORTED_Windows8" />
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
             <enabledValue>
-                <decimal value="0" />
+                <decimal value="1" />
             </enabledValue>
             <disabledValue>
-                <decimal value="1" />
+                <decimal value="0" />
             </disabledValue>
         </policy>
-        <policy name="UX_Configuration_CustomDefaultActionToastString" class="Machine" displayName="$(string.UX_Configuration_CustomDefaultActionToastString)" explainText="$(string.UX_Configuration_CustomDefaultActionToastString_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" valueName="CustomDefaultActionToastString" presentation="$(presentation.UX_Configuration_CustomDefaultActionToastString)">
+        <policy name="UX_Configuration_CustomDefaultActionToastString" class="Machine" displayName="$(string.UX_Configuration_CustomDefaultActionToastString)" explainText="$(string.UX_Configuration_CustomDefaultActionToastString_Explain)" key="Software\Policies\Microsoft\Windows Defender\UX Configuration" presentation="$(presentation.UX_Configuration_CustomDefaultActionToastString)">
             <parentCategory ref="ClientInterface" />
             <supportedOn ref="windows:SUPPORTED_Windows8" />
             <elements>

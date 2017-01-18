@@ -201,7 +201,13 @@
         </boolean>      
       </elements>
     </policy>
-    <policy name="RestrictedRemoteAdministration" class="Machine" displayName="$(string.RestrictedRemoteAdministration)" explainText="$(string.RestrictedRemoteAdministration_Explain)" key="Software\Policies\Microsoft\Windows\CredentialsDelegation" valueName="RestrictedRemoteAdministration">
+    <policy name="RestrictedRemoteAdministration"
+            class="Machine"
+            displayName="$(string.RestrictedRemoteAdministration)"
+            explainText="$(string.RestrictedRemoteAdministration_Explain)"
+            key="Software\Policies\Microsoft\Windows\CredentialsDelegation"
+            valueName="RestrictedRemoteAdministration"
+            presentation="$(presentation.RestrictedRemoteAdministration)">
       <parentCategory ref="CredentialsDelegation" />
       <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
       <enabledValue>
@@ -210,6 +216,27 @@
       <disabledValue>
         <decimal value="0" />
       </disabledValue>
+      <elements>
+        <enum
+          id="RestrictedRemoteAdministrationDrop"
+          valueName="RestrictedRemoteAdministrationType">
+          <item displayName="$(string.PreferRemoteCredentialGuard)">
+            <value>
+                <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.RequireRemoteCredentialGuard)">
+            <value>
+                <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RequireRestrictedAdmin)">
+            <value>
+                <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
     </policy>
   </policies>
 </policyDefinitions>

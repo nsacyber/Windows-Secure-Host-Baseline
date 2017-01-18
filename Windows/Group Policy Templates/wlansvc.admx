@@ -50,8 +50,7 @@
             key="SOFTWARE\Policies\Microsoft\WirelessDisplay" 
             valueName="EnforcePinBasedPairing">
       <parentCategory ref="Wireless_Display_Category" />
-      <!-- TODO: Change this to TH2 when they define a constant for it. -->
-      <supportedOn ref="windows:SUPPORTED_Windows_10_0 "/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
       <enabledValue> <decimal value="1" /> </enabledValue>
       <disabledValue> <decimal value="0" /> </disabledValue>
     </policy>
@@ -61,8 +60,7 @@
             key="SOFTWARE\Policies\Microsoft\WirelessDisplay" 
             valueName="PreferPinBasedPairing">
       <parentCategory ref="Wireless_Display_Category" />
-      <!-- TODO: Change this to TH2 when they define a constant for it. -->
-      <supportedOn ref="windows:SUPPORTED_Windows_10_0 "/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
       <enabledValue> <decimal value="1" /> </enabledValue>
       <disabledValue> <decimal value="0" /> </disabledValue>
     </policy>

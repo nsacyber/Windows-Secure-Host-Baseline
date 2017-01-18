@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+  <displayName>Windows Vista products table</displayName>
+  <description>This file contains all the product definitions used in supported on definitions.</description>
+
+  <resources>
+    <stringTable>
+      <!-- Microsoft Windows -->
+      <string id="MicrosoftWindows">Windows operating system</string>
+      <string id="MicrosoftWindows2000">Windows 2000 operating systems</string>
+      <string id="MicrosoftWindows2000_RTM">Windows 2000</string>
+      <string id="MicrosoftWindows2000_SP1">Windows 2000 Service Pack 1</string>
+      <string id="MicrosoftWindows2000_SP2">Windows 2000 Service Pack 2</string>
+      <string id="MicrosoftWindows2000_SP3">Windows 2000 Service Pack 3</string>
+      <string id="MicrosoftWindows2000_SP4">Windows 2000 Service Pack 4</string>
+
+      <string id="MicrosoftWindowsXP">Windows XP operating systems</string>
+      <string id="MicrosoftWindowsXP_RTM">Windows XP</string>
+      <string id="MicrosoftWindowsXP_SP1">Windows XP Service Pack 1</string>
+      <string id="MicrosoftWindowsXP_SP2">Windows XP Service Pack 2</string>
+
+      <string id="MicrosoftWindowsServer2003">Windows Server 2003 operating systems</string>
+      <string id="MicrosoftWindowsServer2003_RTM">Windows Server 2003</string>
+      <string id="MicrosoftWindowsServer2003_SP1">Windows Server 2003 Service Pack 1</string>
+      <string id="MicrosoftWindowsServer2003_R2">Windows Server 2003 R2</string>
+      <string id="MicrosoftWindowsServer2003_SP2">Windows Server 2003 Service Pack 2</string>
+
+      <string id="MicrosoftWindowsVista">Windows Vista operating systems</string>
+      <string id="MicrosoftWindowsVista_RTM">Windows Vista</string>
+      <string id="MicrosoftWindowsVista_SP1">Windows Vista Service Pack 1</string>
+
+      <string id="WindowsServer2008">Windows Server 2008 operating systems</string>
+      <string id="WindowsServer2008_RTM">Windows Server 2008</string>
+      <string id="WindowsServer2008_R2">Windows Server 2008 R2</string>
+
+      <string id="MicrosoftWindows7">Windows 7 operating systems</string>
+      <string id="MicrosoftWindows7_RTM">Windows 7</string>
+
+      <string id="MicrosoftWindows8">Windows 8 operating systems</string>
+      <string id="MicrosoftWindows8_RTM">Windows 8</string>
+
+      <string id="MicrosoftWindowsServer8">Windows Server 2012 operating systems</string>
+      <string id="MicrosoftWindowsServer8_RTM">Windows Server 2012</string>
+
+      <string id="MicrosoftWindows_RT">Windows RT operating systems</string>
+      <string id="MicrosoftWindows_RT_RTM">Windows RT</string>
+
+      <string id="MicrosoftWindows_6_3">Windows 8.1 operating systems</string>
+      <string id="MicrosoftWindows_6_3_RTM">Windows 8.1</string>
+
+      <string id="MicrosoftWindowsServer_6_3">Windows Server 2012 R2 operating systems</string>
+      <string id="MicrosoftWindowsServer_6_3_RTM">Windows Server 2012 R2</string>
+
+      <string id="MicrosoftWindows_6_3_RT">Windows RT 8.1 operating systems</string>
+      <string id="MicrosoftWindows_6_3_RT_RTM">Windows RT 8.1</string>
+
+      <string id="MicrosoftWindows_10_0">Windows 10 operating systems</string>
+      <string id="MicrosoftWindows_10_0_RTM">Windows 10</string>
+
+      <string id="MicrosoftWindowsServer_10_0">Windows 10 Server operating systems</string>
+      <string id="MicrosoftWindowsServer_10_0_RTM">Windows 10 Server</string>
+
+      <string id="MicrosoftWindows_10_0_RT">Windows 10 RT operating systems</string>
+      <string id="MicrosoftWindows_10_0_RT_RTM">Windows 10 RT</string>
+
+      <!-- Internet Explorer -->
+      <string id="InternetExplorer">Internet Explorer</string>
+      <string id="InternetExplorer30">Internet Explorer 3</string>
+      <string id="InternetExplorer40">Internet Explorer 4</string>
+      <string id="InternetExplorer50">Internet Explorer 5</string>
+      <string id="InternetExplorer60">Internet Explorer 6</string>
+      <string id="InternetExplorer70">Internet Explorer 7</string>
+      <string id="InternetExplorer80">Internet Explorer 8</string>
+      <string id="InternetExplorer90">Internet Explorer 9</string>
+      <string id="InternetExplorer100">Internet Explorer 10</string>
+      <string id="InternetExplorer110">Internet Explorer 11</string>
+
+      <!-- BITS -->
+      <string id="BITS">Background Intelligent Transfer Service</string>
+      <string id="BITS15">BITS 1.5</string>
+      <string id="BITS20">BITS 2.0</string>
+      <string id="BITS35">BITS 3.5</string>
+      <string id="BITS40">BITS 4.0</string>
+
+      <!-- NetMeeting -->
+      <string id="NetMeeting">NetMeeting</string>
+      <string id="NetMeeting30">NetMeeting 3.0</string>
+
+      <!-- Windows Installer -->
+      <string id="WindowsInstaller">Windows Installer</string>
+      <string id="WindowsInstaller20">Windows Installer v2</string>
+      <string id="WindowsInstaller30">Windows Installer v3</string>
+      <string id="WindowsInstaller40">Windows Installer v4</string>
+      <string id="SUPPORTED_Win2KWithWindowsInstaller20">Windows 2000 with Windows Installer v2</string>
+
+      <!-- Windows Search -->
+      <string id="WindowsSearch">Windows Search</string>
+      <string id="SUPPORTED_WindowsPreVistaWithWindowsSearch">Windows Server 2003 or Windows XP with Windows Search installed</string>
+
+      <!-- Windows Media Player -->
+      <string id="WindowsMediaPlayer">Windows Media Player</string>
+      <string id="WindowsMediaPlayer8">Windows Media Player 8</string>
+      <string id="WindowsMediaPlayer9">Windows Media Player 9</string>
+      <string id="WindowsMediaPlayer10">Windows Media Player 10</string>
+      <string id="WindowsMediaPlayer11">Windows Media Player 11</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

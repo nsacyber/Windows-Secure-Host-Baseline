@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>Prevent OneDrive file sync</displayName>
+  <description>Prevent files from being automatically synced to OneDrive</description>
+  <resources>
+    <stringTable>
+      <!-- general -->
+      <string id="OneDriveSettingCategory">OneDrive</string>
+      
+      <!-- prevent file sync-->
+      <string id="PreventOneDriveFileSync">Prevent the usage of OneDrive for file storage</string>
+      <string id="PreventOneDriveFileSync_help">This policy setting lets you prevent apps and features from working with files on OneDrive.
+If you enable this policy setting:
+
+* Users can’t access OneDrive from the OneDrive app and file picker.
+* Windows Store apps can’t access OneDrive using the WinRT API.
+* OneDrive doesn’t appear in the navigation pane in File Explorer.
+* OneDrive files aren’t kept in sync with the cloud.
+* Users can’t automatically upload photos and videos from the camera roll folder.
+
+If you disable or do not configure this policy setting, apps and features can work with OneDrive file storage.</string>
+
+      <!-- prevent file sync for Blue-->
+      <string id="PreventOneDriveFileSyncForBlue">Prevent the usage of OneDrive for file storage on Windows 8.1</string>
+      <string id="PreventOneDriveFileSyncForBlue_help">This policy setting lets you prevent apps and features from working with files on OneDrive for Windows 8.1.
+If you enable this policy setting:
+
+* Users can’t access OneDrive from the OneDrive app and file picker.
+* Windows Store apps can’t access OneDrive using the WinRT API.
+* OneDrive doesn’t appear in the navigation pane in File Explorer.
+* OneDrive files aren’t kept in sync with the cloud.
+* Users can’t automatically upload photos and videos from the camera roll folder.
+
+If you disable or do not configure this policy setting, apps and features can work with OneDrive file storage.</string>
+
+      <!-- metered network settings -->
+      <string id="PreventOneDriveFileSyncOnMeteredNetwork">Prevent OneDrive files from syncing over metered connections</string>
+      <string id="PreventOneDriveFileSyncOnMeteredNetwork_help">This policy setting allows configuration of OneDrive file sync behavior on metered connections.</string>
+      <string id="OneDriveNeverSyncOnMeteredRoaming">Block syncing on all metered connections</string>
+      <string id="OneDriveSyncOnMeteredNotRoaming">Block syncing on metered connections only when roaming</string>
+
+      <!-- default save to OneDrive -->
+      <string id="DisableLibrariesDefaultSaveToOneDrive_Title">Save documents to OneDrive by default</string>
+      <string id="DisableLibrariesDefaultSaveToOneDrive_Description">This policy setting lets you disable OneDrive as the default save location. It does not prevent apps and users from saving files on OneDrive. If you disable this policy setting, files will be saved locally by default. Users will still be able to change the value of this setting to save to OneDrive by default. They will also be able to open and save files on OneDrive using the OneDrive app and file picker, and Windows Store apps will still be able to access OneDrive using the WinRT API. If you enable or do not configure this policy setting, users with a connected account will save documents to OneDrive by default.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="PreventOneDriveFileSyncOnMeteredNetwork">
+        <dropdownList refId="OneDriveMeteredNetwork_Dropdown" noSort="true" defaultItem="0">Metered Network Setting</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

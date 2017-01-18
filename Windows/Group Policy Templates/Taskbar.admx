@@ -139,7 +139,7 @@
         </policy>
         <policy name="EnableLegacyBalloonNotifications" class="User" displayName="$(string.EnableLegacyBalloonNotifications)" explainText="$(string.EnableLegacyBalloonNotifications_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="EnableLegacyBalloonNotifications">
             <parentCategory ref="windows:StartMenu" />
-            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
             <enabledValue>
                 <decimal value="1" />
             </enabledValue>
@@ -209,7 +209,7 @@
         </policy>
         <policy name="DisableNotificationCenter" class="User" displayName="$(string.DisableNotificationCenter)" explainText="$(string.DisableNotificationCenter_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableNotificationCenter">
             <parentCategory ref="windows:StartMenu" />
-            <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
             <enabledValue>
                 <decimal value="1" />
             </enabledValue>

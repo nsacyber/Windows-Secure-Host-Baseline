@@ -21,5 +21,43 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
+    <policy name="PreventOnedriveFileSyncForBlue" class="Machine" displayName="$(string.PreventOneDriveFileSyncForBlue)" explainText="$(string.PreventOneDriveFileSyncForBlue_help)" key="Software\Policies\Microsoft\Windows\OneDrive" valueName="DisableFileSync">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventOneDriveFileSyncOnMeteredNetwork" class="Machine" presentation="$(presentation.PreventOneDriveFileSyncOnMeteredNetwork)" displayName="$(string.PreventOneDriveFileSyncOnMeteredNetwork)" explainText="$(string.PreventOneDriveFileSyncOnMeteredNetwork_help)" key="Software\Policies\Microsoft\Windows\OneDrive">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <elements>
+        <enum id="OneDriveMeteredNetwork_Dropdown" valueName="DisableMeteredNetworkFileSync">
+          <item displayName="$(string.OneDriveNeverSyncOnMeteredRoaming)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.OneDriveSyncOnMeteredNotRoaming)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableLibrariesDefaultSaveToOneDrive" class="Machine" displayName="$(string.DisableLibrariesDefaultSaveToOneDrive_Title)" explainText="$(string.DisableLibrariesDefaultSaveToOneDrive_Description)" key="Software\Policies\Microsoft\Windows\OneDrive" valueName="DisableLibrariesDefaultSaveToOneDrive">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>

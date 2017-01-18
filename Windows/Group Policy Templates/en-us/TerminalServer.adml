@@ -1,0 +1,1309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="TS_SUPPORTED_Windows10">At least Windows 10 or Windows Server 2016</string>
+      <string id="TS_SUPPORTED_Windows8_or_ARM">At least Windows 8 or Windows RT</string>
+      <string id="TS_SUPPORTED_Windows8_Server">At least Windows Server 2012</string>
+      <string id="TS_SUPPORTED_Windows8_Enterprise_AND_Server"> At least Windows 8 Enterprise or Windows Server 2012</string>
+      <string id="TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2">Windows 7 or Windows Server 2008 R2 (and their subsequent Service Packs) only</string>
+      <string id="TS_SUPPORTED_ONLY_LEGACY">Windows Server 2008 R2, Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, and Windows XP</string>
+      <string id="TS_SUPPORTED_Windows7_Server">At least Windows Server 2008 R2</string>
+      <string id="TS_SUPPORTED_Windows7">At least Windows 7</string>
+      <string id="TS_SUPPORTED_Windows8_Server_With_RDSH"> At least Windows Server 2012 with RDSH role installed</string>
+      <string id="TS_SUPPORTED_Windows7_OR_SERVER2K8R2_SP1">At least Windows 7 with Service Pack 1 or Windows Server 2008 R2 with Service Pack 1</string>
+      <string id="TS_SUPPORTED_Vista_SP1">At least Windows Vista with Service Pack 1</string>
+      <string id="TS_SUPPORTED_Win2k">At least Windows 2000 Terminal Services</string>
+      <string id="TS_SUPPORTED_Win2k3">At least Windows Server 2003</string>
+      <string id="TS_SUPPORTED_Win2k3_Sp1">At least Windows Server 2003 with Service Pack 1</string>
+      <string id="TS_SUPPORTED_Win2k3_Sp1_Only"> Windows Server 2003 with Service Pack 1 only</string>
+      <string id="TS_SUPPORTED_Win2k3_Sp2">At least Windows Server 2003 with Service Pack 2</string>
+      <string id="TS_SUPPORTED_WindowsXP">At least Windows XP</string>
+      <string id="SUPPORTED_WindowsNET_Enterprise">At least Windows Server 2003, Enterprise Edition</string>
+      <string id="TS_SUPPORTED_WindowsXP_Win2K3_only">At least Windows XP and Windows Server 2003 only</string>
+      <string id="TS_SUPPORTED_WindowsServer2008OrWin7">At least Windows Server 2008 or Windows 7</string>
+      <string id="TS_SUPPORTED_WindowsServer2008R2_Only"> Windows Server 2008 R2 only</string>
+      <string id="TS_TERMINAL_SERVER">Remote Desktop Session Host</string>
+      <string id="TS_TERMINAL_SERVER_Help">Controls configuration of a Remote Desktop Session Host server</string>
+      <string id="TS_LICENSE_SERVER">RD Licensing</string>
+      <string id="TS_CONNECTIONS">Connections</string>
+      <string id="TS_CONNECTIONS_Help">Controls connection settings on a Remote Desktop Session Host server</string>
+      <string id="TS_PRINT_REDIRECTION">Printer Redirection</string>
+      <string id="TS_PRINT_REDIRECTION_Help">Controls printer configuration for Remote Desktop Services sessions</string>
+      <string id="TS_SESSION_TIME_LIMITS">Session Time Limits</string>
+      <string id="TS_SESSION_TIME_LIMITS_Help">Controls time limits for Remote Desktop Services sessions</string>
+      <string id="TS_PROFILES">Profiles</string>
+      <string id="TS_PROFILES_Help">Controls roaming profile and home directory settings for Remote Desktop Services sessions</string>
+      <string id="TS_15_bit">15 bit</string>
+      <string id="TS_16_bit">16 bit</string>
+      <string id="TS_24_bit">24 bit</string>
+      <string id="TS_8_bit">8 bit</string>
+      <string id="TS_32_bit">32 bit</string>
+
+      <string id="TS_AUDIOMAP_EXPLAIN">This policy setting allows you to specify whether users can redirect the remote computer's audio and video output in a Remote Desktop Services session.
+Users can specify where to play the remote computer's audio output by configuring the remote audio settings on the Local Resources tab in Remote Desktop Connection (RDC). Users can choose to play the remote audio on the remote computer or on the local computer. Users can also choose to not play the audio. Video playback can be configured by using the videoplayback setting in a Remote Desktop Protocol (.rdp) file. By default, video playback is enabled.
+
+By default, audio and video playback redirection is not allowed when connecting to a computer running Windows Server 2008 R2, Windows Server 2008, or Windows Server 2003. Audio and video playback redirection is allowed by default when connecting to a computer running Windows 8, Windows Server 2012, Windows 7, Windows Vista, or Windows XP Professional.
+
+If you enable this policy setting, audio and video playback redirection is allowed.
+
+If you disable this policy setting, audio and video playback redirection is not allowed, even if audio playback redirection is specified in RDC, or video playback is specified in the .rdp file.
+
+If you do not configure this policy setting audio and video playback redirection is not specified at the Group Policy level. 
+</string>
+      <string id="TS_AUDIOCAPTUREMAP_EXPLAIN">This policy setting allows you to specify whether users can record audio to the remote computer in a Remote Desktop Services session.
+Users can specify whether to record audio to the remote computer by configuring the remote audio settings on the Local Resources tab in Remote Desktop Connection (RDC). Users can record audio by using an audio input device on the local computer, such as a built-in microphone.
+
+By default, audio recording redirection is not allowed when connecting to a computer running Windows Server 2008 R2. Audio recording redirection is allowed by default when connecting to a computer running at least Windows 7, or Windows Server 2008 R2. 
+
+If you enable this policy setting, audio recording redirection is allowed.
+
+If you disable this policy setting, audio recording redirection is not allowed, even if audio recording redirection is specified in RDC.
+
+If you do not configure this policy setting, Audio recording redirection is not specified at the Group Policy level.
+</string>
+      <string id="TS_CLIENT_AUDIO_QUALITY">Limit audio playback quality</string>
+      <string id="TS_AUDIO_QUALITY_EXPLAIN">This policy setting allows you to limit the audio playback quality for a Remote Desktop Services session. Limiting the quality of audio playback can improve connection performance, particularly over slow links.
+
+If you enable this policy setting, you must select one of the following:  High, Medium, or Dynamic. If you select High, the audio will be sent without any compression and with minimum latency. This requires a large amount of bandwidth. If you select Medium, the audio will be sent with some compression and with minimum latency as determined by the codec that is being used. If you select Dynamic, the audio will be sent with a level of compression that is determined by the bandwidth of the remote connection.
+
+The audio playback quality that you specify on the remote computer by using this policy setting is the maximum quality that can be used for a Remote Desktop Services session, regardless of the audio playback quality configured on the client computer.  For example, if the audio playback quality configured on the client computer is higher than the audio playback quality configured on the remote computer, the lower level of audio playback quality will be used.
+
+Audio playback quality can be configured on the client computer by using the audioqualitymode setting in a Remote Desktop Protocol (.rdp) file. By default, audio playback quality is set to Dynamic.
+
+If you disable or do not configure this policy setting, audio playback quality will be set to Dynamic.</string>
+      <string id="TS_AUDIO_QUALITY_DYNAMIC">Dynamic</string>
+      <string id="TS_AUDIO_QUALITY_MEDIUM">Medium</string>
+      <string id="TS_AUDIO_QUALITY_HIGH">High</string>
+      <string id="TS_AUTO_RECONNECT">Automatic reconnection</string>
+      <string id="TS_AUTO_RECONNECT_EXPLAIN">Specifies whether to allow Remote Desktop Connection clients to automatically reconnect to sessions on an RD Session Host server if their network link is temporarily lost. By default, a maximum  of twenty reconnection attempts are made at five second intervals.
+
+If the status is set to Enabled, automatic reconnection is attempted for all clients running Remote Desktop Connection whenever their network connection is lost.
+
+If the status is set to Disabled, automatic reconnection of clients is prohibited.
+
+If the status is set to Not Configured, automatic reconnection is not specified at the  Group Policy level. However, users can configure automatic reconnection using the "Reconnect if connection is dropped" checkbox on the Experience tab in Remote Desktop Connection.
+</string>
+      <string id="TS_CLIENT">Remote Desktop Connection Client</string>
+      <string id="TS_CLIENT_AUDIO">Allow audio and video playback redirection</string>
+      <string id="TS_CLIENT_AUDIO_CAPTURE">Allow audio recording redirection</string>
+      <string id="TS_CLIENT_CLIPBOARD">Do not allow Clipboard redirection</string>
+      <string id="TS_CLIENT_COM">Do not allow COM port redirection</string>
+      <string id="TS_Client_Compatible">Client Compatible</string>
+      <string id="TS_CLIENT_DEFAULT_M">Do not set default client printer to be default printer in a session</string>
+      <string id="TS_CLIENT_DEFAULT_EXPLAIN_M">This policy setting allows you to specify whether the client default printer is automatically set as the default printer in a session on an RD Session Host server.
+
+By default, Remote Desktop Services automatically designates the client default printer as the default printer in a session on an RD Session Host server. You can use this policy setting to override this behavior.
+
+If you enable this policy setting, the default printer is the printer specified on the remote computer.
+
+If you disable this policy setting, the RD Session Host server automatically maps the client default printer and sets it as the default printer upon connection.
+
+If you do not configure this policy setting, the default printer is not specified at the Group Policy level.
+</string>
+
+      <string id="TS_EASY_PRINT">Use Remote Desktop Easy Print printer driver first</string>
+      <string id="TS_EASY_PRINT_EXPLAIN">This policy setting allows you to specify whether the Remote Desktop Easy Print printer driver is used first to install all client printers. 
+
+If you enable or do not configure this policy setting, the RD Session Host server first tries to use the Remote Desktop Easy Print printer driver to install all client printers. If for any reason the Remote Desktop Easy Print printer driver cannot be used, a printer driver on the RD Session Host server that matches the client printer is used. If the RD Session Host server does not have a printer driver that matches the client printer, the client printer is not available for the Remote Desktop session.
+
+If you disable this policy setting, the RD Session Host server tries to find a suitable printer driver to install the client printer. If the RD Session Host server does not have a printer driver that matches the client printer, the server tries to use the Remote Desktop Easy Print driver to install the client printer. If for any reason the Remote Desktop Easy Print printer driver cannot be used, the client printer is not available for the Remote Desktop Services session.
+
+Note: If the "Do not allow client printer redirection" policy setting is enabled, the "Use Remote Desktop Easy Print printer driver first" policy setting is ignored.</string>
+
+ <string id="TS_CLIENT_DISABLE_PASSWORD_SAVING">Do not allow passwords to be saved</string>
+      <string id="TS_CLIENT_DISABLE_PASSWORD_SAVING_MACHINE_EXPLAIN">Controls whether passwords can be saved on this computer from Remote Desktop Connection.
+
+If you enable this setting the password saving checkbox in Remote Desktop Connection will be disabled and users will no longer be able to save passwords. When a user opens an RDP file using Remote Desktop Connection and saves his settings, any password that previously existed in the RDP file will be deleted.
+
+If you disable this setting or leave it not configured, the user will be able to save passwords using Remote Desktop Connection.</string>
+      <string id="TS_CLIENT_DISABLE_PASSWORD_SAVING_USER_EXPLAIN">Controls whether a user can save passwords using Remote Desktop Connection.
+
+If you enable this setting the credential saving checkbox in Remote Desktop Connection will be disabled and users will no longer be able to save passwords. When a user opens an RDP file using Remote Desktop Connection and saves his settings, any password that previously existed in the RDP file will be deleted.
+
+If you disable this setting or leave it not configured, the user will be able to save passwords using Remote Desktop Connection</string>
+      <string id="TS_CLIENT_DRIVE_EXPLAIN_M">This policy setting specifies whether to prevent the mapping of client drives in a Remote Desktop Services session (drive redirection).
+
+By default, an RD Session Host server maps client drives automatically upon connection. Mapped drives appear in the session folder tree in File Explorer or Computer in the format &lt;driveletter&gt; on &lt;computername&gt;. You can use this policy setting to override this behavior.
+
+If you enable this policy setting, client drive redirection is not allowed in Remote Desktop Services sessions, and Clipboard file copy redirection is not allowed on computers running Windows Server 2003, Windows 8, and Windows XP.
+
+If you disable this policy setting, client drive redirection is always allowed. In addition, Clipboard file copy redirection is always allowed if Clipboard redirection is allowed.
+
+If you do not configure this policy setting, client drive redirection and Clipboard file copy redirection are not specified at the Group Policy level.
+</string>
+      <string id="TS_CLIENT_DRIVE_M">Do not allow drive redirection</string>
+      <string id="TS_CLIENT_HELP">Controls Remote Desktop Connection client settings</string>
+      <string id="TS_CLIENT_LPT">Do not allow LPT port redirection</string>
+      <string id="TS_CLIENT_PNP">Do not allow supported Plug and Play device redirection</string>
+      <string id="TS_CLIENT_PRINTER">Do not allow client printer redirection</string>
+      <string id="TS_CLIPBOARDMAP_EXPLAIN">This policy setting specifies whether to prevent the sharing of Clipboard contents (Clipboard redirection) between a remote computer and a client computer during a Remote Desktop Services session.
+
+You can use this setting to prevent users from redirecting Clipboard data to and from the remote computer and the local computer. By default, Remote Desktop Services allows Clipboard redirection.
+
+If you enable this policy setting, users cannot redirect Clipboard data.
+
+If you disable this policy setting, Remote Desktop Services always allows Clipboard redirection.
+
+If you do not configure this policy setting, Clipboard redirection is not specified at the Group Policy level. 
+</string>
+      <string id="TS_COLOR_EXPLAIN">This policy setting allows you to specify the maximum color resolution (color depth) for Remote Desktop Services connections.
+
+You can use this policy setting to set a limit on the color depth of any connection that uses RDP. Limiting the color depth can improve connection performance, particularly over slow links, and reduce server load.
+
+If you enable this policy setting, the color depth that you specify is the maximum color depth allowed for a user's RDP connection. The actual color depth for the connection is determined by the color support available on the client computer. If you select Client Compatible, the highest color depth supported by the client will be used.
+
+If you disable or do not configure this policy setting, the color depth for connections is not specified at the Group Policy level.
+
+Note:
+1.	Setting the color depth to 24 bits is only supported on Windows Server 2003 and Windows XP Professional.
+2.	The value specified in this policy setting is not applied to connections from client computers that are using at least Remote Desktop Protocol 8.0 (computers running at least Windows 8 or Windows Server 2012). The 32-bit color depth format is always used for these connections.
+3.	For connections from client computers that are using Remote Desktop Protocol 7.1 or earlier versions that are connecting to computers running at least Windows 8 or Windows Server 2012, the minimum of the following values is used as the color depth format:
+a.	Value specified by this policy setting
+b.	Maximum color depth supported by the client
+c.	Value requested by the client
+
+If the client does not support at least 16 bits, the connection is terminated.
+      </string>
+      <string id="TS_COLORDEPTH">Limit maximum color depth</string>
+      <string id="TS_Comp_Help">Controls Remote Desktop Services configuration and properties of client sessions for individual computers or groups of computers.</string>
+      <string id="TS_COMPORTMAP_EXPLAIN">This policy setting specifies whether to prevent the redirection of data to client COM ports from the remote computer in a Remote Desktop Services session.
+
+You can use this setting to prevent users from redirecting data to COM port peripherals or mapping local COM ports while they are logged on to a Remote Desktop Services session. By default, Remote Desktop Services allows this COM port redirection.
+
+If you enable this policy setting, users cannot redirect server data to the local COM port.
+
+If you disable this policy setting, Remote Desktop Services always allows COM port redirection.
+
+If you do not configure this policy setting, COM port redirection is not specified at the Group Policy level. 
+
+</string>
+      <string id="TS_DEVMAP_EXPLAIN">This policy setting lets you control the redirection of supported Plug and Play and RemoteFX USB devices, such as Windows Portable Devices, to the remote computer in a Remote Desktop Services session. 
+
+By default, Remote Desktop Services does not allow redirection of supported Plug and Play and RemoteFX USB devices.
+
+If you disable this policy setting, users can redirect their supported Plug and Play devices to the remote computer. Users can use the More option on the Local Resources tab of Remote Desktop Connection to choose the supported Plug and Play devices to redirect to the remote computer.
+
+If you enable this policy setting, users cannot redirect their supported Plug and Play devices to the remote computer.If you do not configure this policy setting, users can redirect their supported Plug and Play devices to the remote computer only if it is running Windows Server 2012 R2 and earlier versions.
+
+Note: You can disable redirection of specific types of supported Plug and Play devices by using Computer Configuration\Administrative Templates\System\Device Installation\Device Installation Restrictions policy settings.
+
+</string>
+      <string id="TS_MAXMONITOR_EXPLAIN">This policy setting allows you to limit the number of monitors that a user can use to display a Remote Desktop Services session. Limiting the number of monitors to display a Remote Desktop Services session can improve connection performance, particularly over slow links, and reduce server load.
+
+If you enable this policy setting, you can specify the number of monitors that can be used to display a Remote Desktop Services session. You can specify a number from 1 to 16.
+
+If you disable or do not configure this policy setting, the number of monitors that can be used to display a Remote Desktop Services session is not specified at the Group Policy level.
+</string>
+      <string id="TS_MAXMONITOR">Limit number of monitors</string>
+      <string id="TS_DISABLE_CONNECTIONS">Allow users to connect remotely by using Remote Desktop Services</string>
+      <string id="TS_DISABLE_CONNECTIONS_EXPLAIN">This policy setting allows you to configure remote access to computers by using Remote Desktop Services.
+
+If you enable this policy setting, users who are members of the Remote Desktop Users group on the target computer can connect remotely to the target computer by using Remote Desktop Services.
+
+If you disable this policy setting, users cannot connect remotely to the target computer by using Remote Desktop Services. The target computer will maintain any current connections, but will not accept any new incoming connections.
+
+If you do not configure this policy setting, Remote Desktop Services uses the Remote Desktop setting on the target computer to determine whether the remote connection is allowed. This setting is found on the Remote tab in the System properties sheet. By default, remote connections are not allowed. 
+
+Note: You can limit which clients are able to connect remotely by using Remote Desktop Services by configuring the policy setting at Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Session Host\Security\Require user authentication for remote connections by using Network Level Authentication. 
+
+You can limit the number of users who can connect simultaneously by configuring the policy setting at Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Session Host\Connections\Limit number of connections, or by configuring the policy setting Maximum Connections by using the Remote Desktop Session Host WMI Provider.
+</string>
+      <string id="TS_MAXDISPLAYRES">Limit maximum display resolution</string>
+      <string id="TS_MAXDISPLAYRES_EXPLAIN">This policy setting allows you to specify the maximum display resolution that can be used by each monitor used to display a Remote Desktop Services session. Limiting the resolution used to display a remote session can improve connection performance, particularly over slow links, and reduce server load.
+
+If you enable this policy setting, you must specify a resolution width and height. The resolution specified will be the maximum resolution that can be used by each monitor used to display a Remote Desktop Services session.
+
+If you disable or do not configure this policy setting, the maximum resolution that can be used by each monitor to display a Remote Desktop Services session will be determined by the values specified on the Display Settings tab in the Remote Desktop Session Host Configuration tool.
+</string>
+      <string id="TS_DISABLE_REMOTE_DESKTOP_WALLPAPER">Enforce Removal of Remote Desktop Wallpaper</string>
+      <string id="TS_DISABLE_REMOTE_DESKTOP_WALLPAPER_EXPLAIN">Specifies whether desktop wallpaper is displayed to remote clients connecting via Remote Desktop Services.
+
+You can use this setting to enforce the removal of wallpaper during a Remote Desktop Services session. By default, Windows XP Professional displays wallpaper to remote clients connecting through Remote Desktop, depending on the client configuration (see the Experience tab in the Remote Desktop Connection options for more information). Servers running Windows Server 2003 do not display wallpaper by default to Remote Desktop Services sessions.
+
+If the status is set to Enabled, wallpaper never appears in a Remote Desktop Services session.
+
+If the status is set to Disabled, wallpaper might appear in a Remote Desktop Services session, depending on the client configuration.
+
+If the status is set to Not Configured, the default behavior applies.</string>
+      <string id="TS_DRIVE_G">G:</string>
+      <string id="TS_DRIVE_H">H:</string>
+      <string id="TS_DRIVE_I">I:</string>
+      <string id="TS_DRIVE_J">J:</string>
+      <string id="TS_DRIVE_K">K:</string>
+      <string id="TS_DRIVE_L">L:</string>
+      <string id="TS_DRIVE_M">M:</string>
+      <string id="TS_DRIVE_N">N:</string>
+      <string id="TS_DRIVE_O">O:</string>
+      <string id="TS_DRIVE_P">P:</string>
+      <string id="TS_DRIVE_Q">Q:</string>
+      <string id="TS_DRIVE_R">R:</string>
+      <string id="TS_DRIVE_S">S:</string>
+      <string id="TS_DRIVE_T">T:</string>
+      <string id="TS_DRIVE_U">U:</string>
+      <string id="TS_DRIVE_V">V:</string>
+      <string id="TS_DRIVE_W">W:</string>
+      <string id="TS_DRIVE_X">X:</string>
+      <string id="TS_DRIVE_Y">Y:</string>
+      <string id="TS_DRIVE_Z">Z:</string>
+      <string id="TS_SECURITY">Security</string>
+      <string id="TS_SECURITY_Help">Controls security settings on an RD Session Host server</string>
+      <string id="TS_ENCRYPTION_CLIENT_COMPATIBLE">Client Compatible</string>
+      <string id="TS_ENCRYPTION_EXPLAIN">Specifies whether to require the use of a specific encryption level to secure communications between client computers and RD Session Host servers during Remote Desktop Protocol (RDP) connections. This policy only applies when you are using native RDP encryption. However, native RDP encryption (as opposed to SSL encryption) is not recommended. This policy does not apply to SSL encryption.
+
+If you enable this policy setting, all communications between clients and RD Session Host servers during remote connections must use the encryption method specified in this setting. By default, the encryption level is set to High. The following encryption methods are available:
+
+* High: The High setting encrypts data sent from the client to the server and from the server to the client by using strong 128-bit encryption. Use this encryption level in environments that contain only 128-bit clients (for example, clients that run Remote Desktop Connection). Clients that do not support this encryption level cannot connect to RD Session Host servers.
+
+* Client Compatible: The Client Compatible setting encrypts data sent between the client and the server at the maximum key strength supported by the client. Use this encryption level in environments that include clients that do not support 128-bit encryption.
+
+* Low: The Low setting encrypts only data sent from the client to the server by using 56-bit encryption.
+
+If you disable or do not configure this setting, the encryption level to be used for remote connections to RD Session Host servers is not enforced through Group Policy.
+
+Important
+
+FIPS compliance can be configured through the System cryptography. Use FIPS compliant algorithms for encryption, hashing, and signing settings in Group Policy (under Computer Configuration\Windows Settings\Security Settings\Local Policies\Security Options.) The FIPS compliant setting encrypts and decrypts data sent from the client to the server and from the server to the client, with the Federal Information Processing Standard (FIPS) 140 encryption algorithms, by using Microsoft cryptographic modules. Use this encryption level when communications between clients and RD Session Host servers requires the highest level of encryption.
+</string>
+      <string id="TS_ENCRYPTION_HIGH_LEVEL">High Level</string>
+      <string id="TS_ENCRYPTION_LOW_LEVEL">Low Level</string>
+      <string id="TS_ENCRYPTION_POLICY">Set client connection encryption level</string>
+      <string id="TS_FALLBACK_DEFAULT">Do nothing if one is not found.</string>
+      <string id="TS_FALLBACK_PCL">Default to PCL if one is not found.</string>
+      <string id="TS_FALLBACK_PCL_PS">Show both PCL and PS if one is not found.</string>
+      <string id="TS_FALLBACK_PS">Default to PS if one is not found.</string>
+      <string id="TS_FALLBACKPRINTDRIVERTYPE">Specify RD Session Host server fallback printer driver behavior</string>
+      <string id="TS_FALLBACKPRINTER_EXPLAIN">This policy setting allows you to specify the RD Session Host server fallback printer driver behavior.
+
+By default, the RD Session Host server fallback printer driver is disabled. If the RD Session Host server does not have a printer driver that matches the client's printer, no printer will be available for the Remote Desktop Services session.
+
+If you enable this policy setting, the fallback printer driver is enabled, and the default behavior is for the RD Session Host server to find a suitable printer driver. If one is not found, the client's printer is not available. You can choose to change this default behavior. The available options are:
+
+"Do nothing if one is not found" - If there is a printer driver mismatch, the server will attempt to find a suitable driver. If one is not found, the client's printer is not available. This is the default behavior.
+
+"Default to PCL if one is not found" - If no suitable printer driver can be found, default to the Printer Control Language (PCL) fallback printer driver.
+
+"Default to PS if one is not found" - If no suitable printer driver can be found, default to the PostScript (PS) fallback printer driver.
+
+"Show both PCL and PS if one is not found" - If no suitable driver can be found, show both PS and PCL-based fallback printer drivers.
+
+If you disable this policy setting, the RD Session Host server fallback driver is disabled and the RD Session Host server will not attempt to use the fallback printer driver.
+
+If you do not configure this policy setting, the fallback printer driver behavior is off by default.
+
+Note: If the "Do not allow client printer redirection" setting is enabled, this policy setting is ignored and the fallback printer driver is disabled.</string>
+      <string id="TS_FORCIBLE_LOGOFF">Deny logoff of an administrator logged in to the console session</string>
+      <string id="TS_FORCIBLE_LOGOFF_EXPLAIN">This policy setting determines whether an administrator attempting to connect remotely to the console of a server can log off an administrator currently logged on to the console.
+
+This policy is useful when the currently connected administrator does not want to be logged off by another administrator. If the connected administrator is logged off, any data not previously saved is lost.
+
+If you enable this policy setting, logging off the connected administrator is not allowed.
+
+If you disable or do not configure this policy setting, logging off the connected administrator is allowed.
+
+Note: The console session is also known as Session 0. Console access can be obtained by using the /console switch from Remote Desktop Connection in the computer field name or from the command line.</string>
+      <string id="TS_GATEWAY">RD Gateway</string>
+      <string id="TS_GATEWAY_Help">Controls configuration to access an RD Gateway server</string>
+      <string id="TS_GATEWAY_BASIC">Ask for credentials, use Basic protocol</string>
+      <string id="TS_GATEWAY_LOGGED_ON_CREDS">Use locally logged-on credentials</string>
+      <string id="TS_GATEWAY_NTLM">Ask for credentials, use NTLM protocol</string>
+      <string id="TS_GATEWAY_POLICY_AUTH_METHOD">Set RD Gateway authentication method</string>
+      <string id="TS_GATEWAY_POLICY_AUTH_METHOD_HELP">Specifies the authentication method that clients must use when attempting to connect to an RD Session Host server through an RD Gateway server. You can enforce this policy setting or you can allow users to overwrite this policy setting. By default, when you enable this policy setting, it is enforced. When this policy setting is enforced, users cannot override this setting, even if they select the "Use these RD Gateway server settings" option on the client.
+
+To allow users to overwrite this policy setting, select the "Allow users to change this setting" check box. When you do this, users can specify an alternate authentication method by configuring settings on the client, using an RDP file, or using an HTML script. If users do not specify an alternate authentication method, the authentication method that you specify in this policy setting is used by default.
+
+If you disable or do not configure this policy setting, the authentication method that is specified by the user is used, if one is specified. If an authentication method is not specified, the NTLM protocol that is enabled on the client or a smart card can be used for authentication.</string>
+      <string id="TS_GATEWAY_POLICY_ENABLE">Enable connection through RD Gateway</string>
+      <string id="TS_GATEWAY_POLICY_ENABLE_HELP">If you enable this policy setting, when Remote Desktop Connection cannot connect directly to a remote computer (an RD Session Host server or a computer with Remote Desktop enabled), the clients will attempt to connect to the remote computer through an RD Gateway server. In this case, the clients will attempt to connect to the RD Gateway server that is specified in the "Set RD Gateway server address" policy setting.
+
+You can enforce this policy setting or you can allow users to overwrite this setting. By default, when you enable this policy setting, it is enforced. When this policy setting is enforced, users cannot override this setting, even if they select the "Use these RD Gateway server settings" option on the client.
+
+Note: To enforce this policy setting, you must also specify the address of the RD Gateway server by using the "Set RD Gateway server address" policy setting, or client connection attempts to any remote computer will fail, if the client cannot connect directly to the remote computer. To enhance security, it is also highly recommended that you specify the authentication method by using the "Set RD Gateway authentication method" policy setting. If you do not specify an authentication method by using this policy setting, either the NTLM protocol that is enabled on the client or a smart card can be used.
+
+To allow users to overwrite this policy setting, select the "Allow users to change this setting" check box. When you do this, users on the client can choose not to connect through the RD Gateway server by selecting the "Do not use an RD Gateway server" option. Users can specify a connection method by configuring settings on the client, using an RDP file, or using an HTML script. If users do not specify a connection method, the connection method that you specify in this policy setting is used by default.
+
+If you disable or do not configure this policy setting, clients will not use the RD Gateway server address that is specified in the "Set RD Gateway server address" policy setting. If an RD Gateway server is specified by the user, a client connection attempt will be made through that RD Gateway server.
+</string>
+      <string id="TS_GATEWAY_POLICY_SERVER">Set RD Gateway server address</string>
+      <string id="TS_GATEWAY_POLICY_SERVER_HELP">Specifies the address of the RD Gateway server that clients must use when attempting to connect to an RD Session Host server. You can enforce this policy setting or you can allow users to overwrite this policy setting. By default, when you enable this policy setting, it is enforced. When this policy setting is enforced, users cannot override this setting, even if they select the "Use these RD Gateway server settings" option on the client.
+
+Note: It is highly recommended that you also specify the authentication method by using the "Set RD Gateway authentication method" policy setting. If you do not specify an authentication method by using this setting, either the NTLM protocol that is enabled on the client or a smart card can be used.
+
+To allow users to overwrite the "Set RD Gateway server address" policy setting and connect to another RD Gateway server, you must select the "Allow users to change this setting" check box and users will be allowed to specify an alternate RD Gateway server. Users can specify an alternative RD Gateway server by configuring settings on the client, using an RDP file, or using an HTML script. If users do not specify an alternate RD Gateway server, the server that you specify in this policy setting is used by default.
+
+Note: If you disable or do not configure this policy setting, but enable the "Enable connections through RD Gateway" policy setting, client connection attempts to any remote computer will fail, if the client cannot connect directly to the remote computer. If an RD Gateway server is specified by the user, a client connection attempt will be made through that RD Gateway server.</string>
+      <string id="TS_GATEWAY_SMARTCARD">Use smart-card</string>
+      <string id="TS_GP_NODE">Remote Desktop Services</string>
+      <string id="TS_JOIN_SESSION_DIRECTORY">Join RD Connection Broker</string>
+      <string id="TS_JOIN_SESSION_DIRECTORY_EXPLAIN">This policy setting allows you to specify whether the RD Session Host server should join a farm in RD Connection Broker. RD Connection Broker tracks user sessions and allows a user to reconnect to their existing session in a load-balanced RD Session Host server farm. To participate in RD Connection Broker, the Remote Desktop Session Host role service must be installed on the server.
+
+If the policy setting is enabled, the RD Session Host server joins the farm that is specified in the RD Connection Broker farm name policy setting. The farm exists on the RD Connection Broker server that is specified in the Configure RD Connection Broker server name policy setting.
+
+If you disable this policy setting, the server does not join a farm in RD Connection Broker, and user session tracking is not performed. If the policy setting is disabled, you cannot use either the Remote Desktop Session Host Configuration tool or the Remote Desktop Services WMI Provider to join the server to RD Connection Broker.
+
+If the policy setting is not configured, the policy setting is not specified at the Group Policy level. 
+
+Notes:
+
+    1. If you enable this policy setting, you must also enable the Configure RD Connection Broker farm name and Configure RD Connection Broker server name policy settings.
+
+    2. For Windows Server 2008, this policy setting is supported on at least Windows Server 2008 Standard.
+</string>
+      <string id="TS_KEEP_ALIVE">Configure keep-alive connection interval</string>
+      <string id="TS_KEEP_ALIVE_EXPLAIN">This policy setting allows you to enter a keep-alive interval to ensure that the session state on the RD Session Host server is consistent with the client state.
+
+After an RD Session Host server client loses the connection to an RD Session Host server, the session on the RD Session Host server might remain active instead of changing to a disconnected state, even if the client is physically disconnected from the RD Session Host server. If the client logs on to the same RD Session Host server again, a new session might be established (if the RD Session Host server is configured to allow multiple sessions), and the original session might still be active.
+
+If you enable this policy setting, you must enter a keep-alive interval. The keep-alive interval determines how often, in minutes, the server checks the session state. The range of values you can enter is 1 to 999,999.
+
+If you disable or do not configure this policy setting, a keep-alive interval is not set and the server will not check the session state.</string>
+      <string id="TS_LICENSING">Licensing</string>
+      <string id="TS_LICENSING_Help">Controls configuration of RD Licensing settings on an RD Session Host server</string>
+      <string id="TS_LICENSE_SECGROUP">License server security group</string>
+      <string id="TS_LICENSE_SECGROUP_HELP">This policy setting allows you to specify the RD Session Host servers to which a Remote Desktop license server will offer Remote Desktop Services client access licenses (RDS CALs).
+
+You can use this policy setting to control which RD Session Host servers are issued RDS CALs by the Remote Desktop license server. By default, a license server issues an RDS CAL to any RD Session Host server that requests one.
+
+If you enable this policy setting and this policy setting is applied to a Remote Desktop license server, the license server will only respond to RDS CAL requests from RD Session Host servers whose computer accounts are a member of the RDS Endpoint Servers group on the license server.
+
+By default, the RDS Endpoint Servers group is empty.
+
+If you disable or do not configure this policy setting, the Remote Desktop license server issues an RDS CAL to any RD Session Host server that requests one. The RDS Endpoint Servers group is not deleted or changed in any way by disabling or not configuring this policy setting.
+
+Note: You should only enable this policy setting when the license server is a member of a domain. You can only add computer accounts for RD Session Host servers to the RDS Endpoint Servers group when the license server is a member of a domain.</string>
+      <string id="TS_LICENSE_SERVERS">Use the specified Remote Desktop license servers</string>
+      <string id="TS_LICENSE_SERVERS_Help">Controls configuration of a Remote Desktop license server</string>
+      <string id="TS_LICENSE_SERVERS_EXPLAIN">This policy setting allows you to specify the order in which an RD Session Host server attempts to locate Remote Desktop license servers.
+
+If you enable this policy setting, an RD Session Host server first attempts to locate the specified license servers. If the specified license servers cannot be located, the RD Session Host server will attempt automatic license server discovery. In the automatic license server discovery process, an RD Session Host server in a Windows Server-based domain attempts to contact a license server in the following order:
+
+    1. Remote Desktop license servers that are published in Active Directory Domain Services.
+
+    2. Remote Desktop license servers that are installed on domain controllers in the same domain as the RD Session Host server.
+
+If you disable or do not configure this policy setting, the RD Session Host server does not specify a license server at the Group Policy level.
+</string>
+      <string id="TS_LICENSE_TOOLTIP">Hide notifications about RD Licensing problems that affect the RD Session Host server</string>
+      <string id="TS_LICENSE_TOOLTIP_EXPLAIN">This policy setting determines whether notifications are displayed on an RD Session Host server when there are problems with RD Licensing that affect the RD Session Host server.
+
+By default, notifications are displayed on an RD Session Host server after you log on as a local administrator, if there are problems with RD Licensing that affect the RD Session Host server. If applicable, a notification will also be displayed that notes the number of days until the licensing grace period for the RD Session Host server will expire.
+
+If you enable this policy setting, these notifications will not be displayed on the RD Session Host server.
+
+If you disable or do not configure this policy setting, these notifications will be displayed on the RD Session Host server after you log on as a local administrator.</string>
+      <string id="TS_LICENSING_MODE">Set the Remote Desktop licensing mode</string>
+      <string id="TS_LICENSING_MODE_EXPLAIN">This policy setting allows you to specify the type of Remote Desktop Services client access license (RDS CAL) that is required to connect to this RD Session Host server.
+
+You can use this policy setting to select one of two licensing modes: Per User or Per Device.
+
+Per User licensing mode requires that each user account connecting to this RD Session Host server have an RDS Per User CAL.
+
+Per Device licensing mode requires that each device connecting to this RD Session Host server have an RDS Per Device CAL.
+
+If you enable this policy setting, the Remote Desktop licensing mode that you specify is honored by the Remote Desktop license server.
+
+If you disable or do not configure this policy setting, the licensing mode is not specified at the Group Policy level.
+</string>
+      <string id="TS_LICENSING_MODE_PER_DEVICE">Per Device</string>
+      <string id="TS_LICENSING_MODE_PER_USER">Per User</string>
+      <string id="TS_LPTPORTMAP_EXPLAIN">This policy setting specifies whether to prevent the redirection of data to client LPT ports during a Remote Desktop Services session.
+
+You can use this setting to prevent users from mapping local LPT ports and redirecting data from the remote computer to local LPT port peripherals. By default, Remote Desktop Services allows LPT port redirection.
+
+If you enable this policy setting, users in a Remote Desktop Services session cannot redirect server data to the local LPT port.
+
+If you disable this policy setting, LPT port redirection is always allowed.
+
+If you do not configure this policy setting, LPT port redirection is not specified at the Group Policy level. 
+</string>
+      <string id="TS_MAX_CON_EXPLAIN">Specifies whether Remote Desktop Services limits the number of simultaneous connections to the server.
+
+You can use this setting to restrict the number of Remote Desktop Services sessions that can be active on a server. If this number is exceeded, addtional users who try to connect receive an error message telling them that the server is busy and to try again later. Restricting the number of sessions improves performance because fewer sessions are demanding system resources. By default, RD Session Host servers allow an unlimited number of Remote Desktop Services sessions, and Remote Desktop for Administration allows two Remote Desktop Services sessions.
+
+To use this setting, enter the number of connections you want to specify as the maximum for the server. To specify an unlimited number of connections, type 999999.
+
+If the status is set to Enabled, the maximum number of connections is limited to the specified number consistent with the version of Windows and the mode of Remote Desktop Services running on the server.
+
+If the status is set to Disabled or Not Configured, limits to the number of connections are not enforced at the Group Policy level.
+
+Note: This setting is designed to be used on RD Session Host servers (that is, on servers running Windows with Remote Desktop Session Host role service installed).</string>
+      <string id="TS_MAX_CON_POLICY">Limit number of connections</string>
+      <string id="TS_NoDisconnectMenu">Remove "Disconnect" option from Shut Down dialog</string>
+      <string id="TS_NoDisconnectMenu_Help">This policy setting allows you to remove the "Disconnect" option from the Shut Down Windows dialog box in Remote Desktop Services sessions.
+
+You can use this policy setting to prevent users from using this familiar method to disconnect their client from an RD Session Host server.
+
+If you enable this policy setting, "Disconnect" does not appear as an option in the drop-down list in the Shut Down Windows dialog box.
+
+If you disable or do not configure this policy setting, "Disconnect" is not removed from the list in the Shut Down Windows dialog box.
+
+Note: This policy setting affects only the Shut Down Windows dialog box. It does not prevent users from using other methods to disconnect from a Remote Desktop Services session. This policy setting also does not prevent disconnected sessions at the server. You can control how long a disconnected session remains active on the server by configuring the "Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\RD Session Host\Session Time Limits\Set time limit for disconnected sessions" policy setting.</string>
+      <string id="TS_NoSecurityMenu">Remove Windows Security item from Start menu</string>
+      <string id="TS_NoSecurityMenu_Help">Specifies whether to remove the Windows Security item from the Settings menu on Remote Desktop clients. You can use this setting to prevent inexperienced users from logging off from Remote Desktop Services inadvertently.
+
+If the status is set to Enabled, Windows Security does not appear in Settings on the Start menu. As a result, users must type a security attention sequence, such as CTRL+ALT+END, to open the Windows Security dialog box on the client computer.
+
+If the status is set to Disabled or Not Configured, Windows Security remains in the Settings menu.</string>
+      <string id="TS_on_the_Local_machine">On the Local machine</string>
+      <string id="TS_On_the_Network">On the Network</string>
+      <string id="TS_PASSWORD">Always prompt for password upon connection</string>
+      <string id="TS_PreventLicenseUpgrade">Prevent license upgrade</string>
+      <string id="TS_PreventLicenseUpgrade_Help">This policy setting allows you to specify which version of Remote Desktop Services client access license (RDS CAL) a Remote Desktop Services license server will issue to clients connecting to RD Session Host servers running other Windows-based operating systems.
+
+A license server attempts to provide the most appropriate RDS or TS CAL for a connection. For example, a Windows Server 2008 license server will try to issue a Windows Server 2008 TS CAL for clients connecting to a terminal server running Windows Server 2008, and will try to issue a Windows Server 2003 TS CAL for clients connecting to a terminal server running Windows Server 2003.
+
+By default, if the most appropriate RDS CAL is not available for a connection, a Windows Server 2008 license server will issue a Windows Server 2008 TS CAL, if available, to the following:
+
+* A client connecting to a Windows Server 2003 terminal server
+* A client connecting to a Windows 2000 terminal server
+
+If you enable this policy setting, the license server will only issue a temporary RDS CAL to the client if an appropriate RDS CAL for the RD Session Host server is not available. If the client has already been issued a temporary RDS CAL and the temporary RDS CAL has expired, the client will not be able to connect to the RD Session Host server unless the RD Licensing grace period for the RD Session Host server has not expired.
+
+If you disable or do not configure this policy setting, the license server will exhibit the default behavior noted earlier.</string>
+      <string id="TS_PRINTERMAP_EXPLAIN">This policy setting allows you to specify whether to prevent the mapping of client printers in Remote Desktop Services sessions.
+
+You can use this policy setting to prevent users from redirecting print jobs from the remote computer to a printer attached to their local (client) computer. By default, Remote Desktop Services allows this client printer mapping.
+
+If you enable this policy setting, users cannot redirect print jobs from the remote computer to a local client printer in Remote Desktop Services sessions.
+
+If you disable this policy setting, users can redirect print jobs with client printer mapping.
+
+If you do not configure this policy setting, client printer mapping is not specified at the Group Policy level.
+</string>
+      <string id="TS_PROMPT_PASSWORD_EXPLAIN">This policy setting specifies whether Remote Desktop Services always prompts the client for a password upon connection.
+
+You can use this setting to enforce a password prompt for users logging on to Remote Desktop Services, even if they already provided the password in the Remote Desktop Connection client.
+
+By default, Remote Desktop Services allows users to automatically log on by entering a password in the Remote Desktop Connection client.
+
+If you enable this policy setting, users cannot automatically log on to Remote Desktop Services by supplying their passwords in the Remote Desktop Connection client. They are prompted for a password to log on.
+
+If you disable this policy setting, users can always log on to Remote Desktop Services automatically by supplying their passwords in the Remote Desktop Connection client.
+
+If you do not configure this policy setting, automatic logon is not specified at the Group Policy level.
+</string>
+      <string id="TS_REDIRECTION">Device and Resource Redirection</string>
+      <string id="TS_REDIRECTION_Help">Controls access to devices and resources on a client computer in Remote Desktop Services sessions</string>
+      <string id="TS_RemoteControl">Set rules for remote control of Remote Desktop Services user sessions</string>
+      <string id="TS_RemoteControl_0">No remote control allowed</string>
+      <string id="TS_RemoteControl_1">Full Control with user's permission</string>
+      <string id="TS_RemoteControl_2">Full Control without user's permission</string>
+      <string id="TS_RemoteControl_3">View Session with user's permission</string>
+      <string id="TS_RemoteControl_4">View Session without user's permission</string>
+      <string id="TS_RemoteControl_EXPLAIN">If you enable this policy setting, administrators can interact with a user's Remote Desktop Services session based on the option selected. Select the desired level of control and permission from the options list:
+
+1. No remote control allowed: Disallows an administrator to use remote control or view a remote user session.
+2. Full Control with user's permission: Allows the administrator to interact with the session, with the user's consent.
+3. Full Control without user's permission: Allows the administrator to interact with the session, without the user's consent.
+4. View Session with user's permission: Allows the administrator to watch the session of a remote user with the user's consent. 
+5. View Session without user's permission: Allows the administrator to watch the session of a remote user without the user's consent.
+
+If you disable this policy setting, administrators can interact with a user's Remote Desktop Services session, with the user's consent.</string>
+      <string id="TS_RPC_ENCRYPTION">Require secure RPC communication</string>
+      <string id="TS_RPC_ENCRYPTION_EXPLAIN">Specifies whether a Remote Desktop Session Host server requires secure RPC communication with all clients or allows unsecured communication.
+
+You can use this setting to strengthen the security of RPC communication with clients by allowing only authenticated and encrypted requests.
+
+If the status is set to Enabled, Remote Desktop Services accepts requests from RPC clients that support secure requests, and does not allow unsecured communication with untrusted clients.
+
+If the status is set to Disabled, Remote Desktop Services always requests security for all RPC traffic. However, unsecured communication is allowed for RPC clients that do not respond to the request.
+
+If the status is set to Not Configured, unsecured communication is allowed.
+
+Note: The RPC interface is used for administering and configuring Remote Desktop Services.</string>
+      <string id="TS_SD_ClustName">Configure RD Connection Broker farm name</string>
+      <string id="TS_SD_ClustName_Explain">This policy setting allows you to specify the name of a farm to join in RD Connection Broker. RD Connection Broker uses the farm name to determine which RD Session Host servers are in the same RD Session Host server farm. Therefore, you must use the same farm name for all RD Session Host servers in the same load-balanced farm. The farm name does not have to correspond to a name in Active Directory Domain Services.
+
+If you specify a new farm name, a new farm is created in RD Connection Broker. If you specify an existing farm name, the server joins that farm in RD Connection Broker.
+
+If you enable this policy setting, you must specify the name of a farm in RD Connection Broker.
+
+If you disable or do not configure this policy setting, the farm name is not specified at the Group Policy level. 
+
+Notes:
+
+     1. This policy setting is not effective unless both the Join RD Connection Broker and the Configure RD Connection Broker server name policy settings are enabled and configured by using Group Policy.
+
+     2. For Windows Server 2008, this policy setting is supported on at least Windows Server 2008 Standard.
+</string>
+      <string id="TS_SD_EXPOSE_ADDRESS">Use IP Address Redirection</string>
+      <string id="TS_SD_EXPOSE_ADDRESS_Explain">This policy setting allows you to specify the redirection method to use when a client device reconnects to an existing Remote Desktop Services session in a load-balanced RD Session Host server farm. This setting applies to an RD Session Host server that is configured to use RD Connection Broker and not to the RD Connection Broker server.
+
+If you enable this policy setting, a Remote Desktop Services client queries the RD Connection Broker server and is redirected to their existing session by using the IP address of the RD Session Host server where their session exists. To use this redirection method, client computers must be able to connect directly by IP address to RD Session Host servers in the farm.
+
+If you disable this policy setting, the IP address of the RD Session Host server is not sent to the client. Instead, the IP address is embedded in a token. When a client reconnects to the load balancer, the routing token is used to redirect the client to their existing session on the correct RD Session Host server in the farm. Only disable this setting when your network load-balancing solution supports the use of RD Connection Broker routing tokens and you do not want clients to directly connect by IP address to RD Session Host servers in the load-balanced farm.
+
+If you do not configure this policy setting, the Use IP address redirection policy setting is not enforced at the group Group policy Policy level and the default will be used. This setting is enabled by default.
+
+Notes:
+
+      1. For Windows Server 2008, this policy setting is supported on at least Windows Server 2008 Standard.
+</string>
+      <string id="TS_SD_Loc">Configure RD Connection Broker server name</string>
+      <string id="TS_SD_Loc_Explain">This policy setting allows you to specify the RD Connection Broker server that the RD Session Host server uses to track and redirect user sessions for a load-balanced RD Session Host server farm. The specified server must be running the Remote Desktop Connection Broker service. All RD Session Host servers in a load-balanced farm should use the same RD Connection Broker server.
+
+If you enable this policy setting, you must specify the RD Connection Broker server by using its fully qualified domain name (FQDN). In Windows Server 2012, for a high availability setup with multiple RD Connection Broker servers, you must provide a semi-colon separated list of the FQDNs of all the RD Connection Broker servers.
+
+If you disable or do not configure this policy setting, the policy setting is not specified at the Group Policy level.
+
+Notes:
+
+     1. For Windows Server 2008, this policy setting is supported on at least Windows Server 2008 Standard.
+
+     2. This policy setting is not effective unless the Join RD Connection Broker policy setting is enabled.
+
+     3. To be an active member of an RD Session Host server farm, the computer account for each RD Session Host server in the farm must be a member of one of the following local groups on the RD Connection Broker server: Session Directory Computers, Session Broker Computers, or RDS Endpoint Servers.
+
+</string>
+      <string id="TS_SD_Node">RD Connection Broker</string>
+      <string id="TS_SD_Node_Help">Controls configuration of an RD Session Host server that is a member of a load-balanced RD Session Host server farm</string>
+      <string id="TS_SECURITY_LAYER_EXPLAIN">This policy setting specifies whether to require the use of a specific security layer to secure communications between clients and RD Session Host servers during Remote Desktop Protocol (RDP) connections.
+
+If you enable this policy setting, all communications between clients and RD Session Host servers during remote connections must use the security method specified in this setting. The following security methods are available:
+
+* Negotiate: The Negotiate method enforces the most secure method that is supported by the client. If Transport Layer Security (TLS) version 1.0 is supported, it is used to authenticate the RD Session Host server. If TLS is not supported, native Remote Desktop Protocol (RDP) encryption is used to secure communications, but the RD Session Host server is not authenticated. Native RDP encryption (as opposed to SSL encryption) is not recommended.
+
+* RDP: The RDP method uses native RDP encryption to secure communications between the client and RD Session Host server. If you select this setting, the RD Session Host server is not authenticated. Native RDP encryption (as opposed to SSL encryption) is not recommended.
+
+* SSL (TLS 1.0): The SSL method requires the use of TLS 1.0 to authenticate the RD Session Host server. If TLS is not supported, the connection fails. This is the recommended setting for this policy.
+
+If you disable or do not configure this policy setting, the security method to be used for remote connections to RD Session Host servers is not specified at the Group Policy level.
+</string>
+      <string id="TS_SECURITY_LAYER_NEGOTIATE">Negotiate</string>
+      <string id="TS_SECURITY_LAYER_POLICY">Require use of specific security layer for remote (RDP) connections</string>
+      <string id="TS_SECURITY_LAYER_RDP">RDP</string>
+      <string id="TS_SECURITY_LAYER_SSL">SSL</string>
+      <string id="TS_Session_End_On_Limit">End session when time limits are reached</string>
+      <string id="TS_SESSION_END_ON_LIMIT_EXPLAIN">This policy setting specifies whether to end a Remote Desktop Services session that has timed out instead of disconnecting it.
+
+You can use this setting to direct Remote Desktop Services to end a session (that is, the user is logged off and the session is deleted from the server) after time limits for active or idle sessions are reached. By default, Remote Desktop Services disconnects sessions that reach their time limits.
+
+Time limits are set locally by the server administrator or by using Group Policy. See the policy settings Set time limit for active Remote Desktop Services sessions and Set time limit for active but idle Remote Desktop Services sessions policy settings.
+
+If you enable this policy setting, Remote Desktop Services ends any session that reaches its time-out limit.
+
+If you disable this policy setting, Remote Desktop Services always disconnects a timed-out session, even if specified otherwise by the server administrator.
+
+If you do not configure this policy setting, Remote Desktop Services disconnects a timed-out session, unless specified otherwise in local settings.
+
+Note: This policy setting only applies to time-out limits that are explicitly set by the administrator. This policy setting does not apply to time-out events that occur due to connectivity or network conditions. This setting appears in both Computer Configuration and User Configuration. If both settings are configured, the Computer Configuration setting takes precedence.
+</string>
+      <string id="TS_SESSIONS">Remote Session Environment</string>
+      <string id="TS_SESSIONS_Comp_Help">Controls configuration of the user interface in Remote Desktop Services sessions </string>
+      <string id="TS_LEGACY_REMOTEFX">RemoteFX for Windows Server 2008 R2</string>
+      <string id="TS_LEGACY_REMOTEFX_Comp_Help">Configures all policies that apply to RemoteFX for Windows Server 2008 R2  with Service Pack 1.</string>
+      <string id="TS_SESSIONS_Disconnected_Timeout">Set time limit for disconnected sessions</string>
+      <string id="TS_SESSIONS_DISCONNECTED_TIMEOUT_EXPLAIN">This policy setting allows you to configure a time limit for disconnected Remote Desktop Services sessions.
+
+You can use this policy setting to specify the maximum amount of time that a disconnected session remains active on the server. By default, Remote Desktop Services allows users to disconnect from a Remote Desktop Services session without logging off and ending the session.
+
+When a session is in a disconnected state, running programs are kept active even though the user is no longer actively connected. By default, these disconnected sessions are maintained for an unlimited time on the server.
+
+If you enable this policy setting, disconnected sessions are deleted from the server after the specified amount of time. To enforce the default behavior that disconnected sessions are maintained for an unlimited time, select Never. If you have a console session, disconnected session time limits do not apply.
+
+
+If you disable or do not configure this policy setting, this policy setting is not specified at the Group Policy level. Be y default, Remote Desktop Services disconnected sessions are maintained for an unlimited amount of time. 
+
+Note: This policy setting appears in both Computer Configuration and User Configuration. If both policy settings are configured, the Computer Configuration policy setting takes precedence.
+</string>
+      <string id="TS_SESSIONS_Idle_Limit">Set time limit for active but idle Remote Desktop Services sessions</string>
+      <string id="TS_SESSIONS_IDLE_LIMIT_EXPLAIN">This policy setting allows you to specify the maximum amount of time that an active Remote Desktop Services session can be idle (without user input) before it is automatically disconnected.
+
+If you enable this policy setting, you must select the desired time limit in the Idle session limit list. Remote Desktop Services will automatically disconnect active but idle sessions after the specified amount of time. The user receives a warning two minutes before the session disconnects, which allows the user to press a key or move the mouse to keep the session active. If you have a console session, idle session time limits do not apply.
+
+If you disable or do not configure this policy setting, the time limit is not specified at the Group Policy level. By default,  Remote Desktop Services allows sessions to remain active but idle for an unlimited amount of time. 
+
+If you want Remote Desktop Services to end instead of disconnect a session when the time limit is reached, you can configure the policy setting Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Session Host\Session Time Limits\End session when time limits are reached.
+
+Note: This policy setting appears in both Computer Configuration and User Configuration. If both policy settings are configured, the Computer Configuration policy setting takes precedence.
+</string>
+      <string id="TS_SESSIONS_Limits">Set time limit for active Remote Desktop Services sessions</string>
+      <string id="TS_SESSIONS_LIMITS_EXPLAIN">This policy setting allows you to specify the maximum amount of time that a Remote Desktop Services session can be active before it is automatically disconnected.
+
+If you enable this policy setting, you must select the desired time limit in the Active session limit list. Remote Desktop Services will automatically disconnect active sessions after the specified amount of time. The user receives a warning two minutes before the Remote Desktop Services session disconnects, which allows the user to save open files and close programs. If you have a console session, active session time limits do not apply.
+
+If you disable or do not configure this policy setting, this policy setting is not specified at the Group Policy level. By default, Remote Desktop Services allows sessions to remain active for an unlimited amount of time. 
+
+If you want Remote Desktop Services to end instead of disconnect a session when the time limit is reached, you can configure the policy setting Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Session Host\Session Time Limits\End session when time limits are reached.
+
+Note: This policy setting appears in both Computer Configuration and User Configuration. If both policy settings are configured, the Computer Configuration policy setting takes precedence.
+</string>
+      <string id="TS_SESSIONS_Reconnect_Same">Allow reconnection from original client only</string>
+      <string id="TS_SESSIONS_RECONNECT_SAME_EXPLAIN">Specifies whether to allow users to reconnect to a disconnected Remote Desktop Services session using a computer other than the original client computer.
+
+You can use this setting to prevent Remote Desktop Services users from reconnecting to the disconnected session using a computer other than the client computer from which they originally created the session. By default, RD Session Host allows users to reconnect to disconnected sessions from any client computer.
+
+If the status is set to Enabled, users can reconnect to disconnected sessions only from the original client computer. If a user attempts to connect to the disconnected session from another computer, a new session is created instead.
+
+If the status is set to Disabled, users can always connect to the disconnected session from any computer.
+
+If the status is set to Not Configured, session reconnection from the original client computer is not specified at the Group Policy level.
+
+Important: This option is only supported for Citrix ICA clients that provide a serial number when connecting; this setting is ignored if the user is connecting with a Windows client. Also note that this setting appears in both Computer Configuration and User Configuration. If both settings are configured, the Computer Configuration setting overrides.</string>
+      <string id="TS_SESSIONS_User_Help">Controls time limits for Remote Desktop Services sessions on an RD Session Host server</string>
+      <string id="TS_SINGLE_SESSION">Restrict Remote Desktop Services users to a single Remote Desktop Services session</string>
+      <string id="TS_SINGLE_SESSION_EXPLAIN">This policy setting allows you to restrict users to a single Remote Desktop Services session.
+
+If you enable this policy setting, users who log on remotely by using Remote Desktop Services will be restricted to a single session (either active or disconnected) on that server. If the user leaves the session in a disconnected state, the user automatically reconnects to that session at the next logon.
+
+If you disable this policy setting, users are allowed to make unlimited simultaneous remote connections by using Remote Desktop Services.
+
+If you do not configure this policy setting,  this policy setting is not specified at the Group Policy level.
+</string>
+      <string id="TS_SMART_CARD">Do not allow smart card device redirection</string>
+      <string id="TS_SMART_CARD_EXPLAIN">This policy setting allows you to control the redirection of smart card devices in a Remote Desktop Services session.
+
+If you enable this policy setting, Remote Desktop Services users cannot use a smart card to log on to a Remote Desktop Services session.
+
+If you disable or do not configure this policy setting, smart card device redirection is allowed. By default, Remote Desktop Services automatically redirects smart card devices on connection.
+
+Note: The client computer must be running at least Microsoft Windows 2000 Server or at least Microsoft Windows XP Professional and the target server must be joined to a domain.</string>
+      <string id="TS_START_PROGRAM">Start a program on connection</string>
+      <string id="TS_START_PROGRAM_EXPLAIN">Configures Remote Desktop Services to run a specified program automatically upon connection.
+
+You can use this setting to specify a program to run automatically when a user logs on to a remote computer.
+
+By default, Remote Desktop Services sessions provide access to the full Windows desktop, unless otherwise specified with this setting, by the server administrator, or by the user in configuring the client connection. Enabling this setting overrides the "Start Program" settings set by the server administrator or user. The Start menu and Windows Desktop are not displayed, and when the user exits the program the session is automatically logged off.
+
+To use this setting, in Program path and file name, type the fully qualified path and file name of the executable file to be run when the user logs on. If necessary, in Working Directory, type the fully qualified path to the starting directory for the program. If you leave Working Directory blank, the program runs with its default working directory. If the specified program path, file name, or working directory is not the name of a valid directory, the RD Session Host server connection fails with an error message.
+
+If the status is set to Enabled, Remote Desktop Services sessions automatically run the specified program and use the specified Working Directory (or the program default directory, if Working Directory is not specified) as the working directory for the program.
+
+If the status is set to Disabled or Not Configured, Remote Desktop Services sessions start with the full desktop, unless the server administrator or user specify otherwise. (See "Computer Configuration\Administrative Templates\System\Logon\Run these programs at user logon" setting.)
+
+Note: This setting appears in both Computer Configuration and User Configuration. If both settings are configured, the Computer Configuration setting overrides.</string>
+      <string id="TS_TEMP">Temporary folders</string>
+      <string id="TS_TEMP_DELETE">Do not delete temp folders upon exit</string>
+      <string id="TS_TEMP_DELETE_EXPLAIN">This policy setting specifies whether Remote Desktop Services retains a user's per-session temporary folders at logoff.
+
+You can use this setting to maintain a user's session-specific temporary folders on a remote computer, even if the user logs off from a session. By default, Remote Desktop Services deletes a user's temporary folders when the user logs off.
+
+If you enable this policy setting, a user's per-session temporary folders are retained when the user logs off from a session.
+
+If you disable this policy setting, temporary folders are deleted when a user logs off, even if the server administrator specifies otherwise.
+
+If you do not configure this policy setting, Remote Desktop Services deletes the temporary folders from the remote computer at logoff, unless specified otherwise by the server administrator.
+
+Note: This setting only takes effect if per-session temporary folders are in use on the server. If you enable the Do not use temporary folders per session policy setting, this policy setting has no effect.
+</string>
+      <string id="TS_TEMP_EXPLAIN">This policy setting allows you to prevent Remote Desktop Services from creating session-specific temporary folders.
+
+You can use this policy setting to disable the creation of separate temporary folders on a remote computer for each session. By default, Remote Desktop Services creates a separate temporary folder for each active session that a user maintains on a remote computer. These temporary folders are created on the remote computer in a Temp folder under the user's profile folder and are named with the sessionid.
+
+If you enable this policy setting, per-session temporary folders are not created. Instead, a user's temporary files for all sessions on the remote computer are stored in a common Temp folder under the user's profile folder on the remote computer.
+
+If you disable this policy setting, per-session temporary folders are always created, even if the server administrator specifies otherwise.
+
+If you do not configure this policy setting, per-session temporary folders are created unless the server administrator specifies otherwise.
+</string>
+      <string id="TS_TEMP_Help">Controls creation and deletion of temporary folders for Remote Desktop Services sessions</string>
+      <string id="TS_TEMP_PER_SESSION">Do not use temporary folders per session</string>
+      <string id="TS_TIME_1MIN">1 minute</string>
+      <string id="TS_TIME_5MIN">5 minutes</string>
+      <string id="TS_TIME_10MIN">10 minutes</string>
+      <string id="TS_TIME_15MIN">15 minutes</string>
+      <string id="TS_TIME_30MIN">30 minutes</string>
+      <string id="TS_TIME_1HR">1 hour</string>
+      <string id="TS_TIME_2HR">2 hours</string>
+      <string id="TS_TIME_3HR">3 hours</string>
+      <string id="TS_TIME_6HR">6 hours</string>
+      <string id="TS_TIME_8HR">8 hours</string>
+      <string id="TS_TIME_12HR">12 hours</string>
+      <string id="TS_TIME_16HR">16 hours</string>
+      <string id="TS_TIME_18HR">18 hours</string>
+      <string id="TS_TIME_1DAY">1 day</string>
+      <string id="TS_TIME_2DAY">2 days</string>
+      <string id="TS_TIME_3DAY">3 days</string>
+      <string id="TS_TIME_4DAY">4 days</string>
+      <string id="TS_TIME_5DAY">5 days</string>
+      <string id="TS_TIME_NEVER">Never</string>
+      <string id="TS_TIME_ZONE">Allow time zone redirection</string>
+      <string id="TS_TIME_ZONE_EXPLAIN">This policy setting determines whether the client computer redirects its time zone settings to the Remote Desktop Services session.
+
+If you enable this policy setting, clients that are capable of time zone redirection send their time zone information to the server. The server base time is then used to calculate the current session time (current session time = server base time + client time zone).
+
+If you disable or do not configure this policy setting, the client computer does not redirect its time zone information and the session time zone is the same as the server time zone.
+
+Note: Time zone redirection is possible only when connecting to at least a Microsoft Windows Server 2003 terminal server with a client using RDP 5.1 and later.</string>
+      <string id="TS_TSCC_EXPLAIN">This policy setting specifies whether to disable the administrator rights to customize security permissions for the Remote Desktop Session Host server.  
+
+You can use this setting to prevent administrators from making changes to the user groups allowed to connect remotely to the  RD Session Host server. By default, administrators are able to make such changes.
+
+If you enable this policy setting the default security descriptors for existing groups on the RD Session Host server cannot be changed. All the security descriptors are read-only.
+
+If you disable or do not configure this policy setting, server administrators have full read/write permissions to the user security descriptors by using the Remote Desktop Session WMI Provider.
+
+Note: The preferred method of managing user access is by adding a user to the Remote Desktop Users group.
+</string>
+      <string id="TS_TSCC_PERMISSIONS_POLICY">Do not allow local administrators to customize permissions</string>
+      <string id="TS_TURNOFF_SINGLEAPP">Always show desktop on connection</string>
+      <string id="TS_TURNOFF_SINGLEAPP_EXPLAIN">This policy setting determines whether the desktop is always displayed after a client connects to a remote computer or an initial program can run. It can be used to require that the desktop be displayed after a client connects to a remote computer, even if an initial program is already specified in the default user profile, Remote Desktop Connection, Remote Desktop Services client, or through Group Policy.
+
+If you enable this policy setting, the desktop is always displayed when a client connects to a remote computer. This policy setting overrides any initial program policy settings.
+
+If you disable or do not configure this policy setting, an initial program can be specified that runs on the remote computer after the client connects to the remote computer. If an initial program is not specified, the desktop is always displayed on the remote computer after the client connects to the remote computer.
+
+Note: If this policy setting is enabled, then the "Start a program on connection" policy setting is ignored.</string>
+      <string id="TS_USER_AUTHENTICATION_EXPLAIN">This policy setting allows you to specify whether to require user authentication for remote connections to the RD Session Host server by using Network Level Authentication. This policy setting enhances security by requiring that user authentication occur earlier in the remote connection process.
+
+If you enable this policy setting, only client computers that support Network Level Authentication can connect to the RD Session Host server.
+
+To determine whether a client computer supports Network Level Authentication, start Remote Desktop Connection on the client computer, click the icon in the upper-left corner of the Remote Desktop Connection dialog box, and then click About. In the About Remote Desktop Connection dialog box, look for the phrase Network Level Authentication supported.
+
+If you disable this policy setting, Network Level Authentication is not required for user authentication before allowing remote connections to the RD Session Host server.
+
+If you do not configure this policy setting, the local setting on the target computer will be enforced. On Windows Server 2012 and Windows 8, Network Level Authentication is enforced by default.
+
+Important: Disabling this policy setting provides less security because user authentication will occur later in the remote connection process.
+</string>
+      <string id="TS_USER_AUTHENTICATION_POLICY">Require user authentication for remote connections by using Network Level Authentication</string>
+      <string id="TS_User_Help">Controls configuration of Remote Desktop Services technologies that enable access to a server running Windows-based programs or the full Windows desktop</string>
+      <string id="TS_USER_HOME">Set Remote Desktop Services User Home Directory</string>
+      <string id="TS_USER_HOME_EXPLAIN">Specifies whether Remote Desktop Services uses the specified network share or local directory path as the root of the user's home directory for a Remote Desktop Services session.
+
+To use this setting, select the location for the home directory (network or local) from the Location drop-down list. If you choose to place the directory on a network share, type the Home Dir Root Path in the form \\Computername\Sharename, and then select the drive letter to which you want the network share to be mapped.
+
+If you choose to keep the home directory on the local computer, type the Home Dir Root Path in the form "Drive:\Path" (without quotes), without environment variables or ellipses. Do not specify a placeholder for user alias, because Remote Desktop Services automatically appends this at logon.
+
+Note: The Drive Letter field is ignored if you choose to specify a local path. If you choose to specify a local path but then type the name of a network share in Home Dir Root Path, Remote Desktop Services places user home directories in the network location.
+
+If the status is set to Enabled, Remote Desktop Services creates the user's home directory in the specified location on the local computer or the network. The home directory path for each user is the specified Home Dir Root Path and the user's alias.
+
+If the status is set to Disabled or Not Configured, the user's home directory is as specified at the server.</string>
+      <string id="TS_USER_PROFILES_EXPLAIN">This policy setting allows you to specify the network path that Remote Desktop Services uses for roaming user profiles.
+
+By default, Remote Desktop Services stores all user profiles locally on the RD Session Host server. You can use this policy setting to specify a network share where user profiles can be centrally stored, allowing a user to access the same profile for sessions on all RD Session Host servers that are configured to use the network share for user profiles.
+
+If you enable this policy setting, Remote Desktop Services uses the specified path as the root directory for all user profiles. The profiles are contained in subfolders named for the account name of each user.
+
+To configure this policy setting, type the path to the network share in the form of \\Computername\Sharename. Do not specify a placeholder for the user account name, because Remote Desktop Services automatically adds this when the user logs on and the profile is created. If the specified network share does not exist, Remote Desktop Services displays an error message on the RD Session Host server and will store the user profiles locally on the RD Session Host server.
+
+If you disable or do not configure this policy setting, user profiles are stored locally on the RD Session Host server. You can configure a user's profile path on the Remote Desktop Services Profile tab on the user's account Properties dialog box.
+
+Notes:
+1. The roaming user profiles enabled by the policy setting apply only to Remote Desktop Services connections. A user might also have a Windows roaming user profile configured. The Remote Desktop Services roaming user profile always takes precedence in a Remote Desktop Services session.
+2. To configure a mandatory Remote Desktop Services roaming user profile for all users connecting remotely to the RD Session Host server, use this policy setting together with the "Use mandatory profiles on the RD Session Host server" policy setting located in Computer Configuration\Administrative Templates\Windows Components\Remote Desktop Services\RD Session Host\Profiles. The path set in the "Set path for Remote Desktop Services Roaming User Profile" policy setting should contain the mandatory profile.</string>
+
+      <string id="TS_USER_MANDATORY_PROFILES_EXPLAIN">This policy setting allows you to specify whether Remote Desktop Services uses a mandatory profile for all users connecting remotely to the RD Session Host server.
+
+If you enable this policy setting, Remote Desktop Services uses the path specified in the "Set path for Remote Desktop Services Roaming User Profile" policy setting as the root folder for the mandatory user profile. All users connecting remotely to the RD Session Host server use the same user profile.
+
+If you disable or do not configure this policy setting, mandatory user profiles are not used by users connecting remotely to the RD Session Host server.
+
+Note:
+
+For this policy setting to take effect, you must also enable and configure the "Set path for Remote Desktop Services Roaming User Profile" policy setting.
+</string>
+
+      <string id="TS_USER_PROFILES">Set path for Remote Desktop Services Roaming User Profile</string>
+      <string id="TS_USER_MANDATORY_PROFILES">Use mandatory profiles on the RD Session Host server</string>
+      <string id="TS_DELETE_ROAMING_USER_PROFILES">Limit the size of the entire roaming user profile cache</string>
+      <string id="TS_DELETE_ROAMING_USER_PROFILES_EXPLAIN">This policy setting allows you to limit the size of the entire roaming user profile cache on the local drive.  This policy setting only applies to a computer on which the Remote Desktop Session Host role service is installed.
+
+Note:  If you want to limit the size of an individual user profile, use the "Limit profile size" policy setting located in User Configuration\Policies\Administrative Templates\System\User Profiles.
+
+If you enable this policy setting, you must specify a monitoring interval (in minutes) and a maximum size (in gigabytes) for the entire roaming user profile cache. The monitoring interval determines how often the size of the entire roaming user profile cache is checked. When the size of the entire roaming user profile cache exceeds the maximum size that you have specified, the oldest (least recently used) roaming user profiles will be deleted until the size of the entire roaming user profile cache is less than the maximum size specified.
+
+If you disable or do not configure this policy setting, no restriction is placed on the size of the entire roaming user profile cache on the local drive.
+
+Note:  This policy setting is ignored if the "Prevent Roaming Profile changes from propagating to the server" policy setting located in Computer Configuration\Policies\Administrative Templates\System\User Profiles is enabled.
+</string>
+      <string id="TS_CERTIFICATE_TEMPLATE_POLICY">Server authentication certificate template</string>
+      <string id="TS_CERTIFICATE_TEMPLATE_EXPLAIN">This policy setting allows you to specify the name of the certificate template that determines which certificate is automatically selected to authenticate an RD Session Host server.
+
+A certificate is needed to authenticate an RD Session Host server when TLS 1.0, 1.1 or 1.2 is used to secure communication between a client and an RD Session Host server during RDP connections.
+
+If you enable this policy setting, you need to specify a certificate template name. Only certificates created by using the specified certificate template will be considered when a certificate to authenticate the RD Session Host server is automatically selected. Automatic certificate selection only occurs when a specific certificate has not been selected.
+
+If no certificate can be found that was created with the specified certificate template, the RD Session Host server will issue a certificate enrollment request and will use the current certificate until the request is completed. If more than one certificate is found that was created with the specified certificate template, the certificate that will expire latest and that matches the current name of the RD Session Host server will be selected.
+
+If you disable or do not configure this policy, the certificate template name is not specified at the Group Policy level. By default, a self-signed certificate is used to authenticate the RD Session Host server.  
+
+Note: If you select a specific certificate to be used to authenticate the RD Session Host server, that certificate will take precedence over this policy setting.
+</string>
+      <string id="TS_CLIENT_ALLOW_UNSIGNED_FILES">Allow .rdp files from unknown publishers</string>
+      <string id="TS_CLIENT_ALLOW_UNSIGNED_FILES_MACHINE_EXPLAIN">This policy setting allows you to specify whether users can run unsigned Remote Desktop Protocol (.rdp) files and .rdp files from unknown publishers on the client computer.
+
+If you enable or do not configure this policy setting, users can run unsigned .rdp files and .rdp files from unknown publishers on the client computer. Before a user starts an RDP session, the user receives a warning message and is asked to confirm whether they want to connect.
+
+If you disable this policy setting, users cannot run unsigned .rdp files and .rdp files from unknown publishers on the client computer. If the user tries to start an RDP session, the user receives a message that the publisher has been blocked.
+</string>
+      <string id="TS_CLIENT_ALLOW_UNSIGNED_FILES_USER_EXPLAIN">This policy setting allows you to specify whether users can run unsigned Remote Desktop Protocol (.rdp) files and .rdp files from unknown publishers on the client computer.
+
+If you enable or do not configure this policy setting, users can run unsigned .rdp files and .rdp files from unknown publishers on the client computer. Before a user starts an RDP session, the user receives a warning message and is asked to confirm whether they want to connect.
+
+If you disable this policy setting, users cannot run unsigned .rdp files and .rdp files from unknown publishers on the client computer. If the user tries to start an RDP session, the user receives a message that the publisher has been blocked.
+</string>
+      <string id="TS_CLIENT_ALLOW_SIGNED_FILES">Allow .rdp files from valid publishers and user's default .rdp settings</string>
+      <string id="TS_CLIENT_ALLOW_SIGNED_FILES_MACHINE_EXPLAIN">This policy setting allows you to specify whether users can run Remote Desktop Protocol (.rdp) files from a publisher that signed the file with a valid certificate. A valid certificate is one that is issued by an authority recognized by the client, such as the issuers in the client's Third-Party Root Certification Authorities certificate store. This policy setting also controls whether the user can start an RDP session by using default .rdp settings (for example, when a user directly opens the Remote Desktop Connection [RDC] client without specifying an .rdp file).
+
+If you enable or do not configure this policy setting, users can run .rdp files that are signed with a valid certificate. Users can also start an RDP session with default .rdp settings by directly opening the RDC client. When a user starts an RDP session, the user is asked to confirm whether they want to connect.
+
+If you disable this policy setting, users cannot run .rdp files that are signed with a valid certificate. Additionally, users cannot start an RDP session by directly opening the RDC client and specifying the remote computer name. When a user tries to start an RDP session, the user receives a message that the publisher has been blocked.
+
+Note: You can define this policy setting in the Computer Configuration node or in the User Configuration node. If you configure this policy setting for the computer, all users on the computer are affected.
+</string>
+      <string id="TS_CLIENT_ALLOW_SIGNED_FILES_USER_EXPLAIN">This policy setting allows you to specify whether users can run Remote Desktop Protocol (.rdp) files from a publisher that signed the file with a valid certificate. A valid certificate is one issued by an authority recognized by the client, such as the issuers in the client's Third-Party Root Certification Authorities certificate store. This policy setting also controls whether the user can start an RDP session by using default .rdp settings (for example, when a user directly opens the Remote Desktop Connection [RDC] client without specifying an .rdp file).
+
+If you enable or do not configure this policy setting, users can run .rdp files that are signed with a valid certificate. Users can also start an RDP session with default .rdp settings by directly opening the RDC client. When a user starts an RDP session, the user is asked to confirm whether they want to connect.
+
+If you disable this policy setting, users cannot run .rdp files that are signed with a valid certificate. Additionally, users cannot start an RDP session by directly opening the RDC client and specifying the remote computer name. When a user tries to start an RDP session, the user receives a message that the publisher has been blocked.
+
+Note: You can define this policy setting in the Computer Configuration node or in the User Configuration node. If you configure this policy setting for the computer, all users on the computer are affected.
+</string>
+      <string id="TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS">Specify SHA1 thumbprints of certificates representing trusted .rdp publishers</string>
+      <string id="TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_MACHINE_EXPLAIN">This policy setting allows you to specify a list of Secure Hash Algorithm 1 (SHA1) certificate thumbprints that represent trusted Remote Desktop Protocol (.rdp) file publishers.
+
+If you enable this policy setting, any certificate with an SHA1 thumbprint that matches a thumbprint on the list is trusted. If a user tries to start an .rdp file that is signed by a trusted certificate, the user does not receive any warning messages when they start the file. To obtain the thumbprint, view the certificate details, and then click the Thumbprint field.
+
+If you disable or do not configure this policy setting, no publisher is treated as a trusted .rdp publisher.
+
+Notes:
+
+You can define this policy setting in the Computer Configuration node or in the User Configuration node. If you configure this policy setting for the computer, the list of certificate thumbprints trusted for a user is a combination of the list defined for the computer and the list defined for the user.
+
+This policy setting overrides the behavior of the "Allow .rdp files from valid publishers and user's default .rdp settings" policy setting.
+
+If the list contains a string that is not a certificate thumbprint, it is ignored.
+</string>
+      <string id="TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_USER_EXPLAIN">This policy setting allows you to specify a list of Secure Hash Algorithm 1 (SHA1) certificate thumbprints that represent trusted Remote Desktop Protocol (.rdp) file publishers.
+
+If you enable this policy setting, any certificate with an SHA1 thumbprint that matches a thumbprint on the list is trusted. If a user tries to start an .rdp file that is signed by a trusted certificate, the user does not receive any warning messages when they start the file. To obtain the thumbprint, view the certificate details, and then click the Thumbprint field.
+
+If you disable or do not configure this policy setting, no publisher is treated as a trusted .rdp publisher.
+
+Note:
+
+You can define this policy setting in the Computer Configuration node or in the User Configuration node. If you configure this policy setting for the computer, the list of certificate thumbprints trusted for a user is a combination of the list defined for the computer and the list defined for the user.
+
+This policy setting overrides the behavior of the "Allow .rdp files from valid publishers and user's default .rdp settings" policy setting.
+
+If the list contains a string that is not a certificate thumbprint, it is ignored.
+</string>
+
+      <string id="TS_PROMT_CREDS_CLIENT_COMP">Prompt for credentials on the client computer</string>
+      <string id="TS_PROMT_CREDS_CLIENT_COMP_EXPLAIN">This policy setting determines whether a user will be prompted on the client computer to provide credentials for a remote connection to an RD Session Host server.
+
+If you enable this policy setting, a user will be prompted on the client computer instead of on the RD Session Host server to provide credentials for a remote connection to an RD Session Host server. If saved credentials for the user are available on the client computer, the user will not be prompted to provide credentials.
+
+Note: If you enable this policy setting in releases of Windows Server 2008 R2 with SP1 or Windows Server 2008 R2, and a user is prompted on both the client computer and on the RD Session Host server to provide credentials, clear the Always prompt for password check box on the Log on Settings tab in Remote Desktop Session Host Configuration.
+
+If you disable or do not configure this policy setting, the version of the operating system on the RD Session Host server will determine when a user is prompted to provide credentials for a remote connection to an RD Session Host server.  For Windows Server 2003 and Windows 2000 Server a user will be prompted on the terminal server to provide credentials for a remote connection. For Windows Server 2008 and Windows Server 2008 R2, a user will be prompted on the client computer to provide credentials for a remote connection.
+</string>
+
+      <string id="TS_SERVER_AUTH">Configure server authentication for client</string>
+      <string id="TS_SERVER_AUTH_NONE">Always connect, even if authentication fails</string>
+      <string id="TS_SERVER_AUTH_REQUIRE">Do not connect if authentication fails</string>
+      <string id="TS_SERVER_AUTH_ATTEMPT">Warn me if authentication fails</string>
+      <string id="TS_SERVER_AUTH_EXPLAIN">This policy setting allows you to specify whether the client will establish a connection to the RD Session Host server when the client cannot authenticate the RD Session Host server.
+
+If you enable this policy setting, you must specify one of the following settings:
+
+Always connect, even if authentication fails: The client connects to the RD Session Host server even if the client cannot authenticate the RD Session Host server.
+
+Warn me if authentication fails: The client attempts to authenticate the RD Session Host server. If the RD Session Host server can be authenticated, the client establishes a connection to the RD Session Host server. If the RD Session Host server cannot be authenticated, the user is prompted to choose whether to connect to the RD Session Host server without authenticating the RD Session Host server.
+
+Do not connect if authentication fails: The client establishes a connection to the RD Session Host server only if the RD Session Host server can be authenticated.
+
+If you disable or do not configure this policy setting, the authentication setting that is specified in Remote Desktop Connection or in the .rdp file determines whether the client establishes a connection to the RD Session Host server when the client cannot authenticate the RD Session Host server.
+</string>
+
+    <string id="TS_SERVER_IMAGE_QUALITY">Configure image quality for RemoteFX Adaptive Graphics</string>
+    <string id="TS_SERVER_IMAGE_QUALITY_EXPLAIN">This policy setting allows you to specify the visual quality for remote users when connecting to this computer by using Remote Desktop Connection. You can use this policy setting to balance the network bandwidth usage with the visual quality that is delivered.
+      If you enable this policy setting and set quality to Low, RemoteFX Adaptive Graphics uses an encoding mechanism that results in low quality images. This mode consumes the lowest amount of network bandwidth of the quality modes.
+      If you enable this policy setting and set quality to Medium, RemoteFX Adaptive Graphics uses an encoding mechanism that results in medium quality images. This mode provides better graphics quality than low quality and uses less bandwidth than high quality.
+      If you enable this policy setting and set quality to High, RemoteFX Adaptive Graphics uses an encoding mechanism that results in high quality images and consumes moderate network bandwidth.
+      If you enable this policy setting and set quality to Lossless, RemoteFX Adaptive Graphics uses lossless encoding. In this mode, the color integrity of the graphics data is not impacted. However, this setting results in a significant increase in network bandwidth consumption. We recommend that you set this for very specific cases only.
+      If you disable or do not configure this policy setting, RemoteFX Adaptive Graphics uses an encoding mechanism that results in medium quality images.
+    </string>
+      
+    <string id="TS_SERVER_IMAGE_QUALITY_LOSSLESS">Lossless</string>
+    <string id="TS_SERVER_IMAGE_QUALITY_HIGH">High</string>
+    <string id="TS_SERVER_IMAGE_QUALITY_MEDIUM">Medium</string>
+    <string id="TS_SERVER_IMAGE_QUALITY_LOW">Low</string>      
+
+    <string id="TS_SERVER_PROFILE">Configure RemoteFX Adaptive Graphics</string>
+    <string id="TS_SERVER_PROFILE_EXPLAIN">This policy setting allows the administrator to configure the RemoteFX experience for Remote Desktop Session Host or Remote Desktop Virtualization Host servers. By default, the system will choose the best experience based on available nework bandwidth.
+
+If you enable this policy setting, the RemoteFX experience could be set to one of the following options:
+1. Let the system choose the experience for the network condition
+2. Optimize for server scalability
+3. Optimize for minimum bandwidth usage
+
+If you disable or do not configure this policy setting, the RemoteFX experience will change dynamically based on the network condition."
+    </string>
+    <string id="TS_SERVER_PROFILE_SCALE">Optimize for server scalability</string>
+    <string id="TS_SERVER_PROFILE_EXPERIENCE">Let the system choose experience for network condition</string>
+    <string id="TS_SERVER_PROFILE_BANDWIDTH">Optimize for minimum bandwidth usage</string>
+
+    <string id="TS_SERVER_COMPRESSOR">Configure compression for RemoteFX data</string>
+    <string id="TS_SERVER_COMPRESSOR_EXPLAIN">This policy setting allows you to specify which Remote Desktop Protocol (RDP) compression algorithm to use.
+
+By default, servers use an RDP compression algorithm that is based on the server's hardware configuration.
+
+If you enable this policy setting, you can specify which RDP compression algorithm to use. If you select the algorithm that is optimized to use less memory, this option is less memory-intensive, but uses more network bandwidth. If you select the algorithm that is optimized to use less network bandwidth, this option uses less network bandwidth, but is more memory-intensive. Additionally, a third option is available that balances memory usage and network bandwidth. In Windows  8 only the compression algorithm that balances memory usage and bandwidth is used.
+
+You can also choose not to use an RDP compression algorithm. Choosing not to use an RDP compression algorithm will use more network bandwidth and is only recommended if you are using a hardware device that is designed to optimize network traffic. Even if you choose not to use an RDP compression algorithm, some graphics data will still be compressed.
+
+If you disable or do not configure this policy setting, the default RDP compression algorithm will be used.
+    </string>
+    <string id="TS_SERVER_COMPRESSOR_NCRUSH">Balances memory and network bandwidth</string>
+    <string id="TS_SERVER_COMPRESSOR_XCRUSH">Optimized to use less network bandwidth</string>
+    <string id="TS_SERVER_COMPRESSOR_MPPC">Optimized to use less memory</string>
+    <string id="TS_SERVER_NO_COMPRESSOR">Do not use an RDP compression algorithm</string>
+
+    <string id="TS_SERVER_ADVANCED_REMOTEFX_REMOTEAPP">Use advanced RemoteFX graphics for RemoteApp</string>
+    <string id="TS_SERVER_ADVANCED_REMOTEFX_REMOTEAPP_EXPLAIN">This policy setting allows you to enable RemoteApp programs to use advanced graphics, including support for transparency, live thumbnails, and seamless application moves. This policy setting applies only to RemoteApp programs and does not apply to remote desktop sessions.
+
+If you enable or do not configure this policy setting, RemoteApp programs published from this RD Session Host server will use these advanced graphics.
+
+If you disable this policy setting, RemoteApp programs published from this RD Session Host server will not use these advanced graphics. You may want to choose this option if you discover that applications published as RemoteApp programs do not support these advanced graphics. 
+
+    </string>
+
+    <!--AVC HW Encode Preferred Mode; Introduced Win10+-->
+    <string id="TS_SERVER_AVC_HW_ENCODE_PREFERRED">Configure H.264/AVC hardware encoding for Remote Desktop Connections</string>
+    <string id="TS_SERVER_AVC_HW_ENCODE_PREFERRED_EXPLAIN">This policy setting lets you enable H.264/AVC hardware encoding support for Remote Desktop Connections. When you enable hardware encoding, if an error occurs, we will attempt to use software encoding. If you disable or do not configure this policy, we will always use software encoding.
+        
+If you set the encoding option to “Always Attempt”, Remote Desktop will always try to use H.264/AVC hardware encoding when available, be aware that, for Windows Server running Hyper-V with RemoteFX vGPU enabled, the policy has to be set on the Hyper-V host machine.
+        
+If you set the encoding option to “Attempt only for RemoteFX vGPU virtual machines” be aware that, for Windows Server running Hyper-V with RemoteFX vGPU enabled, the policy has to be set on the Hyper-V host machine.
+        
+If you set the encoding option to “Attempt only for non-RemoteFX vGPU scenarios”, Remote Desktop attempts to use hardware encoding for all scenarios except RemoteFX vGPU.
+    </string>
+    <string id="TS_AVC_HW_ENCODE_ALWAYS">Always attempt</string>
+    <string id="TS_AVC_HW_ENCODE_VGPU">Attempt only for RemoteFX vGPU virtual machines</string>
+    <string id="TS_AVC_HW_ENCODE_NONVGPU">Attempt only for non-RemoteFX vGPU scenarios</string>
+        
+    <!--AVC444 Preferred Mode; Introduced Win10+-->
+    <string id="TS_SERVER_AVC444_MODE_PREFERRED">Prioritize H.264/AVC 444 graphics mode for Remote Desktop Connections</string>
+    <string id="TS_SERVER_AVC444_MODE_PREFERRED_EXPLAIN">This policy setting prioritizes the H.264/AVC 444 graphics mode for non-RemoteFX vGPU scenarios. When you use this setting on the RDP server, the server will use H.264/AVC 444 as the codec in an RDP 10 connection where both the client and server can use H.264/AVC 444.
+    </string>
+
+    <!--Disable Client Hardware Mode; Introduced Win10+-->
+    <string id="TS_CLIENT_DISABLE_HARDWARE_MODE">Do not allow hardware accelerated decoding</string>
+    <string id="TS_CLIENT_DISABLE_HARDWARE_MODE_EXPLAIN">This policy setting specifies whether the Remote Desktop Connection can use hardware acceleration if supported hardware is available. If you use this setting, the Remote Desktop Client will use only software decoding. For example, if you have a problem that you suspect may be related to hardware acceleration, use this setting to disable the acceleration; then, if the problem still occurs, you will know that there are additional issues to investigate. If you disable this setting or leave it not configured, the Remote Desktop client will use hardware accelerated decoding if supported hardware is available.
+    </string>
+
+    <!--Visual Experience Policy strings; deprecated Win8+-->
+    <string id="TS_SERVER_VISEXP">Optimize visual experience for Remote Desktop Service Sessions</string>
+    <string id="TS_SERVER_VISEXP_EXPLAIN">This policy setting allows you to specify the visual experience that remote users receive in Remote Desktop Services sessions. Remote sessions on the remote computer are then optimized to support this visual experience.
+
+By default, Remote Desktop Services sessions are optimized for rich multimedia, such as applications that use Silverlight or Windows Presentation Foundation.
+
+If you enable this policy setting, you must select the visual experience for which you want to optimize Remote Desktop Services sessions. You can select either Rich multimedia or Text.
+
+If you disable or do not configure this policy setting, Remote Desktop Services sessions are optimized for rich multimedia.
+    </string>
+    <string id="TS_SERVER_VISEXP_RICHMEDIA">Rich multimedia</string>
+    <string id="TS_SERVER_VISEXP_TEXT">Text</string>
+
+    <string id="TS_USB_REDIRECTION">RemoteFX USB Device Redirection</string>
+    <string id="TS_USB_REDIRECTION_DISABLE">Allow RDP redirection of other supported RemoteFX USB devices from this computer</string>
+    <string id="TS_USB_REDIRECTION_Help">Allow RDP redirection of other supported RemoteFX USB devices from this computer</string>
+    <string id="TS_USB_REDIRECTION_EXPLAIN">This policy setting allows you to permit RDP redirection of other supported RemoteFX USB devices from this computer. Redirected RemoteFX USB devices will not be available for local usage on this computer.
+
+If you enable this policy setting, you can choose to give the ability to redirect other supported RemoteFX USB devices over RDP to all users or only to users who are in the Administrators group on the computer.
+
+If you disable or do not configure this policy setting, other supported RemoteFX USB devices are not available for RDP redirection by using any user account.
+
+For this change to take effect, you must restart Windows.
+
+    </string>
+    <string id="UsbMode_AdminsOnly">Adminstrators Only</string>
+    <string id="UsbMode_AdminsAndUsers">Adminstrators and Users</string>
+    <string id="UsbModeAction">Configure RemoteFX USB Redirection access rights</string>
+
+      <string id="TS_EnableVirtualGraphics">Configure RemoteFX</string>
+      <string id="TS_EnableVirtualGraphics_Help">This policy setting allows you to control the availability of RemoteFX on both a Remote Desktop Virtualization Host (RD Virtualization Host) server and a Remote Desktop Session Host (RD Session Host) server.
+
+When deployed on an RD Virtualization Host server, RemoteFX delivers a rich user experience by rendering content on the server by using graphics processing units (GPUs). By default, RemoteFX for RD Virtualization Host uses server-side GPUs to deliver a rich user experience over LAN connections and RDP 7.1.
+
+When deployed on an RD Session Host server, RemoteFX delivers a rich user experience by using a hardware-accelerated compression scheme.
+
+If you enable this policy setting, RemoteFX will be used to deliver a rich user experience over LAN connections and RDP 7.1.
+
+If you disable this policy setting, RemoteFX will be disabled.
+
+If you do not configure this policy setting, the default behavior will be used. By default, RemoteFX for RD Virtualization Host is enabled and RemoteFX for RD Session Host is disabled.
+      </string>
+
+      <string id="TS_RemoteDesktopVirtualGraphics">Optimize visual experience when using RemoteFX</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_Explain">This policy setting allows you to specify the visual experience that remote users will have in Remote Desktop Connection (RDC) connections that use RemoteFX. You can use this policy to balance the network bandwidth usage with the type of graphics experience that is delivered.
+
+Depending on the requirements of your users, you can reduce network bandwidth usage by reducing the screen capture rate. You can also reduce network bandwidth usage by reducing the image quality (increasing the amount of image compression that is performed).
+
+If you have a higher than average bandwidth network, you can maximize the utilization of bandwidth by selecting the highest setting for screen capture rate and the highest setting for image quality.
+
+By default, Remote Desktop Connection sessions that use RemoteFX are optimized for a balanced experience over LAN conditions. If you disable or do not configure this policy setting, Remote Desktop Connection sessions that use RemoteFX will be the same as if the medium screen capture rate and the medium image compression settings were selected (the default behavior). 
+</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Highest">Highest (best quality)</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Medium">Medium (default)</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Lowest">Lowest</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Highest">Highest (best quality)</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Medium">Medium (default)</string>
+      <string id="TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Lowest">Lowest</string>
+
+      <string id="TS_SERVER_LEGACY_RFX">Enable RemoteFX encoding for RemoteFX clients designed for Windows Server 2008 R2 SP1</string>
+      <string id="TS_SERVER_LEGACY_RFX_EXPLAIN">This policy setting allows you to configure graphics encoding to use the RemoteFX Codec on the Remote Desktop Session Host server so that the sessions are compatible with non-Windows thin client devices designed for Windows Server 2008 R2 SP1. These clients only support the Windows Server 2008 R2 SP1 RemoteFX Codec.If you enable this policy setting, users' sessions on this server will only use the Windows Server 2008 R2 SP1 RemoteFX Codec for encoding. This mode is compatible with thin client devices that only support the Windows Server 2008 R2 SP1 RemoteFX Codec.If you disable or do not configure this policy setting, non-Windows thin clients that only support the Windows Server 2008 R2 SP1 RemoteFX Codec will not be able to connect to this server. This policy setting applies only to clients that are using Remote Desktop Protocol (RDP) 7.1, and does not affect clients that are using other RDP versions.
+      </string>
+      
+      <string id="TS_RADC">RemoteApp and Desktop Connections</string>
+      <string id="TS_RADC_Help">Controls configuration of RemoteApp and Desktop Connections</string>
+      <string id="TS_RADC_DefaultDesktop">Specify default connection URL</string>
+      <string id="TS_RADC_DefaultDesktop_Help">This policy setting specifies the default connection URL for RemoteApp and Desktop Connections. The default connection URL is a specific connection that can only be configured by using Group Policy. In addition to the capabilities that are common to all connections, the default connection URL allows document file types to be associated with RemoteApp programs.
+
+The default connection URL must be configured in the form of http://contoso.com/rdweb/Feed/webfeed.aspx.
+      
+If you enable this policy setting, the specified URL is configured as the default connection URL for the user and replaces any existing connection URL. The user cannot change the default connection URL. The user's default logon credentials are used when setting up the default connection URL.
+
+If you disable or do not configure this policy setting, the user has no default connection URL.
+
+Note: RemoteApp programs that are installed through RemoteApp and Desktop Connections from an untrusted server can compromise the security of a user's account.
+      </string>
+
+	  <string id="TS_SELECT_TRANSPORT">Select RDP transport protocols</string>
+	  <string id="TS_SELECT_TRANSPORT_EXPLAIN">This policy setting allows you to specify which protocols can be used for Remote Desktop Protocol (RDP) access to this server.
+
+If you enable this policy setting, you must specify if you would like RDP to use UDP.
+
+You can select one of the following options: "Use both UDP and TCP", "Use only TCP" or "Use either UDP or TCP (default)" 
+
+If you select "Use either UDP or TCP" and the UDP connection is successful, most of the RDP traffic will use UDP.
+
+If the UDP connection is not successful or if you select "Use only TCP," all of the RDP traffic will use TCP.
+
+If you disable or do not configure this policy setting, RDP will choose the optimal protocols for delivering the best user experience.
+	  </string>
+	  <string id="TS_SELECT_TRANSPORT_UDP_AND_TCP">Use both UDP and TCP</string>
+	  <string id="TS_SELECT_TRANSPORT_TCP_ONLY">Use only TCP</string>
+	  <string id="TS_SELECT_TRANSPORT_UDP_OR_TCP">Use either UDP or TCP</string>
+
+      <string id="TS_SELECT_NETWORK_DETECT">Select network detection on the server</string>
+      <string id="TS_SELECT_NETWORK_DETECT_EXPLAIN">This policy setting allows you to specify how the Remote Desktop Protocol will try to detect the network quality (bandwidth and latency).
+
+You can choose to disable Connect Time Detect, Continuous Network Detect, or both Connect Time Detect and Continuous Network Detect. 
+
+If you disable Connect Time Detect, Remote Desktop Protocol will not determine the network quality at the connect time, and it will assume that all traffic to this server originates from a low-speed connection.
+
+If you disable Continuous Network Detect, Remote Desktop Protocol will not try to adapt the remote user experience to varying network quality. 
+
+If you disable Connect Time Detect and Continuous Network Detect, Remote Desktop Protocol will not try to determine the network quality at the connect time; instead it will assume that all traffic to this server originates from a low-speed connection, and it will not try to adapt the user experience to varying network quality.
+
+If you disable or do not configure this policy setting, Remote Desktop Protocol will spend up to a few seconds trying to determine the network quality prior to the connection, and it will continuously try to adapt the user experience to varying network quality.
+</string>
+	  <string id="TS_SELECT_NETWORK_DETECT_CONNECT_TIME_AND_STEADY_STATE_ON">Use both Connect Time Detect and Continuous Network Detect</string>
+      <string id="TS_SELECT_NETWORK_DETECT_CONNECT_TIME_OFF">Turn off Connect Time Detect</string>
+      <string id="TS_SELECT_NETWORK_DETECT_STEADY_STATE_OFF">Turn off Continuous Network Detect</string>
+      <string id="TS_SELECT_NETWORK_DETECT_CONNECT_TIME_AND_STEADY_STATE_OFF">Turn off Connect Time Detect and Continuous Network Detect</string>
+
+      <string id="TS_CLIENT_TURN_OFF_UDP">Turn Off UDP On Client</string>
+      <string id="TS_CLIENT_TURN_OFF_UDP_EXPLAIN">This policy setting specifies whether the UDP protocol will be used to access servers via Remote Desktop Protocol. 
+
+If you enable this policy setting, Remote Desktop Protocol traffic will only use the TCP protocol.
+
+If you disable or do not configure this policy setting, Remote Desktop Protocol traffic will attempt to use both TCP and UDP protocols.
+</string>
+
+      <string id="TS_RDSAppX_WaitForRegistration">Suspend user sign-in to complete app registration</string>
+      <string id="TS_RDSAppX_WaitForRegistration_Help">This policy setting allows you to specify whether the app registration is completed before showing the Start screen to the user. 
+
+By default, when a new user signs in to a computer, the Start screen is shown and apps are registered in the background. However, some apps may not work until app registration is complete.
+
+If you enable this policy setting, user sign-in is blocked for up to 6 minutes to complete the app registration. You can use this policy setting when customizing the Start screen on Remote Desktop Session Host servers. 
+
+If you disable or do not configure this policy setting, the Start screen is shown and apps are registered in the background.</string>
+
+      <string id="TS_DX_USE_FULL_HWGPU">Use the hardware default graphics adapter for all Remote Desktop Services sessions</string>
+      <string id="TS_DX_USE_FULL_HWGPU_EXPLAIN">This policy setting enables system administrators to change the graphics rendering for all Remote Desktop Services sessions.
+
+If you enable this policy setting, all Remote Desktop Services sessions use the hardware graphics renderer instead of the Microsoft Basic Render Driver as the default adapter.
+
+If you disable this policy setting, all Remote Desktop Services sessions use the Microsoft Basic Render Driver as the default adapter.
+
+If you do not configure this policy setting, Remote Desktop Services sessions on the RD Session Host server use the Microsoft Basic Render Driver as the default adapter. In all other cases, Remote Desktop Services sessions use the hardware graphics renderer by default.
+
+NOTE: The policy setting affects only the default graphics processing unit (GPU) on a computer with more than one GPU installed. All additional GPUs are considered secondary adapters and used as hardware renderers. The GPU configuration of the local session is not affected by this policy setting.
+</string>
+      
+    </stringTable>
+    <presentationTable>
+      <presentation id="TS_COLORDEPTH">
+        <dropdownList refId="TS_Color_Depth" noSort="true" defaultItem="0">Color Depth</dropdownList>
+      </presentation>
+      <presentation id="TS_MAXMONITOR">
+        <decimalTextBox refId="TS_Max_Monitor" defaultValue="1" spinStep="1">Maximum Monitors</decimalTextBox>
+      </presentation>
+      <presentation id="TS_MAXDISPLAYRES">
+        <decimalTextBox refId="TS_DisplayRes_Width" spinStep="1">Width</decimalTextBox>
+        <decimalTextBox refId="TS_DisplayRes_Height" spinStep="1">Height</decimalTextBox>
+      </presentation>
+      <presentation id="TS_ENCRYPTION_POLICY">
+        <dropdownList refId="TS_ENCRYPTION_LEVEL" defaultItem="1">Encryption Level</dropdownList>
+        <text>Choose the encryption level from the drop-down list.</text>
+      </presentation>
+      <presentation id="TS_FALLBACKPRINTDRIVERTYPE">
+        <dropdownList refId="TS_FALLBACK_OPTIONS" noSort="true" defaultItem="0">When attempting to find a suitable driver:</dropdownList>
+      </presentation>
+      <presentation id="TS_GATEWAY_POLICY_AUTH_METHOD">
+        <checkBox refId="TS_GATEWAY_OVERRIDE">Allow users to change this setting</checkBox>
+        <dropdownList refId="TS_GATEWAY_AUTH_MODE" noSort="true">Set RD Gateway authentication method</dropdownList>
+      </presentation>
+      <presentation id="TS_GATEWAY_POLICY_ENABLE">
+        <checkBox refId="TS_GATEWAY_OVERRIDE">Allow users to change this setting</checkBox>
+      </presentation>
+      <presentation id="TS_GATEWAY_POLICY_SERVER">
+        <checkBox refId="TS_GATEWAY_OVERRIDE">Allow users to change this setting</checkBox>
+        <textBox refId="TS_GATEWAY_SERVER">
+          <label>Set RD Gateway server address</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_KEEP_ALIVE">
+        <decimalTextBox refId="TS_KEEP_ALIVE_INTERVAL">Keep-Alive interval:</decimalTextBox>
+      </presentation>
+      <presentation id="TS_LICENSE_SERVERS">
+        <textBox refId="TS_LICENSE_EDIT">
+          <label>License servers to use:</label>
+        </textBox>
+        <text>Separate license server names with commas.</text>
+        <text>Example: Server1,Server2.example.com,192.168.1.1</text>
+      </presentation>
+      <presentation id="TS_LICENSING_MODE">
+        <dropdownList refId="TS_LICENSING_NAME" noSort="true" defaultItem="0">Specify the licensing mode for the RD Session Host server.</dropdownList>
+      </presentation>
+      <presentation id="TS_MAX_CON_POLICY">
+        <decimalTextBox refId="TS_Maximum_Connections_allowed">RD Maximum Connections allowed</decimalTextBox>
+        <text>Type 999999 for unlimited connections.</text>
+      </presentation>
+      <presentation id="TS_RemoteControl_1">
+        <dropdownList refId="TS_RemoteControl_Levels" noSort="true" defaultItem="0">Options:</dropdownList>
+      </presentation>
+      <presentation id="TS_RemoteControl_2">
+        <dropdownList refId="TS_RemoteControl_Levels" noSort="true" defaultItem="0">Options:</dropdownList>
+      </presentation>
+      <presentation id="TS_SD_ClustName">
+        <textBox refId="TS_SD_ClustName">
+          <label>Configure RD Connection Broker farm name:</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_SD_Loc">
+        <textBox refId="TS_SD_Loc">
+          <label>Configure RD Connection Broker server name:</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_SECURITY_LAYER_POLICY">
+        <dropdownList refId="TS_SECURITY_LAYER" defaultItem="1">Security Layer</dropdownList>
+        <text>Choose the security layer from the drop-down list.</text>
+      </presentation>
+      <presentation id="TS_SESSIONS_Disconnected_Timeout_1">
+        <dropdownList refId="TS_SESSIONS_EndDisconnected" noSort="true" defaultItem="0">End a disconnected session</dropdownList>
+      </presentation>
+      <presentation id="TS_SESSIONS_Disconnected_Timeout_2">
+        <dropdownList refId="TS_SESSIONS_EndDisconnected" noSort="true" defaultItem="0">End a disconnected session</dropdownList>
+      </presentation>
+      <presentation id="TS_SESSIONS_Idle_Limit_1">
+        <dropdownList refId="TS_SESSIONS_IdleLimitText" noSort="true" defaultItem="0">Idle session limit:</dropdownList>
+      </presentation>
+      <presentation id="TS_SESSIONS_Idle_Limit_2">
+        <dropdownList refId="TS_SESSIONS_IdleLimitText" noSort="true" defaultItem="0">Idle session limit:</dropdownList>
+      </presentation>
+      <presentation id="TS_SESSIONS_Limits_1">
+        <dropdownList refId="TS_SESSIONS_ActiveLimit" noSort="true" defaultItem="0">Active session limit :</dropdownList>
+      </presentation>
+      <presentation id="TS_SESSIONS_Limits_2">
+        <dropdownList refId="TS_SESSIONS_ActiveLimit" noSort="true" defaultItem="0">Active session limit :</dropdownList>
+      </presentation>
+      <presentation id="TS_START_PROGRAM_1">
+        <textBox refId="TS_PROGRAM_NAME">
+          <label>Program path and file name</label>
+        </textBox>
+        <textBox refId="TS_WORKDIR">
+          <label>Working Directory</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_START_PROGRAM_2">
+        <textBox refId="TS_PROGRAM_NAME">
+          <label>Program path and file name</label>
+        </textBox>
+        <textBox refId="TS_WORKDIR">
+          <label>Working Directory</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_USER_HOME">
+        <dropdownList refId="TS_USER_HOME_LOCATION" noSort="true">Location:</dropdownList>
+        <textBox refId="TS_HOME_DIR">
+          <label>Home Dir Root Path:</label>
+        </textBox>
+        <text>If home path is on the network, specify drive letter for the mapped drive.</text>
+        <dropdownList refId="TS_DRIVE_LETTER" defaultItem="19">Drive Letter</dropdownList>
+      </presentation>
+      <presentation id="TS_USER_PROFILES">
+        <textBox refId="TS_PROFILE_PATH">
+          <label>Profile path</label>
+        </textBox>
+        <text>Specify the path in the form, \\Computername\Sharename</text>
+      </presentation>
+      <presentation id="TS_DELETE_ROAMING_USER_PROFILES">
+        <decimalTextBox refId="TS_PROFILE_DIRECTORY_MONITORING_INTERVAL" defaultValue="900" spinStep="30">Monitoring interval (minutes):</decimalTextBox>
+        <decimalTextBox refId="TS_PROFILE_DIRECTORY_QUOTA" defaultValue="600" spinStep="50">Maximum cache size (GBs):</decimalTextBox>
+      </presentation>
+      <presentation id="TS_CERTIFICATE_TEMPLATE_POLICY">
+        <textBox refId="TS_CERTIFICATE_TEMPLATE_NAME">
+          <label>Certificate Template Name</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_TRUSTED_CERTIFICATE_THUMBPRINTS_1">
+        <textBox refId="TRUSTED_CERTIFICATE_THUMBPRINTS">
+          <label>Comma-separated list of SHA1 trusted certificate thumbprints:</label>
+        </textBox>
+       </presentation>
+      <presentation id="TS_TRUSTED_CERTIFICATE_THUMBPRINTS_2">
+        <textBox refId="TRUSTED_CERTIFICATE_THUMBPRINTS">
+          <label>Comma-separated list of SHA1 trusted certificate thumbprints:</label>
+        </textBox>
+       </presentation>
+      <presentation id="TS_SERVER_AUTH">
+        <dropdownList refId="TS_SERVER_AUTH_LEVEL" defaultItem="0" noSort="true">Authentication setting:</dropdownList>
+      </presentation>
+      <presentation id="TS_SERVER_IMAGE_QUALITY">
+        <dropdownList refId="TS_SERVER_IMAGE_QUALITY_LEVELS" noSort="true" defaultItem="0">Image quality:</dropdownList>
+      </presentation>
+      <presentation id="TS_SERVER_PROFILE">
+        <dropdownList refId="TS_SERVER_PROFILE_LEVELS" noSort="true" defaultItem="1">RDP experience:</dropdownList>
+      </presentation>
+      <presentation id="TS_SERVER_COMPRESSOR">
+        <dropdownList refId="TS_COMPRESSOR_LEVELS" noSort="true" defaultItem="0">RDP compression algorithm:</dropdownList>
+      </presentation>
+      <presentation id="TS_SERVER_AVC_HW_ENCODE_PREFERRED">
+        <dropdownList refId="TS_AVC_HW_ENCODE_ENUM" noSort="true" defaultItem="1">Prefer AVC hardware encoding:</dropdownList>
+      </presentation>
+      <presentation id="TS_SERVER_VISEXP">
+        <dropdownList refId="TS_VISEXP_SETTINGS" noSort="true" defaultItem="0">Visual experience:</dropdownList>
+      </presentation>
+      <presentation id="TS_AUDIO_QUALITY">
+        <dropdownList refId="TS_AUDIO_QUALITY_LEVEL" noSort="true" defaultItem="0">Audio Quality</dropdownList>
+      </presentation>
+      <presentation id="UsbAccessRight">
+        <dropdownList refId="UsbAccessRight" defaultItem="1">RemoteFX USB Redirection Access Rights</dropdownList>
+      </presentation>
+      <presentation id="TS_RemoteDesktopVirtualGraphics">
+        <dropdownList refId="TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate" noSort="true" defaultItem="1">Screen capture rate (frames per second):</dropdownList>
+        <dropdownList refId="TS_RemoteDesktopVirtualGraphics_ScreenImageQuality" noSort="true" defaultItem="1">Screen Image Quality:</dropdownList>
+      </presentation>
+      <presentation id="TS_RADC_DefaultConnection">
+        <textBox refId="TS_RADC_DefaultConnectionURL">
+          <label>Default connection URL:</label>
+        </textBox>
+      </presentation>
+      <presentation id="TS_SELECT_NETWORK_DETECT">
+        <dropdownList refId="TS_SELECT_NETWORK_DETECT_LEVEL" noSort="true" defaultItem="0">Select Network Detect Level</dropdownList>
+      </presentation>
+      <presentation id="TS_SELECT_TRANSPORT">
+        <dropdownList refId="TS_SELECT_TRANSPORT_TYPE" noSort="true" defaultItem="0">Select Transport Type</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,2942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="UEV" namespace="Microsoft.Policies.UEV" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="UEV" displayName="$(string.UEV)" explainText="$(string.UEVHELP)" >
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="Applications" displayName="$(string.Applications)" explainText="$(string.ApplicationsHELP)" >
+      <parentCategory ref="UEV" />
+    </category>
+    <category name="Windows8Apps" displayName="$(string.Windows8Apps)" explainText="$(string.ApplicationsHELP)" >
+      <parentCategory ref="UEV" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="EnableUEV" clientExtension="{169EBF44-942F-4C43-87CE-13C93996EBBE}" class="Machine" displayName="$(string.EnableUEV)" explainText="$(string.EnableUEV_Help)" key="Software\Policies\Microsoft\Windows\UEV\Agent" valueName="Enabled">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows: SUPPORTED_Windows_10_0_NOARM" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="RepositoryTimeout" class="Both" displayName="$(string.RepositoryTimeout)" explainText="$(string.RepositoryTimeout_Help)" presentation="$(presentation.RepositoryTimeout)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="RepositoryTimeout" valueName="SyncTimeoutInMilliseconds" required="true" minValue="2000" maxValue="40000000" />
+      </elements>
+    </policy>
+    <policy name="SettingsStoragePath" class="Both" displayName="$(string.SettingsStoragePath)" explainText="$(string.SettingsStoragePath_Help)" presentation="$(presentation.SettingsStoragePath)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="SettingsStoragePath" valueName="SettingsStoragePath" required="true" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="MaxPackageSizeInBytes" class="Both" displayName="$(string.MaxPackageSizeInBytes)" explainText="$(string.MaxPackageSizeInBytes_Help)" presentation="$(presentation.MaxPackageSizeInBytes)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="MaxPackageSizeInBytes" valueName="MaxPackageSizeInBytes" required="true" maxValue="4000000000" storeAsText="false"/>
+      </elements>
+    </policy>
+    <policy name="SettingsTemplateCatalogPath" class="Machine" displayName="$(string.SettingsTemplateCatalogPath)" explainText="$(string.SettingsTemplateCatalogPath_Help)" presentation="$(presentation.SettingsTemplateCatalogPath)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="SettingsTemplateCatalogPath" valueName="SettingsTemplateCatalogPath" required="true" expandable="true" />
+        <boolean id="OverrideMSTemplates" valueName="OverrideMSTemplates" />
+      </elements>
+    </policy>
+    
+    <!-- Applications -->
+    <policy name="InternetExplorerCommon" class="Both" displayName="$(string.InternetExplorerCommon)" explainText="$(string.InternetExplorerCommon_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="InternetExplorer8" class="Both" displayName="$(string.InternetExplorer8)" explainText="$(string.InternetExplorer8_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Version8">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="InternetExplorer9" class="Both" displayName="$(string.InternetExplorer9)" explainText="$(string.InternetExplorer9_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Version9">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="InternetExplorer10" class="Both" displayName="$(string.InternetExplorer10)" explainText="$(string.InternetExplorer10_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Version10">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="InternetExplorer11" class="Both" displayName="$(string.InternetExplorer11)" explainText="$(string.InternetExplorer11_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftInternetExplorer.Version11">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Calculator" class="Both" displayName="$(string.Calculator)" explainText="$(string.Calculator_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftCalculator6">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Notepad" class="Both" displayName="$(string.Notepad)" explainText="$(string.Notepad_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftNotepad6">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Wordpad" class="Both" displayName="$(string.Wordpad)" explainText="$(string.Wordpad_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftWordpad6">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MicrosoftOffice2016Common" class="Both" displayName="$(string.MicrosoftOffice2016Common)" explainText="$(string.MicrosoftOffice2016Common_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Access" class="Both" displayName="$(string.MicrosoftOffice2016Access)" explainText="$(string.MicrosoftOffice2016Access_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Excel" class="Both" displayName="$(string.MicrosoftOffice2016Excel)" explainText="$(string.MicrosoftOffice2016Excel_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Lync" class="Both" displayName="$(string.MicrosoftOffice2016Lync)" explainText="$(string.MicrosoftOffice2016Lync_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Win32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Win64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Win32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Win64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016UploadCenter" class="Both" displayName="$(string.MicrosoftOffice2016UploadCenter)" explainText="$(string.MicrosoftOffice2016UploadCenter_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.UploadCenter">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.UploadCenter">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.UploadCenter">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.UploadCenter">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016OneDriveForBusiness" class="Both" displayName="$(string.MicrosoftOffice2016OneDriveForBusiness)" explainText="$(string.MicrosoftOffice2016OneDriveForBusiness_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.OneDrive">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.OneDrive">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.OneDrive">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.OneDrive">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016OneNote" class="Both" displayName="$(string.MicrosoftOffice2016OneNote)" explainText="$(string.MicrosoftOffice2016OneNote_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Outlook" class="Both" displayName="$(string.MicrosoftOffice2016Outlook)" explainText="$(string.MicrosoftOffice2016Outlook_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016PowerPoint" class="Both" displayName="$(string.MicrosoftOffice2016PowerPoint)" explainText="$(string.MicrosoftOffice2016PowerPoint_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Project" class="Both" displayName="$(string.MicrosoftOffice2016Project)" explainText="$(string.MicrosoftOffice2016Project_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Publisher" class="Both" displayName="$(string.MicrosoftOffice2016Publisher)" explainText="$(string.MicrosoftOffice2016Publisher_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Visio" class="Both" displayName="$(string.MicrosoftOffice2016Visio)" explainText="$(string.MicrosoftOffice2016Visio_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016Word" class="Both" displayName="$(string.MicrosoftOffice2016Word)" explainText="$(string.MicrosoftOffice2016Word_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Win64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016CommonBackup" class="Both" displayName="$(string.MicrosoftOffice2016CommonBackup)" explainText="$(string.MicrosoftOffice2016CommonBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016AccessBackup" class="Both" displayName="$(string.MicrosoftOffice2016AccessBackup)" explainText="$(string.MicrosoftOffice2016AccessBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016ExcelBackup" class="Both" displayName="$(string.MicrosoftOffice2016ExcelBackup)" explainText="$(string.MicrosoftOffice2016ExcelBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016LyncBackup" class="Both" displayName="$(string.MicrosoftOffice2016LyncBackup)" explainText="$(string.MicrosoftOffice2016LyncBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016BackupWin32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016BackupWin64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016BackupWin32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016BackupWin64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016OneNoteBackup" class="Both" displayName="$(string.MicrosoftOffice2016OneNoteBackup)" explainText="$(string.MicrosoftOffice2016OneNoteBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016OutlookBackup" class="Both" displayName="$(string.MicrosoftOffice2016OutlookBackup)" explainText="$(string.MicrosoftOffice2016OutlookBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016PowerPointBackup" class="Both" displayName="$(string.MicrosoftOffice2016PowerPointBackup)" explainText="$(string.MicrosoftOffice2016PowerPointBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016ProjectBackup" class="Both" displayName="$(string.MicrosoftOffice2016ProjectBackup)" explainText="$(string.MicrosoftOffice2016ProjectBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016PublisherBackup" class="Both" displayName="$(string.MicrosoftOffice2016PublisherBackup)" explainText="$(string.MicrosoftOffice2016PublisherBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016VisioBackup" class="Both" displayName="$(string.MicrosoftOffice2016VisioBackup)" explainText="$(string.MicrosoftOffice2016VisioBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2016WordBackup" class="Both" displayName="$(string.MicrosoftOffice2016WordBackup)" explainText="$(string.MicrosoftOffice2016WordBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016BackupWin64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Common2016" class="Both" displayName="$(string.MicrosoftOffice365Common2016)" explainText="$(string.MicrosoftOffice365Common2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Access2016" class="Both" displayName="$(string.MicrosoftOffice365Access2016)" explainText="$(string.MicrosoftOffice365Access2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Excel2016" class="Both" displayName="$(string.MicrosoftOffice365Excel2016)" explainText="$(string.MicrosoftOffice365Excel2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Lync2016" class="Both" displayName="$(string.MicrosoftOffice365Lync2016)" explainText="$(string.MicrosoftOffice365Lync2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Office365Win32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Office365Win64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Office365Win32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2016Office365Win64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365OneNote2016" class="Both" displayName="$(string.MicrosoftOffice365OneNote2016)" explainText="$(string.MicrosoftOffice365OneNote2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Outlook2016" class="Both" displayName="$(string.MicrosoftOffice365Outlook2016)" explainText="$(string.MicrosoftOffice365Outlook2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365PowerPoint2016" class="Both" displayName="$(string.MicrosoftOffice365PowerPoint2016)" explainText="$(string.MicrosoftOffice365PowerPoint2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Project2016" class="Both" displayName="$(string.MicrosoftOffice365Project2016)" explainText="$(string.MicrosoftOffice365Project2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Publisher2016" class="Both" displayName="$(string.MicrosoftOffice365Publisher2016)" explainText="$(string.MicrosoftOffice365Publisher2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Visio2016" class="Both" displayName="$(string.MicrosoftOffice365Visio2016)" explainText="$(string.MicrosoftOffice365Visio2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Word2016" class="Both" displayName="$(string.MicrosoftOffice365Word2016)" explainText="$(string.MicrosoftOffice365Word2016_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2016Office365Win64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Common" class="Both" displayName="$(string.MicrosoftOffice2013Common)" explainText="$(string.MicrosoftOffice2013Common_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Access" class="Both" displayName="$(string.MicrosoftOffice2013Access)" explainText="$(string.MicrosoftOffice2013Access_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Excel" class="Both" displayName="$(string.MicrosoftOffice2013Excel)" explainText="$(string.MicrosoftOffice2013Excel_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013InfoPath" class="Both" displayName="$(string.MicrosoftOffice2013InfoPath)" explainText="$(string.MicrosoftOffice2013InfoPath_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Lync" class="Both" displayName="$(string.MicrosoftOffice2013Lync)" explainText="$(string.MicrosoftOffice2013Lync_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Win32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Win64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Win32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Win64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013UploadCenter" class="Both" displayName="$(string.MicrosoftOffice2013UploadCenter)" explainText="$(string.MicrosoftOffice2013UploadCenter_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.UploadCenter">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.UploadCenter">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.UploadCenter">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.UploadCenter">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013OneDriveForBusiness" class="Both" displayName="$(string.MicrosoftOffice2013OneDriveForBusiness)" explainText="$(string.MicrosoftOffice2013OneDriveForBusiness_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.OneDrive">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.OneDrive">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.OneDrive">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.OneDrive">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013OneNote" class="Both" displayName="$(string.MicrosoftOffice2013OneNote)" explainText="$(string.MicrosoftOffice2013OneNote_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Outlook" class="Both" displayName="$(string.MicrosoftOffice2013Outlook)" explainText="$(string.MicrosoftOffice2013Outlook_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013PowerPoint" class="Both" displayName="$(string.MicrosoftOffice2013PowerPoint)" explainText="$(string.MicrosoftOffice2013PowerPoint_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Project" class="Both" displayName="$(string.MicrosoftOffice2013Project)" explainText="$(string.MicrosoftOffice2013Project_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Publisher" class="Both" displayName="$(string.MicrosoftOffice2013Publisher)" explainText="$(string.MicrosoftOffice2013Publisher_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013SharePointDesigner" class="Both" displayName="$(string.MicrosoftOffice2013SharePointDesigner)" explainText="$(string.MicrosoftOffice2013SharePointDesigner_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Visio" class="Both" displayName="$(string.MicrosoftOffice2013Visio)" explainText="$(string.MicrosoftOffice2013Visio_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013Word" class="Both" displayName="$(string.MicrosoftOffice2013Word)" explainText="$(string.MicrosoftOffice2013Word_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Win64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013CommonBackup" class="Both" displayName="$(string.MicrosoftOffice2013CommonBackup)" explainText="$(string.MicrosoftOffice2013CommonBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013AccessBackup" class="Both" displayName="$(string.MicrosoftOffice2013AccessBackup)" explainText="$(string.MicrosoftOffice2013AccessBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013ExcelBackup" class="Both" displayName="$(string.MicrosoftOffice2013ExcelBackup)" explainText="$(string.MicrosoftOffice2013ExcelBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013InfoPathBackup" class="Both" displayName="$(string.MicrosoftOffice2013InfoPathBackup)" explainText="$(string.MicrosoftOffice2013InfoPathBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013LyncBackup" class="Both" displayName="$(string.MicrosoftOffice2013LyncBackup)" explainText="$(string.MicrosoftOffice2013LyncBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013BackupWin32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013BackupWin64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013BackupWin32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013BackupWin64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013OneNoteBackup" class="Both" displayName="$(string.MicrosoftOffice2013OneNoteBackup)" explainText="$(string.MicrosoftOffice2013OneNoteBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013OutlookBackup" class="Both" displayName="$(string.MicrosoftOffice2013OutlookBackup)" explainText="$(string.MicrosoftOffice2013OutlookBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013PowerPointBackup" class="Both" displayName="$(string.MicrosoftOffice2013PowerPointBackup)" explainText="$(string.MicrosoftOffice2013PowerPointBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013ProjectBackup" class="Both" displayName="$(string.MicrosoftOffice2013ProjectBackup)" explainText="$(string.MicrosoftOffice2013ProjectBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013PublisherBackup" class="Both" displayName="$(string.MicrosoftOffice2013PublisherBackup)" explainText="$(string.MicrosoftOffice2013PublisherBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013SharePointDesignerBackup" class="Both" displayName="$(string.MicrosoftOffice2013SharePointDesignerBackup)" explainText="$(string.MicrosoftOffice2013SharePointDesignerBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013VisioBackup" class="Both" displayName="$(string.MicrosoftOffice2013VisioBackup)" explainText="$(string.MicrosoftOffice2013VisioBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2013WordBackup" class="Both" displayName="$(string.MicrosoftOffice2013WordBackup)" explainText="$(string.MicrosoftOffice2013WordBackup_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013BackupWin64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Common2013" class="Both" displayName="$(string.MicrosoftOffice365Common2013)" explainText="$(string.MicrosoftOffice365Common2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Access2013" class="Both" displayName="$(string.MicrosoftOffice365Access2013)" explainText="$(string.MicrosoftOffice365Access2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Excel2013" class="Both" displayName="$(string.MicrosoftOffice365Excel2013)" explainText="$(string.MicrosoftOffice365Excel2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365InfoPath2013" class="Both" displayName="$(string.MicrosoftOffice365InfoPath2013)" explainText="$(string.MicrosoftOffice365InfoPath2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Lync2013" class="Both" displayName="$(string.MicrosoftOffice365Lync2013)" explainText="$(string.MicrosoftOffice365Lync2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Office365Win32">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Office365Win64">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Office365Win32">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2013Office365Win64">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365OneNote2013" class="Both" displayName="$(string.MicrosoftOffice365OneNote2013)" explainText="$(string.MicrosoftOffice365OneNote2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Outlook2013" class="Both" displayName="$(string.MicrosoftOffice365Outlook2013)" explainText="$(string.MicrosoftOffice365Outlook2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365PowerPoint2013" class="Both" displayName="$(string.MicrosoftOffice365PowerPoint2013)" explainText="$(string.MicrosoftOffice365PowerPoint2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Project2013" class="Both" displayName="$(string.MicrosoftOffice365Project2013)" explainText="$(string.MicrosoftOffice365Project2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Publisher2013" class="Both" displayName="$(string.MicrosoftOffice365Publisher2013)" explainText="$(string.MicrosoftOffice365Publisher2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365SharePointDesigner2013" class="Both" displayName="$(string.MicrosoftOffice365SharePointDesigner2013)" explainText="$(string.MicrosoftOffice365SharePointDesigner2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Visio2013" class="Both" displayName="$(string.MicrosoftOffice365Visio2013)" explainText="$(string.MicrosoftOffice365Visio2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice365Word2013" class="Both" displayName="$(string.MicrosoftOffice365Word2013)" explainText="$(string.MicrosoftOffice365Word2013_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2013Office365Win64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Common" class="Both" displayName="$(string.MicrosoftOffice2010Common)" explainText="$(string.MicrosoftOffice2010Common_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Common">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Common">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Access" class="Both" displayName="$(string.MicrosoftOffice2010Access)" explainText="$(string.MicrosoftOffice2010Access_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Access">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Access">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Excel" class="Both" displayName="$(string.MicrosoftOffice2010Excel)" explainText="$(string.MicrosoftOffice2010Excel_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Excel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Excel">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010InfoPath" class="Both" displayName="$(string.MicrosoftOffice2010InfoPath)" explainText="$(string.MicrosoftOffice2010InfoPath_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.InfoPath">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.InfoPath">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010OneNote" class="Both" displayName="$(string.MicrosoftOffice2010OneNote)" explainText="$(string.MicrosoftOffice2010OneNote_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.OneNote">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.OneNote">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Lync" class="Both" displayName="$(string.MicrosoftOffice2010Lync)" explainText="$(string.MicrosoftOffice2010Lync_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftLync2010">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MicrosoftOffice2010Outlook" class="Both" displayName="$(string.MicrosoftOffice2010Outlook)" explainText="$(string.MicrosoftOffice2010Outlook_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Outlook">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Outlook">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010PowerPoint" class="Both" displayName="$(string.MicrosoftOffice2010PowerPoint)" explainText="$(string.MicrosoftOffice2010PowerPoint_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.PowerPoint">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.PowerPoint">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Project" class="Both" displayName="$(string.MicrosoftOffice2010Project)" explainText="$(string.MicrosoftOffice2010Project_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Project">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Project">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Publisher" class="Both" displayName="$(string.MicrosoftOffice2010Publisher)" explainText="$(string.MicrosoftOffice2010Publisher_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Publisher">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Publisher">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010SharePointWorkspace" class="Both" displayName="$(string.MicrosoftOffice2010SharePointWorkspace)" explainText="$(string.MicrosoftOffice2010SharePointWorkspace_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Groove">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Groove">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Groove">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Groove">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010SharePointDesigner" class="Both" displayName="$(string.MicrosoftOffice2010SharePointDesigner)" explainText="$(string.MicrosoftOffice2010SharePointDesigner_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.SharePointDesigner">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.SharePointDesigner">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Word" class="Both" displayName="$(string.MicrosoftOffice2010Word)" explainText="$(string.MicrosoftOffice2010Word_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Word">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Word">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="MicrosoftOffice2010Visio" class="Both" displayName="$(string.MicrosoftOffice2010Visio)" explainText="$(string.MicrosoftOffice2010Visio_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications">
+      <parentCategory ref="Applications" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Visio">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win32.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\UEV\Agent\Configuration\Applications" valueName="MicrosoftOffice2010Win64.Visio">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <!-- Applications -->
+
+    <!--Windows Apps-->
+    <policy name="Finance" class="Both" displayName="$(string.Finance)" explainText="$(string.Finance_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingFinance_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Maps" class="Both" displayName="$(string.Maps)" explainText="$(string.Maps_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingMaps_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="News" class="Both" displayName="$(string.News)" explainText="$(string.News_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingNews_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Sports" class="Both" displayName="$(string.Sports)" explainText="$(string.Sports_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingSports_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Travel" class="Both" displayName="$(string.Travel)" explainText="$(string.Travel_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingTravel_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Weather" class="Both" displayName="$(string.Weather)" explainText="$(string.Weather_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.BingWeather_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Reader" class="Both" displayName="$(string.Reader)" explainText="$(string.Reader_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.Reader_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Games" class="Both" displayName="$(string.Games)" explainText="$(string.Games_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.XboxLIVEGames_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Music" class="Both" displayName="$(string.Music)" explainText="$(string.Music_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.ZuneMusic_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Video" class="Both" displayName="$(string.Video)" explainText="$(string.Video_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\Windows8AppList\Microsoft.ZuneVideo_8wekyb3d8bbwe" valueName="SyncSettings">
+      <parentCategory ref="Windows8Apps" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <!--End Windows Apps-->
+
+    <policy name="DisableWindowsOSSettings" class="Both" displayName="$(string.DisableWindowsOSSettings)" explainText="$(string.DisableWindowsOSSettings_Help)" presentation="$(presentation.WindowsOSSettings)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\WindowsSettings">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <boolean id="DesktopSettings" valueName="DesktopSettings">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="EaseOfAccessSettings" valueName="EaseOfAccessSettings">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="ThemeSettings" valueName="ThemeSettings">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="RoamingCredentialSettings" valueName="RoamingCredentialSettings">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="NetworkPrinters" valueName="NetworkPrinters">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="SyncEnabled" class="Both" displayName="$(string.SyncEnabled)" explainText="$(string.SyncEnabled_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="SyncEnabled">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ConfigureSyncMethod" class="Both" displayName="$(string.ConfigureSyncMethod)" explainText="$(string.ConfigureSyncMethod_Help)" presentation="$(presentation.SyncMethodConfiguration)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="SyncMethodConfiguration_list" valueName="SyncMethod" required="true">
+          <item displayName="$(string.SyncMethodSyncProvider)">
+            <value>
+              <string>SyncProvider</string>
+            </value>  
+          </item>
+          <item displayName="$(string.SyncMethodNone)">
+            <value>
+              <string>None</string>
+            </value>  
+          </item>
+          <item displayName="$(string.SyncMethodExternal)">
+            <value>
+              <string>External</string>
+            </value>  
+          </item>
+        </enum>
+        <boolean id="SettingsImportNotification_Enable" valueName="SettingsImportNotifyEnabled" />
+        <decimal id="SettingsImportNotification_Delay" valueName="SettingsImportNotifyDelayInSeconds" required="false" maxValue="4294967200" storeAsText="false" />
+      </elements>
+    </policy>
+    <policy name="ConfigureVdi" class="Both" displayName="$(string.ConfigureVdi)" explainText="$(string.ConfigureVdi_Help)" presentation="$(presentation.VdiConfiguration)" key="Software\Policies\Microsoft\UEV\Agent\Configuration\WindowsSettings" valueName="VdiState">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+      <elements>
+          <text id="VdiCollectionName" valueName="VdiCollectionName" required="true" expandable="true" key="Software\Policies\Microsoft\UEV\Agent\Configuration"/>
+      </elements>
+    </policy>
+    <!--policy name="SyncProviderName" class="Both" displayName="$(string.SyncProviderName)" explainText="$(string.SyncProviderName_Help)" presentation="$(presentation.SyncProviderName)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="SyncProviderName" valueName="SyncProviderName" required="true" expandable="true" />
+      </elements>
+    </policy-->
+    <policy name="DisableWin8Sync" class="Both" displayName="$(string.DisableWin8Sync)" explainText="$(string.DisableWin8Sync_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="DontSyncWindows8AppSettings">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TrayIconEnabled" class="Machine" displayName="$(string.TrayIconEnabled)" explainText="$(string.TrayIconEnabled_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="TrayIconEnabled">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FirstUseNotificationEnabled" class="Machine" displayName="$(string.FirstUseNotificationEnabled)" explainText="$(string.FirstUseNotificationEnabled_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="FirstUseNotificationEnabled">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SyncUnlistedWindows8Apps" class="Machine" displayName="$(string.SyncUnlistedWindows8Apps)" explainText="$(string.SyncUnlistedWindows8Apps_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="SyncUnlistedWindows8Apps">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SyncProviderPingEnabled" class="Both" displayName="$(string.SyncProviderPingEnabled)" explainText="$(string.SyncProviderPingEnabled_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="SyncProviderPingEnabled">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SyncOverMeteredNetwork" class="Both" displayName="$(string.SyncSettingsOverMetered)" explainText="$(string.SyncSettingsOverMetered_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="SyncOverMeteredNetwork">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SyncOverMeteredNetworkWhenRoaming" class="Both" displayName="$(string.SyncSettingsOverMeteredRoaming)" explainText="$(string.SyncSettingsOverMeteredRoaming_Help)" key="Software\Policies\Microsoft\UEV\Agent\Configuration" valueName="SyncOverMeteredNetworkWhenRoaming">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ContactITDescription" class="Machine" displayName="$(string.ContactITDescription)" explainText="$(string.ContactITDescription_Help)" presentation="$(presentation.ContactITDescription)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="ContactITDescription" valueName="ContactITDescription" required="true" expandable="true" />
+      </elements>
+    </policy>
+    <policy name="ContactITUrl" class="Machine" displayName="$(string.ContactITURL)" explainText="$(string.ContactITURL_Help)" presentation="$(presentation.ContactITURL)" key="Software\Policies\Microsoft\UEV\Agent\Configuration">
+      <parentCategory ref="UEV" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="ContactITURL" valueName="ContactITUrl" required="true" expandable="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

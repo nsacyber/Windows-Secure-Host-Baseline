@@ -25,6 +25,9 @@
     <category name="PowerVideoSettingsCat" displayName="$(string.PowerVideoSettingsCat)">
       <parentCategory ref="PowerManagementCat" />
     </category>
+    <category name="EnergySaverSettingsCat" displayName="$(string.EnergySaverSettingsCat)">
+      <parentCategory ref="PowerManagementCat" />
+    </category>
   </categories>
   <policies>
     <policy name="DCBatteryDischargeAction0_2" class="Machine" displayName="$(string.DCBatteryDischargeAction0)" explainText="$(string.BatteryDischargeAction0Explain)" presentation="$(presentation.DCBatteryDischargeAction0_2)" key="Software\Policies\Microsoft\Power\PowerSettings\637EA02F-BBCB-4015-8E2C-A1C7B9C0B546">
@@ -623,6 +626,40 @@
       <elements>
         <decimal id="EnterReserveBatteryNotificationLevel" valueName="DCSettingIndex" required="true" maxValue="100" />
       </elements>
+    </policy>
+    <policy name="EsBattThresholdAC" class="Machine" displayName="$(string.EsBattThresholdAC)" explainText="$(string.EsBattThresholdExplain)" presentation="$(presentation.EsBattThreshold)" key="Software\Policies\Microsoft\Power\PowerSettings\E69653CA-CF7F-4F05-AA73-CB833FA90AD4">
+      <parentCategory ref="EnergySaverSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <decimal id="EnterEsBattThreshold" valueName="ACSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="EsBattThresholdDC" class="Machine" displayName="$(string.EsBattThresholdDC)" explainText="$(string.EsBattThresholdExplain)" presentation="$(presentation.EsBattThreshold)" key="Software\Policies\Microsoft\Power\PowerSettings\E69653CA-CF7F-4F05-AA73-CB833FA90AD4">
+      <parentCategory ref="EnergySaverSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <decimal id="EnterEsBattThreshold" valueName="DCSettingIndex" required="true" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="ACConnectivityInStandby_2" class="Machine" displayName="$(string.ACConnectivityInStandby)" explainText="$(string.ConnectivityInStandbyExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9" valueName="ACSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DCConnectivityInStandby_2" class="Machine" displayName="$(string.DCConnectivityInStandby)" explainText="$(string.ConnectivityInStandbyExplain)" key="Software\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9" valueName="DCSettingIndex">
+      <parentCategory ref="PowerSleepSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
     </policy>
   </policies>
 </policyDefinitions>

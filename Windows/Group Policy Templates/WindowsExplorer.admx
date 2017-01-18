@@ -688,28 +688,15 @@
               valueName="DefaultLibrariesLocation" />
       </elements>
     </policy>
-    <policy name="EnableSmartScreen" class="Machine" displayName="$(string.EnableSmartScreen)" explainText="$(string.EnableSmartScreen_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableSmartScreen" presentation="$(presentation.EnableSmartScreen)">
+    <policy name="EnableSmartScreen" class="Machine" displayName="$(string.EnableSmartScreen)" explainText="$(string.EnableSmartScreen_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="EnableSmartScreen">
       <parentCategory ref="windows:WindowsExplorer" />
       <supportedOn ref="windows:SUPPORTED_Windows8" />
-      <elements>
-        <enum id="EnableSmartScreenDropdown" valueName="EnableSmartScreen" required="true">
-          <item displayName="$(string.SmartScreen_RequireAdmin)">
-            <value>
-              <decimal value="2" />
-            </value>
-          </item>
-          <item displayName="$(string.SmartScreen_Prompt)">
-            <value>
-              <decimal value="1" />
-            </value>
-          </item>
-          <item displayName="$(string.SmartScreen_Off)">
-            <value>
-              <decimal value="0" />
-            </value>
-          </item>
-        </enum>
-      </elements>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
     </policy>
     <policy name="ShowLockOption" class="Machine" displayName="$(string.ShowLockOption)" explainText="$(string.ShowLockOption_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="ShowLockOption">
       <parentCategory ref="windows:WindowsExplorer" />
@@ -751,12 +738,12 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="ExplorerRibbonStartsMinimized" 
-            class="Both" 
-            displayName="$(string.ExplorerRibbonStartsMinimized_DisplayName)" 
-            explainText="$(string.ExplorerRibbonStartsMinimized_ExplainText)" 
+    <policy name="ExplorerRibbonStartsMinimized"
+            class="Both"
+            displayName="$(string.ExplorerRibbonStartsMinimized_DisplayName)"
+            explainText="$(string.ExplorerRibbonStartsMinimized_ExplainText)"
             presentation="$(presentation.ExplorerRibbonStartsMinimized)"
-            key="Software\Policies\Microsoft\Windows\Explorer" 
+            key="Software\Policies\Microsoft\Windows\Explorer"
             valueName="ExplorerRibbonStartsMinimized">
         <parentCategory ref="windows:WindowsExplorer" />
         <supportedOn ref="windows:SUPPORTED_Windows8" />

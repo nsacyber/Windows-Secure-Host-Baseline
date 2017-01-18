@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="NotificationsCategory">Notifications</string>
+      <string id="NoTileNotification">Turn off tile notifications</string>
+      <string id="NoTileNotificationExplain">
+          This policy setting turns off tile notifications.
+
+          If you enable this policy setting, applications and system features will not be able to update their tiles and tile badges in the Start screen.
+
+          If you disable or do not configure this policy setting, tile and badge notifications are enabled and can be turned off by the administrator or user.
+
+          No reboots or service restarts are required for this policy setting to take effect.
+      </string>
+      <string id="NoToastNotification">Turn off toast notifications</string>
+      <string id="NoToastNotificationExplain">
+          This policy setting turns off toast notifications for applications.
+
+          If you enable this policy setting, applications will not be able to raise toast notifications.
+
+          Note that this policy does not affect taskbar notification balloons.
+
+          Note that Windows system features are not affected by this policy.  You must enable/disable system features individually to stop their ability to raise toast notifications.
+
+          If you disable or do not configure this policy setting, toast notifications are enabled and can be turned off by the administrator or user.
+
+          No reboots or service restarts are required for this policy setting to take effect.
+      </string>
+      <string id="NoLockScreenToastNotification">Turn off toast notifications on the lock screen</string>
+      <string id="NoLockScreenToastNotificationExplain">
+        This policy setting turns off toast notifications on the lock screen.
+
+        If you enable this policy setting, applications will not be able to raise toast notifications on the lock screen.
+
+        If you disable or do not configure this policy setting, toast notifications on the lock screen are enabled and can be turned off by the administrator or user.
+
+        No reboots or service restarts are required for this policy setting to take effect.
+      </string>
+      <string id="NoCloudNotification">Turn off notifications network usage</string>
+      <string id="NoCloudNotificationExplain">
+          This policy setting blocks applications from using the network to send notifications to update tiles, tile badges, toast, or raw notifications. This policy setting turns off the connection between Windows and the Windows Push Notification Service (WNS). This policy setting also stops applications from being able to poll application services to update tiles.
+
+          If you enable this policy setting, applications and system features will not be able receive notifications from the network from WNS or via notification polling APIs.
+
+          If you enable this policy setting, notifications can still be raised by applications running on the machine via local API calls from within the application.
+
+          If you disable or do not configure this policy setting, the client computer will connect to WNS at user login and applications will be allowed to poll for tile notification updates in the background.
+
+          No reboots or service restarts are required for this policy setting to take effect.
+      </string>
+      <string id="NoQuietHours">Turn off Quiet Hours</string>
+      <string id="NoQuietHoursExplain">
+        This policy setting turns off Quiet Hours functionality.
+        
+        If you enable this policy setting, toast notifications will not be suppressed and some background tasks will not be deferred during the designated Quiet Hours time window each day.
+        
+        If you disable this policy setting, toast notifications will be suppressed and some background task deferred during the designated Quiet Hours time window.  Users will not be able to change this or any other Quiet Hours settings.
+        
+        If you do not configure this policy setting, Quiet Hours are enabled by default but can be turned off or by the administrator or user.
+      </string>
+      <string id="NoCallsDuringQuietHours">Turn off calls during Quiet Hours</string>
+      <string id="QuietHoursDailyBeginMinute">Set the time Quiet Hours begins each day</string>
+      <string id="QuietHoursDailyBeginMinuteExplain">
+        This policy setting specifies the number of minutes after midnight (local time) that Quiet Hours is to begin each day.
+
+        If you enable this policy setting, the specified time will be used, and users will not be able to customize any Quiet Hours settings.
+
+        If you disable this policy setting, a default value will be used, and users will not be able to change it or any other Quiet Hours setting.
+
+        If you do not configure this policy setting, a default value will be used, which administrators and users will be able to modify.
+      </string>
+      <string id="QuietHoursDailyEndMinute">Set the time Quiet Hours ends each day</string>
+      <string id="QuietHoursDailyEndMinuteExplain">
+        This policy setting specifies the number of minutes after midnight (local time) that Quiet Hours is to end each day.
+
+        If you enable this policy setting, the specified time will be used, and users will not be able to customize any Quiet Hours settings.
+
+        If you disable this policy setting, a default value will be used, and users will not be able to change it or any other Quiet Hours setting.
+
+        If you do not configure this policy setting, a default value will be used, which administrators and users will be able to modify.
+      </string>
+      <string id="NoCallsDuringQuietHoursExplain">
+        This policy setting blocks voice and video calls during Quiet Hours.
+
+        If you enable this policy setting, voice and video calls will be blocked during the designated Quiet Hours time window each day, and users will not be able to customize any other Quiet Hours settings.
+
+        If you disable this policy setting, voice and video calls will be allowed during Quiet Hours, and users will not be able to customize this or any other Quiet Hours settings.
+
+        If you do not configure this policy setting, voice and video calls will be allowed during Quiet Hours by default.  Adminstrators and users will be able to modify this setting.
+      </string>
+      <string id="NoNotificationMirroring">Turn off notification mirroring</string>
+      <string id="NoNotificationMirroringExplain">
+          This policy setting turns off notification mirroring.
+
+          If you enable this policy setting, notifications from applications and system will not be mirrored to your other devices.
+
+          If you disable or do not configure this policy setting, notifications will be mirrored, and can be turned off by the administrator or user.
+
+          No reboots or service restarts are required for this policy setting to take effect.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="QuietHoursBeginTimePicker">
+        <decimalTextBox refId="QuietHoursDailyBeginMinuteControl" defaultValue="0">Minutes after midnight:</decimalTextBox>
+      </presentation>
+      <presentation id="QuietHoursEndTimePicker">
+        <decimalTextBox refId="QuietHoursDailyEndMinuteControl" defaultValue="360">Minutes after midnight:</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

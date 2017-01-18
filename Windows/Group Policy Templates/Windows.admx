@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <supersededAdm fileName="system.adm" />
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+      <!--Windows 2000 or later, running IIS. Not supported on Windows Server 2003-->
+      <definition name="SUPPORTED_AllowWebPrinting" displayName="$(string.SUPPORTED_AllowWebPrinting)">
+        <or>
+          <reference ref="products:MicrosoftWindows2000"/>
+          <reference ref="products:MicrosoftWindowsXP"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--At least Internet Explorer 6 Service Pack 1-->
+      <definition name="SUPPORTED_IE6SP1" displayName="$(string.SUPPORTED_IE6SP1)" />
+
+      <!--At least Microsoft Windows 2000-->
+      <definition name="SUPPORTED_Win2k" displayName="$(string.SUPPORTED_Win2k)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 2000 only-->
+      <definition name="SUPPORTED_Win2kOnly" displayName="$(string.SUPPORTED_Win2kOnly)">
+        <or>
+          <reference ref="products:MicrosoftWindows2000"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows 2000 Service Pack 1-->
+      <definition name="SUPPORTED_Win2kSP1" displayName="$(string.SUPPORTED_Win2kSP1)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows 2000 Service Pack 3-->
+      <definition name="SUPPORTED_Win2kSP3" displayName="$(string.SUPPORTED_Win2kSP3)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows 2000 Service Pack 3 or Microsoft Windows XP Professional Service Pack 1-->
+      <definition name="SUPPORTED_Win2kSP3_Or_XPSP1" displayName="$(string.SUPPORTED_Win2kSP3_Or_XPSP1)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 2000 Service Pack 3 or Microsoft Windows XP Professional Service Pack 1 to Windows 8.1-->
+      <definition name="SUPPORTED_Windows_6_3ToXPSP1_Or_Win2kSP3" displayName="$(string.SUPPORTED_Windows_6_3ToXPSP1_Or_Win2kSP3)">
+        <or>          
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows Server 2003-->
+      <definition name="SUPPORTED_WindowsNET" displayName="$(string.SUPPORTED_WindowsNET)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003 only-->
+      <definition name="SUPPORTED_WindowsNETOnly" displayName="$(string.SUPPORTED_WindowsNETOnly)">
+        <or>
+          <reference ref="products:MicrosoftWindowsServer2003"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003 and Windows XP only-->
+      <definition name="SUPPORTED_WindowsNET_XP" displayName="$(string.SUPPORTED_WindowsNET_XP)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2" maxVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003, Windows XP, and Windows 2000 operating systems only-->
+      <definition name="SUPPORTED_WindowsPreVista" displayName="$(string.SUPPORTED_WindowsPreVista)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1" maxVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--
+        At least Microsoft Windows 2000 Service Pack 3, Microsoft Windows XP Professional Service Pack 1
+        or Microsoft Windows Server 2003 family
+      -->
+      <definition name="SUPPORTED_WindowsUpdate" displayName="$(string.SUPPORTED_WindowsUpdate)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows Vista-->
+      <definition name="SUPPORTED_WindowsVista" displayName="$(string.SUPPORTED_WindowsVista)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows Vista SP1-->
+      <definition name="SUPPORTED_WindowsVistaSP1" displayName="$(string.SUPPORTED_WindowsVistaSP1)">
+        <or>
+          <range ref="products:MicrosoftWindowsVista" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 7 or Windows Server 2008 R2-->
+      <definition name="SUPPORTED_Windows7" displayName="$(string.SUPPORTED_Windows7)">
+        <or>
+          <range ref="products:WindowsServer2008" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 10 -->
+      <definition name="SUPPORTED_Windows_10_0" displayName="$(string.SUPPORTED_Windows_10_0)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="13"/>
+          </or>
+      </definition>
+
+      <!--At least Windows Threshold no ARM-->
+      <definition name="SUPPORTED_Windows_10_0_NOARM" displayName="$(string.SUPPORTED_Windows_10_0_NOARM)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="13" maxVersionIndex="14"/>
+          </or>
+      </definition>
+
+      <!--At least Windows Threshold no SERVER-->
+      <definition name="SUPPORTED_Windows_10_0_NOSERVER" displayName="$(string.SUPPORTED_Windows_10_0_NOSERVER)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="14" maxVersionIndex="15"/>
+          </or>
+      </definition>
+
+      <!--Windows 2000 to Windows Blue-->
+      <definition name="SUPPORTED_Windows_6_3To2k" displayName="$(string.SUPPORTED_Windows_6_3To2k)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--Only Windows Blue-->
+      <definition name="SUPPORTED_Windows_6_3only" displayName="$(string.SUPPORTED_Windows_6_3only)">
+        <or>
+          <range ref="products:MicrosoftWindows_6_3"/>
+          <range ref="products:MicrosoftWindowsServer_6_3"/>
+          <range ref="products:MicrosoftWindows_6_3_RT"/>
+        </or>
+      </definition>
+
+      <!--At least Windows Blue-->
+      <definition name="SUPPORTED_Windows_6_3" displayName="$(string.SUPPORTED_Windows_6_3)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="10"/>
+          </or>
+      </definition>
+
+      <!--At least Windows Blue no ARM-->
+      <definition name="SUPPORTED_Windows_6_3_NOARM" displayName="$(string.SUPPORTED_Windows_6_3_NOARM)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="10" maxVersionIndex="11"/>
+          </or>
+      </definition>
+
+      <!--At least Windows Blue no SERVER-->
+      <definition name="SUPPORTED_Windows_6_3_NOSERVER" displayName="$(string.SUPPORTED_Windows_6_3_NOSERVER)">
+          <or>
+              <range ref="products:MicrosoftWindows" minVersionIndex="11" maxVersionIndex="12"/>
+          </or>
+      </definition>
+
+      <!--Windows 8 and Windows 8.1 only-->
+      <definition name="SUPPORTED_Windows8_Or_Windows_6_3_Only" displayName="$(string.SUPPORTED_Windows8_Or_Windows_6_3_Only)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="7" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--Windows Vista to Windows 8.1 only-->
+      <definition name="SUPPORTED_Windows_6_3ToVista" displayName="$(string.SUPPORTED_Windows_6_3ToVista)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 8-->
+      <definition name="SUPPORTED_Windows8" displayName="$(string.SUPPORTED_Windows8)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="7"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 8 or IE 10 (applies downlevel)-->
+      <definition name="SUPPORTED_Windows8_Or_IE10" displayName="$(string.SUPPORTED_Windows8_Or_IE10)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="7"/>
+          <range ref="products:InternetExplorer" minVersionIndex="10"/>
+        </or>
+      </definition>
+
+
+     <!--Microsoft Windows Server 2008 and Windows Vista operating systems only-->
+     <definition name="SUPPORTED_WindowsVistaOrServer2008Only" displayName="$(string.SUPPORTED_WindowsVistaOrServer2008Only)">
+       <or>
+        <reference ref="products:MicrosoftWindowsVista"/>
+         <reference ref="products:WindowsServer2008"/>
+      </or>
+     </definition>
+    
+      
+      <!--At least Microsoft Windows XP Professional or Windows Server 2003 family-->
+      <definition name="SUPPORTED_WindowsXP" displayName="$(string.SUPPORTED_WindowsXP)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows XP or at least Microsoft Windows Vista-->
+      <definition name="SUPPORTED_WindowsXP_Or_Vista" displayName="$(string.SUPPORTED_WindowsXP_Or_Vista)">
+        <or>
+          <reference ref="products:MicrosoftWindowsXP"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--
+        At least Microsoft Windows 2000 Service Pack 4, Microsoft Windows XP Professional Service Pack 1
+        or Microsoft Windows Server 2003 family
+      -->
+      <definition name="SUPPORTED_WindowsXP_SP1_W2K_SP4_NETSERVER" displayName="$(string.SUPPORTED_WindowsXP_SP1_W2K_SP4_NETSERVER)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="4"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--
+        At least Microsoft Windows 2000 Service Pack 5, Microsoft Windows XP Professional Service Pack 2
+        or Microsoft Windows Server 2003 family Service Pack 1
+      -->
+      <definition name="SUPPORTED_WindowsXP_SP2_W2K_SP5_NETSERVER_SP1" displayName="$(string.SUPPORTED_WindowsXP_SP2_W2K_SP5_NETSERVER_SP1)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="5"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindowsServer2003" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Vista only-->
+      <definition name="SUPPORTED_WindowsVistaOnly" displayName="$(string.SUPPORTED_WindowsVistaOnly)">
+        <or>
+          <reference ref="products:MicrosoftWindowsVista"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows XP Professional only-->
+      <definition name="SUPPORTED_WindowsXPOnly" displayName="$(string.SUPPORTED_WindowsXPOnly)">
+        <or>
+          <reference ref="products:MicrosoftWindowsXP"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows XP Professional with SP1 or Windows Server 2003 family-->
+      <definition name="SUPPORTED_WindowsXPSP1" displayName="$(string.SUPPORTED_WindowsXPSP1)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows XP Professional with SP2-->
+      <definition name="SUPPORTED_WindowsXPSP2" displayName="$(string.SUPPORTED_WindowsXPSP2)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+          <!--
+            ASSUMPTION: This supportedOn definition explicitly excludes Windows Server 2003, although we
+            could argue that it is included in the "at least". However, below is another definition that
+            explicitly includes Windows Server 2003 in the original ADM text. Thus we are only including
+            Vista and later beyond the XP specification.
+          -->
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows XP Professional with SP2 or Windows Server 2003 family-->
+      <definition name="SUPPORTED_WindowsXPSP2_Or_WindowsNET" displayName="$(string.SUPPORTED_WindowsXPSP2_Or_WindowsNET)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows XP Professional with SP2 or Windows Server 2003 family with SP1-->
+      <definition name="SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" displayName="$(string.SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindowsServer2003" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003 and Windows XP operating systems only-->
+      <definition name="SUPPORTED_WindowsXPOrServerOnly" displayName="$(string.SUPPORTED_WindowsXPOrServerOnly)">
+        <or>
+          <!--
+            This is exactly the same definition as "SUPPORTED_WindowsNET_XP", except
+            for the diference in display text, that is.
+          -->
+          <reference ref="products:MicrosoftWindowsXP"/>
+          <reference ref="products:MicrosoftWindowsServer2003"/>
+        </or>
+      </definition>
+      
+      <!--Microsoft Windows Server 2008, Windows Vista, Windows Server 2003, Windows XP, and Windows 2000-->
+      <definition name="SUPPORTED_WindowsVistaTo2k" displayName="$(string.SUPPORTED_WindowsVistaTo2k)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1" maxVersionIndex="5"/>
+        </or>
+      </definition>
+      
+      <!--Microsoft Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP-->
+      <definition name="SUPPORTED_WindowsVistaToXP" displayName="$(string.SUPPORTED_WindowsVistaToXP)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2" maxVersionIndex="5"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP SP2-->
+      <definition name="SUPPORTED_WindowsVistaToXPSP2" displayName="$(string.SUPPORTED_WindowsVistaToXPSP2)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3" maxVersionIndex="5"/>
+        </or>
+      </definition>
+      
+      <!--Microsoft Windows 7 and Windows Server 2008 R2 only-->
+      <definition name="SUPPORTED_Windows7Only" displayName="$(string.SUPPORTED_Windows7Only)">
+        <or>
+          <reference ref="WindowsServer2008_R2"/>
+          <reference ref="MicrosoftWindows7"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, and Windows Vista-->
+      <definition name="SUPPORTED_Windows7ToVista" displayName="$(string.SUPPORTED_Windows7ToVista)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" maxVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP-->
+      <definition name="SUPPORTED_Windows7ToXP" displayName="$(string.SUPPORTED_Windows7ToXP)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="2" maxVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, Windows XP, and Windows 2000-->
+      <definition name="SUPPORTED_Windows7To2k" displayName="$(string.SUPPORTED_Windows7To2k)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1" maxVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 2000 through Windows 8.1 or Windows Server 2012 R2-->
+      <definition name="SUPPORTED_Windows81To2k" displayName="$(string.SUPPORTED_Windows81To2k)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="1" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--At least Windows 7 through Windows 8.1 or Windows Server 2012 R2-->
+      <definition name="SUPPORTED_Windows81To7" displayName="$(string.SUPPORTED_Windows81To7)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="6" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, Windows Vista, and Windows 10-->
+      <definition name="SUPPORTED_Windows7ToVistaAndWindows10" displayName="$(string.SUPPORTED_Windows7ToVistaAndWindows10)">
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, Windows XP, and 10-->
+      <definition name="SUPPORTED_Windows7ToXPAndWindows10" displayName="$(string.SUPPORTED_Windows7ToXPAndWindows10)">
+      </definition>
+
+      <!--Microsoft Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, Windows XP, Windows 2000, and 10-->
+      <definition name="SUPPORTED_Windows7To2kAndWindows10" displayName="$(string.SUPPORTED_Windows7To2kAndWindows10)">
+      </definition>
+
+      <!--At least Windows 8.1 Update 2 -->
+      <definition name="SUPPORTED_Windows_6_3_Update2" displayName="$(string.SUPPORTED_Windows_6_3_Update2)">
+      </definition>
+
+      <!--Windows operating systems from Windows Vista through Windows 7 -->
+      <definition name="SUPPORTED_WindowsVistaTo7" displayName="$(string.SUPPORTED_WindowsVistaTo7)">
+      </definition>
+
+      <!--Windows Server 2003 and versions of Windows from Windows XP Professional through Windows 7. -->
+      <definition name="SUPPORTED_WindowsServer_And_XPproTo7" displayName="$(string.SUPPORTED_WindowsServer_And_XPproTo7)">
+      </definition>
+
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="System" displayName="$(string.System)" explainText="$(string.System_Help)" />
+    <category name="InternetManagement" displayName="$(string.InternetManagement)">
+      <parentCategory ref="System" />
+    </category>
+    <category name="Troubleshooting" displayName="$(string.Troubleshooting)">
+      <parentCategory ref="System" />
+    </category>
+    <category name="InternetManagement_Settings" displayName="$(string.InternetManagement_Settings)">
+      <parentCategory ref="InternetManagement" />
+    </category>
+    <category name="WindowsComponents" displayName="$(string.WindowsComponents)" explainText="$(string.WindowsComponents_Help)" />
+    <category name="WindowsExplorer" displayName="$(string.WindowsExplorer)" explainText="$(string.WindowsExplorer_Help)">
+      <parentCategory ref="WindowsComponents" />
+    </category>
+    <category name="TabletPC" displayName="$(string.TabletPC)">
+      <parentCategory ref="WindowsComponents" />
+    </category>
+    <category name="DataCollectionAndPreviewBuilds" displayName="$(string.DataCollectionAndPreviewBuilds)">
+      <parentCategory ref="WindowsComponents" />
+    </category>
+    <category name="Network" displayName="$(string.Network)" explainText="$(string.Network_Help)" />
+    <category name="SharedFolders" displayName="$(string.SharedFolders)" explainText="$(string.SharedFolders_Help)" />
+    <category name="Printers" displayName="$(string.Printers)" explainText="$(string.Printers_Help)" />
+    <category name="StartMenu" displayName="$(string.StartMenu)" explainText="$(string.StartMenu_Help)" />
+    <category name="ControlPanel" displayName="$(string.ControlPanel)" explainText="$(string.ControlPanel_Help)" />
+    <category name="Desktop" displayName="$(string.Desktop)" explainText="$(string.Desktop_Help)" />
+  </categories>
+</policyDefinitions>

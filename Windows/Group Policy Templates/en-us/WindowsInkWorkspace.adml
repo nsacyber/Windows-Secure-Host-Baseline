@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Windows Ink Workspace</displayName>
+  <description>Windows Ink Workspace</description>
+  <resources>
+    <stringTable>
+      <string id="SUPPORTED_WIN10_RS1">At least Windows 10 Redstone</string>
+      <string id="WindowsInkWorkspace">Windows Ink Workspace</string>
+      <string id="AllowWindowsInkWorkspace_DisplayName">Allow Windows Ink Workspace</string>
+      <string id="AllowWindowsInkWorkspace_ExplainText">Allow Windows Ink Workspace</string>
+      <string id="AllowWindowsInkWorkspace_0">Disabled</string>
+      <string id="AllowWindowsInkWorkspace_1">On, but disallow access above lock</string>
+      <string id="AllowWindowsInkWorkspace_2">On</string>
+      <string id="AllowSuggestedAppsInWindowsInkWorkspace">Allow suggested apps in Windows Ink Workspace</string>
+      <string id="AllowSuggestedAppsInWindowsInkWorkspace_Help">Allow suggested apps in Windows Ink Workspace</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="AllowWindowsInkWorkspace">
+        <dropdownList refId="AllowWindowsInkWorkspaceDropdown" noSort="true" defaultItem="2">Choose one of the following actions</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

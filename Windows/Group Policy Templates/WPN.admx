@@ -93,5 +93,16 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
+
+    <policy name="NoNotificationMirroring" class="User" displayName="$(string.NoNotificationMirroring)" explainText="$(string.NoNotificationMirroringExplain)" key="SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" valueName="DisallowNotificationMirroring">
+      <parentCategory ref="NotificationsCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>

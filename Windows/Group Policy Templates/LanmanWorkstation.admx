@@ -46,5 +46,38 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-  </policies>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_EnableCSCforCAShares_Name)"
+        explainText="$(string.Pol_EnableCSCforCAShares_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_EnableOfflineFilesforCAShares"
+        valueName="AllowOfflineFilesforCAShares"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_EnableHandleCachingForCAFiles_Name)"
+        explainText="$(string.Pol_EnableHandleCachingForCAFiles_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_EnableHandleCachingForCAFiles"
+        valueName="EnableHandleCachingForCAFiles"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy></policies>
 </policyDefinitions>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+  <displayName>Windows Vista base categories and supported component definitions</displayName>
+  <description>This file contains all the base categories and supported component definitions used by operating system components.</description>
+
+  <resources>
+    <stringTable>
+      <string id="SUPPORTED_WindowsVistaOrServer2008Only">Windows Server 2008 and Windows Vista</string>
+      <string id="SUPPORTED_AllowWebPrinting">Windows 2000 or later, running IIS. Not supported on Windows Server 2003.</string>
+      <string id="SUPPORTED_IE6SP1">At least Internet Explorer 6 Service Pack 1</string>
+      <string id="SUPPORTED_Win2k">At least Windows 2000</string>
+      <string id="SUPPORTED_Win2kOnly">Windows 2000 only</string>
+      <string id="SUPPORTED_Win2kSP1">At least Windows 2000 Service Pack 1</string>
+      <string id="SUPPORTED_Win2kSP3">At least Windows 2000 Service Pack 3</string>
+      <string id="SUPPORTED_Win2kSP3_Or_XPSP1">Windows XP Professional Service Pack 1 or At least Windows 2000 Service Pack 3</string>
+      <string id="SUPPORTED_Windows_6_3ToXPSP1_Or_Win2kSP3">Windows Server 2012 R2, Windows 8.1, Windows RT 8.1, Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, Windows XP Professional Service Pack 1 and Windows 2000 Service Pack 3</string>
+      <string id="SUPPORTED_WindowsNET">At least Windows Server 2003</string>
+      <string id="SUPPORTED_WindowsNETOnly">Windows Server 2003 only</string>
+      <string id="SUPPORTED_WindowsNET_XP">Windows Server 2003 and Windows XP only</string>
+      <string id="SUPPORTED_WindowsPreVista">Windows Server 2003, Windows XP, and Windows 2000 only</string>
+      <string id="SUPPORTED_WindowsUpdate">At least Windows Server 2003 operating systems, Windows XP Professional Service Pack 1, or Windows 2000 Service Pack 3</string>
+      <string id="SUPPORTED_WindowsVista">At least Windows Vista</string>
+      <string id="SUPPORTED_WindowsVistaSP1">At least Windows Vista Service Pack 1</string>
+      <string id="SUPPORTED_WindowsVistaOnly">Windows Vista only</string>
+      <string id="SUPPORTED_WindowsXP">At least Windows Server 2003 operating systems or Windows XP Professional</string>
+      <string id="SUPPORTED_WindowsXP_Or_Vista">Windows XP or at least Windows Vista</string>
+      <string id="SUPPORTED_WindowsXP_SP1_W2K_SP4_NETSERVER">At least Windows Server 2003 operating systems, Windows XP Professional Service Pack 1, or Windows 2000 Service Pack 4</string>
+      <string id="SUPPORTED_WindowsXP_SP2_W2K_SP5_NETSERVER_SP1">At least Windows Server 2003 operating systems Service Pack 1, Windows XP Professional Service Pack 2, or Windows 2000 Service Pack 5</string>
+      <string id="SUPPORTED_WindowsXPOnly">Windows XP Professional only</string>
+      <string id="SUPPORTED_WindowsXPSP1">At least Windows Server 2003 operating systems or Windows XP Professional with SP1</string>
+      <string id="SUPPORTED_WindowsXPSP2">At least Windows XP Professional with SP2</string>
+      <string id="SUPPORTED_WindowsXPSP2_Or_WindowsNET">At least Windows Server 2003 operating systems or Windows XP Professional with SP2</string>
+      <string id="SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1">At least Windows Server 2003 operating systems with SP1 or Windows XP Professional with SP2</string>
+      <string id="SUPPORTED_WindowsXPOrServerOnly">Windows Server 2003 and Windows XP only</string>
+      <string id="SUPPORTED_Windows7">At least Windows Server 2008 R2 or Windows 7</string>
+      <string id="SUPPORTED_Windows8">At least Windows Server 2012, Windows 8 or Windows RT</string>
+      <string id="SUPPORTED_Windows_6_3">At least Windows Server 2012 R2, Windows 8.1 or Windows RT 8.1</string>
+      <string id="SUPPORTED_Windows_6_3_NOARM">At least Windows Server 2012 R2 or Windows 8.1</string>
+      <string id="SUPPORTED_Windows_6_3_NOSERVER">At least Windows 8.1 or Windows RT 8.1</string>
+      <string id="SUPPORTED_Windows8_Or_Windows_6_3_Only">Windows Server 2012, Windows 8, Windows RT, Windows Server 2012 R2, Windows 8.1 or Windows RT 8.1 only</string>
+      <string id="SUPPORTED_Windows_6_3only">Windows Server 2012 R2, Windows 8.1 or Windows RT 8.1 only</string>
+      <string id="SUPPORTED_Windows_6_3To2k">Windows Server 2012 R2, Windows 8.1, Windows RT 8.1, Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, Windows XP, and Windows 2000</string>
+      <string id="SUPPORTED_Windows_6_3ToVista">Windows 8.1, Windows 8, Windows 7, and Windows Vista only</string>
+      <string id="SUPPORTED_Windows_10_0">At least Windows Server 2016, Windows 10</string>
+      <string id="SUPPORTED_Windows_10_0_NOARM">At least Windows Server 2016 or Windows 10</string>
+      <string id="SUPPORTED_Windows_10_0_NOSERVER">At least Windows 10</string>
+      <string id="SUPPORTED_Windows8_Or_IE10">At least Windows Server 2012, Windows 8 or Windows RT or at least Internet Explorer 10</string>
+      <string id="SUPPORTED_WindowsVistaTo2k">Windows Server 2008, Windows Server 2003, Windows Vista, Windows XP, and Windows 2000</string>
+      <string id="SUPPORTED_WindowsVistaToXP">Windows Server 2008, Windows Server 2003, Windows Vista, and Windows XP</string>
+      <string id="SUPPORTED_WindowsVistaToXPSP2">Windows Server 2008, Windows Server 2003, Windows Vista, and Windows XP SP2</string>
+      <string id="SUPPORTED_Windows7Only">Windows Server 2008 R2 and Windows 7</string>
+      <string id="SUPPORTED_Windows7ToVista">Windows Server 2008, Windows 7, and Windows Vista</string>
+      <string id="SUPPORTED_Windows7ToXP">Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, and Windows XP</string>
+      <string id="SUPPORTED_Windows7To2k">Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, Windows XP, and Windows 2000</string>
+      <string id="SUPPORTED_Windows81To2k">At least Windows 2000 through Windows 8.1 or Windows Server 2012 R2</string>
+      <string id="SUPPORTED_Windows81To7">At least Windows 7 through Windows 8.1 or Windows Server 2012 R2</string>
+      <string id="SUPPORTED_Windows7ToVistaAndWindows10">Windows Server 2008, Windows 7, Windows Vista, and Windows 10</string>
+      <string id="SUPPORTED_Windows7ToXPAndWindows10">Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, Windows XP, and Windows 10</string>
+      <string id="SUPPORTED_Windows7To2kAndWindows10">Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, Windows XP, Windows 2000, and Windows 10</string>
+      <string id="SUPPORTED_Windows_6_3_Update2">At least Windows 8.1 Update 2</string>
+      <string id="SUPPORTED_WindowsVistaTo7">Windows operating systems from Windows Vista through Windows 7</string>
+      <string id="SUPPORTED_WindowsServer_And_XPproTo7">Windows Server 2003 and versions of Windows from Windows XP Professional through Windows 7.</string>
+      <string id="System">System</string>
+      <string id="System_Help">Allows configuration of various system component settings.</string>
+      <string id="InternetManagement">Internet Communication Management</string>
+      <string id="InternetManagement_Settings">Internet Communication settings</string>
+      <string id="Troubleshooting">Troubleshooting and Diagnostics</string>
+      <string id="WindowsComponents">Windows Components</string>
+      <string id="WindowsComponents_Help">Contains settings for operating system components.</string>
+      <string id="WindowsExplorer">File Explorer</string>
+      <string id="WindowsExplorer_Help">Manages File Explorer settings. These include shell properties, folder options, file menus, and available drives.</string>
+      <string id="TabletPC">Tablet PC</string>
+      <string id="DataCollectionAndPreviewBuilds">Data Collection and Preview Builds</string>
+      <string id="Network">Network</string>
+      <string id="Network_Help">Allows configuration of components of the operating system used by a client computer to connect to a network. This includes DNS settings and Offline Files.</string>
+      <string id="SharedFolders">Shared Folders</string>
+      <string id="SharedFolders_Help">Manages configuration and behavior of shared folders.</string>
+      <string id="Printers">Printers</string>
+      <string id="Printers_Help">Manages network printer configuration and publishing options.</string>
+      <string id="StartMenu">Start Menu and Taskbar</string>
+      <string id="StartMenu_Help">Contains settings that allow you to add, remove, or disable items from the Start menu, taskbar, and notification area.</string>
+      <string id="ControlPanel">Control Panel</string>
+      <string id="ControlPanel_Help">Contains settings to allow configuration of Control Panel, including the items that it does or does not display.</string>
+      <string id="Desktop">Desktop</string>
+      <string id="Desktop_Help">Contains settings to manage behavior of the user's desktop, as well as which default icons are displayed on that desktop.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

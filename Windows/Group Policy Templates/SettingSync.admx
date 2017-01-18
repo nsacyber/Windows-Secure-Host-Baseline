@@ -99,7 +99,7 @@
 
     <policy name="DisableAppSyncSettingSync" presentation="$(presentation.DisableAppSyncSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableAppSyncSettingSync)" explainText="$(string.DisableAppSyncSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableAppSyncSettingSync">
       <parentCategory ref="SettingSync" />
-      <supportedOn ref="windows:SUPPORTED_Blue" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
       <enabledValue>
         <decimal value="2" />
       </enabledValue>

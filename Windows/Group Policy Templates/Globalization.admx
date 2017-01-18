@@ -779,7 +779,7 @@
     </policy>
     <policy name="AllowInputPersonalization" class="Machine" displayName="$(string.AllowInputPersonalization)" explainText="$(string.AllowInputPersonalization_Help)" key="Software\Policies\Microsoft\InputPersonalization" valueName="AllowInputPersonalization">
       <parentCategory ref="RegionalOptions" />
-      <supportedOn ref="windows:SUPPORTED_Windows_6_4" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
       <enabledValue>
         <decimal value="1" />
       </enabledValue>

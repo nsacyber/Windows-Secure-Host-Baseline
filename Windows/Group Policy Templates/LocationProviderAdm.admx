@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowslocationprovider" namespace="Microsoft.Policies.Sensors.WindowsLocationProvider" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="sensors" namespace="Microsoft.Policies.Sensors" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WindowsLocationProvider" displayName="$(string.WindowsLocationProvider)">
+      <parentCategory ref="sensors:LocationAndSensors" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableWindowsLocationProvider_1" class="Machine" displayName="$(string.DisableWindowsLocationProvider)" explainText="$(string.DisableWindowsLocationProvider_Explain)" key="Software\Policies\Microsoft\Windows\LocationAndSensors" valueName="DisableWindowsLocationProvider">
+      <parentCategory ref="WindowsLocationProvider" />
+      <supportedOn ref="windows:SUPPORTED_Windows8_Or_Windows_6_3_Only"/>
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

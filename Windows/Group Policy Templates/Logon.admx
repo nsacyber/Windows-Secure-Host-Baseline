@@ -148,6 +148,16 @@
           <decimal value="0" />
         </disabledValue>
     </policy>
+    <policy name="BlockUserFromShowingAccountDetailsOnSignin" class="Machine" displayName="$(string.BlockUserFromShowingAccountDetailsOnSignin)" explainText="$(string.BlockUserFromShowingAccountDetailsOnSignin_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="BlockUserFromShowingAccountDetailsOnSignin">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
     <policy name="DisableLockScreenAppNotifications" class="Machine" displayName="$(string.DisableLockScreenAppNotifications)" explainText="$(string.DisableLockScreenAppNotifications_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableLockScreenAppNotifications">
       <parentCategory ref="Logon" />
       <supportedOn ref="windows:SUPPORTED_Windows8" />
