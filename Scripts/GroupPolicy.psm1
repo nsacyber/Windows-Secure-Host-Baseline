@@ -1,6 +1,89 @@
 ﻿#requires -Version 3
 Set-StrictMode -Version 3
 
+Function Get-GPClientSideExtensions() {
+    <#
+    .SYNOPSIS
+    Gets information about Group Policy Client Side Extensions available on the system.
+
+    .DESCRIPTION
+    Gets information about Group Policy Client Side Extensions available on the system.
+
+    .EXAMPLE
+    Get-GPClientSideExtensions
+    #>
+    [CmdletBinding()] 
+    [OutputType([System.Collections.Generic.List[object]])]
+    Param()
+
+    $cseDefinitions = New-Object System.Collections.Generic.List[object]
+
+    $systemRoot = $env:SystemRoot
+
+    Get-ChildItem 'hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\' | Get-ItemProperty -Name 'PSChildName','(default)','DisplayName','DllName','ProcessGroupPolicy','ProcessGroupPolicyEx' -ErrorAction SilentlyContinue | ForEach-Object {
+        $cseGuid = $_.PsChildName
+
+        $cseName = ''
+
+        if ($_.PSObject.Properties.Name -contains '(default)') {
+           $cseName = $_.'(default)'
+        }
+
+        # if $cseName -eq '' then use LoadLibrary($cseDll), LoadString($cseDisplayName offset, if it has a value), FreeLibrary
+
+        #$cseDisplayName = ''
+
+        #if ($_.PSObject.Properties.Name -contains 'DisplayName') {
+        #   $cseDisplayName = $_.DisplayName
+        #}
+
+        $cseProcessName = ''
+
+        if ($_.PSObject.Properties.Name -contains 'ProcessGroupPolicy') {
+           $cseProcessName = $_.ProcessGroupPolicy
+        }
+
+        if ($cseName -eq '' -and $cseProcessName -ne '') {
+            $cseName = $cseProcessName
+            $cseName = $cseName.Replace('GroupPolicy','').Replace('Process','')
+        }
+
+        $cseProcessNameEx = ''
+        
+        if ($_.PSObject.Properties.Name -contains 'ProcessGroupPolicyEx') {
+           $cseProcessNameEx = $_.ProcessGroupPolicyEx
+           $cseName = $cseName.Replace('GroupPolicyEx','').Replace('Process','')
+        }
+
+        if ($cseName -eq '' -and $cseProcessNameEx -ne '') {
+            $cseName = $cseProcessNameEx
+        }
+
+        $cseDll = $_.DllName
+
+        if (-not($cseDll.ToLower().StartsWith($systemRoot.ToLower()))) {
+            $cseDll = '{0}\System32\{1}' -f $systemRoot,$cseDll
+        }
+
+        if (-not(Test-Path -Path $cseDll)) {
+            throw "$cseDll does not exist"
+        }
+
+        $cse = [pscustomobject]@{
+            Guid = $cseGuid;
+            #DisplayName = $cseDisplayName;
+            Name = $cseName;
+            Dll = $cseDll;
+
+        }
+
+        $cseDefinitions.Add($cse)
+    }
+
+    return ,[System.Collections.Generic.List[object]]$cseDefinitions
+
+}
+
 Function Get-GPOBackupInformation() {
     <#
     .SYNOPSIS
