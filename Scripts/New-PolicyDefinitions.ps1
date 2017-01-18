@@ -6,7 +6,9 @@ Set-StrictMode -Version 3
 # todo: removed hardcoded path
 $basePath = "$env:USERPROFILE\Documents\GitHub\Secure-Host-Baseline"
 
-# the OS version (Windows 10 1607) the OS Group Policy Templates are for
+# Windows 10 1607 OS Group Policy Templates 
+# taken from https://www.microsoft.com/en-us/download/details.aspx?id=53430 (Version 2.0 released on 01/08/2017)
+# Note that there are some differences between Version 2.0 and what is in the PolicyDefinitions folder on a Windows 10 Enterprise 1607 14393.693 system as of 01/18/2017
 $osVersion = '10.0.14393.0'
 
 Set-Location -Path $basePath
