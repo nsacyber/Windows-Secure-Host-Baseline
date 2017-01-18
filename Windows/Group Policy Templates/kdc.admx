@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="KDC" namespace="Microsoft.Policies.KDC" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="KDC" displayName="$(string.KDC)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="emitlili" class="Machine" displayName="$(string.emitlili)" explainText="$(string.emitlili_explain)" 
+    key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="EmitLILI">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ForestSearch" class="Machine" displayName="$(string.forestsearch)" explainText="$(string.forestsearch_explain)" presentation="$(presentation.ForestSearch)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="UseForestSearch">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="ForestSearchList" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="ForestSearchList" required="true" />
+      </elements>
+    </policy>
+    <policy name="CbacAndArmor" class="Machine" displayName="$(string.CbacAndArmor)" explainText="$(string.CbacAndArmor_explain)" presentation="$(presentation.CbacAndArmor)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="EnableCbacAndArmor">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="CbacAndArmor_Levels" valueName="CbacAndArmorLevel">
+          <item displayName="$(string.NoCbacAndArmor)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.MixModeCbacAndArmor)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.FullModeCbacAndArmor)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.FullModeCbacAndRequireArmor)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TicketSizeThreshold" class="Machine" displayName="$(string.TicketSizeThreshold)" explainText="$(string.TicketSizeThreshold_explain)" presentation="$(presentation.TicketSizeThreshold)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="EnableTicketSizeThreshold">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="TicketSizeThreshold" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="TicketSizeThreshold" required="true" minValue="12000" maxValue="2147483647"/>
+      </elements>
+    </policy>
+    <policy name="RequestCompoundId" class="Machine" displayName="$(string.RequestCompoundId)" explainText="$(string.RequestCompoundId_explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters" valueName="RequestCompoundId">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PKINITFreshness" class="Machine" displayName="$(string.PKINITFreshness)" explainText="$(string.PKINITFreshness_explain)" presentation="$(presentation.PKINITFreshness)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System\KDC\Parameters">
+      <parentCategory ref="KDC" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <enum id="PKINITFreshness_Levels" valueName="PKINITFreshness">
+          <item displayName="$(string.NoPKINITFreshness)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.SupportPKINITFreshness)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RequirePKINITFreshness)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

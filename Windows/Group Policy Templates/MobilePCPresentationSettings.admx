@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="mobilepcpresentationsettings" namespace="Microsoft.Policies.MobilePCPresentationSettings" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="PresentationSettingsCat" displayName="$(string.PresentationSettingsCat)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PresentationSettingsEnable_1" class="User" displayName="$(string.PresentationSettingsEnable)" explainText="$(string.PresentationSettingsEnableExplain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\PresentationSettings" valueName="NoPresentationSettings">
+      <parentCategory ref="PresentationSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PresentationSettingsEnable_2" class="Machine" displayName="$(string.PresentationSettingsEnable)" explainText="$(string.PresentationSettingsEnableExplain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\PresentationSettings" valueName="NoPresentationSettings">
+      <parentCategory ref="PresentationSettingsCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

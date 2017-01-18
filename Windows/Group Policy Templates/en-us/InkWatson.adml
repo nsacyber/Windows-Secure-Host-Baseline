@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="PreventHandwritingErrorReports">Turn off handwriting recognition error reporting</string>
+      <string id="PreventHandwritingErrorReports_Explain">Turns off the handwriting recognition error reporting tool.
+
+The handwriting recognition error reporting tool enables users to report errors encountered in Tablet PC Input Panel. The tool generates error reports and transmits them to Microsoft over a secure connection. Microsoft uses these error reports to improve handwriting recognition in future versions of Windows.
+
+If you enable this policy, users cannot start the handwriting recognition error reporting tool or send error reports to Microsoft.
+
+If you disable this policy, Tablet PC users can report handwriting recognition errors to Microsoft.
+
+If you do not configure this policy Tablet PC users can report handwriting recognition errors to Microsoft.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

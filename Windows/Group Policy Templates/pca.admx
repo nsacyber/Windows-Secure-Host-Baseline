@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="pca" namespace="Microsoft.Policies.ApplicationDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+
+  <categories>
+    <category name="PcaScenarioCategory" displayName="$(string.PcaScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories> 
+
+  <policies>
+
+    <!-- Begin disable PCA UI definition -->
+    <policy name="DisablePcaUIPolicy" class="Machine" displayName="$(string.DisablePcaUIText)" explainText="$(string.DisablePcaUIExplain)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisablePcaUI">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <!-- End undetected installers scenario definition -->  
+
+    <!-- Begin install failure policy definition -->
+    <policy name="DetectInstallFailuresPolicy" class="Machine" displayName="$(string.DetectInstallFailuresText)" explainText="$(string.DetectInstallFailuresExplain)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{acfd1ca6-18b6-4ccf-9c07-580cdb6eded4}">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{acfd1ca6-18b6-4ccf-9c07-580cdb6eded4}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{acfd1ca6-18b6-4ccf-9c07-580cdb6eded4}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{acfd1ca6-18b6-4ccf-9c07-580cdb6eded4}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{acfd1ca6-18b6-4ccf-9c07-580cdb6eded4}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <!-- End install failure policy definition -->
+
+    
+    <!-- Begin update failure scenario definition -->
+    <policy name="DetectUpdateFailuresPolicy" class="Machine" displayName="$(string.DetectUpdateFailuresText)" explainText="$(string.DetectUpdateFailuresExplain)" presentation="$(presentation.DetectUpdateFailuresTable)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{081D3213-48AA-4533-9284-D98F01BDC8E6}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="DetectUpdateFailuresLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <!-- End update failure scenario definition -->
+
+
+    <!-- Begin deprecated component scenario definition -->
+    <policy name="DetectDeprecatedComponentFailuresPolicy" class="Machine" displayName="$(string.DetectDeprecatedComponentFailuresText)" explainText="$(string.DetectDeprecatedComponentFailuresExplain)" presentation="$(presentation.DetectDeprecatedComponentFailuresTable)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{659F08FB-2FAB-42a7-BD4F-566CFA528769}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="DetectDeprecatedComponentFailuresLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <!-- End deprecated component scenario definition -->
+
+
+    <!-- Begin deprecated COM component scenario definition -->
+    <policy name="DetectDeprecatedCOMComponentFailuresPolicy" class="Machine" displayName="$(string.DetectDeprecatedCOMComponentFailuresText)" explainText="$(string.DetectDeprecatedCOMComponentFailuresExplain)" presentation="$(presentation.DetectDeprecatedCOMComponentFailuresTable)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{88D69CE1-577A-4dd9-87AE-AD36D3CD9643}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="DetectDeprecatedCOMComponentFailuresLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <!-- End deprecated COM component scenario definition -->
+
+
+    <!-- Begin undetected installers scenario definition -->
+    <policy name="DetectUndetectedInstallersPolicy" class="Machine" displayName="$(string.DetectUndetectedInstallersText)" explainText="$(string.DetectUndetectedInstallersExplain)" presentation="$(presentation.DetectUndetectedInstallersTable)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{D113E4AA-2D07-41b1-8D9B-C065194A791D}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="DetectUndetectedInstallersLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <!-- End undetected installers scenario definition -->
+
+
+    <!-- Begin blocked drivers scenario definition -->
+    <policy name="DetectBlockedDriversPolicy" class="Machine" displayName="$(string.DetectBlockedDriversText)" explainText="$(string.DetectBlockedDriversExplain)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{affc81e2-612a-4f70-6fb2-916ff5c7e3f8}">
+      <parentCategory ref="PcaScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{affc81e2-612a-4f70-6fb2-916ff5c7e3f8}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{affc81e2-612a-4f70-6fb2-916ff5c7e3f8}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{affc81e2-612a-4f70-6fb2-916ff5c7e3f8}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{affc81e2-612a-4f70-6fb2-916ff5c7e3f8}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <!-- End blocked drivers scenario definition -->
+
+  </policies>
+</policyDefinitions>

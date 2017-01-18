@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="iscsi" namespace="Microsoft.Policies.iSCSI" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="iSCSI_Category" displayName="$(string.iSCSI_Category)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="iSCSIDiscovery_Category" displayName="$(string.iSCSIDiscovery_Category)" explainText="$(string.iSCSIDiscovery_Help)">
+      <parentCategory ref="iSCSI_Category" />
+    </category>
+    <category name="iSCSIGeneral_Category" displayName="$(string.iSCSIGeneral_Category)" explainText="$(string.iSCSIGeneral_Help)">
+      <parentCategory ref="iSCSI_Category" />
+    </category>
+    <category name="iSCSISecurity_Category" displayName="$(string.iSCSISecurity_Category)" explainText="$(string.iSCSISecurity_Help)">
+      <parentCategory ref="iSCSI_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="iSCSIDiscovery_ConfigureiSNSServers" class="Machine" displayName="$(string.iSCSIDiscovery_ConfigureiSNSServers)" explainText="$(string.iSCSIDiscovery_ConfigureiSNSServers_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="ConfigureiSNSServers">
+      <parentCategory ref="iSCSIDiscovery_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSIDiscovery_ConfigureTargetPortals" class="Machine" displayName="$(string.iSCSIDiscovery_ConfigureTargetPortals)" explainText="$(string.iSCSIDiscovery_ConfigureTargetPortals_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="ConfigureTargetPortals">
+      <parentCategory ref="iSCSIDiscovery_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSIDiscovery_ConfigureTargets" class="Machine" displayName="$(string.iSCSIDiscovery_ConfigureTargets)" explainText="$(string.iSCSIDiscovery_ConfigureTargets_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="ConfigureTargets">
+      <parentCategory ref="iSCSIDiscovery_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSIDiscovery_NewStaticTargets" class="Machine" displayName="$(string.iSCSIDiscovery_NewStaticTargets)" explainText="$(string.iSCSIDiscovery_NewStaticTargets_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="NewStaticTargets">
+      <parentCategory ref="iSCSIDiscovery_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSIGeneral_ChangeIQNName" class="Machine" displayName="$(string.iSCSIGeneral_ChangeIQNName)" explainText="$(string.iSCSIGeneral_ChangeIQNName_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="ChangeIQNName">
+      <parentCategory ref="iSCSIGeneral_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSIGeneral_RestrictAdditionalLogins" class="Machine" displayName="$(string.iSCSIGeneral_RestrictAdditionalLogins)" explainText="$(string.iSCSIGeneral_RestrictAdditionalLogins_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="RestrictAdditionalLogins">
+      <parentCategory ref="iSCSIGeneral_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSISecurity_ChangeCHAPSecret" class="Machine" displayName="$(string.iSCSISecurity_ChangeCHAPSecret)" explainText="$(string.iSCSISecurity_ChangeCHAPSecret_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="ChangeCHAPSecret">
+      <parentCategory ref="iSCSISecurity_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSISecurity_RequireIPSec" class="Machine" displayName="$(string.iSCSISecurity_RequireIPSec)" explainText="$(string.iSCSISecurity_RequireIPSec_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="RequireIPSec">
+      <parentCategory ref="iSCSISecurity_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSISecurity_RequireMutualCHAP" class="Machine" displayName="$(string.iSCSISecurity_RequireMutualCHAP)" explainText="$(string.iSCSISecurity_RequireMutualCHAP_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="RequireMutualCHAP">
+      <parentCategory ref="iSCSISecurity_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="iSCSISecurity_RequireOneWayCHAP" class="Machine" displayName="$(string.iSCSISecurity_RequireOneWayCHAP)" explainText="$(string.iSCSISecurity_RequireOneWayCHAP_Help)" key="Software\Policies\Microsoft\Windows\iSCSI" valueName="RequireOneWayCHAP">
+      <parentCategory ref="iSCSISecurity_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

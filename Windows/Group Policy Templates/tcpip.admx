@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="tcpip" namespace="Microsoft.Policies.TCPIP" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0"/>
+  <categories>
+    <category name="TCPIP" displayName="$(string.TCPIP)">
+      <parentCategory ref="windows:Network" />
+    </category>
+    <category name="Ipv6Transition" displayName="$(string.Ipv6Transition)">
+      <parentCategory ref="TCPIP" />
+    </category>
+    <category name="Parameters" displayName="$(string.Parameters)">
+      <parentCategory ref="TCPIP" />
+    </category>
+  </categories>
+
+  <policies>
+
+    <policy name="ISATAP_State" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.ISATAP_State)" explainText="$(string.ISATAP_State_Help)" presentation="$(presentation.StateSelection)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="StateSelect" valueName="ISATAP_State" required="true">      
+        <item displayName="$(string.DefaultState)">
+          <value>
+          <string>Default</string>
+          </value>
+        </item>
+        
+        <item displayName="$(string.EnabledState)">
+          <value>
+          <string>Enabled</string>
+          </value>
+        </item>
+        
+        <item displayName="$(string.DisabledState)">
+          <value>
+          <string>Disabled</string>
+          </value>
+        </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ISATAP_Router_Name" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.ISATAP_Router_Name)" explainText="$(string.ISATAP_Router_Name_Help)" presentation="$(presentation.RouterName)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="RouterNameBox" valueName="ISATAP_RouterName" />
+      </elements>
+    </policy>
+
+    <policy name="6to4_State" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.6to4_State)" explainText="$(string.6to4_State_Help)" presentation="$(presentation.StateSelection)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="StateSelect" valueName="6to4_State" required="true">      
+        <item displayName="$(string.DefaultState)">
+          <value>
+          <string>Default</string>
+          </value>
+        </item>
+        
+        <item displayName="$(string.EnabledState)">
+          <value>
+          <string>Enabled</string>
+          </value>
+        </item>
+        
+        <item displayName="$(string.DisabledState)">
+          <value>
+          <string>Disabled</string>
+          </value>
+        </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="6to4_Router_Name" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.6to4_Router_Name)" explainText="$(string.6to4_Router_Name_Help)" presentation="$(presentation.RouterName)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="RouterNameBox" valueName="6to4_RouterName" />
+      </elements>
+    </policy>
+
+    <policy name="6to4_Router_Name_Resolution_Interval" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.6to4_Router_Name_Resolution_Interval)" explainText="$(string.6to4_Router_Name_Resolution_Interval_Help)" presentation="$(presentation.RouterNameResolutionInterval)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="RouterNameResolutionIntervalBox" valueName="6to4_RouterNameResolutionInterval" required="true" minValue="0" maxValue="4294967295"/>
+      </elements>
+    </policy>
+
+    <policy name="Teredo_State" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.Teredo_State)" explainText="$(string.Teredo_State_Help)" presentation="$(presentation.StateSelection)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="StateSelect" valueName="Teredo_State" required="true">      
+        <item displayName="$(string.DefaultState)">
+          <value>
+          <string>Default</string>
+          </value>
+        </item>
+
+        <item displayName="$(string.DisabledState)">
+          <value>
+          <string>Disabled</string>
+          </value>
+        </item>
+
+        <item displayName="$(string.TeredoClient)">
+          <value>
+          <string>Client</string>
+          </value>
+        </item>
+        
+        <item displayName="$(string.TeredoEnterpriseClient)">
+          <value>
+          <string>Enterprise Client</string>
+          </value>
+        </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Teredo_Server_Name" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.Teredo_Server_Name)" explainText="$(string.Teredo_Server_Name_Help)" presentation="$(presentation.TeredoServerName)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="TeredoServerNameBox" valueName="Teredo_ServerName" />
+      </elements>
+    </policy>
+
+    <policy name="Teredo_Refresh_Rate" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.Teredo_Refresh_Rate)" explainText="$(string.Teredo_Refresh_Rate_Help)" presentation="$(presentation.TeredoRefreshRate)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="TeredoRefreshRateBox" valueName="Teredo_RefreshRate" required="true" minValue="1" maxValue="86400" />
+      </elements>
+    </policy>
+
+    <policy name="Teredo_Client_Port" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.Teredo_Client_Port)" explainText="$(string.Teredo_Client_Port_Help)" presentation="$(presentation.TeredoClientPort)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="TeredoClientPortBox" valueName="Teredo_ClientPort" required="true" minValue="0" maxValue="65535" />
+      </elements>
+    </policy>
+    
+    <policy name="Teredo_Default_Qualified" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.Teredo_Default_Qualified)" explainText="$(string.Teredo_Default_Qualified_Help)" presentation="$(presentation.StateSelection)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="StateSelect" valueName="Teredo_DefaultQualified" required="true">      
+        <item displayName="$(string.EnabledState)">
+          <value>
+          <string>Enabled</string>
+          </value>
+        </item>       
+        </enum>
+      </elements>
+    </policy>
+    <policy name="IPHTTPS_ClientState" clientExtension="{cdeafc3d-948d-49dd-ab12-e578ba4af7aa}" class="Machine" displayName="$(string.IPHTTPS_ClientState)" explainText="$(string.IPHTTPS_ClientState_Help)" presentation="$(presentation.IPHTTPS_ClientState)" key="Software\Policies\Microsoft\Windows\TCPIP\v6Transition\IPHTTPS\IPHTTPSInterface">
+      <parentCategory ref="Ipv6Transition" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="StateSelect" valueName="IPHTTPS_ClientState" required="true">      
+        <item displayName="$(string.DefaultState)">
+          <value>
+          <decimal value="0" />
+          </value>
+        </item>
+        <item displayName="$(string.EnabledState)">
+          <value>
+          <decimal value="2" />
+          </value>
+        </item>
+        <item displayName="$(string.DisabledState)">
+          <value>
+          <decimal value="3" />
+          </value>
+        </item>
+        </enum>
+        <text id="IPHTTPSClientUrlBox" valueName="IPHTTPS_ClientUrl" required="true"/>
+      </elements>
+    </policy>
+    <policy name="Windows_Scaling_Heuristics_State" class="Machine" displayName="$(string.Windows_Scaling_Heuristics_State)" explainText="$(string.Windows_Scaling_Heuristics_Help)" key="System\CurrentControlSet\Services\Tcpip\Parameters" valueName="EnableWsd">
+      <parentCategory ref="Parameters" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IP_Stateless_Autoconfiguration_Limits_State" class="Machine" displayName="$(string.IP_Stateless_Autoconfiguration_Limits_State)" explainText="$(string.IP_Stateless_Autoconfiguration_Limits_Help)" key="System\CurrentControlSet\Services\Tcpip\Parameters" valueName="EnableIPAutoConfigurationLimits">
+      <parentCategory ref="Parameters" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

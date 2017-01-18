@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsremotemanagement" namespace="Microsoft.Policies.WindowsRemoteManagement" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WinRM" displayName="$(string.WinRM)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="WinRMClient" displayName="$(string.WinRMClient)">
+      <parentCategory ref="WinRM" />
+    </category>
+    <category name="WinRMService" displayName="$(string.WinRMService)">
+      <parentCategory ref="WinRM" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowBasic_2" class="Machine" displayName="$(string.AllowBasic)" explainText="$(string.AllowBasicClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowBasic">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowUnencrypted_2" class="Machine" displayName="$(string.AllowUnencrypted)" explainText="$(string.AllowUnencryptedMessagesClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowUnencryptedTraffic">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowDigest" class="Machine" displayName="$(string.DisallowDigest)" explainText="$(string.DisallowDigestClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowDigest">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowNegotiate_2" class="Machine" displayName="$(string.DisallowNegotiate)" explainText="$(string.DisallowNegotiateClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowNegotiate">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowKerberos_2" class="Machine" displayName="$(string.DisallowKerberos)" explainText="$(string.DisallowKerberosClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowKerberos">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowCredSSP_2" class="Machine" displayName="$(string.AllowCredSSP)" explainText="$(string.AllowCredSSPClientHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="AllowCredSSP">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TrustedHosts" class="Machine" displayName="$(string.TrustedHosts)" explainText="$(string.TrustedHostsHelp)" presentation="$(presentation.TrustedHosts)" key="Software\Policies\Microsoft\Windows\WinRM\Client" valueName="TrustedHosts">
+      <parentCategory ref="WinRMClient" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="TrustedHosts_List" valueName="TrustedHostsList" maxLength="1024" />
+      </elements>
+    </policy>
+    <policy name="AllowAutoConfig" class="Machine" displayName="$(string.AllowAutoConfig)" explainText="$(string.AutoConfigHelp)" presentation="$(presentation.AllowAutoConfig)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowAutoConfig">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="AllowAutoConfig_IPv4Filter" valueName="IPv4Filter" maxLength="1024" />
+        <text id="AllowAutoConfig_IPv6Filter" valueName="IPv6Filter" maxLength="1024" />
+      </elements>
+    </policy>
+    <policy name="HttpCompatibilityListener" class="Machine" displayName="$(string.HttpCompatibilityListener)" explainText="$(string.HttpCompatibilityListenerHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="HttpCompatibilityListener">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HttpsCompatibilityListener" class="Machine" displayName="$(string.HttpsCompatibilityListener)" explainText="$(string.HttpsCompatibilityListenerHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="HttpsCompatibilityListener">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowBasic_1" class="Machine" displayName="$(string.AllowBasic)" explainText="$(string.AllowBasicServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowBasic">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowUnencrypted_1" class="Machine" displayName="$(string.AllowUnencrypted)" explainText="$(string.AllowUnencryptedMessagesServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowUnencryptedTraffic">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRunAs" class="Machine" displayName="$(string.DisableRunAs)" explainText="$(string.DisableRunAsMessagesServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="DisableRunAs">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowNegotiate_1" class="Machine" displayName="$(string.DisallowNegotiate)" explainText="$(string.DisallowNegotiateServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowNegotiate">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowKerberos_1" class="Machine" displayName="$(string.DisallowKerberos)" explainText="$(string.DisallowKerberosServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowKerberos">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowCredSSP_1" class="Machine" displayName="$(string.AllowCredSSP)" explainText="$(string.AllowCredSSPServiceHelp)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="AllowCredSSP">
+      <parentCategory ref="WinRMService" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+      <policy name="CBTHardeningLevel_1" class="Machine" displayName="$(string.CBTHardeningLevel)" explainText="$(string.CBTHardeningLevelHelp)" presentation="$(presentation.CBTHardeningLevel)" key="Software\Policies\Microsoft\Windows\WinRM\Service" valueName="CBTHardeningLevelStatus">
+          <parentCategory ref="WinRMService" />
+          <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+          <elements>
+              <enum id="HardeningLevelCombo" valueName="CbtHardeningLevel">
+                  <item displayName="$(string.None)">
+                      <value>
+                          <string>None</string>
+                      </value>
+                  </item>
+                  <item displayName="$(string.Relaxed)">
+                      <value>
+                          <string>Relaxed</string>
+                      </value>
+                  </item>
+                  <item displayName="$(string.Strict)">
+                      <value>
+                          <string>Strict</string>
+                      </value>
+                  </item>
+              </enum>
+          </elements>
+      </policy>
+  </policies>
+</policyDefinitions>

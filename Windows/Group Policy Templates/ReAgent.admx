@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="WinRE" namespace="Microsoft.Policies.WinRE" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WinRE" displayName="$(string.WinRE)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ConfigureWinRESetup" class="Machine" displayName="$(string.ConfigureWinRESetup)" explainText="$(string.ConfigureWinRESetup_help)" key="SOFTWARE\Policies\Microsoft\Windows\WinRE" valueName="DisableSetup">
+      <parentCategory ref="WinRE" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

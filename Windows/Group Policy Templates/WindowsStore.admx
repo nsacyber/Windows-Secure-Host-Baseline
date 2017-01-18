@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="WindowsStore" namespace="Microsoft.Policies.WindowsStore" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WindowsStore" displayName="$(string.WindowsStore)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy
+        name="RemoveWindowsStore_1"
+        class="User"
+        displayName="$(string.RemoveWindowsStore)"
+        explainText="$(string.RemoveWindowsStore_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RemoveWindowsStore"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="RemoveWindowsStore_2"
+        class="Machine"
+        displayName="$(string.RemoveWindowsStore)"
+        explainText="$(string.RemoveWindowsStore_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RemoveWindowsStore"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="DisableAutoInstall"
+        class="Machine"
+        displayName="$(string.DisableAutoInstall)"
+        explainText="$(string.DisableAutoInstall_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="AutoDownload"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="4" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="DisableAutoDownloadWin8"
+        class="Machine"
+        displayName="$(string.DisableAutoDownloadWin8)"
+        explainText="$(string.DisableAutoDownloadWin8_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="AutoDownload"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="3" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="DisableOSUpgrade_1"
+        class="User"
+        displayName="$(string.DisableOSUpgradeOption)"
+        explainText="$(string.DisableOSUpgradeOption_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="DisableOSUpgrade"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="DisableOSUpgrade_2"
+        class="Machine"
+        displayName="$(string.DisableOSUpgradeOption)"
+        explainText="$(string.DisableOSUpgradeOption_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="DisableOSUpgrade"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="DisableStoreApps"
+        class="Machine"
+        displayName="$(string.DisableStoreApps)"
+        explainText="$(string.DisableStoreApps_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="DisableStoreApps"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="RequirePrivateStoreOnly_1"
+        class="User"
+        displayName="$(string.RequirePrivateStoreOnly)"
+        explainText="$(string.RequirePrivateStoreOnly_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RequirePrivateStoreOnly"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        name="RequirePrivateStoreOnly_2"
+        class="Machine"
+        displayName="$(string.RequirePrivateStoreOnly)"
+        explainText="$(string.RequirePrivateStoreOnly_Help)"
+        key="Software\Policies\Microsoft\WindowsStore"
+        valueName="RequirePrivateStoreOnly"
+        >
+      <parentCategory ref="WindowsStore" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

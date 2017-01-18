@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2008 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Network Connectivity Status Indicator Group Policy Settings</displayName>
+  <description>Network Connectivity Status Indicator Group Policy Settings</description>
+  <resources>
+    <stringTable>
+      <string id="NCSI_Category">Network Connectivity Status Indicator</string>
+      <string id="NCSI_CorpWebProbeUrl">Specify corporate Website probe URL</string>
+      <string id="NCSI_CorpWebProbeUrl_Help">This policy setting enables you to specify the URL of the corporate website, against which an active probe is performed.</string>
+      <string id="NCSI_CorpDnsProbeHost">Specify corporate DNS probe host name</string>
+      <string id="NCSI_CorpDnsProbeHost_Help">This policy setting enables you to specify the host name of a computer known to be on the corporate network. Successful resolution of this host name to the expected address indicates corporate connectivity.</string>
+      <string id="NCSI_CorpDnsProbeContent">Specify corporate DNS probe host address</string>
+      <string id="NCSI_CorpDnsProbeContent_Help">This policy setting  enables you to specify the expected address of the host name used for the DNS probe. Successful resolution of the host name to this address indicates corporate connectivity.</string>
+      <string id="NCSI_CorpSitePrefixes">Specify corporate site prefix list</string>
+      <string id="NCSI_CorpSitePrefixes_Help">This policy setting enables you to specify the list of IPv6 corporate site prefixes to monitor for corporate connectivity. Reachability of addresses with any of these prefixes indicates corporate connectivity.</string>
+      <string id="NCSI_DomainLocationDeterminationUrl">Specify domain location determination URL</string>
+      <string id="NCSI_DomainLocationDeterminationUrl_Help">This policy setting enables you to specify the HTTPS URL of the corporate website that clients use to determine the current domain location (i.e. whether the computer is inside or outside the corporate network). Reachability of the URL destination indicates that the client location is inside corporate network; otherwise it is outside the network.</string>
+      <string id="NCSI_PassivePolling">Specify passive polling</string>
+      <string id="NCSI_PassivePolling_Help">This Policy setting enables you to specify passive polling behavior. NCSI polls various measurements throughout the network stack on a frequent interval to determine if network connectivity has been lost.  Use the options to control the passive polling behavior.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="NCSI_CorpWebProbeUrl">
+        <textBox refId="NCSI_CorpWebProbeUrlBox">
+          <label>Corporate Website Probe URL:</label>
+        </textBox>
+        <text>Specify the URL of the corporate website to</text>
+        <text>use to probe for corporate connectivity.</text>
+        <text>Example:</text>
+        <text>  http://ncsi.corp.microsoft.com/</text>
+      </presentation>
+      <presentation id="NCSI_CorpDnsProbeHost">
+        <textBox refId="NCSI_CorpDnsProbeHostBox">
+          <label>Corporate DNS Probe Hostname:</label>
+        </textBox>
+        <text>Specify a corporate host name to resolve</text>
+        <text>to probe for corporate connectivity.</text>
+        <text>Example:</text>
+        <text>  ncsi.corp.microsoft.com</text>
+      </presentation>
+      <presentation id="NCSI_CorpDnsProbeContent">
+        <textBox refId="NCSI_CorpDnsProbeContentBox">
+          <label>Corporate DNS Probe Address:</label>
+        </textBox>
+        <text>Specify the expected DNS address for the</text>
+        <text>corporate host name to probe.</text>
+        <text>Example:</text>
+        <text>  2001:4898:28:3:38a1:c31:7b3d:bf0</text>
+      </presentation>
+      <presentation id="NCSI_CorpSitePrefixes">
+        <textBox refId="NCSI_CorpSitePrefixesBox">
+          <label>Corporate Site Prefix List:</label>
+        </textBox>
+        <text>Specify the list of corporate IPv6 site prefixes</text>
+        <text>to check for reachability to detect corporate</text>
+        <text>connectivity.</text>
+        <text>Syntax:</text>
+        <text>  The list should be comma-separated with no</text>
+        <text>  extra whitespace.</text>
+        <text>Example:</text>
+        <text>  fe80::/9,fe81::/9</text>
+      </presentation>
+      <presentation id="NCSI_DomainLocationDeterminationUrl">
+        <textBox refId="NCSI_DomainLocationDeterminationUrlBox">
+          <label>Corporate Domain Location Determination URL:</label>
+        </textBox>
+        <text>Specify the HTTPS URL of the corporate website to</text>
+        <text>use to determine inside or outside domain location.</text>
+        <text>Example:</text>
+        <text>  https://nid.corp.microsoft.com/</text>
+      </presentation>
+      <presentation id="NCSI_PassivePolling">
+        <text>The following checkbox disables the passive polling mechanism in NCSI.   This can improve CPU workload on servers or other machines whose network connectivity is static.</text>
+        <checkBox refId="NCSI_DisablePassivePolling_Checkbox">Disable passive polling</checkBox>  
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

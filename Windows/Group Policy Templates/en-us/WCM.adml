@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Windows Connection Manager Group Policy Settings</displayName>
+  <description>Windows Connection Manager Group Policy Settings</description>
+  <resources>
+    <stringTable>
+      <string id="WCM_Category">Windows Connection Manager</string>
+      <string id="WCM_BlockNonDomain">Prohibit connection to non-domain networks when connected to domain authenticated network</string>
+      <string id="WCM_BlockNonDomain_Help">This policy setting prevents computers from connecting to both a domain based network and a non-domain based network at the same time.
+      
+      If this policy setting is enabled, the computer responds to automatic and manual network connection attempts based on the following circumstances:
+      
+      Automatic connection attempts
+      - When the computer is already connected to a domain based network, all automatic connection attempts to non-domain networks are blocked.
+      - When the computer is already connected to a non-domain based network, automatic connection attempts to domain based networks are blocked.
+      
+      Manual connection attempts
+      - When the computer is already connected to either a non-domain based network or a domain based network over media other than Ethernet, and a user attempts to create a manual connection to an additional network in violation of this policy setting, the existing network connection is disconnected and the manual connection is allowed.
+      - When the computer is already connected to either a non-domain based network or a domain based network over Ethernet, and a user attempts to create a manual connection to an additional network in violation of this policy setting, the existing Ethernet connection is maintained and the manual connection attempt is blocked.
+
+      If this policy setting is not configured or is disabled, computers are allowed to connect simultaneously to both domain and non-domain networks.
+      </string>
+      <string id="WCM_DisableRoaming">Prohibit connection to roaming Mobile Broadband networks</string>
+      <string id="WCM_DisableRoaming_Help">This policy setting prevents clients from connecting to Mobile Broadband networks when the client is registered on a roaming provider network. 
+
+      If this policy setting is enabled, all automatic and manual connection attempts to roaming provider networks are blocked until the client registers with the home provider network.
+      
+      If this policy setting is not configured or is disabled, clients are allowed to connect to roaming provider Mobile Broadband networks.
+      </string>
+      <string id="WCM_MinimizeConnections">Minimize the number of simultaneous connections to the Internet or a Windows Domain</string>
+      <string id="WCM_MinimizeConnections_Help">This policy setting prevents computers from establishing multiple simultaneous connections to either the Internet or to a Windows domain. By default, when this policy setting value is Not Configured, it is enabled.
+      
+      If this policy setting is enabled, when the computer has at least one active connection to the Internet, a new automatic connection attempt to the Internet is blocked. When the computer has at least one active connection to a Windows domain, a new automatic connection to the same Windows domain is also blocked. Additional manual connection attempts by users to the Internet or to a Windows domain are not blocked by this policy setting.
+      
+      In circumstances where there are multiple simultaneous connections to either the Internet or to a Windows domain, Windows disconnects the less preferred connection when the amount of network traffic over the less preferred connection drops below a certain threshold. For example, when a computer is connected to Internet using a WLAN connection and the user plugs in to an Ethernet network, network traffic is routed through the faster Ethernet connection, and the WLAN traffic diminishes. Windows detects this circumstance and responds by disconnecting the WLAN connection.
+
+      If this policy setting is disabled, multiple simultaneous connections to the Internet, to a Windows domain, or to both are allowed.
+
+      If this policy setting value is Not Configured, the default policy setting is enabled. This is different than enabling the policy setting with Group Policy, however - when the policy setting is Not Configured, the policy setting is configurable on the local computer. When the policy setting is applied with Group Policy, it is not configurable locally. With the policy setting value of Not Configured, new automatic connection attempts are not made, and less preferred connections are disconnected.
+      </string>
+      <string id="WCM_DisablePowerManagement">Disable power management in connected standby mode</string>
+      <string id="WCM_DisablePowerManagement_Help">This policy setting specifies that power management is disabled when the machine enters connected standby mode. 
+
+      If this policy setting is enabled, Windows Connection Manager does not manage adapter radios to reduce power consumption when the machine enters connected standby mode.
+
+      If this policy setting is not configured or is disabled, power management is enabled when the machine enters connected standby mode.
+      </string>      
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

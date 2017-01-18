@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="TS_APP_COMPATIBILITY">Application Compatibility</string>
+      <string id="TS_APP_COMPATIBILITY_Help">Controls application compatibility settings on an RD Session Host server</string>
+      <string id="TS_TIME_ZONE">Allow time zone redirection</string>
+      <string id="TS_TIME_ZONE_EXPLAIN">This policy setting allows you to specify whether the client computer redirects its time zone settings to the Remote Desktop Services session.
+
+If you enable this policy setting, clients that are capable of time zone redirection send their time zone information to the server. The server base time is then used to calculate the current session time (current session time = server base time + client time zone).
+
+If you disable or do not configure this policy setting, the client computer does not redirect its time zone information and the session time zone is the same as the server time zone.
+
+Note: Time zone redirection is possible only when connecting to at least a Microsoft Windows Server 2003 terminal server with a client using RDP 5.1 or later.
+      </string>
+      
+      <string id="TS_CLIENT_CLIPBOARD">Do not allow Clipboard redirection</string>
+      <string id="TS_CLIPBOARDMAP_EXPLAIN">This policy setting specifies whether to prevent the sharing of Clipboard contents (Clipboard redirection) between a remote computer and a client computer during a Remote Desktop Services session.
+
+You can use this setting to prevent users from redirecting Clipboard data to and from the remote computer and the local computer. By default, Remote Desktop Services allows Clipboard redirection.
+
+If you enable this policy setting, users cannot redirect Clipboard data.
+
+If you disable this policy setting, Remote Desktop Services always allows Clipboard redirection.
+
+If you do not configure this policy setting, Clipboard redirection is not specified at the Group Policy level. 
+ </string>
+      
+      <string id="TS_DISABLE_REMOTE_DESKTOP_WALLPAPER">Remove remote desktop wallpaper</string>
+      <string id="TS_DISABLE_REMOTE_DESKTOP_WALLPAPER_EXPLAIN">This policy setting allows you to specify whether desktop wallpaper is displayed to clients when they are connected to a remote server using RDP. 
+
+You can use this setting to enforce the removal of wallpaper during a Remote Desktop Services session. 
+
+If you enable this policy setting, wallpaper is not displayed in a Remote Desktop Services session.   
+
+If you disable this policy setting, wallpaper is displayed in a Remote Desktop Services session, depending on the client configuration.  
+
+If you do not configure this policy setting, Windows Vista displays wallpaper to remote clients connecting through Remote Desktop, depending on the client configuration (see the Experience tab in the Remote Desktop Connection options for more information). Servers running Windows Server 2008 do not display wallpaper by default to Remote Desktop Services sessions.
+      </string>
+      
+      <string id="TS_TURNOFF_SINGLEAPP">Always show desktop on connection</string>
+      <string id="TS_TURNOFF_SINGLEAPP_EXPLAIN">This policy setting allows you to specify whether the desktop is always displayed after a client connects to a remote computer or whether an initial program can run. It can require that the desktop be displayed after a client connects to a remote computer, even if an initial program is already specified in the default user profile, Remote Desktop Connection, or through Group Policy.
+
+If you enable this policy setting, the desktop is always displayed when a client connects to a remote computer. This policy setting overrides any initial program policy settings.
+
+If you disable or do not configure this policy setting, an initial program can be specified that runs on the remote computer after the client connects to the remote computer. If an initial program is not specified, the desktop is always displayed on the remote computer after the client connects to the remote computer.
+
+Note: If this policy setting is enabled, then the "Start a program on connection" policy setting is ignored.
+      </string>
+      
+      <string id="TS_ALLOW_APPS">Allow remote start of unlisted programs</string>
+      <string id="TS_ALLOW_APPS_EXPLAIN">This policy setting allows you to specify whether remote users can start any program on the RD Session Host server when they start a Remote Desktop Services session, or whether they can only start programs that are listed in the RemoteApp programs list.
+
+You can control which programs on an RD Session Host server can be started remotely by using the RemoteApp Manager on Windows Server 2008 R2 and Windows Server 2008. If you are using Windows Server 2012, you can configure this in the Collection properties sheet by using Server Manager.
+
+By default, only programs in the RemoteApp Programs list can be started when a user starts a Remote Desktop Services session.
+
+If you enable this policy setting, remote users can start any program on the RD Session Host server when they start a Remote Desktop Services session. 
+For example, a remote user can do this by specifying the program's executable path at connection time by using the Remote Desktop Connection client.
+
+If you disable or do not configure this policy setting, remote users can only start programs that are listed in the RemoteApp programs list when they start a Remote Desktop Services session.
+</string>
+
+      <string id="TS_ALLOW_DESKTOPCOMPOSITION">Allow desktop composition for remote desktop sessions</string>
+      <string id="TS_ALLOW_DESKTOPCOMPOSITION_EXPLAIN">This policy setting allows you to specify whether desktop composition is allowed for remote desktop sessions. This policy setting does not apply to RemoteApp sessions.
+
+Desktop composition provides the user interface elements of Windows Aero, such as translucent windows, for remote desktop sessions. Because Windows Aero requires additional system and bandwidth resources, allowing desktop composition for remote desktop sessions can reduce connection performance, particularly over slow links, and increase the load on the remote computer. 
+
+If you enable this policy setting, desktop composition will be allowed for remote desktop sessions. On the client computer, you can configure desktop composition on the Experience tab in Remote Desktop Connection (RDC) or by using the "allow desktop composition" setting in a Remote Desktop Protocol (.rdp) file. In addition, the client computer must have the necessary hardware to support Windows Aero features.
+
+Note:  Additional configuration might be necessary on the remote computer to make Windows Aero features available for remote desktop sessions. For example, the Desktop Experience feature must be installed on the remote computer, and the maximum color depth on the remote computer must be set to 32 bits per pixel. Also, the Themes service must be started on the remote computer.
+
+If you disable or do not configure this policy setting, desktop composition is not allowed for remote desktop sessions, even if desktop composition is enabled in RDC or in the .rdp file.
+      </string>
+
+      <string id="TS_SB_LOAD_BALANCING">Use RD Connection Broker load balancing</string>
+      <string id="TS_SB_LOAD_BALANCING_EXPLAIN">This policy setting allows you to specify whether to use the RD Connection Broker load balancing feature to balance the load between servers in an RD Session Host server farm. 
+
+If you enable this policy setting, RD Connection Broker redirects users who do not have an existing session to the RD Session Host server in the farm with the fewest sessions. Redirection behavior for users with existing sessions is not affected. If the server is configured to use RD Connection Broker, users who have an existing session are redirected to the RD Session Host server where their session exists. 
+
+If you disable this policy setting, users who do not have an existing session log on to the first RD Session Host server to which they connect.
+
+If you do not configure this policy setting, you can configure the RD Session Host server to participate in RD Connection Broker load balancing by using the Remote Desktop Session Host Configuration tool or the Remote Desktop Services WMI provider.
+
+Note: If you enable this policy setting, you must also enable the Join RD Connection Broker, the Configure RD Connection Broker farm name, and the Configure RD Connection Broker server name policy settings. 
+      </string>
+
+      <string id="TS_REDIRECT_CLIENT_PRN_ONLY">Redirect only the default client printer</string>
+      <string id="TS_REDIRECT_CLIENT_PRN_ONLY_EXPLAIN">This policy setting allows you to specify whether the default client printer is the only printer redirected in Remote Desktop Services sessions.
+
+If you enable this policy setting, only the default client printer is redirected in Remote Desktop Services sessions.
+
+If you disable or do not configure this policy setting, all client printers are redirected in Remote Desktop Services sessions.
+	  </string>
+	  
+      <string id="TS_SESSIONS_RemoteApp_End_Timeout">Set time limit for logoff of RemoteApp sessions</string>
+      <string id="TS_SESSIONS_RemoteApp_End_Timeout_EXPLAIN">This policy setting allows you to specify how long a user's RemoteApp session will remain in a disconnected state after closing all RemoteApp programs before the session is logged off from the RD Session Host server.
+
+By default, if a user closes a RemoteApp program, the session is disconnected from the RD Session Host server, but it is not logged off.
+
+If you enable this policy setting, when a user closes the last running RemoteApp program associated with a session, the RemoteApp session will remain in a disconnected state until the time limit that you specify is reached. When the time limit specified is reached, the RemoteApp session will be logged off from the RD Session Host server. If the user starts a RemoteApp program before the time limit is reached, the user will reconnect to the disconnected session on the RD Session Host server.
+
+If you disable or do not configure this policy setting, when a user closes the last RemoteApp program, the session will be disconnected from the RD Session Host server but it is not logged off.
+
+Note: This policy setting appears in both Computer Configuration and User Configuration. If both policy settings are configured, the Computer Configuration policy setting takes precedence.
+      </string>
+
+      <string id="TS_TIME_1MIN">1 minute</string>
+      <string id="TS_TIME_5MIN">5 minutes</string>
+      <string id="TS_TIME_10MIN">10 minutes</string>
+      <string id="TS_TIME_15MIN">15 minutes</string>
+      <string id="TS_TIME_30MIN">30 minutes</string>
+      <string id="TS_TIME_1HR">1 hour</string>
+      <string id="TS_TIME_2HR">2 hours</string>
+      <string id="TS_TIME_3HR">3 hours</string>
+      <string id="TS_TIME_6HR">6 hours</string>
+      <string id="TS_TIME_8HR">8 hours</string>
+      <string id="TS_TIME_12HR">12 hours</string>
+      <string id="TS_TIME_16HR">16 hours</string>
+      <string id="TS_TIME_18HR">18 hours</string>
+      <string id="TS_TIME_1DAY">1 day</string>
+      <string id="TS_TIME_2DAY">2 days</string>
+      <string id="TS_TIME_3DAY">3 days</string>
+      <string id="TS_TIME_4DAY">4 days</string>
+      <string id="TS_TIME_5DAY">5 days</string>
+      <string id="TS_TIME_IMMEDIATE">Immediately</string>
+	
+      <string id="TS_DISALLOW_FONT_SMOOTHING">Do not allow font smoothing</string>
+      <string id="TS_DISALLOW_FONT_SMOOTHING_EXPLAIN">This policy setting allows you to specify whether font smoothing is allowed for remote connections.
+
+Font smoothing provides ClearType functionality for a remote connection. ClearType is a technology for displaying computer fonts so that they appear clear and smooth, especially when you are using an LCD monitor. Because font smoothing requires additional bandwidth resources, not allowing font smoothing for remote connections can improve connection performance, particularly over slow links.
+		   
+By default, font smoothing is allowed for remote connections. You can configure font smoothing on the Experience tab in Remote Desktop Connection (RDC) or by using the "allow font smoothing" setting in a Remote Desktop Protocol (.rdp) file.
+		   
+If you enable this policy setting, font smoothing will not be allowed for remote connections, even if font smoothing is enabled in RDC or in the .rdp file.   
+		   
+If you disable or do not configure this policy setting, font smoothing is allowed for remote connections.
+      </string>
+
+      <string id="TS_ENABLE_IP_VIRTUALIZATION">Turn on Remote Desktop IP Virtualization</string>
+      <string id="TS_ENABLE_IP_VIRTUALIZATION_EXPLAIN">This policy setting specifies whether Remote Desktop IP Virtualization is turned on. 
+By default, Remote Desktop IP Virtualization is turned off.
+
+If you enable this policy setting, Remote Desktop IP Virtualization is turned on. You can select the mode in which this setting is applied. If you are using Per Program mode, you must enter a list of programs to use virtual IP addresses. List each program on a separate line (do not enter any blank lines between programs). For example:	
+
+explorer.exe
+mstsc.exe
+
+If you disable or do not configure this policy setting, Remote Desktop IP Virtualization is turned off.
+      </string>
+      
+      <string id="TS_ENABLE_SESSION_MODE_IP_VIRTUALIZATION">Per Session</string>
+      <string id="TS_ENABLE_PRPGRAM_MODE_IP_VIRTUALIZATION">Per Program</string>
+      <string id="TS_NET_ID_IP_VIRTUALIZATION">Select the network adapter to be used for Remote Desktop IP Virtualization</string>
+      <string id="TS_NET_ID_IP_VIRTUALIZATION_EXPLAIN">This policy setting specifies the IP address and network mask that corresponds to the network adapter used for virtual IP addresses. The IP address and network mask should be entered in Classless Inter-Domain Routing notation; for example, 192.0.2.96/24. 
+
+If you enable this policy setting, the specified IP address and network mask are used to select the network adapter used for the virtual IP addresses.
+
+If you disable or do not configure this policy setting, Remote Desktop IP Virtualization is turned off. A network adapter must be configured for Remote Desktop IP Virtualization to work.
+      </string>
+      
+      <string id="TS_NOT_USE_SERVER_IP_WITH_IP_VIRTUALIZATION">Do not use Remote Desktop Session Host server IP address when virtual IP address is not available</string>
+      <string id="TS_NOT_USE_SERVER_IP_WITH_IP_VIRTUALIZATION_EXPLAIN">This policy setting specifies whether a session uses the IP address of the Remote Desktop Session Host server if a virtual IP address is not available.
+
+If you enable this policy setting, the IP address of the RD Session Host server is not used if a virtual IP is not available. The session will not have network connectivity.
+
+If you disable or do not configure this policy setting, the IP address of the RD Session Host server is used if a virtual IP is not available.
+      </string>
+      
+      <string id="TS_ENABLE_DFSS">Turn off Fair Share CPU Scheduling</string>
+      <string id="TS_ENABLE_DFSS_EXPLAIN">Fair Share CPU Scheduling dynamically distributes processor time across all Remote Desktop Services sessions on the same RD Session Host server, based on the number of sessions and the demand for processor time within each session.
+ 
+If you enable this policy setting, Fair Share CPU Scheduling is turned off.
+ 
+If you disable or do not configure this policy setting, Fair Share CPU Scheduling is turned on.
+      </string>
+      
+      <string id="TS_DISABLE_MSI">Turn off Windows Installer RDS Compatibility</string>
+      <string id="TS_DISABLE_MSI_EXPLAIN">This policy setting specifies whether Windows Installer RDS Compatibility runs on a per user basis for fully installed applications. Windows Installer allows one instance of the msiexec process to run at a time. By default, Windows Installer RDS Compatibility is turned on.
+ 
+If you enable this policy setting, Windows Installer RDS Compatibility is turned off, and only one instance of the msiexec process can run at a time.
+ 
+If you disable or do not configure this policy setting, Windows Installer RDS Compatibility is turned on, and multiple per user application installation requests are queued and handled by the msiexec process in the order in which they are received. 
+      </string>
+
+      <string id="RDS_VM_HOST_Node">Remote Desktop Virtualization Host</string>
+      <string id="RDS_VM_HOST_Node_Help">Controls configuration of an RD Virtualization Host server</string>
+
+   </stringTable>
+
+   <presentationTable>
+      <presentation id="TS_SESSIONS_RemoteApp_End_Timeout">
+        <dropdownList refId="TS_SESSIONS_RemoteApp_End_Timeout" noSort="true" defaultItem="0">RemoteApp session logoff delay:</dropdownList>
+      </presentation>
+      <presentation id="TS_NET_ID_IP_VIRTUALIZATION">
+	    <textBox refId="TS_NET_ID_IP_VIRTUALIZATION">
+	      <label>Define IP address and network mask corresponding to the network adapter to be used for Remote Desktop IP Virtualization:</label>
+	    </textBox>
+    	<text>The format is [IP address]/[network mask]. For Example:192.0.2.96/24</text>
+      </presentation>
+      <presentation id="TS_ENABLE_IP_VIRTUALIZATION">
+        <dropdownList refId="TS_ENABLE_IP_VIRTUALIZATION" noSort="true" defaultItem="0">Turn on Remote Desktop IP Virtualization mode:</dropdownList>
+	    <multiTextBox refId="TS_ENABLE_IP_VIRTUALIZATION_EDIT">Assign virtual IP addresses to these programs:</multiTextBox>
+        <text>If you are listing more than one program,  list each program on a separate line (do not enter any blank lines between programs). For example:</text>
+        <text>explorer.exe
+mstsc.exe</text>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

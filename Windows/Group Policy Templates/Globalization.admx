@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="intl" namespace="Microsoft.Policies.Globalization" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="RegionalOptions" displayName="$(string.RegionalOptions)">
+      <parentCategory ref="windows:ControlPanel" />
+    </category>
+    <category name="NlsManagementCat" displayName="$(string.NlsManagementCat)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="InputPersonalization" displayName="$(string.InputPersonalization)">
+      <parentCategory ref="RegionalOptions" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="CustomLocalesNoSelect_1" class="User" displayName="$(string.CustomLocalesNoSelect)" explainText="$(string.CustomLocalesNoSelect_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="CustomLocalesNoSelect">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CustomLocalesNoSelect_2" class="Machine" displayName="$(string.CustomLocalesNoSelect)" explainText="$(string.CustomLocalesNoSelect_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="CustomLocalesNoSelect">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LocaleSystemRestrict" class="Machine" displayName="$(string.LocaleSystemRestrict)" explainText="$(string.LocaleSystemRestrict_Help)" presentation="$(presentation.LocaleSystemRestrict)" key="Software\Policies\Microsoft\Control Panel\International" valueName="RestrictSystemLocales">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="AllowableSystemLocaleTagList" valueName="AllowableSystemLocaleTagList" maxLength="200" />
+      </elements>
+    </policy>
+    <policy name="BlockUserInputMethodsForSignIn" class="Machine" displayName="$(string.BlockUserInputMethodsForSignIn)" explainText="$(string.BlockUserInputMethodsForSignIn_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="BlockUserInputMethodsForSignIn">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LocaleUserRestrict_1" class="User" displayName="$(string.LocaleUserRestrict)" explainText="$(string.LocaleUserRestrict_Help)" presentation="$(presentation.LocaleUserRestrict_1)" key="Software\Policies\Microsoft\Control Panel\International" valueName="RestrictUserLocales">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="AllowableUserLocaleTagList" valueName="AllowableUserLocaleTagList" maxLength="200" />
+      </elements>
+    </policy>
+    <policy name="LocaleUserRestrict_2" class="Machine" displayName="$(string.LocaleUserRestrict)" explainText="$(string.LocaleUserRestrict_Help)" presentation="$(presentation.LocaleUserRestrict_2)" key="Software\Policies\Microsoft\Control Panel\International" valueName="RestrictUserLocales">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="AllowableUserLocaleTagList" valueName="AllowableUserLocaleTagList" maxLength="200" />
+      </elements>
+    </policy>
+    <policy name="PreventGeoIdChange_1" class="User" displayName="$(string.PreventGeoIdChange)" explainText="$(string.PreventGeoIdChange_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="PreventGeoIdChange">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventGeoIdChange_2" class="Machine" displayName="$(string.PreventGeoIdChange)" explainText="$(string.PreventGeoIdChange_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="PreventGeoIdChange">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventUserOverrides_1" class="User" displayName="$(string.PreventUserOverrides)" explainText="$(string.PreventUserOverrides_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="PreventUserOverrides">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventUserOverrides_2" class="Machine" displayName="$(string.PreventUserOverrides)" explainText="$(string.PreventUserOverrides_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="PreventUserOverrides">
+      <parentCategory ref="NlsManagementCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideAdminOptions" class="User" displayName="$(string.HideAdminOptions)" explainText="$(string.HideAdminOptions_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="HideAdminOptions">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideCurrentLocation" class="User" displayName="$(string.HideCurrentLocation)" explainText="$(string.HideCurrentLocation_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="HideCurrentLocation">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideLanguageSelection" class="User" displayName="$(string.HideLanguageSelection)" explainText="$(string.HideLanguageSelection_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="HideLanguageSelection">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HideLocaleSelectAndCustomize" class="User" displayName="$(string.HideLocaleSelectAndCustomize)" explainText="$(string.HideLocaleSelectAndCustomize_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="HideLocaleSelectAndCustomize">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LockMachineUILanguage" class="Machine" displayName="$(string.LockMachineUILanguage)" explainText="$(string.LockMachineUILanguage_Help)" presentation="$(presentation.LockMachineUILanguage)" key="Software\Policies\Microsoft\MUI\Settings">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="UILangSelect" valueName="PreferredUILanguages" required="true">
+          <item displayName="$(string.UILang1)">
+            <value>
+              <string>en-US</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang2)">
+            <value>
+              <string>ja-JP</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang3)">
+            <value>
+              <string>ko-KR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang4)">
+            <value>
+              <string>de-DE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang5)">
+            <value>
+              <string>zh-CN</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang35)">
+            <value>
+              <string>zh-TW</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang7)">
+            <value>
+              <string>fr-FR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang8)">
+            <value>
+              <string>es-ES</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang9)">
+            <value>
+              <string>it-IT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang10)">
+            <value>
+              <string>sv-SE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang11)">
+            <value>
+              <string>nl-NL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang12)">
+            <value>
+              <string>pt-BR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang13)">
+            <value>
+              <string>fi-FI</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang14)">
+            <value>
+              <string>nb-NO</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang15)">
+            <value>
+              <string>da-DK</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang16)">
+            <value>
+              <string>hu-HU</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang17)">
+            <value>
+              <string>pl-PL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang18)">
+            <value>
+              <string>ru-RU</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang19)">
+            <value>
+              <string>cs-CZ</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang20)">
+            <value>
+              <string>el-GR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang21)">
+            <value>
+              <string>pt-PT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang22)">
+            <value>
+              <string>tr-TR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang23)">
+            <value>
+              <string>ar-SA</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang24)">
+            <value>
+              <string>he-IL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang25)">
+            <value>
+              <string>sk-SK</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang26)">
+            <value>
+              <string>sl-SI</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang27)">
+            <value>
+              <string>ro-RO</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang28)">
+            <value>
+              <string>hr-HR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang29)">
+            <value>
+              <string>bg-BG</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang30)">
+            <value>
+              <string>et-EE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang31)">
+            <value>
+              <string>lt-LT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang32)">
+            <value>
+              <string>lv-LV</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang33)">
+            <value>
+              <string>th-TH</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang34)">
+            <value>
+              <string>zh-HK</string>
+            </value>
+          </item>
+         <item displayName="$(string.UILang36)">
+            <value>
+              <string>sr-Latn-CS</string>
+            </value>
+          </item>
+         <item displayName="$(string.UILang37)">
+            <value>
+              <string>uk-UA</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="LockUserUILanguage" class="User" displayName="$(string.LockUserUILanguage)" explainText="$(string.LockUserUILanguage_Help)" presentation="$(presentation.LockUserUILanguage)" key="Software\Policies\Microsoft\Control Panel\Desktop">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="UILangSelect" valueName="PreferredUILanguages" required="true">
+          <item displayName="$(string.UILang1)">
+            <value>
+              <string>en-US</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang2)">
+            <value>
+              <string>ja-JP</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang3)">
+            <value>
+              <string>ko-KR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang4)">
+            <value>
+              <string>de-DE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang5)">
+            <value>
+              <string>zh-CN</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang35)">
+            <value>
+              <string>zh-TW</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang7)">
+            <value>
+              <string>fr-FR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang8)">
+            <value>
+              <string>es-ES</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang9)">
+            <value>
+              <string>it-IT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang10)">
+            <value>
+              <string>sv-SE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang11)">
+            <value>
+              <string>nl-NL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang12)">
+            <value>
+              <string>pt-BR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang13)">
+            <value>
+              <string>fi-FI</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang14)">
+            <value>
+              <string>nb-NO</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang15)">
+            <value>
+              <string>da-DK</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang16)">
+            <value>
+              <string>hu-HU</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang17)">
+            <value>
+              <string>pl-PL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang18)">
+            <value>
+              <string>ru-RU</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang19)">
+            <value>
+              <string>cs-CZ</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang20)">
+            <value>
+              <string>el-GR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang21)">
+            <value>
+              <string>pt-PT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang22)">
+            <value>
+              <string>tr-TR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang23)">
+            <value>
+              <string>ar-SA</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang24)">
+            <value>
+              <string>he-IL</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang25)">
+            <value>
+              <string>sk-SK</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang26)">
+            <value>
+              <string>sl-SI</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang27)">
+            <value>
+              <string>ro-RO</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang28)">
+            <value>
+              <string>hr-HR</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang29)">
+            <value>
+              <string>bg-BG</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang30)">
+            <value>
+              <string>et-EE</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang31)">
+            <value>
+              <string>lt-LT</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang32)">
+            <value>
+              <string>lv-LV</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang33)">
+            <value>
+              <string>th-TH</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang34)">
+            <value>
+              <string>zh-HK</string>
+            </value>
+          </item>
+         <item displayName="$(string.UILang36)">
+            <value>
+              <string>sr-Latn-CS</string>
+            </value>
+          </item>
+         <item displayName="$(string.UILang37)">
+            <value>
+              <string>uk-UA</string>
+            </value>
+          </item>
+
+        </enum>
+      </elements>
+    </policy>
+    <policy name="MachineUILanguageOverwrite" class="Machine" displayName="$(string.MachineUILanguageOverwrite)" explainText="$(string.MachineUILanguageOverwrite_Help)" key="Software\Policies\Microsoft\MUI\Settings" valueName="MachineUILock">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RestrictUILangSelect" class="User" displayName="$(string.RestrictUILangSelect)" explainText="$(string.RestrictUILangSelect_Help)" presentation="$(presentation.RestrictUILangSelect)" key="Software\Policies\Microsoft\Control Panel\Desktop">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="UILangSelect" valueName="MultiUILanguageID" required="true">
+          <item displayName="$(string.UILang1)">
+            <value>
+              <string>00000409</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang2)">
+            <value>
+              <string>00000411</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang3)">
+            <value>
+              <string>00000412</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang4)">
+            <value>
+              <string>00000407</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang5)">
+            <value>
+              <string>00000804</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang6)">
+            <value>
+              <string>00000404</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang7)">
+            <value>
+              <string>0000040c</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang8)">
+            <value>
+              <string>00000c0a</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang9)">
+            <value>
+              <string>00000410</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang10)">
+            <value>
+              <string>0000041d</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang11)">
+            <value>
+              <string>00000413</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang12)">
+            <value>
+              <string>00000416</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang13)">
+            <value>
+              <string>0000040b</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang14)">
+            <value>
+              <string>00000414</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang15)">
+            <value>
+              <string>00000406</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang16)">
+            <value>
+              <string>0000040e</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang17)">
+            <value>
+              <string>00000415</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang18)">
+            <value>
+              <string>00000419</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang19)">
+            <value>
+              <string>00000405</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang20)">
+            <value>
+              <string>00000408</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang21)">
+            <value>
+              <string>00000816</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang22)">
+            <value>
+              <string>0000041f</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang23)">
+            <value>
+              <string>00000401</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang24)">
+            <value>
+              <string>0000040d</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang25)">
+            <value>
+              <string>0000041b</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang26)">
+            <value>
+              <string>00000424</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang27)">
+            <value>
+              <string>00000418</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang28)">
+            <value>
+              <string>0000041a</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang29)">
+            <value>
+              <string>00000402</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang30)">
+            <value>
+              <string>00000425</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang31)">
+            <value>
+              <string>00000427</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang32)">
+            <value>
+              <string>00000426</string>
+            </value>
+          </item>
+          <item displayName="$(string.UILang33)">
+            <value>
+              <string>0000041e</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TurnOffOfferTextPredictions" class="User" displayName="$(string.TurnOffOfferTextPredictions)" explainText="$(string.TurnOffOfferTextPredictions_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="TurnOffOfferTextPredictions">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffInsertSpace" class="User" displayName="$(string.TurnOffInsertSpace)" explainText="$(string.TurnOffInsertSpace_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="TurnOffInsertSpace">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffAutocorrectMisspelledWords" class="User" displayName="$(string.TurnOffAutocorrectMisspelledWords)" explainText="$(string.TurnOffAutocorrectMisspelledWords_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="TurnOffAutocorrectMisspelledWords">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffHighlightMisspelledWords" class="User" displayName="$(string.TurnOffHighlightMisspelledWords)" explainText="$(string.TurnOffHighlightMisspelledWords_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="TurnOffHighlightMisspelledWords">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="BlockCleanupOfUnusedPreinstalledLangPacks" class="Machine" displayName="$(string.BlockCleanupOfUnusedPreinstalledLangPacks)" explainText="$(string.BlockCleanupOfUnusedPreinstalledLangPacks_Help)" key="Software\Policies\Microsoft\Control Panel\International" valueName="BlockCleanupOfUnusedPreinstalledLangPacks">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowInputPersonalization" class="Machine" displayName="$(string.AllowInputPersonalization)" explainText="$(string.AllowInputPersonalization_Help)" key="Software\Policies\Microsoft\InputPersonalization" valueName="AllowInputPersonalization">
+      <parentCategory ref="RegionalOptions" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Y2K" class="User" displayName="$(string.Y2K)" explainText="$(string.Y2K_Help)" presentation="$(presentation.Y2K)" key="Software\Policies\Microsoft\Control Panel\International\Calendars\TwoDigitYearMax">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="Y2KYear" valueName="1" minValue="2001" maxValue="2099" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="ImplicitDataCollectionOff_1" class="User" displayName="$(string.ImplicitDataCollectionOff)" explainText="$(string.ImplicitDataCollectionOff_Help)" key="SOFTWARE\Policies\Microsoft\InputPersonalization">
+      <parentCategory ref="InputPersonalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitTextCollection">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitInkCollection">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitTextCollection">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitInkCollection">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="ImplicitDataCollectionOff_2" class="Machine" displayName="$(string.ImplicitDataCollectionOff)" explainText="$(string.ImplicitDataCollectionOff_Help)" key="SOFTWARE\Policies\Microsoft\InputPersonalization">
+      <parentCategory ref="InputPersonalization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitTextCollection">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitInkCollection">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitTextCollection">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\InputPersonalization" valueName="RestrictImplicitInkCollection">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+  </policies>
+</policyDefinitions>

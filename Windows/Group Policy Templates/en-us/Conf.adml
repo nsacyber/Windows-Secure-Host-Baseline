@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="AllowPersistAutoAcceptCalls">Allow persisting automatic acceptance of Calls</string>
+      <string id="AllowPersistAutoAcceptCalls_Help">Make the automatic acceptance of incoming calls persistent.</string>
+      <string id="AppSharing">Application Sharing</string>
+      <string id="AudioVideo">Audio &amp; Video</string>
+      <string id="DisableAdvCallingButton">Disable the Advanced Calling button</string>
+      <string id="DisableAdvCallingButton_Help">Disables the Advanced Calling button on the General Options page.  Users will not then be able to change the call placement method and the servers used.</string>
+      <string id="DisableAppSharing">Disable application Sharing</string>
+      <string id="DisableAppSharing_Help">Disables the application sharing feature of NetMeeting completely.  Users will not be able to host or view shared applications.</string>
+      <string id="DisableAudioPage">Hide the Audio page</string>
+      <string id="DisableAudioPage_Help">Hides the Audio page of the Tools Options dialog.  Users will not then be able to change audio settings.</string>
+      <string id="DisableChat">Disable Chat</string>
+      <string id="DisableChat_Help">Disables the Chat feature of NetMeeting.</string>
+      <string id="DisableGeneralPage">Hide the General page</string>
+      <string id="DisableGeneralPage_Help">Hides the General page of the Tools Options dialog.  Users will not then be able to change personal identification and bandwidth settings.</string>
+      <string id="DisableNewWhiteboard">Disable Whiteboard</string>
+      <string id="DisableNewWhiteboard_Help">Disables the T.126 whiteboard feature of NetMeeting.</string>
+      <string id="DisableOldWhiteboard">Disable NetMeeting 2.x Whiteboard</string>
+      <string id="DisableOldWhiteboard_Help">Disables the 2.x whiteboard feature of NetMeeting.
+
+The 2.x whiteboard is available for compatibility with older versions of NetMeeting only.
+
+Deployers who do not need it can save bandwidth by disabling it.</string>
+      <string id="DisableRDS">Disable remote Desktop Sharing</string>
+      <string id="DisableRDS_Help">Disables the remote desktop sharing feature of NetMeeting.  Users will not be able to set it up or use it for controlling their computers remotely.</string>
+      <string id="DisableSecurityPage">Hide the Security page</string>
+      <string id="DisableSecurityPage_Help">Hides the Security page of the Tools Options dialog.  Users will not then be able to change call security and authentication settings.</string>
+      <string id="DisableVideoPage">Hide the Video page</string>
+      <string id="DisableVideoPage_Help">Hides the Video page of the Tools Options dialog.  Users will not then be able to change video settings.</string>
+      <string id="EnableAutoConfiguration">Enable Automatic Configuration</string>
+      <string id="EnableAutoConfiguration_Help">Configures NetMeeting to download settings for users each time it starts.
+
+The settings are downloaded from the URL listed in the "Configuration URL:" text box.
+
+Group Policy based settings have precedence over any conflicting settings set by downloading them from this URL.</string>
+      <string id="NetMeeting">NetMeeting</string>
+      <string id="OptionDialog">Options Page</string>
+      <string id="PreventAddingNewILS">Prevent adding Directory servers</string>
+      <string id="PreventAddingNewILS_Help">Prevents users from adding directory (ILS) servers to the list of those they can use for placing calls.</string>
+      <string id="PreventAudio">Disable Audio</string>
+      <string id="PreventAudio_Help">Disables the audio feature of NetMeeting.  Users will not be able to send or receive audio.</string>
+      <string id="PreventAutoAccept">Prevent automatic acceptance of Calls</string>
+      <string id="PreventAutoAccept_Help">Prevents users from turning on automatic acceptance of incoming calls.
+
+This ensures that others cannot call and connect to NetMeeting when the user is not present.
+
+This policy is recommended when deploying NetMeeting to run always.</string>
+      <string id="PreventChangeDirectSound">Prevent changing DirectSound Audio setting</string>
+      <string id="PreventChangeDirectSound_Help">Prevents user from changing the DirectSound audio setting.  DirectSound provides much better audio quality, but older audio hardware may not support it.</string>
+      <string id="PreventChangingCallMode">Prevent changing Call placement method</string>
+      <string id="PreventChangingCallMode_Help">Prevents users from changing the way calls are placed, either directly or via a gatekeeper server.</string>
+      <string id="PreventDirectoryServices">Disable Directory services</string>
+      <string id="PreventDirectoryServices_Help">Disables the directory feature of NetMeeting.
+
+Users will not logon to a directory (ILS) server when NetMeeting starts.  Users will also not be able to view or place calls via a NetMeeting directory.
+
+This policy is for deployers who have their own location or calling schemes such as a Web site or an address book." </string>
+      <string id="PreventFullDuplex">Disable full duplex Audio</string>
+      <string id="PreventFullDuplex_Help">Disables full duplex mode audio.  Users will not be able to listen to incoming audio while speaking into the microphone.  Older audio hardware does not perform well when in full duplex mode.</string>
+      <string id="PreventGrantingControl">Prevent Control</string>
+      <string id="PreventGrantingControl_Help">Prevents users from allowing others in a conference to control what they have shared.  This enforces a read-only mode; the other participants cannot change the data in the shared application.</string>
+      <string id="PreventReceivingFiles">Prevent receiving files</string>
+      <string id="PreventReceivingFiles_Help">Prevents users from receiving files from others in a conference.</string>
+      <string id="PreventReceivingVideo">Prevent receiving Video</string>
+      <string id="PreventReceivingVideo_Help">Prevents users from receiving video.  Users will still be able to send video provided they have the hardware." </string>
+      <string id="PreventSendingFiles">Prevent sending files</string>
+      <string id="PreventSendingFiles_Help">Prevents users from sending files to others in a conference.</string>
+      <string id="PreventSendingVideo">Prevent sending Video</string>
+      <string id="PreventSendingVideo_Help">Prevents users from sending video if they have the hardware.  Users will still be able to receive video from others.</string>
+      <string id="PreventSharing">Prevent Sharing</string>
+      <string id="PreventSharing_Help">Prevents users from sharing anything themselves.  They will still be able to view shared applications/desktops from others.</string>
+      <string id="PreventSharingCMDPrompt">Prevent Sharing Command Prompts</string>
+      <string id="PreventSharingCMDPrompt_Help">Prevents users from sharing command prompts.  This prevents users from inadvertently sharing out applications, since command prompts can be used to launch other applications.</string>
+      <string id="PreventSharingDesktop">Prevent Desktop Sharing</string>
+      <string id="PreventSharingDesktop_Help">Prevents users from sharing the whole desktop.  They will still be able to share individual applications.</string>
+      <string id="PreventSharingExplorer">Prevent Sharing Explorer windows</string>
+      <string id="PreventSharingExplorer_Help">Prevents users from sharing Explorer windows.  This prevents users from inadvertently sharing out applications, since Explorer windows can be used to launch other applications.</string>
+      <string id="PreventSharingTrueColor">Prevent Application Sharing in true color</string>
+      <string id="PreventSharingTrueColor_Help">Prevents users from sharing applications in true color.  True color sharing uses more bandwidth in a conference.</string>
+      <string id="PreventWebDirectory">Prevent viewing Web directory</string>
+      <string id="PreventWebDirectory_Help">Prevents users from viewing directories as Web pages in a browser.</string>
+      <string id="RestrictFTSendSize">Limit the size of sent files</string>
+      <string id="RestrictFTSendSize_Help">Limits the size of files users can send to others in a conference.</string>
+      <string id="SecurityLevelDisabled">Disabled</string>
+      <string id="SecurityLevelRequired">Required</string>
+      <string id="SetAVThroughput">Limit the bandwidth of Audio and Video</string>
+      <string id="SetAVThroughput_Help">Limits the bandwidth audio and video will consume when in a conference.  This setting will guide NetMeeting to choose the right formats and send rate so that the bandwidth is limited.</string>
+      <string id="SetIntranetSupport">Set the intranet support Web page</string>
+      <string id="SetIntranetSupport_Help">Sets the URL NetMeeting will display when the user chooses the Help Online Support command.</string>
+      <string id="SetSecurityOptions">Set Call Security options</string>
+      <string id="SetSecurityOptions_Help">Sets the level of security for both outgoing and incoming NetMeeting calls.</string>
+      <string id="SUPPORTED_NetMeeting3">at least Windows NetMeeting v3.0</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="EnableAutoConfiguration">
+        <textBox refId="AutoConfigFile">
+          <label>Configuration URL:</label>
+        </textBox>
+      </presentation>
+      <presentation id="RestrictFTSendSize">
+        <decimalTextBox refId="RestrictFTSize" defaultValue="500" spinStep="100">Maximum size in Kbytes</decimalTextBox>
+        <text>Value is size in Kbytes, only files smaller</text>
+        <text> than this size can be sent by the user.</text>
+      </presentation>
+      <presentation id="SetAVThroughput">
+        <decimalTextBox refId="AVThroughput" defaultValue="621700">Maximum bandwidth in Kilobytes per second:</decimalTextBox>
+      </presentation>
+      <presentation id="SetIntranetSupport">
+        <textBox refId="IntranetSupportURL">
+          <label>Support Web page URL</label>
+        </textBox>
+      </presentation>
+      <presentation id="SetSecurityOptions">
+        <dropdownList refId="SetSecurityLevel">Call security</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

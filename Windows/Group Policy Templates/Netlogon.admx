@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="netlogon" namespace="Microsoft.Policies.NetLogon" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Netlogon" displayName="$(string.Netlogon)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="Netlogon_DC_Locator_DNS_Records" displayName="$(string.Netlogon_DC_Locator_DNS_Records)">
+      <parentCategory ref="Netlogon" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Netlogon_AvoidPdcOnWan" class="Machine" displayName="$(string.Netlogon_AvoidPdcOnWan)" explainText="$(string.Netlogon_AvoidPdcOnWan_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AvoidPdcOnWan">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_BackgroundRetryInitialPeriod" class="Machine" displayName="$(string.Netlogon_BackgroundRetryInitialPeriod)" explainText="$(string.Netlogon_BackgroundRetryInitialPeriod_Help)" presentation="$(presentation.Netlogon_BackgroundRetryInitialPeriod)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_BackgroundRetryInitialPeriodLabel" valueName="BackgroundRetryInitialPeriod" maxValue="4233600" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_BackgroundRetryMaximumPeriod" class="Machine" displayName="$(string.Netlogon_BackgroundRetryMaximumPeriod)" explainText="$(string.Netlogon_BackgroundRetryMaximumPeriod_Help)" presentation="$(presentation.Netlogon_BackgroundRetryMaximumPeriod)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_BackgroundRetryMaximumPeriodLabel" valueName="BackgroundRetryMaximumPeriod" maxValue="4233600" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_BackgroundRetryQuitTime" class="Machine" displayName="$(string.Netlogon_BackgroundRetryQuitTime)" explainText="$(string.Netlogon_BackgroundRetryQuitTime_Help)" presentation="$(presentation.Netlogon_BackgroundRetryQuitTime)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_BackgroundRetryQuitTimeLabel" valueName="BackgroundRetryQuitTime" maxValue="4233600" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_BackgroundSuccessfulRefreshPeriod" class="Machine" displayName="$(string.Netlogon_BackgroundSuccessfulRefreshPeriod)" explainText="$(string.Netlogon_BackgroundSuccessfulRefreshPeriod_Help)" presentation="$(presentation.Netlogon_BackgroundSuccessfulRefreshPeriod)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_BackgroundSuccessfulRefreshPeriodLabel" valueName="BackgroundSuccessfulRefreshPeriod" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_DebugFlag" class="Machine" displayName="$(string.Netlogon_DebugFlag)" explainText="$(string.Netlogon_DebugFlag_Help)" presentation="$(presentation.Netlogon_DebugFlag)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <decimal id="Netlogon_DebugFlagLabel" valueName="dbFlag" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_ExpectedDialupDelay" class="Machine" displayName="$(string.Netlogon_ExpectedDialupDelay)" explainText="$(string.Netlogon_ExpectedDialupDelay_Help)" presentation="$(presentation.Netlogon_ExpectedDialupDelay)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_ExpectedDialupDelayLabel" valueName="ExpectedDialupDelay" maxValue="600" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_MaximumLogFileSize" class="Machine" displayName="$(string.Netlogon_MaximumLogFileSize)" explainText="$(string.Netlogon_MaximumLogFileSize_Help)" presentation="$(presentation.Netlogon_MaximumLogFileSize)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <decimal id="Netlogon_MaximumLogFileSizeLabel" valueName="MaximumLogFileSize" required="true" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_NegativeCachePeriod" class="Machine" displayName="$(string.Netlogon_NegativeCachePeriod)" explainText="$(string.Netlogon_NegativeCachePeriod_Help)" presentation="$(presentation.Netlogon_NegativeCachePeriod)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_NegativeCachePeriodLabel" valueName="NegativeCachePeriod" maxValue="604800" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_NetlogonShareCompatibilityMode" class="Machine" displayName="$(string.Netlogon_NetlogonShareCompatibilityMode)" explainText="$(string.Netlogon_NetlogonShareCompatibilityMode_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AllowExclusiveScriptsShareAccess">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_NonBackgroundSuccessfulRefreshPeriod" class="Machine" displayName="$(string.Netlogon_NonBackgroundSuccessfulRefreshPeriod)" explainText="$(string.Netlogon_NonBackgroundSuccessfulRefreshPeriod_Help)" presentation="$(presentation.Netlogon_NonBackgroundSuccessfulRefreshPeriod)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_NonBackgroundSuccessfulRefreshPeriodLabel" valueName="NonBackgroundSuccessfulRefreshPeriod" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_ScavengeInterval" class="Machine" displayName="$(string.Netlogon_ScavengeInterval)" explainText="$(string.Netlogon_ScavengeInterval_Help)" presentation="$(presentation.Netlogon_ScavengeInterval)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_ScavengeIntervalLabel" valueName="ScavengeInterval" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_SiteName" class="Machine" displayName="$(string.Netlogon_SiteName)" explainText="$(string.Netlogon_SiteName_Help)" presentation="$(presentation.Netlogon_SiteName)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Netlogon_SiteNameLabel" valueName="SiteName" required="true" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_SysvolShareCompatibilityMode" class="Machine" displayName="$(string.Netlogon_SysvolShareCompatibilityMode)" explainText="$(string.Netlogon_SysvolShareCompatibilityMode_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AllowExclusiveSysvolShareAccess">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_AllowSingleLabelDnsDomain" class="Machine" displayName="$(string.Netlogon_AllowSingleLabelDnsDomain)" explainText="$(string.Netlogon_AllowSingleLabelDnsDomain_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AllowSingleLabelDnsDomain">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_AllowDnsSuffixSearch" class="Machine" displayName="$(string.Netlogon_AllowDnsSuffixSearch)" explainText="$(string.Netlogon_AllowDnsSuffixSearch_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AllowDnsSuffixSearch">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_AutoSiteCoverage" class="Machine" displayName="$(string.Netlogon_AutoSiteCoverage)" explainText="$(string.Netlogon_AutoSiteCoverage_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AutoSiteCoverage">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_DnsAvoidRegisterRecords" class="Machine" displayName="$(string.Netlogon_DnsAvoidRegisterRecords)" explainText="$(string.Netlogon_DnsAvoidRegisterRecords_Help)" presentation="$(presentation.Netlogon_DnsAvoidRegisterRecords)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Netlogon_DnsAvoidRegisterRecordsLabel" valueName="DnsAvoidRegisterRecords" required="true" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_DnsRefreshInterval" class="Machine" displayName="$(string.Netlogon_DnsRefreshInterval)" explainText="$(string.Netlogon_DnsRefreshInterval_Help)" presentation="$(presentation.Netlogon_DnsRefreshInterval)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_DnsRefreshIntervalLabel" valueName="DnsRefreshInterval" minValue="1800" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_DnsTtl" class="Machine" displayName="$(string.Netlogon_DnsTtl)" explainText="$(string.Netlogon_DnsTtl_Help)" presentation="$(presentation.Netlogon_DnsTtl)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_DnsTtlLabel" valueName="DnsTtl" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_GcSiteCoverage" class="Machine" displayName="$(string.Netlogon_GcSiteCoverage)" explainText="$(string.Netlogon_GcSiteCoverage_Help)" presentation="$(presentation.Netlogon_GcSiteCoverage)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Netlogon_GcSiteCoverageLabel" valueName="GcSiteCoverage" required="true" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_LdapSrvPriority" class="Machine" displayName="$(string.Netlogon_LdapSrvPriority)" explainText="$(string.Netlogon_LdapSrvPriority_Help)" presentation="$(presentation.Netlogon_LdapSrvPriority)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_LdapSrvPriorityLabel" valueName="LdapSrvPriority" maxValue="65535" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_LdapSrvWeight" class="Machine" displayName="$(string.Netlogon_LdapSrvWeight)" explainText="$(string.Netlogon_LdapSrvWeight_Help)" presentation="$(presentation.Netlogon_LdapSrvWeight)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <decimal id="Netlogon_LdapSrvWeightLabel" valueName="LdapSrvWeight" maxValue="65535" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_NdncSiteCoverage" class="Machine" displayName="$(string.Netlogon_NdncSiteCoverage)" explainText="$(string.Netlogon_NdncSiteCoverage_Help)" presentation="$(presentation.Netlogon_NdncSiteCoverage)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Netlogon_NdncSiteCoverageLabel" valueName="NdncSiteCoverage" required="true" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_SiteCoverage" class="Machine" displayName="$(string.Netlogon_SiteCoverage)" explainText="$(string.Netlogon_SiteCoverage_Help)" presentation="$(presentation.Netlogon_SiteCoverage)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="Netlogon_SiteCoverageLabel" valueName="SiteCoverage" required="true" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_UseDynamicDns" class="Machine" displayName="$(string.Netlogon_UseDynamicDns)" explainText="$(string.Netlogon_UseDynamicDns_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="UseDynamicDns">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_TryNextClosestSite" class="Machine" displayName="$(string.Netlogon_TryNextClosestSite)" explainText="$(string.Netlogon_TryNextClosestSite_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="TryNextClosestSite">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_ForceRediscoveryInterval" class="Machine" displayName="$(string.Netlogon_ForceRediscoveryInterval)" explainText="$(string.Netlogon_ForceRediscoveryInterval_Help)" presentation="$(presentation.Netlogon_ForceRediscoveryInterval)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="Netlogon_ForceRediscoveryIntervalLabel" valueName="ForceRediscoveryInterval" minValue="3600" maxValue="4294967200" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_AddressTypeReturned" class="Machine" displayName="$(string.Netlogon_AddressTypeReturned)" explainText="$(string.Netlogon_AddressTypeReturned_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AddressTypeReturned">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_AllowNT4Crypto" class="Machine" displayName="$(string.Netlogon_AllowNT4Crypto)" explainText="$(string.Netlogon_AllowNT4Crypto_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AllowNT4Crypto">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_IgnoreIncomingMailslotMessages" class="Machine" displayName="$(string.Netlogon_IgnoreIncomingMailslotMessages)" explainText="$(string.Netlogon_IgnoreIncomingMailslotMessages_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="IgnoreIncomingMailslotMessages">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Netlogon_AvoidFallbackNetbiosDiscovery" class="Machine" displayName="$(string.Netlogon_AvoidFallbackNetbiosDiscovery)" explainText="$(string.Netlogon_AvoidFallbackNetbiosDiscovery_Help)" key="Software\Policies\Microsoft\Netlogon\Parameters" valueName="AvoidFallbackNetbiosDiscovery">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>    
+    <policy name="Netlogon_AddressLookupOnPingBehavior" class="Machine" displayName="$(string.Netlogon_AddressLookupOnPingBehavior)" explainText="$(string.Netlogon_AddressLookupOnPingBehavior_Help)" presentation="$(presentation.Netlogon_AddressLookupOnPingBehavior)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon_DC_Locator_DNS_Records" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="Netlogon_AddressLookupOnPingBehaviorLabel" valueName="AddressLookupOnPingBehavior" maxValue="2" />
+      </elements>
+    </policy>
+    <policy name="Netlogon_PingUrgencyMode" class="Machine" displayName="$(string.Netlogon_PingUrgencyMode)" explainText="$(string.Netlogon_PingUrgencyMode_Help)" presentation="$(presentation.Netlogon_PingUrgencyMode)" key="Software\Policies\Microsoft\Netlogon\Parameters">
+      <parentCategory ref="Netlogon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <decimal id="Netlogon_PingUrgencyModeLabel" valueName="PingUrgencyMode" maxValue="2" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

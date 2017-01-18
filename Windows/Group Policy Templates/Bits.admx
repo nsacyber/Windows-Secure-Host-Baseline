@@ -1,0 +1,1423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.2" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="bits" namespace="Microsoft.Policies.BITS" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.2" />
+
+  <supportedOn>
+    <definitions>
+      <!--Windows XP or Windows Server 2003, or computers with BITS 1.5 installed.-->
+      <definition name="SUPPORTED_WindowsXPWindowsNETorBITS15" displayName="$(string.SUPPORTED_WindowsXPWindowsNETorBITS15)">
+        <or>
+          <reference ref="windows:SUPPORTED_WindowsNET_XP"/>
+          <reference ref="products:BITS15"/>
+        </or>
+      </definition>
+      <!--Windows XP SP2 or Windows Server 2003 SP1, or computers with BITS 2.0 installed.-->
+      <definition name="SUPPORTED_WindowsXPSP2WindowsNETSP1orBITS20" displayName="$(string.SUPPORTED_WindowsXPSP2WindowsNETSP1orBITS20)">
+        <or>
+          <reference ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1"/>
+          <reference ref="products:BITS20"/>
+        </or>
+      </definition>
+      <!--windows 7 or computers with BITS 3.5 installed.-->
+      <definition name="SUPPORTED_Windows7OrBITS35" displayName="$(string.SUPPORTED_Windows7OrBITS35)">
+        <or>
+          <reference ref="windows:SUPPORTED_Windows7"/>
+          <reference ref="products:BITS35"/>
+        </or>
+      </definition>
+      <definition name="SUPPORTED_Windows8OrBITS5" displayName="$(string.SUPPORTED_Windows8OrBITS5)">
+          <or>
+              <reference ref="windows:SUPPORTED_Windows8"/>
+          </or>
+      </definition>
+  </definitions>
+  </supportedOn>
+
+  <categories>
+    <category name="BITS" displayName="$(string.BITS)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+
+  <policies>
+    <policy name="BITS_Job_Timeout" class="Machine" displayName="$(string.BITS_Job_Timeout)" explainText="$(string.BITS_Job_Timeout_Help)" presentation="$(presentation.BITS_Job_Timeout)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_WindowsXPWindowsNETorBITS15" />
+      <elements>
+        <decimal id="BITS_Job_Timeout_Time" valueName="JobInactivityTimeout" minValue="1" maxValue="999" />
+      </elements>
+    </policy>
+
+      <policy name="BITS_MaxDownloadTime" class="Machine" displayName="$(string.BITS_MaxDownloadTime)" explainText="$(string.BITS_MaxDownloadTimeText)" presentation="$(presentation.BITS_MaxDownloadTime)" key="Software\Policies\Microsoft\Windows\BITS">
+          <parentCategory ref="BITS" />
+          <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+          <elements>
+              <decimal id="BITS_MaxDownloadSeconds" valueName="MaxDownloadTime" minValue="1" maxValue="2147483648" />
+          </elements>
+      </policy>
+
+    <policy name="BITS_MaxBandwidth" class="Machine" displayName="$(string.BITS_MaxBandwidth)" explainText="$(string.BITS_MaxBandwidth_Help)" presentation="$(presentation.BITS_MaxBandwidth)" key="Software\Policies\Microsoft\Windows\BITS" valueName="EnableBITSMaxBandwidth">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_WindowsXPSP2WindowsNETSP1orBITS20" />
+      <elements>
+        <decimal id="BITS_MaxTransferRateText" valueName="MaxTransferRateOnSchedule" maxValue="4294967200" />
+        <enum id="BITS_BandwidthLimitSchedFrom" valueName="MaxBandwidthValidFrom" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_BandwidthLimitSchedTo" valueName="MaxBandwidthValidTo" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="BITS_UseSystemMaximum" valueName="UseSystemMaximum" />
+        <decimal id="BITS_MaxTransferRateText_1" valueName="MaxTransferRateOffSchedule" maxValue="4294967200" />
+      </elements>
+    </policy>
+
+
+<!-- Win7 bandwidth throttling policies-->
+
+    <policy name="BITS_MaxBandwidthV2_Work" class="Machine" displayName="$(string.BITS_MaxBandwidthV2_Work)" explainText="$(string.BITS_MaxBandwidthV2_Work_Help)" presentation="$(presentation.BITS_MaxBandwidthV2_Work)" key="Software\Policies\Microsoft\Windows\BITS\Throttling" valueName="EnableBandwidthLimits">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_Windows7OrBITS35" />
+      <elements>
+        <boolean id="BITS_IgnoreLimitsOnLan" valueName="IgnoreBandwidthLimitsOnLan" />
+        <enum id="BITS_WorkDaysFrom" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="StartDay" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthDaysSunday)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysMonday)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysTuesday)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysWednesday)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysThursday)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysFriday)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysSaturday)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_WorkDaysTo" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="EndDay" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthDaysSunday)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysMonday)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysTuesday)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysWednesday)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysThursday)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysFriday)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysSaturday)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_WorkHoursFrom" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="StartHour" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_WorkHoursTo" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="EndHour" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_WorkHighPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="HighBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_WorkHighPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="HighBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_WorkNormalPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="NormalBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_WorkNormalPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="NormalBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_WorkLowPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="LowBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_WorkLowPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\WorkSchedule" valueName="LowBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_NonWorkHighPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="HighBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_NonWorkHighPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="HighBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_NonWorkNormalPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="NormalBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_NonWorkNormalPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="NormalBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_NonWorkLowPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="LowBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_NonWorkLowPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\NonWorkSchedule" valueName="LowBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+<!-- Maintenance bandwidth limits -->
+
+    <policy name="BITS_MaxBandwidthV2_Maintenance" class="Machine" displayName="$(string.BITS_MaxBandwidthV2_Maintenance)" explainText="$(string.BITS_MaxBandwidthV2_Maintenance_Help)" presentation="$(presentation.BITS_MaxBandwidthV2_Maintenance)" key="Software\Policies\Microsoft\Windows\BITS\Throttling" valueName="EnableMaintenanceLimits">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_Windows7OrBITS35" />
+      <elements>
+        <enum id="BITS_MaintenanceDaysFrom" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="StartDay" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthDaysSunday)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysMonday)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysTuesday)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysWednesday)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysThursday)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysFriday)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysSaturday)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_MaintenanceDaysTo" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="EndDay" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthDaysSunday)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysMonday)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysTuesday)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysWednesday)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysThursday)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysFriday)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthDaysSaturday)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_MaintenanceHoursFrom" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="StartHour" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <enum id="BITS_MaintenanceHoursTo" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="EndHour" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_MaintenanceHighPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="HighBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_MaintenanceHighPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="HighBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_MaintenanceNormalPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="NormalBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_MaintenanceNormalPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="NormalBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="BITS_MaintenanceLowPriorityLimit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="LowBandwidthLimit" maxValue="4294967200" />
+        <enum id="BITS_MaintenanceLowPriorityUnit" key="Software\Policies\Microsoft\Windows\BITS\Throttling\MaintenanceSchedule" valueName="LowBandwidthType" required="true">
+          <item displayName="$(string.BITS_MaxBandwidthLimitKbps)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitMbps)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_MaxBandwidthLimitUnlimited)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="BITS_EnablePeercaching" class="Machine" displayName="$(string.BITS_EnablePeercaching)" explainText="$(string.BITS_EnablePeercachingText)" key="Software\Policies\Microsoft\Windows\BITS" valueName="EnablePeercaching">
+        <parentCategory ref="BITS" />
+        <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="BITS_MaxContentAge" class="Machine" displayName="$(string.BITS_MaxContentAge)" explainText="$(string.BITS_MaxContentAgeText)" presentation="$(presentation.BITS_MaxContentAge)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxContentAgeList" valueName="MaxContentAge" required="true" minValue="1" maxValue="120" />
+      </elements>
+    </policy>
+    <policy name="BITS_MaxCacheSize" class="Machine" displayName="$(string.BITS_MaxCacheSize)" explainText="$(string.BITS_MaxCacheSizeText)" presentation="$(presentation.BITS_MaxCacheSize)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxSize" valueName="MaxCacheSize" required="true" minValue="1" maxValue="80" />
+      </elements>
+    </policy>
+    <policy name="BITS_DisablePeercachingClient" class="Machine" displayName="$(string.BITS_DisablePeercachingClient)" explainText="$(string.BITS_DisablePeercachingClientText)" key="Software\Policies\Microsoft\Windows\BITS" valueName="DisablePeerCachingClient">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      </policy>
+    <policy name="BITS_DisablePeercachingServer" class="Machine" displayName="$(string.BITS_DisablePeercachingServer)" explainText="$(string.BITS_DisablePeercachingServerText)" key="Software\Policies\Microsoft\Windows\BITS" valueName="DisablePeerCachingServer">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="BITS_MaxBandwidthServedForPeers" class="Machine" displayName="$(string.BITS_MaxBandwidthServedForPeers)" explainText="$(string.BITS_MaxBandwidthServedForPeersText)" presentation="$(presentation.BITS_MaxBandwidthServedForPeers)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxBandwidthServedForPeersList" valueName="MaxBandwidthServed" required="true" minValue="1048576" maxValue="4294967200"/>
+      </elements>
+    </policy>
+
+<!-- JobLimit changes -->
+
+
+    <!-- Win8  jobs cost transfer  policies-->
+
+    <policy name="BITS_SetTransferPolicyOnCostedNetwork" class="Machine" displayName="$(string.BITS_SetTransferPolicyOnCostedNetwork)" explainText="$(string.BITS_SetTransferPolicyOnCostedNetwork_Help)" presentation="$(presentation.BITS_SetTransferPolicyOnCostedNetwork)" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_Windows8OrBITS5" />
+      <elements>
+        <enum id="BITS_TransferPolicyForegroundPriorityValue" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="ForegroundTransferPolicy">
+          <item displayName="$(string.BITS_TransferPolicyAlwaysTransfer)">
+            <value>
+              <decimal value="2147483903" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNotRoamingTransfer)">
+            <value>
+              <decimal value="2147483775" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNoSurcharge)">
+            <value>
+              <decimal value="2147483759" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyStandard)">
+            <value>
+              <decimal value="2147483751" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyUnrestricted)">
+            <value>
+              <decimal value="2147483681" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_Custom)">
+            <value>
+              <decimal value="255" />
+            </value>
+            <valueList>
+              <item key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="ForegroundTransferPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+            </valueList>
+          </item>
+        </enum>
+        <decimal id="BITS_TransferPolicyForegroundPriorityValueCustom" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="ForegroundTransferPolicyCustom" maxValue="2147483647" />
+
+
+        <enum id="BITS_TransferPolicyHighPriorityValue" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="HighTransferPolicy">
+          <item displayName="$(string.BITS_TransferPolicyAlwaysTransfer)">
+            <value>
+              <decimal value="255" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNotRoamingTransfer)">
+            <value>
+              <decimal value="127" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNoSurcharge)">
+            <value>
+              <decimal value="111" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyStandard)">
+            <value>
+              <decimal value="103" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyUnrestricted)">
+            <value>
+              <decimal value="33" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_Custom)">
+            <value>
+              <decimal value="255" />
+            </value>
+            <valueList>
+              <item key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="HighTransferPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+            </valueList>
+          </item>
+        </enum>
+        <decimal id="BITS_TransferPolicyHighPriorityValueCustom" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="HighTransferPolicyCustom" maxValue="2147483647" />
+
+        <enum id="BITS_TransferPolicyNormalPriorityValue" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="NormalTransferPolicy">
+          <item displayName="$(string.BITS_TransferPolicyAlwaysTransfer)">
+            <value>
+              <decimal value="255" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNotRoamingTransfer)">
+            <value>
+              <decimal value="127" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNoSurcharge)">
+            <value>
+              <decimal value="111" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyStandard)">
+            <value>
+              <decimal value="103" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyUnrestricted)">
+            <value>
+              <decimal value="33" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_Custom)">
+            <value>
+              <decimal value="255" />
+            </value>
+            <valueList>
+              <item key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="NormalTransferPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+            </valueList>
+          </item>
+        </enum>
+        <decimal id="BITS_TransferPolicyNormalPriorityValueCustom" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="NormalTransferPolicyCustom" maxValue="2147483647" />
+
+        <enum id="BITS_TransferPolicyLowPriorityValue" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="LowTransferPolicy">
+          <item displayName="$(string.BITS_TransferPolicyAlwaysTransfer)">
+            <value>
+              <decimal value="255" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNotRoamingTransfer)">
+            <value>
+              <decimal value="127" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyNoSurcharge)">
+            <value>
+              <decimal value="111" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyStandard)">
+            <value>
+              <decimal value="103" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_TransferPolicyUnrestricted)">
+            <value>
+              <decimal value="33" />
+            </value>
+          </item>
+          <item displayName="$(string.BITS_Custom)">
+            <value>
+              <decimal value="255" />
+            </value>
+            <valueList>
+              <item key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="LowTransferPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+            </valueList>
+          </item>
+        </enum>
+        <decimal id="BITS_TransferPolicyLowPriorityValueCustom" key="Software\Policies\Microsoft\Windows\BITS\TransferPolicy" valueName="LowTransferPolicyCustom" maxValue="2147483647" />        
+      </elements>
+    </policy>
+    
+    
+    
+    
+<!-- MaxJobsPerMachine -->
+
+    <policy name="BITS_MaxJobsPerMachine" class="Machine" displayName="$(string.BITS_MaxJobsPerMachine)" explainText="$(string.BITS_MaxJobsPerMachineText)" presentation="$(presentation.BITS_MaxJobsPerMachine)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxJobsPerMachineList" valueName="MaxJobsPerMachine" required="true" maxValue="4294967200"/>
+      </elements>
+    </policy>
+
+<!-- MaxJobsPerUser -->
+
+    <policy name="BITS_MaxJobsPerUser" class="Machine" displayName="$(string.BITS_MaxJobsPerUser)" explainText="$(string.BITS_MaxJobsPerUserText)" presentation="$(presentation.BITS_MaxJobsPerUser)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxJobsPerUserList" valueName="MaxJobsPerUser" required="true" maxValue="4294967200"/>
+      </elements>
+    </policy>
+
+<!-- MaxFilesPerJob -->
+
+    <policy name="BITS_MaxFilesPerJob" class="Machine" displayName="$(string.BITS_MaxFilesPerJob)" explainText="$(string.BITS_MaxFilesPerJobText)" presentation="$(presentation.BITS_MaxFilesPerJob)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxFilesPerJobList" valueName="MaxFilesPerJob" required="true" maxValue="4294967200"/>
+      </elements>
+    </policy>
+
+<!-- MaxRangesPerFile -->
+
+    <policy name="BITS_MaxRangesPerFile" class="Machine" displayName="$(string.BITS_MaxRangesPerFile)" explainText="$(string.BITS_MaxRangesPerFileText)" presentation="$(presentation.BITS_MaxRangesPerFile)" key="Software\Policies\Microsoft\Windows\BITS">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="BITS_MaxRangesPerFileList" valueName="MaxRangesPerFile" required="true" maxValue="4294967200"/>
+      </elements>
+    </policy>
+
+<!-- JobLimit changes -->
+
+      <policy name="BITS_DisableBranchCache" class="Machine" displayName="$(string.BITS_DisableBranchCache)" explainText="$(string.BITS_DisableBranchCacheText)" key="Software\Policies\Microsoft\Windows\BITS" valueName="DisableBranchCache">
+      <parentCategory ref="BITS" />
+      <supportedOn ref="SUPPORTED_Windows7OrBITS35" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      </policy>
+
+</policies>
+</policyDefinitions>

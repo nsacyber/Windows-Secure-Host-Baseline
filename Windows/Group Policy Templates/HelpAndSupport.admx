@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="helppane" namespace="Microsoft.Policies.HelpAndSupport" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Assistance" displayName="$(string.Assistance)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ActiveHelp" class="Machine" displayName="$(string.ActiveHelp)" explainText="$(string.ActiveHelpPolicy_Explain)" key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoActiveHelp">
+      <parentCategory ref="Assistance" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HPExplicitFeedback" class="User" displayName="$(string.HPExplicitFeedback)" explainText="$(string.HPExplicitFeedbackPolicy_Explain)" key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoExplicitFeedback">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HPImplicitFeedback" class="User" displayName="$(string.HPImplicitFeedback)" explainText="$(string.HPImplicitFeedbackPolicy_Explain)" key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoImplicitFeedback">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HPOnlineAssistance" class="User" displayName="$(string.HPOnlineAssistance)" explainText="$(string.HPOnlineAssistancePolicy_Explain)" key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoOnlineAssist">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

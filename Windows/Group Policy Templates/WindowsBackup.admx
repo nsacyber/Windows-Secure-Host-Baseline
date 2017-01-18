@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsbackup" namespace="Microsoft.Policies.WindowsBackup" />
+    <using prefix="backup" namespace="Microsoft.Policies.Backup" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="server" namespace="Microsoft.Policies.Server" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Backup" displayName="$(string.Backup)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="BackupServer" displayName="$(string.BackupServer)">
+      <parentCategory ref="backup:Backup" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowOnlySystemBackup" class="Machine" displayName="$(string.AllowOnlySystemBackup)" explainText="$(string.AllowOnlySystemBackupExplain)" key="Software\Policies\Microsoft\Windows\Backup\Server" valueName="OnlySystemBackup">
+      <parentCategory ref="BackupServer" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowLocallyAttachedStorageAsBackupTarget" class="Machine" displayName="$(string.DisallowLocallyAttachedStorageAsBackupTarget)" explainText="$(string.DisallowLocallyAttachedStorageAsBackupTargetExplain)" key="Software\Policies\Microsoft\Windows\Backup\Server" valueName="NoBackupToDisk">
+      <parentCategory ref="BackupServer" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowNetworkAsBackupTarget" class="Machine" displayName="$(string.DisallowNetworkAsBackupTarget)" explainText="$(string.DisallowNetworkAsBackupTargetExplain)" key="Software\Policies\Microsoft\Windows\Backup\Server" valueName="NoBackupToNetwork">
+      <parentCategory ref="BackupServer" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowOpticalMediaAsBackupTarget" class="Machine" displayName="$(string.DisallowOpticalMediaAsBackupTarget)" explainText="$(string.DisallowOpticalMediaAsBackupTargetExplain)" key="Software\Policies\Microsoft\Windows\Backup\Server" valueName="NoBackupToOptical">
+      <parentCategory ref="BackupServer" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowRunOnceBackups" class="Machine" displayName="$(string.DisallowRunOnceBackups)" explainText="$(string.DisallowRunOnceBackupsexplain)" key="Software\Policies\Microsoft\Windows\Backup\Server" valueName="NoRunNowBackup">
+      <parentCategory ref="BackupServer" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

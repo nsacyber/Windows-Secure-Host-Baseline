@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsfirewall" namespace="Microsoft.Policies.WindowsFirewall" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="netcon" namespace="Microsoft.Policies.NetworkConnections" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WF_Category" displayName="$(string.WF_Category)">
+      <parentCategory ref="netcon:NetworkConnections" />
+    </category>
+    <category name="WF_Profile_Domain" displayName="$(string.WF_Profile_Domain)">
+      <parentCategory ref="WF_Category" />
+    </category>
+    <category name="WF_Profile_Standard" displayName="$(string.WF_Profile_Standard)">
+      <parentCategory ref="WF_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WF_AuthenticatedBypass_Name" class="Machine" displayName="$(string.WF_AuthenticatedBypass_Name)" explainText="$(string.WF_AuthenticatedBypass_Help)" presentation="$(presentation.WF_AuthenticatedBypass_Name)" key="SOFTWARE\Policies\Microsoft\Windows\IPSec\ICFv4">
+      <parentCategory ref="WF_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="WF_AuthenticatedBypass_List_Name" valueName="BypassFirewall" required="true" />
+      </elements>
+    </policy>
+    <policy name="WF_AllowedPrograms_Name_1" class="Machine" displayName="$(string.WF_AllowedPrograms_Name)" explainText="$(string.WF_AllowedPrograms_Help)" presentation="$(presentation.WF_AllowedPrograms_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="WF_AllowedPrograms_Show" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WF_AllowedProgramsLocal_Name_1" class="Machine" displayName="$(string.WF_AllowedProgramsLocal_Name)" explainText="$(string.WF_AllowedProgramsLocal_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications" valueName="AllowUserPrefMerge">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_EnableFirewall_Name_1" class="Machine" displayName="$(string.WF_EnableFirewall_Name)" explainText="$(string.WF_EnableFirewall_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" valueName="EnableFirewall">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_EnableShield_Name_1" class="Machine" displayName="$(string.WF_EnableShield_Name)" explainText="$(string.WF_EnableShield_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" valueName="DoNotAllowExceptions">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_FileAndPrint_Name_1" class="Machine" displayName="$(string.WF_FileAndPrint_Name)" explainText="$(string.WF_FileAndPrint_Help)" presentation="$(presentation.WF_FileAndPrint_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_IcmpSettings_Name_1" class="Machine" displayName="$(string.WF_IcmpSettings_Name)" explainText="$(string.WF_IcmpSettings_Help)" presentation="$(presentation.WF_IcmpSettings_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <boolean id="WF_IcmpSettings_AllowOutboundDestinationUnreachable" valueName="AllowOutboundDestinationUnreachable">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundSourceQuench" valueName="AllowOutboundSourceQuench">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowRedirect" valueName="AllowRedirect">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundEchoRequest" valueName="AllowInboundEchoRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundRouterRequest" valueName="AllowInboundRouterRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundTimeExceeded" valueName="AllowOutboundTimeExceeded">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundParameterProblem" valueName="AllowOutboundParameterProblem">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundTimestampRequest" valueName="AllowInboundTimestampRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundMaskRequest" valueName="AllowInboundMaskRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundPacketTooBig" valueName="AllowOutboundPacketTooBig">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="WF_Logging_Name_1" class="Machine" displayName="$(string.WF_Logging_Name)" explainText="$(string.WF_Logging_Help)" presentation="$(presentation.WF_Logging_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging" valueName="LogDroppedPackets">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging" valueName="LogSuccessfulConnections">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <boolean id="WF_Logging_LogDroppedPackets" valueName="LogDroppedPackets">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_Logging_LogSuccessfulConnections" valueName="LogSuccessfulConnections">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="WF_Logging_LogFilePathAndName" valueName="LogFilePath" required="true" />
+        <decimal id="WF_Logging_SizeLimit" valueName="LogFileSize" required="true" minValue="128" maxValue="32767" />
+      </elements>
+    </policy>
+    <policy name="WF_Notifications_Name_1" class="Machine" displayName="$(string.WF_Notifications_Name)" explainText="$(string.WF_Notifications_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" valueName="DisableNotifications">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_OpenPorts_Name_1" class="Machine" displayName="$(string.WF_OpenPorts_Name)" explainText="$(string.WF_OpenPorts_Help)" presentation="$(presentation.WF_OpenPorts_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="WF_OpenPorts_Show" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WF_OpenPortsLocal_Name_1" class="Machine" displayName="$(string.WF_OpenPortsLocal_Name)" explainText="$(string.WF_OpenPortsLocal_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts" valueName="AllowUserPrefMerge">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_RemoteAdmin_Name_1" class="Machine" displayName="$(string.WF_RemoteAdmin_Name)" explainText="$(string.WF_RemoteAdmin_Help)" presentation="$(presentation.WF_RemoteAdmin_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_RemoteDesktop_Name_1" class="Machine" displayName="$(string.WF_RemoteDesktop_Name)" explainText="$(string.WF_RemoteDesktop_Help)" presentation="$(presentation.WF_RemoteDesktop_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_UnicastResponseToMulticast_Name_1" class="Machine" displayName="$(string.WF_UnicastResponseToMulticast_Name)" explainText="$(string.WF_UnicastResponseToMulticast_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile" valueName="DisableUnicastResponsesToMulticastBroadcast">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_UniversalPlugAndPlay_Name_1" class="Machine" displayName="$(string.WF_UniversalPlugAndPlay_Name)" explainText="$(string.WF_UniversalPlugAndPlay_Help)" presentation="$(presentation.WF_UniversalPlugAndPlay_Name_1)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFramework" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Domain" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_AllowedPrograms_Name_2" class="Machine" displayName="$(string.WF_AllowedPrograms_Name)" explainText="$(string.WF_AllowedPrograms_Help)" presentation="$(presentation.WF_AllowedPrograms_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="WF_AllowedPrograms_Show" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WF_AllowedProgramsLocal_Name_2" class="Machine" displayName="$(string.WF_AllowedProgramsLocal_Name)" explainText="$(string.WF_AllowedProgramsLocal_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications" valueName="AllowUserPrefMerge">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_EnableFirewall_Name_2" class="Machine" displayName="$(string.WF_EnableFirewall_Name)" explainText="$(string.WF_EnableFirewall_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" valueName="EnableFirewall">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_EnableShield_Name_2" class="Machine" displayName="$(string.WF_EnableShield_Name)" explainText="$(string.WF_EnableShield_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" valueName="DoNotAllowExceptions">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_FileAndPrint_Name_2" class="Machine" displayName="$(string.WF_FileAndPrint_Name)" explainText="$(string.WF_FileAndPrint_Help)" presentation="$(presentation.WF_FileAndPrint_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_IcmpSettings_Name_2" class="Machine" displayName="$(string.WF_IcmpSettings_Name)" explainText="$(string.WF_IcmpSettings_Help)" presentation="$(presentation.WF_IcmpSettings_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <boolean id="WF_IcmpSettings_AllowOutboundDestinationUnreachable" valueName="AllowOutboundDestinationUnreachable">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundSourceQuench" valueName="AllowOutboundSourceQuench">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowRedirect" valueName="AllowRedirect">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundEchoRequest" valueName="AllowInboundEchoRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundRouterRequest" valueName="AllowInboundRouterRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundTimeExceeded" valueName="AllowOutboundTimeExceeded">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundParameterProblem" valueName="AllowOutboundParameterProblem">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundTimestampRequest" valueName="AllowInboundTimestampRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowInboundMaskRequest" valueName="AllowInboundMaskRequest">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_IcmpSettings_AllowOutboundPacketTooBig" valueName="AllowOutboundPacketTooBig">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="WF_Logging_Name_2" class="Machine" displayName="$(string.WF_Logging_Name)" explainText="$(string.WF_Logging_Help)" presentation="$(presentation.WF_Logging_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Logging">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Logging" valueName="LogDroppedPackets">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Logging" valueName="LogSuccessfulConnections">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <boolean id="WF_Logging_LogDroppedPackets" valueName="LogDroppedPackets">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WF_Logging_LogSuccessfulConnections" valueName="LogSuccessfulConnections">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="WF_Logging_LogFilePathAndName" valueName="LogFilePath" required="true" />
+        <decimal id="WF_Logging_SizeLimit" valueName="LogFileSize" required="true" minValue="128" maxValue="32767" />
+      </elements>
+    </policy>
+    <policy name="WF_Notifications_Name_2" class="Machine" displayName="$(string.WF_Notifications_Name)" explainText="$(string.WF_Notifications_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" valueName="DisableNotifications">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_OpenPorts_Name_2" class="Machine" displayName="$(string.WF_OpenPorts_Name)" explainText="$(string.WF_OpenPorts_Help)" presentation="$(presentation.WF_OpenPorts_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="WF_OpenPorts_Show" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts\List" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WF_OpenPortsLocal_Name_2" class="Machine" displayName="$(string.WF_OpenPortsLocal_Name)" explainText="$(string.WF_OpenPortsLocal_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts" valueName="AllowUserPrefMerge">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_RemoteAdmin_Name_2" class="Machine" displayName="$(string.WF_RemoteAdmin_Name)" explainText="$(string.WF_RemoteAdmin_Help)" presentation="$(presentation.WF_RemoteAdmin_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSettings" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_RemoteDesktop_Name_2" class="Machine" displayName="$(string.WF_RemoteDesktop_Name)" explainText="$(string.WF_RemoteDesktop_Help)" presentation="$(presentation.WF_RemoteDesktop_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+    <policy name="WF_UnicastResponseToMulticast_Name_2" class="Machine" displayName="$(string.WF_UnicastResponseToMulticast_Name)" explainText="$(string.WF_UnicastResponseToMulticast_Help)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile" valueName="DisableUnicastResponsesToMulticastBroadcast">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WF_UniversalPlugAndPlay_Name_2" class="Machine" displayName="$(string.WF_UniversalPlugAndPlay_Name)" explainText="$(string.WF_UniversalPlugAndPlay_Help)" presentation="$(presentation.WF_UniversalPlugAndPlay_Name_2)" key="SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFramework" valueName="Enabled">
+      <parentCategory ref="WF_Profile_Standard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="WF_Scope_Name" valueName="RemoteAddresses" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="winrs" namespace="Microsoft.Policies.WindowsRemoteShell" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WinRS" displayName="$(string.WinRS)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowRemoteShellAccess" class="Machine" displayName="$(string.AllowRemoteShellAccess)" explainText="$(string.AllowRemoteShellAccess_Help)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS" valueName="AllowRemoteShellAccess">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IdleTimeout" class="Machine" displayName="$(string.IdleTimeout)" explainText="$(string.IdleTimeout_Help)" presentation="$(presentation.IdleTimeout)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="IdleTimeout" valueName="IdleTimeout" minValue="0" maxValue="2147483647"/>"
+      </elements>
+    </policy>
+    <policy name="MaxConcurrentUsers" class="Machine" displayName="$(string.MaxConcurrentUsers)" explainText="$(string.MaxConcurrentUsers_Help)" presentation="$(presentation.MaxConcurrentUsers)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="MaxConcurrentUsers" valueName="MaxConcurrentUsers" minValue="1" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="MaxMemoryPerShellMB" class="Machine" displayName="$(string.MaxMemoryPerShellMB)" explainText="$(string.MaxMemoryPerShellMB_Help)" presentation="$(presentation.MaxMemoryPerShellMB)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="MaxMemoryPerShellMB" valueName="MaxMemoryPerShellMB" minValue="0" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="MaxProcessesPerShell" class="Machine" displayName="$(string.MaxProcessesPerShell)" explainText="$(string.MaxProcessesPerShell_Help)" presentation="$(presentation.MaxProcessesPerShell)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="MaxProcessesPerShell" valueName="MaxProcessesPerShell" minValue="0" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="ShellTimeOut" class="Machine" displayName="$(string.ShellTimeOut)" explainText="$(string.ShellTimeOut_Help)" presentation="$(presentation.ShellTimeOut)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="ShellTimeOut" valueName="ShellTimeOut" minValue="0" maxValue="2147483647" />
+      </elements>
+    </policy>
+    <policy name="MaxShellsPerUser" class="Machine" displayName="$(string.MaxShellsPerUser)" explainText="$(string.MaxShellsPerUser_Help)" presentation="$(presentation.MaxShellsPerUser)" key="Software\Policies\Microsoft\Windows\WinRM\Service\WinRS">
+      <parentCategory ref="WinRS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="MaxShellsPerUser" valueName="MaxShellsPerUser" minValue="0" maxValue="2147483647" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="cloudcontent" namespace="Microsoft.Policies.CloudContent" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CloudContent" displayName="$(string.CloudContent)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ConfigureWindowsSpotlight" class="User" displayName="$(string.ConfigureWindowsSpotlight)" explainText="$(string.ConfigureWindowsSpotlight_Help)" presentation="$(presentation.ConfigureWindowsSpotlight)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="ConfigureWindowsSpotlight">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="2" />
+      </disabledValue>
+      <elements>
+        <boolean id="ConfigureWindowsSpotlight_Checkbox" valueName="IncludeEnterpriseSpotlight">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="DisableWindowsSpotlightFeatures" class="User" displayName="$(string.DisableWindowsSpotlightFeatures)" explainText="$(string.DisableWindowsSpotlightFeatures_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableWindowsSpotlightFeatures">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableWindowsConsumerFeatures" class="Machine" displayName="$(string.DisableWindowsConsumerFeatures)" explainText="$(string.DisableWindowsConsumerFeatures_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableWindowsConsumerFeatures">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSoftLanding" class="Machine" displayName="$(string.DisableSoftLanding)" explainText="$(string.DisableSoftLanding_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableSoftLanding">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableThirdPartySuggestions" class="User" displayName="$(string.DisableThirdPartySuggestions)" explainText="$(string.DisableThirdPartySuggestions_Help)" key="Software\Policies\Microsoft\Windows\CloudContent" valueName="DisableThirdPartySuggestions">
+      <parentCategory ref="CloudContent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

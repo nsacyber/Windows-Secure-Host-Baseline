@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2012 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="settingsync" namespace="Microsoft.Policies.SettingSync" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="SettingSync" displayName="$(string.SettingSyncCategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+
+    <policy name="DisableSettingSync" presentation="$(presentation.DisableSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableSettingSync)" explainText="$(string.DisableSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableApplicationSettingSync" presentation="$(presentation.DisableApplicationSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableApplicationSettingSync)" explainText="$(string.DisableApplicationSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableApplicationSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableApplicationSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableCredentialsSettingSync" presentation="$(presentation.DisableCredentialsSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableCredentialsSettingSync)" explainText="$(string.DisableCredentialsSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableCredentialsSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableCredentialsSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisablePersonalizationSettingSync" presentation="$(presentation.DisablePersonalizationSettingSyncUserOverride)" class="Machine" displayName="$(string.DisablePersonalizationSettingSync)" explainText="$(string.DisablePersonalizationSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisablePersonalizationSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisablePersonalizationSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableAppSyncSettingSync" presentation="$(presentation.DisableAppSyncSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableAppSyncSettingSync)" explainText="$(string.DisableAppSyncSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableAppSyncSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableAppSyncSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableWindowsSettingSync" presentation="$(presentation.DisableWindowsSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableWindowsSettingSync)" explainText="$(string.DisableWindowsSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableWindowsSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableWindowsSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableDesktopThemeSettingSync" presentation="$(presentation.DisableDesktopThemeSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableDesktopThemeSettingSync)" explainText="$(string.DisableDesktopThemeSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableDesktopThemeSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableDesktopThemeSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableWebBrowserSettingSync" presentation="$(presentation.DisableWebBrowserSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableWebBrowserSettingSync)" explainText="$(string.DisableWebBrowserSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableWebBrowserSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableWebBrowserSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+
+    <policy name="DisableSyncOnPaidNetwork" class="Machine" displayName="$(string.DisableSyncOnPaidNetwork)" explainText="$(string.DisableSyncOnPaidNetwork_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableSyncOnPaidNetwork">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="DisableStartLayoutSettingSync" presentation="$(presentation.DisableStartLayoutSettingSyncUserOverride)" class="Machine" displayName="$(string.DisableStartLayoutSettingSync)" explainText="$(string.DisableStartLayoutSettingSync_Help)" key="Software\Policies\Microsoft\Windows\SettingSync" valueName="DisableStartLayoutSettingSync">
+      <parentCategory ref="SettingSync" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="CheckBox_UserOverride" valueName="DisableStartLayoutSettingSyncUserOverride">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="dwm" namespace="Microsoft.Policies.DesktopWindowManager" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CAT_DesktopWindowManager" displayName="$(string.CAT_DesktopWindowManager)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="CAT_DesktopWindowManagerColorization" displayName="$(string.CAT_DesktopWindowManagerColorization)">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DwmDisallowAnimations_1" class="User" displayName="$(string.DwmDisallowAnimations)" explainText="$(string.DwmDisallowAnimationsExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowAnimations">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDisallowAnimations_2" class="Machine" displayName="$(string.DwmDisallowAnimations)" explainText="$(string.DwmDisallowAnimationsExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowAnimations">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDisallowFlip3D_1" class="User" displayName="$(string.DwmDisallowFlip3D)" explainText="$(string.DwmDisallowFlip3DExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowFlip3d">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDisallowFlip3D_2" class="Machine" displayName="$(string.DwmDisallowFlip3D)" explainText="$(string.DwmDisallowFlip3DExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowFlip3d">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDisableAccentAndGradient" class="Machine" displayName="$(string.DwmDisableAccentAndGradient)" explainText="$(string.DwmDisableAccentAndGradientExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisableAccentGradient">
+      <parentCategory ref="CAT_DesktopWindowManager" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDefaultColorizationColor_1" class="User" displayName="$(string.DwmDefaultColorizationColor)" explainText="$(string.DwmDefaultColorizationColorExplain)" presentation="$(presentation.DwmDefaultColorizationColor_1)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DefaultColorizationColorState">
+      <parentCategory ref="CAT_DesktopWindowManagerColorization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="DwmDefaultColorizationColorAlpha" valueName="DefaultColorizationColorAlpha" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorRed" valueName="DefaultColorizationColorRed" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorGreen" valueName="DefaultColorizationColorGreen" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorBlue" valueName="DefaultColorizationColorBlue" required="true" maxValue="255" />
+      </elements>
+    </policy>
+    <policy name="DwmDefaultColorizationColor_2" class="Machine" displayName="$(string.DwmDefaultColorizationColor)" explainText="$(string.DwmDefaultColorizationColorExplain)" presentation="$(presentation.DwmDefaultColorizationColor_2)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DefaultColorizationColorState">
+      <parentCategory ref="CAT_DesktopWindowManagerColorization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="DwmDefaultColorizationColorAlpha" valueName="DefaultColorizationColorAlpha" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorRed" valueName="DefaultColorizationColorRed" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorGreen" valueName="DefaultColorizationColorGreen" required="true" maxValue="255" />
+        <decimal id="DwmDefaultColorizationColorBlue" valueName="DefaultColorizationColorBlue" required="true" maxValue="255" />
+      </elements>
+    </policy>
+    <policy name="DwmDisallowColorizationColorChanges_1" class="User" displayName="$(string.DwmDisallowColorizationColorChanges)" explainText="$(string.DwmDisallowColorizationColorChangesExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowColorizationColorChanges">
+      <parentCategory ref="CAT_DesktopWindowManagerColorization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DwmDisallowColorizationColorChanges_2" class="Machine" displayName="$(string.DwmDisallowColorizationColorChanges)" explainText="$(string.DwmDisallowColorizationColorChangesExplain)" key="SOFTWARE\Policies\Microsoft\Windows\DWM" valueName="DisallowColorizationColorChanges">
+      <parentCategory ref="CAT_DesktopWindowManagerColorization" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

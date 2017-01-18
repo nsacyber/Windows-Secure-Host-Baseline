@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2010 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="hotspotauth" namespace="Microsoft.Policies.HotspotAuthentication" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="HotspotAuth_Category" displayName="$(string.HotspotAuth_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="HotspotAuth_Enable" class="Machine" displayName="$(string.HotspotAuth_Enable)" explainText="$(string.HotspotAuth_Enable_Help)" key="Software\Policies\Microsoft\Windows\HotspotAuthentication" valueName="Enabled">
+      <parentCategory ref="HotspotAuth_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+          <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+          <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

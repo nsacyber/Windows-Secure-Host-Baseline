@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="folderredirection" namespace="Microsoft.Policies.FolderRedirection" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Fdeploy_Cat" displayName="$(string.Fdeploy_Cat)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="LocalizeXPRelativePaths_1" class="User" displayName="$(string.LocalizeXPRelativePaths)" explainText="$(string.LocalizeXPRelativePaths_Help)" key="Software\Policies\Microsoft\Windows\System\Fdeploy" valueName="LocalizeXPRelativePaths">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableFRAdminPin" class="User" displayName="$(string.DisableFRAdminPin)" explainText="$(string.DisableFRAdminPin_Help)" key="Software\Policies\Microsoft\Windows\NetCache" valueName="DisableFRAdminPin">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableFRAdminPinByFolder" class="User" displayName="$(string.DisableFRAdminPinByFolder)" explainText="$(string.DisableFRAdminPinByFolder_Help)" presentation="$(presentation.DisableFRAdminPinByFolder)" key="Software\Policies\Microsoft\Windows\NetCache\DisableFRAdminPinByFolder">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <boolean id="DisablePinAppDataRoaming" key="Software\Policies\Microsoft\Windows\NetCache\{3EB685DB-65F9-4CF6-A03A-E3EF65729F3D}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinDesktop"        key="Software\Policies\Microsoft\Windows\NetCache\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinStartMenu"      key="Software\Policies\Microsoft\Windows\NetCache\{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinDocuments"      key="Software\Policies\Microsoft\Windows\NetCache\{FDD39AD0-238F-46AF-ADB4-6C85480369C7}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinPictures"       key="Software\Policies\Microsoft\Windows\NetCache\{33E28130-4E1E-4676-835A-98395C3BC3BB}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinMusic"          key="Software\Policies\Microsoft\Windows\NetCache\{4BD8D571-6D19-48D3-BE97-422220080E43}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinVideos"         key="Software\Policies\Microsoft\Windows\NetCache\{18989B1D-99B5-455B-841C-AB7C74E4DDFC}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinFavorites"      key="Software\Policies\Microsoft\Windows\NetCache\{1777F761-68AD-4D8A-87BD-30B759FA33DD}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinContacts"       key="Software\Policies\Microsoft\Windows\NetCache\{56784854-C6CB-462b-8169-88E350ACB882}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinDownloads"      key="Software\Policies\Microsoft\Windows\NetCache\{374DE290-123F-4565-9164-39C4925E467B}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinLinks"          key="Software\Policies\Microsoft\Windows\NetCache\{BFB9D5E0-C6A9-404C-B2B2-AE6DB6AF4968}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinSearches"       key="Software\Policies\Microsoft\Windows\NetCache\{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}" valueName="DisableFRAdminPinByFolder" />
+        <boolean id="DisablePinSavedGames"     key="Software\Policies\Microsoft\Windows\NetCache\{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}" valueName="DisableFRAdminPinByFolder" />
+      </elements>
+    </policy>
+    <policy name="LocalizeXPRelativePaths_2" class="Machine" displayName="$(string.LocalizeXPRelativePaths)" explainText="$(string.LocalizeXPRelativePaths_Help)" key="Software\Policies\Microsoft\Windows\System\Fdeploy" valueName="LocalizeXPRelativePaths">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FolderRedirectionEnableCacheRename" class="User" displayName="$(string.FolderRedirectionEnableCacheRename)" explainText="$(string.FolderRedirectionEnableCacheRename_Help)" key="Software\Policies\Microsoft\Windows\System\Fdeploy" valueName="FolderRedirectionEnableCacheRename">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>      
+   <policy name="PrimaryComputer_FR_1" class="User" displayName="$(string.PrimaryComputerFr)" explainText="$(string.PrimaryComputerFr_Help)" key="Software\Policies\Microsoft\Windows\System\Fdeploy" valueName="PrimaryComputerEnabledFR">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PrimaryComputer_FR_2" class="Machine" displayName="$(string.PrimaryComputerFr)" explainText="$(string.PrimaryComputerFr_Help)" key="Software\Policies\Microsoft\Windows\System\Fdeploy" valueName="PrimaryComputerEnabledFR">
+      <parentCategory ref="Fdeploy_Cat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

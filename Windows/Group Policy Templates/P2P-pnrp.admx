@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="p2p-pnrp" namespace="Microsoft.Policies.PlugandPlay" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="P2P_Name" displayName="$(string.P2P_Name)">
+      <parentCategory ref="windows:Network" />
+    </category>
+    <category name="PNRP_Name" displayName="$(string.PNRP_Name)">
+      <parentCategory ref="P2P_Name" />
+    </category>
+    <category name="PNRP_Global" displayName="$(string.PNRP_Global)">
+      <parentCategory ref="PNRP_Name" />
+    </category>
+    <category name="PNRP_LinkLocal" displayName="$(string.PNRP_LinkLocal)">
+      <parentCategory ref="PNRP_Name" />
+    </category>
+    <category name="PNRP_SiteLocal" displayName="$(string.PNRP_SiteLocal)">
+      <parentCategory ref="PNRP_Name" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="P2P_Disabled" class="Machine" displayName="$(string.P2P_Disabled)" explainText="$(string.P2P_Disabled_Explain)" key="Software\policies\Microsoft\Peernet" valueName="Disabled">
+      <parentCategory ref="P2P_Name" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+    </policy>
+    <policy name="PNRP_DisableMulticastBootstrap_1" class="Machine" displayName="$(string.PNRP_DisableMulticastBootstrap)" explainText="$(string.PNRP_DisableMulticastBootstrapGlobal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-Global" valueName="DisableMulticastBootstrap">
+      <parentCategory ref="PNRP_Global" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_Disabled_1" class="Machine" displayName="$(string.PNRP_Disabled)" explainText="$(string.PNRP_DisabledGlobal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-Global" valueName="Disabled">
+      <parentCategory ref="PNRP_Global" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SearchOnly_1" class="Machine" displayName="$(string.PNRP_SearchOnly)" explainText="$(string.PNRP_SearchOnlyGlobal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-Global" valueName="SearchOnly">
+      <parentCategory ref="PNRP_Global" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SeedServer_1" class="Machine" displayName="$(string.PNRP_SeedServer)" explainText="$(string.PNRP_SeedServerGlobal_Explain)" presentation="$(presentation.PNRP_SeedServer_1)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-Global">
+      <parentCategory ref="PNRP_Global" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="PNRP_SeedServer_Name" valueName="SeedServer" />
+        <boolean id="PNRP_Dont_Include_Microsoft_SeedServer" valueName="DontIncludeMicrosoftSeedServer" />
+      </elements>
+    </policy>
+    <policy name="PNRP_DisableMulticastBootstrap_3" class="Machine" displayName="$(string.PNRP_DisableMulticastBootstrap)" explainText="$(string.PNRP_DisableMulticastBootstrapLinkLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-LinkLocal" valueName="DisableMulticastBootstrap">
+      <parentCategory ref="PNRP_LinkLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_Disabled_3" class="Machine" displayName="$(string.PNRP_Disabled)" explainText="$(string.PNRP_DisabledLinkLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-LinkLocal" valueName="Disabled">
+      <parentCategory ref="PNRP_LinkLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SearchOnly_3" class="Machine" displayName="$(string.PNRP_SearchOnly)" explainText="$(string.PNRP_SearchOnlyLinkLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-LinkLocal" valueName="SearchOnly">
+      <parentCategory ref="PNRP_LinkLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SeedServer_3" class="Machine" displayName="$(string.PNRP_SeedServer)" explainText="$(string.PNRP_SeedServerLinkLocal_Explain)" presentation="$(presentation.PNRP_SeedServer_3)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-LinkLocal">
+      <parentCategory ref="PNRP_LinkLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="PNRP_SeedServer_Name" valueName="SeedServer" />
+      </elements>
+    </policy>
+    <policy name="PNRP_DisableMulticastBootstrap_2" class="Machine" displayName="$(string.PNRP_DisableMulticastBootstrap)" explainText="$(string.PNRP_DisableMulticastBootstrapSiteLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-SiteLocal" valueName="DisableMulticastBootstrap">
+      <parentCategory ref="PNRP_SiteLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_Disabled_2" class="Machine" displayName="$(string.PNRP_Disabled)" explainText="$(string.PNRP_DisabledSiteLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-SiteLocal" valueName="Disabled">
+      <parentCategory ref="PNRP_SiteLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SearchOnly_2" class="Machine" displayName="$(string.PNRP_SearchOnly)" explainText="$(string.PNRP_SearchOnlySiteLocal_Explain)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-SiteLocal" valueName="SearchOnly">
+      <parentCategory ref="PNRP_SiteLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PNRP_SeedServer_2" class="Machine" displayName="$(string.PNRP_SeedServer)" explainText="$(string.PNRP_SeedServerSiteLocal_Explain)" presentation="$(presentation.PNRP_SeedServer_2)" key="Software\policies\Microsoft\Peernet\Pnrp\IPv6-SiteLocal">
+      <parentCategory ref="PNRP_SiteLocal" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="PNRP_SeedServer_Name" valueName="SeedServer" />
+      </elements>
+    </policy>
+    <policy name="GROUPING_DisablePasswordPolicyEnforcement" class="Machine" displayName="$(string.GROUPING_DisablePasswordPolicyEnforcement)" explainText="$(string.GROUPING_DisablePasswordPolicyEnforcement_Explain)" key="Software\policies\Microsoft\Peernet" valueName="IgnoreDomainPasswordPolicyForNewGroups">
+      <parentCategory ref="P2P_Name" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

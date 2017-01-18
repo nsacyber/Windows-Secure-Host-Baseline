@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (c) Microsoft Corporation. All rights reserved. -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>NetworkProvider</displayName>
+  <description>Policy Definitions for the Multiple UNC Provider</description>
+  <resources>
+    <stringTable>
+      <string id="Cat_NetworkProvider">Network Provider</string>
+      <string id="Pol_HardenedPaths">Hardened UNC Paths</string>
+      <string id="Pol_HardenedPaths_Explain">This policy setting configures secure access to UNC paths.
+
+If you enable this policy, Windows only allows access to the specified UNC paths after fulfilling additional security requirements.
+</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="Pol_HardenedPaths">
+        <text>Specify hardened network paths.
+In the name field, type a fully-qualified UNC path for each network resource.
+To secure all access to a share with a particular name, regardless of the server name, specify a server name of '*' (asterisk). For example, "\\*\NETLOGON".
+To secure all access to all shares hosted on a server, the share name portion of the UNC path may be omitted. For example, "\\SERVER".
+
+In the value field, specify one or more of the following options, separated by commas:
+    'RequireMutualAuthentication=1': Mutual authentication between the client and server is required to ensure the client connects to the correct server.
+    'RequireIntegrity=1': Communication between the client and server must employ an integrity mechanism to prevent data tampering.
+    'RequirePrivacy=1': Communication between the client and the server must be encrypted to prevent third parties from observing sensitive data.</text>
+        <listBox refId="Pol_HardenedPaths">Hardened UNC Paths:</listBox>
+        <text> </text>
+        <text>You should require both Integrity and Mutual Authentication for any UNC paths that host executable programs, script files, or files that control security policies.
+
+Consider hosting files that do not require Integrity or Privacy on separate shares from those that absolutely need such security for optimal performance.
+
+For additional details on configuring Windows computers to require additional security when accessing specific UNC paths, visit http://support.microsoft.com/kb/3000483.</text>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="TouchInput">Touch Input</string>
+      <string id="TouchInputOff">Turn off Tablet PC touch input</string>
+      <string id="TouchInputOff_Help">Turn off Tablet PC touch input
+
+Turns off touch input, which allows the user to interact with their computer using their finger.
+
+If you enable this setting, the user will not be able to produce input with touch. They will not be able to use touch input or touch gestures such as tap and double tap, the touch pointer, and other touch-specific features.
+
+If you disable this setting, the user can produce input with touch, by using gestures, the touch pointer, and other-touch specific features.
+
+If you do not configure this setting, touch input is on by default.
+
+Note: Changes to this setting will not take effect until the user logs off.</string>
+      <string id="SingleFingerPanningOff">Turn off Touch Panning</string>
+      <string id="SingleFingerPanningOff_Help">Turn off Panning       
+Turns off touch panning, which allows users pan inside windows by touch.  On a compatible PC with a touch digitizer, by default users are able to scroll or pan inside a scrolling area by dragging up or down directly on the scrolling content.
+
+If you enable this setting, the user will not be able to pan windows by touch. 
+
+If you disable this setting, the user can pan windows by touch.
+
+If you do not configure this setting, Touch Panning is on by default.
+
+Note: Changes to this setting will not take effect until the user logs off.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

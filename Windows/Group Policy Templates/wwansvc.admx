@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2010 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wwansvc" namespace="Microsoft.Policies.WwanSvc" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WwanSvc_Category" displayName="$(string.WwanSvc_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>    
+    <category name="NetworkCost_Category" displayName="$(string.NetworkCost_Category)">
+      <parentCategory ref="WwanSvc_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="SetCost3G" class="Machine" displayName="$(string.SetCost3G)" explainText="$(string.SetCost3G_Help)" presentation="$(presentation.SetCost3G_Presentation)" key="Software\Policies\Microsoft\Windows\WwanSvc\NetCost">
+      <parentCategory ref="NetworkCost_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="Cost3G_Dropdownlist" valueName="Cost3G" required="true">
+          <item displayName="$(string.Cost_DropDownList_Unrestricted)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Fixed)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Variable)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>      
+    </policy>
+    <policy name="SetCost4G" class="Machine" displayName="$(string.SetCost4G)" explainText="$(string.SetCost4G_Help)" presentation="$(presentation.SetCost4G_Presentation)" key="Software\Policies\Microsoft\Windows\WwanSvc\NetCost">
+      <parentCategory ref="NetworkCost_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="Cost4G_Dropdownlist" valueName="Cost4G" required="true">
+          <item displayName="$(string.Cost_DropDownList_Unrestricted)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Fixed)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Variable)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>      
+    </policy>
+  </policies>
+</policyDefinitions>

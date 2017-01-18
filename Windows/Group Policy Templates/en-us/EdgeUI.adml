@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2011 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="EdgeUI">Edge UI</string>
+      <string id="EdgeUI_Help">Contains settings related to system user interfaces attached to the screen edges.</string>
+      <string id="TurnOffBackstack">Turn off switching between recent apps</string>
+      <string id="TurnOffBackstack_Help">If you enable this setting, users will not be allowed to switch between recent apps. The App Switching option in the PC settings app will be disabled as well.
+
+If you disable or do not configure this policy setting, users will be allowed to switch between recent apps.</string>
+      <string id="DisableMFUTracking">Turn off tracking of app usage</string>
+      <string id="ExplainDisableMFUTracking">This policy setting prevents Windows from keeping track of the apps that are used and searched most frequently. If you enable this policy setting, apps will be sorted alphabetically in:
+      - search results
+      - the Search and Share panes
+      - the drop-down app list in the Picker
+
+      If you disable or don't configure this policy setting, Windows will keep track of the apps that are used and searched most frequently. Most frequently used apps will appear at the top.</string>
+      <string id="DisableRecentApps">Do not show recent apps when the mouse is pointing to the upper-left corner of the screen</string>
+      <string id="DisableRecentApps_Help">This policy setting allows you to prevent the last app and the list of recent apps from appearing when the mouse is pointing to the upper-left corner of the screen.
+
+If you enable this policy setting, the user will no longer be able to switch to recent apps using the mouse.  The user will still be able to switch apps using touch gestures, keyboard shortcuts, and the Start screen.
+
+If you disable or don't configure this policy setting, the recent apps will be available by default, and the user can configure this setting.</string>
+      <string id="DisableCharms">Search, Share, Start, Devices, and Settings don't appear when the mouse is pointing to the upper-right corner of the screen</string>
+      <string id="DisableCharms_Help">This policy setting allows you to prevent Search, Share, Start, Devices, and Settings from appearing when the mouse is pointing to the upper-right corner of the screen.
+
+If you enable this policy setting, Search, Share, Start, Devices, and Settings will no longer appear when the mouse is pointing to the upper-right corner. They'll still be available if the mouse is pointing to the lower-right corner.
+
+If you disable or don't configure this policy setting, Search, Share, Start, Devices, and Settings will be available by default, and the user can configure this setting.</string>
+      <string id="ShowCommandPromptOnWinX">Prevent users from replacing the Command Prompt with Windows PowerShell in the menu they see when they right-click the lower-left corner or press the Windows logo key+X</string>
+      <string id="ShowCommandPromptOnWinX_Help">This policy setting allows you to prevent users from replacing the Command Prompt with Windows PowerShell in the menu they see when they right-click the lower-left corner or press the Windows logo key + X.
+
+If you enable this policy setting, the Command Prompt will always be listed in that menu, and users won't be able to replace it with Windows PowerShell. Users will still be able to access Windows PowerShell, but not from that menu.
+
+If you disable or don't configure this policy setting, Command Prompt will be listed in the menu by default, and users can configure this setting.</string>
+
+      <string id="DisableHelpSticker">Disable help tips</string>
+      <string id="DisableHelpSticker_Help">Disables help tips that Windows shows to the user.
+
+By default, Windows will show the user help tips until the user has successfully completed the scenarios.
+
+If this setting is enabled, Windows will not show any help tips to the user.
+      </string>
+      <string id="AllowEdgeSwipe">Allow edge swipe</string>
+      <string id="AllowEdgeSwipe_Help">If you disable this policy setting, users will not be able to invoke any system UI by swiping in from any screen edge.
+
+If you enable or do not configure this policy setting, users will be able to invoke system UI by swiping in from the screen edges.
+      </string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

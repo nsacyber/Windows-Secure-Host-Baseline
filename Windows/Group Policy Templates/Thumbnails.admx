@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="thumbnails" namespace="Microsoft.Policies.Thumbnails" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="DisableThumbnails" class="User" displayName="$(string.DisableThumbnails)" explainText="$(string.DisableThumbnails_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableThumbnails">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableThumbnailsOnNetworkFolders" class="User" displayName="$(string.DisableThumbnailsOnNetworkFolders)" explainText="$(string.DisableThumbnailsOnNetworkFolders_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableThumbnailsOnNetworkFolders">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableThumbsDBOnNetworkFolders" class="User" displayName="$(string.DisableThumbsDBOnNetworkFolders)" explainText="$(string.DisableThumbsDBOnNetworkFolders_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableThumbsDBOnNetworkFolders">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="products:MicrosoftWindowsVista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

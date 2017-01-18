@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Enhanced Storage Devices Group Policies</displayName>
+  <description>Group Policies for managing Enhanced Storage devices</description>
+  <resources>
+    <stringTable>
+      <string id="EnStorDeviceAccess">Enhanced Storage Access</string>
+
+      <string id="RootHubConnectedEnStorDevices">Allow only USB root hub connected Enhanced Storage devices</string>
+      <string id="RootHubConnectedEnStorDevices_Help">This policy setting configures whether or not only USB root hub connected Enhanced Storage devices are allowed. Allowing only root hub connected Enhanced Storage devices minimizes the risk of an unauthorized USB device reading data on an Enhanced Storage device.
+
+If you enable this policy setting, only USB root hub connected Enhanced Storage devices are allowed.
+
+If you disable or do not configure this policy setting, USB Enhanced Storage devices connected to both USB root hubs and non-root hubs will be allowed.</string>
+
+      <string id="LockDeviceOnMachineLock">Lock Enhanced Storage when the computer is locked</string>
+      <string id="LockDeviceOnMachineLock_Help">This policy setting locks Enhanced Storage devices when the computer is locked.
+
+This policy setting is supported in Windows Server SKUs only.
+
+If you enable this policy setting, the Enhanced Storage device remains locked when the computer is locked.
+
+If you disable or do not configure this policy setting, the Enhanced Storage device state is not changed when the computer is locked.</string>
+
+      <string id="DisallowLegacyDiskDevices">Do not allow non-Enhanced Storage removable devices</string>
+      <string id="DisallowLegacyDiskDevices_Help">This policy setting configures whether or not non-Enhanced Storage removable devices are allowed on your computer.
+
+If you enable this policy setting, non-Enhanced Storage removable devices are not allowed on your computer.
+
+If you disable or do not configure this policy setting, non-Enhanced Storage removable devices are allowed on your computer.</string>
+
+      <string id="DisablePasswordAuthentication">Do not allow password authentication of Enhanced Storage devices</string>
+      <string id="DisablePasswordAuthentication_Help">This policy setting configures whether or not a password can be used to unlock an Enhanced Storage device.
+
+If you enable this policy setting, a password cannot be used to unlock an Enhanced Storage device.
+
+If you disable or do not configure this policy setting, a password can be used to unlock an Enhanced Storage device.</string>
+
+      <string id="TCGSecurityActivationDisabled">Do not allow Windows to activate Enhanced Storage devices</string>
+      <string id="TCGSecurityActivationDisabled_Help">This policy setting configures whether or not Windows will activate an Enhanced Storage device.
+
+If you enable this policy setting, Windows will not activate unactivated Enhanced Storage devices.
+
+If you disable or do not configure this policy setting, Windows will activate unactivated Enhanced Storage devices.</string>
+
+      <string id="ApprovedEnStorDevices">Configure list of Enhanced Storage devices usable on your computer</string>
+      <string id="ApprovedEnStorDevices_Help">This policy setting allows you to configure a list of Enhanced Storage devices by manufacturer and product ID that are usable on your computer.
+
+If you enable this policy setting, only Enhanced Storage devices that contain a manufacturer and product ID specified in this policy are usable on your computer.
+
+If you disable or do not configure this policy setting, all Enhanced Storage devices are usable on your computer.</string>
+
+
+      <string id="ApprovedSilos">Configure list of IEEE 1667 silos usable on your computer</string>
+      <string id="ApprovedSilos_Help">This policy setting allows you to create a list of IEEE 1667 silos, compliant with the Institute of Electrical and Electronics Engineers, Inc. (IEEE) 1667 specification, that are usable on your computer.
+
+If you enable this policy setting, only IEEE 1667 silos that match a silo type identifier specified in this policy are usable on your computer.
+
+If you disable or do not configure this policy setting, all IEEE 1667 silos on Enhanced Storage devices are usable on your computer.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="ApprovedEnStorDevices">
+        <listBox refId="ApprovedEnStorDevices_List">Usable Enhanced Storage Devices:</listBox>
+        <text>The device identifier should be entered in the form "Vendor ID-Product ID" where "Vendor ID" is the Institute of Electrical and Electronics Engineers, Inc. (IEEE) issued organizationally unique identifier (OUI) of the manufacturer and "Product ID" is a string assigned by the manufacturer.</text>
+        <text>For more information on how to obtain the manufacturer and product ID from the device search for "Enhanced Storage Access" on Microsoft TechNet.</text>
+      </presentation>
+      <presentation id="ApprovedSilos">
+        <listBox refId="ApprovedSilos_List">Usable IEEE 1667 Silo Type Identifiers:</listBox>
+        <text>Each silo type identifier must be a separate entry.</text>
+        <text>For more information on how to set a silo type identifier for this policy search for "Enhanced Storage Access" on Microsoft TechNet.</text>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

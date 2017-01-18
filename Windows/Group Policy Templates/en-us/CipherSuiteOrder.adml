@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="SSLConfiguration">SSL Configuration Settings</string>
+      <string id="SSLCipherSuiteOrder">SSL Cipher Suite Order</string>
+      <string id="SSLCipherSuiteOrder_Help">This policy setting determines the cipher suites used by the Secure Socket Layer (SSL).
+
+If you enable this policy setting, SSL cipher suites are prioritized in the order specified.
+
+If you disable or do not configure this policy setting, default cipher suite order is used.
+
+Link for all the cipherSuites: http://go.microsoft.com/fwlink/?LinkId=517265
+
+      </string>
+
+      <string id="SSLCurveOrder">ECC Curve Order</string>
+      <string id="SSLCurveOrder_Help">This policy setting determines the priority order of ECC curves used with ECDHE cipher suites.
+
+If you enable this policy setting, ECC curves are prioritized in the order specified.(Enter one Curve name per line)
+
+If you disable or do not configure this policy setting, the default ECC curve order is used.
+
+Default Curve Order
+============
+curve25519
+NistP256
+NistP384
+
+To See all the curves supported on the system, Use the following command:
+
+CertUtil.exe -DisplayEccCurve
+
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="SSLCipherSuiteOrder">
+        <textBox refId="Pol_SSLCipherSuiteOrder">
+          <label>SSL Cipher Suites</label>
+          <defaultValue>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_3DES_EDE_CBC_SHA,TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_256_CBC_SHA,TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA,TLS_RSA_WITH_RC4_128_SHA,TLS_RSA_WITH_RC4_128_MD5,TLS_RSA_WITH_NULL_SHA256,TLS_RSA_WITH_NULL_SHA,TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_PSK_WITH_AES_128_GCM_SHA256,TLS_PSK_WITH_AES_256_CBC_SHA384,TLS_PSK_WITH_AES_128_CBC_SHA256,TLS_PSK_WITH_NULL_SHA384,TLS_PSK_WITH_NULL_SHA256</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="SSLCurveOrder">
+        <text>Type the ECC curve names in the preferred order (one curve name per line)</text>
+        <multiTextBox refId="SSLCurveOrderList">ECC Curve Order:</multiTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsfileprotection" namespace="Microsoft.Policies.WindowsFileProtection" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WFP" displayName="$(string.WFP)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WFPDllCacheDir" class="Machine" displayName="$(string.WFPDllCacheDir)" explainText="$(string.WFPDllCacheDir_Help)" presentation="$(presentation.WFPDllCacheDir)" key="Software\Policies\Microsoft\Windows NT\Windows File Protection">
+      <parentCategory ref="WFP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <text id="WFPDllCacheDirBox" valueName="SFCDllCacheDir" required="true" />
+      </elements>
+    </policy>
+    <policy name="WFPQuota" class="Machine" displayName="$(string.WFPQuota)" explainText="$(string.WFPQuota_Help)" presentation="$(presentation.WFPQuota)" key="Software\Policies\Microsoft\Windows NT\Windows File Protection">
+      <parentCategory ref="WFP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <decimal id="WFPQuota_Size" valueName="SfcQuota" maxValue="4294967295" />
+      </elements>
+    </policy>
+    <policy name="WFPScan" class="Machine" displayName="$(string.WFPScan)" explainText="$(string.WFPScan_Help)" presentation="$(presentation.WFPScan)" key="Software\Policies\Microsoft\Windows NT\Windows File Protection">
+      <parentCategory ref="WFP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <enum id="WFPScanList" valueName="SfcScan" required="true">
+          <item displayName="$(string.WFPScan_NotAtBoot)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.WFPScan_AtBoot)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="WFPShowProgress" class="Machine" displayName="$(string.WFPShowProgress)" explainText="$(string.WFPShowProgress_Help)" key="Software\Policies\Microsoft\Windows NT\Windows File Protection" valueName="SfcShowProgress">
+      <parentCategory ref="WFP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

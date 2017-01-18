@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DeviceCompat">Device and Driver Compatibility</string>
+      <string id="DeviceFlags">Device compatibility settings</string>
+      <string id="DriverShims">Driver compatibility settings</string>
+      <string id="DeviceFlags_Help">Changes behavior of Microsoft bus drivers to work with specific devices.</string>
+      <string id="DriverShims_Help">Changes behavior of 3rd-party drivers to work around incompatibilities introduced between OS versions.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

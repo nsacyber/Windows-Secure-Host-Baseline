@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="appcompat" namespace="Microsoft.Policies.ApplicationCompatibility" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AppCompat" displayName="$(string.AppCompat)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AppCompatPrevent16BitMach" class="Machine" displayName="$(string.AppCompatPrevent16BitMach)" explainText="$(string.AppCompat_Prevent16BitMach_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="VDMDisallowed">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatRemoveProgramCompatPropPage" class="Machine" displayName="$(string.AppCompatRemoveProgramCompatPropPage)" explainText="$(string.AppCompat_RemoveProgramCompatPropPage_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisablePropPage">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+    </policy>
+    <policy name="AppCompatTurnOffApplicationImpactTelemetry" class="Machine" displayName="$(string.AppCompatTurnOffApplicationImpactTelemetry)" explainText="$(string.AppCompat_TurnOffApplicationImpactTelemetry_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="AITEnable">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatTurnOffSwitchBack" class="Machine" displayName="$(string.AppCompatTurnOffSwitchBack)" explainText="$(string.AppCompat_TurnOffSwitchBack_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="SbEnable">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatTurnOffEngine" class="Machine" displayName="$(string.AppCompatTurnOffEngine)" explainText="$(string.AppCompat_TurnOffEngine_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisableEngine">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+    </policy>
+    <policy name="AppCompatTurnOffProgramCompatibilityAssistant_1" class="User" displayName="$(string.AppCompatTurnOffProgramCompatibilityAssistant)" explainText="$(string.AppCompat_TurnOffProgramCompatibilityAssistant_Help_User)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisablePCA">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatTurnOffProgramCompatibilityAssistant_2" class="Machine" displayName="$(string.AppCompatTurnOffProgramCompatibilityAssistant)" explainText="$(string.AppCompat_TurnOffProgramCompatibilityAssistant_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisablePCA">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatTurnOffUserActionRecord" class="Machine" displayName="$(string.AppCompatTurnOffUserActionRecord)" explainText="$(string.AppCompat_TurnOffUserActionRecord_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisableUAR">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppCompatTurnOffProgramInventory" class="Machine" displayName="$(string.AppCompatTurnOffProgramInventory)" explainText="$(string.AppCompat_TurnOffProgramInventory_Help)" key="Software\Policies\Microsoft\Windows\AppCompat" valueName="DisableInventory">
+      <parentCategory ref="AppCompat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+    </policy>
+  </policies>
+</policyDefinitions>

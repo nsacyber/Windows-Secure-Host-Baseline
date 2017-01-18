@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="AxInstSv" namespace="Microsoft.Policies.ActiveXInstallService" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AxInstSv" displayName="$(string.AxInstSv)">
+      <parentCategory ref="windows:WindowsComponents" />  
+    </category>
+</categories>
+  <policies>
+    <policy name="ApprovedActiveXInstallSites" class="Machine" displayName="$(string.ApprovedActiveXInstallSites)" explainText="$(string.ApprovedActiveXInstallSites_explain)" presentation="$(presentation.ApprovedActiveXInstallSites)" key="SOFTWARE\Policies\Microsoft\Windows\AxInstaller" valueName="ApprovedList">
+      <parentCategory ref="AxInstSv" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="ApprovedActiveXInstallSiteslist" key="SOFTWARE\Policies\Microsoft\Windows\AxInstaller\ApprovedActiveXInstallSites" additive="true" explicitValue="true" />
+      </elements>
+    </policy>
+    <policy name="AxISURLZonePolicies" class="Machine" displayName="$(string.AxISURLZonePolicies)" explainText="$(string.AxISURLZonePolicies_explain)" presentation="$(presentation.AxISURLZonePolicies)" key="SOFTWARE\Policies\Microsoft\Windows\AxInstaller\AxISURLZonePolicies">
+      <parentCategory ref="AxInstSv" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="InstallTrustedOCX" valueName="InstallTrustedOCX" required="true">
+          <item displayName="$(string.TrustedZoneDisabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TrustedZonePrompt)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TrustedZoneSilentInstall)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="InstallSignedOCX" valueName="InstallSignedOCX" required="true">
+          <item displayName="$(string.TrustedZoneDisabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TrustedZonePrompt)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TrustedZoneSilentInstall)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="InstallUnSignedOCX" valueName="InstallUnSignedOCX" required="true">
+          <item displayName="$(string.TrustedZoneDisabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TrustedZonePrompt)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="IgnoreUnknownCA" valueName="IgnoreUnknownCA" required="false">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="IgnoreInvalidCN" valueName="IgnoreInvalidCN" required="false">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="IgnoreInvalidCertDate" valueName="IgnoreInvalidCertDate" required="false">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="IgnoreWrongCertUsage" valueName="IgnoreWrongCertUsage" required="false">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

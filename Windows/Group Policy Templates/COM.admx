@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="com" namespace="Microsoft.Policies.COM" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="AppMgmt_COM_SearchForCLSID_1" class="User" displayName="$(string.AppMgmt_COM_SearchForCLSID)" explainText="$(string.AppMgmt_COM_SearchForCLSID_Help)" key="Software\Policies\Microsoft\Windows\App Management" valueName="COMClassStore">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="AppMgmt_COM_SearchForCLSID_2" class="Machine" displayName="$(string.AppMgmt_COM_SearchForCLSID)" explainText="$(string.AppMgmt_COM_SearchForCLSID_Help)" key="Software\Policies\Microsoft\Windows\App Management" valueName="COMClassStore">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+  </policies>
+</policyDefinitions>

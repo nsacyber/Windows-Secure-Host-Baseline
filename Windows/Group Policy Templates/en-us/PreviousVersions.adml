@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DisableBackupRestore">Prevent restoring previous versions from backups</string>
+      <string id="DisableBackupRestore_Help">This policy setting lets you suppress the Restore button in the previous versions property page when the user has selected a previous version of a local file, in which the previous version is stored on a backup.
+
+If you enable this policy setting, the Restore button is disabled when the user selects a previous version corresponding to a backup.
+
+If you disable this policy setting, the Restore button remains active for a previous version corresponding to a backup. If the Restore button is clicked, Windows attempts to restore the file from the backup media.
+
+If you do not configure this policy setting, it is disabled by default. The Restore button is active when the previous version is of a local file and stored on the backup.</string>
+      <string id="DisableLocalPage">Hide previous versions list for local files</string>
+      <string id="DisableLocalPage_Help">This policy setting lets you hide the list of previous versions of files that are on local disks. The previous versions could come from the on-disk restore points or from backup media.
+
+If you enable this policy setting, users cannot list or restore previous versions of files on local disks.
+
+If you disable this policy setting, users cannot list and restore previous versions of files on local disks.
+
+If you do not configure this policy setting, it defaults to disabled.</string>
+      <string id="DisableLocalRestore">Prevent restoring local previous versions</string>
+      <string id="DisableLocalRestore_Help">This policy setting lets you suppress the Restore button in the previous versions property page when the user has selected a previous version of a local file.
+
+If you enable this policy setting, the Restore button is disabled when the user selects a previous version corresponding to a local file.
+
+If you disable this policy setting, the Restore button remains active for a previous version corresponding to a local file. If the user clicks the Restore button, Windows attempts to restore the file from the local disk.
+
+If you do not configure this policy setting, it is disabled by default. The Restore button is active when the previous version is of a local file.</string>
+      <string id="DisableRemotePage">Hide previous versions list for remote files</string>
+      <string id="DisableRemotePage_Help">This policy setting lets you hide the list of previous versions of files that are on file shares. The previous versions come from the on-disk restore points on the file share.
+
+If you enable this policy setting, users cannot list or restore previous versions of files on file shares.
+
+If you disable this policy setting, users can list and restore previous versions of files on file shares.
+
+If you do not configure this policy setting, it is disabled by default.</string>
+      <string id="DisableRemoteRestore">Prevent restoring remote previous versions</string>
+      <string id="DisableRemoteRestore_Help">This setting lets you suppress the Restore button in the previous versions property page when the user has selected a previous version of a file on a file share.
+
+If you enable this policy setting, the Restore button is disabled when the user selects a previous version corresponding to a file on a file share.
+
+If you disable this policy setting, the Restore button remains active for a previous version corresponding to a file on a file share. If the user clicks the Restore button, Windows attempts to restore the file from the file share.
+
+If you do not configure this policy setting, it is disabled by default. The Restore button is active when the previous version is of a file on a file share.</string>
+      <string id="HideBackupEntries">Hide previous versions of files on backup location</string>
+      <string id="HideBackupEntries_Help">This policy setting lets you hide entries in the list of previous versions of a file in which the previous version is located on backup media. Previous versions can come from the on-disk restore points or the backup media.
+
+If you enable this policy setting, users cannot see any previous versions corresponding to backup copies, and can see only previous versions corresponding to on-disk restore points.
+
+If you disable this policy setting, users can see previous versions corresponding to backup copies as well as previous versions corresponding to on-disk restore points.
+
+If you do not configure this policy setting, it is disabled by default.</string>
+      <string id="PreviousVersions">Previous Versions</string>
+      <string id="SUPPORTED_Vista_through_Win7">Supported Windows Vista through Windows 7</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

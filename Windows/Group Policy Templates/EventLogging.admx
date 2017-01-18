@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" revision="1.0" schemaVersion="1.0"
+    xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+    <policyNamespaces>
+        <target prefix="eventlogging" namespace="Microsoft.Policies.EventLogging" />
+        <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    </policyNamespaces>
+    <resources minRequiredRevision="1.0" />
+    <categories>
+        <category name="EventLogging" displayName="$(string.EventLogging)">
+            <parentCategory ref="windows:WindowsComponents" />
+        </category>
+    </categories>
+    <policies>
+        <policy name="EnableProtectedEventLogging" class="Machine" displayName="$(string.EnableProtectedEventLogging)"
+            explainText="$(string.EnableProtectedEventLogging_Explain)"
+            presentation="$(presentation.EnableProtectedEventLogging)"
+            key="Software\Policies\Microsoft\Windows\EventLog\ProtectedEventLogging" valueName="EnableProtectedEventLogging">
+
+            <parentCategory ref="EventLogging" />
+            <!-- Place holder for Threshold -->
+            <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+            <elements>
+                <multiText id="EncryptionCertificate" valueName="EncryptionCertificate" required="true" />
+            </elements>
+        </policy>
+    </policies>
+</policyDefinitions>

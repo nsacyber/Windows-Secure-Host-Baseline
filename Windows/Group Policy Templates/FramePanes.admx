@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="framepanes" namespace="Microsoft.Policies.FramePanes" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="ExplorerFramePanePolicies" displayName="$(string.ExplorerFramePanePolicies)">
+      <parentCategory ref="windows:WindowsExplorer" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoPreviewPane" class="User" displayName="$(string.PreviewPane)" explainText="$(string.PreviewPane_help)" presentation="$(presentation.PreviewPane_DropDownList)"
+    key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="ExplorerFramePanePolicies"  />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+       <elements>
+           <enum id="PreviewPane_Dropdownlist_Box" valueName="NoPreviewPane" required="true">
+             <item displayName="$(string.PreviewPane_DropDownList_Hide)">
+               <value>
+                 <decimal value="1" />
+               </value>
+             </item>
+             <item displayName="$(string.PreviewPane_DropDownList_Show)">
+               <value>
+                 <decimal value="2" />
+               </value>
+             </item>
+           </enum>
+         </elements>
+    </policy>
+    <policy name="NoReadingPane" class="User" displayName="$(string.NoReadingPane)" explainText="$(string.NoReadingPane_help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoReadingPane">
+      <parentCategory ref="ExplorerFramePanePolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+    </policy>	
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,2343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="pref" namespace="Microsoft.Policies.Preferences" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="GroupPolicy" namespace="Microsoft.Policies.GroupPolicy" />
+    <using prefix="GPSnapins" namespace="Microsoft.Policies.MMCSnapIns" />
+    <using prefix="MMC" namespace="Microsoft.Policies.ManagementConsole" />
+  </policyNamespaces>
+  <supersededAdm fileName="preferences.adm" />
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CSE_Logging" displayName="$(string.CSE_Logging)" explainText="$(string.CSE_Logging_Help)">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+    </category>
+    <category name="MMC_Preferences" displayName="$(string.MMC_Preferences_GPSnapin)" explainText="$(string.MMC_Preferences_GPSnapin_Help)">
+      <parentCategory ref="GPSnapins:MMC_GroupPolicy" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="CSE_Applications" class="Machine" displayName="$(string.CSE_Applications)" explainText="$(string.CSE_Applications_Help)" presentation="$(presentation.CSE_Applications)" key="Software\Policies\Microsoft\Windows\Group Policy\{F9C77450-3A41-477E-9310-9ACD617BD9E3}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Applications Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Applications_Logging" class="Machine" displayName="$(string.CSE_Applications_Logging)" explainText="$(string.CSE_Applications_Logging_Help)" presentation="$(presentation.CSE_Applications_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{F9C77450-3A41-477E-9310-9ACD617BD9E3}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_DataSources" class="Machine" displayName="$(string.CSE_DataSources)" explainText="$(string.CSE_DataSources_Help)" presentation="$(presentation.CSE_DataSources)" key="Software\Policies\Microsoft\Windows\Group Policy\{728EE579-943C-4519-9EF7-AB56765798ED}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Data Sources Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_DataSources_Logging" class="Machine" displayName="$(string.CSE_DataSources_Logging)" explainText="$(string.CSE_DataSources_Logging_Help)" presentation="$(presentation.CSE_DataSources_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{728EE579-943C-4519-9EF7-AB56765798ED}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Devices" class="Machine" displayName="$(string.CSE_Devices)" explainText="$(string.CSE_Devices_Help)" presentation="$(presentation.CSE_Devices)" key="Software\Policies\Microsoft\Windows\Group Policy\{1A6364EB-776B-4120-ADE1-B63A406A76B5}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Devices Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Devices_Logging" class="Machine" displayName="$(string.CSE_Devices_Logging)" explainText="$(string.CSE_Devices_Logging_Help)" presentation="$(presentation.CSE_Devices_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{1A6364EB-776B-4120-ADE1-B63A406A76B5}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Drives" class="Machine" displayName="$(string.CSE_Drives)" explainText="$(string.CSE_Drives_Help)" presentation="$(presentation.CSE_Drives)" key="Software\Policies\Microsoft\Windows\Group Policy\{5794DAFD-BE60-433f-88A2-1A31939AC01F}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Drive Maps Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Drives_Logging" class="Machine" displayName="$(string.CSE_Drives_Logging)" explainText="$(string.CSE_Drives_Logging_Help)" presentation="$(presentation.CSE_Drives_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{5794DAFD-BE60-433f-88A2-1A31939AC01F}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Environment" class="Machine" displayName="$(string.CSE_Environment)" explainText="$(string.CSE_Environment_Help)" presentation="$(presentation.CSE_Environment)" key="Software\Policies\Microsoft\Windows\Group Policy\{0E28E245-9368-4853-AD84-6DA3BA35BB75}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Environment Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Environment_Logging" class="Machine" displayName="$(string.CSE_Environment_Logging)" explainText="$(string.CSE_Environment_Logging_Help)" presentation="$(presentation.CSE_Environment_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{0E28E245-9368-4853-AD84-6DA3BA35BB75}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Files" class="Machine" displayName="$(string.CSE_Files)" explainText="$(string.CSE_Files_Help)" presentation="$(presentation.CSE_Files)" key="Software\Policies\Microsoft\Windows\Group Policy\{7150F9BF-48AD-4da4-A49C-29EF4A8369BA}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Files Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Files_Logging" class="Machine" displayName="$(string.CSE_Files_Logging)" explainText="$(string.CSE_Files_Logging_Help)" presentation="$(presentation.CSE_Files_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{7150F9BF-48AD-4da4-A49C-29EF4A8369BA}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_FolderOptions" class="Machine" displayName="$(string.CSE_FolderOptions)" explainText="$(string.CSE_FolderOptions_Help)" presentation="$(presentation.CSE_FolderOptions)" key="Software\Policies\Microsoft\Windows\Group Policy\{A3F3E39B-5D83-4940-B954-28315B82F0A8}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Folder Options Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_FolderOptions_Logging" class="Machine" displayName="$(string.CSE_FolderOptions_Logging)" explainText="$(string.CSE_FolderOptions_Logging_Help)" presentation="$(presentation.CSE_FolderOptions_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{A3F3E39B-5D83-4940-B954-28315B82F0A8}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Folders" class="Machine" displayName="$(string.CSE_Folders)" explainText="$(string.CSE_Folders_Help)" presentation="$(presentation.CSE_Folders)" key="Software\Policies\Microsoft\Windows\Group Policy\{6232C319-91AC-4931-9385-E70C2B099F0E}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Folders Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Folders_Logging" class="Machine" displayName="$(string.CSE_Folders_Logging)" explainText="$(string.CSE_Folders_Logging_Help)" presentation="$(presentation.CSE_Folders_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{6232C319-91AC-4931-9385-E70C2B099F0E}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_IniFiles" class="Machine" displayName="$(string.CSE_IniFiles)" explainText="$(string.CSE_IniFiles_Help)" presentation="$(presentation.CSE_IniFiles)" key="Software\Policies\Microsoft\Windows\Group Policy\{74EE6C03-5363-4554-B161-627540339CAB}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Ini Files Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_IniFiles_Logging" class="Machine" displayName="$(string.CSE_IniFiles_Logging)" explainText="$(string.CSE_IniFiles_Logging_Help)" presentation="$(presentation.CSE_IniFiles_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{74EE6C03-5363-4554-B161-627540339CAB}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Internet" class="Machine" displayName="$(string.CSE_Internet)" explainText="$(string.CSE_Internet_Help)" presentation="$(presentation.CSE_Internet)" key="Software\Policies\Microsoft\Windows\Group Policy\{E47248BA-94CC-49c4-BBB5-9EB7F05183D0}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Internet Settings Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Internet_Logging" class="Machine" displayName="$(string.CSE_Internet_Logging)" explainText="$(string.CSE_Internet_Logging_Help)" presentation="$(presentation.CSE_Internet_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{E47248BA-94CC-49c4-BBB5-9EB7F05183D0}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_LocalUsersAndGroups" class="Machine" displayName="$(string.CSE_LocalUsersAndGroups)" explainText="$(string.CSE_LocalUsersAndGroups_Help)" presentation="$(presentation.CSE_LocalUsersAndGroups)" key="Software\Policies\Microsoft\Windows\Group Policy\{17D89FEC-5C44-4972-B12D-241CAEF74509}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Local Users and Groups Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_LocalUsersAndGroups_Logging" class="Machine" displayName="$(string.CSE_LocalUsersAndGroups_Logging)" explainText="$(string.CSE_LocalUsersAndGroups_Logging_Help)" presentation="$(presentation.CSE_LocalUsersAndGroups_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{17D89FEC-5C44-4972-B12D-241CAEF74509}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_NetworkOptions" class="Machine" displayName="$(string.CSE_NetworkOptions)" explainText="$(string.CSE_NetworkOptions_Help)" presentation="$(presentation.CSE_NetworkOptions)" key="Software\Policies\Microsoft\Windows\Group Policy\{3A0DBA37-F8B2-4356-83DE-3E90BD5C261F}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Network Options Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_NetworkOptions_Logging" class="Machine" displayName="$(string.CSE_NetworkOptions_Logging)" explainText="$(string.CSE_NetworkOptions_Logging_Help)" presentation="$(presentation.CSE_NetworkOptions_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{3A0DBA37-F8B2-4356-83DE-3E90BD5C261F}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_NetShares" class="Machine" displayName="$(string.CSE_NetShares)" explainText="$(string.CSE_NetShares_Help)" presentation="$(presentation.CSE_NetShares)" key="Software\Policies\Microsoft\Windows\Group Policy\{6A4C88C6-C502-4f74-8F60-2CB23EDC24E2}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Network Shares Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_NetShares_Logging" class="Machine" displayName="$(string.CSE_NetShares_Logging)" explainText="$(string.CSE_NetShares_Logging_Help)" presentation="$(presentation.CSE_NetShares_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{6A4C88C6-C502-4f74-8F60-2CB23EDC24E2}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_PowerOptions" class="Machine" displayName="$(string.CSE_PowerOptions)" explainText="$(string.CSE_PowerOptions_Help)" presentation="$(presentation.CSE_PowerOptions)" key="Software\Policies\Microsoft\Windows\Group Policy\{E62688F0-25FD-4c90-BFF5-F508B9D2E31F}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Power Options Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_PowerOptions_Logging" class="Machine" displayName="$(string.CSE_PowerOptions_Logging)" explainText="$(string.CSE_PowerOptions_Logging_Help)" presentation="$(presentation.CSE_PowerOptions_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{E62688F0-25FD-4c90-BFF5-F508B9D2E31F}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Printers" class="Machine" displayName="$(string.CSE_Printers)" explainText="$(string.CSE_Printers_Help)" presentation="$(presentation.CSE_Printers)" key="Software\Policies\Microsoft\Windows\Group Policy\{BC75B1ED-5833-4858-9BB8-CBF0B166DF9D}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Printers Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Printers_Logging" class="Machine" displayName="$(string.CSE_Printers_Logging)" explainText="$(string.CSE_Printers_Logging_Help)" presentation="$(presentation.CSE_Printers_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{BC75B1ED-5833-4858-9BB8-CBF0B166DF9D}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_RegionalOptions" class="Machine" displayName="$(string.CSE_RegionalOptions)" explainText="$(string.CSE_RegionalOptions_Help)" presentation="$(presentation.CSE_RegionalOptions)" key="Software\Policies\Microsoft\Windows\Group Policy\{E5094040-C46C-4115-B030-04FB2E545B00}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Regional Options Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_RegionalOptions_Logging" class="Machine" displayName="$(string.CSE_RegionalOptions_Logging)" explainText="$(string.CSE_RegionalOptions_Logging_Help)" presentation="$(presentation.CSE_RegionalOptions_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{E5094040-C46C-4115-B030-04FB2E545B00}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_PrefRegistry" class="Machine" displayName="$(string.CSE_PrefRegistry)" explainText="$(string.CSE_PrefRegistry_Help)" presentation="$(presentation.CSE_PrefRegistry)" key="Software\Policies\Microsoft\Windows\Group Policy\{B087BE9D-ED37-454f-AF9C-04291E351182}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Registry Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_PrefRegistry_Logging" class="Machine" displayName="$(string.CSE_PrefRegistry_Logging)" explainText="$(string.CSE_PrefRegistry_Logging_Help)" presentation="$(presentation.CSE_PrefRegistry_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{B087BE9D-ED37-454f-AF9C-04291E351182}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_ScheduledTasks" class="Machine" displayName="$(string.CSE_ScheduledTasks)" explainText="$(string.CSE_ScheduledTasks_Help)" presentation="$(presentation.CSE_ScheduledTasks)" key="Software\Policies\Microsoft\Windows\Group Policy\{AADCED64-746C-4633-A97C-D61349046527}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Scheduled Tasks Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_ScheduledTasks_Logging" class="Machine" displayName="$(string.CSE_ScheduledTasks_Logging)" explainText="$(string.CSE_ScheduledTasks_Logging_Help)" presentation="$(presentation.CSE_ScheduledTasks_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{AADCED64-746C-4633-A97C-D61349046527}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Services" class="Machine" displayName="$(string.CSE_Services)" explainText="$(string.CSE_Services_Help)" presentation="$(presentation.CSE_Services)" key="Software\Policies\Microsoft\Windows\Group Policy\{91FBB303-0CD5-4055-BF42-E512A681B325}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Services Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Services_Logging" class="Machine" displayName="$(string.CSE_Services_Logging)" explainText="$(string.CSE_Services_Logging_Help)" presentation="$(presentation.CSE_Services_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{91FBB303-0CD5-4055-BF42-E512A681B325}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_Shortcuts" class="Machine" displayName="$(string.CSE_Shortcuts)" explainText="$(string.CSE_Shortcuts_Help)" presentation="$(presentation.CSE_Shortcuts)" key="Software\Policies\Microsoft\Windows\Group Policy\{C418DD9D-0D14-4efb-8FBF-CFE535C8FAC7}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Shortcuts Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_Shortcuts_Logging" class="Machine" displayName="$(string.CSE_Shortcuts_Logging)" explainText="$(string.CSE_Shortcuts_Logging_Help)" presentation="$(presentation.CSE_Shortcuts_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{C418DD9D-0D14-4efb-8FBF-CFE535C8FAC7}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHMACHINE" valueName="TraceFilePathMachine" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="CSE_StartMenu" class="Machine" displayName="$(string.CSE_StartMenu)" explainText="$(string.CSE_StartMenu_Help)" presentation="$(presentation.CSE_StartMenu)" key="Software\Policies\Microsoft\Windows\Group Policy\{E4F48E54-F38D-4884-BFB9-D4D2E5729C18}" valueName="">
+      <parentCategory ref="GroupPolicy:PolicyPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <string>Start Menu Policy Processing</string>
+      </enabledValue>
+      <elements>
+        <boolean id="CSE_ALLOWSLOWLINK" valueName="NoSlowLink">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOBACKGROUND" valueName="NoBackgroundPolicy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="CSE_NOCHANGES" valueName="NoGPOListChanges">
+          <trueValue>
+            <decimal value="0" />
+          </trueValue>
+          <falseValue>
+            <decimal value="1" />
+          </falseValue>
+        </boolean>
+        <enum id="CSE_BACKGROUNDPRIORTYLEVEL" valueName="BackgroundPriorityLevel">
+          <item displayName="$(string.CSE_PRILEVEL_NORMAL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_BELOWNORMAL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_LOWEST)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_PRILEVEL_IDLE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CSE_StartMenu_Logging" class="Machine" displayName="$(string.CSE_StartMenu_Logging)" explainText="$(string.CSE_StartMenu_Logging_Help)" presentation="$(presentation.CSE_StartMenu_Logging)" key="Software\Policies\Microsoft\Windows\Group Policy\{E4F48E54-F38D-4884-BFB9-D4D2E5729C18}">
+      <parentCategory ref="CSE_Logging" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <elements>
+        <enum id="CSE_LOGLEVEL" valueName="LogLevel">
+          <item displayName="$(string.CSE_LOGLEVEL_INFORMATION)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_WARNINGS)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_ERRORS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_LOGLEVEL_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <enum id="CSE_TRACELEVEL" valueName="TraceLevel">
+          <item displayName="$(string.CSE_TRACELEVELVERBOSE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.CSE_TRACELEVELNORMAL)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="CSE_TRACEFILEPATHUSER" valueName="TraceFilePathUser" expandable="true" />
+        <text id="CSE_TRACEFILEPATHPLANNING" valueName="TraceFilePathPlanning" expandable="true" />
+        <decimal id="CSE_TRACEFILEMAXSIZE" valueName="TraceFileMaxSize" maxValue="16384" />
+      </elements>
+    </policy>
+    <policy name="MMC_PrefApplications" class="User" displayName="$(string.MMC_PrefApplications)" explainText="$(string.MMC_PrefApplications_Explain)" key="Software\Policies\Microsoft\MMC\{6A712058-33C6-4046-BCF9-0EA3A8808EDC}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Applications" class="User" displayName="$(string.MMC_GPO_Applications)" explainText="$(string.MMC_GPO_Applications_Explain)" key="Software\Policies\Microsoft\MMC\{0DA274B5-EB93-47A7-AAFB-65BA532D3FE6}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_CompControl" class="User" displayName="$(string.MMC_GPO_CompControl)" explainText="$(string.MMC_GPO_CompControl_Explain)" key="Software\Policies\Microsoft\MMC\{17C6249E-BA57-4F69-AE93-4FB3D25CD9D7}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_DataSources" class="User" displayName="$(string.MMC_GPO_DataSources)" explainText="$(string.MMC_GPO_DataSources_Explain)" key="Software\Policies\Microsoft\MMC\{1612b55c-243c-48dd-a449-ffc097b19776}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Devices" class="User" displayName="$(string.MMC_GPO_Devices)" explainText="$(string.MMC_GPO_Devices_Explain)" key="Software\Policies\Microsoft\MMC\{1b767e9a-7be4-4d35-85c1-2e174a7ba951}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Drives" class="User" displayName="$(string.MMC_GPO_Drives)" explainText="$(string.MMC_GPO_Drives_Explain)" key="Software\Policies\Microsoft\MMC\{2EA1A81B-48E5-45E9-8BB7-A6E3AC170006}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Environment" class="User" displayName="$(string.MMC_GPO_Environment)" explainText="$(string.MMC_GPO_Environment_Explain)" key="Software\Policies\Microsoft\MMC\{35141B6B-498A-4cc7-AD59-CEF93D89B2CE}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Files" class="User" displayName="$(string.MMC_GPO_Files)" explainText="$(string.MMC_GPO_Files_Explain)" key="Software\Policies\Microsoft\MMC\{3BAE7E51-E3F4-41D0-853D-9BB9FD47605F}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Folders" class="User" displayName="$(string.MMC_GPO_Folders)" explainText="$(string.MMC_GPO_Folders_Explain)" key="Software\Policies\Microsoft\MMC\{3EC4E9D3-714D-471F-88DC-4DD4471AAB47}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_FolderOptions" class="User" displayName="$(string.MMC_GPO_FolderOptions)" explainText="$(string.MMC_GPO_FolderOptions_Explain)" key="Software\Policies\Microsoft\MMC\{3BFAE46A-7F3A-467B-8CEA-6AA34DC71F53}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_IniFiles" class="User" displayName="$(string.MMC_GPO_IniFiles)" explainText="$(string.MMC_GPO_IniFiles_Explain)" key="Software\Policies\Microsoft\MMC\{516FC620-5D34-4B08-8165-6A06B623EDEB}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Internet" class="User" displayName="$(string.MMC_GPO_Internet)" explainText="$(string.MMC_GPO_Internet_Explain)" key="Software\Policies\Microsoft\MMC\{5C935941-A954-4F7C-B507-885941ECE5C4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_LocalUsersAndGroups" class="User" displayName="$(string.MMC_GPO_LocalUsersAndGroups)" explainText="$(string.MMC_GPO_LocalUsersAndGroups_Explain)" key="Software\Policies\Microsoft\MMC\{79F92669-4224-476c-9C5C-6EFB4D87DF4A}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_NetworkOptions" class="User" displayName="$(string.MMC_GPO_NetworkOptions)" explainText="$(string.MMC_GPO_NetworkOptions_Explain)" key="Software\Policies\Microsoft\MMC\{949FB894-E883-42C6-88C1-29169720E8CA}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_NetworkShares" class="User" displayName="$(string.MMC_GPO_NetworkShares)" explainText="$(string.MMC_GPO_NetworkShares_Explain)" key="Software\Policies\Microsoft\MMC\{BFCBBEB0-9DF4-4c0c-A728-434EA66A0373}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_PowerOptions" class="User" displayName="$(string.MMC_GPO_PowerOptions)" explainText="$(string.MMC_GPO_PowerOptions_Explain)" key="Software\Policies\Microsoft\MMC\{9AD2BAFE-63B4-4883-A08C-C3C6196BCAFD}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Printers" class="User" displayName="$(string.MMC_GPO_Printers)" explainText="$(string.MMC_GPO_Printers_Explain)" key="Software\Policies\Microsoft\MMC\{A8C42CEA-CDB8-4388-97F4-5831F933DA84}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_RegionalOptions" class="User" displayName="$(string.MMC_GPO_RegionalOptions)" explainText="$(string.MMC_GPO_RegionalOptions_Explain)" key="Software\Policies\Microsoft\MMC\{B9CCA4DE-E2B9-4CBD-BF7D-11B6EBFBDDF7}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Registry" class="User" displayName="$(string.MMC_GPO_Registry)" explainText="$(string.MMC_GPO_Registry_Explain)" key="Software\Policies\Microsoft\MMC\{BEE07A6A-EC9F-4659-B8C9-0B1937907C83}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_ScheduledTasks" class="User" displayName="$(string.MMC_GPO_ScheduledTasks)" explainText="$(string.MMC_GPO_ScheduledTasks_Explain)" key="Software\Policies\Microsoft\MMC\{CAB54552-DEEA-4691-817E-ED4A4D1AFC72}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Services" class="User" displayName="$(string.MMC_GPO_Services)" explainText="$(string.MMC_GPO_Services_Explain)" key="Software\Policies\Microsoft\MMC\{CC5746A9-9B74-4be5-AE2E-64379C86E0E4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_Shortcuts" class="User" displayName="$(string.MMC_GPO_Shortcuts)" explainText="$(string.MMC_GPO_Shortcuts_Explain)" key="Software\Policies\Microsoft\MMC\{CEFFA6E2-E3BD-421B-852C-6F6A79A59BC1}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_StartMenu" class="User" displayName="$(string.MMC_GPO_StartMenu)" explainText="$(string.MMC_GPO_StartMenu_Explain)" key="Software\Policies\Microsoft\MMC\{CF848D48-888D-4F45-B530-6A201E62A605}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_UserControl" class="User" displayName="$(string.MMC_GPO_UserControl)" explainText="$(string.MMC_GPO_UserControl_Explain)" key="Software\Policies\Microsoft\MMC\{127537A8-C1ED-40BC-9AE5-C5891DF6B2D4}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="MMC_GPO_ViewExtensionPro" class="User" displayName="$(string.MMC_GPO_ViewExtensionPro)" explainText="$(string.MMC_GPO_ViewExtensionPro_Explain)" key="Software\Policies\Microsoft\MMC\{45B01F1C-5AC2-458c-9457-42A81B34A26D}" valueName="Restrict_Run">
+      <parentCategory ref="MMC_Preferences" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

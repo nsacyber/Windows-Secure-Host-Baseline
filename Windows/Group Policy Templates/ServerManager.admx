@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2007 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="servermanager" namespace="Microsoft.Policies.ServerManager" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="server" namespace="Microsoft.Policies.Server" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <supportedOn>
+    <definitions>
+     <!-- Microsoft Windows Server 2008 and Windows Server 2008 R2 only -->
+     <definition name="SUPPORTED_WindowsServer2008OrWindowsServer2008R2Only" displayName="$(string.SUPPORTED_WindowsServer2008OrWindowsServer2008R2Only)">
+       <or>
+        <reference ref="products:WindowsServer2008R2"/>
+        <reference ref="products:WindowsServer2008"/>
+      </or>
+     </definition>
+    </definitions>
+  </supportedOn>
+  <categories>
+    <category name="ServerManager" displayName="$(string.ServerManager)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DoNotLaunchServerManager" class="Machine" displayName="$(string.DoNotLaunchServerManager)" explainText="$(string.DoNotLaunchServerManagerHelp)" key="Software\Policies\Microsoft\Windows\Server\ServerManager" valueName="DoNotOpenAtLogon">
+      <parentCategory ref="ServerManager" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ServerManagerAutoRefreshRate" class="Machine" displayName="$(string.ServerManagerAutoRefreshRate)" explainText="$(string.ServerManagerAutoRefreshRateHelp)" presentation="$(presentation.ServerManagerAutoRefreshRate)" key="Software\Policies\Microsoft\Windows\Server\ServerManager" valueName="RefreshIntervalEnabled">
+      <parentCategory ref="ServerManager" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="RefreshRate" valueName="RefreshInterval" required="true" minValue="1" maxValue="34560" />
+      </elements>
+    </policy>
+    <policy name="DoNotLaunchInitialConfigurationTasks" class="Machine" displayName="$(string.DoNotLaunchInitialConfigurationTasks)" explainText="$(string.DoNotLaunchInitialConfigurationTasksHelp)" key="Software\Policies\Microsoft\Windows\Server\InitialConfigurationTasks" valueName="DoNotOpenAtLogon">
+      <parentCategory ref="ServerManager" />
+      <supportedOn ref="SUPPORTED_WindowsServer2008OrWindowsServer2008R2Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Do_not_display_Manage_Your_Server_page" class="Machine" displayName="$(string.Do_not_display_Manage_Your_Server_page)" explainText="$(string.Do_not_display_Manage_Your_Server_page_Explain)" key="Software\Policies\Microsoft\Windows NT\CurrentVersion\MYS" valueName="DisableShowAtLogon">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

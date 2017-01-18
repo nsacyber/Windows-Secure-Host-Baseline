@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>enter name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="Search">Search</string>
+      <string id="WindowsComponents">Windows Components</string>
+      <string id="VistaOnly">Microsoft Windows Vista or later</string>
+      <string id="VistaOrRedist">Microsoft Windows Vista, or any version of Windows with Windows Search 3.01 or later</string>
+      <string id="RedistOnly">Microsoft Windows XP, or Windows Server 2003 with Windows Search version 3.01 or later</string>
+      <string id="RedistOnly4OrLater">Microsoft Windows XP, or Windows Server 2003 with Windows Search version 4.0 or later</string>
+      <string id="301OrLater">Microsoft Windows XP, Windows Server 2003 with Windows Search version 3.01, or any version of Microsoft Windows with Windows Search 4.0 or later</string>
+      <string id="301To4">Microsoft Windows XP, Windows Server 2003 with Windows Search version 3.01, or any version of Microsoft Windows with Windows Search 4.0</string>
+      <string id="4OrLater">Any version of Microsoft Windows with Windows Search 4.0 or later</string>
+      <string id="VistaOr4">Microsoft Windows Vista, or any version of Windows with Windows Search 4.0 or later</string>
+      <string id="VistaWith4">Microsoft Windows Vista with Windows Search 4.0 or later</string>
+      <string id="AllowUsingDiacritics">Allow use of diacritics</string>
+      <string id="Win7Only">Microsoft Windows 7 or later</string>
+      <string id="WS4Only">Any version of Microsoft Windows with Windows Search 4.0</string>
+      <string id="Win8Only">Microsoft Windows 8 or later</string>
+      <string id="WinBlueOnly">Microsoft Windows 8.1 or later</string>
+      <string id="WinBlueExclusive">Microsoft Windows 8.1. Not supported on Windows 10 or later</string>
+      <string id="ExplainAllowUsingDiacritics">This policy setting allows words that contain diacritic characters to be treated as separate words. If you enable this policy setting, words that only differ in diacritics are treated as different words. If you disable this policy setting, words with diacritics and words without diacritics are treated as identical words. This policy setting is not configured by default. If you do not configure this policy setting, the local setting, configured through Control Panel, will be used. Note: By default, the Control Panel setting is set to treat words that differ only because of diacritics as the same word.</string>
+      <string id="AlwaysUseAutoLangDetection">Always use automatic language detection when indexing content and properties</string>
+      <string id="ExplainAlwaysUseAutoLangDetection">This policy setting determines when Windows uses automatic language detection results, and when it relies on indexing history. If you enable this policy setting, Windows will always use automatic language detection to index (as it did in Windows 7). Using automatic language detection can increase memory usage. We recommend enabling this policy setting only on PCs where documents are stored in many languages. If you disable or do not configure this policy setting, Windows will use automatic language detection only when it can determine the language of a document with high confidence.</string>
+      <string id="DisableRemovableDriveIndexing">Do not allow locations on removable drives to be added to libraries</string>
+      <string id="ExplainDisableRemovableDriveIndexing">This policy setting configures whether or not locations on removable drives can be added to libraries.
+      
+If you enable this policy setting, locations on removable drives cannot be added to libraries.  In addition, locations on removable drives cannot be indexed.
+
+If you disable or do not configure this policy setting, locations on removable drives can be added to libraries.  In addition, locations on removable drives can be indexed.</string>
+      <string id="DoNotUseWebResults">Don't search the web or display web results in Search</string>
+      <string id="ExplainDoNotUseWebResults">This policy setting allows you to control whether or not Search can perform queries on the web, and if the web results are displayed in Search.
+
+If you enable this policy setting, queries won't be performed on the web and web results won't be displayed when a user performs a query in Search.
+
+If you disable this policy setting, queries will be performed on the web and web results will be displayed when a user performs a query in Search.
+
+If you don't configure this policy setting, a user can choose whether or not Search can perform queries on the web, and if the web results are displayed in Search.</string>
+      <string id="DoNotUseWebResultsOverMeteredConnections">Don't search the web or display web results in Search over metered connections</string>
+      <string id="ExplainDoNotUseWebResultsOverMeteredConnections">This policy setting allows you to control whether or not Search can perform queries on the web over metered connections, and if the web results are displayed in Search.
+
+If you enable this policy setting, queries won't be performed on the web over metered connections and web results won't be displayed when a user performs a query in Search.
+
+If you disable this policy setting, queries will be performed on the web over metered connections and web results will be displayed when a user performs a query in Search.
+
+If you don't configure this policy setting, a user can choose whether or not Search can perform queries on the web over metered connections, and if the web results are displayed in Search.
+
+Note: If you enable the "Don't search the web or display web results in Search" policy setting, queries won't be performed on the web over metered connections and web results won't be displayed when a user performs a query in Search.</string>
+      <string id="SearchExperience">Set what information is shared in Search</string>
+      <string id="ExplainSearchExperience">This policy setting allows you to control what information is shared with Bing in Search.
+
+If you enable this policy setting, you can specify one of four settings, which users won't be able to change:
+
+    -User info and location: Share a user's search history, some Microsoft account info, and specific location to personalize their search and other Microsoft experiences.
+    
+    -User info only: Share a user's search history and some Microsoft account info to personalize their search and other Microsoft experiences.
+    
+    -Anonymous info: Share usage information but don't share search history, Microsoft account info or specific location.    
+
+If you disable or don't configure this policy setting, users can choose what information is shared in Search.</string>
+      <string id="DoNotUseLocation">Do not use location for Search</string>
+      <string id="ExplainDoNotUseLocation">This policy setting allows you to control whether or not Search will use the user's current location when providing search results.
+
+If you enable this policy setting, Search won't use the user's current location when providing search results.
+
+If you disable or don't configure this policy setting, search will use the user's current location when providing search results.</string>
+      <string id="SafeSearch">Set the SafeSearch setting for Search</string>
+      <string id="ExplainSafeSearch">This policy setting allows you to control the SafeSearch setting used when performing a query in Search. 
+
+If you enable this policy setting, you can specify one of three SafeSearch settings, which users won't be able to change:
+
+    -Strict: Filter out adult text, images, and videos from search results;
+
+    -Moderate: Filter adult images and videos but not text from search results;
+
+    -Off: Don't filter adult content from search results.
+
+If you disable or don't configure this policy setting, users can specify the SafeSearch setting.</string>
+      <string id="SharePrivacyAllAndLocation">User info and location</string>
+      <string id="SharePrivacyAll">User info only</string>
+      <string id="SharePrivacyAnonymous">Anonymous info</string>
+      <string id="SafeSearchStrict">Strict</string>      
+      <string id="SafeSearchModerate">Moderate</string>
+      <string id="SafeSearchOff">Off</string>
+      <string id="AutoIndexSharedFolders">Prevent automatically adding shared folders to the Windows Search index</string>
+      <string id="ExplainAutoIndexSharedFolders">This policy setting configures how Windows Search adds shared folders to the search index.
+
+If you enable this policy setting, Windows Search is prevented from automatically adding shared folders to the index. Windows Search does not automatically add shares created on the computer to the scope of the index.
+
+If you disable or do not configure this policy setting, Windows Search monitors which folders are shared or not shared on this computer, and automatically adds them to or removes them from the index.</string>
+      <string id="FavoriteLocations">Prevent adding user-specified locations to the All Locations menu</string>
+      <string id="ExplainFavoriteLocations">This policy setting allows you to enable or disable the Add/Remove location options on the All Locations menu as well as any defined locations that were made by a user.  When this policy is not configured, the default behavior is to allow users to add and remove new locations to the locations menu.  When the policy is enabled, the Add and Remove locations options and any previously defined user locations will not be visible.  When the policy is disabled, both the Add and Remove locations options as well as any previously specified user locations will be visible.</string>
+      <string id="PreventUsingAdvancedIndexingOptions">Prevent the display of advanced indexing options for Windows Search in the Control Panel</string>
+      <string id="ExplainPreventUsingAdvancedIndexingOptions">This policy setting hides or displays the Advanced Options dialog for Search and Indexing Options in the Control Panel.
+
+If you enable this policy setting, the Advanced Options dialog for Search and Indexing Options in the Control Panel cannot be opened.
+
+If you disable or do not configure this policy setting, users can acess the Advanced Options dialog for Search and Indexing Options in the Control Panel. This is the default for this policy setting.</string>
+      <string id="HideUNCTab">Prevent adding UNC locations to index from Control Panel</string>
+      <string id="ExplainHideUNCTab">Enabling this policy prevents users from adding UNC locations to the index from the Search and Indexing Options in Control Panel.  Any UNC locations that have already been added to the index by the user will not be removed.
+
+When this policy is disabled or not configured, users will be able to add UNC locations to the index.
+
+This policy has no effect if the Files on Microsoft Networks add-in is not installed.
+
+Disabled by default.</string>
+      <string id="PreventModifyingIndexedLocations">Prevent customization of indexed locations in Control Panel</string>
+      <string id="ExplainPreventModifyingIndexedLocations">If enabled, Search and Indexing Options in Control Panel does not allow opening the Modify Locations dialog. Otherwise it can be opened. Disabled by default.</string>
+      <string id="AllowIndexingEncryptedStoresOrItems">Allow indexing of encrypted files</string>
+      <string id="ExplainAllowIndexingEncryptedStoresOrItems">This policy setting allows encrypted items to be indexed. If you enable this policy setting, indexing  will attempt to decrypt and index the content (access restrictions will still apply). If you disable this policy setting, the search service components (including non-Microsoft components) are expected not to index encrypted items or encrypted stores. This policy setting is not configured by default. If you do not configure this policy setting, the local setting, configured through Control Panel, will be used. By default, the Control Panel setting is set to not index encrypted content.  
+
+When this setting is enabled or disabled, the index is rebuilt completely. 
+
+Full volume encryption (such as BitLocker Drive Encryption or a non-Microsoft solution) must be used for the location of the index to maintain security for encrypted files.</string>
+      <string id="PreventIndexOnBattery">Prevent indexing when running on battery power to conserve energy</string>
+      <string id="ExplainPreventIndexOnBattery">If enabled, the indexer pauses whenever the computer is running on battery. If disabled, the indexing follows the default behavior. Default is disabled.</string>
+      <string id="PreventRemoteQueries">Prevent clients from querying the index remotely</string>
+      <string id="ExplainPreventRemoteQueries">If enabled, clients will be unable to query this computer's index remotely.  Thus, when they are browsing network shares that are stored on this computer, they will not search them using the index. If disabled, client search requests will use this computer's index. Default is disabled.</string>
+      <string id="DisableBackoff">Disable indexer backoff</string>
+      <string id="ExplainDisableBackoff">If enabled, the search indexer backoff feature will be disabled. Indexing will continue at full speed even when system activity is high. If disabled, backoff logic will be used to throttle back indexing activity when system activity is high. Default is disabled.</string>
+      <string id="PreventIndexingOfflineFiles">Prevent indexing files in offline files cache</string>
+      <string id="ExplainPreventIndexingOfflineFiles">If enabled, files on network shares made available offline are not indexed. Otherwise they are indexed. Disabled by default.</string>
+      <string id="EnableIndexingUncachedExchangeFolders">Enable indexing uncached Exchange folders</string>
+      <string id="ExplainEnableIndexingUncachedExchangeFolders">Enabling this policy allows indexing of mail items on a Microsoft Exchange server when Microsoft Outlook is not running in cached mode. The default behavior for search is to not index uncached Exchange folders. Disabling this policy will block any indexing of uncached Exchange folders. Delegate mailboxes are managed separately from online mailboxes. The "Enable Indexing of Uncached Exchange Folders" has no effect on delegate mailboxes. To stop indexing of online and delegate mailboxes you must disable both policies.</string>
+      <string id="EnableIndexingDelegateMailboxes">Enable indexing of online delegate mailboxes</string>
+      <string id="ExplainEnableIndexingDelegateMailboxes">Enabling this policy allows indexing of items for online delegate mailboxes on a Microsoft Exchange server. This policy affects only delegate mailboxes that are online. Microsoft Outlook 2007 allows users to cache portions of delegate mailboxes locally (for example, contacts or a calendar). This policy will not affect portions of a delegate mailbox that are cached locally. To have this policy affect all parts of a delegate mailbox, ensure that for Microsoft Outlook 2007 no portions of the delegate mailbox are cached locally. The default behavior for Search is to not index online delegate mailboxes. Disabling this policy will block any indexing of online delegate mailboxes. Online delegate mailboxes are managed separately from online mailboxes. The "Enable Indexing of Uncached Exchange Folders" policy has no effect on online delegate mailboxes. To stop indexing of online mailboxes and online delegate mailboxes you must disable both policies.</string>
+      <string id="EnableThrottlingOnlineMailboxes">Enable throttling for online mail indexing</string>
+      <string id="ExplainEnableThrottlingOnlineMailboxes">When using Microsoft Office Outlook in online mode, you can enable this policy to control how fast online mail is indexed on a Microsoft Exchange server. The lower you set this policy, the lower the burden will be on the corresponding Microsoft Exchange server. The default value for this policy is 120 items per minute. To lower the burden on Microsoft Exchange servers, lower the rate of items indexed per minute. If you disable this policy, then online mail items will be indexed at the speed that the Microsoft Exchange server can support. If you set this policy to not configured, then online mail items will be indexed at the speed of 120 items per minute. This policy has no effect on mail items when using Microsoft Office Outlook in cached mode.</string>
+      <string id="LimitEnableThrottlingOnlineMailboxes">Number of items per minute</string>
+      <string id="PreventIndexingOutlook">Prevent indexing Microsoft Office Outlook</string>
+      <string id="ExplainPreventIndexingOutlook">Enable this policy to prevent indexing of any Microsoft Outlook items. The default is to automatically index Outlook items. If this policy is enabled then the user's Outlook items will not be added to the index and the user will not see them in search results.</string>
+      <string id="PreventIndexingEmailAttachments">Prevent indexing e-mail attachments</string>
+      <string id="ExplainPreventIndexingEmailAttachments">Enable this policy setting to prevent the indexing of the content of e-mail attachments. If enabled, indexing service components (including non-Microsoft components) are expected not to index e-mail attachments. Consider enabling this policy if you are concerned about the security or indexing performance of non-Microsoft document filters (iFilters). This policy is disabled by default.</string>
+      <string id="PreventIndexingPublicFolders">Prevent indexing public folders</string>
+      <string id="ExplainPreventIndexingPublicFolders">Enable this policy to prevent indexing public folders in Microsoft Office Outlook. When this policy is disabled or not configured, the user has the option to index cached public folders in Outlook. Public folders are only indexed when using Outlook 2003 or later. The user must be running in cached mode and the Download Public Folder Favorites option must be turned on.</string>
+      <string id="PreventIndexingCertainPaths">Prevent indexing certain paths</string>
+      <string id="PreventIndexingCertainPaths_Explain">If you enable this policy setting, you specify a list of paths to exclude from indexing. The user cannot enter any path that starts with one of the paths you specified.
+
+If you enable and then disable this policy setting, users can index any path not restricted by other policies, but their original list of paths to index is not restored.
+      </string>
+      <string id="PreventIndexingCertainPaths_User_Explain">If you enable this policy setting, you specify a list of paths to exclude from indexing. The user cannot enter any path that starts with one of the paths you specified. On a per-user basis, this policy setting will work only if a protocol handler referencing a SID-based user scope, such as MAPI, is specified. File system paths that do not reference a specific SID will not be excluded from indexing if these are only specified in the Group Policy under "User Configuration." To restrict a file system path from indexing, please specify the file system path to be indexed under the "Computer Configuration" Group Policy.
+
+If you enable and then disable this policy setting, users can index any path not restricted by other policies, but their original list of paths to index is not restored.
+      </string>
+      <string id="DefaultIndexedPaths">Default indexed paths</string>
+      <string id="DefaultIndexedPaths_Explain">Enabling this policy allows you to specify a list of paths to index by default. The user may override these paths and exclude them from indexing.</string>
+      <string id="DefaultIndexedPaths_User_Explain">Enabling this policy allows you to specify a list of paths to index by default. The user may override these paths and exclude them from indexing. On a per-user basis, this policy setting will work only if a protocol handler referencing a SID-based user scope, such as MAPI, is specified. File system paths that do not reference a specific SID will not be included for indexing if these are only specified in the Group Policy under "User Configuration." To include a file system path for indexing, please specify the file system path to be indexed under the "Computer Configuration" Group Policy.</string>
+      <string id="DefaultExcludedPaths">Default excluded paths</string>
+      <string id="DefaultExcludedPaths_Explain">Enabling this policy allows you to specify a list of paths to exclude from indexing by default. The user may override these paths and include them in indexing.</string>
+      <string id="DefaultExcludedPaths_User_Explain">Enabling this policy allows you to specify a list of paths to exclude from indexing by default. The user may override these paths and include them in indexing. On a per-user basis, this policy setting will work only if a protocol handler referencing a SID-based user scope, such as MAPI, is specified. File system paths that do not reference a specific SID will not be excluded from indexing if these are only specified in the Group Policy under "User Configuration." To restrict a file system path from indexing, please specify the file system path to be indexed under the "Computer Configuration" Group Policy.</string>
+      <string id="DataDirectory">Indexer data location</string>
+      <string id="ExplainDataDirectory">Store indexer database in this directory. This directory must be located on a local fixed drive.</string>
+      <string id="PartDataDirectory">Path (under 128 characters):</string>
+      <string id="AddPrimaryIntranetSearchScope">Add primary intranet search location</string>
+      <string id="AddPrimaryIntranetSearchScope_Explain">Enabling this policy allows you to add a primary intranet search location within Windows Desktop Search. The value of this text should be:
+
+name,url
+
+For example:
+
+Intranet,http://intranetsearch.aspx?k=$w 
+
+You must provide the following:
+1) A name for the scope, such as 'Intranet'.
+2) The URL to the search service. Use $w in place of the query term for the search service URL.
+
+If your intranet search service is SharePoint Portal Server, your query should resemble the following:
+http://sitename/Search.aspx?k=$w
+
+If your intranet search service is Windows SharePoint Services (WSS), the query should resemble the following, where XXXX is the locale ID of your WSS Service. For example, the English locale ID is 1033.
+http://sitename/_layouts/XXXX/searchresults.aspx?SearchString=$w
+
+This adds intranet search location to:
+1) The Windows Deskbar
+2) The Desktop Search results search box
+3) The WDS search box in Search Companion
+</string>
+      <string id="PrimaryIntranetSearchScopeUrl">Intranet Search Scope Url</string>
+      <string id="AddSecondaryIntranetSearchScope">Add secondary intranet search locations</string>
+      <string id="AddSecondaryIntranetSearchScope_Explain">Enabling this policy allows you to add intranet search locations in addition to the primary intranet search location defined in the Add Primary Intranet Search Location policy. The value of this text should be:
+
+name1,url1;name2,url2;...nameN,urlN
+
+For example:
+
+MySearch,http://mysearch.aspx?q=$w;MySearch2,http://mysearch2?q=$w.
+
+For each search scope, provide:
+1) A name for the scope, such as 'IT Web'.
+2) The URL to the search service. Use $w in place of the query term for the search service URL.
+
+If your intranet search service is SharePoint Portal Server, your query should resemble the following:
+http://sitename/Search.aspx?k=$w
+
+If your intranet search service is Windows SharePoint Services (WSS), the query should resemble the following, where XXXX is the locale ID of your WSS Service. For example, the English locale ID is 1033.
+http://sitename/_layouts/XXXX/searchresults.aspx?SearchString=$w
+
+These additional intranet search locations are added to the All Locations list in the Desktop Search results.</string>
+      <string id="SecondaryIntranetSearchScopeUrl">Intranet Search Scope Url</string>
+      <string id="PreviewPaneLocation">Preview pane location</string>
+      <string id="PreviewPaneLocation_Explain">Enabling this policy allows you to set the location of the preview pane in the Desktop Search results. You can also turn off the preview pane. The four options are:
+
+- Auto
+- Right
+- Bottom
+- Off
+
+You should consider enabling this policy to turn off the preview pane if your environment does not support Office XP or later. The full preview pane functionality is only available for Office documents in Office XP or later.
+
+When this policy is disabled or not configured, the preview pane shows automatically to the right of the Desktop Search results, and your users can choose the location of the preview pane</string>
+      <string id="PreviewPaneLocation_Auto">Auto</string>
+      <string id="PreviewPaneLocation_Right">Right</string>
+      <string id="PreviewPaneLocation_Bottom">Bottom</string>
+      <string id="PreviewPaneLocation_Off">Off</string>
+      <string id="SearchResultIconSize">Set large or small icon view in desktop search results</string>
+      <string id="SearchResultIconSize_Explain">Enabling this policy allows you to specify whether you want large icon or small icon view for your Desktop Search results. The two options are:
+
+- Large Icon
+- Small Icon.
+
+If you have disabled the preview pane because your organization does not support Office XP or above, you should enforce the large icon view so that users can see snippets related to their desktop search query.
+
+When this policy is disabled or not configured, the default is small icon view.</string>
+      <string id="SearchResultIconSize_Small">Small Icon</string>
+      <string id="SearchResultIconSize_Large">Large Icon</string>
+      <string id="DisableWebSearch">Do not allow web search</string>
+      <string id="DisableWebSearch_Explain">Enabling this policy removes the option of searching the Web from Windows Desktop Search.
+
+When this policy is disabled or not configured, the Web option is available and users can search the Web via their default browser search engine.</string>
+      <string id="StopIndexingOnLimitedHardDriveSpace">Stop indexing in the event of limited hard drive space</string>
+      <string id="StopIndexingOnLimitedHardDriveSpace_Explain">Enabling this policy prevents indexing from continuing after less than the specified amount of hard drive space is left on the same drive as the index location. Select between 0 and 2147483647 MB.
+
+Enable this policy if computers in your environment have extremely limited hard drive space.
+
+When this policy is disabled or not configured, Windows Desktop Search automatically manages your index size.</string>
+      <string id="StopIndexingOnLimitedHardDriveSpace_MBLimit">MB Limit</string>
+      <string id="RichAttachmentPreviews">Control rich previews for attachments</string>
+      <string id="RichAttachmentPreviews_Explain">Enabling this policy defines a semicolon-delimited list of file extensions which will be allowed to have rich attachment previews.
+
+When this policy is disabled or not configured the default settings will be set to .bmp;.emf;.gif;.jpg;.jpeg;.png;.wmf;.wrn;.txt;.err;.xml;.cpp;.c;.h;.cxx;.hxx;.idl;.cs;.vb;.idl;.xsd;.doc;.docx;.xls;.xlsx;.ppt;.pptx;.vsd;.xlsb;.xltx;.dot;.rtf</string>
+      <string id="PreventUnwantedAddins">Prevent unwanted iFilters and protocol handlers</string>
+      <string id="PreventUnwantedAddins_Explain">Enabling this policy prevents Windows Desktop Search from using iFilters and protocol handlers unless they are specified in the allow list. However, This policy will not prevent iFilters or protocol handlers from being installed, nor will it prevent them from being used by other applications or services. 
+You can also specify an allow list of add-ins by providing the classID or ProgId string. For example, if you plan to deploy a particular iFilter, make sure that this iFilter is on the allow list, either as a GUID such as {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx} (include the braces) or a ProgID such as VisFilter.CFilter.1.
+
+If you maintain a locked desktop environment, this setting is redundant because non-administrative users do not have permission to install new components. If your users have Administrator permissions or can install software, this policy prevents them from specifically using Windows Desktop Search-related add-ins.
+
+Note: Because of a limitation in the Group Policy editor, you must add at least one entry in the allow list, even if you want to enable this policy without an allow list. Create a list entry by putting a space in the name field and a space in the value field and then save it. This will create a placeholder entry that is ignored by the program.</string>
+      <string id="PreventUnwantedAddins_AllowList">Allow List</string>
+      <string id="ExcludedExtensionsMultiline">Prevent indexing of certain file types</string>
+      <string id="ExcludedExtensionsMultiline_Explain">Enabling this policy allows you to edit the list of file types to exclude from indexing. The end user cannot modify this list. You should separate each extension type with a semicolon.
+
+Note that limitations of Group Policy Object Editor require this list to be split across multiple values. Desktop Search combines all these into a single exclusion list.
+
+When this policy is disabled or not configured, the user can edit the default list of excluded file types. If you enable and then disable this policy, the user's original list is restored.
+
+If you want to specify an initial default list of excluded file types that users can change later, see the administration guide for information about how to set up the initial machine preference.</string>
+      <string id="ExcludedExtensionsMultiline_0">Exclude</string>
+      <string id="ExcludedExtensionsMultiline_1">and</string>
+      <string id="ExcludedExtensionsMultiline_2">and</string>
+      <string id="ExcludedExtensionsMultiline_3">and</string>
+      <string id="DisableSearchHistory">Turn off storage and display of search history</string>
+      <string id="ExplainDisableSearchHistory">This policy setting prevents search queries from being stored in the registry. If you enable this policy setting, search suggestions based on previous searches won't appear in the search pane. Search suggestions provided by apps or by Windows based on local content will still appear.
+
+If you disable or do not configure this policy setting, users will get search suggestions based on previous searches in the search pane.</string>
+      <string id="AllowCortana">Allow Cortana</string>
+      <string id="ExplainAllowCortana">This policy setting specifies whether Cortana is allowed on the device. 
+ 
+If you enable or don't configure this setting, Cortana will be allowed on the device. If you disable this setting, Cortana will be turned off. 
+ 
+When Cortana is off, users will still be able to use search to find things on the device.</string>
+      <string id="AllowCortanaAboveLock">Allow Cortana above lock screen</string>
+      <string id="ExplainAllowCortanaAboveLock">This policy setting determines whether or not the user can interact with Cortana using speech while the system is locked.
+
+If you enable or don’t configure this setting, the user can interact with Cortana using speech while the system is locked.
+
+If you disable this setting, the system will need to be unlocked for the user to interact with Cortana using speech.</string>
+      <string id="AllowSearchToUseLocation">Allow search and Cortana to use location</string>
+      <string id="ExplainAllowSearchToUseLocation">This policy setting specifies whether search and Cortana can provide location aware search and Cortana results.
+ 
+If this is enabled, search and Cortana can access location information.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="RichAttachmentPreviews">
+        <textBox refId="RichAttachmentPreviews">
+          <label>Control Rich Previews for Attachments</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="DataDirectory">
+        <textBox refId="PartDataDirectory">
+          <label>Path (under 128 characters):</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="AddPrimaryIntranetSearchScope">
+        <textBox refId="PrimaryIntranetSearchScopeUrl">
+          <label>Intranet Search Scope Url</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="AddSecondaryIntranetSearchScope">
+        <textBox refId="SecondaryIntranetSearchScopeUrl">
+          <label>Intranet Search Scope Url</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="PreviewPaneLocation">
+        <dropdownList refId="PreviewPaneLocation" defaultItem="0">Preview Pane Location</dropdownList>
+      </presentation>
+      <presentation id="SearchResultIconSize">
+        <dropdownList refId="SearchResultIconSize" defaultItem="0">Set Large or Small Icon View in Desktop Search Results</dropdownList>
+      </presentation>
+      <presentation id="StopIndexingOnLimitedHardDriveSpace">
+        <decimalTextBox refId="StopIndexingOnLimitedHardDriveSpace_MBLimit">MB Limit</decimalTextBox>
+      </presentation>      
+      <presentation id="EnableThrottlingOnlineMailboxes">
+        <decimalTextBox refId="LimitEnableThrottlingOnlineMailboxes" defaultValue="120">Number of items per minute</decimalTextBox>
+      </presentation>
+      <presentation id="PreventUnwantedAddins">
+        <listBox refId="PreventUnwantedAddins_AllowList">Allow List</listBox>
+      </presentation>
+      <presentation id="PreventIndexingCertainPaths_1">
+        <listBox refId="PreventIndexingCertainPaths">Prevent Indexing Certain Paths</listBox>
+      </presentation>
+      <presentation id="PreventIndexingCertainPaths_2">
+        <listBox refId="PreventIndexingCertainPaths">Prevent Indexing Certain Paths</listBox>
+      </presentation>
+      <presentation id="DefaultIndexedPaths_1">
+        <listBox refId="DefaultIndexedPaths">Default Indexed Paths</listBox>
+      </presentation>
+      <presentation id="DefaultIndexedPaths_2">
+        <listBox refId="DefaultIndexedPaths">Default Indexed Paths</listBox>
+      </presentation>
+      <presentation id="DefaultExcludedPaths_1">
+        <listBox refId="DefaultExcludedPaths">Default Excluded Paths</listBox>
+      </presentation>
+      <presentation id="DefaultExcludedPaths_2">
+        <listBox refId="DefaultExcludedPaths">Default Excluded Paths</listBox>
+      </presentation>
+      <presentation id="ExcludedExtensionsMultiline">
+        <textBox refId="ExcludedExtensionsMultiline_0">
+          <label>Exclude</label>
+          <defaultValue>.386;.aps;.bin;.bk1;.bk2;.bkf;.blf;.bsc;.btr;.cat;.cfg;.cgm;.chk;.ci;.crwl;.cur;.dat;.dbg;.dct;.dir;.dl_;.el;.evt;.ex_;.exp;.eyb;.fnt;.fon;.ghi;.gthr;.hqx;.icm;.idb;.idx;.ilk;.imc;.in_;.inl;.inv</defaultValue>
+        </textBox>
+        <textBox refId="ExcludedExtensionsMultiline_1">
+          <label>and</label>
+          <defaultValue>.ipp;.jbf;.lib;.local;.log;.log1;.log2;.m14;.mac;.man;.manifest;.map;.MAPIMail;.mmf;.mui;.muimanifest;.mv;.ncb;.obj;.oc_;.ocx;.onecache;.onetoc;.onetoc2;.ost;.pch;.pdb;.pds;.pf;.pic;.pma;.pmc;.pml</defaultValue>
+        </textBox>
+        <textBox refId="ExcludedExtensionsMultiline_2">
+          <label>and</label>
+          <defaultValue>.pmr;.pst;.res;.rmp;.rpc;.rsp;.sbr;.sc2;.sit;.sr_;.sy_;.sym;.TMCONTAINER00000000000000000001;.tlb;.tlh;.tmf;.tmp;.ttc;.ttf;.ttx;.TMCONTAINER00000000000000000002;.ufm;.vbx;.vxd;.wll;.wlt;.xbm;.xix;.z96;.ZFSendToTarget</defaultValue>
+        </textBox>
+        <textBox refId="ExcludedExtensionsMultiline_3">
+          <label>and</label>
+          <defaultValue></defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="SharePrivacy">
+        <dropdownList refId="SharePrivacy_Dropdown" noSort="true" defaultItem="0">Type of information</dropdownList>
+      </presentation>
+      <presentation id="SafeSearch">
+        <dropdownList refId="SafeSearch_Dropdown" noSort="true" defaultItem="1">Default Safe Search Setting</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

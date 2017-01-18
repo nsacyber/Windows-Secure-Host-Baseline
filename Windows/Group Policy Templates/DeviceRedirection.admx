@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="devinst" namespace="Microsoft.Policies.DeviceRedirection" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DeviceRedirect_Category" displayName="$(string.DeviceRedirect_Category)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="DeviceRedirect_Restrictions_Category" displayName="$(string.DeviceRedirect_Restrictions_Category)" explainText="$(string.DeviceRedirect_Restrictions_Help)">
+      <parentCategory ref="DeviceRedirect_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="USBRedirect_Prevent" class="Machine" displayName="$(string.USBRedirect_Prevent)" explainText="$(string.USBRedirect_Prevent_Help)" key="Software\Policies\Microsoft\Windows\DeviceRedirect\Restrictions" valueName="AllowRedirect">
+      <parentCategory ref="DeviceRedirect_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceRedirect_IDS_Prevent" class="Machine" displayName="$(string.DeviceRedirect_IDS_Prevent)" explainText="$(string.DeviceRedirect_IDS_Prevent_Help)" presentation="$(presentation.DeviceRedirect_IDS_Prevent)" key="Software\Policies\Microsoft\Windows\DeviceRedirect\Restrictions" valueName="DenyDeviceIDs">
+      <parentCategory ref="DeviceRedirect_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="Redirect_IDS_Deny_List" key="Software\Policies\Microsoft\Windows\DeviceRedirect\Restrictions\DenyDeviceIDs" valuePrefix="" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>
+

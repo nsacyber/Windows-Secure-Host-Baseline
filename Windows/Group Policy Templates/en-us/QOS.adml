@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="QosDBMC_BestEffort_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Best Effort service type (ServiceTypeBestEffort). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Best Effort service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMC_ControlledLoad_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Controlled Load service type (ServiceTypeControlledLoad). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Controlled Load service type.
+
+If you disable this setting, the system uses the default DSCP value of 24 (0x18).
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMC_Guaranteed_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Guaranteed service type (ServiceTypeGuaranteed). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Guaranteed service type.
+
+If you disable this setting, the system uses the default DSCP value of 40 (0x28).
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMC_NetworkControl_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Network Control service type (ServiceTypeNetworkControl). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Network Control service type.
+
+If you disable this setting, the system uses the default DSCP value of 48 (0x30).
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMC_Qualitative_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Qualitative service type (ServiceTypeQualitative). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Qualitative service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMNC_BestEffort_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Best Effort service type (ServiceTypeBestEffort). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that do not conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Best Effort service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMNC_ControlledLoad_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Controlled Load service type (ServiceTypeControlledLoad). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that do not conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Controlled Load service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMNC_Guaranteed_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Guaranteed service type (ServiceTypeGuaranteed). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that do not conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Guaranteed service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMNC_NetworkControl_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Network Control service type (ServiceTypeNetworkControl). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that do not conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Network Control service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDBMNC_Qualitative_Help">Specifies an alternate Layer-3 Differentiated Services Code Point (DSCP) value for packets with the Qualitative service type (ServiceTypeQualitative). The Packet Scheduler inserts the corresponding DSCP value in the IP header of the packets.
+
+This setting applies only to packets that do not conform to the flow specification.
+
+If you enable this setting, you can change the default DSCP value associated with the Qualitative service type.
+
+If you disable this setting, the system uses the default DSCP value of 0.
+
+Important: If the DSCP value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosDiffservByteMappingConforming">DSCP value of conforming packets</string>
+      <string id="QosDiffservByteMappingNonConforming">DSCP value of non-conforming packets</string>
+      <string id="QosMaxOutstandingSends">Limit outstanding packets</string>
+      <string id="QosMaxOutstandingSends_Help">Specifies the maximum number of outstanding packets permitted on the system. When the number of outstanding packets reaches this limit, the Packet Scheduler postpones all submissions to network adapters until the number falls below this limit.
+
+"Outstanding packets" are packets that the Packet Scheduler has submitted to a network adapter for transmission, but which have not yet been sent.
+
+If you enable this setting, you can limit the number of outstanding packets.
+
+If you disable this setting or do not configure it, then the setting has no effect on the system.
+
+Important: If the maximum number of outstanding packets is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosNonBestEffortLimit">Limit reservable bandwidth</string>
+      <string id="QosNonBestEffortLimit_Help">Determines the percentage of connection bandwidth that the system can reserve. This value limits the combined bandwidth reservations of all programs running on the system.
+
+By default, the Packet Scheduler limits the system to 80 percent of the bandwidth of a connection, but you can use this setting to override the default.
+
+If you enable this setting, you can use the "Bandwidth limit" box to adjust the amount of bandwidth the system can reserve.
+
+If you disable this setting or do not configure it, the system uses the default value of 80 percent of the connection.
+
+Important: If a bandwidth limit is set for a particular network adapter in the registry, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosPsched">QoS Packet Scheduler</string>
+      <string id="QosServiceTypeBestEffort_C">Best effort service type</string>
+      <string id="QosServiceTypeBestEffort_NC">Best effort service type</string>
+      <string id="QosServiceTypeBestEffort_PV">Best effort service type</string>
+      <string id="QosServiceTypeControlledLoad_C">Controlled load service type</string>
+      <string id="QosServiceTypeControlledLoad_NC">Controlled load service type</string>
+      <string id="QosServiceTypeControlledLoad_PV">Controlled load service type</string>
+      <string id="QosServiceTypeGuaranteed_C">Guaranteed service type</string>
+      <string id="QosServiceTypeGuaranteed_NC">Guaranteed service type</string>
+      <string id="QosServiceTypeGuaranteed_PV">Guaranteed service type</string>
+      <string id="QosServiceTypeNetworkControl_C">Network control service type</string>
+      <string id="QosServiceTypeNetworkControl_NC">Network control service type</string>
+      <string id="QosServiceTypeNetworkControl_PV">Network control service type</string>
+      <string id="QosServiceTypeNonConforming">Non-conforming packets</string>
+      <string id="QosServiceTypeQualitative_C">Qualitative service type</string>
+      <string id="QosServiceTypeQualitative_NC">Qualitative service type</string>
+      <string id="QosServiceTypeQualitative_PV">Qualitative service type</string>
+      <string id="QosTimerResolution">Set timer resolution</string>
+      <string id="QosTimerResolution_Help">Determines the smallest unit of time that the Packet Scheduler uses when scheduling packets for transmission. The Packet Scheduler cannot schedule packets for transmission more frequently than permitted by the value of this entry.
+
+If you enable this setting, you can override the default timer resolution established for the system, usually units of 10 microseconds.
+
+If you disable this setting or do not configure it, the setting has no effect on the system.
+
+Important: If a timer resolution is specified in the registry for a particular network adapter, then this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_BestEffort_Help">Specifies an alternate link layer (Layer-2) priority value for packets with the Best Effort service type (ServiceTypeBestEffort). The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with the Best Effort service type.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_ControlledLoad_Help">Specifies an alternate link layer (Layer-2) priority value for packets with the Controlled Load service type (ServiceTypeControlledLoad). The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with the Controlled Load service type.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_Guaranteed_Help">Specifies an alternate link layer (Layer-2) priority value for packets with the Guaranteed service type (ServiceTypeGuaranteed). The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with the Guaranteed service type.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_NetworkControl_Help">Specifies an alternate link layer (Layer-2) priority value for packets with the Network Control service type (ServiceTypeNetworkControl). The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with the Network Control service type.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_NonConforming_Help">Specifies an alternate link layer (Layer-2) priority value for packets that do not conform to the flow specification. The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with nonconforming packets.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for nonconforming packets is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUPM_Qualitative_Help">Specifies an alternate link layer (Layer-2) priority value for packets with the Qualitative service type (ServiceTypeQualitative). The Packet Scheduler inserts the corresponding priority value in the Layer-2 header of the packets.
+
+If you enable this setting, you can change the default priority value associated with the Qualitative service type.
+
+If you disable this setting, the system uses the default priority value of 0.
+
+Important: If the Layer-2 priority value for this service type is specified in the registry for a particular network adapter, this setting is ignored when configuring that network adapter.</string>
+      <string id="QosUserPriorityMapping">Layer-2 priority value</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="QosMaxOutstandingSends">
+        <decimalTextBox refId="QosMaxOutstandingSends_Box" defaultValue="65535">Number of packets:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosNonBestEffortLimit">
+        <decimalTextBox refId="QosNonBestEffortLimit_Box" defaultValue="80" spinStep="10">Bandwidth limit (%):  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeBestEffort_C">
+        <text>Enter a DSCP value for conforming packets with the </text>
+        <text>Best effort service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeBestEffort_NC">
+        <text>Enter a DSCP value for non-conforming packets with the </text>
+        <text>Best effort service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeBestEffort_PV">
+        <text>Enter a priority value for packets with the </text>
+        <text>Best effort service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue" defaultValue="0">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeControlledLoad_C">
+        <text>Enter a DSCP value for conforming packets with the </text>
+        <text>Controlled load service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="24">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeControlledLoad_NC">
+        <text>Enter a DSCP value for non-conforming packets with the </text>
+        <text>Controlled load service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeControlledLoad_PV">
+        <text>Enter a priority value for packets with the </text>
+        <text>Controlled load service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue" defaultValue="4">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeGuaranteed_C">
+        <text>Enter a DSCP value for conforming packets with the </text>
+        <text>Guaranteed service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="40">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeGuaranteed_NC">
+        <text>Enter a DSCP value for non-conforming packets with the </text>
+        <text>Guaranteed service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeGuaranteed_PV">
+        <text>Enter a priority value for packets with the </text>
+        <text>Guaranteed service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue" defaultValue="5">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeNetworkControl_C">
+        <text>Enter a DSCP value for conforming packets with the </text>
+        <text>Network control service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="48">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeNetworkControl_NC">
+        <text>Enter a DSCP value for non-conforming packets with the </text>
+        <text>Network control service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeNetworkControl_PV">
+        <text>Enter a priority value for packets with the </text>
+        <text>Network control service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue" defaultValue="7">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeNonConforming">
+        <text>Enter a priority value for non-conforming packets.</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeQualitative_C">
+        <text>Enter a DSCP value for conforming packets with the </text>
+        <text>Qualitative service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeQualitative_NC">
+        <text>Enter a DSCP value for non-conforming packets with the </text>
+        <text>Qualitative service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosDSCPValue" defaultValue="0">DSCP value:  </decimalTextBox>
+      </presentation>
+      <presentation id="QosServiceTypeQualitative_PV">
+        <text>Enter a priority value for packets with the </text>
+        <text>Qualitative service type</text>
+        <text> </text>
+        <decimalTextBox refId="QosPriorityValue" defaultValue="0">Priority value  </decimalTextBox>
+      </presentation>
+      <presentation id="QosTimerResolution">
+        <decimalTextBox refId="QosTimerResolution_Box" defaultValue="10">Timer units (in microseconds):  </decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

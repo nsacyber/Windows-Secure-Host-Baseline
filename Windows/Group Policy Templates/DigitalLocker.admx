@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="digitallocker" namespace="Microsoft.Policies.DigitalLocker" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Digitalx_GroupPolicyCategory" displayName="$(string.Digitalx_GroupPolicyCategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Digitalx_DiableApplication_TitleText_1" class="User" displayName="$(string.Digitalx_DiableApplication_TitleText)" explainText="$(string.Digitalx_DisableApplication_DescriptionText)" key="SOFTWARE\Policies\Microsoft\Windows\Digital Locker" valueName="DoNotRunDigitalLocker">
+      <parentCategory ref="Digitalx_GroupPolicyCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Digitalx_DiableApplication_TitleText_2" class="Machine" displayName="$(string.Digitalx_DiableApplication_TitleText)" explainText="$(string.Digitalx_DisableApplication_DescriptionText)" key="SOFTWARE\Policies\Microsoft\Windows\Digital Locker" valueName="DoNotRunDigitalLocker">
+      <parentCategory ref="Digitalx_GroupPolicyCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

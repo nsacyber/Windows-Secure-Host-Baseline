@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="windowsconnectnow" namespace="Microsoft.Policies.WindowsConnectNow" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WCN_Category" displayName="$(string.WCN_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WCN_DisableWcnUi_1" class="User" displayName="$(string.WCN_DisableWcnUi)" explainText="$(string.WCN_DisableWcnUi_Help)" key="Software\Policies\Microsoft\Windows\WCN\UI" valueName="DisableWcnUi">
+      <parentCategory ref="WCN_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WCN_DisableWcnUi_2" class="Machine" displayName="$(string.WCN_DisableWcnUi)" explainText="$(string.WCN_DisableWcnUi_Help)" key="Software\Policies\Microsoft\Windows\WCN\UI" valueName="DisableWcnUi">
+      <parentCategory ref="WCN_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WCN_EnableRegistrar" class="Machine" displayName="$(string.WCN_EnableRegistrar)" explainText="$(string.WCN_EnableRegistrar_Help)" presentation="$(presentation.WCN_EnableRegistrar)" key="Software\Policies\Microsoft\Windows\WCN\Registrars" valueName="EnableRegistrars">
+      <parentCategory ref="WCN_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="WCN_EnableRegistrar_DisableUPnP" valueName="DisableUPnPRegistrar">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WCN_EnableRegistrar_DisableInBand802DOT11" valueName="DisableInBand802DOT11Registrar">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WCN_EnableRegistrar_DisableFlashConfig" valueName="DisableFlashConfigRegistrar">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="WCN_EnableRegistrar_DisableWPD" valueName="DisableWPDRegistrar">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <decimal id="WCN_EnableRegistrar_MaxWCNDeviceNumber" valueName="MaxWCNDeviceNumber" maxValue="65535" />
+        <enum id="WCN_Higher_Precedence_Registrar" valueName="HigherPrecedenceRegistrar">
+          <item displayName="$(string.WCN_Higher_Precedence_Registrar_UPnP)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WCN_Higher_Precedence_Registrar_InBand802DOT11)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="sharing" namespace="Microsoft.Policies.NetworkSharing" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Sharing" displayName="$(string.Sharing)" explainText="$(string.Sharing_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="HomeGroup" displayName="$(string.HomeGroup)" explainText="$(string.HomeGroup_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoInplaceSharing" class="User" displayName="$(string.NoInplaceSharing)" explainText="$(string.NoInplaceSharing_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInplaceSharing">
+      <parentCategory ref="Sharing" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableHomeGroup" class="Machine" displayName="$(string.DisableHomeGroup)" explainText="$(string.DisableHomeGroup_Help)" key="Software\Policies\Microsoft\Windows\HomeGroup" valueName="DisableHomeGroup">
+      <parentCategory ref="HomeGroup" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

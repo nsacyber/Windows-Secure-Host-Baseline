@@ -1,0 +1,1209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wuau" namespace="Microsoft.Policies.WindowsUpdate" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <supersededAdm fileName="wuau.adm" />
+  <resources minRequiredRevision="1.0" />
+
+  <supportedOn>
+    <!--
+        For product definitions (products:MicrosoftABC) please consult:
+        //depot/winmain/ds/grouppolicy/PolicyDefinitions/WindowsProducts.admx
+
+        For windows policy definitions (windows:XYZ):
+        //depot/winmain/ds/grouppolicy/PolicyDefinitions/windows.admx
+        //depot/winmain/ds/grouppolicy/PolicyDefinitions/WindowsServer.admx
+    -->
+    <definitions>
+      <!--Windows 7, Windows Server 2008, Windows Vista, Windows XP SP2-->
+      <definition name="WU_SUPPORTED_Windows7ToXPSP2" displayName="$(string.WU_SUPPORTED_Windows7ToXPSP2)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" maxVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--Windows 7, Windows Server 2003, Windows Vista, Microsoft Windows XP Professional Service Pack 2, Microsoft Windows XP Professional Service Pack 1 , Microsoft Windows 2000 Service Pack 4, Microsoft Windows 2000 Service Pack 3-->
+      <!--This is based on SUPPORTED_Win2kSP3_Or_XPSP1 from the windows policy definitions-->
+      <definition name="WU_SUPPORTED_Windows7_To_Win2kSP3_Or_XPSP1" displayName="$(string.WU_SUPPORTED_Windows7_To_Win2kSP3_Or_XPSP1)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3" maxVersionIndex="6"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows 2000 Service Pack 3 or Microsoft Windows XP Professional Service Pack 1, excluding Windows RT-->
+      <definition name="WU_SUPPORTED_Win2kSP3_Or_XPSP1_NoWinRT" displayName="$(string.WU_SUPPORTED_Win2kSP3_Or_XPSP1_NoWinRT)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3" maxVersionIndex="8"/>
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows XP Professional with SP1 or Windows Server 2003 family, excluding Windows RT-->
+      <definition name="WU_SUPPORTED_WindowsXPSP1_NoWinRT" displayName="$(string.WU_SUPPORTED_WindowsXPSP1_NoWinRT)">
+        <or>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="1"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="3" maxVersionIndex="8"/>
+        </or>
+      </definition>
+
+      <!--At least Windows XP Professional Service Pack 1 or At least Windows 2000 Service Pack 3 through Windows 8.1 or Windows Server 2012 R2 with most current service pack-->
+      <definition name="WU_SUPPORTED_Win2kSP3_Or_XPSP1_Through_Win81_or_Server2012R2" displayName="$(string.WU_SUPPORTED_Win2kSP3_Or_XPSP1_Through_Win81_or_Server2012R2)">
+        <or>
+          <range ref="products:MicrosoftWindows2000" minVersionIndex="3"/>
+          <range ref="products:MicrosoftWindowsXP" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+      <!--At least Windows Vista through Windows 8.1 or Windows Server 2012 R2 with most current service pack-->
+      <definition name="WU_SUPPORTED_WindowsVista_Through_Win81_or_Server2012R2" displayName="$(string.WU_SUPPORTED_WindowsVista_Through_Win81_or_Server2012R2)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" maxVersionIndex="12"/>
+        </or>
+      </definition>
+
+    </definitions>
+  </supportedOn>
+
+  <categories>
+    <category name="WindowsUpdateCat" displayName="$(string.WindowsUpdateCat)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="DeferUpdateCat" displayName="$(string.DeferUpdateCat)">
+      <parentCategory ref="WindowsUpdateCat" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NoAutoUpdate" class="User" displayName="$(string.NoAutoUpdate)" explainText="$(string.NoAutoUpdate_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoAutoUpdate">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AUDontShowUasPolicy" class="Both" displayName="$(string.AUDontShowUasPolicy)" explainText="$(string.AUDontShowUasHelp)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAUShutdownOption">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7ToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AUNoUasDefaultPolicy_User" class="User" displayName="$(string.AUNoUasDefaultPolicy)" explainText="$(string.AUNoUasDefaultHelp_User)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAUAsDefaultShutdownOption">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7ToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AUNoUasDefaultPolicy_Mach" class="Machine" displayName="$(string.AUNoUasDefaultPolicy)" explainText="$(string.AUNoUasDefaultHelp_Mach)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAUAsDefaultShutdownOption">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7ToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemoveWindowsUpdate" class="User" displayName="$(string.RemoveWindowsUpdate)" explainText="$(string.RemoveWindowsUpdate_Help)" presentation="$(presentation.RemoveWindowsUpdate)" key="Software\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate" valueName="DisableWindowsUpdateAccess">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_Through_Win81_or_Server2012R2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="RemoveWindowsUpdateMode" valueName="DisableWindowsUpdateAccessMode" required="true">
+          <item displayName="$(string.RemoveWindowsUpdateModeAll)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RemoveWindowsUpdateModeReboot)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AutoUpdateCfg" class="Machine" displayName="$(string.AutoUpdateCfg)" explainText="$(string.AutoUpdateCfg_Help)" presentation="$(presentation.AutoUpdateCfg)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAutoUpdate">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP3_Or_XPSP1" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <elements>
+        <enum id="AutoUpdateMode" valueName="AUOptions" required="true">
+          <item displayName="$(string.AutoUpdateModeNotify)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateModeDownload)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateModeAuto)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateModeAdminChooses)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="AutoUpdateAutomaticMaintenanceEnabled" valueName="AutomaticMaintenanceEnabled" />
+        <enum id="AutoUpdateSchDay" valueName="ScheduledInstallDay" required="true">
+          <item displayName="$(string.AutoUpdateSchDay_Everyday)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Sunday)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Monday)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Tuesday)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Wednesday)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Thursday)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Friday)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchDay_Saturday)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+        </enum>
+        <enum id="AutoUpdateSchTime" valueName="ScheduledInstallTime" required="true">
+          <item displayName="$(string.AutoUpdateSchTime0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime5)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime6)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime7)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime9)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime10)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime11)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime13)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime14)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime15)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime16)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime17)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime18)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime19)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime20)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime21)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime22)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoUpdateSchTime23)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="AllowMUUpdateServiceId" valueName="AllowMUUpdateService" />
+      </elements>
+    </policy>
+    <policy name="CorpWuURL" class="Machine" displayName="$(string.CorpWuURL)" explainText="$(string.CorpWuURL_Help)" presentation="$(presentation.CorpWuURL)" key="Software\Policies\Microsoft\Windows\WindowsUpdate">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_NoWinRT" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="UseWUServer">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="UseWUServer">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <text id="CorpWUURL_Name" valueName="WUServer" required="true" />
+        <text id="CorpWUStatusURL_Name" valueName="WUStatusServer" required="true" />
+        <text id="CorpWUContentHost_Name" valueName="UpdateServiceUrlAlternate" required="false" />
+      </elements>
+    </policy>
+    <policy name="DetectionFrequency_Title" class="Machine" displayName="$(string.DetectionFrequency_Title)" explainText="$(string.DetectionFrequency_Help)" presentation="$(presentation.DetectionFrequency_Title)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="DetectionFrequencyEnabled">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_NoWinRT" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="DetectionFrequency_Hour2" valueName="DetectionFrequency" required="true" minValue="1" maxValue="22" />
+      </elements>
+    </policy>
+    <policy name="ElevateNonAdmins_Title" class="Machine" displayName="$(string.ElevateNonAdmins_Title)" explainText="$(string.ElevateNonAdmins_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="ElevateNonAdmins">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_Through_Win81_or_Server2012R2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ImmediateInstall_Title" class="Machine" displayName="$(string.ImmediateInstall_Title)" explainText="$(string.ImmediateInstall_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="AutoInstallMinorUpdates">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_Through_Win81_or_Server2012R2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IncludeRecommendedUpdates_Title" class="Machine" displayName="$(string.IncludeRecommendedUpdates_Title)" explainText="$(string.IncludeRecommendedUpdates_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="IncludeRecommendedUpdates">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_WindowsVista_Through_Win81_or_Server2012R2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FeaturedSoftwareNotification_Title" class="Machine" displayName="$(string.FeaturedSoftwareNotification_Title)" explainText="$(string.FeaturedSoftwareNotification_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="EnableFeaturedSoftware">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AUPowerManagement_Title" class="Machine" displayName="$(string.AUPowerManagement_Title)" explainText="$(string.AUPowerManagement_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="AUPowerManagement">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoAutoRebootWithLoggedOnUsers_Title" class="Machine" displayName="$(string.NoAutoRebootWithLoggedOnUsers_Title)" explainText="$(string.NoAutoRebootWithLoggedOnUsers_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAutoRebootWithLoggedOnUsers">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP3_Or_XPSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AlwaysAutoRebootAtScheduledTime"
+            class="Machine"
+            displayName="$(string.AlwaysAutoRebootAtScheduledTime_Title)"
+            explainText="$(string.AlwaysAutoRebootAtScheduledTime_Help)"
+            presentation="$(presentation.AlwaysAutoRebootAtScheduledTime_Presentation)"
+            key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU"
+            valueName="AlwaysAutoRebootAtScheduledTime">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+       <decimal id="AlwaysAutoRebootAtScheduledTime_Minutes" valueName="AlwaysAutoRebootAtScheduledTimeMinutes" required="true" minValue="15" maxValue="180" />
+      </elements>
+    </policy>
+    <policy name="RebootRelaunchTimeout_Title" class="Machine" displayName="$(string.RebootRelaunchTimeout_Title)" explainText="$(string.RebootRelaunchTimeout_Help)" presentation="$(presentation.RebootRelaunchTimeout_Title)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="RebootRelaunchTimeoutEnabled">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7_To_Win2kSP3_Or_XPSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="RebootRelaunchTimeout_Minutes3" valueName="RebootRelaunchTimeout" required="true" minValue="1" maxValue="1440" />
+      </elements>
+    </policy>
+    <policy name="RebootWarningTimeout_Title" class="Machine" displayName="$(string.RebootWarningTimeout_Title)" explainText="$(string.RebootWarningTimeout_Help)" presentation="$(presentation.RebootWarningTimeout_Title)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="RebootWarningTimeoutEnabled">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7_To_Win2kSP3_Or_XPSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="RebootWarningTimeout_Minutes3" valueName="RebootWarningTimeout" required="true" minValue="1" maxValue="30" />
+      </elements>
+    </policy>
+    <policy name="RescheduleWaitTime_Title" class="Machine" displayName="$(string.RescheduleWaitTime_Title)" explainText="$(string.RescheduleWaitTime_Help)" presentation="$(presentation.RescheduleWaitTime_Title)" key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="RescheduleWaitTimeEnabled">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Windows7_To_Win2kSP3_Or_XPSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="RescheduleWaitTime_Minutes2" valueName="RescheduleWaitTime" required="true" minValue="1" maxValue="60" />
+      </elements>
+    </policy>
+    <policy name="TargetGroup_Title" class="Machine" displayName="$(string.TargetGroup_Title)" explainText="$(string.TargetGroup_Help)" presentation="$(presentation.TargetGroup_Title)" key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="TargetGroupEnabled">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_Win2kSP3_Or_XPSP1_NoWinRT" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <text id="TargetGroup_Name" valueName="TargetGroup" required="true" />
+      </elements>
+    </policy>
+    <policy name="TrustedPublisher_Title" class="Machine" displayName="$(string.TrustedPublisher_Title)" explainText="$(string.TrustedPublisher_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="AcceptTrustedPublisherCerts">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="WU_SUPPORTED_WindowsXPSP1_NoWinRT" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DoNotConnectToWindowsUpdateInternetLocations"
+            class="Machine"
+            displayName="$(string.DoNotConnectToWindowsUpdateInternetLocations_Title)"
+            explainText="$(string.DoNotConnectToWindowsUpdateInternetLocations_Help)"
+            key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+            valueName="DoNotConnectToWindowsUpdateInternetLocations">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeferFeatureUpdates"
+        class="Machine"
+        displayName="$(string.DeferFeatureUpdates_Title)"
+        explainText="$(string.DeferFeatureUpdates_Help)"
+        key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+        presentation="$(presentation.DeferFeatureUpdates)"
+        valueName="DeferFeatureUpdates">
+        <parentCategory ref="DeferUpdateCat" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+        <elements>
+          <enum id="BranchReadinessLevelId" valueName="BranchReadinessLevel" required="true">
+            <item displayName="$(string.CurrentBranchFeatureUpdates)">
+              <value>
+                <decimal value="16" />
+              </value>
+            </item>
+            <item displayName="$(string.BusinessReadyFeatureUpdates)">
+              <value>
+                <decimal value="32" />
+              </value>
+            </item>
+          </enum>
+          <decimal id="DeferFeatureUpdatesPeriodId" valueName="DeferFeatureUpdatesPeriodInDays" minValue="0" maxValue="180" />
+          <text id="PauseFeatureUpdatesStartId" valueName="PauseFeatureUpdatesStartTime" maxLength="10" />
+        </elements>
+    </policy>
+    <policy name="DeferQualityUpdates"
+        class="Machine"
+        displayName="$(string.DeferQualityUpdates_Title)"
+        explainText="$(string.DeferQualityUpdates_Help)"
+        key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+        presentation="$(presentation.DeferQualityUpdates)"
+        valueName="DeferQualityUpdates">
+        <parentCategory ref="DeferUpdateCat" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+        <elements>
+          <decimal id="DeferQualityUpdatesPeriodId" valueName="DeferQualityUpdatesPeriodInDays" minValue="0" maxValue="30" />
+          <text id="PauseQualityUpdatesStartId" valueName="PauseQualityUpdatesStartTime" maxLength="10" />
+        </elements>
+    </policy>
+    <policy name="ExcludeWUDriversInQualityUpdate"
+        class="Machine"
+        displayName="$(string.ExcludeWUDriversInQualityUpdate_Title)"
+        explainText="$(string.ExcludeWUDriversInQualityUpdate_Help)"
+        key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+        valueName="ExcludeWUDriversInQualityUpdate">
+        <parentCategory ref="WindowsUpdateCat" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="ActiveHours"
+    class="Machine"
+    displayName="$(string.ActiveHours_Title)"
+    explainText="$(string.ActiveHours_Help)"
+    key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+    presentation="$(presentation.ActiveHours_Title)"
+    valueName="SetActiveHours">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="ActiveHoursStartTime" valueName="ActiveHoursStart" required="true">
+          <item displayName="$(string.ActiveHoursTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+        <enum id="ActiveHoursEndTime" valueName="ActiveHoursEnd" required="true">
+          <item displayName="$(string.ActiveHoursTime12AM)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime1AM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime2AM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime3AM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime4AM)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime5AM)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime6AM)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime7AM)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime8AM)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime9AM)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime10AM)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime11AM)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime12PM)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime1PM)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime2PM)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime3PM)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime4PM)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime5PM)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime6PM)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime7PM)">
+            <value>
+              <decimal value="19" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime8PM)">
+            <value>
+              <decimal value="20" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime9PM)">
+            <value>
+              <decimal value="21" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime10PM)">
+            <value>
+              <decimal value="22" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursTime11PM)">
+            <value>
+              <decimal value="23" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AutoRestartDeadline"
+      class="Machine"
+      displayName="$(string.AutoRestartDeadline_Title)"
+      explainText="$(string.AutoRestartDeadline_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      presentation="$(presentation.AutoRestartDeadline_Title)"
+      valueName="SetAutoRestartDeadline">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="AutoRestartDeadline" valueName="AutoRestartDeadlinePeriodInDays" required="true">
+          <item displayName="$(string.AutoRestartDeadlineDay2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay5)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay6)">
+            <value>
+              <decimal value="6" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay7)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay9)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay10)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay11)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay13)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartDeadlineDay14)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableUXWUAccess"
+      class="Machine"
+      displayName="$(string.DisableUXWUAccess_Title)"
+      explainText="$(string.DisableUXWUAccess_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      valueName="SetDisableUXWUAccess">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ActiveHoursMaxRange"
+      class="Machine"
+      displayName="$(string.ActiveHoursMaxRange_Title)"
+      explainText="$(string.ActiveHoursMaxRange_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      presentation="$(presentation.ActiveHoursMaxRange_Title)"
+      valueName="SetActiveHoursMaxRange">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="ActiveHoursMaxRange" valueName="ActiveHoursMaxRange" required="true">
+          <item displayName="$(string.ActiveHoursMaxRange8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange9)">
+            <value>
+              <decimal value="9" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange10)">
+            <value>
+              <decimal value="10" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange11)">
+            <value>
+              <decimal value="11" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange13)">
+            <value>
+              <decimal value="13" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange14)">
+            <value>
+              <decimal value="14" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange15)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange16)">
+            <value>
+              <decimal value="16" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange17)">
+            <value>
+              <decimal value="17" />
+            </value>
+          </item>
+          <item displayName="$(string.ActiveHoursMaxRange18)">
+            <value>
+              <decimal value="18" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AutoRestartRequiredNotificationDismissal"
+      class="Machine"
+      displayName="$(string.AutoRestartRequiredNotificationDismissal_Title)"
+      explainText="$(string.AutoRestartRequiredNotificationDismissal_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      presentation="$(presentation.AutoRestartRequiredNotificationDismissal_Title)"
+      valueName="SetAutoRestartRequiredNotificationDismissal">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="AutoRestartRequiredNotificationDismissal" valueName="AutoRestartRequiredNotificationDismissal" required="true">
+          <item displayName="$(string.AutoDismissal)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UserAction)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AutoRestartNotificationConfig"
+      class="Machine"
+      displayName="$(string.AutoRestartNotificationConfig_Title)"
+      explainText="$(string.AutoRestartNotificationConfig_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      presentation="$(presentation.AutoRestartNotificationConfig_Title)"
+      valueName="SetAutoRestartNotificationConfig">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="AutoRestartNotificationStyle" valueName="AutoRestartNotificationStyle" required="true">
+          <item displayName="$(string.AutoRestartNotificationStyleFull)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartNotificationStylePartial)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <enum id="AutoRestartNotificationSchd" valueName="AutoRestartNotificationSchedule" required="true">
+          <item displayName="$(string.AutoRestartNotificationSchd15)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartNotificationSchd30)">
+            <value>
+              <decimal value="30" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartNotificationSchd60)">
+            <value>
+              <decimal value="60" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartNotificationSchd120)">
+            <value>
+              <decimal value="120" />
+            </value>
+          </item>
+          <item displayName="$(string.AutoRestartNotificationSchd240)">
+            <value>
+              <decimal value="240" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AutoRestartNotificationDisable"
+      class="Machine"
+      displayName="$(string.AutoRestartNotificationDisable_Title)"
+      explainText="$(string.AutoRestartNotificationDisable_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      valueName="SetAutoRestartNotificationDisable">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RestartWarnRemind"
+      class="Machine"
+      displayName="$(string.RestartWarningSchd_Title)"
+      explainText="$(string.RestartWarningSchd_Help)"
+      key="Software\Policies\Microsoft\Windows\WindowsUpdate"
+      presentation="$(presentation.RestartWarningSchd_Title)"
+      valueName="SetRestartWarningSchd">
+      <parentCategory ref="WindowsUpdateCat" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="RestartWarnRemind" valueName="ScheduleRestartWarning" required="true">
+          <item displayName="$(string.RestartWarnRemindHours2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnRemindHours4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnRemindHours8)">
+            <value>
+              <decimal value="8" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnRemindHours12)">
+            <value>
+              <decimal value="12" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnRemindHours24)">
+            <value>
+              <decimal value="24" />
+            </value>
+          </item>
+        </enum>
+        <enum id="RestartWarn" valueName="ScheduleImminentRestartWarning" required="true">
+          <item displayName="$(string.RestartWarnMins15)">
+            <value>
+              <decimal value="15" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnMins30)">
+            <value>
+              <decimal value="30" />
+            </value>
+          </item>
+          <item displayName="$(string.RestartWarnMins60)">
+            <value>
+              <decimal value="60" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

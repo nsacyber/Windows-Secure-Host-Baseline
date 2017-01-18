@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="disknvcache" namespace="Microsoft.Policies.DiskNVCache" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="NvCacheCat" displayName="$(string.NvCacheCat)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="BootResumePolicy" class="Machine" displayName="$(string.BootResumePolicy)" explainText="$(string.BootResumePolicyHelp)" key="Software\Policies\Microsoft\Windows\NvCache" valueName="OptimizeBootAndResume">
+      <parentCategory ref="NvCacheCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="CachePowerModePolicy" class="Machine" displayName="$(string.CachePowerModePolicy)" explainText="$(string.CachePowerModePolicyHelp)" key="Software\Policies\Microsoft\Windows\NvCache" valueName="EnablePowerModeState">
+      <parentCategory ref="NvCacheCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="FeatureOffPolicy" class="Machine" displayName="$(string.FeatureOffPolicy)" explainText="$(string.FeatureOffPolicyHelp)" key="Software\Policies\Microsoft\Windows\NvCache" valueName="EnableNvCache">
+      <parentCategory ref="NvCacheCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="SolidStatePolicy" class="Machine" displayName="$(string.SolidStatePolicy)" explainText="$(string.SolidStatePolicyHelp)" key="Software\Policies\Microsoft\Windows\NvCache" valueName="EnableSolidStateMode">
+      <parentCategory ref="NvCacheCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

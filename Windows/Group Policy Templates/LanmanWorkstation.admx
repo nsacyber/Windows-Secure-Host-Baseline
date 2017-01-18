@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="LanmanWorkstation" namespace="Microsoft.Policies.LanmanWorkstation" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Cat_LanmanWorkstation" displayName="$(string.Cat_LanmanWorkstation)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_CipherSuiteOrder_Name)"
+        explainText="$(string.Pol_CipherSuiteOrder_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_CipherSuiteOrder"
+        presentation="$(presentation.Pol_CipherSuiteOrder)"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <multiText
+            id="MultiText_CipherSuiteOrder"
+            valueName="CipherSuiteOrder"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_EnableInsecureGuestLogons_Name)"
+        explainText="$(string.Pol_EnableInsecureGuestLogons_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_EnableInsecureGuestLogons"
+        valueName="AllowInsecureGuestAuth"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_EnableCSCforCAShares_Name)"
+        explainText="$(string.Pol_EnableCSCforCAShares_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_EnableOfflineFilesforCAShares"
+        valueName="AllowOfflineFilesforCAShares"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_EnableHandleCachingForCAFiles_Name)"
+        explainText="$(string.Pol_EnableHandleCachingForCAFiles_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanWorkstation"
+        name="Pol_EnableHandleCachingForCAFiles"
+        valueName="EnableHandleCachingForCAFiles"
+        >
+      <parentCategory ref="Cat_LanmanWorkstation"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy></policies>
+</policyDefinitions>

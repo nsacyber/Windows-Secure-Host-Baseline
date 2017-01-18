@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="appprivacy" namespace="Microsoft.Policies.AppPrivacy" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AppPrivacy" displayName="$(string.AppPrivacy)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="LetAppsAccessAccountInfo"
+            class="Machine"
+            displayName="$(string.LetAppsAccessAccountInfo_Name)"
+            explainText="$(string.LetAppsAccessAccountInfo_Explain)"
+            presentation="$(presentation.LetAppsAccessAccountInfo)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessAccountInfo_Enum" valueName="LetAppsAccessAccountInfo">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessAccountInfo_UserInControlOfTheseApps_List" valueName="LetAppsAccessAccountInfo_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessAccountInfo_ForceAllowTheseApps_List" valueName="LetAppsAccessAccountInfo_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessAccountInfo_ForceDenyTheseApps_List" valueName="LetAppsAccessAccountInfo_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessCalendar"
+            class="Machine"
+            displayName="$(string.LetAppsAccessCalendar_Name)"
+            explainText="$(string.LetAppsAccessCalendar_Explain)"
+            presentation="$(presentation.LetAppsAccessCalendar)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessCalendar_Enum" valueName="LetAppsAccessCalendar">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessCalendar_UserInControlOfTheseApps_List" valueName="LetAppsAccessCalendar_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessCalendar_ForceAllowTheseApps_List" valueName="LetAppsAccessCalendar_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessCalendar_ForceDenyTheseApps_List" valueName="LetAppsAccessCalendar_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessCallHistory"
+            class="Machine"
+            displayName="$(string.LetAppsAccessCallHistory_Name)"
+            explainText="$(string.LetAppsAccessCallHistory_Explain)"
+            presentation="$(presentation.LetAppsAccessCallHistory)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessCallHistory_Enum" valueName="LetAppsAccessCallHistory">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessCallHistory_UserInControlOfTheseApps_List" valueName="LetAppsAccessCallHistory_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessCallHistory_ForceAllowTheseApps_List" valueName="LetAppsAccessCallHistory_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessCallHistory_ForceDenyTheseApps_List" valueName="LetAppsAccessCallHistory_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessCamera"
+            class="Machine"
+            displayName="$(string.LetAppsAccessCamera_Name)"
+            explainText="$(string.LetAppsAccessCamera_Explain)"
+            presentation="$(presentation.LetAppsAccessCamera)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessCamera_Enum" valueName="LetAppsAccessCamera">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessCamera_UserInControlOfTheseApps_List" valueName="LetAppsAccessCamera_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessCamera_ForceAllowTheseApps_List" valueName="LetAppsAccessCamera_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessCamera_ForceDenyTheseApps_List" valueName="LetAppsAccessCamera_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessContacts"
+            class="Machine"
+            displayName="$(string.LetAppsAccessContacts_Name)"
+            explainText="$(string.LetAppsAccessContacts_Explain)"
+            presentation="$(presentation.LetAppsAccessContacts)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessContacts_Enum" valueName="LetAppsAccessContacts">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessContacts_UserInControlOfTheseApps_List" valueName="LetAppsAccessContacts_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessContacts_ForceAllowTheseApps_List" valueName="LetAppsAccessContacts_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessContacts_ForceDenyTheseApps_List" valueName="LetAppsAccessContacts_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessEmail"
+            class="Machine"
+            displayName="$(string.LetAppsAccessEmail_Name)"
+            explainText="$(string.LetAppsAccessEmail_Explain)"
+            presentation="$(presentation.LetAppsAccessEmail)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessEmail_Enum" valueName="LetAppsAccessEmail">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessEmail_UserInControlOfTheseApps_List" valueName="LetAppsAccessEmail_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessEmail_ForceAllowTheseApps_List" valueName="LetAppsAccessEmail_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessEmail_ForceDenyTheseApps_List" valueName="LetAppsAccessEmail_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessLocation"
+            class="Machine"
+            displayName="$(string.LetAppsAccessLocation_Name)"
+            explainText="$(string.LetAppsAccessLocation_Explain)"
+            presentation="$(presentation.LetAppsAccessLocation)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessLocation_Enum" valueName="LetAppsAccessLocation">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessLocation_UserInControlOfTheseApps_List" valueName="LetAppsAccessLocation_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessLocation_ForceAllowTheseApps_List" valueName="LetAppsAccessLocation_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessLocation_ForceDenyTheseApps_List" valueName="LetAppsAccessLocation_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessMessaging"
+            class="Machine"
+            displayName="$(string.LetAppsAccessMessaging_Name)"
+            explainText="$(string.LetAppsAccessMessaging_Explain)"
+            presentation="$(presentation.LetAppsAccessMessaging)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessMessaging_Enum" valueName="LetAppsAccessMessaging">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessMessaging_UserInControlOfTheseApps_List" valueName="LetAppsAccessMessaging_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessMessaging_ForceAllowTheseApps_List" valueName="LetAppsAccessMessaging_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessMessaging_ForceDenyTheseApps_List" valueName="LetAppsAccessMessaging_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessMicrophone"
+            class="Machine"
+            displayName="$(string.LetAppsAccessMicrophone_Name)"
+            explainText="$(string.LetAppsAccessMicrophone_Explain)"
+            presentation="$(presentation.LetAppsAccessMicrophone)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessMicrophone_Enum" valueName="LetAppsAccessMicrophone">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessMicrophone_UserInControlOfTheseApps_List" valueName="LetAppsAccessMicrophone_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessMicrophone_ForceAllowTheseApps_List" valueName="LetAppsAccessMicrophone_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessMicrophone_ForceDenyTheseApps_List" valueName="LetAppsAccessMicrophone_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessMotion"
+            class="Machine"
+            displayName="$(string.LetAppsAccessMotion_Name)"
+            explainText="$(string.LetAppsAccessMotion_Explain)"
+            presentation="$(presentation.LetAppsAccessMotion)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessMotion_Enum" valueName="LetAppsAccessMotion">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessMotion_UserInControlOfTheseApps_List" valueName="LetAppsAccessMotion_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessMotion_ForceAllowTheseApps_List" valueName="LetAppsAccessMotion_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessMotion_ForceDenyTheseApps_List" valueName="LetAppsAccessMotion_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessNotifications"
+            class="Machine"
+            displayName="$(string.LetAppsAccessNotifications_Name)"
+            explainText="$(string.LetAppsAccessNotifications_Explain)"
+            presentation="$(presentation.LetAppsAccessNotifications)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessNotifications_Enum" valueName="LetAppsAccessNotifications">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessNotifications_UserInControlOfTheseApps_List" valueName="LetAppsAccessNotifications_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessNotifications_ForceAllowTheseApps_List" valueName="LetAppsAccessNotifications_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessNotifications_ForceDenyTheseApps_List" valueName="LetAppsAccessNotifications_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessPhone"
+            class="Machine"
+            displayName="$(string.LetAppsAccessPhone_Name)"
+            explainText="$(string.LetAppsAccessPhone_Explain)"
+            presentation="$(presentation.LetAppsAccessPhone)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessPhone_Enum" valueName="LetAppsAccessPhone">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessPhone_UserInControlOfTheseApps_List" valueName="LetAppsAccessPhone_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessPhone_ForceAllowTheseApps_List" valueName="LetAppsAccessPhone_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessPhone_ForceDenyTheseApps_List" valueName="LetAppsAccessPhone_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessRadios"
+            class="Machine"
+            displayName="$(string.LetAppsAccessRadios_Name)"
+            explainText="$(string.LetAppsAccessRadios_Explain)"
+            presentation="$(presentation.LetAppsAccessRadios)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessRadios_Enum" valueName="LetAppsAccessRadios">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessRadios_UserInControlOfTheseApps_List" valueName="LetAppsAccessRadios_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessRadios_ForceAllowTheseApps_List" valueName="LetAppsAccessRadios_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessRadios_ForceDenyTheseApps_List" valueName="LetAppsAccessRadios_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsSyncWithDevices"
+            class="Machine"
+            displayName="$(string.LetAppsSyncWithDevices_Name)"
+            explainText="$(string.LetAppsSyncWithDevices_Explain)"
+            presentation="$(presentation.LetAppsSyncWithDevices)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsSyncWithDevices_Enum" valueName="LetAppsSyncWithDevices">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsSyncWithDevices_UserInControlOfTheseApps_List" valueName="LetAppsSyncWithDevices_UserInControlOfTheseApps" />
+        <multiText id="LetAppsSyncWithDevices_ForceAllowTheseApps_List" valueName="LetAppsSyncWithDevices_ForceAllowTheseApps" />
+        <multiText id="LetAppsSyncWithDevices_ForceDenyTheseApps_List" valueName="LetAppsSyncWithDevices_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+    <policy name="LetAppsAccessTrustedDevices"
+            class="Machine"
+            displayName="$(string.LetAppsAccessTrustedDevices_Name)"
+            explainText="$(string.LetAppsAccessTrustedDevices_Explain)"
+            presentation="$(presentation.LetAppsAccessTrustedDevices)"
+            key="Software\Policies\Microsoft\Windows\AppPrivacy">
+      <parentCategory ref="AppPrivacy" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <elements>
+        <enum id="LetAppsAccessTrustedDevices_Enum" valueName="LetAppsAccessTrustedDevices">
+          <item displayName="$(string.UserInControl)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceAllow)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ForceDeny)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <multiText id="LetAppsAccessTrustedDevices_UserInControlOfTheseApps_List" valueName="LetAppsAccessTrustedDevices_UserInControlOfTheseApps" />
+        <multiText id="LetAppsAccessTrustedDevices_ForceAllowTheseApps_List" valueName="LetAppsAccessTrustedDevices_ForceAllowTheseApps" />
+        <multiText id="LetAppsAccessTrustedDevices_ForceDenyTheseApps_List" valueName="LetAppsAccessTrustedDevices_ForceDenyTheseApps" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

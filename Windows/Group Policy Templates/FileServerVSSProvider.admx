@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.2" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="Provider" namespace="Microsoft.Policies.FileShareShadowCopy.Provider" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" /> 
+  </policyNamespaces>
+  <resources minRequiredRevision="1.2" />
+  <categories>
+    <category name="Cat_FileShareShadowCopyProvider" displayName="$(string.Cat_FileShareShadowCopyProvider)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Pol_EncryptProtocol" class="Machine" displayName="$(string.Pol_EncryptProtocol)" explainText="$(string.Pol_EncryptProtocol_Help)" key="Software\Policies\Microsoft\Windows\fssProv" valueName="EncryptProtocol">
+      <parentCategory ref="Cat_FileShareShadowCopyProvider" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>    
+  </policies>
+</policyDefinitions>

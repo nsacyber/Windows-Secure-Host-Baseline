@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="desktop" namespace="Microsoft.Policies.WindowsDesktop" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="ActiveDesktop" displayName="$(string.ActiveDesktop)">
+      <parentCategory ref="windows:Desktop" />
+    </category>
+    <category name="ActiveDirectory" displayName="$(string.ActiveDirectory)">
+      <parentCategory ref="windows:Desktop" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ForceActiveDesktopOn" class="User" displayName="$(string.ForceActiveDesktopOn)" explainText="$(string.ForceActiveDesktopOn_Help)" presentation="$(presentation.ForceActiveDesktopOn)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="ForceActiveDesktopOn">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoActiveDesktop" class="User" displayName="$(string.NoActiveDesktop)" explainText="$(string.NoActiveDesktop_Help)" presentation="$(presentation.NoActiveDesktop)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoActiveDesktop">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoActiveDesktopChanges" class="User" displayName="$(string.NoActiveDesktopChanges)" explainText="$(string.NoActiveDesktopChanges_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoActiveDesktopChanges">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_AdminComponents_Title" class="User" displayName="$(string.sz_AdminComponents_Title)" explainText="$(string.AdminComponents_Help)" presentation="$(presentation.sz_AdminComponents_Title)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop\AdminComponent">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <text id="sz_ATC_AdminAddItem" valueName="Add" />
+        <text id="sz_ATC_AdminDeleteItem" valueName="Delete" />
+      </elements>
+    </policy>
+    <policy name="sz_ATC_DisableAdd" class="User" displayName="$(string.sz_ATC_DisableAdd)" explainText="$(string.NoAddingComponents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoAddingComponents">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_ATC_DisableClose" class="User" displayName="$(string.sz_ATC_DisableClose)" explainText="$(string.NoClosingComponents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoClosingComponents">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_ATC_DisableDel" class="User" displayName="$(string.sz_ATC_DisableDel)" explainText="$(string.NoDeletingComponents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoDeletingComponents">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_ATC_DisableEdit" class="User" displayName="$(string.sz_ATC_DisableEdit)" explainText="$(string.NoEditingComponents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoEditingComponents">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_ATC_NoComponents" class="User" displayName="$(string.sz_ATC_NoComponents)" explainText="$(string.ATC_NoComponents_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoComponents">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="sz_DWP_NoHTMLPaper" class="User" displayName="$(string.sz_DWP_NoHTMLPaper)" explainText="$(string.NoHTMLWallPaper_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\ActiveDesktop" valueName="NoHTMLWallPaper">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="Wallpaper" class="User" displayName="$(string.Wallpaper)" explainText="$(string.Wallpaper_Help)" presentation="$(presentation.Wallpaper)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="ActiveDesktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="WallpaperName" valueName="Wallpaper" required="true" />
+        <enum id="WallpaperStyle" valueName="WallpaperStyle" required="true">
+          <item displayName="$(string.WallpaperStyle_Center)">
+            <value>
+              <string>0</string>
+            </value>
+          </item>
+          <item displayName="$(string.WallpaperStyle_Tile)">
+            <value>
+              <string>1</string>
+            </value>
+          </item>
+          <item displayName="$(string.WallpaperStyle_Stretch)">
+            <value>
+              <string>2</string>
+            </value>
+          </item>
+          <item displayName="$(string.WallpaperStyle_KeepAspect)">
+            <value>
+              <string>3</string>
+            </value>
+          </item>
+          <item displayName="$(string.WallpaperStyle_CropToFit)">
+            <value>
+              <string>4</string>
+            </value>
+          </item>
+          <item displayName="$(string.WallpaperStyle_Span)">
+            <value>
+              <string>5</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AD_EnableFilter" class="User" displayName="$(string.AD_EnableFilter)" explainText="$(string.AD_EnableFilter_Help)" key="Software\Policies\Microsoft\Windows\Directory UI" valueName="EnableFilter">
+      <parentCategory ref="ActiveDirectory" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="AD_HideDirectoryFolder" class="User" displayName="$(string.AD_HideDirectoryFolder)" explainText="$(string.AD_HideDirectoryFolder_Help)" key="Software\Policies\Microsoft\Windows\Directory UI" valueName="HideDirectoryFolder">
+      <parentCategory ref="ActiveDirectory" />
+      <supportedOn ref="windows:SUPPORTED_Win2kOnly" />
+    </policy>
+    <policy name="AD_QueryLimit" class="User" displayName="$(string.AD_QueryLimit)" explainText="$(string.AD_QueryLimit_Help)" presentation="$(presentation.AD_QueryLimit)" key="Software\Policies\Microsoft\Windows\Directory UI">
+      <parentCategory ref="ActiveDirectory" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="AD_QueryLimit_Box" valueName="QueryLimit" required="true" maxValue="4000000000" />
+      </elements>
+    </policy>
+    <policy name="DisablePersonalDirChange" class="User" displayName="$(string.DisablePersonalDirChange)" explainText="$(string.DisablePersonalDirChange_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisablePersonalDirChange">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoDesktop" class="User" displayName="$(string.NoDesktop)" explainText="$(string.NoDesktop_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoDesktop">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoDesktopCleanupWizard" class="User" displayName="$(string.NoDesktopCleanupWizard)" explainText="$(string.NoDesktopCleanupWizard_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoDesktopCleanupWizard">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPOrServerOnly" />
+    </policy>
+    <policy name="NoInternetIcon" class="User" displayName="$(string.NoInternetIcon)" explainText="$(string.NoInternetIcon_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetIcon">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoMyComputerIcon" class="User" displayName="$(string.NoMyComputerIcon)" explainText="$(string.NoMyComputerIcon_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum" valueName="{20D04FE0-3AEA-1069-A2D8-08002B30309D}">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoMyDocumentsIcon" class="User" displayName="$(string.NoMyDocumentsIcon)" explainText="$(string.NoMyDocumentsIcon_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum" valueName="{450D8FBA-AD25-11D0-98A8-0800361B1103}">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoNetHood" class="User" displayName="$(string.NoNetHood)" explainText="$(string.NoNetHood_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoNetHood">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoPropertiesMyComputer" class="User" displayName="$(string.NoPropertiesMyComputer)" explainText="$(string.NoPropertiesMyComputer_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPropertiesMyComputer">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2kSP3" />
+    </policy>
+    <policy name="NoPropertiesMyDocuments" class="User" displayName="$(string.NoPropertiesMyDocuments)" explainText="$(string.NoPropertiesMyDocuments_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPropertiesMyDocuments">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoRecentDocsNetHood" class="User" displayName="$(string.NoRecentDocsNetHood)" explainText="$(string.NoRecentDocsNetHood_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoRecentDocsNetHood">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoRecycleBinIcon" class="User" displayName="$(string.NoRecycleBinIcon)" explainText="$(string.NoRecycleBinIcon_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum" valueName="{645FF040-5081-101B-9F08-00AA002F954E}">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoRecycleBinProperties" class="User" displayName="$(string.NoRecycleBinProperties)" explainText="$(string.NoRecycleBinProperties_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPropertiesRecycleBin">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="NoSaveSettings" class="User" displayName="$(string.NoSaveSettings)" explainText="$(string.NoSaveSettings_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoSaveSettings">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="sz_DB_DragDropClose" class="User" displayName="$(string.sz_DB_DragDropClose)" explainText="$(string.NoCloseDragDropBands_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoCloseDragDropBands">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="sz_DB_Moving" class="User" displayName="$(string.sz_DB_Moving)" explainText="$(string.NoMovingBands_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoMovingBands">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoWindowMinimizingShortcuts" class="User" displayName="$(string.NoWindowMinimizingShortcuts)" explainText="$(string.NoWindowMinimizingShortcuts_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoWindowMinimizingShortcuts">
+      <parentCategory ref="windows:Desktop" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

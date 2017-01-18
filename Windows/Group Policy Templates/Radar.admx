@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="radar" namespace="Microsoft.Policies.ResourceExhaustionDiagnostics" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WdiScenarioCategory" displayName="$(string.WdiScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WdiScenarioExecutionPolicy" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.WdiScenarioExecutionPolicyExplain)" presentation="$(presentation.WdiScenarioExecutionPolicy)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{3af8b24a-c441-4fa4-8c5c-bed591bfa867}" valueName="ScenarioExecutionEnabled">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="WdiScenarioExecutionPolicyLevel" valueName="EnabledScenarioExecutionLevel" required="true">
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelTsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WdiScenarioExecutionPolicyLevelResolution)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

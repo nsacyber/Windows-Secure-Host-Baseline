@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="ceipenable" namespace="Microsoft.Policies.CustomerExperienceProgram" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WindowsCEIPCat" displayName="$(string.WindowsCEIPCat)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="CorporateSQM" class="Machine" displayName="$(string.CorporateSQM)" explainText="$(string.CorporateSQMExp)" presentation="$(presentation.CorporateSQM)" key="Software\Policies\Microsoft\SQMClient">
+      <parentCategory ref="WindowsCEIPCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+           <text id="CorporateSQMURL" valueName="CorporateSQMURL" required="true" maxLength="256"/>
+      </elements>     
+    </policy>
+    <policy name="StudyId" class="Machine" displayName="$(string.StudyId)" explainText="$(string.StudyIdExp)" presentation="$(presentation.StudyId)" key="Software\Policies\Microsoft\SQMClient\Windows" valueName="StudyId">
+      <parentCategory ref="WindowsCEIPCat" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements> 
+	<decimal id="StudyIdVal" valueName="StudyId" required="true" maxvalue="65535"/>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

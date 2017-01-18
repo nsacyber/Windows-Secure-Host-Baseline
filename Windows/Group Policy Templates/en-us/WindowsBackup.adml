@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Windows Backup</displayName>
+  <description>Windows Backup</description>
+  <resources>
+    <stringTable>
+      <string id="AllowOnlySystemBackup">Allow only system backup</string>
+      <string id="AllowOnlySystemBackupExplain">This policy setting allows you to manage whether backups of only system volumes is allowed or both OS and data volumes can be backed up.
+
+If you enable this policy setting, machine administrator/backup operator can backup only volumes hosting OS components and no data only volumes can be backed up.If you disable or do not configure this policy setting, backups can include both system or data volumes.</string>
+      <string id="DisallowLocallyAttachedStorageAsBackupTarget">Disallow locally attached storage as backup target</string>
+      <string id="DisallowLocallyAttachedStorageAsBackupTargetExplain">This policy setting allows you to manage whether backups of a machine can run to locally attached storage or not.
+
+If you enable this policy setting, machine administrator/backup operator cannot use Windows Server Backup to run backups to a locally attached storage or disk.
+
+If you disable or do not configure this policy setting, there is no restriction on locally attached storage or disk being backup target.</string>
+      <string id="DisallowNetworkAsBackupTarget">Disallow network as backup target</string>
+      <string id="DisallowNetworkAsBackupTargetExplain">This policy setting allows you to manage whether backups of a machine can run to a network share or not.
+
+If you enable this policy setting, machine administrator/backup operator cannot use Windows Server Backup to run backups to a network share.
+
+If you disable or do not configure this policy setting, there is no restriction on network share being backup target.</string>
+      <string id="DisallowOpticalMediaAsBackupTarget">Disallow optical media as backup target</string>
+      <string id="DisallowOpticalMediaAsBackupTargetExplain">This policy setting allows you to manage whether backups of a machine can run to an optical media or not.
+
+If you enable this policy setting, machine administrator/backup operator cannot use Windows Server Backup to run backups to an optical media.
+
+If you disable or do not configure this policy setting, there is no restriction on optical media being backup target.</string>
+      <string id="DisallowRunOnceBackups">Disallow run-once backups</string>
+      <string id="DisallowRunOnceBackupsexplain">This policy setting allows you to manage whether run-once backups of a machine can be run or not.
+
+If you enable this policy setting, machine administrator/backup operator cannot use Windows Server Backup to run non-scheduled run-once backups.
+
+If you disable or do not configure this policy setting, there is no restriction on running run-once backups.</string>
+      <string id="supported_win_vista">Windows Server 2008 and later.</string>
+      <string id="Backup">Backup</string>
+      <string id="BackupServer">Server</string>
+      <string id="windowscomponents">Windows Components</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) Microsoft. All rights reserved.  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="appxruntime" namespace="Microsoft.Policies.AppxRuntime" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AppXRuntime" displayName="$(string.AppxRuntime)" explainText="$(string.AppxRuntime_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AppxRuntimeBlockFileElevation" class="Both" displayName="$(string.AppxRuntimeBlockFileElevation)" explainText="$(string.AppxRuntimeBlockFileElevationExplanation)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations" valueName="BlockFileElevation">
+      <parentCategory ref="AppXRuntime" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppxRuntimeBlockProtocolElevation" class="Both" displayName="$(string.AppxRuntimeBlockProtocolElevation)" explainText="$(string.AppxRuntimeBlockProtocolElevationExplanation)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations" valueName="BlockProtocolElevation">
+      <parentCategory ref="AppXRuntime" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppxRuntimeMicrosoftAccountsOptional" class="Machine" displayName="$(string.AppxRuntimeMicrosoftAccountsOptional)" explainText="$(string.AppxRuntimeMicrosoftAccountsOptionalExplanation)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="MSAOptional">
+      <parentCategory ref="AppXRuntime" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AppxRuntimeApplicationContentUriRules" class="Machine" displayName="$(string.AppxRuntimeApplicationContentUriRules)" explainText="$(string.AppxRuntimeApplicationContentUriRulesExplanation)" presentation="$(presentation.AppxRuntimeApplicationContentUriRules)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Packages\Applications" valueName="EnableDynamicContentUriRules">
+      <parentCategory ref="AppXRuntime" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+         <list id="ListBox_ContentUriRules" key="Software\Microsoft\Windows\CurrentVersion\Policies\Packages\Applications\ContentUriRules" valuePrefix=""/>
+       </elements>
+    </policy>
+    <policy name="AppxRuntimeBlockHostedAppAccessWinRT" class="Machine" displayName="$(string.AppxRuntimeBlockHostedAppAccessWinRT)" explainText="$(string.AppxRuntimeBlockHostedAppAccessWinRTExplanation)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="BlockHostedAppAccessWinRT">
+      <parentCategory ref="AppXRuntime" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

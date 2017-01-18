@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="AppPrivacy">App Privacy</string>
+      <string id="UserInControl">User is in control</string>
+      <string id="ForceAllow">Force Allow</string>
+      <string id="ForceDeny">Force Deny</string>
+      <string id="LetAppsAccessAccountInfo_Name">Let Windows apps access account information</string>
+      <string id="LetAppsAccessAccountInfo_Explain">This policy setting specifies whether Windows apps can access account information.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access account information by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access account information and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access account information and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access account information by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessCalendar_Name">Let Windows apps access the calendar</string>
+      <string id="LetAppsAccessCalendar_Explain">This policy setting specifies whether Windows apps can access the calendar.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access the calendar by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access the calendar and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access the calendar and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access the calendar by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessCallHistory_Name">Let Windows apps access call history</string>
+      <string id="LetAppsAccessCallHistory_Explain">This policy setting specifies whether Windows apps can access call history.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access call history by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access the call history and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access the call history and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access the call history by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessCamera_Name">Let Windows apps access the camera</string>
+      <string id="LetAppsAccessCamera_Explain">This policy setting specifies whether Windows apps can access the camera.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access the camera by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access the camera and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access the camera and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access the camera by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessContacts_Name">Let Windows apps access contacts</string>
+      <string id="LetAppsAccessContacts_Explain">This policy setting specifies whether Windows apps can access contacts.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access contacts by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access contacts and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access contacts and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access contacts by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessEmail_Name">Let Windows apps access email</string>
+      <string id="LetAppsAccessEmail_Explain">This policy setting specifies whether Windows apps can access email.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access email by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access email and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access email and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access email by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessLocation_Name">Let Windows apps access location</string>
+      <string id="LetAppsAccessLocation_Explain">This policy setting specifies whether Windows apps can access location.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access location by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access location and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access location and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access location by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessMessaging_Name">Let Windows apps access messaging</string>
+      <string id="LetAppsAccessMessaging_Explain">This policy setting specifies whether Windows apps can read or send messages (text or MMS).
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can read or send messages by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps can read or send messages and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps cannot read or send messages and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can read or send messages by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessMicrophone_Name">Let Windows apps access the microphone</string>
+      <string id="LetAppsAccessMicrophone_Explain">This policy setting specifies whether Windows apps can access the microphone.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access the microphone by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access the microphone and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access the microphone and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access the microphone by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessMotion_Name">Let Windows apps access motion</string>
+      <string id="LetAppsAccessMotion_Explain">This policy setting specifies whether Windows apps can access motion data.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access motion data by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access motion data and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access motion data and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access motion data by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessNotifications_Name">Let Windows apps access notifications</string>
+      <string id="LetAppsAccessNotifications_Explain">This policy setting specifies whether Windows apps can access notifications.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access notifications by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access notifications and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access notifications and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access notifications by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessPhone_Name">Let Windows apps make phone calls</string>
+      <string id="LetAppsAccessPhone_Explain">This policy setting specifies whether Windows apps can make phone calls.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can make phone calls by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to make phone calls and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to make phone calls and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can make phone calls by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessRadios_Name">Let Windows apps control radios</string>
+      <string id="LetAppsAccessRadios_Explain">This policy setting specifies whether Windows apps have access to control radios.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps have access to control radios by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps will have access to control radios and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps will not have access to control radios and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps have access to control radios by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsSyncWithDevices_Name">Let Windows apps sync with devices</string>
+      <string id="LetAppsSyncWithDevices_Explain">This policy setting specifies whether Windows apps can sync with devices.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can sync with devices by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to sync with devices and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to sync with devices and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can sync with devices by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+      <string id="LetAppsAccessTrustedDevices_Name">Let Windows apps access trusted devices</string>
+      <string id="LetAppsAccessTrustedDevices_Explain">This policy setting specifies whether Windows apps can access trusted devices.
+
+You can specify either a default setting for all apps or a per-app setting by specifying a Package Family Name. You can get the Package Family Name for an app by using the Get-AppPackage Windows PowerShell cmdlet. A per-app setting overrides the default setting.
+
+If you choose the "User is in control" option, employees in your organization can decide whether Windows apps can access trusted devices by using Settings &gt; Privacy on the device.
+
+If you choose the "Force Allow" option, Windows apps are allowed to access trusted devices and employees in your organization cannot change it.
+
+If you choose the "Force Deny" option, Windows apps are not allowed to access trusted devices and employees in your organization cannot change it.
+
+If you disable or do not configure this policy setting, employees in your organization can decide whether Windows apps can access trusted devices by using Settings &gt; Privacy on the device.
+
+If an app is open when this Group Policy object is applied on a device, employees must restart the app or device for the policy changes to be applied to the app.
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="LetAppsAccessCalendar">
+        <dropdownList refId="LetAppsAccessCalendar_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCalendar_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCalendar_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCalendar_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessPhone">
+        <dropdownList refId="LetAppsAccessPhone_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessPhone_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessPhone_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessPhone_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessCallHistory">
+        <dropdownList refId="LetAppsAccessCallHistory_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCallHistory_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCallHistory_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCallHistory_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessCamera">
+        <dropdownList refId="LetAppsAccessCamera_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCamera_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCamera_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessCamera_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessContacts">
+        <dropdownList refId="LetAppsAccessContacts_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessContacts_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessContacts_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessContacts_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessEmail">
+        <dropdownList refId="LetAppsAccessEmail_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessEmail_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessEmail_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessEmail_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessLocation">
+        <dropdownList refId="LetAppsAccessLocation_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessLocation_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessLocation_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessLocation_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessMessaging">
+        <dropdownList refId="LetAppsAccessMessaging_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMessaging_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMessaging_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMessaging_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessMicrophone">
+        <dropdownList refId="LetAppsAccessMicrophone_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMicrophone_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMicrophone_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMicrophone_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessMotion">
+        <dropdownList refId="LetAppsAccessMotion_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMotion_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMotion_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessMotion_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessNotifications">
+        <dropdownList refId="LetAppsAccessNotifications_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessNotifications_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessNotifications_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessNotifications_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessRadios">
+        <dropdownList refId="LetAppsAccessRadios_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessRadios_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessRadios_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessRadios_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessAccountInfo">
+        <dropdownList refId="LetAppsAccessAccountInfo_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessAccountInfo_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessAccountInfo_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessAccountInfo_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsSyncWithDevices">
+        <dropdownList refId="LetAppsSyncWithDevices_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsSyncWithDevices_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsSyncWithDevices_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsSyncWithDevices_ForceDenyTheseApps_List"/>
+      </presentation>
+      <presentation id="LetAppsAccessTrustedDevices">
+        <dropdownList refId="LetAppsAccessTrustedDevices_Enum" noSort="true" defaultItem="0">Default for all apps:</dropdownList>
+        <text>Put user in control of these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessTrustedDevices_UserInControlOfTheseApps_List"/>
+        <text>Force allow these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessTrustedDevices_ForceAllowTheseApps_List"/>
+        <text>Force deny these specific apps (use Package Family Names):</text>
+        <multiTextBox refId="LetAppsAccessTrustedDevices_ForceDenyTheseApps_List"/>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

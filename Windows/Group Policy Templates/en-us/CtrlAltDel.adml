@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="CADOptions">Ctrl+Alt+Del Options</string>
+      <string id="DisableChangePassword">Remove Change Password</string>
+      <string id="DisableChangePassword_Help">This policy setting prevents users from changing their Windows password on demand.
+
+If you enable this policy setting,  the 'Change Password' button on the Windows Security dialog box will not appear when you press Ctrl+Alt+Del.
+
+However, users are still able to change their password when prompted by the system. The system prompts users for a new password when an administrator requires a new password or their password is expiring.</string>
+      <string id="DisableLockComputer">Remove Lock Computer</string>
+      <string id="DisableLockComputer_Help">This policy setting prevents users from locking the system.
+
+While locked, the desktop is hidden and the system cannot be used. Only the user who locked the system or the system administrator can unlock it.
+
+If you enable this policy setting, users cannot lock the computer from the keyboard using Ctrl+Alt+Del.
+
+If you disable or do not configure this policy setting, users will be able to lock the computer from the keyboard using Ctrl+Alt+Del.
+
+Tip:To lock a computer without configuring a setting, press Ctrl+Alt+Delete, and then click Lock this computer.</string>
+      <string id="DisableTaskMgr">Remove Task Manager</string>
+      <string id="DisableTaskMgr_Help">This policy setting prevents users from starting Task Manager.
+
+Task Manager (taskmgr.exe) lets users start and stop programs; monitor the performance of their computers; view and monitor all programs running on their computers, including system services; find the executable names of programs; and change the priority of the process in which programs run.
+
+If you enable this policy setting, users will not be able to access Task Manager. If users try to start Task Manager, a message appears explaining that a policy prevents the action.
+
+If you disable or do not configure this policy setting, users can access Task Manager to  start and stop programs, monitor the performance of their computers, view and monitor all programs running on their computers, including system services, find the executable names of programs, and change the priority of the process in which programs run.</string>
+      <string id="NoLogoff">Remove Logoff</string>
+      <string id="NoLogOff_Help">This policy setting disables or removes all menu items and buttons that log the user off the system.
+
+If you enable this policy setting, users will not see the Log off menu item when they press Ctrl+Alt+Del. This will prevent them from logging off unless they restart or shutdown the computer, or clicking Log off from the Start menu.
+
+Also, see the 'Remove Logoff on the Start Menu' policy setting.
+
+If you disable or do not configure this policy setting, users can see and select the Log off menu item when they press Ctrl+Alt+Del.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

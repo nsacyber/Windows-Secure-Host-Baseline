@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Microsoft Edge Group Policies</displayName>
+  <description>Policies defined to manage Microsoft Edge settings via Group Policy Management services.</description>
+  <resources>
+    <stringTable>
+      <!-- Product -->
+      <string id="SUPPORTED_INTERNET_BROWSER_1_DisplayName">Only Microsoft Edge 1.0</string>
+      <string id="SUPPORTED_INTERNET_BROWSER_WIN10_DisplayName">Microsoft Edge on Windows 10 or later</string>
+      <string id="SUPPORTED_INTERNET_BROWSER_WIN10V1511_DisplayName">Microsoft Edge on Windows 10, Version 1511 or later</string>
+      <string id="SUPPORTED_INTERNET_BROWSER_WIN10V1607_DisplayName">Microsoft Edge on Windows 10, Version 1607 or later</string>
+      <string id="InternetBrowser_DisplayName">Microsoft Edge</string>
+      <string id="InternetBrowser_ExplainCat">Microsoft Edge Category</string>
+
+      <!-- Categories -->
+
+      <!-- NOTE: Please try to keep this list sorted by the string id="" field -->
+      <!-- Policies -->
+      <string id="HomePages">Configure Home pages</string>
+      <string id="HomePages_Explain">This policy setting lets you configure one or more Home pages. for domain-joined devices. Your employees won't be able to change this after you set it.
+
+If you enable this setting, you can configure one or more Home pages. If this setting is enabled, you must also include URLs to the pages, separating multiple pages by using angle brackets in this format:
+     &lt;support.contoso.com&gt;&lt;support.microsoft.com&gt;
+If you disable or don't configure this setting, your default Home page is the webpage specified in App settings.
+</string>
+      <string id="AllowAutofill">Configure Autofill</string>
+      <string id="AllowAutofill_Explain">This policy setting lets you decide whether employees can use Autofill to automatically fill in form fields while using Microsoft Edge. By default, employees can choose whether to use Autofill.
+
+If you enable this setting, employees can use Autofill to automatically fill in forms while using Microsoft Edge.
+
+If you disable this setting, employees can't use Autofill to automatically fill in forms while using Microsoft Edge.
+
+If you don't configure this setting, employees can choose whether to use Autofill to automatically fill in forms while using Microsoft Edge.</string>
+      <string id="AllowDeveloperTools">Allow Developer Tools</string>
+      <string id="AllowDeveloperTools_Explain">This policy setting lets you decide whether F12 Developer Tools are available on Microsoft Edge.
+
+If you enable or don't configure this setting, the F12 Developer Tools are available in Microsoft Edge.
+
+If you disable this setting, the F12 Developer Tools aren't available in Microsoft Edge.</string>
+      <string id="AllowDoNotTrack">Configure Do Not Track</string>
+      <string id="AllowDoNotTrack_Explain">This policy setting lets you decide whether employees can send Do Not Track requests to websites that ask for tracking info.  By default, Do Not Track requests aren't sent, but employees can choose to turn on and send requests.
+
+If you enable this setting, Do Not Tracker requests are always sent to websites asking for tracking info.
+
+If you disable this setting, Do Not Track requests are never sent to websites asking for tracking info.
+
+If you don't configure this setting, employees can choose whether to send Do Not Track requests to websites asking for tracking info.</string>
+      <string id="AllowInPrivate">Allow InPrivate browsing</string>
+      <string id="AllowInPrivate_Explain">This policy setting lets you decide whether employees can browse using InPrivate website browsing.
+
+If you enable or don't configure this setting, employees can use InPrivate website browsing.
+
+If you disable this setting, employees can't use InPrivate website browsing.</string>
+      <string id="AllowPasswordManager">Configure Password Manager</string>
+      <string id="AllowPasswordManager_Explain">This policy setting lets you decide whether employees can save their passwords locally, using Password Manager. By default, Password Manager is turned on.
+
+If you enable this setting, employees can use Password Manager to save their passwords locally.
+
+If you disable this setting, employees can't use Password Manager to save their passwords locally.
+
+If you don't configure this setting, employees can choose whether to use Password Manager to save their passwords locally.</string>
+      <string id="AllowPopups">Configure Pop-up Blocker</string>
+      <string id="AllowPopups_Explain">This policy setting lets you decide whether to turn on Pop-up Blocker. By default, Pop-up Blocker is turned on..
+
+If you enable this setting, Pop-up Blocker is turned on, stopping pop-up windows from appearing.
+
+If you disable this setting, Pop-up Blocker is turned off, letting pop-ups windows appear.
+
+If you don't configure this setting, employees can choose whether to use Pop-up Blocker.</string>
+      <string id="AllowSearchSuggestionsinAddressBar">Configure search suggestions in Address bar</string>
+      <string id="AllowSearchSuggestionsinAddressBar_Explain">This policy setting lets you decide whether search suggestions appear in the Address bar of Microsoft Edge. By default, employees can choose whether search suggestions appear in the Address bar of Microsoft Edge.
+
+If you enable this setting, employees can see search suggestions in the Address bar of Microsoft Edge.
+
+If you disable this setting, employees can't see search suggestions in the Address bar of Microsoft Edge.
+
+If you don't configure this setting, employees can choose whether search suggestions appear in the Address bar of Microsoft Edge.</string>
+      <string id="AllowSmartScreen">Configure SmartScreen Filter</string>
+      <string id="AllowSmartScreen_Explain">This policy setting lets you configure whether to turn on SmartScreen Filter. SmartScreen Filter provides warning messages to help protect your employees from potential phishing scams and malicious software. By default, SmartScreen Filter is turned on.
+
+If you enable this setting, SmartScreen Filter is turned on and employees can't turn it off.
+
+If you disable this setting, SmartScreen Filter is turned off and employees can't turn it on.
+
+If you don't configure this setting, employees can choose whether to use SmartScreen Filter.</string>
+      <string id="AllowWebContentOnNewTabPage">Allow web content on New Tab page</string>
+      <string id="AllowWebContentOnNewTabPage_Explain">This policy setting lets you configure what appears when Microsoft Edge opens a new tab. By default, Microsoft Edge opens the New Tab page.
+
+If you enable this setting, Microsoft Edge opens a new tab with the New Tab page.
+
+If you disable this setting, Microsoft Edge opens a new tab with a blank page. If you use this setting, employees can't change it.
+
+If you don't configure this setting, employees can choose how new tabs appears.</string>
+      <string id="Cookies">Configure cookies</string>
+      <string id="Cookies_Explain">This setting lets you configure how to work with cookies.
+
+If you enable this setting, you must also decide whether to:
+     Allow all cookies (default): Allows all cookies from all websites.
+     Block all cookies: Blocks all cookies from all websites.
+     Block only 3rd-party cookies: Blocks only cookies from 3rd-party websites.
+
+If you disable or don't configure this setting, all cookies are allowed from all sites.</string>
+      <string id="CookiesList_Block_None">Allow all cookies (default)</string>
+      <string id="CookiesList_Block_ThirdParty">Block only 3rd-party cookies</string>
+      <string id="CookiesList_Block_All">Block all cookies</string>
+      <string id="EnterpriseModeSiteList">Configure the Enterprise Mode Site List</string>
+      <string id="EnterpriseModeSiteList_Explain">This policy setting lets you configure whether to use Enterprise Mode and the Enterprise Mode Site List to address common compatibility problems with legacy apps.
+
+If you enable this setting, Microsoft Edge looks for the Enterprise Mode Site List XML file. This file includes the sites and domains that need to be viewed using Internet Explorer 11 and Enterprise Mode.
+
+If you disable or don't configure this setting, Microsoft Edge won't use the Enterprise Mode Site List XML file. In this case, employees might experience compatibility problems while using legacy apps.</string>
+      <string id="AllowExtensions">Allow Extensions</string>
+      <string id="AllowExtensions_Explain">This setting lets you decide whether employees can load extensions in Microsoft Edge.
+
+If you enable or don't configure this setting, employees can use Edge Extensions.
+
+If you disable this setting, employees can't use Edge Extensions.</string>
+      <string id="HideLocalHostIPAddress">Prevent using Localhost IP address for WebRTC</string>
+      <string id="HideLocalHostIPAddress_Explain">This policy setting lets you decide whether an employee's LocalHost IP address shows while making calls using the WebRTC protocol.
+
+If you enable this setting, LocalHost IP addresses are hidden while making calls using the WebRTC protocol.
+
+If you disable or don't configure this setting, LocalHost IP addresses are shown while making calls using the WebRTC protocol.</string>
+      <string id="ItemNameDisable">Disable</string>
+      <string id="ItemNameEnable">Enable</string>
+      <string id="PreventSmartScreenPromptOverride">Prevent bypassing SmartScreen prompts for sites</string>
+      <string id="PreventSmartScreenPromptOverride_Explain">This policy setting lets you decide whether employees can override the SmartScreen Filter warnings about potentially malicious websites.
+
+If you enable this setting, employees can't ignore SmartScreen Filter warnings and they are blocked from continuing to the site.
+
+If you disable or don't configure this setting, employees can ignore SmartScreen Filter warnings and continue to the site.</string>
+      <string id="PreventSmartScreenPromptOverrideForFiles">Prevent bypassing SmartScreen prompts for files</string>
+      <string id="PreventSmartScreenPromptOverrideForFiles_Explain">This policy setting lets you decide whether employees can override the SmartScreen Filter warnings about downloading unverified files.
+
+If you enable this setting, employees can't ignore SmartScreen Filter warnings and they are blocked from downloading the unverified files.
+
+If you disable or don't configure this setting, employees can ignore SmartScreen Filter warnings and continue the download process.</string>
+      <string id="ProvisionedFavorites">Configure Favorites</string>
+      <string id="ProvisionedFavorites_Explain">This policy setting lets you configure the default list of Favorites that appear for your employees. Employees can change their favorites by adding or removing items at any time.
+
+If you enable this setting, you can configure what default Favorites appear for your employees. If this setting is enabled, you must also provide a list of Favorites in the Options section. This list is imported after your policy is deployed.
+
+If you disable or don't configure this setting, employees will see the Favorites that they set in the Favorites hub.</string>
+      <string id="SendIntranetTraffictoInternetExplorer">Send all intranet sites to Internet Explorer 11</string>
+      <string id="SendIntranetTraffictoInternetExplorer_Explain">This policy setting lets you decide whether your intranet sites should all open using Internet Explorer 11. This setting should only be used if there are known compatibility problems with Microsoft Edge.
+
+If you enable this setting, all intranet sites are automatically opened using Internet Explorer 11.
+
+If you disable or don't configure this setting, all intranet sites are automatically opened using Microsoft Edge.</string>
+      <string id="ShowMessageWhenOpeningSitesInInternetExplorer">Show message when opening sites in Internet Explorer</string>
+      <string id="ShowMessageWhenOpeningSitesInInternetExplorer_Explain">This policy setting lets you decide whether employees see an additional page in Microsoft Edge, stating that a site has been opened using Internet Explorer 11.
+
+If you enable this setting, employees see an additional page in Microsoft Edge, stating that a site has been opened using Internet Explorer 11.
+
+If you disable or don't configure this setting, the default app behavior occurs and no additional page appears.</string>
+      <string id="PreventAccessToAboutFlagsInMicrosoftEdge">Prevent access to the about:flags page in Microsoft Edge</string>
+      <string id="PreventAccessToAboutFlagsInMicrosoftEdge_Explain">This policy settings lets you decide whether employees can access the about:flags page, which is used to change developer settings and to enable experimental features.
+
+If you enable this policy setting, employees can't access the about:flags page.
+
+If you disable or don't configure this setting, employees can access the about:flags page.</string>
+    </stringTable>
+
+    <!-- Presentation -->
+    <presentationTable>
+      <presentation id="EnterpriseModeSiteList_Presentation">
+        <textBox refId="EnterSiteListPrompt">
+          <label>Type the location (URL) of your Enterprise Mode IE website list</label>
+        </textBox>
+      </presentation>
+      <presentation id="HomePageSite_Presentation">
+        <textBox refId="HomePageSitePrompt">
+          <label>Type the location (URL) of your Home Page website</label>
+        </textBox>
+      </presentation>
+      <presentation id="HomePages_Presentation">
+        <textBox refId="HomePagesPrompt">
+          <label>Use this format:  &lt;support.contoso.com&gt;&lt;https://support.microsoft.com/&gt;</label>
+        </textBox>
+      </presentation>
+      <presentation id="ProvisionedFavorites_Presentation">
+        <listBox refId="ProvisionedFavorites_List">Enter the name of the favorite in the first column and the URL of the favorite in the other column like Contoso http://www.contoso.com/</listBox>
+      </presentation>
+      <presentation id="Cookies">
+        <dropdownList refId="CookiesListBox" noSort="true" defaultItem="2">Configure Cookies </dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

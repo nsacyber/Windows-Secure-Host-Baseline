@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="conf" namespace="Microsoft.Policies.NetMeeting" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <supersededAdm fileName="conf.adm" />
+  <resources minRequiredRevision="1.0" />
+  
+  <supportedOn>
+    <definitions>
+      <!--at least Windows NetMeeting v3.0-->
+      <definition name="SUPPORTED_NetMeeting3" displayName="$(string.SUPPORTED_NetMeeting3)">
+        <or>
+          <range ref="products:NetMeeting" minVersionIndex="3" />
+        </or>
+      </definition>
+    </definitions>
+  </supportedOn>
+  
+  <categories>
+    <category name="NetMeeting" displayName="$(string.NetMeeting)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="AppSharing" displayName="$(string.AppSharing)">
+      <parentCategory ref="NetMeeting" />
+    </category>
+    <category name="AudioVideo" displayName="$(string.AudioVideo)">
+      <parentCategory ref="NetMeeting" />
+    </category>
+    <category name="OptionDialog" displayName="$(string.OptionDialog)">
+      <parentCategory ref="NetMeeting" />
+    </category>
+  </categories>
+  
+  <policies>
+    <policy name="DisableAppSharing" class="User" displayName="$(string.DisableAppSharing)" explainText="$(string.DisableAppSharing_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAppSharing">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventGrantingControl" class="User" displayName="$(string.PreventGrantingControl)" explainText="$(string.PreventGrantingControl_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAllowControl">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSharing" class="User" displayName="$(string.PreventSharing)" explainText="$(string.PreventSharing_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSharing">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSharingCMDPrompt" class="User" displayName="$(string.PreventSharingCMDPrompt)" explainText="$(string.PreventSharingCMDPrompt_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSharingDosWindows">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSharingDesktop" class="User" displayName="$(string.PreventSharingDesktop)" explainText="$(string.PreventSharingDesktop_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSharingDesktop">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSharingExplorer" class="User" displayName="$(string.PreventSharingExplorer)" explainText="$(string.PreventSharingExplorer_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSharingExplorer">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSharingTrueColor" class="User" displayName="$(string.PreventSharingTrueColor)" explainText="$(string.PreventSharingTrueColor_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoTrueColorSharing">
+      <parentCategory ref="AppSharing" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventAudio" class="User" displayName="$(string.PreventAudio)" explainText="$(string.PreventAudio_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAudio">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventChangeDirectSound" class="User" displayName="$(string.PreventChangeDirectSound)" explainText="$(string.PreventChangeDirectSound_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoChangeDirectSound">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventFullDuplex" class="User" displayName="$(string.PreventFullDuplex)" explainText="$(string.PreventFullDuplex_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoFullDuplex">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventReceivingVideo" class="User" displayName="$(string.PreventReceivingVideo)" explainText="$(string.PreventReceivingVideo_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoReceivingVideo">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSendingVideo" class="User" displayName="$(string.PreventSendingVideo)" explainText="$(string.PreventSendingVideo_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSendingVideo">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="SetAVThroughput" class="User" displayName="$(string.SetAVThroughput)" explainText="$(string.SetAVThroughput_Help)" presentation="$(presentation.SetAVThroughput)" key="Software\Policies\Microsoft\Conferencing">
+      <parentCategory ref="AudioVideo" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+      <elements>
+        <decimal id="AVThroughput" valueName="MaximumBandwidth" minValue="85000" maxValue="621700" />
+      </elements>
+    </policy>
+    <policy name="AllowPersistAutoAcceptCalls" class="User" displayName="$(string.AllowPersistAutoAcceptCalls)" explainText="$(string.AllowPersistAutoAcceptCalls_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="PersistAutoAcceptCalls">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableChat" class="User" displayName="$(string.DisableChat)" explainText="$(string.DisableChat_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoChat">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableNewWhiteboard" class="User" displayName="$(string.DisableNewWhiteboard)" explainText="$(string.DisableNewWhiteboard_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoNewWhiteBoard">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableOldWhiteboard" class="User" displayName="$(string.DisableOldWhiteboard)" explainText="$(string.DisableOldWhiteboard_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoOldWhiteBoard">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableRDS" class="Machine" displayName="$(string.DisableRDS)" explainText="$(string.DisableRDS_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoRDS">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="EnableAutoConfiguration" class="User" displayName="$(string.EnableAutoConfiguration)" explainText="$(string.EnableAutoConfiguration_Help)" presentation="$(presentation.EnableAutoConfiguration)" key="Software\Policies\Microsoft\Conferencing" valueName="Use AutoConfig">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+      <elements>
+        <text id="AutoConfigFile" valueName="ConfigFile" />
+      </elements>
+    </policy>
+    <policy name="PreventAddingNewILS" class="User" displayName="$(string.PreventAddingNewILS)" explainText="$(string.PreventAddingNewILS_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAddingDirectoryServers">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventAutoAccept" class="User" displayName="$(string.PreventAutoAccept)" explainText="$(string.PreventAutoAccept_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAutoAcceptCalls">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventChangingCallMode" class="User" displayName="$(string.PreventChangingCallMode)" explainText="$(string.PreventChangingCallMode_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoChangingCallMode">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventDirectoryServices" class="User" displayName="$(string.PreventDirectoryServices)" explainText="$(string.PreventDirectoryServices_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoDirectoryServices">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventReceivingFiles" class="User" displayName="$(string.PreventReceivingFiles)" explainText="$(string.PreventReceivingFiles_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoReceivingFiles">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventSendingFiles" class="User" displayName="$(string.PreventSendingFiles)" explainText="$(string.PreventSendingFiles_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSendingFiles">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="PreventWebDirectory" class="User" displayName="$(string.PreventWebDirectory)" explainText="$(string.PreventWebDirectory_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoWebDirectory">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="RestrictFTSendSize" class="User" displayName="$(string.RestrictFTSendSize)" explainText="$(string.RestrictFTSendSize_Help)" presentation="$(presentation.RestrictFTSendSize)" key="Software\Policies\Microsoft\Conferencing">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+      <elements>
+        <decimal id="RestrictFTSize" valueName="MaxFileSendSize" maxValue="999999999" />
+      </elements>
+    </policy>
+    <policy name="SetIntranetSupport" class="User" displayName="$(string.SetIntranetSupport)" explainText="$(string.SetIntranetSupport_Help)" presentation="$(presentation.SetIntranetSupport)" key="Software\Policies\Microsoft\Conferencing">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+      <elements>
+        <text id="IntranetSupportURL" valueName="IntranetSupportURL" />
+      </elements>
+    </policy>
+    <policy name="SetSecurityOptions" class="User" displayName="$(string.SetSecurityOptions)" explainText="$(string.SetSecurityOptions_Help)" presentation="$(presentation.SetSecurityOptions)" key="Software\Policies\Microsoft\Conferencing">
+      <parentCategory ref="NetMeeting" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+      <elements>
+        <enum id="SetSecurityLevel" valueName="CallSecurity">
+          <item displayName="$(string.SecurityLevelRequired)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SecurityLevelDisabled)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableAdvCallingButton" class="User" displayName="$(string.DisableAdvCallingButton)" explainText="$(string.DisableAdvCallingButton_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAdvancedCalling">
+      <parentCategory ref="OptionDialog" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableAudioPage" class="User" displayName="$(string.DisableAudioPage)" explainText="$(string.DisableAudioPage_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoAudioPage">
+      <parentCategory ref="OptionDialog" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableGeneralPage" class="User" displayName="$(string.DisableGeneralPage)" explainText="$(string.DisableGeneralPage_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoGeneralPage">
+      <parentCategory ref="OptionDialog" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableSecurityPage" class="User" displayName="$(string.DisableSecurityPage)" explainText="$(string.DisableSecurityPage_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoSecurityPage">
+      <parentCategory ref="OptionDialog" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+    <policy name="DisableVideoPage" class="User" displayName="$(string.DisableVideoPage)" explainText="$(string.DisableVideoPage_Help)" key="Software\Policies\Microsoft\Conferencing" valueName="NoVideoPage">
+      <parentCategory ref="OptionDialog" />
+      <supportedOn ref="SUPPORTED_NetMeeting3" />
+    </policy>
+  </policies>
+</policyDefinitions>

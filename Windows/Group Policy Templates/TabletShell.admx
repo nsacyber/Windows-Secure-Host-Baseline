@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="tabletshell" namespace="Microsoft.Policies.TabletPCShell" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Accessories" displayName="$(string.Accessories)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+    <category name="Cursors" displayName="$(string.Cursors)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+    <category name="HardwareButtons" displayName="$(string.HardwareButtons)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+    <category name="PenFlicksLearning" displayName="$(string.PenFlicksLearning)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+    <category name="PenUXBehaviors" displayName="$(string.PenUXBehaviors)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableInkball_1" class="User" displayName="$(string.DisableInkball)" explainText="$(string.DisableInkball_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableInkball">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableInkball_2" class="Machine" displayName="$(string.DisableInkball)" explainText="$(string.DisableInkball_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableInkball">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableJournal_1" class="User" displayName="$(string.DisableJournal)" explainText="$(string.DisableJournal_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableJournal">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableJournal_2" class="Machine" displayName="$(string.DisableJournal)" explainText="$(string.DisableJournal_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableJournal">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableNoteWriterPrinting_1" class="User" displayName="$(string.DisableNoteWriterPrinting)" explainText="$(string.DisableNoteWriterPrinting_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableNoteWriterPrinting">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableNoteWriterPrinting_2" class="Machine" displayName="$(string.DisableNoteWriterPrinting)" explainText="$(string.DisableNoteWriterPrinting_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableNoteWriterPrinting">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSnippingTool_1" class="User" displayName="$(string.DisableSnippingTool)" explainText="$(string.DisableSnippingTool_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableSnippingTool">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSnippingTool_2" class="Machine" displayName="$(string.DisableSnippingTool)" explainText="$(string.DisableSnippingTool_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="DisableSnippingTool">
+      <parentCategory ref="Accessories" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffFeedback_1" class="User" displayName="$(string.TurnOffFeedback)" explainText="$(string.TurnOffFeedback_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffPenFeedback">
+      <parentCategory ref="Cursors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffFeedback_2" class="Machine" displayName="$(string.TurnOffFeedback)" explainText="$(string.TurnOffFeedback_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffPenFeedback">
+      <parentCategory ref="Cursors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventBackEscMapping_1" class="User" displayName="$(string.PreventBackEscMapping)" explainText="$(string.PreventBackEscMapping_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonBackEscapeMapping">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventBackEscMapping_2" class="Machine" displayName="$(string.PreventBackEscMapping)" explainText="$(string.PreventBackEscMapping_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonBackEscapeMapping">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventLaunchApp_1" class="User" displayName="$(string.PreventLaunchApp)" explainText="$(string.PreventLaunchApp_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonApplicationLaunch">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventLaunchApp_2" class="Machine" displayName="$(string.PreventLaunchApp)" explainText="$(string.PreventLaunchApp_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonApplicationLaunch">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventPressAndHold_1" class="User" displayName="$(string.PreventPressAndHold)" explainText="$(string.PreventPressAndHold_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonPressAndHold">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventPressAndHold_2" class="Machine" displayName="$(string.PreventPressAndHold)" explainText="$(string.PreventPressAndHold_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventButtonPressAndHold">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffButtons_1" class="User" displayName="$(string.TurnOffButtons)" explainText="$(string.TurnOffButtons_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffButtons">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffButtons_2" class="Machine" displayName="$(string.TurnOffButtons)" explainText="$(string.TurnOffButtons_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="TurnOffButtons">
+      <parentCategory ref="HardwareButtons" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventFlicksLearningMode_1" class="User" displayName="$(string.PreventFlicksLearningMode)" explainText="$(string.PreventFlicksLearningMode_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventFlicksLearningMode">
+      <parentCategory ref="PenFlicksLearning" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventFlicksLearningMode_2" class="Machine" displayName="$(string.PreventFlicksLearningMode)" explainText="$(string.PreventFlicksLearningMode_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventFlicksLearningMode">
+      <parentCategory ref="PenFlicksLearning" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventFlicks_1" class="User" displayName="$(string.PreventFlicks)" explainText="$(string.PreventFlicks_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventFlicks">
+      <parentCategory ref="PenUXBehaviors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventFlicks_2" class="Machine" displayName="$(string.PreventFlicks)" explainText="$(string.PreventFlicks_Help)" key="SOFTWARE\Policies\Microsoft\TabletPC" valueName="PreventFlicks">
+      <parentCategory ref="PenUXBehaviors" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

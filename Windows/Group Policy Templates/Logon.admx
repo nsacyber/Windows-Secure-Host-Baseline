@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="logon" namespace="Microsoft.Policies.WindowsLogon" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Logon" displayName="$(string.Logon)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableExplorerRunLegacy_1" class="User" displayName="$(string.DisableExplorerRunLegacy)" explainText="$(string.DisableExplorerRunLegacy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableCurrentUserRun">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableExplorerRunLegacy_2" class="Machine" displayName="$(string.DisableExplorerRunLegacy)" explainText="$(string.DisableExplorerRunLegacy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableLocalMachineRun">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableExplorerRunOnceLegacy_1" class="User" displayName="$(string.DisableExplorerRunOnceLegacy)" explainText="$(string.DisableExplorerRunOnceLegacy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableCurrentUserRunOnce">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableExplorerRunOnceLegacy_2" class="Machine" displayName="$(string.DisableExplorerRunOnceLegacy)" explainText="$(string.DisableExplorerRunOnceLegacy_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="DisableLocalMachineRunOnce">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="LogonType" class="Machine" displayName="$(string.LogonType)" explainText="$(string.LogonType_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="LogonType">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsServer_And_XPproTo7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="NoWelcomeTips_2" class="Machine" displayName="$(string.NoWelcomeTips)" explainText="$(string.NoWelcomeTips_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWelcomeScreen">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2kOnly" />
+    </policy>
+    <policy name="Run_1" class="User" displayName="$(string.Run)" explainText="$(string.Run_Help)" presentation="$(presentation.Run_1)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <list id="RunListBox1" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="Run_2" class="Machine" displayName="$(string.Run)" explainText="$(string.Run_Help)" presentation="$(presentation.Run_2)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <list id="RunListBox2" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="SyncForegroundPolicy" class="Machine" displayName="$(string.SyncForegroundPolicy)" explainText="$(string.SyncForegroundPolicy_Help)" key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Winlogon" valueName="SyncForegroundPolicy">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableStatusMessages" class="Machine" displayName="$(string.DisableStatusMessages)" explainText="$(string.DisableStatusMessages_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableStatusMessages">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+    <policy name="NoWelcomeTips_1" class="User" displayName="$(string.NoWelcomeTips)" explainText="$(string.NoWelcomeTips_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWelcomeScreen">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2kOnly" />
+    </policy>
+    <policy name="VerboseStatus" class="Machine" displayName="$(string.VerboseStatus)" explainText="$(string.VerboseStatus_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="VerboseStatus">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="HideFastUserSwitching" class="Machine" displayName="$(string.HideFastUserSwitching)" explainText="$(string.HideFastUserSwitching_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideFastUserSwitching">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableStartupSound" class="Machine" displayName="$(string.DisableStartupSound)" explainText="$(string.DisableStartupSound_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableStartupSound">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaTo7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableFirstLogonAnimation" class="Machine" displayName="$(string.EnableFirstLogonAnimation)" explainText="$(string.EnableFirstLogonAnimation_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="EnableFirstLogonAnimation">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="UseOEMBackground" class="Machine" displayName="$(string.UseOEMBackground)" explainText="$(string.UseOEMBackground_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="UseOEMBackground"> 
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows7Only" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="DontDisplayNetworkSelectionUI" class="Machine" displayName="$(string.DontDisplayNetworkSelectionUI)" explainText="$(string.DontDisplayNetworkSelectionUI_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DontDisplayNetworkSelectionUI"> 
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="DontEnumerateConnectedUsers" class="Machine" displayName="$(string.DontEnumerateConnectedUsers)" explainText="$(string.DontEnumerateConnectedUsers_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DontEnumerateConnectedUsers"> 
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="EnumerateLocalUsers" class="Machine" displayName="$(string.EnumerateLocalUsers)" explainText="$(string.EnumerateLocalUsers_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="EnumerateLocalUsers"> 
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+        <enabledValue>
+          <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+          <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="BlockUserFromShowingAccountDetailsOnSignin" class="Machine" displayName="$(string.BlockUserFromShowingAccountDetailsOnSignin)" explainText="$(string.BlockUserFromShowingAccountDetailsOnSignin_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="BlockUserFromShowingAccountDetailsOnSignin">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableLockScreenAppNotifications" class="Machine" displayName="$(string.DisableLockScreenAppNotifications)" explainText="$(string.DisableLockScreenAppNotifications_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableLockScreenAppNotifications">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

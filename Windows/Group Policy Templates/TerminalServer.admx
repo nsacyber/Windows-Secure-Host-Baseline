@@ -1,0 +1,2148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="terminalserver" namespace="Microsoft.Policies.TerminalServer" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+
+  <supportedOn>
+    <definitions>
+      <!--At least Microsoft Windows Server 2003 with SP1-->
+      <definition name="TS_SUPPORTED_Win2k3_Sp1" displayName="$(string.TS_SUPPORTED_Win2k3_Sp1)">
+        <or>
+          <range ref="products:MicrosoftWindowsServer2003" minVersionIndex="1" />
+          <range ref="products:MicrosoftWindows" minVersionIndex="4" />
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows 2000 Terminal Services-->
+      <definition name="TS_SUPPORTED_Win2k" displayName="$(string.TS_SUPPORTED_Win2k)">
+        <!--
+          It is not really possible to logically define specific features and or optional components
+          of a product with the given notation. However, the display text is retained.
+        -->
+        <or>
+          <reference ref="products:MicrosoftWindows2000" />
+          <reference ref="products:MicrosoftWindowsServer2003" />
+          <reference ref="products:WindowsServer2008" />
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003, Enterprise Edition-->
+      <definition name="SUPPORTED_WindowsNET_Enterprise" displayName="$(string.SUPPORTED_WindowsNET_Enterprise)">
+        <!--
+          It is not really possible to define different SKUs with the given notation without it becoming very
+          cumbersome. Thus, this definition only reflects the server notion in the display text.
+        -->
+        <or>
+          <reference ref="products:MicrosoftWindowsServer2003" />
+        </or>
+      </definition>
+
+      <!--Windows XP Professional or Windows Server 2003 family only-->
+      <definition name="TS_SUPPORTED_WindowsXP_Win2K3_only" displayName="$(string.TS_SUPPORTED_WindowsXP_Win2K3_only)">
+        <!--
+          It is not really possible to define different SKUs with the given notation without it becoming very
+          cumbersome. Thus, this definition only reflects the server notion in the display text.
+        -->
+        <or>
+          <reference ref="products:MicrosoftWindowsServer2003" />
+          <reference ref="products:MicrosoftWindowsXP" />
+        </or>
+      </definition>
+
+
+      <!--Windows 7 or Windows Server 2008 and above-->
+      <definition name="TS_SUPPORTED_WindowsServer2008OrWin7" displayName="$(string.TS_SUPPORTED_WindowsServer2008OrWin7)">
+        <!--
+          It is not really possible to define different SKUs with the given notation without it becoming very
+          cumbersome. Thus, this definition only reflects the server notion in the display text.
+        -->
+        <or>
+          <reference ref="products:WindowsServer2008" />
+          <reference ref="products:MicrosoftWindows7" />
+        </or>
+      </definition>
+
+      <!--Microsoft Windows Server 2003 with Service Pack 1 only-->
+      <definition name="TS_SUPPORTED_Win2k3_Sp1_Only" displayName="$(string.TS_SUPPORTED_Win2k3_Sp1_Only)">
+        <or>
+          <reference ref="products:MicrosoftWindowsServer2003_SP1" />
+        </or>
+      </definition>
+
+      <!--At least Microsoft Windows Server 2003 with Service Pack 2 -->
+      <definition name="TS_SUPPORTED_Win2k3_Sp2" displayName="$(string.TS_SUPPORTED_Win2k3_Sp2)">
+        <or>
+          <reference ref="products:MicrosoftWindowsServer2003_SP2" />
+        </or>
+      </definition>
+      <!--Microsoft Windows Visa with Service Pack 1-->
+      <definition name="TS_SUPPORTED_Vista_SP1" displayName="$(string.TS_SUPPORTED_Vista_SP1)">
+        <or>
+          <reference ref="products:MicrosoftWindowsVista_SP1" />
+        </or>
+      </definition>
+      <!--At least Microsoft Windows 7 Server-->
+      <definition name="TS_SUPPORTED_Windows7_Server" displayName="$(string.TS_SUPPORTED_Windows7_Server)">
+        <or>
+          <reference ref="products:WindowsServer2008_R2" minVersionIndex="1" />
+        </or>
+      </definition>
+      <!--At least Microsoft Windows 7 with Service Pack 1 or Windows Server 2008 R2 with Service Pack1-->
+      <definition name="TS_SUPPORTED_Windows7_OR_SERVER2K8R2_SP1" displayName="$(string.TS_SUPPORTED_Windows7_OR_SERVER2K8R2_SP1)">
+        <or>
+          <range ref="products:WindowsServer2008_R2" minVersionIndex="2"/>
+          <range ref="products:MicrosoftWindows7_RTM" minVersionIndex="7"/>
+        </or>
+      </definition>
+      <definition name="TS_SUPPORTED_Windows8_Server" displayName="$(string.TS_SUPPORTED_Windows8_Server)">
+        <or>
+          <reference ref="products:MicrosoftWindows8" />
+        </or>
+      </definition>
+      <definition name="TS_SUPPORTED_Windows8_or_ARM" displayName="$(string.TS_SUPPORTED_Windows8_or_ARM)">
+        <or>
+          <range ref="products:MicrosoftWindows" minVersionIndex="7"/>
+        </or>
+      </definition>
+
+      <!--Only Microsoft Windows 7 with Service Pack 1 or Windows Server 2008 R2 with any Service Pack-->
+      <definition name="TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2" displayName="$(string.TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2)">
+          <or>
+              <range ref="products:WindowsServer2008_R2" minVersionIndex="2"/>
+              <range ref="products:MicrosoftWindows7_RTM" minVersionIndex="7"/>
+          </or>
+      </definition>
+       <!--Microsoft Windows Server 2008 R2 only-->
+      <definition name="TS_SUPPORTED_WindowsServer2008R2_Only" displayName="$(string.TS_SUPPORTED_WindowsServer2008R2_Only)">
+        <or>
+          <reference ref="products:WindowsServer2008_R2" />
+        </or>
+      </definition>
+      <!--Windows Server 2008 R2, Windows Server 2008, Windows Server 2003, Windows 7, Windows Vista, and Windows XP-->
+      <definition name="TS_SUPPORTED_ONLY_LEGACY" displayName="$(string.TS_SUPPORTED_ONLY_LEGACY)">
+        <or>
+           <reference ref="products:WindowsServer2008_R2" /> 
+           <reference ref="products:WindowsServer2008_RTM" />
+           <reference ref="products:MicrosoftWindowsServer2003" /> 
+           <reference ref="products:MicrosoftWindows7" />          
+           <reference ref="products:MicrosoftWindowsVista_RTM" />
+          <reference ref="products:MicrosoftWindowsXP" />
+        </or>
+      </definition>
+      <!--Windows Server 2012 with RDSH installed-->
+      <definition name="TS_SUPPORTED_Windows8_Server_With_RDSH" displayName="$(string.TS_SUPPORTED_Windows8_Server_With_RDSH)">
+        <or>
+           <reference ref="products:MicrosoftWindows8" />
+        </or>
+      </definition>
+      <!--Windows 8 Consumer Preview Enterprise or Windows 8 Server-->
+      <definition name="TS_SUPPORTED_Windows8_Enterprise_AND_Server" displayName="$(string.TS_SUPPORTED_Windows8_Enterprise_AND_Server)">
+        <or>
+           <reference ref="products:MicrosoftWindows8" />
+        </or>
+      </definition>
+    </definitions>
+  </supportedOn>
+
+  <categories>
+    <category name="TS_GP_NODE" displayName="$(string.TS_GP_NODE)" explainText="$(string.TS_User_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="TS_TERMINAL_SERVER" displayName="$(string.TS_TERMINAL_SERVER)" explainText="$(string.TS_TERMINAL_SERVER_Help)">
+      <parentCategory ref="TS_GP_NODE" />
+    </category>
+    <category name="TS_CONNECTIONS" displayName="$(string.TS_CONNECTIONS)" explainText="$(string.TS_CONNECTIONS_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_REDIRECTION" displayName="$(string.TS_REDIRECTION)" explainText="$(string.TS_REDIRECTION_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_PRINT_REDIRECTION" displayName="$(string.TS_PRINT_REDIRECTION)" explainText="$(string.TS_PRINT_REDIRECTION_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_SECURITY" displayName="$(string.TS_SECURITY)" explainText="$(string.TS_SECURITY_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_LICENSING" displayName="$(string.TS_LICENSING)" explainText="$(string.TS_LICENSING_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_SESSION_TIME_LIMITS" displayName="$(string.TS_SESSION_TIME_LIMITS)" explainText="$(string.TS_SESSION_TIME_LIMITS_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_PROFILES" displayName="$(string.TS_PROFILES)" explainText="$(string.TS_PROFILES_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_TEMP" displayName="$(string.TS_TEMP)" explainText="$(string.TS_TEMP_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_SESSIONS" displayName="$(string.TS_SESSIONS)" explainText="$(string.TS_SESSIONS_Comp_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_LEGACY_REMOTEFX" displayName="$(string.TS_LEGACY_REMOTEFX)" explainText="$(string.TS_LEGACY_REMOTEFX_Comp_Help)">
+      <parentCategory ref="TS_SESSIONS" />
+    </category>
+    <category name="TS_SD_Node" displayName="$(string.TS_SD_Node)" explainText="$(string.TS_SD_Node_Help)">
+      <parentCategory ref="TS_TERMINAL_SERVER" />
+    </category>
+    <category name="TS_CLIENT" displayName="$(string.TS_CLIENT)" explainText="$(string.TS_CLIENT_HELP)">
+      <parentCategory ref="TS_GP_NODE" />
+    </category>
+    <category name="TS_LICENSE_SERVER" displayName="$(string.TS_LICENSE_SERVER)" explainText="$(string.TS_LICENSE_SERVERS_Help)">
+      <parentCategory ref="TS_GP_NODE" />
+    </category>
+    <category name="TS_GATEWAY" displayName="$(string.TS_GATEWAY)" explainText="$(string.TS_GATEWAY_Help)">
+      <parentCategory ref="TS_GP_NODE" />
+    </category>
+    <category name="TS_USB_REDIRECTION" displayName="$(string.TS_USB_REDIRECTION)" explainText="$(string.TS_USB_REDIRECTION_Help)">
+      <parentCategory ref="terminalserver:TS_CLIENT" />
+    </category>
+    <category name="TS_RADC" displayName="$(string.TS_RADC)" explainText="$(string.TS_RADC_Help)">
+      <parentCategory ref="TS_GP_NODE" />
+    </category>
+  </categories>
+
+  <policies>
+    <policy name="TS_CLIENT_DISABLE_PASSWORD_SAVING_1" class="User" displayName="$(string.TS_CLIENT_DISABLE_PASSWORD_SAVING)" explainText="$(string.TS_CLIENT_DISABLE_PASSWORD_SAVING_USER_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="DisablePasswordSaving">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_DISABLE_PASSWORD_SAVING_2" class="Machine" displayName="$(string.TS_CLIENT_DISABLE_PASSWORD_SAVING)" explainText="$(string.TS_CLIENT_DISABLE_PASSWORD_SAVING_MACHINE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="DisablePasswordSaving">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_ENCRYPTION_POLICY" class="Machine" displayName="$(string.TS_ENCRYPTION_POLICY)" explainText="$(string.TS_ENCRYPTION_EXPLAIN)" presentation="$(presentation.TS_ENCRYPTION_POLICY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="TS_ENCRYPTION_LEVEL" valueName="MinEncryptionLevel">
+          <item displayName="$(string.TS_ENCRYPTION_LOW_LEVEL)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_ENCRYPTION_CLIENT_COMPATIBLE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_ENCRYPTION_HIGH_LEVEL)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_PASSWORD" class="Machine" displayName="$(string.TS_PASSWORD)" explainText="$(string.TS_PROMPT_PASSWORD_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fPromptForPassword">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_SECURITY_LAYER_POLICY" class="Machine" displayName="$(string.TS_SECURITY_LAYER_POLICY)" explainText="$(string.TS_SECURITY_LAYER_EXPLAIN)" presentation="$(presentation.TS_SECURITY_LAYER_POLICY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="TS_SECURITY_LAYER" valueName="SecurityLayer">
+          <item displayName="$(string.TS_SECURITY_LAYER_RDP)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SECURITY_LAYER_NEGOTIATE)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SECURITY_LAYER_SSL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_USER_AUTHENTICATION_POLICY" class="Machine" displayName="$(string.TS_USER_AUTHENTICATION_POLICY)" explainText="$(string.TS_USER_AUTHENTICATION_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="UserAuthentication">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CERTIFICATE_TEMPLATE_POLICY" class="Machine" displayName="$(string.TS_CERTIFICATE_TEMPLATE_POLICY)" explainText="$(string.TS_CERTIFICATE_TEMPLATE_EXPLAIN)" presentation="$(presentation.TS_CERTIFICATE_TEMPLATE_POLICY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="TS_CERTIFICATE_TEMPLATE_NAME" valueName="CertTemplateName" required="true" />
+      </elements>
+    </policy>
+    <policy name="TS_GATEWAY_POLICY_AUTH_METHOD" class="User" displayName="$(string.TS_GATEWAY_POLICY_AUTH_METHOD)" explainText="$(string.TS_GATEWAY_POLICY_AUTH_METHOD_HELP)" presentation="$(presentation.TS_GATEWAY_POLICY_AUTH_METHOD)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_GATEWAY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <elements>
+        <boolean id="TS_GATEWAY_OVERRIDE" valueName="AllowExplicitLogonMethod">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+        </boolean>
+        <enum id="TS_GATEWAY_AUTH_MODE" valueName="LogonMethod">
+          <item displayName="$(string.TS_GATEWAY_NTLM)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_GATEWAY_BASIC)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_GATEWAY_LOGGED_ON_CREDS)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_GATEWAY_SMARTCARD)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_GATEWAY_POLICY_ENABLE" class="User" displayName="$(string.TS_GATEWAY_POLICY_ENABLE)" explainText="$(string.TS_GATEWAY_POLICY_ENABLE_HELP)" presentation="$(presentation.TS_GATEWAY_POLICY_ENABLE)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="UseProxy">
+      <parentCategory ref="TS_GATEWAY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="TS_GATEWAY_OVERRIDE" valueName="AllowExplicitUseProxy">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="TS_GATEWAY_POLICY_SERVER" class="User" displayName="$(string.TS_GATEWAY_POLICY_SERVER)" explainText="$(string.TS_GATEWAY_POLICY_SERVER_HELP)" presentation="$(presentation.TS_GATEWAY_POLICY_SERVER)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_GATEWAY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <elements>
+        <boolean id="TS_GATEWAY_OVERRIDE" valueName="AllowExplicitProxyName">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+        </boolean>
+        <text id="TS_GATEWAY_SERVER" valueName="ProxyName" required="true" maxLength="260" />
+      </elements>
+    </policy>
+    <policy name="TS_AUTO_RECONNECT" class="Machine" displayName="$(string.TS_AUTO_RECONNECT)" explainText="$(string.TS_AUTO_RECONNECT_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableAutoReconnect">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_COLORDEPTH" class="Machine" displayName="$(string.TS_COLORDEPTH)" explainText="$(string.TS_COLOR_EXPLAIN)" presentation="$(presentation.TS_COLORDEPTH)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+      <elements>
+        <enum id="TS_Color_Depth" valueName="ColorDepth">
+          <item displayName="$(string.TS_Client_Compatible)">
+            <value>
+              <decimal value="999" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_15_bit)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_16_bit)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_24_bit)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_32_bit)">
+            <value>
+              <decimal value="5" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_MAXMONITOR" class="Machine" displayName="$(string.TS_MAXMONITOR)" explainText="$(string.TS_MAXMONITOR_EXPLAIN)" presentation="$(presentation.TS_MAXMONITOR)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="TS_Max_Monitor" valueName="MaxMonitors" minValue="1" maxValue="16" required="true"/>
+      </elements>
+    </policy>
+    <policy name="TS_DISABLE_CONNECTIONS" class="Machine" displayName="$(string.TS_DISABLE_CONNECTIONS)" explainText="$(string.TS_DISABLE_CONNECTIONS_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDenyTSConnections">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDenyTSConnections">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="TS_MAXDISPLAYRES" class="Machine" displayName="$(string.TS_MAXDISPLAYRES)" explainText="$(string.TS_MAXDISPLAYRES_EXPLAIN)" presentation="$(presentation.TS_MAXDISPLAYRES)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="TS_DisplayRes_Width" valueName="MaxXResolution" minValue="640" maxValue="8192" required="true"/>
+        <decimal id="TS_DisplayRes_Height" valueName="MaxYResolution" minValue="480" maxValue="8192" required="true"/>
+      </elements>
+    </policy>
+    <policy name="TS_DISABLE_REMOTE_DESKTOP_WALLPAPER" class="Machine" displayName="$(string.TS_DISABLE_REMOTE_DESKTOP_WALLPAPER)" explainText="$(string.TS_DISABLE_REMOTE_DESKTOP_WALLPAPER_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fNoRemoteDesktopWallpaper">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_FORCIBLE_LOGOFF" class="Machine" displayName="$(string.TS_FORCIBLE_LOGOFF)" explainText="$(string.TS_FORCIBLE_LOGOFF_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableForcibleLogoff">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="TS_SUPPORTED_WindowsXP_Win2K3_only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_KEEP_ALIVE" class="Machine" displayName="$(string.TS_KEEP_ALIVE)" explainText="$(string.TS_KEEP_ALIVE_EXPLAIN)" presentation="$(presentation.TS_KEEP_ALIVE)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="KeepAliveEnable">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="TS_KEEP_ALIVE_INTERVAL" valueName="KeepAliveInterval" minValue="1" maxValue="999999" />
+      </elements>
+    </policy>
+    <policy name="TS_LICENSE_SERVERS" class="Machine" displayName="$(string.TS_LICENSE_SERVERS)" explainText="$(string.TS_LICENSE_SERVERS_EXPLAIN)" presentation="$(presentation.TS_LICENSE_SERVERS)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_LICENSING" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp1" />
+      <elements>
+        <text id="TS_LICENSE_EDIT" valueName="LicenseServers" required="true" />
+      </elements>
+    </policy>
+    <policy name="TS_LICENSE_TOOLTIP" class="Machine" displayName="$(string.TS_LICENSE_TOOLTIP)" explainText="$(string.TS_LICENSE_TOOLTIP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_LICENSING" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp1" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableTerminalServerTooltip">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableTerminalServerTooltip">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="TS_LICENSING_MODE" class="Machine" displayName="$(string.TS_LICENSING_MODE)" explainText="$(string.TS_LICENSING_MODE_EXPLAIN)" presentation="$(presentation.TS_LICENSING_MODE)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_LICENSING" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp1" />
+      <elements>
+        <enum id="TS_LICENSING_NAME" valueName="LicensingMode">
+          <item displayName="$(string.TS_LICENSING_MODE_PER_DEVICE)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_LICENSING_MODE_PER_USER)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_MAX_CON_POLICY" class="Machine" displayName="$(string.TS_MAX_CON_POLICY)" explainText="$(string.TS_MAX_CON_EXPLAIN)" presentation="$(presentation.TS_MAX_CON_POLICY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <decimal id="TS_Maximum_Connections_allowed" valueName="MaxInstanceCount" minValue="1" maxValue="999999" />
+      </elements>
+    </policy>
+    <policy name="TS_NoDisconnectMenu" class="Machine" displayName="$(string.TS_NoDisconnectMenu)" explainText="$(string.TS_NoDisconnectMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoDisconnect">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="TS_SUPPORTED_Win2k" />
+    </policy>
+    <policy name="TS_NoSecurityMenu" class="Machine" displayName="$(string.TS_NoSecurityMenu)" explainText="$(string.TS_NoSecurityMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoNTSecurity">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="TS_SUPPORTED_Win2k" />
+    </policy>
+    <policy name="TS_RDSAppX_WaitForRegistration" class="Machine" displayName="$(string.TS_RDSAppX_WaitForRegistration)" explainText="$(string.TS_RDSAppX_WaitForRegistration_Help)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\AllUserInstallAgent" valueName="LogonWaitForPackageRegistration">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="TS_SUPPORTED_Windows8_Enterprise_AND_Server" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_RemoteControl_1" class="User" displayName="$(string.TS_RemoteControl)" explainText="$(string.TS_RemoteControl_EXPLAIN)" presentation="$(presentation.TS_RemoteControl_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="TS_SUPPORTED_ONLY_LEGACY" />
+      <elements>
+        <enum id="TS_RemoteControl_Levels" valueName="Shadow">
+          <item displayName="$(string.TS_RemoteControl_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_RemoteControl_2" class="Machine" displayName="$(string.TS_RemoteControl)" explainText="$(string.TS_RemoteControl_EXPLAIN)" presentation="$(presentation.TS_RemoteControl_2)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="TS_SUPPORTED_ONLY_LEGACY"/>
+      <elements>
+        <enum id="TS_RemoteControl_Levels" valueName="Shadow">
+          <item displayName="$(string.TS_RemoteControl_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteControl_4)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SINGLE_SESSION" class="Machine" displayName="$(string.TS_SINGLE_SESSION)" explainText="$(string.TS_SINGLE_SESSION_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fSingleSessionPerUser">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_START_PROGRAM_1" class="User" displayName="$(string.TS_START_PROGRAM)" explainText="$(string.TS_START_PROGRAM_EXPLAIN)" presentation="$(presentation.TS_START_PROGRAM_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fInheritInitialProgram">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <text id="TS_PROGRAM_NAME" valueName="InitialProgram" required="true" />
+        <text id="TS_WORKDIR" valueName="WorkDirectory" />
+      </elements>
+    </policy>
+    <policy name="TS_START_PROGRAM_2" class="Machine" displayName="$(string.TS_START_PROGRAM)" explainText="$(string.TS_START_PROGRAM_EXPLAIN)" presentation="$(presentation.TS_START_PROGRAM_2)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <text id="TS_PROGRAM_NAME" valueName="InitialProgram" required="true" />
+        <text id="TS_WORKDIR" valueName="WorkDirectory" />
+      </elements>
+    </policy>
+    <policy name="TS_TSCC_PERMISSIONS_POLICY" class="Machine" displayName="$(string.TS_TSCC_PERMISSIONS_POLICY)" explainText="$(string.TS_TSCC_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fWritableTSCCPermTab">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_TURNOFF_SINGLEAPP" class="Machine" displayName="$(string.TS_TURNOFF_SINGLEAPP)" explainText="$(string.TS_TURNOFF_SINGLEAPP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fTurnOffSingleAppMode">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_USER_HOME" class="Machine" displayName="$(string.TS_USER_HOME)" explainText="$(string.TS_USER_HOME_EXPLAIN)" presentation="$(presentation.TS_USER_HOME)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_PROFILES" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <enum id="TS_USER_HOME_LOCATION" valueName="WFHomeDirUNC">
+          <item displayName="$(string.TS_On_the_Network)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_on_the_Local_machine)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <text id="TS_HOME_DIR" valueName="WFHomeDir" required="true" />
+        <enum id="TS_DRIVE_LETTER" valueName="WFHomeDirDrive">
+          <item displayName="$(string.TS_DRIVE_G)">
+            <value>
+              <string>G:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_H)">
+            <value>
+              <string>H:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_I)">
+            <value>
+              <string>I:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_J)">
+            <value>
+              <string>J:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_K)">
+            <value>
+              <string>K:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_L)">
+            <value>
+              <string>L:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_M)">
+            <value>
+              <string>M:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_N)">
+            <value>
+              <string>N:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_O)">
+            <value>
+              <string>O:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_P)">
+            <value>
+              <string>P:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_Q)">
+            <value>
+              <string>Q:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_R)">
+            <value>
+              <string>R:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_S)">
+            <value>
+              <string>S:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_T)">
+            <value>
+              <string>T:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_U)">
+            <value>
+              <string>U:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_V)">
+            <value>
+              <string>V:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_W)">
+            <value>
+              <string>W:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_X)">
+            <value>
+              <string>X:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_Y)">
+            <value>
+              <string>Y:</string>
+            </value>
+          </item>
+          <item displayName="$(string.TS_DRIVE_Z)">
+            <value>
+              <string>Z:</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_USER_PROFILES" class="Machine" displayName="$(string.TS_USER_PROFILES)" explainText="$(string.TS_USER_PROFILES_EXPLAIN)" presentation="$(presentation.TS_USER_PROFILES)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_PROFILES" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <elements>
+        <text id="TS_PROFILE_PATH" valueName="WFProfilePath" required="true" />
+      </elements>
+    </policy>
+    <policy name="TS_USER_MANDATORY_PROFILES" class="Machine" displayName="$(string.TS_USER_MANDATORY_PROFILES)" explainText="$(string.TS_USER_MANDATORY_PROFILES_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="WFDontAppendUserNameToProfile">
+      <parentCategory ref="TS_PROFILES" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp2" />
+       <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+     </policy>
+    <policy name="TS_DELETE_ROAMING_USER_PROFILES" class="Machine" displayName="$(string.TS_DELETE_ROAMING_USER_PROFILES)" explainText="$(string.TS_DELETE_ROAMING_USER_PROFILES_EXPLAIN)" presentation="$(presentation.TS_DELETE_ROAMING_USER_PROFILES)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="DeleteRoamingUserProfile">
+      <parentCategory ref="TS_PROFILES" />
+      <supportedOn ref="terminalserver:TS_SUPPORTED_Windows7_Server" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="TS_PROFILE_DIRECTORY_MONITORING_INTERVAL" valueName="MonitoringInterval" required="true" minValue="15" maxValue="10080" />
+        <decimal id="TS_PROFILE_DIRECTORY_QUOTA" valueName="ProfileDirectoryQuota" required="true" minValue="5" maxValue="10000" />
+      </elements>
+    </policy>
+    <policy name="TS_LICENSE_SECGROUP" class="Machine" displayName="$(string.TS_LICENSE_SECGROUP)" explainText="$(string.TS_LICENSE_SECGROUP_HELP)" key="Software\Policies\Microsoft\Windows NT\Terminal Services" valueName="fSecureLicensing">
+      <parentCategory ref="TS_LICENSE_SERVER" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_PreventLicenseUpgrade" class="Machine" displayName="$(string.TS_PreventLicenseUpgrade)" explainText="$(string.TS_PreventLicenseUpgrade_Help)" key="Software\Policies\Microsoft\Windows NT\Terminal Services" valueName="fPreventLicenseUpgrade">
+      <parentCategory ref="TS_LICENSE_SERVER" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_AUDIO" class="Machine" displayName="$(string.TS_CLIENT_AUDIO)" explainText="$(string.TS_AUDIOMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableCam">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_AUDIO_QUALITY" class="Machine" displayName="$(string.TS_CLIENT_AUDIO_QUALITY)" explainText="$(string.TS_AUDIO_QUALITY_EXPLAIN)" presentation="$(presentation.TS_AUDIO_QUALITY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="TS_AUDIO_QUALITY_LEVEL" valueName="AllowedAudioQualityMode">
+          <item displayName="$(string.TS_AUDIO_QUALITY_DYNAMIC)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_AUDIO_QUALITY_MEDIUM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_AUDIO_QUALITY_HIGH)">
+            <value>
+              <decimal value="7" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_CLIENT_AUDIO_CAPTURE" class="Machine" displayName="$(string.TS_CLIENT_AUDIO_CAPTURE)" explainText="$(string.TS_AUDIOCAPTUREMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableAudioCapture">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_CLIPBOARD" class="Machine" displayName="$(string.TS_CLIENT_CLIPBOARD)" explainText="$(string.TS_CLIPBOARDMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableClip">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_COM" class="Machine" displayName="$(string.TS_CLIENT_COM)" explainText="$(string.TS_COMPORTMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableCcm">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_DEFAULT_M" class="Machine" displayName="$(string.TS_CLIENT_DEFAULT_M)" explainText="$(string.TS_CLIENT_DEFAULT_EXPLAIN_M)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fForceClientLptDef">
+      <parentCategory ref="TS_PRINT_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_EASY_PRINT" class="Machine" displayName="$(string.TS_EASY_PRINT)" explainText="$(string.TS_EASY_PRINT_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="UseUniversalPrinterDriverFirst">
+      <parentCategory ref="terminalserver:TS_PRINT_REDIRECTION" />
+      <supportedOn ref="TS_SUPPORTED_WindowsServer2008OrWin7" />
+      <enabledValue>
+        <decimal value="3" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="4" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_EASY_PRINT_User" class="User" displayName="$(string.TS_EASY_PRINT)" explainText="$(string.TS_EASY_PRINT_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="UseUniversalPrinterDriverFirst">
+      <parentCategory ref="terminalserver:TS_PRINT_REDIRECTION" />
+      <supportedOn ref="TS_SUPPORTED_WindowsServer2008OrWin7" />
+      <enabledValue>
+        <decimal value="3" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="4" />
+      </disabledValue>
+    </policy>
+
+    <policy name="TS_CLIENT_DRIVE_M" class="Machine" displayName="$(string.TS_CLIENT_DRIVE_M)" explainText="$(string.TS_CLIENT_DRIVE_EXPLAIN_M)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableCdm">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_LPT" class="Machine" displayName="$(string.TS_CLIENT_LPT)" explainText="$(string.TS_LPTPORTMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableLPT">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_PNP" class="Machine" displayName="$(string.TS_CLIENT_PNP)" explainText="$(string.TS_DEVMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisablePNPRedir">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_PRINTER" class="Machine" displayName="$(string.TS_CLIENT_PRINTER)" explainText="$(string.TS_PRINTERMAP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fDisableCpm">
+      <parentCategory ref="TS_PRINT_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_FALLBACKPRINTDRIVERTYPE" class="Machine" displayName="$(string.TS_FALLBACKPRINTDRIVERTYPE)" explainText="$(string.TS_FALLBACKPRINTER_EXPLAIN)" presentation="$(presentation.TS_FALLBACKPRINTDRIVERTYPE)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fPolicyFallbackPrintDriver">
+      <parentCategory ref="TS_PRINT_REDIRECTION" />
+      <supportedOn ref="TS_SUPPORTED_Win2k3_Sp1_Only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="TS_FALLBACK_OPTIONS" valueName="FallbackPrintDriverType">
+          <item displayName="$(string.TS_FALLBACK_DEFAULT)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_FALLBACK_PCL)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_FALLBACK_PS)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_FALLBACK_PCL_PS)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SMART_CARD" class="Machine" displayName="$(string.TS_SMART_CARD)" explainText="$(string.TS_SMART_CARD_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEnableSmartCard">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_TIME_ZONE" class="Machine" displayName="$(string.TS_TIME_ZONE)" explainText="$(string.TS_TIME_ZONE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEnableTimeZoneRedirection">
+      <parentCategory ref="TS_REDIRECTION" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_RPC_ENCRYPTION" class="Machine" displayName="$(string.TS_RPC_ENCRYPTION)" explainText="$(string.TS_RPC_ENCRYPTION_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEncryptRPCTraffic">
+      <parentCategory ref="TS_SECURITY" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_JOIN_SESSION_DIRECTORY" class="Machine" displayName="$(string.TS_JOIN_SESSION_DIRECTORY)" explainText="$(string.TS_JOIN_SESSION_DIRECTORY_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="SessionDirectoryActive">
+      <parentCategory ref="TS_SD_Node" />
+      <supportedOn ref="SUPPORTED_WindowsNET_Enterprise" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_SD_ClustName" class="Machine" displayName="$(string.TS_SD_ClustName)" explainText="$(string.TS_SD_ClustName_Explain)" presentation="$(presentation.TS_SD_ClustName)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SD_Node" />
+      <supportedOn ref="SUPPORTED_WindowsNET_Enterprise" />
+      <elements>
+        <text id="TS_SD_ClustName" valueName="SessionDirectoryClusterName" required="true" maxLength="128"/>
+      </elements>
+    </policy>
+    <policy name="TS_SD_EXPOSE_ADDRESS" class="Machine" displayName="$(string.TS_SD_EXPOSE_ADDRESS)" explainText="$(string.TS_SD_EXPOSE_ADDRESS_Explain)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="SessionDirectoryExposeServerIP">
+      <parentCategory ref="TS_SD_Node" />
+      <supportedOn ref="SUPPORTED_WindowsNET_Enterprise" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_SD_Loc" class="Machine" displayName="$(string.TS_SD_Loc)" explainText="$(string.TS_SD_Loc_Explain)" presentation="$(presentation.TS_SD_Loc)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SD_Node" />
+      <supportedOn ref="SUPPORTED_WindowsNET_Enterprise" />
+      <elements>
+        <text id="TS_SD_Loc" valueName="SessionDirectoryLocation" required="true" maxLength="128" />
+      </elements>
+    </policy>
+    <policy name="TS_Session_End_On_Limit_1" class="User" displayName="$(string.TS_Session_End_On_Limit)" explainText="$(string.TS_SESSION_END_ON_LIMIT_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fResetBroken">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_Session_End_On_Limit_2" class="Machine" displayName="$(string.TS_Session_End_On_Limit)" explainText="$(string.TS_SESSION_END_ON_LIMIT_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fResetBroken">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_SESSIONS_Disconnected_Timeout_1" class="User" displayName="$(string.TS_SESSIONS_Disconnected_Timeout)" explainText="$(string.TS_SESSIONS_DISCONNECTED_TIMEOUT_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Disconnected_Timeout_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="MaxDisconnectionTime">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <enum id="TS_SESSIONS_EndDisconnected" valueName="MaxDisconnectionTime">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SESSIONS_Disconnected_Timeout_2" class="Machine" displayName="$(string.TS_SESSIONS_Disconnected_Timeout)" explainText="$(string.TS_SESSIONS_DISCONNECTED_TIMEOUT_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Disconnected_Timeout_2)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="MaxDisconnectionTime">
+          <value>
+            <string>0</string>
+          </value>
+        </item>
+      </disabledList>
+      <elements>
+        <enum id="TS_SESSIONS_EndDisconnected" valueName="MaxDisconnectionTime">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SESSIONS_Idle_Limit_1" class="User" displayName="$(string.TS_SESSIONS_Idle_Limit)" explainText="$(string.TS_SESSIONS_IDLE_LIMIT_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Idle_Limit_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="TS_SESSIONS_IdleLimitText" valueName="MaxIdleTime" required="true">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SESSIONS_Idle_Limit_2" class="Machine" displayName="$(string.TS_SESSIONS_Idle_Limit)" explainText="$(string.TS_SESSIONS_IDLE_LIMIT_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Idle_Limit_2)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="TS_SESSIONS_IdleLimitText" valueName="MaxIdleTime" required="true">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SESSIONS_Limits_1" class="User" displayName="$(string.TS_SESSIONS_Limits)" explainText="$(string.TS_SESSIONS_LIMITS_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Limits_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="TS_SESSIONS_ActiveLimit" valueName="MaxConnectionTime">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SESSIONS_Limits_2" class="Machine" displayName="$(string.TS_SESSIONS_Limits)" explainText="$(string.TS_SESSIONS_LIMITS_EXPLAIN)" presentation="$(presentation.TS_SESSIONS_Limits_2)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSION_TIME_LIMITS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="TS_SESSIONS_ActiveLimit" valueName="MaxConnectionTime">
+          <item displayName="$(string.TS_TIME_NEVER)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1MIN)">
+            <value>
+              <decimal value="60000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5MIN)">
+            <value>
+              <decimal value="300000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_10MIN)">
+            <value>
+              <decimal value="600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_15MIN)">
+            <value>
+              <decimal value="900000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_30MIN)">
+            <value>
+              <decimal value="1800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1HR)">
+            <value>
+              <decimal value="3600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2HR)">
+            <value>
+              <decimal value="7200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3HR)">
+            <value>
+              <decimal value="10800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_6HR)">
+            <value>
+              <decimal value="21600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_8HR)">
+            <value>
+              <decimal value="28800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_12HR)">
+            <value>
+              <decimal value="43200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_16HR)">
+            <value>
+              <decimal value="57600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_18HR)">
+            <value>
+              <decimal value="64800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_1DAY)">
+            <value>
+              <decimal value="86400000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_2DAY)">
+            <value>
+              <decimal value="172800000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_3DAY)">
+            <value>
+              <decimal value="259200000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_4DAY)">
+            <value>
+              <decimal value="345600000" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_TIME_5DAY)">
+            <value>
+              <decimal value="432000000" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_TEMP_DELETE" class="Machine" displayName="$(string.TS_TEMP_DELETE)" explainText="$(string.TS_TEMP_DELETE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="DeleteTempDirsOnExit">
+      <parentCategory ref="TS_TEMP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_TEMP_PER_SESSION" class="Machine" displayName="$(string.TS_TEMP_PER_SESSION)" explainText="$(string.TS_TEMP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="PerSessionTempDir">
+      <parentCategory ref="TS_TEMP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_ALLOW_UNSIGNED_FILES_1" class="User" displayName="$(string.TS_CLIENT_ALLOW_UNSIGNED_FILES)" explainText="$(string.TS_CLIENT_ALLOW_UNSIGNED_FILES_USER_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AllowUnsignedFiles">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_ALLOW_UNSIGNED_FILES_2" class="Machine" displayName="$(string.TS_CLIENT_ALLOW_UNSIGNED_FILES)" explainText="$(string.TS_CLIENT_ALLOW_UNSIGNED_FILES_MACHINE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AllowUnsignedFiles">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_ALLOW_SIGNED_FILES_1" class="User" displayName="$(string.TS_CLIENT_ALLOW_SIGNED_FILES)" explainText="$(string.TS_CLIENT_ALLOW_SIGNED_FILES_USER_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AllowSignedFiles">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_ALLOW_SIGNED_FILES_2" class="Machine" displayName="$(string.TS_CLIENT_ALLOW_SIGNED_FILES)" explainText="$(string.TS_CLIENT_ALLOW_SIGNED_FILES_MACHINE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AllowSignedFiles">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_1" class="Machine" displayName="$(string.TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS)" explainText="$(string.TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_MACHINE_EXPLAIN)" presentation="$(presentation.TS_TRUSTED_CERTIFICATE_THUMBPRINTS_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <elements>
+        <text id="TRUSTED_CERTIFICATE_THUMBPRINTS" valueName="TrustedCertThumbprints" required="true" />
+      </elements>
+    </policy>
+    <policy name="TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_2" class="User" displayName="$(string.TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS)" explainText="$(string.TS_CLIENT_TRUSTED_CERTIFICATE_THUMBPRINTS_USER_EXPLAIN)" presentation="$(presentation.TS_TRUSTED_CERTIFICATE_THUMBPRINTS_1)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <elements>
+        <text id="TRUSTED_CERTIFICATE_THUMBPRINTS" valueName="TrustedCertThumbprints" required="true" />
+      </elements>
+    </policy>
+   <policy name="TS_PROMT_CREDS_CLIENT_COMP" class="Machine" displayName="$(string.TS_PROMT_CREDS_CLIENT_COMP)" explainText="$(string.TS_PROMT_CREDS_CLIENT_COMP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="PromptForCredsOnClient">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TS_SERVER_AUTH" class="Machine" displayName="$(string.TS_SERVER_AUTH)" explainText="$(string.TS_SERVER_AUTH_EXPLAIN)" presentation="$(presentation.TS_SERVER_AUTH)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <elements>
+        <enum id="TS_SERVER_AUTH_LEVEL" valueName="AuthenticationLevel">
+          <item displayName="$(string.TS_SERVER_AUTH_NONE)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_AUTH_ATTEMPT)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_AUTH_REQUIRE)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SERVER_IMAGE_QUALITY" class="Machine" displayName="$(string.TS_SERVER_IMAGE_QUALITY)" explainText="$(string.TS_SERVER_IMAGE_QUALITY_EXPLAIN)" presentation="$(presentation.TS_SERVER_IMAGE_QUALITY)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="TS_SERVER_IMAGE_QUALITY_LEVELS" valueName="ImageQuality">
+          <item displayName="$(string.TS_SERVER_IMAGE_QUALITY_LOSSLESS)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_IMAGE_QUALITY_HIGH)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_IMAGE_QUALITY_MEDIUM)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_IMAGE_QUALITY_LOW)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SERVER_PROFILE" class="Machine" displayName="$(string.TS_SERVER_PROFILE)" explainText="$(string.TS_SERVER_PROFILE_EXPLAIN)" presentation="$(presentation.TS_SERVER_PROFILE)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="TS_SERVER_PROFILE_LEVELS" valueName="GraphicsProfile">
+            <item displayName="$(string.TS_SERVER_PROFILE_EXPERIENCE)">
+                <value>
+                    <decimal value="2" />
+                </value>
+            </item>
+            <item displayName="$(string.TS_SERVER_PROFILE_SCALE)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_PROFILE_BANDWIDTH)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SERVER_COMPRESSOR" class="Machine" displayName="$(string.TS_SERVER_COMPRESSOR)" explainText="$(string.TS_SERVER_COMPRESSOR_EXPLAIN)" presentation="$(presentation.TS_SERVER_COMPRESSOR)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="TS_SUPPORTED_Vista_SP1" />
+      <elements>
+        <enum id="TS_COMPRESSOR_LEVELS" valueName="MaxCompressionLevel">
+          <item displayName="$(string.TS_SERVER_COMPRESSOR_MPPC)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_COMPRESSOR_XCRUSH)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_COMPRESSOR_NCRUSH)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_NO_COMPRESSOR)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="TS_SERVER_ADVANCED_REMOTEFX_REMOTEAPP" class="Machine" displayName="$(string.TS_SERVER_ADVANCED_REMOTEFX_REMOTEAPP)" explainText="$(string.TS_SERVER_ADVANCED_REMOTEFX_REMOTEAPP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEnableRemoteFXAdvancedRemoteApp">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3_NOARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <!--AVC HW Encode Preferred Mode; Introduced Win10+-->
+    <policy name="TS_SERVER_AVC_HW_ENCODE_PREFERRED" class="Machine" displayName="$(string.TS_SERVER_AVC_HW_ENCODE_PREFERRED)" explainText="$(string.TS_SERVER_AVC_HW_ENCODE_PREFERRED_EXPLAIN)" presentation="$(presentation.TS_SERVER_AVC_HW_ENCODE_PREFERRED)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+        <parentCategory ref="TS_SESSIONS" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+        <elements>
+            <enum id="TS_AVC_HW_ENCODE_ENUM" valueName="AVCHardwareEncodePreferred">
+                <item displayName="$(string.TS_AVC_HW_ENCODE_ALWAYS)">
+                    <value>
+                        <decimal value="1" />
+                    </value>
+                </item>
+                <item displayName="$(string.TS_AVC_HW_ENCODE_VGPU)">
+                    <value>
+                        <decimal value="2" />
+                    </value>
+                </item>
+                <item displayName="$(string.TS_AVC_HW_ENCODE_NONVGPU)">
+                    <value>
+                        <decimal value="3" />
+                    </value>
+                </item>
+            </enum>
+        </elements>
+    </policy>
+
+    <!--AVC444 Preferred Mode; Introduced Win10+-->
+    <policy name="TS_SERVER_AVC444_MODE_PREFERRED" class="Machine" displayName="$(string.TS_SERVER_AVC444_MODE_PREFERRED)" explainText="$(string.TS_SERVER_AVC444_MODE_PREFERRED_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="AVC444ModePreferred">
+        <parentCategory ref="TS_SESSIONS" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+
+    <!--Disable Client Hardware Mode; Introduced Win10+-->
+    <policy name="TS_CLIENT_DISABLE_HARDWARE_MODE" class="Machine" displayName="$(string.TS_CLIENT_DISABLE_HARDWARE_MODE)" explainText="$(string.TS_CLIENT_DISABLE_HARDWARE_MODE_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client" valueName="EnableHardwareMode">
+        <parentCategory ref="TS_CLIENT" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+        <enabledValue>
+            <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="1" />
+        </disabledValue>
+    </policy>
+      
+    <!--Visual Experience Policy Setting; deprecated Win8+-->
+    <policy name="TS_SERVER_VISEXP" class="Machine" displayName="$(string.TS_SERVER_VISEXP)" explainText="$(string.TS_SERVER_VISEXP_EXPLAIN)" presentation="$(presentation.TS_SERVER_VISEXP)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_LEGACY_REMOTEFX" />
+      <supportedOn ref="TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2"/>
+      <elements>
+        <enum id="TS_VISEXP_SETTINGS" valueName="VisualExperiencePolicy">
+          <item displayName="$(string.TS_SERVER_VISEXP_RICHMEDIA)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SERVER_VISEXP_TEXT)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_USB_REDIRECTION_DISABLE" clientExtension="{4bcd6cde-777b-48b6-9804-43568e23545d}" class="Machine" displayName="$(string.TS_USB_REDIRECTION_DISABLE)" explainText="$(string.TS_USB_REDIRECTION_EXPLAIN)" presentation="$(presentation.UsbAccessRight)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client">
+      <parentCategory ref="TS_USB_REDIRECTION" />
+      <supportedOn ref="TS_SUPPORTED_Windows7_OR_SERVER2K8R2_SP1" />
+
+      <elements>
+        <enum id="UsbAccessRight" valueName="fUsbRedirectionEnableMode" required="true">
+          <item displayName="$(string.UsbMode_AdminsOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.UsbMode_AdminsAndUsers)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    
+    <!--Calista Experience Policy Setting-->
+
+    <policy name="TS_EnableVirtualGraphics" class="Machine" displayName="$(string.TS_EnableVirtualGraphics)" explainText="$(string.TS_EnableVirtualGraphics_Help)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEnableVirtualizedGraphics" >
+      <parentCategory ref="terminalserver:TS_LEGACY_REMOTEFX" />
+      <supportedOn ref="TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="TS_RemoteDesktopVirtualGraphics" class="Machine" displayName="$(string.TS_RemoteDesktopVirtualGraphics)" explainText="$(string.TS_RemoteDesktopVirtualGraphics_Explain)" presentation="$(presentation.TS_RemoteDesktopVirtualGraphics)" key="Software\Policies\Microsoft\Windows NT\Terminal Services\">
+      <parentCategory ref="terminalserver:TS_LEGACY_REMOTEFX" />
+      <supportedOn ref="TS_SUPPORTED_ONLY_Windows7_OR_SERVER2K8R2" />
+      <elements>
+        <enum id="TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate" valueName="VGOptimization_CaptureFrameRate">
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Highest)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Medium)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenCaptureRate_Lowest)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <enum id="TS_RemoteDesktopVirtualGraphics_ScreenImageQuality" valueName="VGOptimization_CompressionRatio">
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Highest)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Medium)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_RemoteDesktopVirtualGraphics_ScreenImageQuality_Lowest)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TS_SERVER_LEGACY_RFX" class="Machine" displayName="$(string.TS_SERVER_LEGACY_RFX)" explainText="$(string.TS_SERVER_LEGACY_RFX_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="fEnableVirtualizedGraphics">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    
+    <!-- RemoteApp and Desktop Connections Policies -->
+    <policy name="TS_RADC_DefaultConnection" class="User" displayName="$(string.TS_RADC_DefaultDesktop)" explainText="$(string.TS_RADC_DefaultDesktop_Help)" key="SOFTWARE\Policies\Microsoft\Workspaces" presentation="$(presentation.TS_RADC_DefaultConnection)">
+      <parentCategory ref="TS_RADC" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <text id="TS_RADC_DefaultConnectionURL" valueName="DefaultConnectionURL" required="true" clientExtension="{4D2F9B6F-1E52-4711-A382-6A8B1A003DE6}" maxLength="2083"/>
+      </elements>
+    </policy>
+
+    <!-- WAN Connections Policies -->
+
+    <policy name="TS_SELECT_NETWORK_DETECT" class="Machine" displayName="$(string.TS_SELECT_NETWORK_DETECT)" explainText="$(string.TS_SELECT_NETWORK_DETECT_EXPLAIN)" presentation="$(presentation.TS_SELECT_NETWORK_DETECT)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="TS_SELECT_NETWORK_DETECT_LEVEL" valueName="SelectNetworkDetect">
+          <item displayName="$(string.TS_SELECT_NETWORK_DETECT_CONNECT_TIME_AND_STEADY_STATE_ON)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SELECT_NETWORK_DETECT_CONNECT_TIME_OFF)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SELECT_NETWORK_DETECT_STEADY_STATE_OFF)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SELECT_NETWORK_DETECT_CONNECT_TIME_AND_STEADY_STATE_OFF)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+	<policy name="TS_SELECT_TRANSPORT" class="Machine" displayName="$(string.TS_SELECT_TRANSPORT)" explainText="$(string.TS_SELECT_TRANSPORT_EXPLAIN)" presentation="$(presentation.TS_SELECT_TRANSPORT)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services">
+      <parentCategory ref="TS_CONNECTIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="TS_SELECT_TRANSPORT_TYPE" valueName="SelectTransport">
+          <item displayName="$(string.TS_SELECT_TRANSPORT_UDP_AND_TCP)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SELECT_TRANSPORT_TCP_ONLY)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.TS_SELECT_TRANSPORT_UDP_OR_TCP)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="TS_CLIENT_TURN_OFF_UDP" class="Machine" displayName="$(string.TS_CLIENT_TURN_OFF_UDP)" explainText="$(string.TS_CLIENT_TURN_OFF_UDP_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client" valueName="fClientDisableUDP">
+      <parentCategory ref="TS_CLIENT" />
+      <supportedOn ref="terminalserver:TS_SUPPORTED_Windows8_or_ARM" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    
+    <policy name="TS_DX_USE_FULL_HWGPU" class="Machine" displayName="$(string.TS_DX_USE_FULL_HWGPU)" explainText="$(string.TS_DX_USE_FULL_HWGPU_EXPLAIN)" key="SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" valueName="bEnumerateHWBeforeSW">
+      <parentCategory ref="TS_SESSIONS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+  </policies>
+</policyDefinitions>

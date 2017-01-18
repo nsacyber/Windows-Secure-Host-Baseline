@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="WFP">Windows File Protection</string>
+      <string id="WFPDllCacheDir">Specify Windows File Protection cache location</string>
+      <string id="WFPDllCacheDir_Help">This policy setting specifies an alternate location for the Windows File Protection cache.
+
+If you enable this policy setting, enter the fully qualified local path to the new location in the "Cache file path" box.
+
+If you disable this setting or do not configure it, the Windows File Protection cache is located in the %Systemroot%\System32\Dllcache directory.
+
+Note: Do not put the cache on a network shared directory.</string>
+      <string id="WFPQuota">Limit Windows File Protection cache size</string>
+      <string id="WFPQuota_Help">This policy setting specifies the maximum amount of disk space that can be used for the Windows File Protection file cache.
+
+Windows File Protection adds protected files to the cache until the cache content reaches the quota. If the quota is greater than 50 MB, Windows File Protection adds other important Windows XP files to the cache until the cache size reaches the quota.
+
+If you enable this policy setting, enter the maximum amount of disk space to be used (in MB). To indicate that the cache size is unlimited, select "4294967295" as the maximum amount of disk space.
+
+If you disable this policy setting or do not configure it, the default value is set to 50 MB on Windows XP Professional and is unlimited (4294967295 MB) on Windows Server 2003.</string>
+      <string id="WFPScan">Set Windows File Protection scanning</string>
+      <string id="WFPScan_AtBoot">Scan during startup</string>
+      <string id="WFPScan_Help">This policy setting allows you to set when Windows File Protection scans protected files. This policy setting directs Windows File Protection to enumerate and scan all system files for changes.
+
+If you enable this policy setting, select a rate from the "Scanning Frequency" box. You can use this setting to direct Windows File Protection to scan files more often.
+
+--  "Do not scan during startup," the default, scans files only during setup.
+
+--  "Scan during startup" also scans files each time you start Windows XP. This setting delays each startup.
+
+If you disable or do not configure this policy setting, by default, files are scanned only during setup.
+
+Note: This policy setting affects file scanning only. It does not affect the standard background file change detection that Windows File Protection provides.</string>
+      <string id="WFPScan_NotAtBoot">Do not scan during startup</string>
+      <string id="WFPShowProgress">Hide the file scan progress window</string>
+      <string id="WFPShowProgress_Help">This policy setting hides the file scan progress window. This window provides status information to sophisticated users, but it might confuse novices.
+
+If you enable this policy setting, the file scan window does not appear during file scanning.
+
+If you disable or do not configure this policy setting, the file scan progress window appears.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="WFPDllCacheDir">
+        <textBox refId="WFPDllCacheDirBox">
+          <label>Cache file path:</label>
+        </textBox>
+      </presentation>
+      <presentation id="WFPQuota">
+        <text>To indicate that the cache size is not limited, select the</text>
+        <text> maximum value, 4294967295.</text>
+        <decimalTextBox refId="WFPQuota_Size" defaultValue="50">Cache size (in MB)</decimalTextBox>
+      </presentation>
+      <presentation id="WFPScan">
+        <dropdownList refId="WFPScanList" defaultItem="0">Scanning frequency:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

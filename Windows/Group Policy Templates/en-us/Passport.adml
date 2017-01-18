@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Windows Hello for Business</displayName>
+  <description>Configuration for Windows Hello for Business</description>
+  <resources>
+    <stringTable>
+        <string id="MSPassportForWorkCategory">Windows Hello for Business</string>
+        <string id="MSPassportForWorkPINComplexityCategory">PIN Complexity</string>
+        <string id="MSPassportForWorkRemoteCategory">Phone Sign-in</string>
+        <string id="MSPassport_UsePassportForWork">Use Windows Hello for Business</string>
+        <!-- DropdownList Button strings -->
+        <string id="MSPassport_UsePassportForWorkExplain">Windows Hello for Business is an alternative method for signing into Windows using your Active Directory or Azure Active Directory account that can replace passwords, Smart Cards, and Virtual Smart Cards.
+
+If you enable this policy, the device provisions Windows Hello for Business using keys or certificates for all users.
+
+If you disable this policy setting, the device does not provision Windows Hello for Business for any user.
+
+If you do not configure this policy setting, users can provision Windows Hello for Business as a convenience credential that encrypts their domain password.
+        </string>
+        <string id="MSPassport_RequireSecurityDevice">Use a hardware security device</string>
+        <string id="MSPassport_RequireSecurityDeviceExplain">A Trusted Platform Module (TPM) provides additional security benefits over software because data stored within it cannot be used on other devices.
+
+If you enable this policy setting, only devices with a usable TPM may provision Windows Hello for Business.
+
+If you disable or do not configure this policy setting, the TPM is still preferred, but all devices may provision Windows Hello for Business using software if the TPM is non-functional or unavailable.
+        </string>
+        <string id="MSPassport_MinimumPINLength">Minimum PIN length</string>
+        <string id="MSPassport_MinimumPINLengthExplain">Minimum PIN length configures the minimum number of characters required for the PIN.  The lowest number you can configure for this policy setting is 4.  The largest number you can configure must be less than the number configured in the Maximum PIN length policy setting or the number 127, whichever is the lowest.
+
+If you configure this policy setting, the PIN length must be greater than or equal to this number.
+
+If you disable or do not configure this policy setting, the PIN length must be greater than or equal to 4.
+
+NOTE: If the above specified conditions for the minimum PIN length are not met, default values will be used for both the maximum and minimum PIN lengths.
+        </string>
+        <string id="MSPassport_MaximumPINLength">Maximum PIN length</string>
+        <string id="MSPassport_MaximumPINLengthExplain">Maximum PIN length configures the maximum number of characters allowed for the PIN.  The largest number you can configure for this policy setting is 127. The lowest number you can configure must be larger than the number configured in the Minimum PIN length policy setting or the number 4, whichever is greater.
+
+If you configure this policy setting, the PIN length must be less than or equal to this number.
+
+If you disable or do not configure this policy setting, the PIN length must be less than or equal to 127.
+
+NOTE: If the above specified conditions for the maximum PIN length are not met, default values will be used for both the maximum and minimum PIN lengths.
+        </string>
+        <string id="MSPassport_UppercaseLetters">Require uppercase letters</string>
+        <string id="MSPassport_UppercaseLettersExplain">Use this policy setting to configure the use of uppercase letters in the PIN.
+
+If you enable this policy setting, Windows Hello for Business requires users to include at least one uppercase letter in their PIN.
+
+If you disable or do not configure this policy setting, Windows Hello for Business does not allow users to use uppercase letters in their PIN.
+        </string>
+        <string id="MSPassport_LowercaseLetters">Require lowercase letters</string>
+        <string id="MSPassport_LowercaseLettersExplain">Use this policy setting to configure the use of lowercase letters in the PIN.
+
+If you enable this policy setting, Windows Hello for Business requires users to include at least one lowercase letter in their PIN.
+
+If you disable or do not configure this policy setting, Windows Hello for Business does not allow users to use lowercase letters in their PIN.
+        </string>
+        <string id="MSPassport_SpecialCharacters">Require special characters</string>
+        <string id="MSPassport_SpecialCharactersExplain"><![CDATA[Use this policy setting to configure the use of special characters in the PIN.  Allowable special characters are: ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~ .
+
+If you enable this policy setting, Windows Hello for Business requires users to include at least one special character in their PIN.
+
+If you disable or do not configure this policy setting, Windows Hello for Business does not allow users to use special characters in their PIN.]]>
+        </string>
+        <string id="MSPassport_Digits">Require digits</string>
+        <string id="MSPassport_DigitsExplain">Use this policy setting to configure the use of digits in the PIN.
+
+If you enable or do not configure this policy setting, Windows Hello for Business requires users to include at least one digit in their PIN.
+
+If you disable this policy setting, Windows Hello for Business does not allow users to use digits in their PIN.
+        </string>
+        <string id="MSPassport_PINHistory">History</string>
+        <string id="MSPassport_PINHistoryExplain">This setting specifies the number of past PINs that can be associated to a user account that can’t be reused. This policy enables administrators to enhance security by ensuring that old PINs are not reused continually. PIN history is not preserved through PIN reset.
+
+The value must be between 0 to 50 PINs. If this policy is set to 0, then storage of previous PINs is not required.
+
+Default: 0.
+        </string>
+        <string id="MSPassport_PINExpiration">Expiration</string>
+        <string id="MSPassport_PINExpirationExplain">This setting specifies the period of time (in days) that a PIN can be used before the system requires the user to change it. The PIN can be set to expire after any number of days between 1 and 730, or PINs can be set to never expire if the policy is set to 0.
+
+Default: 0.
+        </string>
+        <string id="MSPassport_UseBiometrics">Use biometrics</string>
+        <string id="MSPassport_UseBiometricsExplain">Windows Hello for Business enables users to use biometric gestures, such as face and fingerprints, as an alternative to the PIN gesture. However users must still configure a PIN to use in case of failures.
+
+If you enable or do not configure this policy setting, Windows Hello for Business allows the use biometric gestures.
+
+If you disable this policy setting, Windows Hello for Business prevents the use of biometric gestures.
+
+NOTE: Disabling this policy prevents the user of biometric gestures on the device for all account types.
+        </string>
+        <string id="MSPassport_UseRemote">Use phone sign-in</string>
+        <string id="MSPassport_UseRemoteExplain">Use this policy setting to configure use of phone sign-in. Phone sign-in provides the ability for a phone to be usable as a companion device for desktop authentication. Phone sign-in requires that both the PC and the phone are registered with the same Azure AD tenant. Additionally, the phone must be enrolled in Windows Hello for Business.
+
+If you enable this policy setting, phone sign-in will be enabled, allowing the use of a phone as a companion device for desktop authentication.
+
+If you disable or do not configure this policy setting, phone sign-in will be disabled, preventing the use of a phone as a companion device for desktop authentication.
+        </string>
+    </stringTable>
+    <presentationTable>
+        <presentation id="MSPassport_MinimumPINLengthControl">
+            <decimalTextBox refId="MSPassport_MinimumPINLengthDataType" spin="true" spinStep="1" defaultvalue="4">Minimum PIN length</decimalTextBox>
+        </presentation>
+        <presentation id="MSPassport_MaximumPINLengthControl">
+            <decimalTextBox refId="MSPassport_MaximumPINLengthDataType" spin="true" spinStep="1" defaultvalue="127">Maximum PIN length</decimalTextBox>
+        </presentation>
+        <presentation id="MSPassport_UppercaseLettersControl">
+            <dropdownList refId="MSPassport_UppercaseLettersChoices" defaultItem="0">Uppercase letters:</dropdownList>
+        </presentation>
+        <presentation id="MSPassport_LowercaseLettersControl">
+            <dropdownList refId="MSPassport_LowercaseLettersChoices" defaultItem="0">Lowercase letters:</dropdownList>
+        </presentation>
+        <presentation id="MSPassport_SpecialCharactersControl">
+            <dropdownList refId="MSPassport_SpecialCharactersChoices" defaultItem="0">Special characters:</dropdownList>
+        </presentation>
+        <presentation id="MSPassport_DigitsControl">
+            <dropdownList refId="MSPassport_DigitsChoices" defaultItem="0">digits:</dropdownList>
+        </presentation>
+        <presentation id="MSPassport_PINHistoryControl">
+            <decimalTextBox refId="MSPassport_PINHistoryDataType" spin="true" spinStep="1" defaultvalue="0">PIN History</decimalTextBox>
+        </presentation>
+      <presentation id="MSPassport_PINExpirationControl">
+        <decimalTextBox refId="MSPassport_PINExpirationDataType" spin="true" spinStep="1" defaultvalue="0">PIN Expiration</decimalTextBox>
+      </presentation>
+
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="MSDT" namespace="Microsoft.Policies.MSDT" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WdiScenarioCategory" displayName="$(string.WdiScenarioCategory)">
+      <parentCategory ref="windows:Troubleshooting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="WdiScenarioExecutionPolicy" class="Machine" displayName="$(string.WdiScenarioExecutionPolicy)" explainText="$(string.WdiScenarioExecutionPolicyExplain)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{C295FBBA-FD47-46ac-8BEE-B1715EC634E5}">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{C295FBBA-FD47-46ac-8BEE-B1715EC634E5}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{C295FBBA-FD47-46ac-8BEE-B1715EC634E5}" valueName="EnabledScenarioExecutionLevel">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="SOFTWARE\Policies\Microsoft\Windows\WDI\{C295FBBA-FD47-46ac-8BEE-B1715EC634E5}" valueName="ScenarioExecutionEnabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+
+    <policy name="MsdtToolDownloadPolicy" class="Machine" displayName="$(string.MsdtToolDownloadPolicy)" explainText="$(string.MsdtToolDownloadPolicyExplain)" presentation="$(presentation.MsdtToolDownloadPolicy)" key="SOFTWARE\Policies\Microsoft\Windows\WDI\{C295FBBA-FD47-46ac-8BEE-B1715EC634E5}" valueName="DownloadToolsEnabled">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="MsdtToolDownloadPolicyLevel" valueName="DownloadToolsLevel" required="true">
+          <item displayName="$(string.MsdtToolDownloadPolicyLevelRemoteOnly)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.MsdtToolDownloadPolicyLevelAllowAll)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="MsdtSupportProvider" class="Machine" displayName="$(string.MsdtSupportProvider)" explainText="$(string.MsdtSupportProviderExplain)"  key="SOFTWARE\Policies\Microsoft\Windows\ScriptedDiagnosticsProvider\Policy" valueName="DisableQueryRemoteServer">
+      <parentCategory ref="WdiScenarioCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+            <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+            <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

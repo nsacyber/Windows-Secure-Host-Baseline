@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wordwheel" namespace="Microsoft.Policies.WordWheel" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WordwheelPolicies" displayName="$(string.WordwheelPolicies)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="CustomSearch" class="User" displayName="$(string.CustomSearch)" explainText="$(string.CustomSearch_Explain)" presentation="$(presentation.CustomSearch)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\SearchExtensions">
+      <parentCategory ref="WordwheelPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="CustomSearch_NamePrompt" valueName="InternetExtensionName" required="true" />
+        <text id="CustomSearch_URLPrompt" valueName="InternetExtensionAction" required="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

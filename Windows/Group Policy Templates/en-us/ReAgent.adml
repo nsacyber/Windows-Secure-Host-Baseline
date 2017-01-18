@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Recovery</displayName>
+  <description>Recovery</description>
+  <resources>
+    <stringTable>
+      <string id="WinRE">Recovery</string>
+      <string id="ConfigureWinRESetup">Allow restore of system to default state</string>
+      <string id="ConfigureWinRESetup_help">    Requirements: Windows 7
+    Description: This policy setting controls whether users can access the options in Recovery (in Control Panel) to restore the computer to the original state or from a user-created system image.
+
+    If you enable or do not configure this policy setting, the items "Use a system image you created earlier to recover your computer" and "Reinstall Windows" (or "Return your computer to factory condition") appears on the "Advanced recovery methods" page of Recovery (in Control Panel) and will allow the user to restore the computer to the original state or from a user-created system image. This is the default setting.
+
+    If you disable this policy setting, the items "Use a system image you created earlier to recover your computer" and "Reinstall Windows" (or "Return your computer to factory condition") in Recovery (in Control Panel) will be unavailable. However, with this policy setting disabled, users can still restore the computer to the original state or from a user-created system image by restarting the computer and accessing the System Recovery Options menu, if it is available.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="ctrlaltdel" namespace="Microsoft.Policies.ControlAltDelete" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CADOptions" displayName="$(string.CADOptions)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisableChangePassword" class="User" displayName="$(string.DisableChangePassword)" explainText="$(string.DisableChangePassword_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableChangePassword">
+      <parentCategory ref="CADOptions" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableLockComputer" class="User" displayName="$(string.DisableLockComputer)" explainText="$(string.DisableLockComputer_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableLockWorkstation">
+      <parentCategory ref="CADOptions" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="DisableTaskMgr" class="User" displayName="$(string.DisableTaskMgr)" explainText="$(string.DisableTaskMgr_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableTaskMgr">
+      <parentCategory ref="CADOptions" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="NoLogoff" class="User" displayName="$(string.NoLogoff)" explainText="$(string.NoLogOff_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoLogoff">
+      <parentCategory ref="CADOptions" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+  </policies>
+</policyDefinitions>

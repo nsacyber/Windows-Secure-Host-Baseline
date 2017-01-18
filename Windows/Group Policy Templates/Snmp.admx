@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="snmp" namespace="Microsoft.Policies.SNMP" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="SNMP_SNMP" displayName="$(string.SNMP_SNMP)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="SNMP_Communities" class="Machine" displayName="$(string.SNMP_Communities)" explainText="$(string.SNMP_ValidCommunities_Help)" presentation="$(presentation.SNMP_Communities)" key="Software\Policies\SNMP\Parameters">
+      <parentCategory ref="SNMP_SNMP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <list id="SNMP_CommunitiesListbox" key="Software\Policies\SNMP\Parameters\ValidCommunities" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="SNMP_PermittedManagers" class="Machine" displayName="$(string.SNMP_PermittedManagers)" explainText="$(string.SNMP_PermittedManagers_Help)" presentation="$(presentation.SNMP_PermittedManagers)" key="Software\Policies\SNMP\Parameters">
+      <parentCategory ref="SNMP_SNMP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <list id="SNMP_PermittedManagersListbox" key="Software\Policies\SNMP\Parameters\PermittedManagers" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="SNMP_Traps_Public" class="Machine" displayName="$(string.SNMP_Traps_Public)" explainText="$(string.SNMP_TrapDestinations_Help)" presentation="$(presentation.SNMP_Traps_Public)" key="Software\Policies\SNMP\Parameters">
+      <parentCategory ref="SNMP_SNMP" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <list id="SNMP_Traps_PublicListbox" key="Software\Policies\SNMP\Parameters\TrapConfiguration\public" valuePrefix="" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

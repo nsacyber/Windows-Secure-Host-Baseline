@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="ExplorerFramePanePolicies">Explorer Frame Pane</string>
+      <string id="PreviewPane">Turn on or off details pane</string>
+      <string id="PreviewPane_DropDownList_Show">Always show</string>
+      <string id="PreviewPane_DropDownList_Hide">Always hide</string>
+      <string id="PreviewPane_help">This policy setting shows or hides the Details Pane in File Explorer.
+
+If you enable this policy setting and configure it to hide the pane, the Details Pane in File Explorer is hidden and cannot be turned on by the user.
+
+If you enable this policy setting and configure it to show the pane, the Details Pane is always visible and cannot be hidden by the user. Note: This has a side effect of not being able to toggle to the Preview Pane since the two cannot be displayed at the same time.
+
+If you disable, or do not configure this policy setting, the Details Pane is hidden by default and can be displayed by the user. This is the default policy setting.
+</string>
+      <string id="NoReadingPane">Turn off Preview Pane</string>
+      <string id="NoReadingPane_help">Hides the Preview Pane in File Explorer.
+
+If you enable this policy setting, the Preview Pane in File Explorer is hidden and cannot be turned on by the user.
+
+If you disable, or do not configure this setting, the Preview Pane is hidden by default and can be displayed by the user.
+</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="PreviewPane_DropDownList">
+        <dropdownList refId="PreviewPane_Dropdownlist_Box" defaultItem="0">Configure details pane</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

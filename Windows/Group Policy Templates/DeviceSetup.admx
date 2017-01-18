@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="dsm" namespace="Microsoft.Policies.DeviceSoftwareSetup" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="devinst" namespace="Microsoft.Policies.DeviceInstallation" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="DeviceInstall_BalloonTips" class="Machine" displayName="$(string.DeviceInstall_BalloonTips)" explainText="$(string.DeviceInstall_BalloonTips_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="DisableBalloonTips">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_GenericDriverSendToWER" class="Machine" displayName="$(string.DeviceInstall_GenericDriverSendToWER)" explainText="$(string.DeviceInstall_GenericDriverSendToWER_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="DisableSendGenericDriverNotFoundToWER">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_RequestAdditionalSoftwareSendToWER" class="Machine" displayName="$(string.DeviceInstall_RequestAdditionalSoftwareSendToWER)" explainText="$(string.DeviceInstall_RequestAdditionalSoftwareSendToWER_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="DisableSendRequestAdditionalSoftwareToWER">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DriverSearchPlaces" class="User" displayName="$(string.DriverSearchPlaces)" explainText="$(string.DriverSearchPlaces_Help)" presentation="$(presentation.DriverSearchPlaces)" key="Software\Policies\Microsoft\Windows\DriverSearching">
+      <parentCategory ref="devinst:DriverInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXP" />
+      <elements>
+        <boolean id="DriverSearchPlaces_Floppies" valueName="DontSearchFloppies" />
+        <boolean id="DriverSearchPlaces_CD" valueName="DontSearchCD" />
+        <boolean id="DriverSearchPlaces_WindowsUpdate" valueName="DontSearchWindowsUpdate" />
+      </elements>
+    </policy>
+    <policy name="DriverSearchPlaces_DontPromptForWindowsUpdate_1" class="User" displayName="$(string.DriverSearchPlaces_DontPromptForWindowsUpdate)" explainText="$(string.DriverSearchPlaces_DontPromptForWindowsUpdate_Help)" key="Software\Policies\Microsoft\Windows\DriverSearching" valueName="DontPromptForWindowsUpdate">
+      <parentCategory ref="devinst:DriverInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DriverSearchPlaces_DontPromptForWindowsUpdate_2" class="Machine" displayName="$(string.DriverSearchPlaces_DontPromptForWindowsUpdate)" explainText="$(string.DriverSearchPlaces_DontPromptForWindowsUpdate_Help)" key="Software\Policies\Microsoft\Windows\DriverSearching" valueName="DontPromptForWindowsUpdate">
+      <parentCategory ref="devinst:DriverInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DriverSearchPlaces_SearchOrderConfiguration" class="Machine" displayName="$(string.DriverSearchPlaces_SearchOrderConfiguration)" explainText="$(string.DriverSearchPlaces_SearchOrderConfiguration_Help)" presentation="$(presentation.DriverSearchPlaces_SearchOrderConfiguration)" key="Software\Policies\Microsoft\Windows\DriverSearching">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="DriverSearchPlaces_SearchOrderConfiguration_dropdown"  valueName="SearchOrderConfig" required="true">
+          <item displayName="$(string.DriverSearchPlaces_SearchOrderConfiguration_AlwaysCheckWU)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.DriverSearchPlaces_SearchOrderConfiguration_CheckWUIfNeeded)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+          <item displayName="$(string.DriverSearchPlaces_SearchOrderConfiguration_NeverCheckWu)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DriverSearchPlaces_SearchServerConfiguration" class="Machine" displayName="$(string.DriverSearchPlaces_SearchServerConfiguration)" explainText="$(string.DriverSearchPlaces_SearchServerConfiguration_Help)" presentation="$(presentation.DriverSearchPlaces_SearchServerConfiguration)" key="Software\Policies\Microsoft\Windows\DriverSearching">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="DriverSearchPlaces_SearchServerConfiguration_dropdown"  valueName="DriverServerSelection" required="true">
+          <item displayName="$(string.DriverSearchPlaces_SearchServerConfiguration_WU)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.DriverSearchPlaces_SearchServerConfiguration_WSUS)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.DriverSearchPlaces_SearchServerConfiguration_Both)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DeviceMetadata_PreventDeviceMetadataFromNetwork" class="Machine" displayName="$(string.DeviceMetadata_PreventDeviceMetadataFromNetwork)" explainText="$(string.DeviceMetadata_PreventDeviceMetadataFromNetwork_Help)" key="SOFTWARE\Policies\Microsoft\Windows\Device Metadata" valueName="PreventDeviceMetadataFromNetwork">
+      <parentCategory ref="devinst:DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

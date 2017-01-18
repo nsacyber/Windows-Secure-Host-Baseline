@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="edgeui" namespace="Microsoft.Policies.EdgeUI" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="EdgeUI" displayName="$(string.EdgeUI)" explainText="$(string.EdgeUI_Help)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="TurnOffBackstack" class="User" displayName="$(string.TurnOffBackstack)" explainText="$(string.TurnOffBackstack_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="TurnOffBackstack">
+      <parentCategory ref="EdgeUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableMFUTracking" class="User" displayName="$(string.DisableMFUTracking)" explainText="$(string.ExplainDisableMFUTracking)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="DisableMFUTracking">
+      <parentCategory ref="EdgeUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRecentApps" class="User" displayName="$(string.DisableRecentApps)" explainText="$(string.DisableRecentApps_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="DisableRecentApps">
+      <parentCategory ref="EdgeUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableCharms" class="User" displayName="$(string.DisableCharms)" explainText="$(string.DisableCharms_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="DisableCharms">
+      <parentCategory ref="EdgeUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShowCommandPromptOnWinX" class="User" displayName="$(string.ShowCommandPromptOnWinX)" explainText="$(string.ShowCommandPromptOnWinX_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="ShowCommandPromptOnWinX">
+      <parentCategory ref="EdgeUI" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableHelpSticker" class="Both" displayName="$(string.DisableHelpSticker)" explainText="$(string.DisableHelpSticker_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="DisableHelpSticker">
+        <parentCategory ref="EdgeUI" />
+        <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="AllowEdgeSwipe" class="Both" displayName="$(string.AllowEdgeSwipe)" explainText="$(string.AllowEdgeSwipe_Help)" key="Software\Policies\Microsoft\Windows\EdgeUI" valueName="AllowEdgeSwipe">
+        <parentCategory ref="EdgeUI" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

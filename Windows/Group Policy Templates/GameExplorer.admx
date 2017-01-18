@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="gameexplorer" namespace="Microsoft.Policies.GameExplorer" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="GAMEUX" displayName="$(string.GAMEUX)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DownloadGameInfo_2" class="Machine" displayName="$(string.DownloadGameInfo)" explainText="$(string.DownloadGameInfo_Help)" key="Software\Policies\Microsoft\Windows\GameUX" valueName="DownloadGameInfo">
+      <parentCategory ref="GAMEUX" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="ListRecentlyPlayed_2" class="Machine" displayName="$(string.ListRecentlyPlayed)" explainText="$(string.ListRecentlyPlayed_Help)" key="Software\Policies\Microsoft\Windows\GameUX" valueName="ListRecentlyPlayed">
+      <parentCategory ref="GAMEUX" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="GameUpdateOptions_2" class="Machine" displayName="$(string.GameUpdateOptions)" explainText="$(string.GameUpdateOptions_Help)" key="Software\Policies\Microsoft\Windows\GameUX" valueName="GameUpdateOptions">
+      <parentCategory ref="GAMEUX" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

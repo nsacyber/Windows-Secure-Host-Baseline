@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.1" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="msi" namespace="Microsoft.Policies.MSI" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="products" namespace="Microsoft.Policies.Products" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  
+  <supportedOn>
+    <definitions>
+      <!--Windows Installer v4.5-->
+      <definition name="SUPPORTED_MSI45" displayName="$(string.SUPPORTED_MSI45)">
+        <or>
+          <reference ref="products:WindowsInstaller45"/>
+        </or>
+      </definition>
+
+      <!--Windows Installer v4.0-->
+      <definition name="SUPPORTED_MSI40" displayName="$(string.SUPPORTED_MSI40)">
+        <or>
+          <reference ref="products:WindowsInstaller40"/>
+        </or>
+      </definition>
+
+      <!--Windows Installer v3.0-->
+      <definition name="SUPPORTED_MSI30" displayName="$(string.SUPPORTED_MSI30)">
+        <or>
+          <reference ref="products:WindowsInstaller30"/>
+        </or>
+      </definition>
+
+      <!--Microsoft Windows XP or Windows 2000 with Windows Installer v2.0-->
+      <definition name="SUPPORTED_MSI15" displayName="$(string.SUPPORTED_MSI15)">
+        <or>
+          <reference ref="products:MicrosoftWindowsXP"/>
+          <reference ref="products:SUPPORTED_Win2KWithWindowsInstaller20"/>
+        </or>
+      </definition>
+    </definitions>
+  </supportedOn>
+  
+  <categories>
+    <category name="MSI" displayName="$(string.MSI)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  
+  <policies>
+    <policy name="AllowLockdownBrowse" class="Machine" displayName="$(string.AllowLockdownBrowse)" explainText="$(string.AllowLockdownBrowse_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="AllowLockdownBrowse">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowLockdownMedia" class="Machine" displayName="$(string.AllowLockdownMedia)" explainText="$(string.AllowLockdownMedia_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="AllowLockdownMedia">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowLockdownPatch" class="Machine" displayName="$(string.AllowLockdownPatch)" explainText="$(string.AllowLockdownPatch_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="AllowLockdownPatch">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AlwaysInstallElevated_1" class="User" displayName="$(string.AlwaysInstallElevated)" explainText="$(string.AlwaysInstallElevated_Help)" presentation="$(presentation.AlwaysInstallElevated_1)" key="Software\Policies\Microsoft\Windows\Installer" valueName="AlwaysInstallElevated">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AlwaysInstallElevated_2" class="Machine" displayName="$(string.AlwaysInstallElevated)" explainText="$(string.AlwaysInstallElevated_Help)" presentation="$(presentation.AlwaysInstallElevated_2)" key="Software\Policies\Microsoft\Windows\Installer" valueName="AlwaysInstallElevated">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableAutomaticApplicationShutdown" class="Machine" displayName="$(string.DisableAutomaticApplicationShutdown)" explainText="$(string.DisableAutomaticApplicationShutdown_Help)" presentation="$(presentation.DisableAutomaticApplicationShutdown)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI40" />
+      <elements>
+        <enum id="DisableAutomaticApplicationShutdown" valueName="DisableAutomaticApplicationShutdown" required="true">          
+          <item displayName="$(string.AutomaticApplicationShutdownOn)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+	  <item displayName="$(string.AutomaticApplicationShutdownOff)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+	  <item displayName="$(string.LegacyAutomaticApplicationShutdownOff)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableBrowse" class="Machine" displayName="$(string.DisableBrowse)" explainText="$(string.DisableBrowse_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableBrowse">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableFlyweightPatching" class="Machine" displayName="$(string.DisableFlyweightPatching)" explainText="$(string.DisableFlyweightPatching_Help)" presentation="$(presentation.DisableFlyweightPatching)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI30" />
+      <elements>
+        <enum id="DisableFlyweightPatching" valueName="DisableFlyweightPatching" required="true">
+          <item displayName="$(string.PatchOptimizationOff)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.PatchOptimizationOn)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableLoggingFromPackage" class="Machine" displayName="$(string.DisableLoggingFromPackage)" explainText="$(string.DisableLoggingFromPackage_Help)" presentation="$(presentation.DisableLoggingFromPackage)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI40" />
+      <elements>
+        <enum id="DisableLoggingFromPackage" valueName="DisableLoggingFromPackage" required="true">
+          <item displayName="$(string.DisableLoggingFromPackageOff)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DisableLoggingFromPackageOn)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableMedia" class="User" displayName="$(string.DisableMedia)" explainText="$(string.DisableMedia_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableMedia">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableMSI" class="Machine" displayName="$(string.DisableMSI)" explainText="$(string.DisableMSI_Help)" presentation="$(presentation.DisableMSI)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <enum id="DisableMSI" valueName="DisableMSI" required="true">
+          <item displayName="$(string.DisableAlways)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.DisableNonManaged)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DisableNever)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisablePatch" class="Machine" displayName="$(string.DisablePatch)" explainText="$(string.DisablePatch_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisablePatch">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRollback_1" class="User" displayName="$(string.DisableRollback)" explainText="$(string.DisableRollback_Help)" presentation="$(presentation.DisableRollback_1)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableRollback">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableRollback_2" class="Machine" displayName="$(string.DisableRollback)" explainText="$(string.DisableRollback_Help)" presentation="$(presentation.DisableRollback_2)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableRollback">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableUserControl" class="Machine" displayName="$(string.EnableUserControl)" explainText="$(string.EnableUserControl_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="EnableUserControl">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MSI_DisableLUAPatching" class="Machine" displayName="$(string.MSI_DisableLUAPatching)" explainText="$(string.MSI_DisableLUAPatchingHelp)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableLUAPatching">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI30" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MSI_DisablePatchUninstall" class="Machine" displayName="$(string.MSI_DisablePatchUninstall)" explainText="$(string.MSI_DisablePatchUninstallHelp)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisablePatchUninstall">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI30" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MSI_DisableSRCheckPoints" class="Machine" displayName="$(string.MSI_DisableSRCheckPoints)" explainText="$(string.MSI_DisableSRCheckPoints_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="LimitSystemRestoreCheckpointing">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+    </policy>
+    <policy name="MSI_DisableUserInstalls" class="Machine" displayName="$(string.MSI_DisableUserInstalls)" explainText="$(string.MSI_DisableUserInstalls_Help)" presentation="$(presentation.MSI_DisableUserInstalls)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI15" />
+      <elements>
+        <enum id="MSI_DisableUserInstallsBox" valueName="DisableUserInstalls" required="true">
+          <item displayName="$(string.MSI_AllowUser)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.MSI_HideUser)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="MSI_EnforceUpgradeComponentRules" class="Machine" displayName="$(string.MSI_EnforceUpgradeComponentRules)" explainText="$(string.MSI_EnforceUpgradeComponentRulesHelp)" key="Software\Policies\Microsoft\Windows\Installer" valueName="EnforceUpgradeComponentRules">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI30" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MSI_MaxPatchCacheSize" class="Machine" displayName="$(string.MSI_MaxPatchCacheSize)" explainText="$(string.MSI_MaxPatchCacheSizeHelp)" presentation="$(presentation.MSI_MaxPatchCacheSize)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI30" />
+      <elements>
+        <decimal id="MSI_MaxPatchCacheSize" valueName="MaxPatchCacheSize" maxValue="100" />
+      </elements>
+    </policy>
+    <policy name="MSILogging" class="Machine" displayName="$(string.MSILogging)" explainText="$(string.MSILogging_Help)" presentation="$(presentation.MSILogging)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="MSILogging" valueName="Logging" />
+      </elements>
+    </policy>
+    <policy name="SafeForScripting" class="Machine" displayName="$(string.SafeForScripting)" explainText="$(string.SafeForScripting_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="SafeForScripting">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SearchOrder" class="User" displayName="$(string.SearchOrder)" explainText="$(string.SearchOrder_Help)" presentation="$(presentation.SearchOrder)" key="Software\Policies\Microsoft\Windows\Installer">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="SearchOrder" valueName="SearchOrder" />
+      </elements>
+    </policy>
+    <policy name="TransformsSecure" class="Machine" displayName="$(string.TransformsSecure)" explainText="$(string.TransformsSecure_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="TransformsSecure">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>explainText="$(string.DisableSharedComponent_Help)" 
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableSharedComponent" class="Machine" displayName="$(string.DisableSharedComponent)" explainText="$(string.DisableSharedComponent_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="DisableSharedComponent">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI45" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="MsiDisableEmbeddedUI" class="Machine" displayName="$(string.MsiDisableEmbeddedUI)" explainText="$(string.MsiDisableEmbeddedUI_Help)" key="Software\Policies\Microsoft\Windows\Installer" valueName="MsiDisableEmbeddedUI">
+      <parentCategory ref="MSI" />
+      <supportedOn ref="SUPPORTED_MSI45" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

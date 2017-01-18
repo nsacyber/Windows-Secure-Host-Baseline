@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DeviceInstall_BalloonTips">Turn off "Found New Hardware" balloons during device installation</string>
+      <string id="DeviceInstall_BalloonTips_Help">This policy setting allows you to turn off "Found New Hardware" balloons during device installation.
+
+If you enable this policy setting, "Found New Hardware" balloons do not appear while a device is being installed.
+
+If you disable or do not configure this policy setting, "Found New Hardware" balloons appear while a device is being installed, unless the driver for the device suppresses the balloons.</string>
+      <string id="DeviceInstall_GenericDriverSendToWER">Do not send a Windows error report when a generic driver is installed on a device</string>
+      <string id="DeviceInstall_GenericDriverSendToWER_Help">Windows has a feature that sends "generic-driver-installed" reports through the Windows Error Reporting infrastructure. This policy allows you to disable the feature.
+
+If you enable this policy setting, an error report is not sent when a generic driver is installed.
+
+If you disable or do not configure this policy setting, an error report is sent when a generic driver is installed.</string>
+      <string id="DeviceInstall_RequestAdditionalSoftwareSendToWER">Prevent Windows from sending an error report when a device driver requests additional software during installation</string>
+      <string id="DeviceInstall_RequestAdditionalSoftwareSendToWER_Help">Windows has a feature that allows a device driver to request additional software through the Windows Error Reporting infrastructure. This policy allows you to disable the feature.
+
+If you enable this policy setting, Windows will not send an error report to request additional software even if this is specified by the device driver.
+
+If you disable or do not configure this policy setting, Windows sends an error report when a device driver that requests additional software is installed.</string>
+      <string id="DriverSearchPlaces">Configure driver search locations</string>
+      <string id="DriverSearchPlaces_Help">This setting configures the location that Windows searches for drivers when a new piece of hardware is found.
+
+By default, Windows searches the following places for drivers: local installation, floppy drives, CD-ROM drives, Windows Update.
+
+Using this setting, you may remove the floppy and CD-ROM drives from the search algorithm.
+
+If you enable this setting, you can remove the locations by selecting the associated check box beside the location name.
+
+If you disable or do not configure this setting, Windows searches the installation location, floppy drives, and CD-ROM drives.
+
+Note: To prevent searching Windows Update for drivers also see "Turn off Windows Update device driver searching" in Administrative Templates/System/Internet Communication Management/Internet Communication settings.</string>
+      <string id="DriverSearchPlaces_DontPromptForWindowsUpdate">Turn off Windows Update device driver search prompt</string>
+      <string id="DriverSearchPlaces_DontPromptForWindowsUpdate_Help">Specifies whether the administrator will be prompted about going to Windows Update to search for device drivers using the Internet.
+
+Note: This setting only has effect if "Turn off Windows Update device driver searching" in "Administrative Templates/System/Internet Communication Management/Internet Communication settings" is disabled or not configured.
+
+If you enable this setting, administrators will not be prompted to search Windows Update.
+
+If you disable or do not configure this setting, and "Turn off Windows Update device driver searching" is disabled or not configured, the administrator will be prompted for consent before going to Windows Update to search for device drivers.</string>
+      <string id="DriverSearchPlaces_SearchOrderConfiguration">Specify search order for device driver source locations</string>
+      <string id="DriverSearchPlaces_SearchOrderConfiguration_Help">This policy setting allows you to specify the order in which Windows searches source locations for device drivers. 
+
+If you enable this policy setting, you can select whether Windows searches for drivers on Windows Update unconditionally, only if necessary, or not at all.
+
+Note that searching always implies that Windows will attempt to search Windows Update exactly one time. With this setting, Windows will not continually search for updates. This setting is used to ensure that the best software will be found for the device, even if the network is temporarily available.
+
+If the setting for searching only if needed is specified, then Windows will search for a driver only if a driver is not locally available on the system.
+
+If you disable or do not configure this policy setting, members of the Administrators group can determine the priority order in which Windows searches source locations for device drivers.</string>
+      <string id="DriverSearchPlaces_SearchOrderConfiguration_AlwaysCheckWU">Always search Windows Update</string>
+      <string id="DriverSearchPlaces_SearchOrderConfiguration_CheckWUIfNeeded">Search Windows Update only if needed</string>
+      <string id="DriverSearchPlaces_SearchOrderConfiguration_NeverCheckWu">Do not search Windows Update</string>
+
+      <string id="DriverSearchPlaces_SearchServerConfiguration">Specify the search server for device driver updates</string>
+      <string id="DriverSearchPlaces_SearchServerConfiguration_Help">This policy setting allows you to specify the search server that Windows uses to find updates for device drivers.
+
+If you enable this policy setting, you can select whether Windows searches Windows Update (WU), searches a Managed Server, or a combination of both.
+
+Note that if both are specified, then Windows will first search the Managed Server, such as a Windows Server Update Services (WSUS) server. Only if no update is found will Windows then also search Windows Update.
+
+If you disable or do not configure this policy setting, members of the Administrators group can determine the server used in the search for device drivers.
+      </string>
+      <string id="DriverSearchPlaces_SearchServerConfiguration_WU">Search Windows Update</string>
+      <string id="DriverSearchPlaces_SearchServerConfiguration_WSUS">Search Managed Server</string>
+      <string id="DriverSearchPlaces_SearchServerConfiguration_Both">Search Managed Server, then WU</string>
+      
+      <string id="DeviceMetadata_PreventDeviceMetadataFromNetwork">Prevent device metadata retrieval from the Internet</string>
+      <string id="DeviceMetadata_PreventDeviceMetadataFromNetwork_Help">This policy setting allows you to prevent Windows from retrieving device metadata from the Internet.
+          
+If you enable this policy setting, Windows does not retrieve device metadata for installed devices from the Internet. This policy setting overrides the setting in the Device Installation Settings dialog box (Control Panel &gt; System and Security &gt; System &gt; Advanced System Settings &gt; Hardware tab).
+
+If you disable or do not configure this policy setting, the setting in the Device Installation Settings dialog box controls whether Windows retrieves device metadata from the Internet.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="DriverSearchPlaces">
+        <checkBox refId="DriverSearchPlaces_Floppies">Do not search floppy disk drives</checkBox>
+        <checkBox refId="DriverSearchPlaces_CD">Do not search CD-ROM drives</checkBox>
+        <checkBox refId="DriverSearchPlaces_WindowsUpdate">Do not search Windows Update</checkBox>
+      </presentation>
+      <presentation id="DriverSearchPlaces_SearchOrderConfiguration">
+        <dropdownList refId="DriverSearchPlaces_SearchOrderConfiguration_dropdown" noSort="true" defaultItem="1">Select search order:</dropdownList>
+      </presentation>
+      <presentation id="DriverSearchPlaces_SearchServerConfiguration">
+        <dropdownList refId="DriverSearchPlaces_SearchServerConfiguration_dropdown" noSort="true" defaultItem="0">Select update server:</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

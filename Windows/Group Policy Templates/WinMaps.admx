@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="winmaps" namespace="Microsoft.Policies.WinMaps" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Maps" displayName="$(string.Maps_Name)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="TurnOffAutoUpdate"
+            class="Machine"
+            displayName="$(string.TurnOffAutoUpdate_Name)"
+            explainText="$(string.TurnOffAutoUpdate_Explain)"
+            key="Software\Policies\Microsoft\Windows\Maps"
+            valueName="AutoDownloadAndUpdateMapData">
+        <parentCategory ref="Maps" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+        <enabledValue>
+            <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="1" />
+        </disabledValue>
+    </policy>
+    <policy name="DisallowUntriggeredNetworkOnSettingsPage"
+            class="Machine"
+            displayName="$(string.DisallowUntriggeredNetworkOnSettingsPage_Name)"
+            explainText="$(string.DisallowUntriggeredNetworkOnSettingsPage_Explain)"
+            key="Software\Policies\Microsoft\Windows\Maps"
+            valueName="AllowUntriggeredNetworkTrafficOnSettingsPage">
+        <parentCategory ref="Maps" />
+        <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+        <enabledValue>
+            <decimal value="0" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="1" />
+        </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

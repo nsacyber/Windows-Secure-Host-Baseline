@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="inkwatson" namespace="Microsoft.Policies.InkWatson" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="PreventHandwritingErrorReports_1" class="User" displayName="$(string.PreventHandwritingErrorReports)" explainText="$(string.PreventHandwritingErrorReports_Explain)" key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventHandwritingErrorReports_2" class="Machine" displayName="$(string.PreventHandwritingErrorReports)" explainText="$(string.PreventHandwritingErrorReports_Explain)" key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

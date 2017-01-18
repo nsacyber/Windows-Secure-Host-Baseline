@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="smartcard" namespace="Microsoft.Policies.SmartCard" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="SmartCard" displayName="$(string.SmartCard)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AllowCertificatesWithNoEKU" class="Machine" displayName="$(string.AllowCertificatesWithNoEKU)" explainText="$(string.AllowCertificatesWithNoEKU_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="AllowCertificatesWithNoEKU">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowIntegratedUnblock" class="Machine" displayName="$(string.AllowIntegratedUnblock)" explainText="$(string.AllowIntegratedUnblock_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="AllowIntegratedUnblock">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="FilterDuplicateCerts" class="Machine" displayName="$(string.FilterDuplicateCerts)" explainText="$(string.FilterDuplicateCerts_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="FilterDuplicateCerts">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ForceReadingAllCertificates" class="Machine" displayName="$(string.ForceReadingAllCertificates)" explainText="$(string.ForceReadingAllCertificates_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="ForceReadingAllCertificates">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowSignatureOnlyKeys" class="Machine" displayName="$(string.AllowSignatureOnlyKeys)" explainText="$(string.AllowSignatureOnlyKeys_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="AllowSignatureOnlyKeys">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AllowTimeInvalidCertificates" class="Machine" displayName="$(string.AllowTimeInvalidCertificates)" explainText="$(string.AllowTimeInvalidCertificates_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="AllowTimeInvalidCertificates">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CertPropEnabledString" class="Machine" displayName="$(string.CertPropEnabledString)" explainText="$(string.CertPropEnabledString_help)" key="SOFTWARE\Policies\Microsoft\Windows\CertProp" valueName="CertPropEnabled">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="CertPropRootCleanupString" class="Machine" displayName="$(string.CertPropRootCleanupString)" explainText="$(string.CertPropRootCleanupString_help)" presentation="$(presentation.CertPropRootCleanupString)" key="SOFTWARE\Policies\Microsoft\Windows\CertProp">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="RootCertCleanupOption_Levels" valueName="RootCertificateCleanupOption">
+          <item displayName="$(string.RootCertCleanupOption_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.RootCertCleanupOption_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.RootCertCleanupOption_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="CertPropRootEnabledString" class="Machine" displayName="$(string.CertPropRootEnabledString)" explainText="$(string.CertPropRootEnabledString_help)" key="SOFTWARE\Policies\Microsoft\Windows\CertProp" valueName="EnableRootCertificatePropagation">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="IntegratedUnblockPromptString" class="Machine" displayName="$(string.IntegratedUnblockPromptString)" explainText="$(string.IntegratedUnblockPromptString_help)" presentation="$(presentation.IntegratedUnblockPromptString)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="IntegratedUnblockPromptString" valueName="IntegratedUnblockPromptString" />
+      </elements>
+    </policy>
+    <policy name="ReverseSubject" class="Machine" displayName="$(string.ReverseSubject)" explainText="$(string.ReverseSubject_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="ReverseSubject">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisallowPlaintextPin" class="Machine" displayName="$(string.DisallowPlaintextPin)" explainText="$(string.DisallowPlaintextPin_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="DisallowPlaintextPin">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="X509HintsNeeded" class="Machine" displayName="$(string.X509HintsNeeded)" explainText="$(string.X509HintsNeeded_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="X509HintsNeeded">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="SCPnPEnabled" class="Machine" displayName="$(string.SCPnPEnabled)" explainText="$(string.SCPnPEnabled_help)" key="SOFTWARE\Policies\Microsoft\Windows\ScPnP" valueName="EnableScPnP">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="SCPnPNotification" class="Machine" displayName="$(string.SCPnPNotification)" explainText="$(string.SCPnPNotification_help)" key="SOFTWARE\Policies\Microsoft\Windows\ScPnP" valueName="ScPnPNotification">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="EnumerateECCCerts" class="Machine" displayName="$(string.EnumerateECCCerts)" explainText="$(string.EnumerateECCCerts_help)" key="SOFTWARE\Policies\Microsoft\Windows\SmartCardCredentialProvider" valueName="EnumerateECCCerts">
+      <parentCategory ref="SmartCard" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+  </policies>
+</policyDefinitions>

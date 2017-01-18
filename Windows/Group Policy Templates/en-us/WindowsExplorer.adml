@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="ABCDOnly">Restrict A, B, C and D drives only</string>
+      <string id="ABConly">Restrict A, B and C drives only</string>
+      <string id="ABOnly">Restrict A and B drives only</string>
+      <string id="ALLDrives">Restrict all drives</string>
+      <string id="ClassicShell">Turn on Classic Shell</string>
+      <string id="ClassicShell_Help">This setting allows an administrator to revert specific Windows Shell behavior to classic Shell behavior.
+
+If you enable this setting, users cannot configure their system to open items by single-clicking (such as in Mouse in Control Panel). As a result, the user interface looks and operates like the interface for Windows NT 4.0, and users cannot restore the new features.
+Enabling this policy will also turn off the preview pane and set the folder options for File Explorer to Use classic folders view and disable the users ability to change these options.
+
+If you disable or not configure this policy, the default File Explorer behavior is applied to the user.
+
+Note: In operating systems earlier than Windows Vista, enabling this policy will also disable the Active Desktop and Web view. This setting will also take precedence over the "Enable Active Desktop" setting. If both policies are enabled, Active Desktop is disabled.
+
+Also, see the "Disable Active Desktop" setting in User Configuration\Administrative Templates\Desktop\Active Desktop and the "Do not allow Folder Options to be opened from the Options button on the View tab of the ribbon" setting in User Configuration\Administrative Templates\Windows Components\File Explorer.</string>
+      <string id="Comdlg">Common Open File Dialog</string>
+      <string id="ConfirmFileDelete">Display confirmation dialog when deleting files</string>
+      <string id="ConfirmFileDelete_Help">Allows you to have File Explorer display a confirmation dialog  whenever a file is deleted or moved to the Recycle Bin.
+
+If you enable this setting, a confirmation dialog is displayed when a file is deleted or moved to the Recycle Bin by the user.
+
+If you disable or do not configure this setting, the default behavior of not displaying a confirmation dialog occurs.</string>
+      <string id="COnly">Restrict C drive only</string>
+      <string id="DOnly">Restrict D drive only</string>
+      <string id="EnforceShellExtensionSecurity">Allow only per user or approved shell extensions</string>
+      <string id="EnforceShellExtensionSecurity_Help">This setting is designed to ensure that shell extensions can operate on a per-user basis. If you enable this setting, Windows is directed to only run those shell extensions that have either been approved by an administrator or that will not impact other users of the machine.
+
+A shell extension only runs if there is an entry in at least one of the following locations in registry.
+
+For shell extensions that have been approved by the administrator and are available to all users of the computer, there must be an entry at HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved.
+
+For shell extensions to run on a per-user basis, there must be an entry at HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved.</string>
+      <string id="LinkResolveIgnoreLinkInfo">Do not track Shell shortcuts during roaming</string>
+      <string id="LinkResolveIgnoreLinkInfo_Help">This policy setting determines whether Windows traces shortcuts back to their sources when it cannot find the target on the user's system.
+
+Shortcut files typically include an absolute path to the original target file as well as the relative path to the current target file. When the system cannot find the file in the current target path, then, by default, it searches for the target in the original path. If the shortcut has been copied to a different computer, the original path might lead to a network computer, including external resources, such as an Internet server.
+
+If you enable this policy setting, Windows only searches the current target path. It does not search for the original path even when it cannot find the target file in the current target path.
+
+If you disable or do not configure this policy setting, Windows searches for the original path when it cannot find the target file in the current target path.</string>
+
+      <string id="MaxRecentDocs">Maximum number of recent documents</string>
+      <string id="MaxRecentDocs_Help">"This policy setting allows you to set the maximum number of shortcuts the system can display in the Recent Items menu on the Start menu.
+
+The Recent Items menu contains shortcuts to the nonprogram files the user has most recently opened.
+
+If you enable this policy setting, the system displays the number of shortcuts specified by the policy setting.
+
+If you disable or do not configure this policy setting, by default, the system displays shortcuts to the 10 most recently opened documents."</string>
+
+      <string id="NoSearchInternetTryHarderButton">Remove the Search the Internet "Search again" link</string>
+      <string id="NoSearchInternetTryHarderButton_Help">If you enable this policy, the "Internet" "Search again" link will not be shown when the user performs a search in the Explorer window.
+
+If you disable this policy, there will be an "Internet" "Search again" link when the user performs a search in the Explorer window.  This button launches a search in the default browser with the search terms.
+
+If you do not configure this policy (default), there will be an "Internet" link when the user performs a search in the Explorer window.</string>
+      <string id="TryHarderPinnedOpenSearch">Pin Internet search sites to the "Search again" links and the Start menu</string>
+      <string id="TryHarderPinnedOpenSearch_Help">This policy setting allows you to add Internet or intranet sites to the "Search again" links located at the bottom of search results in File Explorer and the Start menu links. The "Search again" links at the bottom of the Search Results view allow the user to reconduct a search but in a different location.  The Internet search site will be searched with the text in the search box.  To add an Internet search site, specify the URL of the search site in OpenSearch format with {searchTerms} for the query string (for example, http://www.example.com/results.aspx?q={searchTerms}).
+
+You can add up to five additional links to the "Search again" links at the bottom of results returned in File Explorer after a search is executed.  These links will be shared between Internet search sites and Search Connectors/Libraries.  Search Connector/Library links take precedence over Internet search links.
+
+The first several links will also be pinned to the Start menu.  A total of four links can be pinned on the Start menu.  The "See more results" link will be pinned first by default, unless it is disabled via Group Policy.  The "Search the Internet" link is pinned second, if it is pinned via Group Policy (though this link is disabled by default).  If a custom Internet search link is pinned using the "Custom Internet search provider" Group Policy, this link will be pinned third on the Start menu.  The remaining link(s) will be shared between pinned Internet/intranet links and pinned Search Connectors/Libraries.  Search Connector/Library links take precedence over Internet/intranet search links.
+
+If you enable this policy setting, the specified Internet sites will appear in the "Search again" links and the Start menu links.
+
+If you disable or do not configure this policy setting, no custom Internet search sites will be added to the "Search again" links or the Start menu links.</string>
+      <string id="TryHarderPinnedLibrary">Pin Libraries or Search Connectors to the "Search again" links and the Start menu</string>
+      <string id="TryHarderPinnedLibrary_Help">This policy setting allows up to five Libraries or Search Connectors to be pinned to the "Search again" links and the Start menu links. The "Search again" links at the bottom of the Search Results view allow the user to reconduct a search but in a different location.  To add a Library or Search Connector link, specify the path of the .Library-ms or .searchConnector-ms file in the "Location" text box (for example, "C:\sampleLibrary.Library-ms" for the Documents library, or "C:\sampleSearchConnector.searchConnector-ms" for a Search Connector). The pinned link will only work if this path is valid and the location contains the specified .Library-ms or .searchConnector-ms file.
+
+You can add up to five additional links to the "Search again" links at the bottom of results returned in File Explorer after a search is executed.  These links will be shared between Internet search sites and Search Connectors/Libraries.  Search Connector/Library links take precedence over Internet search links.
+
+The first several links will also be pinned to the Start menu.  A total of four links can be included on the Start menu.  The "See more results" link will be pinned first by default, unless it is disabled via Group Policy.  The "Search the Internet" link is pinned second, if it is pinned via Group Policy (though this link is disabled by default).  If a custom Internet search link is pinned using the "Custom Internet search provider" Group Policy, this link will be pinned third on the Start menu.  The remaining link(s) will be shared between pinned Search Connectors/Libraries and pinned Internet/intranet search links.  Search Connector/Library links take precedence over Internet/intranet search links.
+
+If you enable this policy setting, the specified Libraries or Search Connectors will appear in the "Search again" links and the Start menu links.
+
+If you disable or do not configure this policy setting, no Libraries or Search Connectors will appear in the "Search again" links or the Start menu links.</string>
+      <string id="NoBackButton">Hide the common dialog back button</string>
+      <string id="NoBackButton_Help">Hide the Back button in the Open dialog box.
+
+This policy setting lets you remove new features added in Microsoft Windows 2000 Professional, so the Open dialog box appears as it did in Windows NT 4.0 and earlier. This policy setting affects only programs that use the standard Open dialog box provided to developers of Windows programs.
+
+If you enable this policy setting, the Back button is removed from the standard Open dialog box.
+
+If you disable or do not configure this policy setting, the Back button is displayed for any standard Open dialog box.
+
+To see an example of the standard Open dialog box, start Notepad  and, on the File menu, click Open.
+
+Note: In Windows Vista, this policy  setting applies only to applications that are using the Windows XP common dialog box style. This policy setting does not apply to the new Windows Vista common dialog box style. Also, third-party applications with Windows 2000 or later certification to are required to adhere to this policy setting.</string>
+      <string id="NoCacheThumbNailPictures">Turn off caching of thumbnail pictures</string>
+      <string id="NoCacheThumbNailPictures_Help">This policy setting allows you to turn off caching of thumbnail pictures.
+
+If you enable this policy setting, thumbnail views are not cached.
+
+If you disable or do not configure this policy setting, thumbnail views are cached.
+
+Note: For shared corporate workstations or computers where security is a top concern, you should enable this policy setting to turn off the thumbnail view cache, because the thumbnail cache can be read by everyone.</string>
+      <string id="NoCDBurning">Remove CD Burning features</string>
+      <string id="NoCDBurning_Help">This policy setting allows you to remove CD Burning features. File Explorer allows you to create and modify re-writable CDs if you have a CD writer connected to your PC.
+
+If you enable this policy setting, all features in the File Explorer that allow you to use your CD writer are removed.
+
+If you disable or do not configure this policy setting, users are able to use the File Explorer CD burning features.
+
+Note: This policy setting does not prevent users from using third-party applications to create or modify CDs using a CD writer.</string>
+      <string id="NoChangeAnimation">Remove UI to change menu animation setting</string>
+      <string id="NoChangeAnimation_Help">This policy setting allows you to prevent users from enabling or disabling minor animations in the operating system for the movement of windows, menus, and lists.
+
+If you enable this policy setting, the "Use transition effects for menus and tooltips" option in Display in Control Panel is disabled, and cannot be toggled by users.
+
+Effects, such as animation, are designed to enhance the user's experience but might be confusing or distracting to some users.
+
+If you disable or do not configure this policy setting, users are allowed to turn on or off these minor system animations using the "Use transition effects for menus and tooltips" option in Display in Control Panel.</string>
+      <string id="NoChangeKeyboardNavigationIndicators">Remove UI to change keyboard navigation indicator setting</string>
+      <string id="NoChangeKeyboardNavigationIndicators_Help">Disables the "Hide keyboard navigation indicators until I use the ALT key" option in Display in Control Panel.
+
+When this Display Properties option is selected, the underlining that indicates a keyboard shortcut character (hot key) does not appear on menus until you press ALT.
+
+Effects, such as transitory underlines, are designed to enhance the user's experience but might be confusing or distracting to some users.</string>
+      <string id="NoDFSTab">Remove DFS tab</string>
+      <string id="NoDFSTab_Help">This policy setting allows you to remove the DFS tab from File Explorer.
+
+If you enable this policy setting, the DFS (Distributed File System) tab is removed from File Explorer and from other programs that use the File Explorer browser, such as My Computer. As a result, users cannot use this tab to view or change the properties of the DFS shares available from their computer.
+
+This policy setting does not prevent users from using other methods to configure DFS.
+
+If you disable or do not configure this policy setting, the DFS tab is available.</string>
+      <string id="NoDrives">Hide these specified drives in My Computer</string>
+      <string id="NoDrives_Help">This policy setting allows you to hide these specified drives in My Computer.
+
+This policy setting allows you to remove the icons representing selected hard drives from My Computer and File Explorer. Also, the drive letters representing the selected drives do not appear in the standard Open dialog box.
+
+If you enable this policy setting, select a drive or combination of drives in the drop-down list.
+
+Note: This policy setting removes the drive icons. Users can still gain access to drive contents by using other methods, such as by typing the path to a directory on the drive in the Map Network Drive dialog box, in the Run dialog box, or in a command window.
+
+Also, this policy setting does not prevent users from using programs to access these drives or their contents. And, it does not prevent users from using the Disk Management snap-in to view and change drive characteristics.
+
+If you disable or do not configure this policy setting, all drives are displayed, or select the "Do not restrict drives" option in the drop-down list.
+
+Also, see the "Prevent access to drives from My Computer" policy setting.</string>
+      <string id="NoEntireNetwork">No Entire Network in Network Locations</string>
+      <string id="NoEntireNetwork_Help">Removes all computers outside of the user's workgroup or local domain from lists of network resources in File Explorer and Network Locations.
+
+If you enable this setting, the system removes the Entire Network option and the icons representing networked computers from Network Locations and from the browser associated with the Map Network Drive option.
+
+This setting does not prevent users from viewing or connecting to computers in their workgroup or domain. It also does not prevent users from connecting to remote computers by other commonly used methods, such as by typing the share name in the Run dialog box or the Map Network Drive dialog box.
+
+To remove computers in the user's workgroup or domain from lists of network resources, use the "No Computers Near Me in Network Locations" setting.
+
+Note: It is a requirement for third-party applications with Windows 2000 or later certification to adhere to this setting.</string>
+      <string id="NoFileMenu">Remove File menu from File Explorer</string>
+      <string id="NoFileMenu_Help">Removes the File menu from My Computer and File Explorer.
+
+This setting does not prevent users from using other methods to perform tasks available on the File menu.</string>
+      <string id="NoFileMRU">Hide the dropdown list of recent files</string>
+      <string id="NoFileMRU_Help">Removes the list of most recently used files from the Open dialog box.
+
+If you disable this setting or do not configure it, the "File name" field includes a drop-down list of recently used files. If you enable this setting, the "File name" field is a simple text box. Users must browse directories to find a file or type a file name in the text box.
+
+This setting, and others in this folder, lets you remove new features added in Windows 2000 Professional, so that the Open dialog box looks like it did in Windows NT 4.0 and earlier. These policies only affect programs that use the standard Open dialog box provided to developers of Windows programs.
+
+To see an example of the standard Open dialog box, start Wordpad and, on the File menu, click Open.
+
+Note: In Windows Vista, this policy  setting applies only to applications that are using the Windows XP common dialog box style. This policy setting does not apply to the new Windows Vista common dialog box style. It is a requirement for third-party applications with Windows 2000 or later certification to adhere to this setting.</string>
+      <string id="NoFolderOptions">Do not allow Folder Options to be opened from the Options button on the View tab of the ribbon</string>
+      <string id="NoFolderOptions_Help">This policy setting allows you to prevent users from accessing Folder Options through the View tab on the ribbon in File Explorer.
+
+Folder Options allows users to change the way files and folders open, what appears in the navigation pane, and other advanced view settings.
+
+If you enable this policy setting, users will receive an error message if they tap or click the Options button or choose the Change folder and search options command, and they will not be able to open Folder Options.
+
+If you disable or do not configure this policy setting, users can open Folder Options from the View tab on the ribbon.</string>
+      <string id="NoHardwareTab">Remove Hardware tab</string>
+      <string id="NoHardwareTab_Help">Removes the Hardware tab.
+
+This setting removes the Hardware tab from Mouse, Keyboard, and Sounds and Audio Devices in Control Panel. It also removes the Hardware tab from the Properties dialog box for all local drives, including hard drives, floppy disk drives, and CD-ROM drives. As a result, users cannot use the Hardware tab to view or change the device list or device properties, or use the Troubleshoot button to resolve problems with the device.</string>
+      <string id="NoManageMyComputerVerb">Hides the Manage item on the File Explorer context menu</string>
+      <string id="NoManageMyComputerVerb_Help">Removes the Manage item from the File Explorer context menu. This context menu appears when you right-click File Explorer or My Computer.
+
+The Manage item opens Computer Management (Compmgmt.msc), a console tool that includes many of the primary Windows 2000 administrative tools, such as Event Viewer, Device Manager, and Disk Management. You must be an administrator to use many of the features of these tools.
+
+This setting does not remove the Computer Management item from the Start menu (Start, Programs, Administrative Tools, Computer Management), nor does it prevent users from using other methods to start Computer Management.
+
+Tip: To hide all context menus, use the "Remove File Explorer's default context menu" setting.</string>
+      <string id="NoMyComputerSharedDocuments">Remove Shared Documents from My Computer</string>
+      <string id="NoMyComputerSharedDocuments_Help">This policy setting allows you to remove the Shared Documents folder from My Computer.
+
+When a Windows client is in a workgroup, a Shared Documents icon appears in the File Explorer Web view under "Other Places" and also under "Files Stored on This Computer" in My Computer. Using this policy setting, you can choose not to have these items displayed.
+
+If you enable this policy setting, the Shared Documents folder is not displayed in the Web view or in My Computer.
+
+If you disable or do not configure this policy setting, the Shared Documents folder is displayed in Web view and also in My Computer when the client is part of a workgroup.
+
+Note:  The ability to remove the Shared Documents folder via Group Policy is only available on Windows XP Professional.</string>
+      <string id="NoNetConnectDisconnect">Remove "Map Network Drive" and "Disconnect Network Drive"</string>
+      <string id="NoNetConnectDisconnect_Help">Prevents users from using File Explorer or Network Locations to map or disconnect network drives.
+
+If you enable this setting, the system removes the Map Network Drive and Disconnect Network Drive commands from the toolbar and Tools menus in File Explorer and Network Locations and from menus that appear when you right-click the File Explorer or Network Locations icons.
+
+This setting does not prevent users from connecting to another computer by typing the name of a shared folder in the Run dialog box.
+
+Note:
+
+This setting was documented incorrectly on the Explain tab in Group Policy for Windows 2000. The Explain tab states incorrectly that this setting prevents users from connecting and disconnecting drives.
+
+Note: It is a requirement for third-party applications with Windows 2000 or later certification to adhere to this setting.</string>
+      <string id="NoPlacesBar">Hide the common dialog places bar</string>
+      <string id="NoPlacesBar_Help">Removes the shortcut bar from the Open dialog box.
+
+This setting, and others in this folder, lets you remove new features added in Windows 2000 Professional, so that the Open dialog box looks like it did in Windows NT 4.0 and earlier. These policies only affect programs that use the standard Open dialog box provided to developers of Windows programs.
+
+To see an example of the standard Open dialog box, start Wordpad and, on the File menu, click Open.
+
+Note: In Windows Vista, this policy  setting applies only to applications that are using the Windows XP common dialog box style. This policy setting does not apply to the new Windows Vista common dialog box style. It is a requirement for third-party applications with Windows 2000 or later certification to adhere to this setting.</string>
+      <string id="NoRecycleFiles">Do not move deleted files to the Recycle Bin</string>
+      <string id="NoRecycleFiles_Help">When a file or folder is deleted in File Explorer, a copy of the file or folder is placed in the Recycle Bin. Using this setting, you can change this behavior.
+
+If you enable this setting, files and folders that are deleted using File Explorer will not be placed in the Recycle Bin and will therefore be permanently deleted.
+
+If you disable or do not configure this setting, files and folders deleted using File Explorer will be placed in the Recyele Bin.</string>
+      <string id="NoRunAsInstallPrompt">Do not request alternate credentials</string>
+      <string id="NoRunAsInstallPrompt_Help">Prevents users from submitting alternate logon credentials to install a program.
+
+This setting suppresses the "Install Program As Other User" dialog box for local and network installations. This dialog box, which prompts the current user for the user name and password of an administrator, appears when users who are not administrators try to install programs locally on their computers. This setting allows administrators who have logged on as regular users to install programs without logging off and logging on again using their administrator credentials.
+
+Many programs can be installed only by an administrator. If you enable this setting and a user does not have sufficient permissions to install a program, the installation continues with the current user's logon credentials. As a result, the installation might fail, or it might complete but not include all features. Or, it might appear to complete successfully, but the installed program might not operate correctly.
+
+If you disable this setting or do not configure it, the "Install Program As Other User" dialog box appears whenever users install programs locally on the computer.
+
+By default, users are not prompted for alternate logon credentials when installing programs from a network share. If enabled, this setting overrides the "Request credentials for network installations" setting.</string>
+      <string id="NoSecurityTab">Remove Security tab</string>
+      <string id="NoSecurityTab_Help">Removes the Security tab from File Explorer.
+
+If you enable this setting, users opening the Properties dialog box for all file system objects, including folders, files, shortcuts, and drives, will not be able to access the Security tab. As a result, users will be able to neither change the security settings nor view a list of all users that have access to the resource in question.
+
+If you disable or do not configure this setting, users will be able to access the security tab.</string>
+      <string id="NoShellSearchButton">Remove Search button from File Explorer</string>
+      <string id="NoShellSearchButton_Help">This policy setting allows you to remove the Search button from the File Explorer toolbar.
+
+If you enable this policy setting, the Search button is removed from the Standard Buttons toolbar that appears in File Explorer and other programs that use the File Explorer window, such as My Computer and Network Locations.
+
+Enabling this policy setting does not remove the Search button or affect any search features of Internet browser windows, such as the Internet Explorer window.
+
+If you disable or do not configure this policy setting, the Search button is available from the File Explorer toolbar.
+
+This policy setting does not affect the Search items on the File Explorer context menu or on the Start menu. To remove Search from the Start menu, use the "Remove Search menu from Start menu" policy setting (in User Configuration\Administrative Templates\Start Menu and Taskbar). To hide all context menus, use the "Remove File Explorer's default context menu" policy setting.</string>
+      <string id="NoViewContextMenu">Remove File Explorer's default context menu</string>
+      <string id="NoViewContextMenu_Help">Removes shortcut menus from the desktop and File Explorer. Shortcut menus appear when you right-click an item.
+
+If you enable this setting, menus do not appear when you right-click the desktop or when you right-click the items in File Explorer. This setting does not prevent users from using other methods to issue commands available on the shortcut menus.</string>
+      <string id="NoViewOnDrive">Prevent access to drives from My Computer</string>
+      <string id="NoViewOnDrive_Help">Prevents users from using My Computer to gain access to the content of selected drives.
+
+If you enable this setting, users can browse the directory structure of the selected drives in My Computer or File Explorer, but they cannot open folders and access the contents. Also, they cannot use the Run dialog box or the Map Network Drive dialog box to view the directories on these drives.
+
+To use this setting, select a drive or combination of drives from the drop-down list. To allow access to all drive directories, disable this setting or select the "Do not restrict drives" option from the drop-down list.
+
+Note: The icons representing the specified drives still appear in My Computer, but if users double-click the icons, a message appears explaining that a setting prevents the action.
+
+ Also, this setting does not prevent users from using programs to access local and network drives. And, it does not prevent them from using the Disk Management snap-in to view and change drive characteristics.
+
+Also, see the "Hide these specified drives in My Computer" setting.</string>
+      <string id="NoWindowsHotKeys">Turn off Windows+X hotkeys</string>
+      <string id="NoWindowsHotKeys_Help">Turn off Windows+X hotkeys.
+
+Keyboards with a Windows key provide users with shortcuts to common shell features. For example, pressing the keyboard sequence Windows+R opens the Run dialog box; pressing Windows+E starts File Explorer. By using this setting, you can disable these Windows+X shortcut keys.
+
+If you enable this setting, the Windows+X shortcut keys are unavailable.
+
+If you disable or do not configure this setting, the Windows+X shortcut keys are available.</string>
+      <string id="NoWorkgroupContents">No Computers Near Me in Network Locations</string>
+      <string id="NoWorkgroupContents_Help">This policy setting allows you to remove computers in the user's workgroup and domain from lists of network resources in File Explorer and Network Locations.
+
+If you enable this policy setting, the system removes the "Computers Near Me" option and the icons representing nearby computers from Network Locations. This policy setting also removes these icons from the Map Network Drive browser.
+
+If you disable or do not configure this policy setting, computers in the user's workgroup and domain appear in lists of network resources in File Explorer and Network Locations.
+
+This policy setting does not prevent users from connecting to computers in their workgroup or domain by other commonly used methods, such as typing the share name in the Run dialog box or the Map Network Drive dialog box.
+
+To remove network computers from lists of network resources, use the "No Entire Network in Network Locations" policy setting.
+</string>
+      <string id="PlacesBar">Items displayed in Places Bar</string>
+      <string id="PlacesBar_Help">Configures the list of items displayed in the Places Bar in the Windows File/Open dialog. If enable this setting you can specify from 1 to 5 items to be displayed in the Places Bar.
+
+The valid items you may display in the Places Bar are:
+
+1) Shortcuts to a local folders -- (ex. C:\Windows)
+
+2) Shortcuts to remote folders -- (\\server\share)
+
+3) FTP folders
+
+4) web folders
+
+5) Common Shell folders.
+
+The list of Common Shell Folders that may be specified:
+
+Desktop, Recent Places, Documents, Pictures, Music, Recently Changed, Attachments and Saved Searches.
+
+If you disable or do not configure this setting the default list of items will be displayed in the Places Bar.
+
+Note: In Windows Vista, this policy  setting applies only to applications that are using the Windows XP common dialog box style. This policy setting does not apply to the new Windows Vista common dialog box style.</string>
+      <string id="PromptRunasInstallNetPath">Request credentials for network installations</string>
+      <string id="PromptRunasInstallNetPath_Help">Prompts users for alternate logon credentials during network-based installations.
+
+This setting displays the "Install Program As Other User" dialog box even when a program is being installed from files on a network computer across a local area network connection.
+
+If you disable this setting or do not configure it, this dialog box appears only when users are installing programs from local media.
+
+The "Install Program as Other User" dialog box prompts the current user for the user name and password of an administrator. This setting allows administrators who have logged on as regular users to install programs without logging off and logging on again using their administrator credentials.
+
+If the dialog box does not appear, the installation proceeds with the current user's permissions. If these permissions are not sufficient, the installation might fail, or it might complete but not include all features. Or, it might appear to complete successfully, but the installed program might not operate correctly.
+
+Note: If it is enabled, the "Do not request alternate credentials" setting takes precedence over this setting. When that setting is enabled, users are not prompted for alternate logon credentials on any installation.</string>
+      <string id="RecycleBinSize">Maximum allowed Recycle Bin size</string>
+      <string id="RecycleBinSize_Help">Limits the percentage of a volume's disk space that can be used to store deleted files.
+
+If you enable this setting, the user has a maximum amount of disk space that may be used for the Recycle Bin on their workstation.
+
+If you disable or do not configure this setting, users can change the total amount of disk space used by the Recycle Bin.
+
+Note: This setting is applied to all volumes.</string>
+      <string id="RestNoDrives">Do not restrict drives</string>
+      <string id="ShellProtocolProtectedModeExplain">This policy setting allows you to configure the amount of functionality that the shell protocol can have. When using the full functionality of this protocol, applications can open folders and launch files. The protected mode reduces the functionality of this protocol allowing applications to only open a limited set of folders. Applications are not able to open files with this protocol when it is in the protected mode. It is recommended to leave this protocol in the protected mode to increase the security of Windows.
+
+If you enable this policy setting the protocol is fully enabled, allowing the opening of folders and files.
+
+If you disable this policy setting the protocol is in the protected mode, allowing applications to only open a limited set of folders.
+
+If you do not configure this policy setting the protocol is in the protected mode, allowing applications to only open a limited set of folders.</string>
+      <string id="ShellProtocolProtectedModeTitle">Turn off shell protocol protected mode</string>
+      <string id="DisableKnownFolders_DisplayName">Disable Known Folders</string>
+      <string id="DisableKnownFolders_ExplainText">This policy setting allows you to specify a list of known folders that should be disabled.  Disabling a known folder will prevent the underlying file or directory from being created via the known folder API.  If the folder exists before the policy is applied, the folder must be manually deleted since the policy only blocks the creation of the folder.
+
+You can specify a known folder using its known folder id or using its canonical name.  For example, the Sample Videos known folder can be disabled by specifying {440fcffd-a92b-4739-ae1a-d4a54907c53f} or SampleVideos.
+
+Note: Disabling a known folder can introduce application compatibility issues in applications that depend on the existence of the known folder.</string>
+      <string id="HideContentViewModeSnippets_DisplayName">Turn off the display of snippets in Content view mode</string>
+      <string id="HideContentViewModeSnippets_ExplainText">This policy setting allows you to turn off the display of snippets in Content view mode.
+
+If you enable this policy setting, File Explorer will not display snippets in Content view mode.
+
+If you disable or do not configure this policy setting, File Explorer shows snippets in Content view mode by default.</string>
+
+      <string id="CheckSameSourceAndTargetForFRAndDFS_DisplayName">Verify old and new Folder Redirection targets point to the same share before redirecting</string>
+      <string id="CheckSameSourceAndTargetForFRAndDFS_ExplainText">This policy setting allows you to prevent data loss when you change the target location for Folder Redirection, and the new and old targets point to the same network share, but have different network paths.
+
+If you enable this policy setting, Folder Redirection creates a temporary file in the old location in order to verify that new and old locations point to the same network share. If both new and old locations point to the same share, the target path is updated and files are not copied or deleted.  The temporary file is deleted.
+
+If you disable or do not configure this policy setting, Folder Redirection does not create a temporary file and functions as if both new and old locations point to different shares when their network paths are different.
+
+Note: If the paths point to different network shares, this policy setting is not required.  If the paths point to the same network share, any data contained in the redirected folders is deleted if this policy setting is not enabled.</string>
+
+      <string id="DisableIndexedLibraryExperience_DisplayName">Turn off Windows Libraries features that rely on indexed file data</string>
+      <string id="DisableIndexedLibraryExperience_ExplainText">This policy setting allows you to turn off Windows Libraries features that need indexed file metadata to function properly.  If you enable this policy, some Windows Libraries features will be turned off to better handle included folders that have been redirected to non-indexed network locations.
+Setting this policy will:
+    * Disable all Arrangement views except for "By Folder"
+    * Disable all Search filter suggestions other than "Date Modified" and "Size"
+    * Disable view of file content snippets in Content mode when search results are returned
+    * Disable ability to stack in the Context menu and Column headers
+    * Exclude Libraries from the scope of Start search
+This policy will not enable users to add unsupported locations to Libraries.
+
+If you enable this policy, Windows Libraries features that rely on indexed file data will be disabled.
+If you disable or do not configure this policy, all default Windows Libraries features will be enabled. </string>
+      <string id="DisableSearchBoxSuggestions_DisplayName">Turn off display of recent search entries in the File Explorer search box</string>
+      <string id="DisableSearchBoxSuggestions_ExplainText">
+Disables suggesting recent queries for the Search Box and prevents entries into the Search Box from being stored in the registry for future references.
+
+File Explorer shows suggestion pop-ups as users type into the Search Box.  These suggestions are based on their past entries into the Search Box.
+
+Note: If you enable this policy, File Explorer will not show suggestion pop-ups as users type into the Search Box, and it will not store Search Box entries into the registry for future references.  If the user types a property, values that match this property will be shown but no data will be saved in the registry or re-shown on subsequent uses of the search box.
+      </string>
+      <string id="DisableBindDirectlyToPropertySetStorage_DisplayName">Disable binding directly to IPropertySetStorage without intermediate layers.</string>
+      <string id="DisableBindDirectlyToPropertySetStorage_ExplainText">
+Changes the behavior of IShellFolder::BindToObject for IID_IPropertySetStorage to not bind directly to the IPropertySetStorage implementation, and to include the intermediate layers provided by the Property System.  This behavior is consistent with Windows Vista's behavior in this scenario.
+
+This disables access to user-defined properties, and properties stored in NTFS secondary streams.
+      </string>
+      <string id="NoStrCmpLogical_DisplayName">Turn off numerical sorting in File Explorer</string>
+      <string id="NoStrCmpLogical_ExplainText">
+This policy setting allows you to have file names sorted literally (as in Windows 2000 and earlier) rather than in numerical order.
+If you enable this policy setting, File Explorer will sort file names by each digit in a file name (for example, 111 &lt; 22 &lt; 3).
+If you disable or do not configure this policy setting, File Explorer will sort file names by increasing number value (for example, 3 &lt; 22 &lt; 111).
+      </string>
+      <string id="IZ_OpenSearchQuery">Allow OpenSearch queries in File Explorer</string>
+      <string id="IZ_Explain_OpenSearchQuery">
+This policy setting allows you to manage whether OpenSearch queries in this zone can be performed using Search Connectors in File Explorer.  Search Connectors allow rich searching of remote sources from within File Explorer.  Search results will be returned in File Explorer and can be acted upon like local files.
+
+If you enable this policy setting, users can perform OpenSearch queries in this zone using Search Connectors.
+
+If you disable this policy setting, users are prevented from performing OpenSearch queries in this zone using Search Connectors.
+
+If you do not configure this policy setting, users can perform OpenSearch queries in this zone using Search Connectors.
+      </string>
+      <string id="IZ_Explain_OpenSearchQuery_DefaultDisabled">
+This policy setting allows you to manage whether OpenSearch queries in this zone can be performed using Search Connectors in File Explorer.  Search Connectors allow rich searching of remote sources from within File Explorer.  Search results will be returned in File Explorer and can be acted upon like local files.
+
+If you enable this policy setting, users can perform OpenSearch queries in this zone using Search Connectors.
+
+If you disable this policy setting, users are prevented from performing OpenSearch queries in this zone using Search Connectors.
+
+If you do not configure this policy setting, users cannot perform OpenSearch queries in this zone using Search Connectors.
+      </string>
+      <string id="IZ_OpenSearchPreview">Allow previewing and custom thumbnails of OpenSearch query results in File Explorer</string>
+      <string id="IZ_Explain_OpenSearchPreview">
+This policy setting allows you to manage whether a user may preview an item from this zone or display custom thumbnails in the preview pane in File Explorer. While this policy setting usually applies to items returned by OpenSearch queries using Search Connectors (which allow rich searching of remote sources from within the File Explorer), it might affect other items as well that are marked from this zone. For example, some application-specific items such as MAPI (Messaging Application Programming Interface) items that are returned as search results in File Explorer will be affected. MAPI items reside in the Internet zone, so disabling this policy for the Internet zone will prevent the previewing of these items in File Explorer. For the case of custom thumbnails, it is the zone of the thumbnail that is checked, not the zone of item.  Typically these are the same but a source is able to define a specific location of a thumbnail that is different than the location of the item.
+
+If you enable this policy setting, users can preview items and get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+If you disable this policy setting, users will be prevented from previewing items and get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+If you do not configure this policy setting, users can preview items and get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+Changes to this setting may not be applied until the user logs off from Windows.
+      </string>
+      <string id="IZ_Explain_OpenSearchPreview_DefaultDisabled">
+This policy setting allows you to manage whether a user may preview an item from this zone or display custom thumbnails in the preview pane in File Explorer. While this policy setting usually applies to items returned by OpenSearch queries using Search Connectors (which allow rich searching of remote sources from within the File Explorer), it might affect other items as well that are marked from this zone. For example, some application-specific items such as MAPI (Messaging Application Programming Interface) items that are returned as search results in File Explorer will be affected. MAPI items reside in the Internet zone, so disabling this policy for the Internet zone will prevent the previewing of these items in File Explorer. For the case of custom thumbnails, it is the zone of the thumbnail that is checked, not the zone of item.  Typically these are the same but a source is able to define a specific location of a thumbnail that is different than the location of the item.
+
+If you enable this policy setting, users can preview items and get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+If you disable this policy setting, users will be prevented from previewing items and get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+If you do not configure this policy setting, users cannot preview items or get custom thumbnails from OpenSearch query results in this zone using File Explorer.
+
+Changes to this setting may not be applied until the user logs off from Windows.
+      </string>
+      <string id="IZ_ItemnameDisable">Disable</string>
+      <string id="IZ_ItemnameEnable">Enable</string>
+      <string id="DefaultLibrariesLocation">Location where all default Library definition files for users/machines reside.</string>
+      <string id="DefaultLibrariesLocation_User_Explain">
+This policy setting allows you to specify a location where all default Library definition files for users/machines reside.
+
+If you enable this policy setting, administrators can specify a path where all default Library definition files for users reside. The user will not be allowed to make changes to these Libraries from the UI. On every logon, the policy settings are verified and Libraries for the user are updated or changed according to the path defined.
+
+If you disable or do not configure this policy setting, no changes are made to the location of the default Library definition files.
+      </string>
+      <string id="EnableSmartScreen">Configure Windows SmartScreen</string>
+      <string id="EnableSmartScreen_Help">This policy setting allows you to manage the behavior of Windows SmartScreen. Windows SmartScreen helps keep PCs safer by warning users before running unrecognized programs downloaded from the Internet. Some information is sent to Microsoft about files and programs run on PCs with this feature enabled.
+
+If you enable this policy setting, Windows SmartScreen behavior may be controlled by setting one of the following options:
+
+• Give user a warning before running downloaded unknown software
+• Turn off SmartScreen
+
+If you disable or do not configure this policy setting, Windows SmartScreen behavior is managed by administrators on the PC by using Windows SmartScreen Settings in Security and Maintenance.
+
+Options:
+• Give user a warning before running downloaded unknown software
+• Turn off SmartScreen
+
+</string>
+      <string id="ShowLockOption">Show lock in the user tile menu</string>
+      <string id="ShowLockOption_Help">Shows or hides lock from the user tile menu.
+If you enable this policy setting, the lock option will be shown in the User Tile menu.
+
+If you disable this policy setting, the lock option will never be shown in the User Tile menu.
+
+If you do not configure this policy setting, users will be able to choose whether they want lock to show through the Power Options Control Panel.</string>
+      <string id="ShowSleepOption">Show sleep in the power options menu</string>
+      <string id="ShowSleepOption_Help">Shows or hides sleep from the power options menu.
+
+If you enable this policy setting, the sleep option will be shown in the Power Options menu (as long as it is supported by the machine's hardware).
+
+If you disable this policy setting, the sleep option will never be shown in the Power Options menu.
+
+If you do not configure this policy setting, users will be able to choose whether they want sleep to show through the Power Options Control Panel.</string>
+      <string id="ShowHibernateOption">Show hibernate in the power options menu</string>
+      <string id="ShowHibernateOption_Help">Shows or hides hibernate from the power options menu.
+
+If you enable this policy setting, the hibernate option will be shown in the Power Options menu (as long as it is supported by the machine's hardware).
+
+If you disable this policy setting, the hibernate option will never be shown in the Power Options menu.
+
+If you do not configure this policy setting, users will be able to choose whether they want hibernate to show through the Power Options Control Panel.</string>
+      <string id="NoNewAppAlert">Do not show the 'new application installed' notification</string>
+      <string id="NoNewAppAlert_Help">This policy removes the end-user notification for new application associations. These associations are based on file types (e.g. *.txt) or protocols (e.g. http:)
+
+If this group policy is enabled, no notifications will be shown. If the group policy is not configured or disabled, notifications will be shown to the end user if a new application has been installed that can handle the file type or protocol association that was invoked.</string>
+      <string id="ExplorerRibbonStartsMinimized_DisplayName">Start File Explorer with ribbon minimized</string>
+      <string id="ExplorerRibbonStartsMinimized_ExplainText">This policy setting allows you to specify whether the ribbon appears minimized or in full when new File Explorer windows are opened. If you enable this policy setting, you can set how the ribbon appears the first time users open File Explorer and whenever they open new windows. If you disable or do not configure this policy setting, users can choose how the ribbon appears when they open new windows.</string>
+      <string id="ExplorerRibbonStartsMinimized_StartsMinimized">Always open new File Explorer windows with the ribbon minimized.</string>
+      <string id="ExplorerRibbonStartsMinimized_StartsNotMinimized">Never open new File Explorer windows with the ribbon minimized.</string>
+      <string id="ExplorerRibbonStartsMinimized_InitializedMinimized">Minimize the ribbon when File Explorer is opened the first time.</string>
+      <string id="ExplorerRibbonStartsMinimized_InitializedNotMinimized">Display the full ribbon when File Explorer is opened the first time.</string>
+      <string id="EnableShellShortcutIconRemotePath_DisplayName">Allow the use of remote paths in file shortcut icons</string>
+      <string id="EnableShellShortcutIconRemotePath_Help">This policy setting determines whether remote paths can be used for file shortcut (.lnk file) icons.
+
+If you enable this policy setting, file shortcut icons are allowed to be obtained from remote paths.
+
+If you disable or do not configure this policy setting, file shortcut icons that use remote paths are prevented from being displayed.
+
+Note: Allowing the use of remote paths in file shortcut icons can expose users’ computers to security risks.</string>
+      <string id="DefaultAssociationsConfiguration">Set a default associations configuration file</string>
+      <string id="DefaultAssociationsConfiguration_Help">This policy specifies the path to a file (e.g. either stored locally or on a network location) that contains file type and protocol default application associations. This file can be created using the DISM tool.
+
+For example:
+Dism.exe /Online /Export-DefaultAppAssociations:C:\AppAssoc.txt
+
+For more information, refer to the DISM documentation on TechNet.
+
+If this group policy is enabled and the client machine is domain-joined, the file will be processed and default associations will be applied at logon time.
+
+If the group policy is not configured, disabled, or the client machine is not domain-joined, no default associations will be applied at logon time.
+
+If the policy is enabled, disabled, or not configured, users will still be able to override default file type and protocol associations.</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="MaxRecentDocs">
+        <decimalTextBox refId="MaxRecentDocs" defaultValue="150">Maximum number of recent documents</decimalTextBox>
+      </presentation>
+      <presentation id="TryHarderPinnedOpenSearch">
+        <text>Internet search sites to add:</text>
+        <textBox refId="OpenSearch0">
+          <label>Site URL 1</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel0">
+          <label>Site Name 1</label>
+        </textBox>
+        <textBox refId="OpenSearch1">
+          <label>Site URL 2</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel1">
+          <label>Site Name 2</label>
+        </textBox>
+        <textBox refId="OpenSearch2">
+          <label>Site URL 3</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel2">
+          <label>Site Name 3</label>
+        </textBox>
+        <textBox refId="OpenSearch3">
+          <label>Site URL 4</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel3">
+          <label>Site Name 4</label>
+        </textBox>
+        <textBox refId="OpenSearch4">
+          <label>Site URL 5</label>
+        </textBox>
+        <textBox refId="OpenSearchLabel4">
+          <label>Site Name 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="TryHarderPinnedLibrary">
+        <text>Locations to pin:</text>
+        <textBox refId="Library0">
+          <label>Location 1</label>
+        </textBox>
+        <textBox refId="Library1">
+          <label>Location 2</label>
+        </textBox>
+        <textBox refId="Library2">
+          <label>Location 3</label>
+        </textBox>
+        <textBox refId="Library3">
+          <label>Location 4</label>
+        </textBox>
+        <textBox refId="Library4">
+          <label>Location 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="NoDrives">
+        <dropdownList refId="NoDrivesDropdown" noSort="true" defaultItem="5">Pick one of the following combinations</dropdownList>
+      </presentation>
+      <presentation id="NoViewOnDrive">
+        <dropdownList refId="NoDrivesDropdown" noSort="true" defaultItem="5">Pick one of the following combinations</dropdownList>
+      </presentation>
+      <presentation id="PlacesBar">
+        <text>Places to display:</text>
+        <textBox refId="Places0">
+          <label>Item 1</label>
+        </textBox>
+        <textBox refId="Places1">
+          <label>Item 2</label>
+        </textBox>
+        <textBox refId="Places2">
+          <label>Item 3</label>
+        </textBox>
+        <textBox refId="Places3">
+          <label>Item 4</label>
+        </textBox>
+        <textBox refId="Places4">
+          <label>Item 5</label>
+        </textBox>
+      </presentation>
+      <presentation id="RecycleBinSize">
+        <text>Value represents percentage of hard disk that can be used (0 - 100).</text>
+        <text> </text>
+        <decimalTextBox refId="RecycleBinSizeSpin" defaultValue="10" spinStep="10">Maximum Recycle Bin size: </decimalTextBox>
+      </presentation>
+      <presentation id="DisableKnownFolders_Presentation">
+        <listBox refId="DisableKnownFolders_Prompt">Disable these Known Folders.</listBox>
+      </presentation>
+      <presentation id="DefaultLibrariesLocation">
+        <textBox refId="DefaultLibrariesLocation">
+          <label>Default Libraries definition location</label>
+        </textBox>
+      </presentation>
+      <presentation id="DefaultAssociationsConfiguration">
+        <textBox refId="DefaultAssociationsConfiguration_TextBox">
+          <label>Default Associations Configuration File</label>
+	      <defaultValue>c:\windows\system32\defaultassociations.xml</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="ExplorerRibbonStartsMinimized">
+        <dropdownList refId="ExplorerRibbonStartsMinimizedDropdown" noSort="true" defaultItem="0">Pick one of the following settings</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

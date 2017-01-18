@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="reliability" namespace="Microsoft.Policies.Reliability" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="wer" namespace="Microsoft.Policies.WindowsErrorReporting" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="EE_EnablePersistentTimeStamp" class="Machine" displayName="$(string.EE_EnablePersistentTimeStamp)" explainText="$(string.EE_EnablePersistentTimeStamp_Help)" presentation="$(presentation.EE_EnablePersistentTimeStamp)" key="Software\Policies\Microsoft\Windows NT\Reliability" valueName="TimeStampEnabled">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="EE_EnablePersistentTimeStamp_Desc4" valueName="TimeStampInterval" required="true" minValue="1" maxValue="86400" />
+      </elements>
+    </policy>
+    <policy name="PCH_ReportShutdownEvents" class="Machine" displayName="$(string.PCH_ReportShutdownEvents)" explainText="$(string.PCH_ReportShutdownEvents_Help)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="IncludeShutdownErrs">
+      <parentCategory ref="wer:CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNETOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShutdownEventTrackerStateFile" class="Machine" displayName="$(string.ShutdownEventTrackerStateFile)" explainText="$(string.ShutdownEventTrackerStateFile_Help)" key="Software\Policies\Microsoft\Windows NT\Reliability" valueName="SnapShot">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNETOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShutdownReason" class="Machine" displayName="$(string.ShutdownReason)" explainText="$(string.ShutdownReason_Help)" presentation="$(presentation.ShutdownReason)" key="Software\Policies\Microsoft\Windows NT\Reliability" valueName="ShutdownReasonOn">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="ShutdownReason_Box" valueName="ShutdownReasonUI" required="true">
+          <item displayName="$(string.ShutdownReason_Always)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.ShutdownReason_WkstnOnly)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.ShutdownReason_SrvOnly)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

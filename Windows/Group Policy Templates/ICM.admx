@@ -1,0 +1,782 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="icm" namespace="Microsoft.Policies.InternetCommunicationManagement" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="InternetManagement_RestrictCommunication_1" class="User" displayName="$(string.InternetManagement_RestrictCommunication)" explainText="$(string.InternetManagement_RestrictCommunication_Help)" key="Software\Policies\Microsoft\InternetManagement" valueName="RestrictCommunication">
+      <parentCategory ref="windows:InternetManagement" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="NoGenTicket">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="AllowWindowsEntitlementReactivation">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\TabletPC" valueName="PreventHandwritingDataSharing">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoOnlineAssist">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoExplicitFeedback">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoImplicitFeedback">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebHelp">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="CodecDownload">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebPublish">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="NoGenTicket">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="AllowWindowsEntitlementReactivation">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\TabletPC" valueName="PreventHandwritingDataSharing">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoOnlineAssist">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoExplicitFeedback">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Assistance\Client\1.0" valueName="NoImplicitFeedback">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebHelp">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="CodecDownload">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebPublish">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="InternetManagement_RestrictCommunication_2" class="Machine" displayName="$(string.InternetManagement_RestrictCommunication)" explainText="$(string.InternetManagement_RestrictCommunication_Help)" key="Software\Policies\Microsoft\InternetManagement" valueName="RestrictCommunication">
+      <parentCategory ref="windows:InternetManagement" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="NoGenTicket">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="AllowWindowsEntitlementReactivation">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+          <value>
+            <decimal value="2" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="Headlines">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="MicrosoftKBSearch">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="DoReport">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Internet Connection Wizard" valueName="ExitOnMSICW">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EventViewer" valueName="MicrosoftEventVwrDisableLinks">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\SystemCertificates\AuthRoot" valueName="DisableRootAutoUpdate">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Registration Wizard Control" valueName="NoRegistration">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\SearchCompanion" valueName="DisableContentFileUpdates">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\DriverSearching" valueName="DontSearchWindowsUpdate">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="DisableWindowsUpdateAccess">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\TabletPC" valueName="PreventHandwritingDataSharing">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebHelp">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="CodecDownload">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebPublish">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\SQMClient\Windows" valueName="CEIPEnable">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" valueName="NoActiveProbe">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="NoGenTicket">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform" valueName="AllowWindowsEntitlementReactivation">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="Headlines">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="MicrosoftKBSearch">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="DoReport">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\WindowsUpdate\AU" valueName="NoAutoUpdate">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Internet Connection Wizard" valueName="ExitOnMSICW">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\EventViewer" valueName="MicrosoftEventVwrDisableLinks">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="SOFTWARE\Policies\Microsoft\SystemCertificates\AuthRoot" valueName="DisableRootAutoUpdate">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Registration Wizard Control" valueName="NoRegistration">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\SearchCompanion" valueName="DisableContentFileUpdates">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\DriverSearching" valueName="DontSearchWindowsUpdate">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="DisableWindowsUpdateAccess">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\HandwritingErrorReports" valueName="PreventHandwritingErrorReports">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\TabletPC" valueName="PreventHandwritingDataSharing">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebHelp">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="CodecDownload">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\WindowsMovieMaker" valueName="WebPublish">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\SQMClient\Windows" valueName="CEIPEnable">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" valueName="NoActiveProbe">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="CertMgr_DisableAutoRootUpdates" class="Machine" displayName="$(string.CertMgr_DisableAutoRootUpdates)" explainText="$(string.CertMgr_DisableAutoRootUpdates_Help)" key="Software\Policies\Microsoft\SystemCertificates\AuthRoot" valueName="DisableRootAutoUpdate">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableHTTPPrinting_1" class="User" displayName="$(string.DisableHTTPPrinting)" explainText="$(string.DisableHTTPPrinting_Help)" key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableHTTPPrinting_2" class="Machine" displayName="$(string.DisableHTTPPrinting)" explainText="$(string.DisableHTTPPrinting_Help)" key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableHTTPPrinting">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableWebPnPDownload_1" class="User" displayName="$(string.DisableWebPnPDownload)" explainText="$(string.DisableWebPnPDownload_Help)" key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableWebPnPDownload_2" class="Machine" displayName="$(string.DisableWebPnPDownload)" explainText="$(string.DisableWebPnPDownload_Help)" key="Software\Policies\Microsoft\Windows NT\Printers" valueName="DisableWebPnPDownload">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DriverSearchPlaces_DontSearchWindowsUpdate" class="Machine" displayName="$(string.DriverSearchPlaces_DontSearchWindowsUpdate)" explainText="$(string.DriverSearchPlaces_DontSearchWindowsUpdate_Help)" key="Software\Policies\Microsoft\Windows\DriverSearching" valueName="DontSearchWindowsUpdate">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaToXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EventViewer_DisableLinks" class="Machine" displayName="$(string.EventViewer_DisableLinks)" explainText="$(string.EventViewer_DisableLinks_Help)" key="Software\Policies\Microsoft\EventViewer" valueName="MicrosoftEventVwrDisableLinks">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="HSS_HeadlinesPolicy" class="Machine" displayName="$(string.HSS_HeadlinesPolicy)" explainText="$(string.HSS_HeadlinesPolicy_Help)" key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="Headlines">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="HSS_KBSearchPolicy" class="Machine" displayName="$(string.HSS_KBSearchPolicy)" explainText="$(string.HSS_KBSearchPolicy_Help)" key="Software\Policies\Microsoft\PCHealth\HelpSvc" valueName="MicrosoftKBSearch">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="NC_ExitOnISP" class="Machine" displayName="$(string.NC_ExitOnISP)" explainText="$(string.NC_ExitOnISP_Help)" key="Software\Policies\Microsoft\Windows\Internet Connection Wizard" valueName="ExitOnMSICW">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NC_NoRegistration" class="Machine" displayName="$(string.NC_NoRegistration)" explainText="$(string.NC_NoRegistration_Help)" key="Software\Policies\Microsoft\Windows\Registration Wizard Control" valueName="NoRegistration">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PCH_DoNotReport" class="Machine" displayName="$(string.PCH_DoNotReport)" explainText="$(string.PCH_DoNotReport_Help)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <enabledList>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="DoReport">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="DoReport">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="RemoveWindowsUpdate_ICM" class="Machine" displayName="$(string.RemoveWindowsUpdate_ICM)" explainText="$(string.RemoveWindowsUpdate_ICM_Help)" key="Software\Policies\Microsoft\Windows\WindowsUpdate" valueName="DisableWindowsUpdateAccess">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsUpdate" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="SearchCompanion_DisableFileUpdates" class="Machine" displayName="$(string.SearchCompanion_DisableFileUpdates)" explainText="$(string.SearchCompanion_DisableFileUpdates_Help)" key="Software\Policies\Microsoft\SearchCompanion" valueName="DisableContentFileUpdates">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNETSP1" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellNoUseInternetOpenWith_1" class="User" displayName="$(string.ShellNoUseInternetOpenWith)" explainText="$(string.ShellNoUseInternetOpenWith_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellNoUseInternetOpenWith_2" class="Machine" displayName="$(string.ShellNoUseInternetOpenWith)" explainText="$(string.ShellNoUseInternetOpenWith_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoInternetOpenWith">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToXP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellNoUseStoreOpenWith_1" class="User" displayName="$(string.ShellNoUseStoreOpenWith)" explainText="$(string.ShellNoUseStoreOpenWith_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoUseStoreOpenWith">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellNoUseStoreOpenWith_2" class="Machine" displayName="$(string.ShellNoUseStoreOpenWith)" explainText="$(string.ShellNoUseStoreOpenWith_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoUseStoreOpenWith">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellPreventWPWDownload_1" class="User" displayName="$(string.ShellPreventWPWDownload)" explainText="$(string.ShellPreventWPWDownload_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellPreventWPWDownload_2" class="Machine" displayName="$(string.ShellPreventWPWDownload)" explainText="$(string.ShellPreventWPWDownload_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoWebServices">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellRemoveOrderPrints_1" class="User" displayName="$(string.ShellRemoveOrderPrints)" explainText="$(string.ShellRemoveOrderPrints_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellRemoveOrderPrints_2" class="Machine" displayName="$(string.ShellRemoveOrderPrints)" explainText="$(string.ShellRemoveOrderPrints_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoOnlinePrintsWizard">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellRemovePublishToWeb_1" class="User" displayName="$(string.ShellRemovePublishToWeb)" explainText="$(string.ShellRemovePublishToWeb_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShellRemovePublishToWeb_2" class="Machine" displayName="$(string.ShellRemovePublishToWeb)" explainText="$(string.ShellRemovePublishToWeb_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoPublishingWizard">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WinMSG_NoInstrumentation_1" class="User" displayName="$(string.WinMSG_NoInstrumentation)" explainText="$(string.WinMSG_NoInstrumentation_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="WinMSG_NoInstrumentation_2" class="Machine" displayName="$(string.WinMSG_NoInstrumentation)" explainText="$(string.WinMSG_NoInstrumentation_Help)" key="Software\Policies\Microsoft\Messenger\Client" valueName="CEIP">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2_Or_WindowsNET" />
+      <enabledValue>
+        <decimal value="2" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="CEIPEnable" class="Machine" displayName="$(string.CEIPEnable)" explainText="$(string.CEIPEnableExp)" key="Software\Policies\Microsoft\SQMClient\Windows" valueName="CEIPEnable">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="NoActiveProbe" class="Machine" displayName="$(string.NoActiveProbe)" explainText="$(string.NoActiveProbeExp)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" valueName="NoActiveProbe">
+      <parentCategory ref="windows:InternetManagement_Settings" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

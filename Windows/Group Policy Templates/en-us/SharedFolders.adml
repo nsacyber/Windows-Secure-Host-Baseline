@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="PublishDfsRoots">Allow DFS roots to be published</string>
+      <string id="PublishDfsRoots_Help">This policy setting determines whether the user can publish DFS roots in Active Directory Domain Services (AD DS).
+
+If you enable or do not configure this policy setting, users can use the "Publish in Active Directory" option to publish DFS roots as shared folders in AD DS .
+
+If you disable this policy setting, users cannot publish DFS roots in AD DS and the "Publish in Active Directory" option is disabled. Note: The default is to allow shared folders to be published when this setting is not configured.</string>
+      <string id="PublishSharedFolders">Allow shared folders to be published</string>
+      <string id="PublishSharedFolders_Help">This policy setting determines whether the user can publish shared folders in Active Directory Domain Services (AD DS).
+
+If you enable or do not configure this policy setting, users can use the "Publish in Active Directory" option in the Shared Folders snap-in to publish shared folders in AD DS.
+
+If you disable this policy setting, users cannot publish shared folders in AD DS, and the "Publish in Active Directory" option is disabled. Note: The default is to allow shared folders to be published when this setting is not configured.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="portableoperatingsystem" namespace="Microsoft.Policies.PortableOperatingSystem" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="PortableOperatingSystem" displayName="$(string.PortableOperatingSystem)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PortableOperatingSystem_Launcher" clientExtension="{BA649533-0AAC-4E04-B9BC-4DBAE0325B12}" class="Machine" displayName="$(string.PortableOperatingSystem_Launcher_DisplayName)" explainText="$(string.PortableOperatingSystem_Launcher_Help)" key="Software\Policies\Microsoft\PortableOperatingSystem" valueName="Launcher">
+      <parentCategory ref="PortableOperatingSystem" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PortableOperatingSystem_Hibernate" clientExtension="{C34B2751-1CF4-44F5-9262-C3FC39666591}" class="Machine" displayName="$(string.PortableOperatingSystem_Hibernate_DisplayName)" explainText="$(string.PortableOperatingSystem_Hibernate_Help)" key="System\CurrentControlSet\Policies\Microsoft\PortableOperatingSystem" valueName="Hibernate">
+      <parentCategory ref="PortableOperatingSystem" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PortableOperatingSystem_Sleep" class="Machine" displayName="$(string.PortableOperatingSystem_Sleep_DisplayName)" explainText="$(string.PortableOperatingSystem_Sleep_Help)" key="System\CurrentControlSet\Policies\Microsoft\PortableOperatingSystem" valueName="Sleep">
+      <parentCategory ref="PortableOperatingSystem" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

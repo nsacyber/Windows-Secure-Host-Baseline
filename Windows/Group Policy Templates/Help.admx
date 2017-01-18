@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="help" namespace="Microsoft.Policies.WindowsHelp" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="HelpQualifiedRootDir_Comp" class="Machine" displayName="$(string.HelpQualifiedRootDir_Comp)" explainText="$(string.HelpQualifiedRootDir_Help)" presentation="$(presentation.HelpQualifiedRootDir_Comp)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_IE6SP1" />
+      <elements>
+        <text id="HelpQualifiedRootDir_Edit" valueName="HelpQualifiedRootDir" />
+      </elements>
+    </policy>
+    <policy name="RestrictRunFromHelp" class="User" displayName="$(string.RestrictRunFromHelp)" explainText="$(string.RestrictRunFromHelp_Help)" presentation="$(presentation.RestrictRunFromHelp)" key="Software\Policies\Microsoft\Windows\System">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="RestrictRunFromHelp_Edit" valueName="DisableInHelp" required="true" />
+      </elements>
+    </policy>
+      <policy name="RestrictRunFromHelp_Comp" class="Machine" displayName="$(string.RestrictRunFromHelp_Comp)" explainText="$(string.RestrictRunFromHelp_Help)" presentation="$(presentation.RestrictRunFromHelp_Comp)" key="Software\Policies\Microsoft\Windows\System">
+          <parentCategory ref="windows:System" />
+          <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+          <elements>
+              <text id="RestrictRunFromHelp_Edit" valueName="DisableInHelp" required="true" />
+          </elements>
+      </policy>
+      <policy name="DisableHHDEP" class="Machine" displayName="$(string.DisableHHDEP)" explainText="$(string.DisableHHDEPText)" key="Software\Policies\Microsoft\Windows\System" valueName="DisableHHDEP">
+          <parentCategory ref="windows:System" />
+          <supportedOn ref="windows:SUPPORTED_Windows7" />
+          <enabledValue>
+              <decimal value="1" />
+          </enabledValue>
+          <disabledValue>
+              <decimal value="0" />
+          </disabledValue>
+      </policy>
+  </policies>
+</policyDefinitions>

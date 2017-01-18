@@ -1,0 +1,120 @@
+<!--  (c) 2011 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Network Isolation </displayName>
+  <description>Configures Network Isolation Options for  apps </description>
+  <resources>
+    <stringTable>
+      	<string id="WF_Isolation">Network Isolation</string>
+		
+
+<!--Define server addresses that proxy to the Internet -->	
+
+	<string id="WF_NetIsolation_Domain_Proxies">Internet proxy servers for apps</string>  
+	<string id="WF_NetIsolation_Domain_Proxies_Help"> This setting does not apply to desktop apps.
+	
+A semicolon-separated list of Internet proxy server IP addresses. These addresses are categorized as Internet by Windows Network Isolation and are accessible to  apps that have the Internet Client or Internet Client/Server capabilities.
+
+If you enable this policy setting, apps on proxied networks can access the Internet without relying on the Private Network capability. However, in most situations Windows Network Isolation will be able to correctly discover proxies. By default, any proxies configured with this setting are merged with proxies that are auto-discovered. To make this policy configuration the sole list of allowed proxies, enable the "Proxy definitions are authoritative" setting.
+
+If you disable or do not configure this policy setting, apps will use the Internet proxies auto-discovered by Windows Network Isolation.
+
+Example: [3efe:3022::1000];18.0.0.1;18.0.0.2 
+
+For more information see: http://go.microsoft.com/fwlink/p/?LinkId=234043</string> 
+
+<!--Define server addresses that proxy to a private network (intranet) -->	
+	<string id="WF_NetIsolation_Intranet_Proxies">Intranet proxy servers for  apps</string>
+	<string id="WF_NetIsolation_Intranet_Proxies_Help"> This setting does not apply to desktop apps.
+	
+A  semicolon-separated list of intranet proxy server IP addresses. These addresses are categorized as private by Windows Network Isolation and are accessible to  apps that have the Home/Work Networking capability.
+
+If you enable this policy setting, it allows an administrator to configure a set of proxies that provide access to intranet resources.
+
+If you disable or do not configure this policy setting, Windows Network Isolation attempts to discover proxies and configures them as Internet nodes.
+  
+This setting should NOT be used to configure Internet proxies.
+
+Example: [3efe:3022::1000]; 18.0.0.1; 18.0.0.2
+
+For more information see: http://go.microsoft.com/fwlink/p/?LinkId=234043</string> 
+	<!--Define subnet addresses-->	
+	<string id="WF_NetIsolation_PrivateSubnet">Private network ranges for  apps</string>
+		      	<string id="WF_NetIsolation_PrivateSubnet_Help">This setting does not apply to desktop apps.
+				
+A comma-separated list of IP address ranges that are in your corporate network.
+
+If you enable this policy setting, it ensures that  apps with the Home/Work Networking capability have appropriate access to your corporate network. These addresses are only accessible to  apps if and only if the app has declared the Home/Work Networking capability.
+
+Windows Network Isolation attempts to automatically discover private network hosts. By default, the addresses configured with this policy setting are merged with the hosts that are declared as private through automatic discovery.
+
+To ensure that these addresses are the only addresses ever classified as private, enable the "Subnet definitions are authoritative" policy setting.
+
+If you disable or do not configure this policy setting, Windows Network Isolation attempts to automatically discover your private network hosts.
+
+Example: 3efe:1092::/96,18.1.1.1/10 
+
+For more information see: http://go.microsoft.com/fwlink/p/?LinkId=234043</string>
+				
+				
+<!--Proxy definitions are authoritative-->	
+	<string id="WF_NetIsolation_Authoritative_Proxy">Proxy definitions are authoritative</string>
+		      	<string id="WF_NetIsolation_Authoritative_Proxy_Help">This setting does not apply to desktop apps.
+				
+Turns off Windows Network Isolation's automatic proxy discovery in the domain corporate environment.
+
+If you enable this policy setting, it turns off Windows Network Isolation's automatic proxy discovery in the domain corporate environment. Only proxies configured with Group Policy are authoritative. This applies to both Internet and intranet proxies.
+
+If you disable or do not configure this policy setting, Windows Network Isolation attempts to automatically discover your proxy server addresses.  
+
+For more information see: http://go.microsoft.com/fwlink/p/?LinkId=234043</string>
+				
+		<!--Subnet definitions are authoritative-->	
+	<string id="WF_NetIsolation_Authoritative_Subnet">Subnet definitions are authoritative</string>
+		      	<string id="WF_NetIsolation_Authoritative_Subnet_Help">This setting does not apply to desktop apps.
+				
+Turns off  Windows Network Isolation's automatic discovery of private network hosts in the domain corporate environment.
+
+If you enable this policy setting, it turns off Windows Network Isolation's automatic discovery of private network hosts in the domain corporate environment. Only network hosts within the address ranges configured via Group Policy will be classified as private.
+
+If you disable or do not configure this policy setting, Windows Network Isolation attempts to automatically discover your private network hosts in the domain corporate environment. 
+				
+For more information see: http://go.microsoft.com/fwlink/p/?LinkId=234043</string>
+	
+	
+     </stringTable>
+ 
+ <!--Start of Presentation Table-->	
+ 
+ <presentationTable>
+
+	<presentation id="WF_NetIsolation_Domain_Proxies">
+        <textBox refId="WF_NetIsolation_Domain_ProxiesBox">
+          <label>Domain Proxies </label>
+        </textBox>
+      </presentation>
+
+	<presentation id="WF_NetIsolation_Intranet_Proxies">
+        <textBox refId="WF_NetIsolation_Intranet_ProxiesBox">
+          <label>Type a proxy server IP address for the intranet</label>
+        </textBox>
+      </presentation>
+
+
+	<presentation id="WF_NetIsolation_PrivateSubnet">
+        <textBox refId="WF_NetIsolation_PrivateSubnetBox">
+          <label>Private subnets </label>
+        </textBox>
+      </presentation>
+	
+		<presentation id="WF_NetIsolation_Authoritative_Proxies">
+   
+      </presentation>
+	
+	<presentation id="WF_NetIsolation_Authoritative_Subnets">
+   
+      </presentation>
+
+     </presentationTable>
+
+  </resources>
+</policyDefinitionResources>

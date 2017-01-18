@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) Microsoft. All rights reserved.  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="SoftwareProtectionPlatform" namespace="Microsoft.Policies.SoftwareProtectionPlatform" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="SoftwareProtectionPlatform" displayName="$(string.SoftwareProtectionPlatform)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+
+  <policies>
+     <policy
+        name="NoAcquireGT"
+        class="Machine"
+        displayName="$(string.NoAcquireGT)"
+        explainText="$(string.NoAcquireGT_Help)"
+        key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform"
+        valueName="NoGenTicket"
+     >
+     <parentCategory ref="SoftwareProtectionPlatform" />
+     <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+     <enabledValue>
+        <decimal value = "1" />
+     </enabledValue>
+     <disabledValue>
+        <decimal value = "0" />
+     </disabledValue>
+    </policy>
+     <policy
+        name="AllowWindowsEntitlementReactivation"
+        class="Machine"
+        displayName="$(string.AllowWindowsEntitlementReactivation)"
+        explainText="$(string.AllowWindowsEntitlementReactivation_Help)"
+        key="Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform"
+        valueName="AllowWindowsEntitlementReactivation"
+     >
+     <parentCategory ref="SoftwareProtectionPlatform" />
+     <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+     <enabledValue>
+        <decimal value = "1" />
+     </enabledValue>
+     <disabledValue>
+        <decimal value = "0" />
+     </disabledValue>
+    </policy>
+</policies>
+</policyDefinitions>
+

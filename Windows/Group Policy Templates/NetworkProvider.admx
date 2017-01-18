@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (c) Microsoft Corporation. All rights reserved. -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="NetworkProvider" namespace="Microsoft.Policies.NetworkProvider" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Cat_NetworkProvider" displayName="$(string.Cat_NetworkProvider)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Pol_HardenedPaths"
+            class="Machine"
+            displayName="$(string.Pol_HardenedPaths)"
+            explainText="$(string.Pol_HardenedPaths_Explain)"
+            presentation="$(presentation.Pol_HardenedPaths)"
+            key="Software\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths">
+      <parentCategory ref="Cat_NetworkProvider" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <list id="Pol_HardenedPaths" key="Software\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths" additive="true" explicitValue="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

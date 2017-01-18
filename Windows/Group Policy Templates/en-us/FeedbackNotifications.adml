@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="DoNotShowFeedbackNotifications">Do not show feedback notifications</string>
+      <string id="DoNotShowFeedbackNotifications_Explain">This policy setting allows an organization to prevent its devices from showing feedback questions from Microsoft.
+
+If you enable this policy setting, users will no longer see feedback notifications through the Windows Feedback app.
+
+If you disable or do not configure this policy setting, users may see notifications through the Windows Feedback app asking users for feedback.
+
+Note: If you disable or do not configure this policy setting, users can control how often they receive feedback questions.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

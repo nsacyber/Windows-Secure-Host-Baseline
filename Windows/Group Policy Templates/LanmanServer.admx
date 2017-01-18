@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="LanmanServer" namespace="Microsoft.Policies.LanmanServer" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Cat_LanmanServer" displayName="$(string.Cat_LanmanServer)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="Pol_HashPublication" 
+            class="Machine" 
+            displayName="$(string.Pol_HashPublication)" 
+            explainText="$(string.Pol_HashPublication_Help)" 
+            presentation="$(presentation.Pol_HashPublication)" 
+            key="Software\Policies\Microsoft\Windows\LanmanServer">
+      <parentCategory ref="Cat_LanmanServer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <enum id="Lbl_HashPublicationActionCombo" 
+              valueName="HashPublicationForPeerCaching"
+              required="true">
+          <item displayName="$(string.Lbl_FollowShare)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.Lbl_DisableOnAllShares)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Lbl_EnableOnAllShares)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="Pol_HashSupportVersion" 
+            class="Machine" 
+            displayName="$(string.Pol_HashSupportVersion)" 
+            explainText="$(string.Pol_HashSupportVersion_Help)" 
+            presentation="$(presentation.Pol_HashSupportVersion)" 
+            key="Software\Policies\Microsoft\Windows\LanmanServer">
+      <parentCategory ref="Cat_LanmanServer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="Lbl_HashVersionSupportActionCombo" 
+              valueName="HashSupportVersion"
+              required="true">
+          <item displayName="$(string.Lbl_SupportV1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Lbl_SupportV2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.Lbl_SupportV1andV2)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.Pol_CipherSuiteOrder_Name)"
+        explainText="$(string.Pol_CipherSuiteOrder_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanServer"
+        name="Pol_CipherSuiteOrder"
+        presentation="$(presentation.Pol_CipherSuiteOrder)"
+        >
+      <parentCategory ref="Cat_LanmanServer"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <multiText
+            id="MultiText_CipherSuiteOrder"
+            valueName="CipherSuiteOrder"
+            />
+      </elements>
+    </policy>
+    <policy 
+        class="Machine"
+        displayName="$(string.Pol_HonorCipherSuiteOrder_Name)"
+        explainText="$(string.Pol_HonorCipherSuiteOrder_Help)"
+        key="Software\Policies\Microsoft\Windows\LanmanServer"
+        name="Pol_HonorCipherSuiteOrder"    
+        valueName="HonorCipherSuiteOrder"
+        >
+      <parentCategory ref="Cat_LanmanServer" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

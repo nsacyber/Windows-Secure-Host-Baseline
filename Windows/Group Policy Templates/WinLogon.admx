@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="winlogon" namespace="Microsoft.Policies.WindowsLogon2" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Logon" displayName="$(string.Logon)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DisplayLastLogonInfoDescription" class="Machine" displayName="$(string.DisplayLastLogonInfoDescription)" explainText="$(string.DisplayLastLogonInfoDescription_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisplayLastLogonInfo">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LogonHoursNotificationPolicyDescription" class="User" displayName="$(string.LogonHoursNotificationPolicyDescription)" explainText="$(string.LogonHoursNotificationPolicyDescription_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DontDisplayLogonHoursWarnings">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="LogonHoursPolicyDescription" class="User" displayName="$(string.LogonHoursPolicyDescription)" explainText="$(string.LogonHoursPolicyDescription_Help)" presentation="$(presentation.LogonHoursPolicyDescription)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="LogonHoursPolicyDescription" valueName="LogonHoursAction">
+          <item displayName="$(string.LogonHoursAction_Lock)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.LogonHoursAction_Disconnect)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.LogonHoursAction_Logoff)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="SoftwareSASGeneration" class="Machine" displayName="$(string.SoftwareSASGenerationDescription)" explainText="$(string.SoftwareSASGenerationDescription_Help)" presentation="$(presentation.SoftwareSASGenerationDescription)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SoftwareSASGenerationDescription" valueName="SoftwareSASGeneration">
+          <item displayName="$(string.SoftwareSASGeneration_None)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.SoftwareSASGeneration_SYSTEM)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SoftwareSASGeneration_UIAccess)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.SoftwareSASGeneration_Both)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="ReportCachedLogonPolicyDescription" class="Both" displayName="$(string.ReportCachedLogonPolicyDescription)" explainText="$(string.ReportCachedLogonPolicyDescription_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="ReportControllerMissing">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  
+    <policy name="CustomShell" class="User" displayName="$(string.CustomShellPolicyDescription)" explainText="$(string.CustomShellPolicyDescription_Help)" presentation="$(presentation.CustomShell)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <text id="CustomShellInst" valueName="Shell" required="true" />
+      </elements>
+    </policy>
+
+    <policy name="AutomaticRestartSignOn" class="Machine" displayName="$(string.AutomaticRestartSignOnDescription)" explainText="$(string.AutomaticRestartSignOnDescription_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="DisableAutomaticRestartSignOn">
+      <parentCategory ref="Logon" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+
+  </policies>
+</policyDefinitions>

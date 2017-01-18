@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="scripts" namespace="Microsoft.Policies.Scripts" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Scripts" displayName="$(string.Scripts)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="MaxGPOScriptWaitPolicy" class="Machine" displayName="$(string.MaxGPOScriptWaitPolicy)" explainText="$(string.MaxGPOScriptWaitPolicy_Help)" presentation="$(presentation.MaxGPOScriptWaitPolicy)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <elements>
+        <decimal id="MaxGPOScriptWait" valueName="MaxGPOScriptWait" required="true" maxValue="32000" />
+      </elements>
+    </policy>
+    <policy name="Run_Legacy_Logon_Script_Hidden" class="User" displayName="$(string.Run_Legacy_Logon_Script_Hidden)" explainText="$(string.Run_Legacy_Logon_Script_Hidden_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideLegacyLogonScripts">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Logoff_Script_Visible" class="User" displayName="$(string.Run_Logoff_Script_Visible)" explainText="$(string.Run_Logoff_Script_Visible_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideLogoffScripts">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Logon_Script_Sync_1" class="User" displayName="$(string.Run_Logon_Script_Sync)" explainText="$(string.Run_Logon_Script_Sync_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="RunLogonScriptSync">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+    </policy>
+    <policy name="Run_Logon_Script_Sync_2" class="Machine" displayName="$(string.Run_Logon_Script_Sync)" explainText="$(string.Run_Logon_Script_Sync_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="RunLogonScriptSync">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Logon_Script_Visible" class="User" displayName="$(string.Run_Logon_Script_Visible)" explainText="$(string.Run_Logon_Script_Visible_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideLogonScripts">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Computer_PS_Scripts_First" class="Machine" displayName="$(string.Run_Computer_PS_Scripts_First)" explainText="$(string.Run_Computer_PS_Scripts_First_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="RunComputerPSScriptsFirst">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_User_PS_Scripts_First" class="Both" displayName="$(string.Run_User_PS_Scripts_First)" explainText="$(string.Run_User_PS_Scripts_First_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="RunUserPSScriptsFirst">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Shutdown_Script_Visible" class="Machine" displayName="$(string.Run_Shutdown_Script_Visible)" explainText="$(string.Run_Shutdown_Script_Visible_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideShutdownScripts">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Startup_Script_Sync" class="Machine" displayName="$(string.Run_Startup_Script_Sync)" explainText="$(string.Run_Startup_Script_Sync_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="RunStartupScriptSync">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Run_Startup_Script_Visible" class="Machine" displayName="$(string.Run_Startup_Script_Visible)" explainText="$(string.Run_Startup_Script_Visible_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="HideStartupScripts">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_Win2k" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="Allow_Logon_Script_NetbiosDisabled" class="Machine" displayName="$(string.Allow_Logon_Script_NetbiosDisabled)" explainText="$(string.Allow_Logon_Script_NetbiosDisabled_Explain)" key="Software\Microsoft\Windows\CurrentVersion\Policies\System" valueName="Allow-LogonScript-NetbiosDisabled">
+      <parentCategory ref="Scripts" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

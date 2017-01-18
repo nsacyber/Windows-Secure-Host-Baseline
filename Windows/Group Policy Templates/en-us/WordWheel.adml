@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="CustomSearch">Custom Instant Search Internet search provider</string>
+      <string id="CustomSearch_Explain">Set up the menu name and URL for the custom Internet search provider.
+
+If you enable this setting, the specified menu name and URL will be used for Internet searches.
+
+If you disable or not configure this setting, the default Internet search provider will be used.</string>
+      <string id="NoSearchInternetInWordWheel">Hide the "Search the Internet" link from the Search box drop down.</string>
+      <string id="NoSearchInternetInWordWheel_Explain">This policy setting allows you to manage whether the "Search the Internet" link does not appear in the Start menu and the Instant Search box drop down list.
+
+If you enable this policy setting, the "Search the Internet" link is hidden from the Start menu and the Instant Search box drop down list.
+
+If you disable or do not configure this policy setting, the "Search the Internet" link appears in the Start menu and Instant Search box drop down list.</string>
+      <string id="WordWheelAlwaysUseExplicitCommit">Require an explicit commit before conducting searches.</string>
+      <string id="WordWheelAlwaysUseExplicitCommit_Explain">This policy setting allows you to manage whether to require a specific commit before conducting searches.
+
+If you enable this policy setting, a specific commit is required before conducting searches.
+
+If you disable or do not configure this policy setting, a specific commit is not required.</string>
+      <string id="WordwheelPolicies">Instant Search</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="CustomSearch">
+        <textBox refId="CustomSearch_NamePrompt">
+          <label>The string or DLL resource from which to load the string shown in the Instant Search menu.</label>
+        </textBox>
+        <textBox refId="CustomSearch_URLPrompt">
+          <label>The URL to use when invoking the custom Internet search, with the search term indicated by "%w".</label>
+        </textBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

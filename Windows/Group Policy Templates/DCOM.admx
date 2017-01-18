@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="dcom" namespace="Microsoft.Policies.DECOM" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DCOM" displayName="$(string.DCOM)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="DCOMAppCompatPolicies" displayName="$(string.DCOMAppCompatPolicies)">
+      <parentCategory ref="DCOM" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DCOMActivationSecurityCheckAllowLocalList" class="Machine" displayName="$(string.DCOMActivationSecurityCheckAllowLocalList)" explainText="$(string.DCOMActivationSecurityCheckAllowLocalList_Explain)" key="Software\Policies\Microsoft\Windows NT\DCOM\AppCompat" valueName="AllowLocalActivationSecurityCheckExemptionList">
+      <parentCategory ref="DCOMAppCompatPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DCOMActivationSecurityCheckExemptionList" class="Machine" displayName="$(string.DCOMActivationSecurityCheckExemptionList)" explainText="$(string.DCOMActivationSecurityCheckExemptionList_Explain)" presentation="$(presentation.DCOMActivationSecurityCheckExemptionList)" key="Software\Policies\Microsoft\Windows NT\DCOM\AppCompat" valueName="ListBox_Support_ActivationSecurityCheckExemptionList">
+      <parentCategory ref="DCOMAppCompatPolicies" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DCOM_Lbl_ActSecCheckExemptionList" key="Software\Policies\Microsoft\Windows NT\DCOM\AppCompat\ActivationSecurityCheckExemptionList" additive="true" explicitValue="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2010 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wlansvc" namespace="Microsoft.Policies.WlanSvc" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WlanSvc_Category" displayName="$(string.WlanSvc_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>    
+    <category name="NetworkCost_Category" displayName="$(string.NetworkCost_Category)">
+      <parentCategory ref="WlanSvc_Category" />
+    </category>
+    <category name="Wireless_Display_Category" displayName="$(string.Wireless_Display_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>
+    <category name="WlanSettings_Category" displayName="$(string.WlanSettings_Category)">
+      <parentCategory ref="WlanSvc_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="SetCost" class="Machine" displayName="$(string.SetCost)" explainText="$(string.SetCost_Help)" presentation="$(presentation.SetCost_Presentation)" key="Software\Policies\Microsoft\Windows\Wireless\NetCost">
+      <parentCategory ref="NetworkCost_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <enum id="Cost_Dropdownlist" valueName="Cost" required="true">
+          <item displayName="$(string.Cost_DropDownList_Unrestricted)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Fixed)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.Cost_DropDownList_Variable)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="SetPINEnforced" class="Machine" 
+            displayName="$(string.Wireless_Display_PINEnforced)" 
+            explainText="$(string.Wireless_Display_PINEnforced_Help)" 
+            key="SOFTWARE\Policies\Microsoft\WirelessDisplay" 
+            valueName="EnforcePinBasedPairing">
+      <parentCategory ref="Wireless_Display_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <enabledValue> <decimal value="1" /> </enabledValue>
+      <disabledValue> <decimal value="0" /> </disabledValue>
+    </policy>
+    <policy name="SetPINPreferred" class="Machine" 
+            displayName="$(string.Wireless_Display_PINPreferred)" 
+            explainText="$(string.Wireless_Display_PINPreferred_Help)" 
+            key="SOFTWARE\Policies\Microsoft\WirelessDisplay" 
+            valueName="PreferPinBasedPairing">
+      <parentCategory ref="Wireless_Display_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0"/>
+      <enabledValue> <decimal value="1" /> </enabledValue>
+      <disabledValue> <decimal value="0" /> </disabledValue>
+    </policy>
+    <policy name="WiFiSense" class="Machine" displayName="$(string.WiFiSense)" explainText="$(string.WiFiSense_Help)" key="Software\Microsoft\wcmsvc\wifinetworkmanager\config" valueName="AutoConnectAllowedOEM">
+      <parentCategory ref="WlanSettings_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy> 
+  </policies>
+</policyDefinitions>
+

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="devinst" namespace="Microsoft.Policies.DeviceInstallation" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DeviceInstall_Category" displayName="$(string.DeviceInstall_Category)" explainText="$(string.DeviceInstall_Help)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="DriverInstall_Category" displayName="$(string.DriverInstall_Category)" explainText="$(string.DriverInstall_Help)">
+      <parentCategory ref="windows:System" />
+    </category>
+    <category name="DeviceInstall_Restrictions_Category" displayName="$(string.DeviceInstall_Restrictions_Category)" explainText="$(string.DeviceInstall_Restrictions_Help)">
+      <parentCategory ref="DeviceInstall_Category" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DeviceInstall_AllSigningEqual" class="Machine" displayName="$(string.DeviceInstall_AllSigningEqual)" explainText="$(string.DeviceInstall_AllSigningEqual_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="AllSigningEqual">
+      <parentCategory ref="DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_InstallTimeout" class="Machine" displayName="$(string.DeviceInstall_InstallTimeout)" explainText="$(string.DeviceInstall_InstallTimeout_Help)" presentation="$(presentation.DeviceInstall_InstallTimeout)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings">
+      <parentCategory ref="DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <decimal id="DeviceInstall_InstallTimeout_Time" valueName="InstallTimeout" minValue="300" maxValue="4294968" />
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_SystemRestore" class="Machine" displayName="$(string.DeviceInstall_SystemRestore)" explainText="$(string.DeviceInstall_SystemRestore_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="DisableSystemRestore">
+      <parentCategory ref="DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceManagement_RPCInterface_Allow" class="Machine" displayName="$(string.DeviceManagement_RPCInterface_Allow)" explainText="$(string.DeviceManagement_RPCInterface_Allow_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Settings" valueName="AllowRemoteRPC">
+      <parentCategory ref="DeviceInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7ToVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_AllowAdminInstall" class="Machine" displayName="$(string.DeviceInstall_AllowAdminInstall)" explainText="$(string.DeviceInstall_AllowAdminInstall_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="AllowAdminInstall">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_Classes_Allow" class="Machine" displayName="$(string.DeviceInstall_Classes_Allow)" explainText="$(string.DeviceInstall_Classes_Allow_Help)" presentation="$(presentation.DeviceInstall_Classes_Allow)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="AllowDeviceClasses">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DeviceInstall_Classes_Allow_List" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\AllowDeviceClasses" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_Classes_Deny" class="Machine" displayName="$(string.DeviceInstall_Classes_Deny)" explainText="$(string.DeviceInstall_Classes_Deny_Help)" presentation="$(presentation.DeviceInstall_Classes_Deny)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="DenyDeviceClasses">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DeviceInstall_Classes_Deny_List" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses" valuePrefix="" />
+        <boolean id="DeviceInstall_Classes_Deny_Retroactive" valueName="DenyDeviceClassesRetroactive" >
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_IDs_Allow" class="Machine" displayName="$(string.DeviceInstall_IDs_Allow)" explainText="$(string.DeviceInstall_IDs_Allow_Help)" presentation="$(presentation.DeviceInstall_IDs_Allow)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="AllowDeviceIDs">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DeviceInstall_IDs_Allow_List" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\AllowDeviceIDs" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_IDs_Deny" class="Machine" displayName="$(string.DeviceInstall_IDs_Deny)" explainText="$(string.DeviceInstall_IDs_Deny_Help)" presentation="$(presentation.DeviceInstall_IDs_Deny)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="DenyDeviceIDs">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DeviceInstall_IDs_Deny_List" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs" valuePrefix="" />
+        <boolean id="DeviceInstall_IDs_Deny_Retroactive" valueName="DenyDeviceIDsRetroactive" >
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_Removable_Deny" class="Machine" displayName="$(string.DeviceInstall_Removable_Deny)" explainText="$(string.DeviceInstall_Removable_Deny_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="DenyRemovableDevices">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_Unspecified_Deny" class="Machine" displayName="$(string.DeviceInstall_Unspecified_Deny)" explainText="$(string.DeviceInstall_Unspecified_Deny_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="DenyUnspecified">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DeviceInstall_Policy_RebootTime" class="Machine" displayName="$(string.DeviceInstall_Policy_RebootTime)" presentation="$(presentation.DeviceInstall_Policy_RebootTime)" explainText="$(string.DeviceInstall_Policy_RebootTime_Help)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions" valueName="ForceReboot">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <decimal id="DeviceInstall_Policy_RebootTime_Time" valueName="RebootTime" minValue="0" maxValue="4294968" />
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_DeniedPolicy_SimpleText" class="Machine" displayName="$(string.DeviceInstall_DeniedPolicy_SimpleText)" explainText="$(string.DeviceInstall_DeniedPolicy_SimpleText_Help)" presentation="$(presentation.DeviceInstall_DeniedPolicy_SimpleText)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DeniedPolicy">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="DeviceInstall_DeniedPolicy_SimpleText_Text" valueName="SimpleText" required="true" maxLength="63" />
+      </elements>
+    </policy>
+    <policy name="DeviceInstall_DeniedPolicy_DetailText" class="Machine" displayName="$(string.DeviceInstall_DeniedPolicy_DetailText)" explainText="$(string.DeviceInstall_DeniedPolicy_DetailText_Help)" presentation="$(presentation.DeviceInstall_DeniedPolicy_DetailText)" key="Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DeniedPolicy">
+      <parentCategory ref="DeviceInstall_Restrictions_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="DeviceInstall_DeniedPolicy_DetailText_Text" valueName="DetailText" required="true" maxLength="128" />
+      </elements>
+    </policy>
+    <policy name="DriverInstall_Classes_AllowUser" class="Machine" displayName="$(string.DriverInstall_Classes_AllowUser)" explainText="$(string.DriverInstall_Classes_AllowUser_Help)" presentation="$(presentation.DriverInstall_Classes_AllowUser)" key="Software\Policies\Microsoft\Windows\DriverInstall\Restrictions" valueName="AllowUserDeviceClasses">
+      <parentCategory ref="DriverInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <list id="DriverInstall_Classes_AllowUser_List" key="Software\Policies\Microsoft\Windows\DriverInstall\Restrictions\AllowUserDeviceClasses" valuePrefix="" />
+      </elements>
+    </policy>
+    <policy name="DriverSigning" class="User" displayName="$(string.DriverSigning)" explainText="$(string.DriverSigning_Help)" presentation="$(presentation.DriverSigning)" key="Software\Policies\Microsoft\Windows NT\Driver Signing">
+      <parentCategory ref="DriverInstall_Category" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+      <elements>
+        <enum id="DriverSigningOp" valueName="BehaviorOnFailedVerify">
+          <item displayName="$(string.DriverSign_None)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.DriverSign_Warn)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.DriverSign_Block)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

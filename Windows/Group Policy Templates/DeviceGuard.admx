@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="DeviceGuard" namespace="Microsoft.Windows.DeviceGuard" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="DeviceGuardCategory" displayName="$(string.DeviceGuard)">
+      <parentCategory ref="windows:System" />
+    </category>
+  </categories>
+  <policies>
+    <policy
+      name="VirtualizationBasedSecurity"
+      clientExtension="{F312195E-3D9D-447A-A3F5-08DFFA24735E}"
+      displayName="$(string.VirtualizationBasedSecurity)"
+      explainText="$(string.VirtualizationBasedSecurityHelp)"
+      presentation="$(presentation.VirtualizationBasedSecurity)"
+      class="Machine"
+      key="SOFTWARE\Policies\Microsoft\Windows\DeviceGuard"
+      valueName="EnableVirtualizationBasedSecurity">
+      <parentCategory ref="DeviceGuardCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <enum
+          id="RequirePlatformSecurityFeaturesDrop"
+          valueName="RequirePlatformSecurityFeatures">
+          <item displayName="$(string.SecureBoot)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.SecureBootAndDmaProtection)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+        <enum
+          id="HypervisorEnforcedCodeIntegrityDrop"
+          valueName="HypervisorEnforcedCodeIntegrity">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithUefiLock)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithoutLock)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>          
+        </enum>
+        <enum
+          id="CredentialIsolationDrop"
+          valueName="LsaCfgFlags">
+          <item displayName="$(string.Disabled)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithUefiLock)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.EnabledWithoutLock)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy
+      name="ConfigCIPolicy"
+      clientExtension="{FC491EF1-C4AA-4CE1-B329-414B101DB823}"
+      displayName="$(string.ConfigCIPolicy)"
+      explainText="$(string.ConfigCIPolicyHelp)"
+      presentation="$(presentation.ConfigCIPolicy)"
+      class="Machine"
+      key="SOFTWARE\Policies\Microsoft\Windows\DeviceGuard"
+      valueName="DeployConfigCIPolicy">
+      <parentCategory ref="DeviceGuardCategory" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <text id="ConfigCIPolicyFilePathText" valueName="ConfigCIPolicyFilePath" maxLength="255" required="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>
+

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="explorer" namespace="Microsoft.Policies.WindowsExplorer2" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="AlwaysShowClassicMenu" class="User" displayName="$(string.AlwaysShowClassicMenu)" explainText="$(string.AlwaysShowClassicMenu_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="AlwaysShowClassicMenu">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventItemCreationInUsersFilesFolder" class="User" displayName="$(string.PreventItemCreationInUsersFilesFolder)" explainText="$(string.PreventItemCreationInUsersFilesFolder_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="PreventItemCreationInUsersFilesFolder">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="TurnOffSPIAnimations" class="User" displayName="$(string.TurnOffSPIAnimations)" explainText="$(string.TurnOffSPIAnimations_Help)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="TurnOffSPIAnimations">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoDataExecutionPrevention" class="Machine" displayName="$(string.NoDataExecutionPrevention)" explainText="$(string.NoDataExecutionPrevention_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoDataExecutionPrevention">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="NoHeapTerminationOnCorruption" class="Machine" displayName="$(string.NoHeapTerminationOnCorruption)" explainText="$(string.NoHeapTerminationOnCorruption_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="NoHeapTerminationOnCorruption">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AdminInfoUrl" class="Machine" displayName="$(string.AdminInfoUrl)" explainText="$(string.AdminInfoUrl_Help)" presentation="$(presentation.AdminInfoUrl)" key="Software\Policies\Microsoft\Windows\Explorer">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+          <text id="AdminInfoUrl_TextBox" valueName="AdminInfoUrl"/>
+      </elements>
+    </policy>
+    <policy name="DisableRoamedProfileInit" class="Machine" displayName="$(string.DisableRoamedProfileInit)" explainText="$(string.DisableRoamedProfileInit_Help)" key="Software\Policies\Microsoft\Windows\Explorer" valueName="DisableRoamedProfileInit">
+      <parentCategory ref="windows:WindowsExplorer" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

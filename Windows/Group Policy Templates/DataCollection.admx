@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2015 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="DataCollection" namespace="Microsoft.Policies.DataCollection" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="AllowTelemetry" class="Both" displayName="$(string.AllowTelemetry)" explainText="$(string.AllowTelemetry_Explain)" presentation="$(presentation.AllowTelemetry)" key="Software\Policies\Microsoft\Windows\DataCollection">
+      <parentCategory ref="windows:DataCollectionAndPreviewBuilds" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <enum id="AllowTelemetry" valueName="AllowTelemetry" required="true">
+          <item displayName="$(string.AllowTelemetry_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.AllowTelemetry_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AllowTelemetry_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AllowTelemetry_3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="EnableExperimentation" class="Machine" displayName="$(string.EnableExperimentation)" explainText="$(string.EnableExperimentation_Explain)" presentation="$(presentation.EnableExperimentation)" key="Software\Policies\Microsoft\Windows\PreviewBuilds" valueName="EnableConfigFlighting">
+      <parentCategory ref="windows:DataCollectionAndPreviewBuilds" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+       <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <enum id="EnableExperimentation" valueName="EnableExperimentation" required="true">
+          <item displayName="$(string.EnableExperimentation_1)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.EnableExperimentation_2)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="TelemetryProxy" class="Machine" displayName="$(string.TelemetryProxy)" explainText="$(string.TelemetryProxy_Explain)" presentation="$(presentation.TelemetryProxy)" key="Software\Policies\Microsoft\Windows\DataCollection" >
+      <parentCategory ref="windows:DataCollectionAndPreviewBuilds" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <text id="TelemetryProxyName" valueName="TelemetryProxyServer" required="true"/>
+      </elements>
+    </policy>
+    <policy name="CommercialIdPolicy" class="Machine" displayName="$(string.CommercialId)" explainText="$(string.CommercialId_Explain)" presentation="$(presentation.CommercialID)" key="Software\Policies\Microsoft\Windows\DataCollection" >
+      <parentCategory ref="windows:DataCollectionAndPreviewBuilds" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <elements>
+        <text id="CommercialIdValue" valueName="CommercialId" required="true"/>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

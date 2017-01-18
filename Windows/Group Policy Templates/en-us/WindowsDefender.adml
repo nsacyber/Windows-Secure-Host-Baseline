@@ -1,0 +1,857 @@
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+<displayName>enter display name here</displayName>
+<description>enter description here</description>
+<resources>
+    <stringTable>
+    <string id="AntiSpywareDefender">Windows Defender</string>
+    <string id="AntiSpyware">Endpoint Protection</string>
+    <string id="Exclusions">Exclusions</string>
+    <string id="NetworkRealtimeInspection">Network Inspection System</string>
+    <string id="NetworkRealtimeInspection_Exclusions">Exclusions</string>
+    <string id="Quarantine">Quarantine</string>
+    <string id="RealtimeProtection">Real-time Protection</string>
+    <string id="Remediation">Remediation</string>
+    <string id="Reporting">Reporting</string>
+    <string id="Scan">Scan</string>
+    <string id="SignatureUpdate">Signature Updates</string>
+    <string id="Spynet">MAPS</string>
+    <string id="Threats">Threats</string>
+    <string id="ClientInterface">Client Interface</string>
+    <string id="AllowFastServiceStartup">Allow antimalware service to startup with normal priority</string>
+    <string id="AllowFastServiceStartup_Explain">This policy setting controls the load priority for the antimalware service. Increasing the load priority will allow for faster service startup, but may impact performance.
+
+    If you enable or do not configure this setting, the antimalware service will load as a normal priority task.
+
+    If you disable this setting, the antimalware service will load as a low priority task.</string>
+
+    <string id="DisableAutoExclusions">Turn off Auto Exclusions</string>
+    <string id="DisableAutoExclusions_Explain">Allows an administrator to specify if Automatic Exclusions feature for Server SKUs should be turned off.</string>
+    <string id="DisableAntiSpyware">Turn off Endpoint Protection</string>
+    <string id="DisableAntiSpyware_Explain">This policy setting turns off Endpoint Protection.
+
+    If you enable this policy setting, Endpoint Protection does not run, and computers are not scanned for malware or other potentially unwanted software.
+
+    If you disable or do not configure this policy setting, by default Endpoint Protection runs and computers are scanned for malware and other potentially unwanted software.
+    </string>
+    <string id="DisableAntiSpywareDefender">Turn off Windows Defender</string>
+    <string id="DisableAntiSpywareDefender_Explain">This policy setting turns off Windows Defender.
+
+    If you enable this policy setting, Windows Defender does not run, and computers are not scanned for malware or other potentially unwanted software.
+
+    If you disable or do not configure this policy setting, by default Windows Defender runs and computers are scanned for malware and other potentially unwanted software.</string>
+    <string id="DisableLocalAdminMerge">Configure local administrator merge behavior for lists</string>
+    <string id="DisableLocalAdminMerge_Explain">This policy setting controls whether or not complex list settings configured by a local administrator are merged with Group Policy settings. This setting applies to lists such as threats and Exclusions.
+
+    If you enable or do not configure this setting, unique items defined in Group Policy and in preference settings configured by the local administrator will be merged into the resulting effective policy. In the case of conflicts, Group policy Settings will override preference settings.
+
+    If you disable this setting, only items defined by Group Policy will be used in the resulting effective policy. Group Policy settings will override preference settings configured by the local administrator.</string>
+    <string id="DisableRoutinelyTakingAction">Turn off routine remediation</string>
+    <string id="DisableRoutinelyTakingActionDefender_Explain">
+    This policy setting allows you to configure whether Windows Defender automatically takes action on all detected threats. The action to be taken on a particular threat is determined by the combination of the policy-defined action, user-defined action, and the signature-defined action.
+
+    If you enable this policy setting, Windows Defender does not automatically take action on the detected threats, but prompts users to choose from the actions available for each threat.
+
+    If you disable or do not configure this policy setting, Windows Defender automatically takes action on all detected threats after a nonconfigurable delay of approximately five seconds.</string>
+    <string id="DisableRoutinelyTakingAction_Explain">
+        This policy setting allows you to configure whether Endpoint Protection automatically takes action on all detected threats. The action to be taken on a particular threat is determined by the combination of the policy-defined action, user-defined action, and the signature-defined action.
+
+        If you enable this policy setting, Endpoint Protection does not automatically take action on the detected threats, but prompts users to choose from the actions available for each threat.
+
+        If you disable or do not configure this policy setting, Endpoint Protection automatically takes action on all detected threats after a nonconfigurable delay of approximately five seconds.
+    </string>      
+    <string id="ProxyBypass">Define addresses to bypass proxy server</string>
+    <string id="ProxyBypass_Explain">This policy, if defined, will prevent antimalware from using the configured proxy server when communicating with the specified IP addresses. The address value should be entered as a valid URL.
+
+    If you enable this setting, the proxy server will be bypassed for the specified addresses.
+
+    If you disable or do not configure this setting, the proxy server will not be bypassed for the specified addresses.</string>
+    <string id="ProxyPacUrl">Define proxy auto-config (.pac) for connecting to the network</string>
+    <string id="ProxyPacUrl_Explain">This policy setting defines the URL of a proxy .pac file that should be used when the client attempts to connect the network for definition updates and MAPS reporting. If the proxy auto-config fails or if there is no proxy auto-config specified, the client will fall back to the alternative options (in order):
+      1. Proxy server (if specified)
+      2. Proxy .pac URL (if specified)
+      3. None
+      4. Internet Explorer proxy settings
+      5. Autodetect
+
+      If you enable this setting, the proxy setting will be set to use the specified proxy .pac according to the order specified above.
+
+      If you disable or do not configure this setting, the proxy will skip over this fallback step according to the order specified above.</string>
+    <string id="ProxyServer">Define proxy server for connecting to the network</string>
+    <string id="ProxyServer_Explain">This policy setting allows you to configure the named proxy that should be used when the client attempts to connect to the network for definition updates and MAPS reporting. If the named proxy fails or if there is no proxy specified, the client will fall back to the alternative options (in order):
+      1. Proxy server (if specified)
+      2. Proxy .pac URL (if specified)
+      3. None
+      4. Internet Explorer proxy settings
+      5. Autodetect
+
+      If you enable this setting, the proxy will be set to the specified URL according to the order specified above. The URL should be proceeded with either http:// or https://.
+
+      If you disable or do not configure this setting, the proxy will skip over this fallback step according to the order specified above.
+    </string>
+    <string id="RandomizeScheduleTaskTimes">Randomize scheduled task times</string>
+    <string id="RandomizeScheduleTaskTimes_Explain">This policy setting allows you to enable or disable randomization of the scheduled scan start time and the scheduled definition update start time. This setting is used to distribute the resource impact of scanning. For example, it could be used in guest virtual machines sharing a host, to prevent multiple guest virtual machines from undertaking a disk-intensive operation at the same time.
+
+    If you enable or do not configure this setting, scheduled tasks will begin at a random time within an interval of 30 minutes before and after the specified start time.
+
+    If you disable this setting, scheduled tasks will begin at the specified start time.</string>
+    <string id="ServiceKeepAlive">Allow antimalware service to remain running always</string>
+    <string id="ServiceKeepAlive_Explain">This policy setting allows you to configure whether or not the antimalware service remains running when antivirus and antispyware definitions are disabled. It is recommended that this setting remain disabled.
+
+    If you enable this setting, the antimalware service will always remain running even if both antivirus and antispyware definitions are disabled.
+
+    If you disable or do not configure this setting, the antimalware service will be stopped when both antivirus and antispyware definitions are disabled. If the computer is restarted, the service will be started if it is set to Automatic startup. After the service has started, there will be a check to see if antivirus and antispyware definitions are enabled. If at least one is enabled, the service will remain running. If both are disabled, the service will be stopped.</string>
+    <string id="Exclusions_Extensions">Extension Exclusions</string>
+    <string id="Exclusions_Extensions_Explain">This policy setting allows you specify a list of file types that should be excluded from scheduled, custom, and real-time scanning. File types should be added under the Options for this setting. Each entry must be listed as a name value pair, where the name should be a string representation of the file type extension (such as "obj" or "lib"). The value is not used and it is recommended that this be set to 0.</string>
+    <string id="Exclusions_Paths">Path Exclusions</string>
+    <string id="Exclusions_Paths_Explain">This policy setting allows you to disable scheduled and real-time scanning for files under the paths specified or for the fully qualified resources specified. Paths should be added under the Options for this setting. Each entry must be listed as a name value pair, where the name should be a string representation of a path or a fully qualified resource name. As an example, a path might be defined as: "c:\Windows" to exclude all files in this directory. A fully qualified resource name might be defined as: "C:\Windows\App.exe". The value is not used and it is recommended that this be set to 0.</string>
+    <string id="Exclusions_Processes">Process Exclusions</string>
+    <string id="Exclusions_Processes_Explain">This policy setting allows you to disable scheduled and real-time scanning for any file opened by any of the specified processes. The process itself will not be excluded. To exclude the process, use the Path exclusion. Processes should be added under the Options for this setting. Each entry must be listed as a name value pair, where the name should be a string representation of the path to the process image. Note that only executables can be excluded. For example, a process might be defined as: "c:\windows\app.exe". The value is not used and it is recommended that this be set to 0.</string>
+    <string id="Nis_DisableProtocolRecognition">Turn on protocol recognition</string>
+    <string id="Nis_DisableProtocolRecognition_Explain">This policy setting allows you to configure protocol recognition for network protection against exploits of known vulnerabilities.
+
+    If you enable or do not configure this setting, protocol recognition will be enabled.
+
+    If you disable this setting, protocol recognition will be disabled.</string>
+    <string id="Nis_Consumers_IPS_DisableSignatureRetirement">Turn on definition retirement</string>
+    <string id="Nis_Consumers_IPS_DisableSignatureRetirement_Explain">This policy setting allows you to configure definition retirement for network protection against exploits of known vulnerabilities. Definition retirement checks to see if a computer has the required security updates necessary to protect it against a particular vulnerability. If the system is not vulnerable to the exploit detected by a definition, then that definition is "retired". If all definitions for a given protocal are retired then that protocol is no longer parsed. Enabling this feature helps to improve performance. On a computer that is up-to-date with all the latest security updates, network protection will have no impact on network performance.
+
+    If you enable or do not configure this setting, definition retirement will be enabled.
+
+    If you disable this setting, definition retirement will be disabled.</string>
+    <string id="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid">Specify additional definition sets for network traffic inspection</string>
+    <string id="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid_Explain">This policy setting defines additional definition sets to enable for network traffic inspection. Definition set GUIDs should be added under the Options for this setting. Each entry must be listed as a name value pair, where the name should be a string representation of a definition set GUID. As an example, the definition set GUID to enable test definitions is defined as: “{b54b6ac9-a737-498e-9120-6616ad3bf590}”. The value is not used and it is recommended that this be set to 0.</string>
+    <string id="Quarantine_LocalSettingOverridePurgeItemsAfterDelay">Configure local setting override for the removal of items from Quarantine folder</string>
+    <string id="Quarantine_LocalSettingOverridePurgeItemsAfterDelay_Explain">This policy setting configures a local override for the configuration of the number of days items should be kept in the Quarantine folder before being removed. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Quarantine_PurgeItemsAfterDelay">Configure removal of items from Quarantine folder</string>
+    <string id="Quarantine_PurgeItemsAfterDelay_Explain">This policy setting defines the number of days items should be kept in the Quarantine folder before being removed.
+
+    If you enable this setting, items will be removed from the Quarantine folder after the number of days specified.
+
+    If you disable or do not configure this setting, items will be kept in the quarantine folder indefinitely and will not be automatically removed.</string>
+    <string id="RealtimeProtection_DisableBehaviorMonitoring">Turn on behavior monitoring</string>
+    <string id="RealtimeProtection_DisableBehaviorMonitoring_Explain">This policy setting allows you to configure behavior monitoring.
+
+    If you enable or do not configure this setting, behavior monitoring will be enabled.
+
+    If you disable this setting, behavior monitoring will be disabled.</string>
+    <string id="RealtimeProtection_DisableIOAVProtection">Scan all downloaded files and attachments</string>
+    <string id="RealtimeProtection_DisableIOAVProtection_Explain">This policy setting allows you to configure scanning for all downloaded files and attachments.
+
+    If you enable or do not configure this setting, scanning for all downloaded files and attachments will be enabled.
+
+    If you disable this setting, scanning for all downloaded files and attachments will be disabled.</string>
+    <string id="RealtimeProtection_DisableOnAccessProtection">Monitor file and program activity on your computer</string>
+    <string id="RealtimeProtection_DisableOnAccessProtection_Explain">This policy setting allows you to configure monitoring for file and program activity.
+
+    If you enable or do not configure this setting, monitoring for file and program activity will be enabled.
+
+    If you disable this setting, monitoring for file and program activity will be disabled.</string>
+    <string id="RealtimeProtection_DisableRawWriteNotification">Turn on raw volume write notifications</string>
+    <string id="RealtimeProtection_DisableRawWriteNotification_Explain">This policy setting controls whether raw volume write notifications are sent to behavior monitoring.
+
+    If you enable or do not configure this setting, raw write notifications will be enabled.
+
+    If you disable this setting, raw write notifications be disabled.</string>
+    <string id="DisableRealtimeMonitoring">Turn off real-time protection</string>
+    <string id="DisableRealtimeMonitoringDefender_Explain">This policy setting turns off real-time protection prompts for known malware detection.
+
+    Windows Defender alerts you when malware or potentially unwanted software attempts to install itself or to run on your computer.
+
+    If you enable this policy setting, Windows Defender will not prompt users to take actions on malware detections.
+
+    If you disable or do not configure this policy setting, Windows Defender will prompt users to take actions on malware detections.</string>
+    <string id="DisableRealtimeMonitoring_Explain">
+    This policy setting turns off real-time protection prompts for known malware detection.
+
+    Endpoint Protection alerts you when malware or potentially unwanted software attempts to install itself or to run on your computer.
+
+    If you enable this policy setting, Endpoint Protection will not prompt users to take actions on malware detections.
+
+    If you disable or do not configure this policy setting, Endpoint Protection will prompt users to take actions on malware detections.
+    </string>
+    <string id="RealtimeProtection_DisableScanOnRealtimeEnable">Turn on process scanning whenever real-time protection is enabled</string>
+    <string id="RealtimeProtection_DisableScanOnRealtimeEnable_Explain">This policy setting allows you to configure process scanning when real-time protection is turned on. This helps to catch malware which could start when real-time protection is turned off.
+
+    If you enable or do not configure this setting,  a process scan will be initiated when real-time protection is turned on.
+
+    If you disable this setting, a process scan will not be initiated when real-time protection is turned on.</string>
+    <string id="RealtimeProtection_IOAVMaxSize">Define the maximum size of downloaded files and attachments to be scanned</string>
+    <string id="RealtimeProtection_IOAVMaxSize_Explain">This policy setting defines the maximum size (in kilobytes) of downloaded files and attachments that will be scanned.
+
+    If you enable this setting, downloaded files and attachments smaller than the size specified will be scanned.
+
+    If you disable or do not configure this setting, a default size will be applied.</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableBehaviorMonitoring">Configure local setting override for turn on behavior monitoring</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableBehaviorMonitoring_Explain">This policy setting configures a local override for the configuration of behavior monitoring. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection">Configure local setting override for monitoring file and program activity on your computer</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableOnAccessProtection_Explain">This policy setting configures a local override for the configuration of monitoring for file and program activity on your computer. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableIOAVProtection">Configure local setting override for scanning all downloaded files and attachments</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableIOAVProtection_Explain">This policy setting configures a local override for the configuration of scanning for all downloaded files and attachments. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableRealtimeMonitoring">Configure local setting override to turn on real-time protection</string>
+    <string id="RealtimeProtection_LocalSettingOverrideDisableRealtimeMonitoring_Explain">This policy setting configures a local override for the configuration to turn on real-time protection. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="RealtimeProtection_LocalSettingOverrideRealtimeScanDirection">Configure local setting override for monitoring for incoming and outgoing file activity</string>
+    <string id="RealtimeProtection_LocalSettingOverrideRealtimeScanDirection_Explain">This policy setting configures a local override for the configuration of monitoring for incoming and outgoing file activity. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="RealtimeProtection_RealtimeScanDirection">Configure monitoring for incoming and outgoing file and program activity</string>
+    <string id="RealtimeProtection_RealtimeScanDirection_Explain">This policy setting allows you to configure monitoring for incoming and outgoing files, without having to turn off monitoring entirely. It is recommended for use on servers where there is a lot of incoming and outgoing file activity but for performance reasons need to have scanning disabled for a particular scan direction. The appropriate configuration should be evaluated based on the server role. 
+
+    Note that this configuration is only honored for NTFS volumes. For any other file system type, full monitoring of file and program activity will be present on those volumes.
+
+    The options for this setting are mutually exclusive:
+    0 = Scan incoming and outgoing files (default)
+    1 = Scan incoming files only
+    2 = Scan outgoing files only
+
+    Any other value, or if the value does not exist, resolves to the default (0).
+
+    If you enable this setting, the specified type of monitoring will be enabled.
+
+    If you disable or do not configure this setting, monitoring for incoming and outgoing files will be enabled.</string>
+    <string id="RealtimeProtection_RealtimeScanDirection_0">bi-directional (full on-access)</string>
+    <string id="RealtimeProtection_RealtimeScanDirection_1">scan only incoming (disable on-open)</string>
+    <string id="RealtimeProtection_RealtimeScanDirection_2">scan only outgoing (disable on-close)</string>
+    <string id="Remediation_LocalSettingOverrideScan_ScheduleTime">Configure local setting override for the time of day to run a scheduled full scan to complete remediation</string>
+    <string id="Remediation_LocalSettingOverrideScan_ScheduleTime_Explain">This policy setting configures a local override for the configuration of the time to run a scheduled full scan to complete remediation. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Remediation_Scan_ScheduleDay">Specify the day of the week to run a scheduled full scan to complete remediation</string>
+    <string id="Remediation_Scan_ScheduleDay_Explain">This policy setting allows you to specify the day of the week on which to perform a scheduled full scan in order to complete remediation. The scan can also be configured to run every day or to never run at all.
+
+    This setting can be configured with the following ordinal number values:
+    (0x0) Every Day
+    (0x1) Sunday 
+    (0x2) Monday
+    (0x3) Tuesday
+    (0x4) Wednesday
+    (0x5) Thursday
+    (0x6) Friday
+    (0x7) Saturday
+    (0x8) Never (default)
+
+    If you enable this setting, a scheduled full scan to complete remediation will run at the frequency specified.
+
+    If you disable or do not configure this setting, a scheduled full scan to complete remediation will run at a default frequency.</string>
+    <string id="Remediation_Scan_ScheduleDay_0">Never</string>
+    <string id="Remediation_Scan_ScheduleDay_1">Every Day</string>
+    <string id="Remediation_Scan_ScheduleDay_2">Sunday</string>
+    <string id="Remediation_Scan_ScheduleDay_3">Monday</string>
+    <string id="Remediation_Scan_ScheduleDay_4">Tuesday</string>
+    <string id="Remediation_Scan_ScheduleDay_5">Wednesday</string>
+    <string id="Remediation_Scan_ScheduleDay_6">Thursday</string>
+    <string id="Remediation_Scan_ScheduleDay_7">Friday</string>
+    <string id="Remediation_Scan_ScheduleDay_8">Saturday</string>
+    <string id="Remediation_Scan_ScheduleTime">Specify the time of day to run a scheduled full scan to complete remediation</string>
+    <string id="Remediation_Scan_ScheduleTime_Explain">This policy setting allows you to specify the time of day at which to perform a scheduled full scan in order to complete remediation. The time value is represented as the number of minutes past midnight (00:00).  For example, 120 (0x78) is equivalent to 02:00 AM.  The schedule is based on local time on the computer where the scan is executing.
+
+    If you enable this setting, a scheduled full scan to complete remediation will run at the time of day specified.
+
+    If you disable or do not configure this setting, a scheduled full scan to complete remediation will run at a default time.</string>
+    <string id="Reporting_AdditionalActionTimeout">Configure time out for detections requiring additional action</string>
+    <string id="Reporting_AdditionalActionTimeout_Explain">This policy setting configures the time in minutes before a detection in the "additional action" state moves to the "cleared" state.</string>
+    <string id="Reporting_CriticalFailureTimeout">Configure time out for detections in critically failed state</string>
+    <string id="Reporting_CriticalFailureTimeout_Explain">This policy setting configures the time in minutes before a detection in the “critically failed” state to moves to either the “additional action” state or the “cleared” state.</string>
+    <string id="Reporting_DisablegenericrePorts">Configure Watson events</string>
+    <string id="Reporting_DisablegenericrePorts_Explain">This policy setting allows you to configure whether or not Watson events are sent.
+
+    If you enable or do not configure this setting, Watson events will be sent.
+
+    If you disable this setting, Watson events will not be sent.</string>
+    <string id="Reporting_NonCriticalTimeout">Configure time out for detections in non-critical failed state</string>
+    <string id="Reporting_NonCriticalTimeout_Explain">This policy setting configures the time in minutes before a detection in the "non-critically failed" state moves to the "cleared" state.</string>
+    <string id="Reporting_RecentlyCleanedTimeout">Configure time out for detections in recently remediated state</string>
+    <string id="Reporting_RecentlyCleanedTimeout_Explain">This policy setting configures the time in minutes before a detection in the "completed" state moves to the "cleared" state.</string>
+    <string id="Reporting_WppTracingComponents">Configure Windows software trace preprocessor components</string>
+    <string id="Reporting_WppTracingComponents_Explain">This policy configures Windows software trace preprocessor (WPP Software Tracing) components.</string>
+    <string id="Reporting_WppTracingLevel">Configure WPP tracing level</string>
+    <string id="Reporting_WppTracingLevel_Explain">This policy allows you to configure tracing levels for Windows software trace preprocessor (WPP Software Tracing). 
+
+    Tracing levels are defined as:
+    1 - Error
+    2 - Warning
+    3 - Info
+    4 - Debug</string>
+    <string id="Scan_AllowPause">Allow users to pause scan</string>
+    <string id="Scan_AllowPause_Explain">This policy setting allows you to manage whether or not end users can pause a scan in progress.
+
+    If you enable or do not configure this setting, a new context menu will be added to the task tray icon to allow the user to pause a scan.
+
+    If you disable this setting, users will not be able to pause scans.</string>
+    <string id="Scan_ArchiveMaxDepth">Specify the maximum depth to scan archive files</string>
+    <string id="Scan_ArchiveMaxDepth_Explain">This policy setting allows you to configure the maximum directory depth level into which archive files such as .ZIP or .CAB are unpacked during scanning. The default directory depth level is 0.
+
+    If you enable this setting, archive files will be scanned to the directory depth level specified.
+
+    If you disable or do not configure this setting, archive files will be scanned to the default directory depth level.</string>
+    <string id="Scan_ArchiveMaxSize">Specify the maximum size of archive files to be scanned</string>
+    <string id="Scan_ArchiveMaxSize_Explain">This policy setting allows you to configure the maximum size of archive files such as .ZIP or .CAB that will be scanned. The value represents file size in kilobytes (KB). The default value is 0 and represents no limit to archive size for scanning.
+
+    If you enable this setting, archive files less than or equal to the size specified will be scanned.
+
+    If you disable or do not configure this setting, archive files will be scanned according to the default value.</string>
+    <string id="Scan_AvgCPULoadFactor">Specify the maximum percentage of CPU utilization during a scan</string>
+    <string id="Scan_AvgCPULoadFactor_Explain">This policy setting allows you to configure the maximum percentage CPU utilization permitted during a scan. Valid values for this setting are a percentage represented by the integers 5 to 100. A value of 0 indicates that there should be no throttling of CPU utilization. The default value is 50.
+
+    If you enable this setting, CPU utilization will not exceed the percentage specified.
+
+    If you disable or do not configure this setting, CPU utilization will not exceed the default value.</string>
+    <string id="CheckForSignaturesBeforeRunningScan">Check for the latest virus and spyware definitions before running a scheduled scan</string>
+    <string id="CheckForSignaturesBeforeRunningScan_Explain">This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan. 
+
+    This setting applies to scheduled scans as well as the command line "mpcmdrun -SigUpdate", but it has no effect on scans initiated manually from the user interface.
+
+    If you enable this setting, a check for new definitions will occur before running a scan.
+
+    If you disable this setting or do not configure this setting, the scan will start using the existing definitions.</string>
+    <string id="Scan_DisableArchiveScanning">Scan archive files</string>
+    <string id="Scan_DisableArchiveScanning_Explain">This policy setting allows you to configure scans for malicious software and unwanted software in archive files such as .ZIP or .CAB files.
+
+    If you enable or do not configure this setting, archive files will be scanned.
+
+    If you disable this setting, archive files will not be scanned.</string>
+    <string id="Scan_DisableCatchupFullScan">Turn on catch-up full scan</string>
+    <string id="Scan_DisableCatchupFullScan_Explain">This policy setting allows you to configure catch-up scans for scheduled full scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed.  Usually these scheduled scans are missed because the computer was turned off at the scheduled time. 
+
+    If you enable this setting, catch-up scans for scheduled full scans will be turned on.  If a computer is offline for two consecutive scheduled scans, a catch-up scan is started the next time someone logs on to the computer.  If there is no scheduled scan configured, there will be no catch-up scan run. 
+
+    If you disable or do not configure this setting, catch-up scans for scheduled full scans will be turned off.</string>
+    <string id="Scan_DisableCatchupQuickScan">Turn on catch-up quick scan</string>
+    <string id="Scan_DisableCatchupQuickScan_Explain">This policy setting allows you to configure catch-up scans for scheduled quick scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed.  Usually these scheduled scans are missed because the computer was turned off at the scheduled time. 
+
+    If you enable this setting, catch-up scans for scheduled quick scans will be turned on. If a computer is offline for two consecutive scheduled scans, a catch-up scan is started the next time someone logs on to the computer.  If there is no scheduled scan configured, there will be no catch-up scan run.
+
+    If you disable or do not configure this setting, catch-up scans for scheduled quick scans will be turned off.</string>
+    <string id="Scan_DisableEmailScanning">Turn on e-mail scanning</string>
+    <string id="Scan_DisableEmailScanning_Explain">This policy setting allows you to configure e-mail scanning. When e-mail scanning is enabled, the engine will parse the mailbox and mail files, according to their specific format, in order to analyze the mail bodies and attachments. Several e-mail formats are currently supported, for example: pst (Outlook), dbx, mbx, mime (Outlook Express), binhex (Mac).
+
+    If you enable this setting, e-mail scanning will be enabled.
+
+    If you disable or do not configure this setting, e-mail scanning will be disabled.</string>
+    <string id="Scan_DisableHeuristics">Turn on heuristics</string>
+    <string id="Scan_DisableHeuristics_Explain">This policy setting allows you to configure heuristics. Suspicious detections will be suppressed right before reporting to the engine client. Turning off heuristics will reduce the capability to flag new threats. It is recommended that you do not turn off heuristics.
+
+    If you enable or do not configure this setting, heuristics will be enabled.
+
+    If you disable this setting, heuristics will be disabled.</string>
+    <string id="Scan_DisablePackedExeScanning">Scan packed executables</string>
+    <string id="Scan_DisablePackedExeScanning_Explain">This policy setting allows you to configure scanning for packed executables. It is recommended that this type of scanning remain enabled.
+
+    If you enable or do not configure this setting, packed executables will  be scanned.
+
+    If you disable this setting, packed executables will not be scanned.</string>
+    <string id="Scan_DisableRemovableDriveScanning">Scan removable drives</string>
+    <string id="Scan_DisableRemovableDriveScanning_Explain">This policy setting allows you to manage whether or not to scan for malicious software and unwanted software in the contents of removable drives, such as USB flash drives, when running a full scan.
+
+    If you enable this setting, removable drives will be scanned during any type of scan.
+
+    If you disable or do not configure this setting, removable drives will not be scanned during a full scan. Removable drives may still be scanned during quick scan and custom scan.</string>
+    <string id="Scan_DisableReparsePointScanning">Turn on reparse point scanning</string>
+    <string id="Scan_DisableReparsePointScanning_Explain">This policy setting allows you to configure reparse point scanning. If you allow reparse points to be scanned, there is a possible risk of recursion. However, the engine supports following reparse points to a maximum depth so at worst scanning could be slowed. Reparse point scanning is disabled by default and this is the recommended state for this functionality. 
+
+    If you enable this setting, reparse point scanning will be enabled.
+
+    If you disable or do not configure this setting, reparse point scanning will be disabled.</string>
+    <string id="Scan_DisableRestorePoint">Create a system restore point</string>
+    <string id="Scan_DisableRestorePoint_Explain">This policy setting allows you to create a system restore point on the computer on a daily basis prior to cleaning. 
+
+    If you enable this setting, a system restore point will be created.
+
+    If you disable or do not configure this setting, a system restore point will not be created.</string>
+    <string id="Scan_DisableScanningMappedNetworkDrivesForFullScan">Run full scan on mapped network drives</string>
+    <string id="Scan_DisableScanningMappedNetworkDrivesForFullScan_Explain">This policy setting allows you to configure scanning mapped network drives.
+
+    If you enable this setting, mapped network drives will be scanned.
+
+    If you disable or do not configure this setting, mapped network drives will not be scanned.</string>
+    <string id="Scan_DisableScanningNetworkFiles">Scan network files</string>
+    <string id="Scan_DisableScanningNetworkFiles_Explain">This policy setting allows you to configure scanning for network files. It is recommended that you do not enable this setting.
+
+    If you enable this setting, network files will be scanned.
+
+    If you disable or do not configure this setting, network files will not be scanned.</string>
+    <string id="Scan_LocalSettingOverrideAvgCPULoadFactor">Configure local setting override for maximum percentage of CPU utilization</string>
+    <string id="Scan_LocalSettingOverrideAvgCPULoadFactor_Explain">This policy setting configures a local override for the configuration of maximum percentage of CPU utilization during scan. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Scan_LocalSettingOverrideScanParameters">Configure local setting override for the scan type to use for a scheduled scan</string>
+    <string id="Scan_LocalSettingOverrideScanParameters_Explain">This policy setting configures a local override for the configuration of  the scan type to use during a scheduled scan. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Scan_LocalSettingOverrideScheduleDay">Configure local setting override for schedule scan day</string>
+    <string id="Scan_LocalSettingOverrideScheduleDay_Explain">This policy setting configures a local override for the configuration of scheduled scan day. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Scan_LocalSettingOverrideScheduleQuickScantime">Configure local setting override for scheduled quick scan time</string>
+    <string id="Scan_LocalSettingOverrideScheduleQuickScantime_Explain">This policy setting configures a local override for the configuration of scheduled quick scan time. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Scan_LocalSettingOverrideScheduleTime">Configure local setting override for scheduled scan time</string>
+    <string id="Scan_LocalSettingOverrideScheduleTime_Explain">This policy setting configures a local override for the configuration of scheduled scan time. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="Scan_PurgeItemsAfterDelay">Turn on removal of items from scan history folder</string>
+    <string id="Scan_PurgeItemsAfterDelay_Explain">This policy setting defines the number of days items should be kept in the scan history folder before being permanently removed. The value represents the number of days to keep items in the folder. If set to zero, items will be kept forever and will not be automatically removed. By default, the value is set to 30 days.
+
+    If you enable this setting, items will be removed from the scan history folder after the number of days specified.
+
+    If you disable or do not configure this setting, items will be kept in the scan history folder for the default number of days.</string>
+    <string id="Scan_QuickScanInterval">Specify the interval to run quick scans per day</string>
+    <string id="Scan_QuickScanInterval_Explain">This policy setting allows you to specify an interval at which to perform a quick scan. The time value is represented as the number of hours between quick scans. Valid values range from 1 (every hour) to 24 (once per day). If set to zero, interval quick scans will not occur. By default, this setting is set to 0.
+
+    If you enable this setting, a quick scan will run at the interval specified.
+
+    If you disable or do not configure this setting, a quick scan will run at a default time.</string>
+    <string id="Scan_ScanOnlyIfIdle">Start the scheduled scan only when computer is on but not in use</string>
+    <string id="Scan_ScanOnlyIfIdle_Explain">This policy setting allows you to configure scheduled scans to start only when your computer is on but not in use.
+
+    If you enable or do not configure this setting, scheduled scans will only run when the computer is on but not in use.
+
+    If you disable this setting, scheduled scans will run at the scheduled time.</string>
+    <string id="Scan_ScanParameters">Specify the scan type to use for a scheduled scan</string>
+    <string id="Scan_ScanParameters_Explain">This policy setting allows you to specify the scan type to use during a scheduled scan. Scan type options are:
+    1 = Quick Scan (default)
+    2 = Full Scan
+
+    If you enable this setting, the scan type will be set to the specified value.
+
+    If you disable or do not configure this setting, the default scan type will used.</string>
+    <string id="Scan_ScanParameters_0">Quick scan</string>
+    <string id="Scan_ScanParameters_1">Full system scan</string>
+    <string id="Scan_ScheduleDay">Specify the day of the week to run a scheduled scan</string>
+    <string id="Scan_ScheduleDay_Explain">This policy setting allows you to specify the day of the week on which to perform a scheduled scan. The scan can also be configured to run every day or to never run at all.
+
+    This setting can be configured with the following ordinal number values:
+    (0x0) Every Day
+    (0x1) Sunday 
+    (0x2) Monday
+    (0x3) Tuesday
+    (0x4) Wednesday
+    (0x5) Thursday
+    (0x6) Friday
+    (0x7) Saturday
+    (0x8) Never (default)
+
+    If you enable this setting, a scheduled scan will run at the frequency specified.
+
+    If you disable or do not configure this setting, a scheduled scan will run at a default frequency.</string>
+    <string id="Scan_ScheduleDay_0">Never</string>
+    <string id="Scan_ScheduleDay_1">Every Day</string>
+    <string id="Scan_ScheduleDay_2">Sunday</string>
+    <string id="Scan_ScheduleDay_3">Monday</string>
+    <string id="Scan_ScheduleDay_4">Tuesday</string>
+    <string id="Scan_ScheduleDay_5">Wednesday</string>
+    <string id="Scan_ScheduleDay_6">Thursday</string>
+    <string id="Scan_ScheduleDay_7">Friday</string>
+    <string id="Scan_ScheduleDay_8">Saturday</string>
+    <string id="Scan_ScheduleQuickScantime">Specify the time for a daily quick scan</string>
+    <string id="Scan_ScheduleQuickScantime_Explain">This policy setting allows you to specify the time of day at which to perform a daily quick scan. The time value is represented as the number of minutes past midnight (00:00).  For example, 120 (0x78) is equivalent to 02:00 AM. By default, this setting is set to  a time value of 2:00 AM. The schedule is based on local time on the computer where the scan is executing.
+
+    If you enable this setting, a daily quick scan will run at the time of day specified.
+
+    If you disable or do not configure this setting, a daily quick scan will run at a default time.</string>
+    <string id="Scan_ScheduleTime">Specify the time of day to run a scheduled scan</string>
+    <string id="Scan_ScheduleTime_Explain">This policy setting allows you to specify the time of day at which to perform a scheduled scan. The time value is represented as the number of minutes past midnight (00:00).  For example, 120 (0x78) is equivalent to 02:00 AM. By default, this setting is set to  a time value of 2:00 AM. The schedule is based on local time on the computer where the scan is executing.
+
+    If you enable this setting, a scheduled scan will run at the time of day specified.
+
+    If you disable or do not configure this setting, a scheduled scan will run at a default time.</string>
+    <string id="Scan_MissedScheduledScanCountBeforeCatchup">Define the number of days after which a catch-up scan is forced</string>
+    <string id="Scan_MissedScheduledScanCountBeforeCatchup_Explain">
+    This policy setting allows you to define the number of consecutive scheduled scans that can be missed after which a catch-up scan will be forced. By default, the value of this setting is 2 consecutive scheduled scans.
+
+    If you enable this setting, a catch-up scan will occur after the specified number consecutive missed scheduled scans.
+
+    If you disable or do not configure this setting, a catch-up scan will occur after the 2 consecutive missed scheduled scans.</string>
+    <string id="SignatureUpdate_ASSignatureDue">Define the number of days before spyware definitions are considered out of date</string>
+    <string id="SignatureUpdate_ASSignatureDue_Explain">This policy setting allows you to define the number of days that must pass before spyware definitions are considered out of date. If definitions are determined to be out of date, this state may trigger several additional actions, including falling back to an alternative update source or displaying a warning icon in the user interface. By default, this value is set to 14 days.
+
+    If you enable this setting, spyware definitions will be considered out of date after the number of days specified have passed without an update.
+
+    If you disable or do not configure this setting, spyware definitions will be considered out of date after the default number of days have passed without an update.</string>
+    <string id="SignatureUpdate_AVSignatureDue">Define the number of days before virus definitions are considered out of date</string>
+    <string id="SignatureUpdate_AVSignatureDue_Explain">This policy setting allows you to define the number of days that must pass before virus definitions are considered out of date. If definitions are determined to be out of date, this state may trigger several additional actions, including falling back to an alternative update source or displaying a warning icon in the user interface. By default, this value is set to 14 days.
+
+    If you enable this setting, virus definitions will be considered out of date after the number of days specified have passed without an update.
+
+    If you disable or do not configure this setting, virus definitions will be considered out of date after the default number of days have passed without an update.</string>
+    <string id="SignatureUpdate_DefinitionUpdateFileSharesSources">Define file shares for downloading definition updates</string>
+    <string id="SignatureUpdate_DefinitionUpdateFileSharesSources_Explain">This policy setting allows you to configure UNC file share sources for downloading definition updates. Sources will be contacted in the order specified. The value of this setting should be entered as a pipe-separated string enumerating the definition update sources. For example: "{\\unc1 | \\unc2 }". The list is empty by default.
+
+    If you enable this setting, the specified sources will be contacted for definition updates. Once definition updates have been successfully downloaded from one specified source, the remaining sources in the list will not be contacted.
+
+    If you disable or do not configure this setting, the list will remain empty by default and no sources will be contacted.</string>
+    <string id="SignatureUpdate_DisableScanOnUpdate">Turn on scan after signature update</string>
+    <string id="SignatureUpdate_DisableScanOnUpdate_Explain">This policy setting allows you to configure the automatic scan which starts after a definition update has occurred.
+
+    If you enable or do not configure this setting, a scan will start following a definition update.
+
+    If you disable this setting, a scan will not start following a definition update.</string>
+    <string id="SignatureUpdate_DisableScheduledSignatureUpdateonBattery">Allow definition updates when running on battery power</string>
+    <string id="SignatureUpdate_DisableScheduledSignatureUpdateonBattery_Explain">This policy setting allows you to configure definition updates when the computer is running on battery power.
+
+    If you enable or do not configure this setting, definition updates will occur as usual regardless of power state.
+
+    If you disable this setting, definition updates will be turned off while the computer is running on battery power.</string>
+    <string id="SignatureUpdate_DisableUpdateOnStartupWithoutEngine">Initiate definition update on startup</string>
+    <string id="SignatureUpdate_DisableUpdateOnStartupWithoutEngine_Explain">This policy setting allows you to configure definition updates on startup when there is no antimalware engine present.
+
+    If you enable or do not configure this setting, definition updates will be initiated on startup when there is no antimalware engine present.
+
+    If you disable this setting, definition updates will not be initiated on startup when there is no antimalware engine present.</string>
+    <string id="SignatureUpdate_FallbackOrder">Define the order of sources for downloading definition updates</string>
+    <string id="SignatureUpdate_FallbackOrder_Explain">This policy setting allows you to define the order in which different definition update sources should be contacted. The value of this setting should be entered as a pipe-separated string enumerating the definition update sources in order. Possible values are: “InternalDefinitionUpdateServer”, “MicrosoftUpdateServer”, “MMPC”, and “FileShares”
+
+    For example: { InternalDefinitionUpdateServer | MicrosoftUpdateServer | MMPC }
+
+    If you enable this setting, definition update sources will be contacted in the order specified. Once definition updates have been successfully downloaded from one specified source, the remaining sources in the list will not be contacted.
+
+    If you disable or do not configure this setting, definition update sources will be contacted in a default order.</string>
+    <string id="SignatureUpdate_ForceUpdateFromMU">Allow definition updates from Microsoft Update</string>
+    <string id="SignatureUpdate_ForceUpdateFromMU_Explain">This policy setting allows you to enable download of definition updates from Microsoft Update even if the Automatic Updates default server is configured to another download source such as Windows Update.
+
+    If you enable this setting, definition updates will be downloaded from Microsoft Update.
+
+    If you disable or do not configure this setting, definition updates will be downloaded from the configured download source.</string>
+    <string id="SignatureUpdate_RealtimeSignatureDelivery">Allow real-time definition updates based on reports to Microsoft MAPS</string>
+    <string id="SignatureUpdate_RealtimeSignatureDelivery_Explain">This policy setting allows you to enable real-time definition updates in response to reports sent to Microsoft MAPS. If the service reports a file as an unknown and Microsoft MAPS finds that the latest definition update has definitions for a threat involving that file, the service will receive all of the latest definitions for that threat immediately. You must have configured your computer to join Microsoft MAPS for this functionality to work.
+
+    If you enable or do not configure this setting, real-time definition updates will be enabled.
+
+    If you disable this setting, real-time definition updates will disabled.</string>
+    <string id="SignatureUpdate_ScheduleDay">Specify the day of the week to check for definition updates</string>
+    <string id="SignatureUpdate_ScheduleDay_Explain">This policy setting allows you to specify the day of the week on which to check for definition updates. The check can also be configured to run every day or to never run at all.
+
+    This setting can be configured with the following ordinal number values:
+    (0x0) Every Day (default)
+    (0x1) Sunday 
+    (0x2) Monday
+    (0x3) Tuesday
+    (0x4) Wednesday
+    (0x5) Thursday
+    (0x6) Friday
+    (0x7) Saturday
+    (0x8) Never
+
+    If you enable this setting, the check for definition updates will occur at the frequency specified.
+
+    If you disable or do not configure this setting, the check for definition updates will occur at a default frequency.</string>
+    <string id="SignatureUpdate_ScheduleDay_0">Never</string>
+    <string id="SignatureUpdate_ScheduleDay_1">Every Day</string>
+    <string id="SignatureUpdate_ScheduleDay_2">Sunday</string>
+    <string id="SignatureUpdate_ScheduleDay_3">Monday</string>
+    <string id="SignatureUpdate_ScheduleDay_4">Tuesday</string>
+    <string id="SignatureUpdate_ScheduleDay_5">Wednesday</string>
+    <string id="SignatureUpdate_ScheduleDay_6">Thursday</string>
+    <string id="SignatureUpdate_ScheduleDay_7">Friday</string>
+    <string id="SignatureUpdate_ScheduleDay_8">Saturday</string>
+    <string id="SignatureUpdate_ScheduleTime">Specify the time to check for definition updates</string>
+    <string id="SignatureUpdate_ScheduleTime_Explain">This policy setting allows you to specify the time of day at which to check for definition updates. The time value is represented as the number of minutes past midnight (00:00).  For example, 120 (0x78) is equivalent to 02:00 AM. By default this setting is configured to check for definition updates 15 minutes before the scheduled scan time. The schedule is based on local time on the computer where the check is occurring.
+
+    If you enable this setting, the check for definition updates will occur at the time of day specified.
+
+    If you disable or do not configure this setting,  the check for definition updates will occur at the default time.</string>
+    <string id="SignatureUpdate_SignatureDisableNotification">Allow notifications to disable definitions based reports to Microsoft MAPS</string>
+    <string id="SignatureUpdate_SignatureDisableNotification_Explain">This policy setting allows you to configure the antimalware service to receive notifications to disable individual definitions in response to reports it sends to Microsoft MAPS. Microsoft MAPS uses these notifications to disable definitions that are causing false positive reports. You must have configured your computer to join Microsoft MAPS for this functionality to work.
+
+    If you enable this setting or do not configure, the antimalware service will receive notifications to disable definitions.
+
+    If you disable this setting, the antimalware service will not receive notifications to disable definitions.</string>
+    <string id="SignatureUpdate_SignatureUpdateCatchupInterval">Define the number of days after which a catch-up definition update is required</string>
+    <string id="SignatureUpdate_SignatureUpdateCatchupInterval_Explain">This policy setting allows you to define the number of days after which a catch-up definition update will be required. By default, the value of this setting is 1 day.
+
+    If you enable this setting, a catch-up definition update will occur after the specified number of days.
+
+    If you disable or do not configure this setting, a catch-up definition update will be required after the default number of days.</string>
+    <string id="SignatureUpdate_ExpiryNotificationIntervalDays">Specify the interval for expiry notification</string>
+    <string id="SignatureUpdate_ExpiryNotificationIntervalDays_Explain">
+    This policy setting allows you to specify an interval(in days) for expiry notification.
+    If a signature expiry or platform expiry is impending, this value tells how soon AM UI will notify customers.
+
+    Value should be greater than zero for the policy to be active.
+    </string>
+    <string id="SignatureUpdate_SignatureUpdateInterval">Specify the interval to check for definition updates</string>
+    <string id="SignatureUpdate_SignatureUpdateInterval_Explain">This policy setting allows you to specify an interval at which to check for definition updates. The time value is represented as the number of hours between update checks. Valid values range from 1 (every hour) to 24 (once per day).
+
+    If you enable this setting, checks for definition updates will occur at the interval specified.
+
+    If you disable or do not configure this setting, checks for definition updates will occur at the default interval.</string>
+    <string id="SignatureUpdate_UpdateOnStartup">Check for the latest virus and spyware definitions on startup</string>
+    <string id="SignatureUpdate_UpdateOnStartup_Explain">This policy setting allows you to manage whether a check for new virus and spyware definitions will occur immediately after service startup.
+
+    If you enable this setting, a check for new definitions will occur after service startup.
+
+    If you disable this setting or do not configure this setting, a check for new definitions will not occur after service startup.</string>
+    <string id="DisableBlockAtFirstSeen">Configure the 'Block at First Sight' feature</string>
+    <string id="DisableBlockAtFirstSeen_Explain">This feature ensures the device checks in real time with the Microsoft Active Protection Service (MAPS) before allowing certain content to be run or accessed. If this feature is disabled, the check will not occur, which will lower the protection state of the device.
+	Enabled – The Block at First Sight setting is turned on.
+	Disabled – The Block at First Sight setting is turned off.
+	
+	This feature requires these Group Policy settings to be set as follows:
+	MAPS -&gt; The “Join Microsoft MAPS” must be enabled or the “Block at First Sight” feature will not function.
+	MAPS -&gt; The “Send file samples when further analysis is required” should be set to 1 (Send safe samples) or 3 (Send all samples). Setting to 0 (Always Prompt) will lower the protection state of the device.  Setting to 2 (Never send) means the “Block at First Sight” feature will not function.
+	Real-time Protection -&gt; The “Scan all downloaded files and attachments” policy must be enabled or the “Block at First Sight” feature will not function.
+	Real-time Protection -&gt; Do not enable the “Turn off real-time protection” policy or the “Block at First Sight” feature will not function.</string>
+    <string id="Spynet_LocalSettingOverrideSpynetReporting">Configure local setting override for reporting to Microsoft MAPS</string>
+    <string id="Spynet_LocalSettingOverrideSpynetReporting_Explain">This policy setting configures a local override for the configuration to join Microsoft MAPS. This setting can only be set by Group Policy.
+
+    If you enable this setting, the local preference setting will take priority over Group Policy.
+
+    If you disable or do not configure this setting, Group Policy will take priority over the local preference setting.</string>
+    <string id="SubmitSamplesConsent">Send file samples when further analysis is required</string>
+    <string id="SubmitSamplesConsent_Explain">
+        This policy setting configures behaviour of samples submission when opt-in for MAPS telemetry is set.
+
+        Possible options are:
+        (0x0) Always prompt
+        (0x1) Send safe samples automatically
+        (0x2) Never send
+        (0x3) Send all samples automatically
+    </string>
+
+    <string id="SubmitSamplesConsent_Always_Prompt">Always prompt</string>
+    <string id="SubmitSamplesConsent_Send_Safe">Send safe samples</string>
+    <string id="SubmitSamplesConsent_Never_Send">Never send</string>
+    <string id="SubmitSamplesConsent_Send_All">Send all samples</string>
+
+    <string id="SpynetReporting">Join Microsoft MAPS</string>
+    <string id="SpynetReporting_Explain">This policy setting allows you to join Microsoft MAPS. Microsoft MAPS is the online community that helps you choose how to respond to potential threats. The community also helps stop the spread of new malicious software infections.
+
+    You can choose to send basic or additional information about detected software. Additional information helps Microsoft create new definitions and help it to protect your computer. This information can include things like location of detected items on your computer if harmful software was removed. The information will be automatically collected and sent. In some instances, personal information might unintentionally be sent to Microsoft. However, Microsoft will not use this information to identify you or contact you.
+
+    Possible options are:
+    (0x0) Disabled (default)
+    (0x1) Basic membership
+    (0x2) Advanced membership
+
+    Basic membership will send basic information to Microsoft about software that has been detected, including where the software came from, the actions that you apply or that are applied automatically, and whether the actions were successful.
+
+    Advanced membership, in addition to basic information, will send more information to Microsoft about malicious software, spyware, and potentially unwanted software, including the location of the software, file names, how the software operates, and how it has impacted your computer.
+
+    If you enable this setting, you will join Microsoft MAPS with the membership specified.
+
+    If you disable or do not configure this setting, you will not join Microsoft MAPS.
+  
+    In Windows 10, Basic membership is no longer available, so setting the value to 1 or 2 enrolls the device into Advanced membership.</string>
+    <string id="SpynetReporting_Disabled">Disabled</string>
+    <string id="SpynetReporting_Basic">Basic MAPS</string>
+    <string id="SpynetReporting_Advanced">Advanced MAPS</string>
+    <string id="Threats_ThreatIdDefaultAction">Specify threats upon which default action should not be taken when detected</string>
+    <string id="Threats_ThreatIdDefaultAction_Explain">This policy setting customize which remediation action will be taken for each listed Threat ID when it is detected during a scan. Threats should be added under the Options for this setting. Each entry must be listed as a name value pair. The name defines a valid Threat ID, while the value contains the action ID for the remediation action that should be taken.
+
+    Valid remediation action values are:
+    2 = Quarantine
+    3 = Remove
+    6 = Ignore</string>
+    <string id="Threats_ThreatSeverityDefaultAction">Specify threat alert levels at which default action should not be taken when detected</string>
+    <string id="Threats_ThreatSeverityDefaultAction_Explain">This policy setting allows you to customize which automatic remediation action will be taken for each threat alert level.Threat alert levels should be added under the Options for this setting. Each entry must be listed as a name value pair. The name defines a threat alert level. The value contains the action ID for the remediation action that should be taken.
+
+    Valid threat alert levels are:
+    1 = Low
+    2 =  Medium
+    4 = High
+    5 = Severe
+
+    Valid remediation action values are:
+    2 = Quarantine
+    3 = Remove
+    6 = Ignore</string>
+    <string id="UX_Configuration_UILockdown">Enable headless UI mode</string>
+    <string id="UX_Configuration_UILockdown_Explain">
+        This policy setting allows you to configure whether or not to display AM UI to the users.
+        If you enable this setting AM UI won't be available to users.
+    </string>
+    <string id="UX_Configuration_SuppressRebootNotification">Suppresses reboot notifications</string>
+    <string id="UX_Configuration_SuppressRebootNotification_Explain">
+      This policy setting allows user to supress reboot notifications in UI only mode (for cases where UI can't be in lockdown mode).
+
+      If you enable this setting AM UI won't show reboot notifications.
+    </string>
+    <string id="UX_Configuration_Notification_Suppress">Suppress all notifications</string>
+    <string id="UX_Configuration_Notification_Suppress_Explain">Use this policy setting to specify if you want Windows Defender notifications to display on clients.
+      If you disable or do not configure this setting, Windows Defender notifications will display on clients.
+
+      If you enable this setting, Windows Defender notifications will not display on clients.
+    </string>
+    <string id="UX_Configuration_CustomDefaultActionToastString">Display additional text to clients when they need to perform an action</string>
+    <string id="UX_Configuration_CustomDefaultActionToastString_Explain">This policy setting allows you to configure whether or not to display additional text to clients when they need to perform an action. The text displayed is a custom administrator-defined string. For example, the phone number to call the company help desk. The client interface will only display a maximum of 1024 characters. Longer strings will be truncated before display.
+
+    If you enable this setting, the additional text specified will be displayed.
+
+    If you disable or do not configure this setting, there will be no additional text displayed.</string>
+    </stringTable>
+    <presentationTable>
+    <presentation id="ProxyBypass">
+    <textBox refId="ProxyBypass">
+        <label>Define addresses to bypass proxy server</label>
+    </textBox>
+    </presentation>
+    <presentation id="ProxyPacUrl">
+      <textBox refId="ProxyPacUrl">
+        <label>Define proxy auto-config (.pac) for connecting to the network</label>
+      </textBox>
+    </presentation>
+    <presentation id="ProxyServer">
+    <textBox refId="ProxyServer">
+        <label>Define proxy server for connecting to the network</label>
+    </textBox>
+    </presentation>
+    <presentation id="Exclusions_Extensions">
+    <listBox refId="Exclusions_ExtensionsList">Extension Exclusions</listBox>
+    </presentation>
+    <presentation id="Exclusions_Paths">
+    <listBox refId="Exclusions_PathsList">Path Exclusions</listBox>
+    </presentation>
+    <presentation id="Exclusions_Processes">
+    <listBox refId="Exclusions_ProcessesList">Process Exclusions</listBox>
+    </presentation>
+    <presentation id="Nis_Consumers_IPS_sku_differentiation_Signature_Set_Guid">
+    <listBox refId="Nis_Consumers_IPS_sku_differentiation_Signature_Set_GuidList">Specify additional definition sets for network traffic inspection</listBox>
+    </presentation>
+    <presentation id="Quarantine_PurgeItemsAfterDelay">
+    <decimalTextBox refId="Quarantine_PurgeItemsAfterDelay" defaultValue="0">Configure removal of items from Quarantine folder</decimalTextBox>
+    </presentation>
+    <presentation id="RealtimeProtection_IOAVMaxSize">
+    <decimalTextBox refId="RealtimeProtection_IOAVMaxSize" defaultValue="20480">Define the maximum size of downloaded files and attachments to be scanned</decimalTextBox>
+    </presentation>
+    <presentation id="RealtimeProtection_RealtimeScanDirection">
+    <dropdownList refId="RealtimeProtection_RealtimeScanDirection" noSort="true" defaultItem="0">Configure monitoring for incoming and outgoing file and program activity</dropdownList>
+    </presentation>
+    <presentation id="Remediation_Scan_ScheduleDay">
+    <dropdownList refId="Remediation_Scan_ScheduleDay" noSort="true" defaultItem="0">Specify the day of the week to run a scheduled full scan to complete remediation</dropdownList>
+    </presentation>
+    <presentation id="Remediation_Scan_ScheduleTime">
+    <decimalTextBox refId="Remediation_Scan_ScheduleTime" defaultValue="120">Specify the time of day to run a scheduled full scan to complete remediation</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_MissedScheduledScanCountBeforeCatchup">
+    <decimalTextBox refId="Scan_MissedScheduledScanCountBeforeCatchup" defaultValue="2">Define the number of scheduled scans that can be missed after which a catch-up scan is forced</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_AdditionalActionTimeout">
+    <decimalTextBox refId="Reporting_AdditionalActionTimeout" defaultValue="10080">Configure time out for detections requiring additional action</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_CriticalFailureTimeout">
+    <decimalTextBox refId="Reporting_CriticalFailureTimeout" defaultValue="10080">Configure time out for detections in critically failed state</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_NonCriticalTimeout">
+    <decimalTextBox refId="Reporting_NonCriticalTimeout" defaultValue="1440">Configure time out for detections in non-critical failed state</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_RecentlyCleanedTimeout">
+    <decimalTextBox refId="Reporting_RecentlyCleanedTimeout" defaultValue="1440">Configure time out for detections in recently remediated state</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_WppTracingComponents">
+    <decimalTextBox refId="Reporting_WppTracingComponents" defaultValue="4294967295">Configure Windows software trace preprocessor components</decimalTextBox>
+    </presentation>
+    <presentation id="Reporting_WppTracingLevel">
+    <decimalTextBox refId="Reporting_WppTracingLevel" defaultValue="0">Configure WPP tracing level</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_ArchiveMaxDepth">
+    <decimalTextBox refId="Scan_ArchiveMaxDepth" defaultValue="0">Specify the maximum depth to scan archive files</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_ArchiveMaxSize">
+    <decimalTextBox refId="Scan_ArchiveMaxSize" defaultValue="0">Specify the maximum size of archive files to be scanned</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_AvgCPULoadFactor">
+    <decimalTextBox refId="Scan_AvgCPULoadFactor" defaultValue="50">Specify the maximum percentage of CPU utilization during a scan</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_PurgeItemsAfterDelay">
+    <decimalTextBox refId="Scan_PurgeItemsAfterDelay" defaultValue="30">Turn on removal of items from scan history folder</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_QuickScanInterval">
+    <decimalTextBox refId="Scan_QuickScanInterval" defaultValue="0">Specify the interval to run quick scans per day</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_ScanParameters">
+    <dropdownList refId="Scan_ScanParameters" noSort="true" defaultItem="0">Specify the scan type to use for a scheduled scan</dropdownList>
+    </presentation>
+    <presentation id="Scan_ScheduleDay">
+    <dropdownList refId="Scan_ScheduleDay" noSort="true" defaultItem="0">Specify the day of the week to run a scheduled scan</dropdownList>
+    </presentation>
+    <presentation id="Scan_ScheduleQuickScantime">
+    <decimalTextBox refId="Scan_ScheduleQuickScantime" defaultValue="120">Specify the time for a daily quick scan</decimalTextBox>
+    </presentation>
+    <presentation id="Scan_ScheduleTime">
+    <decimalTextBox refId="Scan_ScheduleTime" defaultValue="120">Specify the time of day to run a scheduled scan</decimalTextBox>
+    </presentation>
+    <presentation id="SignatureUpdate_ASSignatureDue">
+    <decimalTextBox refId="SignatureUpdate_ASSignatureDue" defaultValue="14">Define the number of days before spyware definitions are considered out of date</decimalTextBox>
+    </presentation>
+    <presentation id="SignatureUpdate_AVSignatureDue">
+    <decimalTextBox refId="SignatureUpdate_AVSignatureDue" defaultValue="14">Define the number of days before virus definitions are considered out of date</decimalTextBox>
+    </presentation>
+    <presentation id="SignatureUpdate_DefinitionUpdateFileSharesSources">
+    <textBox refId="SignatureUpdate_DefinitionUpdateFileSharesSources">
+        <label>Define file shares for downloading definition updates</label>
+    </textBox>
+    </presentation>
+    <presentation id="SignatureUpdate_FallbackOrder">
+    <textBox refId="SignatureUpdate_FallbackOrder">
+        <label>Define the order of sources for downloading definition updates</label>
+    </textBox>
+    </presentation>
+    <presentation id="SignatureUpdate_ScheduleDay">
+    <dropdownList refId="SignatureUpdate_ScheduleDay" noSort="true" defaultItem="0">Specify the day of the week to check for definition updates</dropdownList>
+    </presentation>
+    <presentation id="SignatureUpdate_ScheduleTime">
+    <decimalTextBox refId="SignatureUpdate_ScheduleTime">Specify the time to check for definition updates</decimalTextBox>
+    </presentation>
+    <presentation id="SignatureUpdate_SignatureUpdateCatchupInterval">
+    <decimalTextBox refId="SignatureUpdate_SignatureUpdateCatchupInterval" defaultValue="1">Define the number of days after which a catch-up definition update is required</decimalTextBox>
+    </presentation>
+    <presentation id="SignatureUpdate_SignatureUpdateInterval">
+    <decimalTextBox refId="SignatureUpdate_SignatureUpdateInterval">Specify the interval to check for definition updates</decimalTextBox>
+    </presentation>
+    <presentation id="SpynetReporting">
+    <dropdownList refId="SpynetReporting" noSort="true" defaultItem="0">Join Microsoft MAPS</dropdownList>
+    </presentation>
+    <presentation id="SubmitSamplesConsent">
+    <dropdownList refId="SubmitSamplesConsent" noSort="true" defaultItem="1">Send file samples when further analysis is required</dropdownList>
+    </presentation>
+    <presentation id="Threats_ThreatIdDefaultAction">
+    <listBox refId="Threats_ThreatIdDefaultActionList">Specify threats upon which default action should not be taken when detected</listBox>
+    </presentation>
+    <presentation id="Threats_ThreatSeverityDefaultAction">
+    <listBox refId="Threats_ThreatSeverityDefaultActionList">Specify threat alert levels at which default action should not be taken when detected</listBox>
+    </presentation>
+    <presentation id="UX_Configuration_CustomDefaultActionToastString">
+    <textBox refId="UX_Configuration_CustomDefaultActionToastString">
+        <label>Display additional text to clients when they need to perform an action</label>
+    </textBox>
+    </presentation>
+    <presentation id="SignatureUpdate_ExpiryNotificationIntervalDays">
+        <decimalTextBox refId="SignatureUpdate_ExpiryNotificationIntervalDays">Specify the interval for expiry notification</decimalTextBox>
+    </presentation>
+    </presentationTable>
+</resources>
+</policyDefinitionResources>

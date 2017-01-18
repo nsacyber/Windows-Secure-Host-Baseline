@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="products" namespace="Microsoft.Policies.Products" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+
+  <supportedOn>
+    <products>
+      <!-- Microsoft Windows -->
+      <product name="MicrosoftWindows" displayName="$(string.MicrosoftWindows)">
+        <majorVersion name="MicrosoftWindows2000" displayName="$(string.MicrosoftWindows2000)" versionIndex="1">
+          <minorVersion name="MicrosoftWindows2000_RTM" displayName="$(string.MicrosoftWindows2000_RTM)" versionIndex="0"/>
+          <minorVersion name="MicrosoftWindows2000_SP1" displayName="$(string.MicrosoftWindows2000_SP1)" versionIndex="1"/>
+          <minorVersion name="MicrosoftWindows2000_SP2" displayName="$(string.MicrosoftWindows2000_SP2)" versionIndex="2"/>
+          <minorVersion name="MicrosoftWindows2000_SP3" displayName="$(string.MicrosoftWindows2000_SP3)" versionIndex="3"/>
+          <minorVersion name="MicrosoftWindows2000_SP4" displayName="$(string.MicrosoftWindows2000_SP4)" versionIndex="4"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsXP" displayName="$(string.MicrosoftWindowsXP)" versionIndex="2">
+          <minorVersion name="MicrosoftWindowsXP_RTM" displayName="$(string.MicrosoftWindowsXP_RTM)" versionIndex="0"/>
+          <minorVersion name="MicrosoftWindowsXP_SP1" displayName="$(string.MicrosoftWindowsXP_SP1)" versionIndex="1"/>
+          <minorVersion name="MicrosoftWindowsXP_SP2" displayName="$(string.MicrosoftWindowsXP_SP2)" versionIndex="2"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsServer2003" displayName="$(string.MicrosoftWindowsServer2003)" versionIndex="3">
+          <minorVersion name="MicrosoftWindowsServer2003_RTM" displayName="$(string.MicrosoftWindowsServer2003_RTM)" versionIndex="0"/>
+          <minorVersion name="MicrosoftWindowsServer2003_SP1" displayName="$(string.MicrosoftWindowsServer2003_SP1)" versionIndex="1"/>
+          <minorVersion name="MicrosoftWindowsServer2003_R2" displayName="$(string.MicrosoftWindowsServer2003_R2)" versionIndex="2"/>
+          <minorVersion name="MicrosoftWindowsServer2003_SP2" displayName="$(string.MicrosoftWindowsServer2003_SP2)" versionIndex="3"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsVista" displayName="$(string.MicrosoftWindowsVista)" versionIndex="4">
+          <minorVersion name="MicrosoftWindowsVista_RTM" displayName="$(string.MicrosoftWindowsVista_RTM)" versionIndex="0"/>
+          <minorVersion name="MicrosoftWindowsVista_SP1" displayName="$(string.MicrosoftWindowsVista_SP1)" versionIndex="1"/>
+        </majorVersion>
+        <majorVersion name="WindowsServer2008" displayName="$(string.WindowsServer2008)" versionIndex="5">
+          <minorVersion name="WindowsServer2008_RTM" displayName="$(string.WindowsServer2008_RTM)" versionIndex="0"/>
+          <minorVersion name="WindowsServer2008_R2" displayName="$(string.WindowsServer2008_R2)" versionIndex="1"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows7" displayName="$(string.MicrosoftWindows7)" versionIndex="6">
+          <minorVersion name="MicrosoftWindows7_RTM" displayName="$(string.MicrosoftWindows7_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsServer8" displayName="$(string.MicrosoftWindowsServer8)" versionIndex="7">
+           <minorVersion name="MicrosoftWindowsServer8_RTM" displayName="$(string.MicrosoftWindowsServer8_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows8" displayName="$(string.MicrosoftWindows8)" versionIndex="8">
+          <minorVersion name="MicrosoftWindows8_RTM" displayName="$(string.MicrosoftWindows8_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows_RT" displayName="$(string.MicrosoftWindows_RT)" versionIndex="9">
+          <minorVersion name="MicrosoftWindows_RT_RTM" displayName="$(string.MicrosoftWindows_RT_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsServer_6_3" displayName="$(string.MicrosoftWindowsServer_6_3)" versionIndex="10">
+           <minorVersion name="MicrosoftWindowsServer_6_3_RTM" displayName="$(string.MicrosoftWindowsServer_6_3_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows_6_3" displayName="$(string.MicrosoftWindows_6_3)" versionIndex="11">
+          <minorVersion name="MicrosoftWindows_6_3_RTM" displayName="$(string.MicrosoftWindows_6_3_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows_6_3_RT" displayName="$(string.MicrosoftWindows_6_3_RT)" versionIndex="12">
+            <minorVersion name="MicrosoftWindows_6_3_RT_RTM" displayName="$(string.MicrosoftWindows_6_3_RT_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindowsServer_10_0" displayName="$(string.MicrosoftWindowsServer_10_0)" versionIndex="13">
+            <minorVersion name="MicrosoftWindowsServer_10_0_RTM" displayName="$(string.MicrosoftWindowsServer_10_0_RTM)" versionIndex="0"/>
+          </majorVersion>
+        <majorVersion name="MicrosoftWindows_10_0" displayName="$(string.MicrosoftWindows_10_0)" versionIndex="14">
+            <minorVersion name="MicrosoftWindows_10_0_RTM" displayName="$(string.MicrosoftWindows_10_0_RTM)" versionIndex="0"/>
+        </majorVersion>
+        <majorVersion name="MicrosoftWindows_10_0_RT" displayName="$(string.MicrosoftWindows_10_0_RT)" versionIndex="15">
+            <minorVersion name="MicrosoftWindows_10_0_RT_RTM" displayName="$(string.MicrosoftWindows_10_0_RT_RTM)" versionIndex="0"/>
+        </majorVersion>
+      </product>
+
+      <!-- Internet Explorer -->
+      <product name="InternetExplorer" displayName="$(string.InternetExplorer)">
+        <majorVersion name="InternetExplorer30" displayName="$(string.InternetExplorer30)" versionIndex="3" />
+        <majorVersion name="InternetExplorer40" displayName="$(string.InternetExplorer40)" versionIndex="4" />
+        <majorVersion name="InternetExplorer50" displayName="$(string.InternetExplorer50)" versionIndex="5" />
+        <majorVersion name="InternetExplorer60" displayName="$(string.InternetExplorer60)" versionIndex="6" />
+        <majorVersion name="InternetExplorer70" displayName="$(string.InternetExplorer70)" versionIndex="7" />
+        <majorVersion name="InternetExplorer80" displayName="$(string.InternetExplorer80)" versionIndex="8" />
+        <majorVersion name="InternetExplorer90" displayName="$(string.InternetExplorer90)" versionIndex="9" />
+        <majorVersion name="InternetExplorer100" displayName="$(string.InternetExplorer100)" versionIndex="10" />
+        <majorVersion name="InternetExplorer110" displayName="$(string.InternetExplorer110)" versionIndex="11" />
+      </product>
+
+      <!-- BITS -->
+      <product name="BITS" displayName="$(string.BITS)">
+        <majorVersion name="BITS15" displayName="$(string.BITS15)" versionIndex="15" />
+        <majorVersion name="BITS20" displayName="$(string.BITS20)" versionIndex="20" />
+        <majorVersion name="BITS35" displayName="$(string.BITS35)" versionIndex="35" />
+        <majorVersion name="BITS40" displayName="$(string.BITS40)" versionIndex="40" />
+      </product>
+
+      <!-- NetMeeting -->
+      <product name="NetMeeting" displayName="$(string.NetMeeting)">
+        <majorVersion name="NetMeeting30" displayName="$(string.NetMeeting30)" versionIndex="3" />
+      </product>
+
+      <!-- Windows Installer -->
+      <product name="WindowsInstaller" displayName="$(string.WindowsInstaller)">
+        <majorVersion name="WindowsInstaller20" displayName="$(string.WindowsInstaller20)" versionIndex="2" />
+        <majorVersion name="WindowsInstaller30" displayName="$(string.WindowsInstaller30)" versionIndex="3" />
+        <majorVersion name="WindowsInstaller40" displayName="$(string.WindowsInstaller40)" versionIndex="4" />
+      </product>
+
+      <!-- Windows Search -->
+      <product name="WindowsSearch" displayName="$(string.WindowsSearch)" />
+
+      <!-- Windows Media Player -->
+      <product name="WindowsMediaPlayer" displayName="$(string.WindowsMediaPlayer)">
+        <majorVersion name="WindowsMediaPlayer8" displayName="$(string.WindowsMediaPlayer8)" versionIndex="8" />
+        <majorVersion name="WindowsMediaPlayer9" displayName="$(string.WindowsMediaPlayer9)" versionIndex="9" />
+        <majorVersion name="WindowsMediaPlayer10" displayName="$(string.WindowsMediaPlayer10)" versionIndex="10" />
+        <majorVersion name="WindowsMediaPlayer11" displayName="$(string.WindowsMediaPlayer11)" versionIndex="11" />
+      </product>
+      
+    </products>
+
+    <!-- Special supportedOn definitions -->
+    <definitions>
+      <!--Windows 2000 with Windows Installer v2.0-->
+      <definition name="SUPPORTED_Win2KWithWindowsInstaller20"
+                  displayName="$(string.SUPPORTED_Win2KWithWindowsInstaller20)">
+        <and>
+          <reference ref="MicrosoftWindows2000"/>
+          <reference ref="WindowsInstaller20"/>
+        </and>
+      </definition>
+
+      <!--Microsoft Windows Server 2003 or Windows XP with Windows Search installed-->
+      <definition name="SUPPORTED_WindowsPreVistaWithWindowsSearch"
+                  displayName="$(string.SUPPORTED_WindowsPreVistaWithWindowsSearch)">
+        <and>
+          <reference ref="windows:SUPPORTED_WindowsNET_XP"/>
+          <reference ref="WindowsSearch"/>
+        </and>
+      </definition>
+    </definitions>
+
+  </supportedOn>
+</policyDefinitions>

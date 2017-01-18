@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="onedrive" namespace="Microsoft.Policies.OneDrive" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="OneDrive" displayName="$(string.OneDriveSettingCategory)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PreventOnedriveFileSync" class="Machine" displayName="$(string.PreventOneDriveFileSync)" explainText="$(string.PreventOneDriveFileSync_help)" key="Software\Policies\Microsoft\Windows\OneDrive" valueName="DisableFileSyncNGSC">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventOnedriveFileSyncForBlue" class="Machine" displayName="$(string.PreventOneDriveFileSyncForBlue)" explainText="$(string.PreventOneDriveFileSyncForBlue_help)" key="Software\Policies\Microsoft\Windows\OneDrive" valueName="DisableFileSync">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PreventOneDriveFileSyncOnMeteredNetwork" class="Machine" presentation="$(presentation.PreventOneDriveFileSyncOnMeteredNetwork)" displayName="$(string.PreventOneDriveFileSyncOnMeteredNetwork)" explainText="$(string.PreventOneDriveFileSyncOnMeteredNetwork_help)" key="Software\Policies\Microsoft\Windows\OneDrive">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <elements>
+        <enum id="OneDriveMeteredNetwork_Dropdown" valueName="DisableMeteredNetworkFileSync">
+          <item displayName="$(string.OneDriveNeverSyncOnMeteredRoaming)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.OneDriveSyncOnMeteredNotRoaming)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="DisableLibrariesDefaultSaveToOneDrive" class="Machine" displayName="$(string.DisableLibrariesDefaultSaveToOneDrive_Title)" explainText="$(string.DisableLibrariesDefaultSaveToOneDrive_Description)" key="Software\Policies\Microsoft\Windows\OneDrive" valueName="DisableLibrariesDefaultSaveToOneDrive">
+      <parentCategory ref="OneDrive" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

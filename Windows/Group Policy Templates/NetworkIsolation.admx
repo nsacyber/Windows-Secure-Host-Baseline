@@ -1,0 +1,75 @@
+﻿
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="networkisolation" namespace="Microsoft.Policies.NetworkIsolation" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="windowsfirewall" namespace="Microsoft.Policies.WindowsFirewall" />
+	  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="WF_Isolation" displayName="$(string.WF_Isolation)">
+      <parentCategory ref="windows:Network" />
+    </category>  
+  </categories>
+  <policies>
+  
+  <!-- Domain Proxies -->
+
+    <policy name="WF_NetIsolation_Domain_Proxies" class="Machine" displayName="$(string.WF_NetIsolation_Domain_Proxies)" explainText="$(string.WF_NetIsolation_Domain_Proxies_Help)" presentation="$(presentation.WF_NetIsolation_Domain_Proxies)" key="SOFTWARE\Policies\Microsoft\Windows\NetworkIsolation" >
+      <parentCategory ref="WF_Isolation" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+	<elements>
+         <text id="WF_NetIsolation_Domain_ProxiesBox" valueName="DomainProxies" required="true" />
+        </elements> 
+    </policy>
+	
+	  <!-- Intranet Proxies -->
+    <policy name="WF_NetIsolation_Intranet_Proxies" class="Machine" displayName="$(string.WF_NetIsolation_Intranet_Proxies)" explainText="$(string.WF_NetIsolation_Intranet_Proxies_Help)" presentation="$(presentation.WF_NetIsolation_Intranet_Proxies)" key="SOFTWARE\Policies\Microsoft\Windows\NetworkIsolation" >
+      <parentCategory ref="WF_Isolation" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+	<elements>
+             <text id="WF_NetIsolation_Intranet_ProxiesBox" valueName="DomainLocalProxies" required="true" /> 
+	</elements> 
+    </policy>
+
+	
+	<!-- Private Network Subnets -->
+    <policy name="WF_NetIsolation_PrivateSubnet" class="Machine" displayName="$(string.WF_NetIsolation_PrivateSubnet)" explainText="$(string.WF_NetIsolation_PrivateSubnet_Help)" presentation="$(presentation.WF_NetIsolation_PrivateSubnet)" key="SOFTWARE\Policies\Microsoft\Windows\NetworkIsolation" >
+      <parentCategory ref="WF_Isolation" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+	<elements>
+             <text id="WF_NetIsolation_PrivateSubnetBox" valueName="DomainSubnets" required="true" /> 
+	</elements> 
+    </policy>
+    
+	 
+	 <!-- STart proxy definations are auth section -->
+	
+	<policy name="WF_NetIsolation_Authoritative_Proxies" class="Machine" displayName="$(string.WF_NetIsolation_Authoritative_Proxy)" explainText="$(string.WF_NetIsolation_Authoritative_Proxy_Help)" presentation="$(presentation.WF_NetIsolation_Authoritative_Proxies)" key="SOFTWARE\Policies\Microsoft\Windows\NetworkIsolation"  valueName="DProxiesAuthoritive" >      <parentCategory ref="WF_Isolation" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+	
+ 		<enabledValue>
+    	  	  <decimal value="1" />
+    		</enabledValue>
+    		<disabledValue>
+     		   <decimal value="0" />
+    		</disabledValue>
+
+    </policy>
+	 <!-- STart subnet definations are auth section -->
+	
+		<policy name="WF_NetIsolation_Authoritative_Subnet" class="Machine" displayName="$(string.WF_NetIsolation_Authoritative_Subnet)" explainText="$(string.WF_NetIsolation_Authoritative_Subnet_Help)" presentation="$(presentation.WF_NetIsolation_Authoritative_Subnets)" key="SOFTWARE\Policies\Microsoft\Windows\NetworkIsolation"  valueName="DSubnetsAuthoritive" >      <parentCategory ref="WF_Isolation" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+	
+ 		<enabledValue>
+    	  	  <decimal value="1" />
+    		</enabledValue>
+    		<disabledValue>
+     		   <decimal value="0" />
+    		</disabledValue>
+
+    </policy>
+	
+  </policies>
+</policyDefinitions>

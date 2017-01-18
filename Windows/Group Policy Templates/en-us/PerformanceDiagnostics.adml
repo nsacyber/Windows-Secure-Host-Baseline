@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="BootScenarioCategory">Windows Boot Performance Diagnostics</string>
+      <string id="BootScenarioExecutionPolicyExplain">Determines the execution level for Windows Boot Performance Diagnostics.
+
+If you enable this policy setting, you must select an execution level from the dropdown menu. If you select problem detection and troubleshooting only, the Diagnostic Policy Service (DPS) will detect Windows Boot Performance problems and attempt to determine their root causes. These root causes will be logged to the event log when detected, but no corrective action will be taken. If you select detection, troubleshooting and resolution, the DPS will detect Windows Boot Performance problems and indicate to the user that assisted resolution is available.
+
+If you disable this policy setting, Windows will not be able to detect, troubleshoot or resolve any Windows Boot Performance problems that are handled by the DPS.
+
+If you do not configure this policy setting, the DPS will enable Windows Boot Performance for resolution by default.
+
+This policy setting takes effect only if the diagnostics-wide scenario execution policy is not configured.
+
+No system restart or service restart is required for this policy to take effect: changes take effect immediately.
+
+This policy setting will only take effect when the Diagnostic Policy Service is in the running state. When the service is stopped or disabled, diagnostic scenarios will not be executed.  The DPS can be configured with the Services snap-in to the Microsoft Management Console.</string>
+      <string id="ResumeScenarioCategory">Windows Standby/Resume Performance Diagnostics</string>
+      <string id="ResumeScenarioExecutionPolicyExplain">Determines the execution level for Windows Standby/Resume Performance Diagnostics.
+
+If you enable this policy setting, you must select an execution level from the dropdown menu. If you select problem detection and troubleshooting only, the Diagnostic Policy Service (DPS) will detect Windows Standby/Resume Performance problems and attempt to determine their root causes. These root causes will be logged to the event log when detected, but no corrective action will be taken. If you select detection, troubleshooting and resolution, the DPS will detect Windows Standby/Resume Performance problems and indicate to the user that assisted resolution is available.
+
+If you disable this policy setting, Windows will not be able to detect, troubleshoot or resolve any Windows Standby/Resume Performance problems that are handled by the DPS.
+
+If you do not configure this policy setting, the DPS will enable Windows Standby/Resume Performance for resolution by default.
+
+This policy setting takes effect only if the diagnostics-wide scenario execution policy is not configured.
+
+No system restart or service restart is required for this policy to take effect: changes take effect immediately.
+
+This policy setting will only take effect when the Diagnostic Policy Service is in the running state. When the service is stopped or disabled, diagnostic scenarios will not be executed.  The DPS can be configured with the Services snap-in to the Microsoft Management Console.</string>
+      <string id="ShellScenarioCategory">Windows System Responsiveness Performance Diagnostics</string>
+      <string id="ShellScenarioExecutionPolicyExplain">Determines the execution level for Windows System Responsiveness Diagnostics.
+
+If you enable this policy setting, you must select an execution level from the dropdown menu. If you select problem detection and troubleshooting only, the Diagnostic Policy Service (DPS) will detect Windows System Responsiveness problems and attempt to determine their root causes. These root causes will be logged to the event log when detected, but no corrective action will be taken. If you select detection, troubleshooting and resolution, the DPS will detect Windows System Responsiveness problems and indicate to the user that assisted resolution is available.
+
+If you disable this policy setting, Windows will not be able to detect, troubleshoot or resolve any Windows System Responsiveness problems that are handled by the DPS.
+
+If you do not configure this policy setting, the DPS will enable Windows System Responsiveness for resolution by default.
+
+This policy setting takes effect only if the diagnostics-wide scenario execution policy is not configured.
+
+No system restart or service restart is required for this policy to take effect: changes take effect immediately.
+
+This policy setting will only take effect when the Diagnostic Policy Service is in the running state. When the service is stopped or disabled, diagnostic scenarios will not be executed.  The DPS can be configured with the Services snap-in to the Microsoft Management Console.</string>
+      <string id="ShutdownScenarioCategory">Windows Shutdown Performance Diagnostics</string>
+      <string id="ShutdownScenarioExecutionPolicyExplain">Determines the execution level for Windows Shutdown Performance Diagnostics.
+
+If you enable this policy setting, you must select an execution level from the dropdown menu. If you select problem detection and troubleshooting only, the Diagnostic Policy Service (DPS) will detect Windows Shutdown Performance problems and attempt to determine their root causes. These root causes will be logged to the event log when detected, but no corrective action will be taken. If you select detection, troubleshooting and resolution, the DPS will detect Windows Shutdown Performance problems and indicate to the user that assisted resolution is available.
+
+If you disable this policy setting, Windows will not be able to detect, troubleshoot or resolve any Windows Shutdown Performance problems that are handled by the DPS.
+
+If you do not configure this policy setting, the DPS will enable Windows Shutdown Performance for resolution by default.
+
+This policy setting takes effect only if the diagnostics-wide scenario execution policy is not configured.
+
+No system restart or service restart is required for this policy to take effect: changes take effect immediately.
+
+This policy setting will only take effect when the Diagnostic Policy Service is in the running state. When the service is stopped or disabled, diagnostic scenarios will not be executed.  The DPS can be configured with the Services snap-in to the Microsoft Management Console.</string>
+      <string id="WdiScenarioExecutionPolicy">Configure Scenario Execution Level</string>
+      <string id="WdiScenarioExecutionPolicyLevelResolution">Detection, Troubleshooting and Resolution</string>
+      <string id="WdiScenarioExecutionPolicyLevelTsOnly">Detection and Troubleshooting Only</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="WdiScenarioExecutionPolicy_1">
+        <dropdownList refId="WdiScenarioExecutionPolicyLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="WdiScenarioExecutionPolicy_2">
+        <dropdownList refId="WdiScenarioExecutionPolicyLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="WdiScenarioExecutionPolicy_3">
+        <dropdownList refId="WdiScenarioExecutionPolicyLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+      <presentation id="WdiScenarioExecutionPolicy_4">
+        <dropdownList refId="WdiScenarioExecutionPolicyLevel" noSort="true" defaultItem="1">Scenario Execution Level</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

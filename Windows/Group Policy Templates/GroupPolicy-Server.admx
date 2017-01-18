@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="grouppolicy2" namespace="Microsoft.Policies.GroupPolicy2" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    <using prefix="server" namespace="Microsoft.Policies.Server" />
+    <using prefix="grouppolicy" namespace="Microsoft.Policies.GroupPolicy" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="PolicyPolicies" displayName="$(string.PolicyPolicies)">
+      <parentCategory ref="grouppolicy:PolicyPolicies" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="ProcessTSUserLogonAsync" class="Machine" displayName="$(string.ProcessTSUserLogonAsync)" explainText="$(string.ProcessTSUserLogonAsync_Help)" key="Software\Policies\Microsoft\Windows\System" valueName="ProcessTSUserLogonAsync">
+      <parentCategory ref="grouppolicy:PolicyPolicies" />
+      <supportedOn ref="server:SUPPORTED_WindowsServer2008" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>    
+    </policy>
+  </policies>
+</policyDefinitions>

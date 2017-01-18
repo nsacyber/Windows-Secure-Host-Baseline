@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="pentraining" namespace="Microsoft.Policies.PenTraining" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="PenTraining" displayName="$(string.PenTraining)">
+      <parentCategory ref="windows:TabletPC" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PenTrainingOff_1" class="User" displayName="$(string.PenTrainingOff)" explainText="$(string.PenTrainingOff_Help_USER)" key="SOFTWARE\Policies\Microsoft\PenTraining" valueName="DisablePenTraining">
+      <parentCategory ref="PenTraining" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PenTrainingOff_2" class="Machine" displayName="$(string.PenTrainingOff)" explainText="$(string.PenTrainingOff_Help_LOCALMACHINE)" key="SOFTWARE\Policies\Microsoft\PenTraining" valueName="DisablePenTraining">
+      <parentCategory ref="PenTraining" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVistaOnly" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>

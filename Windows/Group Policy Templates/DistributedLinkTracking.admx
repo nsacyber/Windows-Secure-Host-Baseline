@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="distributedlinktracking" namespace="Microsoft.Policies.DistributedLinkTracking" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+    <policy name="DLT_AllowDomainMode" class="Machine" displayName="$(string.DLT_AllowDomainMode)" explainText="$(string.DLT_AllowDomainMode_Explain)" key="Software\Policies\Microsoft\Windows\System" valueName="DLT_AllowDomainMode">
+      <parentCategory ref="windows:System" />
+      <supportedOn ref="windows:SUPPORTED_WindowsPreVista" />
+    </policy>
+  </policies>
+</policyDefinitions>

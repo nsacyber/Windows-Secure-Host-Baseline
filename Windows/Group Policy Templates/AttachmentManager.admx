@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="attachmentmanager" namespace="Microsoft.Policies.AttachmentManager" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="AM_AM" displayName="$(string.AM_AM)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="AM_CallIOfficeAntiVirus" class="User" displayName="$(string.AM_CallIOfficeAntiVirus)" explainText="$(string.AM_ExplainCallIOfficeAntiVirus)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Attachments" valueName="ScanWithAntiVirus">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="3" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
+    <policy name="AM_EstimateFileHandlerRisk" class="User" displayName="$(string.AM_EstimateFileHandlerRisk)" explainText="$(string.AM_ExplainEstimateFileHandlerRisk)" presentation="$(presentation.AM_EstimateFileHandlerRisk)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Attachments">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <enum id="AM_TrustLogicSetting" valueName="UseTrustedHandlers">
+          <item displayName="$(string.AM_HandlerBased)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AM_HandlerMostSecure)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.AM_HandlerDisabled)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AM_MarkZoneOnSavedAtttachments" class="User" displayName="$(string.AM_MarkZoneOnSavedAtttachments)" explainText="$(string.AM_ExplainMarkZoneOnSavedAtttachments)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Attachments" valueName="SaveZoneInformation">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="2" />
+      </disabledValue>
+    </policy>
+    <policy name="AM_RemoveZoneInfo" class="User" displayName="$(string.AM_RemoveZoneInfo)" explainText="$(string.AM_ExplainRemoveZoneInfo)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Attachments" valueName="HideZoneInfoOnProperties">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="AM_SetFileRiskLevel" class="User" displayName="$(string.AM_SetFileRiskLevel)" explainText="$(string.AM_ExplainSetFileRiskLevel)" presentation="$(presentation.AM_SetFileRiskLevel)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <enum id="AM_RiskLevel" valueName="DefaultFileTypeRisk">
+          <item displayName="$(string.AM_HighRisk)">
+            <value>
+              <decimal value="6150" />
+            </value>
+          </item>
+          <item displayName="$(string.AM_ModRisk)">
+            <value>
+              <decimal value="6151" />
+            </value>
+          </item>
+          <item displayName="$(string.AM_LowRisk)">
+            <value>
+              <decimal value="6152" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="AM_SetHighRiskInclusion" class="User" displayName="$(string.AM_SetHighRiskInclusion)" explainText="$(string.AM_ExplainSetHighRiskInclusion)" presentation="$(presentation.AM_SetHighRiskInclusion)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="AM_InstructHighRiskInclusionList" valueName="HighRiskFileTypes" required="true" />
+      </elements>
+    </policy>
+    <policy name="AM_SetLowRiskInclusion" class="User" displayName="$(string.AM_SetLowRiskInclusion)" explainText="$(string.AM_ExplainSetLowRiskInclusion)" presentation="$(presentation.AM_SetLowRiskInclusion)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="AM_InstructLowRiskInclusionList" valueName="LowRiskFileTypes" required="true" />
+      </elements>
+    </policy>
+    <policy name="AM_SetModRiskInclusion" class="User" displayName="$(string.AM_SetModRiskInclusion)" explainText="$(string.AM_ExplainSetModRiskInclusion)" presentation="$(presentation.AM_SetModRiskInclusion)" key="Software\Microsoft\Windows\CurrentVersion\Policies\Associations">
+      <parentCategory ref="AM_AM" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXPSP2" />
+      <elements>
+        <text id="AM_InstructModRiskInclusionList" valueName="ModRiskFileTypes" required="true" />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

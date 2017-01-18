@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2008 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="ncsi" namespace="Microsoft.Policies.NCSI" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="NCSI_Category" displayName="$(string.NCSI_Category)">
+      <parentCategory ref="windows:Network" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="NCSI_CorpWebProbeUrl" class="Machine" displayName="$(string.NCSI_CorpWebProbeUrl)" explainText="$(string.NCSI_CorpWebProbeUrl_Help)" presentation="$(presentation.NCSI_CorpWebProbeUrl)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator\CorporateConnectivity">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="NCSI_CorpWebProbeUrlBox" valueName="WebProbeUrl" required="true"/>
+      </elements>
+    </policy>
+    <policy name="NCSI_CorpDnsProbeHost" class="Machine" displayName="$(string.NCSI_CorpDnsProbeHost)" explainText="$(string.NCSI_CorpDnsProbeHost_Help)" presentation="$(presentation.NCSI_CorpDnsProbeHost)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator\CorporateConnectivity">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="NCSI_CorpDnsProbeHostBox" valueName="DnsProbeHost" required="true"/>
+      </elements>
+    </policy>
+    <policy name="NCSI_CorpDnsProbeContent" class="Machine" displayName="$(string.NCSI_CorpDnsProbeContent)" explainText="$(string.NCSI_CorpDnsProbeContent_Help)" presentation="$(presentation.NCSI_CorpDnsProbeContent)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator\CorporateConnectivity">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="NCSI_CorpDnsProbeContentBox" valueName="DnsProbeContent" required="true"/>
+      </elements>
+    </policy>
+    <policy name="NCSI_CorpSitePrefixes" class="Machine" displayName="$(string.NCSI_CorpSitePrefixes)" explainText="$(string.NCSI_CorpSitePrefixes_Help)" presentation="$(presentation.NCSI_CorpSitePrefixes)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator\CorporateConnectivity">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="NCSI_CorpSitePrefixesBox" valueName="SitePrefixes" required="true"/>
+      </elements>
+    </policy>
+    <policy name="NCSI_DomainLocationDeterminationUrl" class="Machine" displayName="$(string.NCSI_DomainLocationDeterminationUrl)" explainText="$(string.NCSI_DomainLocationDeterminationUrl_Help)" presentation="$(presentation.NCSI_DomainLocationDeterminationUrl)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator\CorporateConnectivity">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+        <text id="NCSI_DomainLocationDeterminationUrlBox" valueName="DomainLocationDeterminationUrl" required="true"/>
+      </elements>
+    </policy>
+    <policy name="NCSI_PassivePolling" class="Machine" displayName="$(string.NCSI_PassivePolling)" explainText="$(string.NCSI_PassivePolling_Help)" presentation="$(presentation.NCSI_PassivePolling)" key="Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator">
+      <parentCategory ref="NCSI_Category" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <elements>
+        <boolean id="NCSI_DisablePassivePolling_Checkbox" valueName="DisablePassivePolling" required="false">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>    
+  </policies>
+</policyDefinitions>

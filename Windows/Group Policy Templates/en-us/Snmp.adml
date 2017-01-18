@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>enter display name here</displayName>
+  <description>enter description here</description>
+  <resources>
+    <stringTable>
+      <string id="SNMP_Communities">Specify communities</string>
+      <string id="SNMP_PermittedManagers">Specify permitted managers</string>
+      <string id="SNMP_PermittedManagers_Help">This policy setting determines the permitted list of hosts that can submit a query to the Simple Network Management (SNMP) agent running on the client computer.
+
+Simple Network Management Protocol is a protocol designed to give a user the capability to remotely manage a computer network by polling and setting terminal values and monitoring network events.
+
+The manager is located on the host computer on the network. The manager's role is to poll the agents for certain requested information.
+
+If you enable this policy setting, the SNMP agent only accepts requests from the list of permitted managers that you configure using this setting.
+
+If you disable or do not configure this policy setting, SNMP service takes the permitted managers configured on the local computer instead.
+
+Best practice: For security purposes, it is recommended to restrict the HKLM\SOFTWARE\Policies\SNMP\Parameters\PermittedManagers key to allow only the local admin group full control.
+
+Note: This policy setting has no effect if the SNMP agent is not installed on the client computer.
+
+Also, see the other two SNMP policy settings: "Specify trap configuration" and "Specify Community Name".</string>
+      <string id="SNMP_SNMP">SNMP</string>
+      <string id="SNMP_TrapDestinations_Help">This policy setting allows trap configuration for the Simple Network Management Protocol (SNMP) agent.
+
+Simple Network Management Protocol is a protocol designed to give a user the capability to remotely manage a computer network by polling and setting terminal values and monitoring network events.
+
+This policy setting allows you to configure the name of the hosts that receive trap messages for the community sent by the SNMP service. A trap message is an alert or significant event that allows the SNMP agent to notify management systems asynchronously.
+
+If you enable this policy setting, the SNMP service sends trap messages to the hosts within the "public" community.
+
+If you disable or do not configure this policy setting, the SNMP service takes the trap configuration configured on the local computer instead.
+
+Note: This setting has no effect if the SNMP agent is not installed on the client computer.
+
+Also, see the other two SNMP settings: "Specify permitted managers" and "Specify Community Name".</string>
+      <string id="SNMP_Traps_Public">Specify traps for public community</string>
+      <string id="SNMP_ValidCommunities_Help">This policy setting configures a list of the communities defined to the Simple Network Management Protocol (SNMP) service.
+
+SNMP is a protocol designed to give a user the capability to remotely manage a computer network, by polling and setting terminal values and monitoring network events.
+
+A valid community is a community recognized by the SNMP service, while a community is a group of hosts (servers, workstations, hubs, and routers) that are administered together by SNMP. The SNMP service is a managed network node that receives SNMP packets from the network.
+
+If you enable this policy setting, the SNMP agent only accepts requests from management systems within the communities it recognizes, and only SNMP Read operation is allowed for the community.
+
+If you disable or do not configure this policy setting, the SNMP service takes the Valid Communities configured on the local computer instead.
+
+Best practice: For security purposes, it is recommended to restrict the HKLM\SOFTWARE\Policies\SNMP\Parameters\ValidCommunities key to allow only the local admin group full control.
+
+Note: It is good practice to use a cryptic community name.
+
+Note: This policy setting has no effect if the SNMP agent is not installed on the client computer.
+
+Also, see the other two SNMP settings: "Specify permitted managers" and "Specify trap configuration".</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="SNMP_Communities">
+        <listBox refId="SNMP_CommunitiesListbox">Communities</listBox>
+      </presentation>
+      <presentation id="SNMP_PermittedManagers">
+        <listBox refId="SNMP_PermittedManagersListbox">Permitted managers</listBox>
+      </presentation>
+      <presentation id="SNMP_Traps_Public">
+        <listBox refId="SNMP_Traps_PublicListbox">Trap configuration</listBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

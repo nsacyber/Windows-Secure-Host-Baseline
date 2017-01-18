@@ -1,0 +1,263 @@
+﻿<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<policyDefinitions
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    revision="1.0"
+    schemaVersion="1.0"
+    >
+  <policyNamespaces>
+    <target
+        namespace="Microsoft.Policies.DeliveryOptimization"
+        prefix="dopolicy"
+        />
+    <using
+        namespace="Microsoft.Policies.Windows"
+        prefix="windows"
+        />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0"/>
+  <categories>
+    <category
+        displayName="$(string.DeliveryOptimizationCat)"
+        name="DeliveryOptimizationCat"
+        >
+      <parentCategory ref="windows:WindowsComponents"/>
+    </category>
+  </categories>
+  <policies>
+    <policy
+        class="Machine"
+        displayName="$(string.DownloadMode)"
+        explainText="$(string.DownloadMode_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="DownloadMode"
+        presentation="$(presentation.DownloadMode)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <enum
+            id="DownloadMode"
+            valueName="DODownloadMode"
+            >
+          <item displayName="$(string.DownloadMode_CdnOnly)">
+            <value>
+              <decimal value="0"/>
+            </value>
+          </item>
+          <item displayName="$(string.DownloadMode_Lan)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.DownloadMode_Group)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+          <item displayName="$(string.DownloadMode_Internet)">
+            <value>
+              <decimal value="3"/>
+            </value>
+          </item>
+          <item displayName="$(string.DownloadMode_Simple)">
+            <value>
+              <decimal value="99"/>
+            </value>
+          </item>
+          <item displayName="$(string.DownloadMode_Bypass)">
+            <value>
+              <decimal value="100"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.GroupId)"
+        explainText="$(string.GroupId_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="GroupId"
+        presentation="$(presentation.GroupId)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <text
+            id="GroupId"
+            valueName="DOGroupId"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MaxUploadBandwidth)"
+        explainText="$(string.MaxUploadBandwidth_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MaxUploadBandwidth"
+        presentation="$(presentation.MaxUploadBandwidth)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MaxUploadBandwidth"
+            maxValue="4294967295"
+            minValue="0"
+            valueName="DOMaxUploadBandwidth"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MaxCacheSize)"
+        explainText="$(string.MaxCacheSize_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MaxCacheSize"
+        presentation="$(presentation.MaxCacheSize)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MaxCacheSize"
+            maxValue="100"
+            minValue="1"
+            valueName="DOMaxCacheSize"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.AbsoluteMaxCacheSize)"
+        explainText="$(string.AbsoluteMaxCacheSize_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="AbsoluteMaxCacheSize"
+        presentation="$(presentation.AbsoluteMaxCacheSize)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="AbsoluteMaxCacheSize"
+            maxValue="4294967295"
+            minValue="0"
+            valueName="DOAbsoluteMaxCacheSize"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MaxCacheAge)"
+        explainText="$(string.MaxCacheAge_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MaxCacheAge"
+        presentation="$(presentation.MaxCacheAge)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MaxCacheAge"
+            maxValue="4294967295"
+            minValue="0"
+            valueName="DOMaxCacheAge"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MonthlyUploadDataCap)"
+        explainText="$(string.MonthlyUploadDataCap_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MonthlyUploadDataCap"
+        presentation="$(presentation.MonthlyUploadDataCap)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MonthlyUploadDataCap"
+            maxValue="4294967295"
+            minValue="0"
+            valueName="DOMonthlyUploadDataCap"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MinBackgroundQos)"
+        explainText="$(string.MinBackgroundQos_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MinBackgroundQos"
+        presentation="$(presentation.MinBackgroundQos)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MinBackgroundQos"
+            maxValue="4294967295"
+            minValue="1"
+            valueName="DOMinBackgroundQos"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.ModifyCacheDrive)"
+        explainText="$(string.ModifyCacheDrive_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="ModifyCacheDrive"
+        presentation="$(presentation.ModifyCacheDrive)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <text
+            id="ModifyCacheDrive"
+            valueName="DOModifyCacheDrive"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.MaxDownloadBandwidth)"
+        explainText="$(string.MaxDownloadBandwidth_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="MaxDownloadBandwidth"
+        presentation="$(presentation.MaxDownloadBandwidth)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="MaxDownloadBandwidth"
+            maxValue="4294967295"
+            minValue="0"
+            valueName="DOMaxDownloadBandwidth"
+            />
+      </elements>
+    </policy>
+    <policy
+        class="Machine"
+        displayName="$(string.PercentageMaxDownloadBandwidth)"
+        explainText="$(string.PercentageMaxDownloadBandwidth_Help)"
+        key="SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization"
+        name="PercentageMaxDownloadBandwidth"
+        presentation="$(presentation.PercentageMaxDownloadBandwidth)"
+        >
+      <parentCategory ref="DeliveryOptimizationCat"/>
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0_NOSERVER"/>
+      <elements>
+        <decimal
+            id="PercentageMaxDownloadBandwidth"
+            maxValue="100"
+            minValue="0"
+            valueName="DOPercentageMaxDownloadBandwidth"
+            />
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>

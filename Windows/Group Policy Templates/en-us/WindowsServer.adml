@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+  <displayName>Windows Server 2008 base categories and supported component definitions</displayName>
+  <description>This file contains all the base categories and supported component definitions used by server components.</description>
+
+  <resources>
+    <stringTable>
+      <string id="SUPPORTED_WindowsServer2008">At least Windows Server 2008</string>
+      <string id="SUPPORTED_WindowsServer2003R2">At least Windows Server 2003 R2</string>
+      <string id="ServerComponents">Server Components</string>
+      <string id="ServerComponents_Help">Contains settings for server operating system components.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

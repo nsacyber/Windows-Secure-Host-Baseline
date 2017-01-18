@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="filesys" namespace="Microsoft.Policies.FileSys" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="Filesystem" displayName="$(string.Filesystem)">
+      <parentCategory ref="windows:System"/>
+    </category>
+    <category name="NTFS" displayName="$(string.NTFS)">
+      <parentCategory ref="Filesystem" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="SymlinkEvaluation" class="Machine" displayName="$(string.SymlinkEvaluation)" explainText="$(string.SymlinkEvalExplain)" presentation="$(presentation.SymlinkEvaluation)" key="Software\Policies\Microsoft\Windows\Filesystems\NTFS" valueName="SymLinkState">
+      <parentCategory ref="Filesystem" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <elements>
+        <boolean id="SymLinkClassL2L" valueName="SymlinkLocalToLocalEvaluation">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="SymLinkClassL2R" valueName="SymlinkLocalToRemoteEvaluation">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="SymLinkClassR2R" valueName="SymlinkRemoteToRemoteEvaluation">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="SymLinkClassR2L" valueName="SymlinkRemoteToLocalEvaluation">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="LongPathsEnabled" class="Machine" 
+    displayName="$(string.LongPathsEnabled)" 
+    explainText="$(string.LongPathsEnabledText)" 
+    presentation="$(presentation.LongPathsEnabledOptions)" 
+    key="System\CurrentControlSet\Control\FileSystem" 
+    valueName="LongPathsEnabled">
+      <parentCategory ref="Filesystem" />
+      <supportedOn ref="windows:SUPPORTED_Windows_10_0" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableCompression" class="Machine" 
+    displayName="$(string.DisableCompression)" 
+    explainText="$(string.DisableCompressionText)" 
+    presentation="$(presentation.CompressionOptions)" 
+    key="System\CurrentControlSet\Policies" 
+    valueName="NtfsDisableCompression">
+      <parentCategory ref="NTFS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisableEncryption" class="Machine" 
+    displayName="$(string.DisableEncryption)" 
+    explainText="$(string.DisableEncryptionText)" 
+    presentation="$(presentation.EncryptionOptions)" 
+    key="System\CurrentControlSet\Policies" 
+    valueName="NtfsDisableEncryption">
+      <parentCategory ref="NTFS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnablePagefileEncryption" class="Machine" 
+    displayName="$(string.EnablePagefileEncryption)" 
+    explainText="$(string.EnablePagefileEncryptionText)" 
+    presentation="$(presentation.PagefileEncryptionOptions)" 
+    key="System\CurrentControlSet\Policies" 
+    valueName="NtfsEncryptPagingFile">
+      <parentCategory ref="NTFS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="ShortNameCreationSettings" class="Machine"
+    displayName="$(string.ShortNameCreationSettings)"
+    explainText="$(string.ShortNameCreationSettingsText)"
+    presentation="$(presentation.ShortNameCreationSettings)"
+    key="System\CurrentControlSet\Policies" >
+      <parentCategory ref="NTFS" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <elements>
+          <enum id="ShortNameCreationSetting_Levels" valueName="NtfsDisable8dot3NameCreation">
+              <item displayName="$(string.ShortNameCreationSetting_0)">
+                  <value>
+                      <decimal value="0" />
+                  </value>
+              </item>
+              <item displayName="$(string.ShortNameCreationSetting_1)">
+                  <value>
+                      <decimal value="1" />
+                  </value>
+              </item>
+              <item displayName="$(string.ShortNameCreationSetting_2)">
+                  <value>
+                      <decimal value="2" />
+                  </value>
+              </item>
+              <item displayName="$(string.ShortNameCreationSetting_3)">
+                  <value>
+                      <decimal value="3" />
+                  </value>
+              </item>
+          </enum>
+      </elements>
+    </policy>
+    <policy name="DisableDeleteNotification" class="Machine"
+    displayName="$(string.DisableDeleteNotification)"
+    explainText="$(string.DisableDeleteNotificationText)"
+    presentation="$(presentation.DeleteNotificationOptions)"
+    key="System\CurrentControlSet\Policies" 
+    valueName="DisableDeleteNotification">
+        <parentCategory ref="Filesystem" />
+        <supportedOn ref="windows:SUPPORTED_Windows7" />
+        <enabledValue>
+            <decimal value="1" />
+        </enabledValue>
+        <disabledValue>
+            <decimal value="0" />
+        </disabledValue>
+    </policy>
+    <policy name="TxfDeprecatedFunctionality" class="Machine" 
+    displayName="$(string.TxfDeprecatedFunctionality)" 
+    explainText="$(string.TxfDeprecatedFunctionalityText)" 
+    presentation="$(presentation.TxfDeprecatedFunctionalityOptions)" 
+    key="System\CurrentControlSet\Policies" 
+    valueName="NtfsEnableTxfDeprecatedFunctionality">
+      <parentCategory ref="NTFS" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>
+

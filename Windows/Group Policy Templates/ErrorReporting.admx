@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2006 Microsoft Corporation  -->
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="wer" namespace="Microsoft.Policies.WindowsErrorReporting" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CAT_WindowsErrorReporting" displayName="$(string.CAT_WindowsErrorReporting)">
+      <parentCategory ref="windows:WindowsComponents" />
+    </category>
+    <category name="CAT_WindowsErrorReportingAdvanced" displayName="$(string.CAT_WindowsErrorReportingAdvanced)">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+    </category>
+    <category name="CAT_WindowsErrorReportingConsent" displayName="$(string.CAT_WindowsErrorReportingConsent)">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="PCH_ConfigureReport" class="Machine" displayName="$(string.PCH_ConfigureReport)" explainText="$(string.PCH_ConfigureReport_Help)" presentation="$(presentation.PCH_ConfigureReport)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <elements>
+        <boolean id="PCH_NoExternalURL_Chk" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWNoExternalURL">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PCH_NoFileCollect_Chk" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWNoFileCollection">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PCH_NoLevelTwo_Chk" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWNoSecondLevelCollection">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PCH_ForceQ_Chk" valueName="ForceQueueMode">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <text id="PCH_DumpPath_Edit" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWFileTreeRoot" />
+        <text id="PCH_CompanyText_Edit" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWReporteeName" />
+      </elements>
+    </policy>
+    <policy name="PCH_ShowUI" class="Machine" displayName="$(string.PCH_ShowUI)" explainText="$(string.PCH_ShowUI_Help)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="ShowUI">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWAllowHeadless">
+          <value>
+            <decimal value="0" />
+          </value>
+        </item>
+      </enabledList>
+      <disabledList>
+        <item key="Software\Policies\Microsoft\PCHealth\ErrorReporting\DW" valueName="DWAllowHeadless">
+          <value>
+            <decimal value="1" />
+          </value>
+        </item>
+      </disabledList>
+    </policy>
+    <policy name="WerDisable_1" class="User" displayName="$(string.WerDisable)" explainText="$(string.WerDisabledExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerDisable_2" class="Machine" displayName="$(string.WerDisable)" explainText="$(string.WerDisabledExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="Disabled">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerDoNotShowUI" class="Machine" displayName="$(string.WerDoNotShowUI)" explainText="$(string.WerDoNotShowUIExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DontShowUI">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerNoLogging_1" class="User" displayName="$(string.WerNoLogging)" explainText="$(string.WerNoLoggingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="LoggingDisabled">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerNoLogging_2" class="Machine" displayName="$(string.WerNoLogging)" explainText="$(string.WerNoLoggingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="LoggingDisabled">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerNoSecondLevelData_1" class="User" displayName="$(string.WerNoSecondLevelData)" explainText="$(string.WerNoSecondLevelDataExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DontSendAdditionalData">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerNoSecondLevelData_2" class="Machine" displayName="$(string.WerNoSecondLevelData)" explainText="$(string.WerNoSecondLevelDataExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DontSendAdditionalData">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassDataThrottling_1" class="User" displayName="$(string.WerBypassDataThrottling)" explainText="$(string.WerBypassDataThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassDataThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassDataThrottling_2" class="Machine" displayName="$(string.WerBypassDataThrottling)" explainText="$(string.WerBypassDataThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassDataThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerAutoApproveOSDumps_1" class="User" displayName="$(string.WerAutoApproveOSDumps)" explainText="$(string.WerAutoApproveOSDumpsExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="AutoApproveOSDumps">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerAutoApproveOSDumps_2" class="Machine" displayName="$(string.WerAutoApproveOSDumps)" explainText="$(string.WerAutoApproveOSDumpsExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="AutoApproveOSDumps">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3only" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassPowerThrottling_1" class="User" displayName="$(string.WerBypassPowerThrottling)" explainText="$(string.WerBypassPowerThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassPowerThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassPowerThrottling_2" class="Machine" displayName="$(string.WerBypassPowerThrottling)" explainText="$(string.WerBypassPowerThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassPowerThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassNetworkCostThrottling_1" class="User" displayName="$(string.WerBypassNetworkCostThrottling)" explainText="$(string.WerBypassNetworkCostThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassNetworkCostThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerBypassNetworkCostThrottling_2" class="Machine" displayName="$(string.WerBypassNetworkCostThrottling)" explainText="$(string.WerBypassNetworkCostThrottlingExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="BypassNetworkCostThrottling">
+      <parentCategory ref="CAT_WindowsErrorReporting" />
+      <supportedOn ref="windows:SUPPORTED_Windows8" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="PCH_AllOrNoneDef" class="Machine" displayName="$(string.PCH_AllOrNoneDef)" explainText="$(string.PCH_AllOrNoneDef_Help)" presentation="$(presentation.PCH_AllOrNoneDef)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <elements>
+        <enum id="PCH_AllOrNoneDef_List" valueName="AllOrNone">
+          <item displayName="$(string.PCH_AllOrNoneDef_Include)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.PCH_AllOrNoneDef_Exclude)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+        </enum>
+        <boolean id="PCH_AllOrNoneIncMS_Chk" valueName="IncludeMicrosoftApps">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+        <boolean id="PCH_AllOrNoneWinComp_Chk" valueName="IncludeWindowsApps">
+          <trueValue>
+            <decimal value="1" />
+          </trueValue>
+          <falseValue>
+            <decimal value="0" />
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="PCH_AllOrNoneEx" class="Machine" displayName="$(string.PCH_AllOrNoneEx)" explainText="$(string.PCH_AllOrNoneEx_Help)" presentation="$(presentation.PCH_AllOrNoneEx)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <elements>
+        <list id="PCH_AllOrNoneEx_List" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\ExclusionList" />
+      </elements>
+    </policy>
+    <policy name="PCH_AllOrNoneInc" class="Machine" displayName="$(string.PCH_AllOrNoneInc)" explainText="$(string.PCH_AllOrNoneInc_Help)" presentation="$(presentation.PCH_AllOrNoneInc)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <elements>
+        <list id="PCH_AllOrNoneInc_List" key="Software\Policies\Microsoft\PCHealth\ErrorReporting\InclusionList" />
+      </elements>
+    </policy>
+    <policy name="PCH_ReportOperatingSystemFaults" class="Machine" displayName="$(string.PCH_ReportOperatingSystemFaults)" explainText="$(string.PCH_ReportOperatingSystemFaults_Help)" key="Software\Policies\Microsoft\PCHealth\ErrorReporting" valueName="IncludeKernelFaults">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsNET_XP" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerArchive_1" class="User" displayName="$(string.WerArchive)" explainText="$(string.WerArchiveExp)" presentation="$(presentation.WerArchive_1)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DisableArchive">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <elements>
+        <enum id="WerArchiveBehavior" valueName="ConfigureArchive" required="true">
+          <item displayName="$(string.WerArchiveEverything)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.WerArchiveOnlyMetaData)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="WerMaxArchiveCount" valueName="MaxArchiveCount" maxValue="5000" />
+      </elements>
+    </policy>
+    <policy name="WerArchive_2" class="Machine" displayName="$(string.WerArchive)" explainText="$(string.WerArchiveExp)" presentation="$(presentation.WerArchive_2)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DisableArchive">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <elements>
+        <enum id="WerArchiveBehavior" valueName="ConfigureArchive" required="true">
+          <item displayName="$(string.WerArchiveEverything)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.WerArchiveOnlyMetaData)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="WerMaxArchiveCount" valueName="MaxArchiveCount" maxValue="5000" />
+      </elements>
+    </policy>
+    <policy name="WerCER" class="Machine" displayName="$(string.WerCER)" explainText="$(string.WerCERExp)" presentation="$(presentation.WerCER)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <text id="WerCERServer" valueName="CorporateWerServer" required="true" maxLength="256" />
+        <boolean id="WerCERUseSSL" valueName="CorporateWerUseSSL" />
+        <boolean id="WerCerUploadOnFreeNetworksOnly" valueName="CorporateWerUploadOnFreeNetworksOnly" />
+        <decimal id="WerCERCorporatePortNumber" valueName="CorporateWerPortNumber" required="true" maxValue="65535" />
+      </elements>
+    </policy>
+    <policy name="WerExlusion_1" class="User" displayName="$(string.WerExlusion)" explainText="$(string.WerExlusionExp)" presentation="$(presentation.WerExlusion_1)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <list id="WerExlusionList" key="Software\Policies\Microsoft\Windows\Windows Error Reporting\ExcludedApplications" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WerExlusion_2" class="Machine" displayName="$(string.WerExlusion)" explainText="$(string.WerExlusionExp)" presentation="$(presentation.WerExlusion_2)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <list id="WerExlusionList" key="Software\Policies\Microsoft\Windows\Windows Error Reporting\ExcludedApplications" additive="true" />
+      </elements>
+    </policy>
+    <policy name="WerQueue_1" class="User" displayName="$(string.WerQueue)" explainText="$(string.WerUserQueueExp)" presentation="$(presentation.WerQueue_1)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DisableQueue">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <elements>
+        <enum id="WerQueueBehavior" valueName="ForceQueue" required="true">
+          <item displayName="$(string.WerQueueNormal)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.WerForceQueue)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="WerMaxQueueCount" valueName="MaxQueueCount" maxValue="1000" />
+        <decimal id="WerMaxQueueSize" valueName="MaxQueueSize" maxValue="1024" />
+        <decimal id="WerUpdateCheck" valueName="QueuePesterInterval" maxValue="90" />
+      </elements>
+    </policy>
+    <policy name="WerQueue_2" class="Machine" displayName="$(string.WerQueue)" explainText="$(string.WerMachineQueueExp)" presentation="$(presentation.WerQueue_2)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting" valueName="DisableQueue">
+      <parentCategory ref="CAT_WindowsErrorReportingAdvanced" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+      <elements>
+        <enum id="WerQueueBehavior" valueName="ForceQueue" required="true">
+          <item displayName="$(string.WerQueueNormal)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.WerForceQueue)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WerForceAdminQueue)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+        <decimal id="WerMaxQueueCount" valueName="MaxQueueCount" maxValue="1000" />
+        <decimal id="WerMaxQueueSize" valueName="MaxQueueSize" maxValue="1024" />
+        <decimal id="WerMinFreeDiskSpace" valueName="MinFreeDiskSpace" />
+        <decimal id="WerUpdateCheck" valueName="QueuePesterInterval" maxValue="90" />
+      </elements>
+    </policy>
+    <policy name="WerConsentCustomize_1" class="User" displayName="$(string.WerConsentCustomize)" explainText="$(string.WerConsentCustomizeExp)" presentation="$(presentation.WerConsentCustomize_1)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <list id="WerConsentCustomize" additive="true" explicitValue="true" />
+      </elements>
+    </policy>
+    <policy name="WerConsentCustomize_2" class="Machine" displayName="$(string.WerConsentCustomize)" explainText="$(string.WerConsentCustomizeExp)" presentation="$(presentation.WerConsentCustomize_2)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <list id="WerConsentCustomize" additive="true" explicitValue="true" />
+      </elements>
+    </policy>
+    <policy name="WerConsentOverride_1" class="User" displayName="$(string.WerConsentOverride)" explainText="$(string.WerConsentOverrideExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent" valueName="DefaultOverrideBehavior">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerConsentOverride_2" class="Machine" displayName="$(string.WerConsentOverride)" explainText="$(string.WerConsentOverrideExp)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent" valueName="DefaultOverrideBehavior">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="WerDefaultConsent_1" class="User" displayName="$(string.WerDefaultConsent)" explainText="$(string.WerDefaultConsentExp)" presentation="$(presentation.WerDefaultConsent_1)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3ToVista" />
+      <elements>
+        <enum id="WerConsent" valueName="DefaultConsent" required="true">
+          <item displayName="$(string.WerConsentAlwaysAsk)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentParamsOnly)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentParamsAndSafeData)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentEverything)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="WerDefaultConsent_2" class="Machine" displayName="$(string.WerDefaultConsent)" explainText="$(string.WerDefaultConsentExp)" presentation="$(presentation.WerDefaultConsent_2)" key="SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Consent">
+      <parentCategory ref="CAT_WindowsErrorReportingConsent" />
+      <supportedOn ref="windows:SUPPORTED_Windows_6_3ToVista" />
+      <elements>
+        <enum id="WerConsent" valueName="DefaultConsent" required="true">
+          <item displayName="$(string.WerConsentAlwaysAsk)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentParamsOnly)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentParamsAndSafeData)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+          <item displayName="$(string.WerConsentEverything)">
+            <value>
+              <decimal value="4" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+  </policies>
+</policyDefinitions>
