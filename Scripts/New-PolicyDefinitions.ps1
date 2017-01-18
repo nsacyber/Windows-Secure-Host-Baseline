@@ -1,13 +1,13 @@
 #requires -Version 3
 Set-StrictMode -Version 3
 
-#todo: turn into functions
+# todo: turn into functions
 
-#todo: removed hardcoded path
+# todo: removed hardcoded path
 $basePath = "$env:USERPROFILE\Documents\GitHub\Secure-Host-Baseline"
 
-#the OS version the OS Group Policy templates are for
-$osVersion = '10.0.10586.0'
+# the OS version (Windows 10 1607) the OS Group Policy Templates are for
+$osVersion = '10.0.14393.0'
 
 Set-Location -Path $basePath
 
