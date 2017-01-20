@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  (c) 2014 Microsoft Corporation  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>MS Security Guide</displayName>
+  <description>MS Security Guide mitigations</description>
+  <resources>
+    <stringTable>
+      <string id="Cat_SecGuide">MS Security Guide</string>
+      <string id="Pol_PtH_LATFP">Apply UAC restrictions to local accounts on network logons</string>
+      <string id="Pol_PtH_LATFP_Help">This setting controls whether local accounts can be used for remote administration via network logon (e.g., NET USE, connecting to C$, etc.). Local accounts are at high risk for credential theft when the same account and password is configured on multiple systems.  Enabling this policy significantly reduces that risk.
+
+Enabled (recommended): Applies UAC token-filtering to local accounts on network logons. Membership in powerful group such as Administrators is disabled and powerful privileges are removed from the resulting access token. This configures the LocalAccountTokenFilterPolicy registry value to 0. This is the default behavior for Windows.
+
+Disabled: Allows local accounts to have full administrative rights when authenticating via network logon, by configuring the LocalAccountTokenFilterPolicy registry value to 1.
+
+For more information about local accounts and credential theft, see "Mitigating Pass-the-Hash (PtH) Attacks and Other Credential Theft Techniques": http://www.microsoft.com/en-us/download/details.aspx?id=36036.
+
+For more information about LocalAccountTokenFilterPolicy, see http://support.microsoft.com/kb/951016.
+	  </string>
+      <string id="Pol_PtH_WDigestAuthn">WDigest Authentication (disabling may require KB2871997)</string>
+      <string id="Pol_PtH_WDigestAuthn_Help">When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed.
+
+If this setting is not configured, WDigest authentication is disabled in Windows 8.1 and in Windows Server 2012 R2; it is enabled by default in earlier versions of Windows and Windows Server.
+
+Update KB2871997 must first be installed to disable WDigest authentication using this setting in Windows 7, Windows 8, Windows Server 2008 R2 and Windows Server 2012.
+
+Enabled: Enables WDigest authentication.
+
+Disabled (recommended): Disables WDigest authentication. For this setting to work on Windows 7, Windows 8, Windows Server 2008 R2 or Windows Server 2012, KB2871997 must first be installed.
+
+For more information, see http://support.microsoft.com/kb/2871997 and http://blogs.technet.com/b/srd/archive/2014/06/05/an-overview-of-kb2871997.aspx .
+	  </string>
+      <string id="Pol_PtH_LsassAudit">Lsass.exe audit mode</string>
+      <string id="Pol_PtH_LsassAudit_Help">Enable auditing of Lsass.exe to evaluate feasibility of enabling LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+      <string id="Pol_PtH_LsassRunAsPPL">LSA Protection</string>
+      <string id="Pol_PtH_LsassRunAsPPL_Help">Enable LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

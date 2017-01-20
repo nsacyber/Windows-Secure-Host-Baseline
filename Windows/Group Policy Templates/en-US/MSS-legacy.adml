@@ -1,0 +1,173 @@
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>MSS (Legacy)</displayName>
+  <description>The legacy "MSS" settings that had been exposed in Secpol, Security Options, using LocalGPO.wsf /ConfigSCE.</description>
+  <resources>
+    <stringTable>
+      <string id="MSS">MSS (Legacy)</string>
+
+      <string id="AdminShares">MSS: (AutoShareWks) Enable Administrative Shares (recommended except for highly secure environments)</string>
+      <string id="AdminShares_Help">MSS: (AutoShareWks) Enable Administrative Shares (recommended except for highly secure environments)</string>
+      <string id="AdminSharesServer">MSS: (AutoShareServer) Enable Administrative Shares (recommended except for highly secure environments)</string>
+      <string id="AdminSharesServer_Help">MSS: (AutoShareServer) Enable Administrative Shares (recommended except for highly secure environments)</string>
+      <string id="AutoReboot">MSS: (AutoReboot) Allow Windows to automatically restart after a system crash (recommended except for highly secure environments)</string>
+      <string id="AutoReboot_Help">MSS: (AutoReboot) Allow Windows to automatically restart after a system crash (recommended except for highly secure environments)</string>
+      <string id="DisableAutoLogon">MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)</string>
+      <string id="DisableAutoLogon_Help">MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)</string>
+      <string id="DisableIPSourceRouting">MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)</string>
+      <string id="DisableIPSourceRouting_Help">MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)</string>
+      <string id="DisableIPSourceRouting0">No additional protection, source routed packets are allowed</string>
+      <string id="DisableIPSourceRouting1">Medium, source routed packets ignored when IP forwarding is enabled</string>
+      <string id="DisableIPSourceRouting2">Highest protection, source routing is completely disabled</string>
+      <string id="DisableIPSourceRoutingIPv6">MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)</string>
+      <string id="DisableIPSourceRoutingIPv6_Help">MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)</string>
+      <string id="DisableSavePassword">MSS: (DisableSavePassword) Prevent the dial-up passsword from being saved (recommended)</string>
+      <string id="DisableSavePassword_Help">MSS: (DisableSavePassword) Prevent the dial-up passsword from being saved (recommended)</string>
+      <string id="EnableDeadGWDetect">MSS: (EnableDeadGWDetect) Allow automatic detection of dead network gateways (could lead to DoS)</string>
+      <string id="EnableDeadGWDetect_Help">MSS: (EnableDeadGWDetect) Allow automatic detection of dead network gateways (could lead to DoS)</string>
+      <string id="EnableICMPRedirect">MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes</string>
+      <string id="EnableICMPRedirect_Help">MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes</string>
+      <string id="HideFromBrowseList">MSS: (Hidden) Hide Computer From the Browse List (not recommended except for highly secure environments)</string>
+      <string id="HideFromBrowseList_Help">MSS: (Hidden) Hide Computer From the Browse List (not recommended except for highly secure environments)</string>
+      <string id="KeepAliveTime">MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds</string>
+      <string id="KeepAliveTime_Help">MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds</string>
+      <string id="KeepAliveTime0">150000 or 2.5 minutes</string>
+      <string id="KeepAliveTime1">300000 or 5 minutes (recommended) </string>
+      <string id="KeepAliveTime2">600000 or 10 minutes</string>
+      <string id="KeepAliveTime3">1200000 or 20 minutes</string>
+      <string id="KeepAliveTime4">2400000 or 40 minutes</string>
+      <string id="KeepAliveTime5">3600000 or 1 hour</string>
+      <string id="KeepAliveTime6">7200000 or 2 hours (default value)</string>
+      <string id="NoDefaultExempt">MSS: (NoDefaultExempt) Configure IPSec exemptions for various types of network traffic. </string>
+      <string id="NoDefaultExempt_Help">MSS: (NoDefaultExempt) Configure IPSec exemptions for various types of network traffic. </string>
+      <string id="NoDefaultExempt0">Allow all exemptions (least secure).</string>
+      <string id="NoDefaultExempt1">Multicast, broadcast, &amp; ISAKMP exempt (best for Windows XP).</string>
+      <string id="NoDefaultExempt2">RSVP, Kerberos, and ISAKMP are exempt.</string>
+      <string id="NoDefaultExempt3">Only ISAKMP is exempt (recommended for Windows Server 2003). </string>
+      <string id="NoNameReleaseOnDemand">MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers</string>
+      <string id="NoNameReleaseOnDemand_Help">MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers</string>
+      <string id="NtfsDisable8dot3NameCreation">MSS: (NtfsDisable8dot3NameCreation) Enable the computer to stop generating 8.3 style filenames</string>
+      <string id="NtfsDisable8dot3NameCreation_Help">MSS: (NtfsDisable8dot3NameCreation) Enable the computer to stop generating 8.3 style filenames</string>
+      <string id="NtfsDisable8dot3NameCreation0">Enable 8Dot3 Creation on all Volumes</string>
+      <string id="NtfsDisable8dot3NameCreation1">Disable 8Dot3 Creation on all Volumes</string>
+      <string id="NtfsDisable8dot3NameCreation2">Set 8dot3 name creation per volume using FSUTIL (Windows 7 or later)</string>
+      <string id="NtfsDisable8dot3NameCreation3">Disable 8Dot3 name creation on all volumes except system volume (Windows 7 or later)</string>
+      <string id="PerformRouterDiscovery">MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)</string>
+      <string id="PerformRouterDiscovery_Help">MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)</string>
+      <string id="SafeDllSearchMode">MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)</string>
+      <string id="SafeDllSearchMode_Help">MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)</string>
+      <string id="ScreenSaverGracePeriod">MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)</string>
+      <string id="ScreenSaverGracePeriod_Help">MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)</string>
+      <string id="SynAttackProtect">MSS: (SynAttackProtect) Syn attack protection level (protects against DoS)</string>
+      <string id="SynAttackProtect_Help">MSS: (SynAttackProtect) Syn attack protection level (protects against DoS)</string>
+      <string id="SynAttackProtect0">No additional protection, use default settings</string>
+      <string id="SynAttackProtect1">Connections time out sooner if a SYN attack is detected</string>
+      <string id="TcpMaxConnectResponseRetransmissions">MSS: (TcpMaxConnectResponseRetransmissions) SYN-ACK retransmissions when a connection request is not acknowledged</string>
+      <string id="TcpMaxConnectResponseRetransmissions_Help">MSS: (TcpMaxConnectResponseRetransmissions) SYN-ACK retransmissions when a connection request is not acknowledged</string>
+      <string id="TcpMaxConnectResponseRetransmissions0">No retransmission, half-open connections dropped after 3 seconds</string>
+      <string id="TcpMaxConnectResponseRetransmissions1">3 seconds, half-open connections dropped after 9 seconds</string>
+      <string id="TcpMaxConnectResponseRetransmissions2">3 &amp; 6 seconds, half-open connections dropped after 21 seconds</string>
+      <string id="TcpMaxConnectResponseRetransmissions3">3, 6, &amp; 9 seconds, half-open connections dropped after 45 seconds</string>
+      <string id="TcpMaxDataRetransmissions">MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)</string>
+      <string id="TcpMaxDataRetransmissions_Help">MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)</string>
+      <string id="TcpMaxDataRetransmissionsIPv6">MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)</string>
+      <string id="TcpMaxDataRetransmissionsIPv6_Help">MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)</string>
+      <string id="WarningLevel">MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning</string>
+      <string id="WarningLevel_Help">MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning</string>
+      <string id="WarningLevel0">50%</string>
+      <string id="WarningLevel1">60%</string>
+      <string id="WarningLevel2">70%</string>
+      <string id="WarningLevel3">80%</string>
+      <string id="WarningLevel4">90%</string>
+
+    </stringTable>
+
+    <presentationTable>
+      <presentation id="DisableIPSourceRouting">
+        <dropdownList refId="DisableIPSourceRouting" noSort="true" defaultItem="1">DisableIPSourceRouting</dropdownList>
+      </presentation>
+      <presentation id="DisableIPSourceRoutingIPv6">
+        <dropdownList refId="DisableIPSourceRoutingIPv6" noSort="true" defaultItem="1">DisableIPSourceRoutingIPv6</dropdownList>
+      </presentation>
+      <presentation id="KeepAliveTime">
+        <dropdownList refId="KeepAliveTime" noSort="true" defaultItem="1">KeepAliveTime</dropdownList>
+      </presentation>
+      <presentation id="NoDefaultExempt">
+        <dropdownList refId="NoDefaultExempt" noSort="true" defaultItem="1">NoDefaultExempt</dropdownList>
+      </presentation>
+      <presentation id="NtfsDisable8dot3NameCreation">
+        <dropdownList refId="NtfsDisable8dot3NameCreation" noSort="true" defaultItem="0">NtfsDisable8dot3NameCreation</dropdownList>
+      </presentation>
+      <presentation id="ScreenSaverGracePeriod">
+      <decimalTextBox refId="ScreenSaverGracePeriod" spinStep="1" defaultValue="5">ScreenSaverGracePeriod</decimalTextBox>
+      </presentation>
+      <presentation id="SynAttackProtect">
+        <dropdownList refId="SynAttackProtect" noSort="true" defaultItem="0">SynAttackProtect</dropdownList>
+      </presentation>
+      <presentation id="TcpMaxConnectResponseRetransmissions">
+        <dropdownList refId="TcpMaxConnectResponseRetransmissions" noSort="true" defaultItem="0">TcpMaxConnectResponseRetransmissions</dropdownList>
+      </presentation>
+      <presentation id="TcpMaxDataRetransmissions">
+      <decimalTextBox refId="TcpMaxDataRetransmissions" spinStep="1" defaultValue="5">TcpMaxDataRetransmissions</decimalTextBox>
+      </presentation>
+      <presentation id="WarningLevel">
+        <dropdownList refId="WarningLevel" noSort="true" defaultItem="4">WarningLevel</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>
+
+<!--
+;========= Start of MSS Strings Values =========
+DisableAutoLogon = "MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)" 
+AutoReboot = "MSS: (AutoReboot) Allow Windows to automatically restart after a system crash (recommended except for highly secure environments)"
+AdminShares = "MSS: (AutoShareWks) Enable Administrative Shares (recommended except for highly secure environments)" 
+AdminSharesServer = "MSS: (AutoShareServer) Enable Administrative Shares (recommended except for highly secure environments)" 
+DisableIPSourceRouting = "MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)"
+DisableIPSourceRoutingIPv6 = "MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)"
+DisableIPSourceRouting0 = "No additional protection, source routed packets are allowed"
+DisableIPSourceRouting1 = "Medium, source routed packets ignored when IP forwarding is enabled"
+DisableIPSourceRouting2 = "Highest protection, source routing is completely disabled"
+DisableSavePassword = "MSS: (DisableSavePassword) Prevent the dial-up passsword from being saved (recommended)"
+EnableDeadGWDetect = "MSS: (EnableDeadGWDetect) Allow automatic detection of dead network gateways (could lead to DoS)"
+EnableICMPRedirect = "MSS: (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes"
+HideFromBrowseList = "MSS: (Hidden) Hide Computer From the Browse List (not recommended except for highly secure environments)"
+KeepAliveTime = "MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds"
+KeepAliveTime0 ="150000 or 2.5 minutes"
+KeepAliveTime1 ="300000 or 5 minutes (recommended)" 
+KeepAliveTime2 ="600000 or 10 minutes"
+KeepAliveTime3 ="1200000 or 20 minutes"
+KeepAliveTime4 ="2400000 or 40 minutes"
+KeepAliveTime5 ="3600000 or 1 hour"
+KeepAliveTime6 ="7200000 or 2 hours (default value)"
+NoDefaultExempt = "MSS: (NoDefaultExempt) Configure IPSec exemptions for various types of network traffic." 
+NoDefaultExempt0 = "Allow all exemptions (least secure)."
+NoDefaultExempt1 = "Multicast, broadcast, & ISAKMP exempt (best for Windows XP)."
+NoDefaultExempt2 = "RSVP, Kerberos, and ISAKMP are exempt."
+NoDefaultExempt3 = "Only ISAKMP is exempt (recommended for Windows Server 2003)." 
+NoNameReleaseOnDemand = "MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers"
+NtfsDisable8dot3NameCreation = "MSS: (NtfsDisable8dot3NameCreation) Enable the computer to stop generating 8.3 style filenames"
+NtfsDisable8dot3NameCreation0 = "Enable 8Dot3 Creation on all Volumes"
+NtfsDisable8dot3NameCreation1 = "Disable 8Dot3 Creation on all Volumes"
+NtfsDisable8dot3NameCreation2 = "Set 8dot3 name creation per volume using FSUTIL (Windows 7 or later)
+NtfsDisable8dot3NameCreation3 = "Disable 8Dot3 name creation on all volumes except system volume (Windows 7 or later)"
+PerformRouterDiscovery = "MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)"
+SafeDllSearchMode = "MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)"
+ScreenSaverGracePeriod = "MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)"
+SynAttackProtect = "MSS: (SynAttackProtect) Syn attack protection level (protects against DoS)"
+SynAttackProtect0 = "No additional protection, use default settings"
+SynAttackProtect1 = "Connections time out sooner if a SYN attack is detected"
+TcpMaxConnectResponseRetransmissions = "MSS: (TcpMaxConnectResponseRetransmissions) SYN-ACK retransmissions when a connection request is not acknowledged"
+TcpMaxConnectResponseRetransmissions0 = "No retransmission, half-open connections dropped after 3 seconds"
+TcpMaxConnectResponseRetransmissions1 = "3 seconds, half-open connections dropped after 9 seconds"
+TcpMaxConnectResponseRetransmissions2 = "3 & 6 seconds, half-open connections dropped after 21 seconds"
+TcpMaxConnectResponseRetransmissions3 = "3, 6, & 9 seconds, half-open connections dropped after 45 seconds"
+TcpMaxDataRetransmissions = "MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)"
+TcpMaxDataRetransmissionsIPv6 = "MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted (3 recommended, 5 is default)"
+WarningLevel = "MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning"
+WarningLevel0 = "50%"
+WarningLevel1 = "60%"
+WarningLevel2 = "70%"
+WarningLevel3 = "80%"
+WarningLevel4 = "90%"
+;========= End of MSS Strings Values =========
+-->

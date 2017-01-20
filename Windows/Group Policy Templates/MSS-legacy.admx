@@ -1,0 +1,292 @@
+<policyDefinitions revision="1.0" schemaVersion="1.0">
+  <policyNamespaces>
+    <target prefix="MSS" namespace="Microsoft.Policies.MSS" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+
+  <categories>
+    <category name="Cat_MSS" displayName="$(string.MSS)" />
+  </categories>
+
+  <policies>
+
+    <policy name="Pol_MSS_AutoAdminLogon" class="Machine" displayName="$(string.DisableAutoLogon)" explainText="$(string.DisableAutoLogon_Help)" key="Software\Microsoft\Windows NT\CurrentVersion\Winlogon" valueName="AutoAdminLogon">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <string>1</string>
+      </enabledValue>
+      <disabledValue>
+        <string>0</string>
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_AutoReboot" class="Machine" displayName="$(string.AutoReboot)" explainText="$(string.AutoReboot_Help)" key="SYSTEM\CurrentControlSet\Control\CrashControl" valueName="AutoReboot">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_AutoShareWks" class="Machine" displayName="$(string.AdminShares)" explainText="$(string.AdminShares_Help)" key="System\CurrentControlSet\Services\LanmanServer\Parameters" valueName="AutoShareWks">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_AutoShareServer" class="Machine" displayName="$(string.AdminSharesServer)" explainText="$(string.AdminSharesServer_Help)" key="System\CurrentControlSet\Services\LanmanServer\Parameters" valueName="AutoShareServer">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_DisableSavePassword" class="Machine" displayName="$(string.DisableSavePassword)" explainText="$(string.DisableSavePassword_Help)" key="SYSTEM\CurrentControlSet\Services\RasMan\Parameters" valueName="DisableSavePassword">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_EnableDeadGWDetect" class="Machine" displayName="$(string.EnableDeadGWDetect)" explainText="$(string.EnableDeadGWDetect_Help)" key="System\CurrentControlSet\Services\Tcpip\Parameters" valueName="EnableDeadGWDetect">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_EnableICMPRedirect" class="Machine" displayName="$(string.EnableICMPRedirect)" explainText="$(string.EnableICMPRedirect_Help)" key="System\CurrentControlSet\Services\Tcpip\Parameters" valueName="EnableICMPRedirect">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_HideFromBrowseList" class="Machine" displayName="$(string.HideFromBrowseList)" explainText="$(string.HideFromBrowseList_Help)" key="System\CurrentControlSet\Services\Lanmanserver\Parameters" valueName="Hidden">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_NoNameReleaseOnDemand" class="Machine" displayName="$(string.NoNameReleaseOnDemand)" explainText="$(string.NoNameReleaseOnDemand_Help)" key="System\CurrentControlSet\Services\Netbt\Parameters" valueName="NoNameReleaseOnDemand">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_PerformRouterDiscovery" class="Machine" displayName="$(string.PerformRouterDiscovery)" explainText="$(string.PerformRouterDiscovery_Help)" key="System\CurrentControlSet\Services\Tcpip\Parameters" valueName="PerformRouterDiscovery">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+    <policy name="Pol_MSS_SafeDllSearchMode" class="Machine" displayName="$(string.SafeDllSearchMode)" explainText="$(string.SafeDllSearchMode_Help)" key="SYSTEM\CurrentControlSet\Control\Session Manager" valueName="SafeDllSearchMode">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+
+
+    <policy name="Pol_MSS_ScreenSaverGracePeriod" class="Machine" displayName="$(string.ScreenSaverGracePeriod)" explainText="$(string.ScreenSaverGracePeriod_Help)" presentation="$(presentation.ScreenSaverGracePeriod)" key="Software\Microsoft\Windows NT\CurrentVersion\Winlogon">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="ScreenSaverGracePeriod" storeAsText="true" valueName="ScreenSaverGracePeriod"/>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_TcpMaxDataRetransmissions" class="Machine" displayName="$(string.TcpMaxDataRetransmissions)" explainText="$(string.TcpMaxDataRetransmissions_Help)" presentation="$(presentation.TcpMaxDataRetransmissions)" key="System\CurrentControlSet\Services\Tcpip\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="TcpMaxDataRetransmissions" valueName="TcpMaxDataRetransmissions"/>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_TcpMaxDataRetransmissionsIPv6" class="Machine" displayName="$(string.TcpMaxDataRetransmissionsIPv6)" explainText="$(string.TcpMaxDataRetransmissionsIPv6_Help)" presentation="$(presentation.TcpMaxDataRetransmissions)" key="System\CurrentControlSet\Services\Tcpip6\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <decimal id="TcpMaxDataRetransmissions" valueName="TcpMaxDataRetransmissions"/>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_DisableIPSourceRouting" class="Machine" displayName="$(string.DisableIPSourceRouting)" explainText="$(string.DisableIPSourceRouting_Help)" presentation="$(presentation.DisableIPSourceRouting)" key="System\CurrentControlSet\Services\Tcpip\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="DisableIPSourceRouting" valueName="DisableIPSourceRouting" required="true">
+          <item displayName="$(string.DisableIPSourceRouting0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.DisableIPSourceRouting1)"> <value> <decimal value="1"/> </value> </item>
+          <item displayName="$(string.DisableIPSourceRouting2)"> <value> <decimal value="2"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_DisableIPSourceRoutingIPv6" class="Machine" displayName="$(string.DisableIPSourceRoutingIPv6)" explainText="$(string.DisableIPSourceRoutingIPv6_Help)" presentation="$(presentation.DisableIPSourceRoutingIPv6)" key="System\CurrentControlSet\Services\Tcpip6\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="DisableIPSourceRoutingIPv6" valueName="DisableIPSourceRouting" required="true">
+          <item displayName="$(string.DisableIPSourceRouting0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.DisableIPSourceRouting1)"> <value> <decimal value="1"/> </value> </item>
+          <item displayName="$(string.DisableIPSourceRouting2)"> <value> <decimal value="2"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_NtfsDisable8dot3NameCreation" class="Machine" displayName="$(string.NtfsDisable8dot3NameCreation)" explainText="$(string.NtfsDisable8dot3NameCreation_Help)" presentation="$(presentation.NtfsDisable8dot3NameCreation)" key="System\CurrentControlSet\Control\FileSystem">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="NtfsDisable8dot3NameCreation" valueName="NtfsDisable8dot3NameCreation" required="true">
+          <item displayName="$(string.NtfsDisable8dot3NameCreation0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.NtfsDisable8dot3NameCreation1)"> <value> <decimal value="1"/> </value> </item>
+          <item displayName="$(string.NtfsDisable8dot3NameCreation2)"> <value> <decimal value="2"/> </value> </item>
+          <item displayName="$(string.NtfsDisable8dot3NameCreation3)"> <value> <decimal value="3"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_KeepAliveTime" class="Machine" displayName="$(string.KeepAliveTime)" explainText="$(string.KeepAliveTime_Help)" presentation="$(presentation.KeepAliveTime)" key="System\CurrentControlSet\Services\Tcpip\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="KeepAliveTime" valueName="KeepAliveTime" required="true">
+          <item displayName="$(string.KeepAliveTime0)"> <value> <decimal value="150000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime1)"> <value> <decimal value="300000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime2)"> <value> <decimal value="600000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime3)"> <value> <decimal value="1200000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime4)"> <value> <decimal value="2400000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime5)"> <value> <decimal value="3600000"/> </value> </item>
+          <item displayName="$(string.KeepAliveTime6)"> <value> <decimal value="7200000"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_NoDefaultExempt" class="Machine" displayName="$(string.NoDefaultExempt)" explainText="$(string.NoDefaultExempt_Help)" presentation="$(presentation.NoDefaultExempt)" key="System\CurrentControlSet\Services\IPSEC">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="NoDefaultExempt" valueName="NoDefaultExempt" required="true">
+          <item displayName="$(string.NoDefaultExempt0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.NoDefaultExempt1)"> <value> <decimal value="1"/> </value> </item>
+          <item displayName="$(string.NoDefaultExempt2)"> <value> <decimal value="2"/> </value> </item>
+          <item displayName="$(string.NoDefaultExempt3)"> <value> <decimal value="3"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_SynAttackProtect" class="Machine" displayName="$(string.SynAttackProtect)" explainText="$(string.SynAttackProtect_Help)" presentation="$(presentation.SynAttackProtect)" key="System\CurrentControlSet\Services\Tcpip\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="SynAttackProtect" valueName="SynAttackProtect" required="true">
+          <item displayName="$(string.SynAttackProtect0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.SynAttackProtect1)"> <value> <decimal value="1"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_TcpMaxConnectResponseRetransmissions" class="Machine" displayName="$(string.TcpMaxConnectResponseRetransmissions)" explainText="$(string.TcpMaxConnectResponseRetransmissions_Help)" presentation="$(presentation.TcpMaxConnectResponseRetransmissions)" key="System\CurrentControlSet\Services\Tcpip\Parameters">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="TcpMaxConnectResponseRetransmissions" valueName="TcpMaxConnectResponseRetransmissions" required="true">
+          <item displayName="$(string.TcpMaxConnectResponseRetransmissions0)"> <value> <decimal value="0"/> </value> </item>
+          <item displayName="$(string.TcpMaxConnectResponseRetransmissions1)"> <value> <decimal value="1"/> </value> </item>
+          <item displayName="$(string.TcpMaxConnectResponseRetransmissions2)"> <value> <decimal value="2"/> </value> </item>
+          <item displayName="$(string.TcpMaxConnectResponseRetransmissions3)"> <value> <decimal value="3"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+    <policy name="Pol_MSS_WarningLevel" class="Machine" displayName="$(string.WarningLevel)" explainText="$(string.WarningLevel_Help)" presentation="$(presentation.WarningLevel)" key="SYSTEM\CurrentControlSet\Services\Eventlog\Security">
+      <parentCategory ref="Cat_MSS" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="WarningLevel" valueName="WarningLevel" required="true">
+          <item displayName="$(string.WarningLevel0)"> <value> <decimal value="50"/> </value> </item>
+          <item displayName="$(string.WarningLevel1)"> <value> <decimal value="60"/> </value> </item>
+          <item displayName="$(string.WarningLevel2)"> <value> <decimal value="70"/> </value> </item>
+          <item displayName="$(string.WarningLevel3)"> <value> <decimal value="80"/> </value> </item>
+          <item displayName="$(string.WarningLevel4)"> <value> <decimal value="90"/> </value> </item>
+        </enum>
+      </elements>
+    </policy>
+
+  </policies>
+</policyDefinitions>
+
+<!--
+;========= Start of MSS Registry Values =========
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon,1,%DisableAutoLogon%,0
+MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl\AutoReboot,4,%AutoReboot%,0
+MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters\AutoShareWks,4,%AdminShares%,0
+MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters\AutoShareServer,4,%AdminSharesServer%,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting,4,%DisableIPSourceRouting%,3,0|%DisableIPSourceRouting0%,1|%DisableIPSourceRouting1%,2|%DisableIPSourceRouting2%
+MACHINE\SYSTEM\CurrentControlSet\Services\RasMan\Parameters\DisableSavePassword,4,%DisableSavePassword%,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\EnableDeadGWDetect,4,%EnableDeadGWDetect%,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\EnableICMPRedirect,4,%EnableICMPRedirect%,0
+MACHINE\System\CurrentControlSet\Services\Lanmanserver\Parameters\Hidden,4,%HideFromBrowseList%,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime,4,%KeepAliveTime%,3,150000|%KeepAliveTime0%,300000|%KeepAliveTime1%,600000|%KeepAliveTime2%,1200000|%KeepAliveTime3%,2400000|%KeepAliveTime4%,3600000|%KeepAliveTime5%,7200000|%KeepAliveTime6%
+MACHINE\System\CurrentControlSet\Services\IPSEC\NoDefaultExempt,4,%NoDefaultExempt%,3,0|%NoDefaultExempt0%,1|%NoDefaultExempt1%,2|%NoDefaultExempt2%,3|%NoDefaultExempt3% 
+MACHINE\System\CurrentControlSet\Services\Netbt\Parameters\NoNameReleaseOnDemand,4,%NoNameReleaseOnDemand%,0
+MACHINE\System\CurrentControlSet\Control\FileSystem\NtfsDisable8dot3NameCreation,4,%NtfsDisable8dot3NameCreation%,3,0|%NtfsDisable8dot3NameCreation0%,1|%NtfsDisable8dot3NameCreation1%,2|%NtfsDisable8dot3NameCreation2%,3|%NtfsDisable8dot3NameCreation3%
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\PerformRouterDiscovery,4,%PerformRouterDiscovery%,0
+MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SafeDllSearchMode,4,%SafeDllSearchMode%,0
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod,1,%ScreenSaverGracePeriod%,1
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\SynAttackProtect,4,%SynAttackProtect%,3,0|%SynAttackProtect0%,1|%SynAttackProtect1%
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxConnectResponseRetransmissions,4,%TcpMaxConnectResponseRetransmissions%,3,0|%TcpMaxConnectResponseRetransmissions0%,1|%TcpMaxConnectResponseRetransmissions1%,2|%TcpMaxConnectResponseRetransmissions2%,3|%TcpMaxConnectResponseRetransmissions3%
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions,4,%TcpMaxDataRetransmissions%,1
+MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel,4,%WarningLevel%,3,50|%WarningLevel0%,60|%WarningLevel1%,70|%WarningLevel2%,80|%WarningLevel3%,90|%WarningLevel4%
+MACHINE\System\CurrentControlSet\Services\Tcpip6\Parameters\DisableIPSourceRouting,4,%DisableIPSourceRoutingIPv6%,3,0|%DisableIPSourceRouting0%,1|%DisableIPSourceRouting1%,2|%DisableIPSourceRouting2% 
+MACHINE\System\CurrentControlSet\Services\Tcpip6\Parameters\TcpMaxDataRetransmissions ,4,%TcpMaxDataRetransmissionsIPv6%,1
+;========= End of MSS Registry Values =========
+-->

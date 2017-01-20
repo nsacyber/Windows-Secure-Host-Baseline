@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0"
+                   schemaVersion="1.0"
+                   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+    <policyNamespaces>
+        <target prefix="SecGuide" namespace="Microsoft.Policies.SecGuide" />
+        <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    </policyNamespaces>
+    <resources minRequiredRevision="1.0" />
+    <categories>
+        <category name="Cat_SecGuide" displayName="$(string.Cat_SecGuide)">
+        </category>
+    </categories>
+    <policies>
+        <policy name="Pol_PtH_LATFP"
+                class="Machine"
+                displayName="$(string.Pol_PtH_LATFP)"
+                explainText="$(string.Pol_PtH_LATFP_Help)"
+                key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
+                valueName="LocalAccountTokenFilterPolicy">
+            <parentCategory ref="Cat_SecGuide" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledValue>
+                <decimal value="0" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="1" />
+            </disabledValue>
+        </policy>
+        <policy name="Pol_PtH_WDigestAuthn"
+                class="Machine"
+                displayName="$(string.Pol_PtH_WDigestAuthn)"
+                explainText="$(string.Pol_PtH_WDigestAuthn_Help)"
+                key="SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest"
+                valueName="UseLogonCredential">
+            <parentCategory ref="Cat_SecGuide" />
+            <supportedOn ref="windows:SUPPORTED_Windows7" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Pol_PtH_LsassAudit"
+                class="Machine"
+                displayName="$(string.Pol_PtH_LsassAudit)"
+                explainText="$(string.Pol_PtH_LsassAudit_Help)"
+                key="SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe"
+                valueName="AuditLevel">
+            <parentCategory ref="Cat_SecGuide" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+            <enabledValue>
+                <decimal value="8" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+        <policy name="Pol_PtH_LsassRunAsPPL"
+                class="Machine"
+                displayName="$(string.Pol_PtH_LsassRunAsPPL)"
+                explainText="$(string.Pol_PtH_LsassRunAsPPL_Help)"
+                key="SYSTEM\CurrentControlSet\Control\Lsa"
+                valueName="RunAsPPL">
+            <parentCategory ref="Cat_SecGuide" />
+            <supportedOn ref="windows:SUPPORTED_Windows_6_3" />
+            <enabledValue>
+                <decimal value="1" />
+            </enabledValue>
+            <disabledValue>
+                <decimal value="0" />
+            </disabledValue>
+        </policy>
+    </policies>
+</policyDefinitions>
