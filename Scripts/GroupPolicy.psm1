@@ -13,76 +13,161 @@ Function Get-GPClientSideExtensions() {
     Get-GPClientSideExtensions
     #>
     [CmdletBinding()] 
-    [OutputType([System.Collections.Generic.List[object]])]
+    [OutputType([System.Collections.Hashtable])]
     Param()
 
-    $cseDefinitions = New-Object System.Collections.Generic.List[object]
+    $cseDefinitions = @{}
 
     $systemRoot = $env:SystemRoot
 
-    Get-ChildItem 'hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\' | Get-ItemProperty -Name 'PSChildName','(default)','DisplayName','DllName','ProcessGroupPolicy','ProcessGroupPolicyEx' -ErrorAction SilentlyContinue | ForEach-Object {
-        $cseGuid = $_.PsChildName
+    $gptExtPaths = [string[]]@('hklm:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\','hklm:\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\')
 
-        $cseName = ''
+    $gptExtPaths | ForEach-Object {
+        # can't use below code because it skips the registry CSE GUID due to the subkey not having any defined value names (other default, which is empty) under it
+        #Get-ChildItem $_ | Get-ItemProperty -Name 'PSChildName','(default)','DisplayName','DllName','ProcessGroupPolicy','ProcessGroupPolicyEx' -ErrorAction SilentlyContinue | ForEach-Object {
+            $cseRootPath = $_
+            (Get-Item $cseRootPath).GetSubKeyNames() | ForEach-Object {
+            
+            $cseGuid = $_
 
-        if ($_.PSObject.Properties.Name -contains '(default)') {
-           $cseName = $_.'(default)'
-        }
+            Write-Verbose -Message ('Processing {0}' -f $cseGuid)
 
-        # if $cseName -eq '' then use LoadLibrary($cseDll), LoadString($cseDisplayName offset, if it has a value), FreeLibrary
+            $valueNames = Get-Item ('{0}\{1}' -f $cseRootPath,$cseGuid) | Get-ItemProperty -Name 'PSChildName','(default)','DisplayName','DllName','ProcessGroupPolicy','ProcessGroupPolicyEx' -ErrorAction SilentlyContinue
 
-        #$cseDisplayName = ''
+            $cseName = ''
+            $cseDll = ''
+                        
+            if ($cseGuid -eq '{35378EAC-683F-11D2-A89A-00C04FBBCFA2}') {
+                $cseName = 'Registry'
+            }
 
-        #if ($_.PSObject.Properties.Name -contains 'DisplayName') {
-        #   $cseDisplayName = $_.DisplayName
-        #}
+            if ($valueNames -ne $null) {
 
-        $cseProcessName = ''
+                if ($valueNames.PSObject.Properties.Name -contains '(default)') {
+                    $cseName = $valueNames.'(default)'
+                }
 
-        if ($_.PSObject.Properties.Name -contains 'ProcessGroupPolicy') {
-           $cseProcessName = $_.ProcessGroupPolicy
-        }
+                # if $cseName -eq '' then use LoadLibrary($cseDll), LoadString($cseDisplayName offset, if it has a value), FreeLibrary
 
-        if ($cseName -eq '' -and $cseProcessName -ne '') {
-            $cseName = $cseProcessName
-            $cseName = $cseName.Replace('GroupPolicy','').Replace('Process','')
-        }
+                #$cseDisplayName = ''
 
-        $cseProcessNameEx = ''
+                #if ($_.PSObject.Properties.Name -contains 'DisplayName') {
+                #   $cseDisplayName = $_.DisplayName
+                #}
+
+                $cseProcessName = ''
+
+                if ($valueNames.PSObject.Properties.Name -contains 'ProcessGroupPolicy') {
+                    $cseProcessName = $valueNames.ProcessGroupPolicy
+                }
+
+                if ($cseName -eq '' -and $cseProcessName -ne '') {
+                    $cseName = $cseProcessName
+                    $cseName = $cseName.Replace('GroupPolicy','').Replace('Process','')
+                }
+
+                $cseProcessNameEx = ''
         
-        if ($_.PSObject.Properties.Name -contains 'ProcessGroupPolicyEx') {
-           $cseProcessNameEx = $_.ProcessGroupPolicyEx
-           $cseName = $cseName.Replace('GroupPolicyEx','').Replace('Process','')
+                if ($valueNames.PSObject.Properties.Name -contains 'ProcessGroupPolicyEx') {
+                    $cseProcessNameEx = $valueNames.ProcessGroupPolicyEx
+                    $cseName = $cseName.Replace('GroupPolicyEx','').Replace('Process','')
+                }
+
+                if ($cseName -eq '' -and $cseProcessNameEx -ne '') {
+                    $cseName = $cseProcessNameEx
+                }
+
+                $cseDll = $valueNames.DllName
+
+                if (-not([System.IO.Path]::IsPathRooted($cseDll))) {
+                    $cseDll = '{0}\System32\{1}' -f $systemRoot,$cseDll
+                }
+
+                if (-not(Test-Path -Path $cseDll)) {
+                    Write-Warning -Message ('{0} does not exist' -f $cseDll)
+                }
+            }
+
+            $cse = [pscustomobject]@{
+                Guid = $cseGuid;
+                #DisplayName = $cseDisplayName;
+                Name = $cseName;
+                Dll = $cseDll;
+            }
+
+            if (-not($cseDefinitions.ContainsKey($cseGuid))) {
+                $cseDefinitions.Add($cseGuid,$cse)
+            }
         }
-
-        if ($cseName -eq '' -and $cseProcessNameEx -ne '') {
-            $cseName = $cseProcessNameEx
-        }
-
-        $cseDll = $_.DllName
-
-        if (-not($cseDll.ToLower().StartsWith($systemRoot.ToLower()))) {
-            $cseDll = '{0}\System32\{1}' -f $systemRoot,$cseDll
-        }
-
-        if (-not(Test-Path -Path $cseDll)) {
-            throw "$cseDll does not exist"
-        }
-
-        $cse = [pscustomobject]@{
-            Guid = $cseGuid;
-            #DisplayName = $cseDisplayName;
-            Name = $cseName;
-            Dll = $cseDll;
-
-        }
-
-        $cseDefinitions.Add($cse)
     }
 
-    return ,[System.Collections.Generic.List[object]]$cseDefinitions
-
+    return $cseDefinitions
 }
+
+
+Function Get-GPOBackupClientSideExtensions() {
+    <#
+    .SYNOPSIS
+    Gets information about Group Policy Client Side Extensions that are listed as being used in the GPO backup.
+
+    .DESCRIPTION
+    Gets information about Group Policy Client Side Extensions that are listed as being used in the GPO backup.
+
+    .EXAMPLE
+    Get-GPOBackupClientSideExtensions -Path '.\Secure-Host-Baseline\Windows\Group Policy Objects\Computer\{A2A38432-E322-437F-9975-B7CC7F16F4AA}'
+    #>
+    [CmdletBinding()] 
+    [OutputType([System.Collections.Hashtable])]
+    Param(
+        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO backup folder')]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({Test-Path -Path $_ -PathType Container})]
+        [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
+        [string]$Path
+    )
+
+    $gpoBackupExtensions = @{}
+
+    $backupXmlFile = 'Backup.xml'
+
+    $backupXmlFilePath = Join-Path -Path $Path -ChildPath $backupXmlFile 
+
+    if(-not(Test-Path -Path $backupXmlFilePath)) {
+        throw "$backupXmlFilePath does not exist"
+    }
+
+    $backupXml = [xml](Get-Content -Path $backupXmlFilePath)
+
+    # note the extension GUIDs from the backup XML are two different types of extensions:
+    # 1. client side extension GUIDs which is what we care about
+    # 2. MMC snap-in GUIDs (can be enumerated under hklm:\SOFTWARE\Microsoft\MMC\SnapIns\ and hklm:\SOFTWARE\WOW6432Node\Microsoft\MMC\SnapIns\, FYI some have FX: prepended) which we don't care about
+    
+    $machineExtensions = [string[]]@()
+
+    if ($backupXml.GroupPolicyBackupScheme.GroupPolicyObject.GroupPolicyCoreSettings.MachineExtensionGuids -is [System.Xml.XmlElement]) {
+        $machineExtensions = [string[]]($backupXml.GroupPolicyBackupScheme.GroupPolicyObject.GroupPolicyCoreSettings.MachineExtensionGuids.'#cdata-section'.Replace('[','').Replace(']','').Replace('}{','},{').Split(','))
+    }
+
+    $userExtensions = [string[]]@()
+
+    if ($backupXml.GroupPolicyBackupScheme.GroupPolicyObject.GroupPolicyCoreSettings.UserExtensionGuids -is [System.Xml.XmlElement]) {
+        $userExtensions = [string[]]($backupXml.GroupPolicyBackupScheme.GroupPolicyObject.GroupPolicyCoreSettings.UserExtensionGuids.'#cdata-section'.Replace('[','').Replace(']','').Replace('}{','},{').Split(','))
+    }
+
+    $extensions = Get-GPClientSideExtensions
+
+    # filter out the MMC snap-in GUIDs by only returning the CSE GUIDs
+    [string[]]($machineExtensions + $userExtensions) | ForEach-Object {
+        if ($extensions.ContainsKey($_)) {
+            if (-not($gpoBackupExtensions.ContainsKey($_))) {
+                $gpoBackupExtensions.Add($_, $extensions[$_])
+            }
+        }
+    }
+
+    return $gpoBackupExtensions
+}
+
 
 Function Get-GPOBackupInformation() {
     <#
@@ -795,6 +880,8 @@ Function Import-LocalPolicyObject() {
             Write-Warning -Message ('Output: {0}{1}' -f [System.Environment]::NewLine,$output)
         }
     }
+
+    #todo apply CSEs from GP backup using LGPO /e option
 }
 
 Function Test-DomainPolicyExists() {
