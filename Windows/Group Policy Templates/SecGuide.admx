@@ -14,10 +14,10 @@
         </category>
     </categories>
     <policies>
-        <policy name="Pol_PtH_LATFP"
+        <policy name="Pol_SecGuide_LATFP"
                 class="Machine"
-                displayName="$(string.Pol_PtH_LATFP)"
-                explainText="$(string.Pol_PtH_LATFP_Help)"
+                displayName="$(string.Pol_SecGuide_LATFP)"
+                explainText="$(string.Pol_SecGuide_LATFP_Help)"
                 key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
                 valueName="LocalAccountTokenFilterPolicy">
             <parentCategory ref="Cat_SecGuide" />
@@ -29,10 +29,10 @@
                 <decimal value="1" />
             </disabledValue>
         </policy>
-        <policy name="Pol_PtH_WDigestAuthn"
+        <policy name="Pol_SecGuide_WDigestAuthn"
                 class="Machine"
-                displayName="$(string.Pol_PtH_WDigestAuthn)"
-                explainText="$(string.Pol_PtH_WDigestAuthn_Help)"
+                displayName="$(string.Pol_SecGuide_WDigestAuthn)"
+                explainText="$(string.Pol_SecGuide_WDigestAuthn_Help)"
                 key="SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest"
                 valueName="UseLogonCredential">
             <parentCategory ref="Cat_SecGuide" />
@@ -44,10 +44,10 @@
                 <decimal value="0" />
             </disabledValue>
         </policy>
-        <policy name="Pol_PtH_LsassAudit"
+        <policy name="Pol_SecGuide_LsassAudit"
                 class="Machine"
-                displayName="$(string.Pol_PtH_LsassAudit)"
-                explainText="$(string.Pol_PtH_LsassAudit_Help)"
+                displayName="$(string.Pol_SecGuide_LsassAudit)"
+                explainText="$(string.Pol_SecGuide_LsassAudit_Help)"
                 key="SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LSASS.exe"
                 valueName="AuditLevel">
             <parentCategory ref="Cat_SecGuide" />
@@ -59,10 +59,10 @@
                 <decimal value="0" />
             </disabledValue>
         </policy>
-        <policy name="Pol_PtH_LsassRunAsPPL"
+        <policy name="Pol_SecGuide_LsassRunAsPPL"
                 class="Machine"
-                displayName="$(string.Pol_PtH_LsassRunAsPPL)"
-                explainText="$(string.Pol_PtH_LsassRunAsPPL_Help)"
+                displayName="$(string.Pol_SecGuide_LsassRunAsPPL)"
+                explainText="$(string.Pol_SecGuide_LsassRunAsPPL_Help)"
                 key="SYSTEM\CurrentControlSet\Control\Lsa"
                 valueName="RunAsPPL">
             <parentCategory ref="Cat_SecGuide" />
@@ -73,6 +73,73 @@
             <disabledValue>
                 <decimal value="0" />
             </disabledValue>
+        </policy>
+        <policy name="Pol_SecGuide_RemoveRunasdifferentuser"
+                class="Machine"
+                displayName="$(string.Pol_SecGuide_RemoveRunasdifferentuser)"
+                explainText="$(string.Pol_SecGuide_RemoveRunasdifferentuser_Help)"
+                key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" >
+                >
+            <parentCategory ref="Cat_SecGuide" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <enabledList>
+              <item key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartBanner">
+                <value>
+                  <decimal value="1" />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\batfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <!-- 4096 == 0x1000 == REST_STARTBANNER -->
+                  <decimal value="4096" />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\cmdfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <!-- 4096 == 0x1000 == REST_STARTBANNER -->
+                  <decimal value="4096" />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\exefile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <!-- 4096 == 0x1000 == REST_STARTBANNER -->
+                  <decimal value="4096" />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\mscfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <!-- 4096 == 0x1000 == REST_STARTBANNER -->
+                  <decimal value="4096" />
+                </value>
+              </item>
+            </enabledList>
+            <disabledList>
+              <item key="SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" valueName="NoStartBanner">
+                <value>
+                  <delete />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\batfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\cmdfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\exefile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+              <item key="SOFTWARE\Classes\mscfile\shell\runasuser" valueName="SuppressionPolicy">
+                <value>
+                  <delete />
+                </value>
+              </item>
+            </disabledList>
         </policy>
     </policies>
 </policyDefinitions>

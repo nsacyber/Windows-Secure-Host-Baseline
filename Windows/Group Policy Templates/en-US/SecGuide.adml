@@ -6,8 +6,8 @@
   <resources>
     <stringTable>
       <string id="Cat_SecGuide">MS Security Guide</string>
-      <string id="Pol_PtH_LATFP">Apply UAC restrictions to local accounts on network logons</string>
-      <string id="Pol_PtH_LATFP_Help">This setting controls whether local accounts can be used for remote administration via network logon (e.g., NET USE, connecting to C$, etc.). Local accounts are at high risk for credential theft when the same account and password is configured on multiple systems.  Enabling this policy significantly reduces that risk.
+      <string id="Pol_SecGuide_LATFP">Apply UAC restrictions to local accounts on network logons</string>
+      <string id="Pol_SecGuide_LATFP_Help">This setting controls whether local accounts can be used for remote administration via network logon (e.g., NET USE, connecting to C$, etc.). Local accounts are at high risk for credential theft when the same account and password is configured on multiple systems.  Enabling this policy significantly reduces that risk.
 
 Enabled (recommended): Applies UAC token-filtering to local accounts on network logons. Membership in powerful group such as Administrators is disabled and powerful privileges are removed from the resulting access token. This configures the LocalAccountTokenFilterPolicy registry value to 0. This is the default behavior for Windows.
 
@@ -17,8 +17,8 @@ For more information about local accounts and credential theft, see "Mitigating 
 
 For more information about LocalAccountTokenFilterPolicy, see http://support.microsoft.com/kb/951016.
 	  </string>
-      <string id="Pol_PtH_WDigestAuthn">WDigest Authentication (disabling may require KB2871997)</string>
-      <string id="Pol_PtH_WDigestAuthn_Help">When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed.
+      <string id="Pol_SecGuide_WDigestAuthn">WDigest Authentication (disabling may require KB2871997)</string>
+      <string id="Pol_SecGuide_WDigestAuthn_Help">When WDigest authentication is enabled, Lsass.exe retains a copy of the user's plaintext password in memory, where it can be at risk of theft. Microsoft recommends disabling WDigest authentication unless it is needed.
 
 If this setting is not configured, WDigest authentication is disabled in Windows 8.1 and in Windows Server 2012 R2; it is enabled by default in earlier versions of Windows and Windows Server.
 
@@ -30,10 +30,17 @@ Disabled (recommended): Disables WDigest authentication. For this setting to wor
 
 For more information, see http://support.microsoft.com/kb/2871997 and http://blogs.technet.com/b/srd/archive/2014/06/05/an-overview-of-kb2871997.aspx .
 	  </string>
-      <string id="Pol_PtH_LsassAudit">Lsass.exe audit mode</string>
-      <string id="Pol_PtH_LsassAudit_Help">Enable auditing of Lsass.exe to evaluate feasibility of enabling LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
-      <string id="Pol_PtH_LsassRunAsPPL">LSA Protection</string>
-      <string id="Pol_PtH_LsassRunAsPPL_Help">Enable LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+      <string id="Pol_SecGuide_LsassAudit">Lsass.exe audit mode</string>
+      <string id="Pol_SecGuide_LsassAudit_Help">Enable auditing of Lsass.exe to evaluate feasibility of enabling LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+      <string id="Pol_SecGuide_LsassRunAsPPL">LSA Protection</string>
+      <string id="Pol_SecGuide_LsassRunAsPPL_Help">Enable LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+      <string id="Pol_SecGuide_RemoveRunasdifferentuser">Remove "Run As Different User" from context menus</string>
+      <string id="Pol_SecGuide_RemoveRunasdifferentuser_Help">This setting controls whether "Run As Different User" appears on the Shift+RightClick context menu for .bat, .cmd, .exe, and .msc files.
+
+Enabled (recommended): Keeps "Run As Different User" from appearing in the context menu when the user holds Shift while right-clicking on a .bat, .cmd, .exe, or .msc file in Explorer.
+
+Disabled: Restores the Windows default behavior for "Run As Different User."
+	  </string>
     </stringTable>
   </resources>
 </policyDefinitionResources>
