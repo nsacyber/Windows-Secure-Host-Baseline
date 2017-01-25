@@ -125,6 +125,8 @@ Function Get-GPOBackupClientSideExtensions() {
         [string]$Path
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     $gpoBackupExtensions = @{}
 
     $backupXmlFile = 'Backup.xml'
@@ -191,6 +193,8 @@ Function Get-GPOBackupInformation() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     $backupXmlFile = 'bkupInfo.xml'
 
@@ -259,6 +263,10 @@ Function Update-GPOBackup() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$NewGPOBackupPath
     )
+
+    $CurrentGPOBackupPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($CurrentGPOBackupPath)
+
+    $NewGPOBackupPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($NewGPOBackupPath)
 
     $backupXmlFile = 'bkupInfo.xml'
 
@@ -360,6 +368,8 @@ Function Get-GPOBackupFolders() {
         [string]$Path
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     return ,[System.IO.DirectoryInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $true } | Where-Object { Test-Path -Path (Join-Path -Path $_.FullName -ChildPath 'bkupInfo.xml') -PathType Leaf} | Where-Object { (Test-IsGuid -Value ($_.Name)) -eq $true })
 }
 
@@ -386,6 +396,8 @@ Function Test-IsGPOBackupFolder() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     $folder = [System.IO.DirectoryInfo[]]$Path
 
@@ -417,6 +429,8 @@ Function Get-GPODefinitions() {
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     $policyFiles = [System.IO.FileInfo[]]@(Get-ChildItem -Path $Path -Recurse | Where-Object { $_.PsIsContainer -eq $false -and $_.Name -eq 'policy.json' })
 
@@ -660,6 +674,8 @@ Function Invoke-Process() {
         [switch]$PassThru
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     $parameters = $PSBoundParameters
 
     $escapedArguments = ''
@@ -862,6 +878,10 @@ Function Import-LocalPolicyObject() {
         [string]$ToolPath
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
+
     if (-not(Test-IsGPOBackupFolder -Path $Path)) {
         throw "$Path is not a Group Policy backup folder path"
     }
@@ -980,6 +1000,8 @@ Function Import-DomainPolicyObject() {
         [System.Guid]$BackupGuid
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     if (-not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
         throw 'GroupPolicy module not available on this system'
     }
@@ -1058,6 +1080,10 @@ Function Import-PolicyObject() {
         [ValidateNotNullOrEmpty()]
         [System.Guid]$BackupGuid
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
 
     $parameters = $PSBoundParameters
 
@@ -1139,6 +1165,10 @@ Function New-LocalPolicyObjectBackup() {
         [string]$ToolPath
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
+
     $date = Get-Date
     $policyName = 'Local Group Policy Backup for {0} - {1:MM/dd/yyyy HH:mm:ss}' -f $env:COMPUTERNAME,$date
 
@@ -1187,6 +1217,8 @@ Function New-DomainPolicyObjectBackup() {
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     if (-not(Test-IsModuleAvailable -Name 'GroupPolicy')) {
         throw 'GroupPolicy module not available on this system'
@@ -1258,6 +1290,10 @@ Function New-PolicyObjectBackup() {
         [string]$Name
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
+
     $parameters = $PSBoundParameters
 
     if (('Local' -eq $PolicyType -or -not(Test-IsDomainJoined)) -and -not($parameters.ContainsKey('ToolPath'))) {
@@ -1320,6 +1356,8 @@ Function Get-FipsFileHash() {
         [ValidateSet('SHA1','SHA256','SHA384','SHA512',IgnoreCase=$true)]
         [string]$Algorithm
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     $provider = $null
 
@@ -1428,6 +1466,8 @@ Function Import-LocalCertificate() {
         [ValidateSet('Root','Intermediate', IgnoreCase = $true)]
         [string]$Store
     )
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
     $certSearchPath = ''
     $certStorePath = ''
@@ -1549,6 +1589,10 @@ Function Invoke-ApplySecureHostBaseline() {
     )
 
     #todo: add Prepare-SecureHostBaseline -Path $Path, currently might only need it to download LGPO.exe
+
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
 
     $parameters = $PSBoundParameters
 
