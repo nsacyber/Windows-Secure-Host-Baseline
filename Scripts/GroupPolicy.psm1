@@ -118,7 +118,7 @@ Function Get-GPOBackupClientSideExtensions() {
     [CmdletBinding()] 
     [OutputType([System.Collections.Hashtable])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO backup folder')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the GPO backup folder')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -185,7 +185,7 @@ Function Get-GPOBackupInformation() {
     [CmdletBinding()] 
     [OutputType([pscustomobject])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO backup folder')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the GPO backup folder')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -247,13 +247,13 @@ Function Update-GPOBackup() {
     [CmdletBinding(SupportsShouldProcess=$True)] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the current GPO backup folder.')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the current GPO backup folder.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$CurrentGPOBackupPath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path of the new GPO backup folder.')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the new GPO backup folder.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -321,7 +321,7 @@ Function Test-IsGuid() {
     [CmdletBinding()] 
     [OutputType([System.IO.DirectoryInfo[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A value to test')]
+        [Parameter(Mandatory=$true, HelpMessage='A value to test')]
         [ValidateNotNullOrEmpty()]
         [string]$Value
     )
@@ -353,7 +353,7 @@ Function Get-GPOBackupFolders() {
     [CmdletBinding()] 
     [OutputType([System.IO.DirectoryInfo[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path containing GPO backup folders.')]
+        [Parameter(Mandatory=$true, HelpMessage='A path containing GPO backup folders.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -380,7 +380,7 @@ Function Test-IsGPOBackupFolder() {
     [CmdletBinding()] 
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path of a GPO backup folders.')]
+        [Parameter(Mandatory=$true, HelpMessage='A path of a GPO backup folders.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -411,7 +411,7 @@ Function Get-GPODefinitions() {
     [CmdletBinding()] 
     [OutputType([System.Collections.Generic.List[object]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path containing policy.json files.')]
+        [Parameter(Mandatory=$true, HelpMessage='A path containing policy.json files.')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -468,11 +468,11 @@ Function Get-Intersection() {
     [CmdletBinding()]
     [OutputType([string[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='An array of string objects used as a reference for comparison')]
+        [Parameter(Mandatory=$true, HelpMessage='An array of string objects used as a reference for comparison')]
         [ValidateNotNullOrEmpty()]
         [string[]]$ReferenceObject,
 
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='An array of string objects compared to the reference objects')]
+        [Parameter(Mandatory=$true, HelpMessage='An array of string objects compared to the reference objects')]
         [ValidateNotNullOrEmpty()]
         [string[]]$DifferenceObject
     )
@@ -498,7 +498,7 @@ Function Test-IsModuleAvailable() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The module name')]
+        [Parameter(Mandatory=$true, HelpMessage='The module name')]
         [ValidateNotNullOrEmpty()]
         [string]$Name    
     )
@@ -569,7 +569,7 @@ Function Test-IsAdministrator() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param (
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The type of administrator to test for')]
+        [Parameter(Mandatory=$false, HelpMessage='The type of administrator to test for')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$AdministratorType
@@ -646,17 +646,17 @@ Function Invoke-Process() {
     #>
     [CmdletBinding()]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the file to execute')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the file to execute')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The arguments to pass to the executable')]
+        [Parameter(Mandatory=$false, HelpMessage='The arguments to pass to the executable')]
         [ValidateNotNullOrEmpty()]
         [string[]]$Arguments,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Return the results as an object')]
+        [Parameter(Mandatory=$false, HelpMessage='Return the results as an object')]
         [switch]$PassThru
     )
 
@@ -791,7 +791,7 @@ Function Get-GroupPolicyTemplateFolderPath() {
     [CmdletBinding()]
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The type of the template folder path to get.')]
+        [Parameter(Mandatory=$false, HelpMessage='The type of the template folder path to get.')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$TemplatePathType
@@ -848,13 +848,13 @@ Function Import-LocalPolicyObject() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the GPO to import')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the GPO to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to the LGPO tool')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
@@ -914,11 +914,11 @@ Function Test-DomainPolicyExists() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The GUID of the domain policy object')]
+        [Parameter(Mandatory=$false, HelpMessage='The GUID of the domain policy object')]
         [ValidateNotNullOrEmpty()]
         [System.Guid]$Guid,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The display name of the domain policy object')]
+        [Parameter(Mandatory=$false, HelpMessage='The display name of the domain policy object')]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
@@ -965,17 +965,17 @@ Function Import-DomainPolicyObject() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the Group Policy object to import')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the Group Policy object to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
+        [Parameter(Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
         [ValidateNotNullOrEmpty()]
         [string]$Name,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The GUID of the Group Policy object backup')]
+        [Parameter(Mandatory=$true, HelpMessage='The GUID of the Group Policy object backup')]
         [ValidateNotNullOrEmpty()]
         [System.Guid]$BackupGuid
     )
@@ -1032,29 +1032,29 @@ Function Import-PolicyObject() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the Group Policy Object to import')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the Group Policy Object to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to import')]
+        [Parameter(Mandatory=$false, HelpMessage='The type of the policy to import')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to the LGPO tool')]
+        [Parameter(Mandatory=$false, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$ToolPath,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
+        [Parameter(Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
         [ValidateNotNullOrEmpty()]
         [string]$Name,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The GUID of the Group Policy object backup')]
+        [Parameter(Mandatory=$false, HelpMessage='The GUID of the Group Policy object backup')]
         [ValidateNotNullOrEmpty()]
         [System.Guid]$BackupGuid
     )
@@ -1125,13 +1125,13 @@ Function New-LocalPolicyObjectBackup() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to save the backup to')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to LGPO tool')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
@@ -1177,13 +1177,13 @@ Function New-DomainPolicyObjectBackup() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to save the backup to')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
+        [Parameter(Mandatory=$true, HelpMessage='The display name of the Group Policy object')]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
@@ -1235,25 +1235,25 @@ Function New-PolicyObjectBackup() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path to save the backup to')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to save the backup to')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The type of the policy to backup')]
+        [Parameter(Mandatory=$false, HelpMessage='The type of the policy to backup')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The path to the LGPO tool')]
+        [Parameter(Mandatory=$false, HelpMessage='The path to the LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$ToolPath,
 
-         [Parameter(Position=3, Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
+        [Parameter(Mandatory=$false, HelpMessage='The display name of the Group Policy object')]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
@@ -1311,11 +1311,11 @@ Function Get-FipsFileHash() {
     [CmdletBinding()]
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the file to hash')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the file to hash')]
         [ValidateNotNullOrEmpty()]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the algorithm')]
+        [Parameter(Mandatory=$true, HelpMessage='The name of the algorithm')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('SHA1','SHA256','SHA384','SHA512',IgnoreCase=$true)]
         [string]$Algorithm
@@ -1367,13 +1367,13 @@ Function Test-FilesEqual() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The reference file')]
+        [Parameter(Mandatory=$true, HelpMessage='The reference file')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$ReferenceFile,
 
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The other file to test the reference against')]
+        [Parameter(Mandatory=$true, HelpMessage='The other file to test the reference against')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
@@ -1417,13 +1417,13 @@ Function Import-LocalCertificate() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
+        [Parameter(Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the certificate store')]
+        [Parameter(Mandatory=$true, HelpMessage='The name of the certificate store')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Root','Intermediate', IgnoreCase = $true)]
         [string]$Store
@@ -1506,44 +1506,44 @@ Function Invoke-ApplySecureHostBaseline() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
+        [Parameter(Mandatory=$true, HelpMessage='A path to the downloaded SHB package')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({Test-Path -Path $_ -PathType Container})]
         [ValidateScript({[System.IO.Directory]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The names of the policies to apply')]
+        [Parameter(Mandatory=$true, HelpMessage='The names of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Office 2016', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The scope of the policies to apply')]
+        [Parameter(Mandatory=$false, HelpMessage='The scope of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Computer', 'User', IgnoreCase=$true)]
         [string[]]$PolicyScopes = @('Computer','User'),
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The types of the policies to apply')]
+        [Parameter(Mandatory=$false, HelpMessage='The types of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Domain', 'Local', IgnoreCase=$true)]
         [string]$PolicyType,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The mode of the policies to apply')]
+        [Parameter(Mandatory=$false, HelpMessage='The mode of the policies to apply')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('Audit', 'Enforced', IgnoreCase=$true)]
         [string]$PolicyMode = 'Audit',
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed')]
+        [Parameter(Mandatory=$false, HelpMessage='A path to save backups to in case roll back is needed')]
         [ValidateNotNullOrEmpty()]
         [string]$BackupPath,
 
-        [Parameter(Position=6, Mandatory=$false, HelpMessage='The path to LGPO tool')]
+        [Parameter(Mandatory=$false, HelpMessage='The path to LGPO tool')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({([System.IO.FileInfo]$_).Name -eq 'lgpo.exe'})]
         [ValidateScript({Test-Path -Path $_ -PathType Leaf})]
         [ValidateScript({[System.IO.File]::Exists($ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($_))})]
         [string]$ToolPath,
 
-        [Parameter(Position=7, Mandatory=$false, HelpMessage='Update the Group Policy templates')]
+        [Parameter(Mandatory=$false, HelpMessage='Update the Group Policy templates')]
         [ValidateNotNullOrEmpty()]
         [switch]$UpdateTemplates
     )
