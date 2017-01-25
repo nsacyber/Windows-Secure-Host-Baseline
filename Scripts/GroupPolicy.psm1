@@ -42,7 +42,6 @@ Function Get-GPClientSideExtensions() {
             }
 
             if ($valueNames -ne $null) {
-
                 if ($valueNames.PSObject.Properties.Name -contains '(default)') {
                     $cseName = $valueNames.'(default)'
                 }
@@ -867,21 +866,29 @@ Function Import-LocalPolicyObject() {
         throw "$Path is not a Group Policy backup folder path"
     }
 
-    $result = Invoke-Process -Path $ToolPath -Arguments '/g',$Path -PassThru
+    $extensions = Get-GPOBackupClientSideExtensions -Path $Path
+    $extensionArguments = [string[]]@()
+
+    $extensions.Keys | ForEach-Object { 
+        $extensionArguments += '/e'
+        $extensionArguments += $_
+    }
+
+    $arguments = [string[]]@([string[]]@('/g',$Path) + $extensionArguments)
+
+    $result = Invoke-Process -Path $ToolPath -Arguments $arguments -PassThru
     
     $exitCode = $result.ExitCode
     $output = $result.Output
 
     if (0 -ne $exitCode) {
         Write-Warning -Message 'LGPO import might have not executed correctly'
-        Write-Warning -Message ('{Exit code: {1}' -f $exitCode)
+        Write-Warning -Message ('Exit code: {0}' -f $exitCode)
 
         if ($output -ne $null -and $output -ne '') {
             Write-Warning -Message ('Output: {0}{1}' -f [System.Environment]::NewLine,$output)
         }
     }
-
-    #todo apply CSEs from GP backup using LGPO /e option
 }
 
 Function Test-DomainPolicyExists() {
