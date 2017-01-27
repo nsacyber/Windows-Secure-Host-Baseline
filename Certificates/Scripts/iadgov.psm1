@@ -10,17 +10,17 @@ Function Import-CertificateDownlevel() {
     Imports a certificate on downlevel operating systems (Windows 7 and earlier) that do not have the Import-Certificate command.
 
     .EXAMPLE
-    Import-CertificateDownlevel -FilePath '.\root.cer' -StoreName 'Root' -StoreLocation 'LocalMachine'
+    Import-CertificateDownlevel -Path '.\root.cer' -StoreName 'Root' -StoreLocation 'LocalMachine'
 
     .EXAMPLE
-    Import-CertificateDownlevel -FilePath '.\intermediate.cer' -StoreName 'CertificateAuthority' -StoreLocation 'CurrentUser'
+    Import-CertificateDownlevel -Path '.\intermediate.cer' -StoreName 'CertificateAuthority' -StoreLocation 'CurrentUser'
     #>
     [CmdletBinding()]
     [OutputType([void])]
     Param (
         [Parameter(Mandatory=$true, HelpMessage='The path of the certificate file.')]
         [ValidateNotNullOrEmpty()]
-        [string]$FilePath,
+        [string]$Path,
 
         [Parameter(Mandatory=$true, HelpMessage='The name of the certificate store to import the certificate to.')]
         [ValidateNotNullOrEmpty()]
@@ -31,11 +31,13 @@ Function Import-CertificateDownlevel() {
         [System.Security.Cryptography.X509Certificates.StoreLocation]$StoreLocation
     )
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     $store = New-Object System.Security.Cryptography.X509Certificates.X509Store -ArgumentList $StoreName,$StoreLocation
 
     $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]::ReadWrite)
 
-    $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $FilePath
+    $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $Path
 
     $store.Add($certificate)
 

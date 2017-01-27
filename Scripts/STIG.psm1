@@ -22,6 +22,8 @@ Function Invoke-FileDownload() {
         ContentType = 'text/plain';
     }
 
+    $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
     $ProgressPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
@@ -245,8 +247,13 @@ Function Start-Browser() {
         [ValidatePattern('^.*\.html$')]
         [string]$HtmlPath
     )
+
+    $HtmlPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($HtmlPath)
+
     New-PSDrive -Name HKCR -PSProvider registry -Root HKEY_CLASSES_ROOT | Out-Null
+
     $browserPath = ((Get-ItemProperty 'HKCR:\http\shell\open\command').'(Default)').Split('"')[1]
+
     Start-Process -FilePath $browserPath -ArgumentList $HtmlPath -Verb Open
 }
 

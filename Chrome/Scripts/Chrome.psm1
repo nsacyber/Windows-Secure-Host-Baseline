@@ -143,6 +143,7 @@ Function Get-ChromeExtension() {
     $extensionFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $extensionFolder = $Path
     }
     
@@ -264,6 +265,7 @@ Function Get-ChromeInstaller() {
     $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $installerFolder = $Path
     }
     
@@ -290,8 +292,6 @@ Function Get-ChromeInstaller() {
         Method = 'Get';
         UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$ChromeVersion Safari/537.36"; # Chrome 64-bit on Windows 10 64-bit
     }
-
-    
 
     $proxyUri = [System.Net.WebRequest]::GetSystemWebProxy().GetProxy($uri)
 
@@ -372,6 +372,7 @@ Function Get-ChromeGroupPolicyTemplate() {
     $templateFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $templateFolder = $Path
     }
     
@@ -454,6 +455,7 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     $templateFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $templateFolder = $Path
     }
     

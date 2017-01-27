@@ -1,47 +1,4 @@
-﻿<#
-.SYNOPSIS
-Performs a system compliance check given an audit file. For accurate checks, must be running script in Administrator mode.
-
-.DESCRIPTION
-Version 1.1
-Parses/Compiles an audit file to perform system compliance check. This script is a standalone way of parsing and running .audit file compliance checks on Windows.
-
-Script currently supports following audit items:
-ANONYMOUS_SID_SETTING
-AUDIT_POLICY_SUBCATEGORY
-AUDIT_POWERSHELL
-CHECK_ACCOUNT
-FILE_CHECK
-FILE_PERMISSIONS
-FILE_VERSION
-LOCKOUT_POLICY
-PASSWORD_POLICY
-REG_CHECK
-REGISTRY_PERMISSIONS
-REGISTRY_SETTING
-REPORT
-SERVICE_POLICY
-USER_RIGHTS_POLICY
-
-Script requires Administrator mode to run most commands. 
-
-.PARAMETER File
-Audit File for compliance
-
-.PARAMETER verbose
-Enable verbose to see Error Messages 
-
-.SYNTAX
-Test-Compliance [[-File] <string>] [[-verbose] <switch>]
-
-.EXAMPLE
-. .\Compliance.ps1 
-Test-Compliance InternetExplorer.audit -verbose 
-
-#>
-
-
-$script:service_policy_key = "HKLM\SYSTEM\CurrentControlSet\Services\"
+﻿$script:service_policy_key = "HKLM\SYSTEM\CurrentControlSet\Services\"
 $script:service_policy_item = "start"
 $script:SERVICE_POLICY_AUTOMATIC = 2
 $script:SERVICE_POLICY_MANUAL = 3
@@ -724,6 +681,7 @@ function checkTEXT {
     .EXAMPLE
     checkText -funcName "Test" -valueData "x || y" -valToCheck "y"
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [String]$funcName, 
@@ -793,6 +751,7 @@ function checkDWORD {
     checkDWORD -funcName "Test" -valueData "1 || 2 || 3" -valToCheck 2
     checkDWORD -funcName "Test" -valueData "[1..5]" -valToCheck 3
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [String]$funcName, 
@@ -867,6 +826,7 @@ function checkPolicySet {
     checkPolicySet -funcName "Test" -valueData 'Disabled' -valToCheck $true -checkType 'CHECK_NOT_EQUAL'
 
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [String]$funcName, 
@@ -974,6 +934,7 @@ function AuditPowershell {
     .EXAMPLE
     AuditPowerShell -valueType "POLICY_TEXT" -valueData ".*\.audit" -PsArgs "ls" -Only_Show_CMD "YES" -checkType "CHECK_REGEX"
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_TEXT', '', IgnoreCase=$false)][String]$valueType, 
@@ -1048,6 +1009,7 @@ function RegCheck {
     .EXAMPLE
     RegCheck -valueData 'HKLM\Software\Policies\Google\Chrome\'
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_TEXT', '', IgnoreCase=$false)][String]$valueType, 
@@ -1121,6 +1083,7 @@ function checkRegSetting {
     .PARAMETER checkType
     (optional) Strict data type of registry key/item
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param (
         [Parameter(Mandatory=$true)][String]$path, 
@@ -1223,6 +1186,7 @@ function RegistrySetting {
     .EXAMPLE
     RegistrySetting -valueType 'POLICY_TEXT' -valueData '*.mil || *.net' -regKey 'HKLM\Software\Policies\Google\Chrome\' -regItem 'EnterpriseWebStoreURL'
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [Parameter(Mandatory=$true)][ValidateSet('POLICY_SET','POLICY_DWORD','POLICY_TEXT','POLICY_MULTI_TEXT', 'SMARTCARD_SET', 'LOCALACCOUNT_SET', IgnoreCase=$false)][String]$valueType, 
@@ -1279,6 +1243,7 @@ function FileCheck {
     .EXAMPLE
     FileCheck -valueType 'POLICY_TEXT' -valueData '%programfiles% (x86)\Google\Chrome\Application\chrome.exe' -fileOption 'MUST_EXIST'
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_TEXT', '', IgnoreCase=$false)][String]$valueType, 
@@ -1328,6 +1293,7 @@ function ServicePolicy {
     .EXAMPLE
     ServicePolicy -valueType 'SERVICE_SET' -valueData 'Automatic' -serviceName 'gupdate'
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('SERVICE_SET','', IgnoreCase=$false)][String]$valueType, 
@@ -1392,6 +1358,7 @@ function FileVersion {
     .EXAMPLE
     FileVersion -valueType 'POLICY_FILE_VERSION' -valueData '15.9' -file 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe' -fileOption 'MUST_EXIST' -checkType 'CHECK_GREATER_THAN_OR_EQUAL'
     #>
+    [CmdletBinding()]
     param(
         [ValidateSet('POLICY_FILE_VERSION', '', IgnoreCase=$false)][String]$valueType, 
         [Parameter(Mandatory=$true)][System.Version]$valueData, 
@@ -1458,6 +1425,7 @@ function LockoutPolicy {
     .EXAMPLE
     LockoutPolicy -valueType 'TIME_MINITE' -valueData '10' -lockoutPolicy LOCKOUT_DURATION -checkType 'CHECK_GREATER_THAN_OR_EQUAL'
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_DWORD', 'TIME_MINUTE',IgnoreCase=$false)][String]$valueType, 
@@ -1525,6 +1493,7 @@ function PasswordPolicy {
     .EXAMPLE
     PasswordPolicy -value_type 'POLICY_SET' -valueData 'Enabled' -passwordPolicy REVERSIBLE_ENCRYPTION
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_DWORD', 'TIME_DAY', 'POLICY_SET',IgnoreCase=$false)][String]$valueType, 
@@ -1588,6 +1557,7 @@ function AuditPolicySubCategory {
     .EXAMPLE
     AuditPolicySubCategory -valueType AUDIT_SET -valueData "Success, Failure" -audit_policy_subcategory "IPsec Main Mode"
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('AUDIT_SET', IgnoreCase=$false)][String]$valueType, 
@@ -1651,6 +1621,7 @@ function CheckAccount {
     .EXAMPLE
     CheckAccount -valueType POLICY_TEXT -valueData "Admin Acc Name" -accountType ADMINISTRATOR_ACCOUNT
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('POLICY_SET','POLICY_TEXT', IgnoreCase=$false)][String]$valueType, 
@@ -1710,6 +1681,7 @@ function UserRightsPolicy {
     .EXAMPLE
     UserRightsPolicy -valueType USER_RIGHT -valueData "Administrator" -rightType SeNetworkLogonRight
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('USER_RIGHT', IgnoreCase=$false)][String]$valueType, 
@@ -1974,6 +1946,7 @@ function FilePermissions {
     .EXAMPLE
     FilePermissions FILE_ACL 'ACL_NAME' 'C:\' $aclUserListStruct CANNOT_BE_NULL
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('FILE_ACL', IgnoreCase=$false)][String]$valueType, 
@@ -2065,6 +2038,7 @@ function RegistryPermissions {
     .EXAMPLE
     RegistryPermissions REG_ACL 'ACL_NAME' 'HKLM\SOFTWARE' $aclUserListStruct CANNOT_BE_NULL
     #>
+    [CmdletBinding()]
     [OutputType([bool])]
     param(
         [ValidateSet('REG_ACL', IgnoreCase=$false)][String]$valueType, 
@@ -2160,6 +2134,7 @@ function ProcessAudit {
     HashTable of Arrays containing Registry Access Control List
 
     #>
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)][psobject]$node,
         [psobject]$FileAclList,
@@ -2258,35 +2233,50 @@ function ProcessAudit {
 function Test-Compliance {
      <#
     .SYNOPSIS
-    Parses Audit files, builds grammar tree and process the audit file using the tree
+    Tests a system for compliance aganst compliance checks defined in a Nessus audit file.
 
     .DESCRIPTION
-    Builds grammer tree based on audit files and process the tree for compliance
+    Tests a system for compliance aganst compliance checks defined in a Nessus audit file.
 
-    .PARAMETER path
-    Path to the Audit file
+    Script currently supports following audit items:
+        ANONYMOUS_SID_SETTING
+        AUDIT_POLICY_SUBCATEGORY
+        AUDIT_POWERSHELL
+        CHECK_ACCOUNT
+        FILE_CHECK
+        FILE_PERMISSIONS
+        FILE_VERSION
+        LOCKOUT_POLICY
+        PASSWORD_POLICY
+        REG_CHECK
+        REGISTRY_PERMISSIONS
+        REGISTRY_SETTING
+        REPORT
+        SERVICE_POLICY
+        USER_RIGHTS_POLICY
 
-    .PARAMETER verbose
-    (opitional) To turn on verbose mode and print out more information on failed items
+    .PARAMETER Path
+    The path of the audit file.
 
     .EXAMPLE
-    Confirm-Compliance -path 'C:\File.audit' -verbose
+    Test-Compliance -Path 'C:\File.audit' -Verbose
     #>
-    param(
-        [String]$path,
-        [switch]$verbose)
+    [CmdletBinding()]
+    [OutputType([void])] 
+    Param(
+        [Parameter(Mandatory=$true, HelpMessage='The path of the audit file')]
+        [string]$Path
+    )
 
-    if (!(Test-Path $path)) {
-        Write-Host "$path does not exist"
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+
+
+    if (!(Test-Path $Path)) {
+        Write-Host "$Path does not exist"
         return
     }
-    $fd = Get-Content $path
-    $oldVerbose = $VerbosePreference
-    if ($verbose) {
-        $VerbosePreference = "continue"
-    } else {
-        $VerbosePreference = "SilentlyContinue"
-    }
+
+    $fd = Get-Content $Path
 
     $prevItem = ""                       #for multi-line definitions
     $lineNum = 0                         #line number for debugging
@@ -2500,7 +2490,5 @@ function Test-Compliance {
 
     #Process the audit file based on the grammar tree that was just created
     ProcessAudit $headNode $file_acl $reg_acl
-
-    $VerbosePreference = $oldVerbose
 }
 

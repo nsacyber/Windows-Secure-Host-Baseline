@@ -50,6 +50,7 @@ Function Get-AdobeReaderManifest() {
     $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $installerFolder = $Path
     }
     
@@ -159,6 +160,7 @@ Function Get-AdobeReaderOfflineInstaller() {
     $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $installerFolder = $Path
     }
     
@@ -280,6 +282,7 @@ Function Get-AdobeReaderPatch() {
     $installerFolder = $env:USERPROFILE,'Downloads' -join '\'
 
     if ($parameters.ContainsKey('Path')) {
+        $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
         $installerFolder = $Path
     }
     
