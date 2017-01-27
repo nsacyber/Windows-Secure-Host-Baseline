@@ -23,7 +23,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Wind
 See the [Hardware page](./../Hardware/README.md) for more information about hardware and firmware requirements to take full advantage of Windows 10 security features.
 
 ## Remove Legacy Features
-It is highly recommended to remove legacy features and protocols as known and unknown vulnerabilities in them expose the network to severe risk. NSA Information Assurance has issued security guidance for the removal of [Outdated Software and Protocols](https://www.iad.gov/iad/library/ia-advisories-alerts/outdated-software-and-protocols-update.cfm). The [LegacyComponents PowerShell module](./Scripts/) can be used to help with the removal of legacy components from Windows 10, like PowerShell 2.0, SMBv1, and NetBIOS.
+It is highly recommended to remove legacy features and protocols as known and unknown vulnerabilities in them expose the network to severe risk. NSA Information Assurance has issued security guidance for the removal of [Outdated Software and Protocols](https://www.iad.gov/iad/library/ia-advisories-alerts/outdated-software-and-protocols-update.cfm). The [Scripts folder](./Scripts/) contains a number of PowerShell modules that can be used to disable or remove legacy components from Windows 10 such as [PowerShell 2.0](./Scripts/PowerShell.psm1), [SMB 1.0](./Scripts/SMB.psm1), and [NetBIOS](./Scripts/NetBIOS.psm1).
 
 ## Guidance
 NSA Information Assurance guidance for Windows 10:
