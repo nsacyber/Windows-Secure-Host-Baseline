@@ -26,7 +26,7 @@ Function Get-GitHubRateLimit() {
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The raw markdown')]
+        [Parameter(Mandatory=$false, HelpMessage='The raw markdown')]
         [ValidateSet('Core','Search', IgnoreCase=$true)]
         [string]$API = 'core'
     )
@@ -189,15 +189,15 @@ Function Get-GitHubHtmlFromRawMarkdown() {
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The raw markdown')]
+        [Parameter(Mandatory=$true, HelpMessage='The raw markdown')]
         [AllowEmptyString()]
         [string]$Markdown,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The title for the HTML page')]
+        [Parameter(Mandatory=$true, HelpMessage='The title for the HTML page')]
         [AllowEmptyString()]
         [string]$Title,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The template for the HTML page')]
+        [Parameter(Mandatory=$true, HelpMessage='The template for the HTML page')]
         [AllowEmptyString()]
         [string]$Template
     )
@@ -263,7 +263,7 @@ Function Convert-MarkdownToHtml() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of a folder containing markdown files')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of a folder containing markdown files')]
         [ValidateNotNullOrEmpty()]
         [System.IO.FileInfo[]]$Files
     )
@@ -318,7 +318,7 @@ Function Convert-CsvToMarkdownTable() {
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='Path to CSV file')]
+        [Parameter(Mandatory=$true, HelpMessage='Path to CSV file')]
         [ValidateNotNullOrEmpty()]
         [System.IO.FileInfo]$Path
     )
@@ -373,7 +373,7 @@ Function Convert-MarkdownTableToCsv() {
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='Path to CSV file')]
+        [Parameter(Mandatory=$true, HelpMessage='Path to CSV file')]
         [ValidateNotNullOrEmpty()]
         [System.IO.FileInfo]$Path
     )
@@ -428,34 +428,34 @@ Function New-GitConfiguration() {
     [CmdletBinding()] 
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='GitHub account username')]
+        [Parameter(Mandatory=$true, HelpMessage='GitHub account username')]
         [ValidateNotNullOrEmpty()]
         [string]$Username,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='GitHub account email address')]
+        [Parameter(Mandatory=$true, HelpMessage='GitHub account email address')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({$_.Contains('@')})]
         [ValidateLength(3,254)]
         [string]$Email,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs')]
+        [Parameter(Mandatory=$false, HelpMessage='Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs')]
         [switch]$Public,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='Specifies the diff/merge tool to use')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies the diff/merge tool to use')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
         [string]$DiffMergeTool,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='Proxy URL and port')]
+        [Parameter(Mandatory=$false, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
         [string]$Proxy,
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('manager', IgnoreCase=$true)]
         [string]$CredentialManager,
 
-        [Parameter(Position=6, Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
+        [Parameter(Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^[A-Za-z0-9]{8}$')]
         [string]$SigningKey
@@ -635,34 +635,34 @@ Function New-GitConfigurationFile() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='GitHub account username')]
+        [Parameter(Mandatory=$true, HelpMessage='GitHub account username')]
         [ValidateNotNullOrEmpty()]
         [string]$Username,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='GitHub account email address')]
+        [Parameter(Mandatory=$true, HelpMessage='GitHub account email address')]
         [ValidateNotNullOrEmpty()]
         [ValidateScript({$_.Contains('@')})]
         [ValidateLength(3,254)]
         [string]$Email,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs')]
+        [Parameter(Mandatory=$false, HelpMessage='Prevents converting the email address to a GitHub private email address so the real email address will be exposed in commit logs')]
         [switch]$Public,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='Specifies the diff/merge tool to use')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies the diff/merge tool to use')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('SourceGear','Perforce',IgnoreCase=$true)]
         [string]$DiffMergeTool,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='Proxy URL and port')]
+        [Parameter(Mandatory=$false, HelpMessage='Proxy URL and port')]
         [ValidateNotNullOrEmpty()]
         [string]$Proxy,
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies the credential manager to use')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('manager','winstore','wincred', IgnoreCase=$true)]
         [string]$CredentialManager,
 
-        [Parameter(Position=6, Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
+        [Parameter(Mandatory=$false, HelpMessage='First 8 numbers/letters of your signing key')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^[A-Za-z0-9]{8}$')]
         [string]$SigningKey

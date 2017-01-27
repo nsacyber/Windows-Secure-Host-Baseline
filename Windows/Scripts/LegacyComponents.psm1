@@ -34,11 +34,11 @@ Function Test-RegistryValueName() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param(     
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the registry key, including the hive.')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the registry key, including the hive.')]
         [ValidateNotNullOrEmpty()]
         [string]$Path,
       
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the registry value to check.')]
+        [Parameter(Mandatory=$true, HelpMessage='The name of the registry value to check.')]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
@@ -71,7 +71,7 @@ Function Test-WindowsOptionalFeature() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The feature name to check.')]
+        [Parameter(Mandatory=$true, HelpMessage='The feature name to check.')]
         [ValidateNotNullOrEmpty()]
         [string]$FeatureName
     )
@@ -101,7 +101,7 @@ Function Uninstall-PowerShellEngine() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The PowerShell engine version')]
+        [Parameter(Mandatory=$false, HelpMessage='The PowerShell engine version')]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(1,2)]
         [UInt32]$Version = 2      
@@ -173,7 +173,7 @@ Function Disable-NetBIOS() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Disable NetBIOS on standalone systems')]
+        [Parameter(Mandatory=$false, HelpMessage='Disable NetBIOS on standalone systems')]
         [switch]$IncludeStandalone    
     )
 
@@ -222,7 +222,7 @@ Function Restore-NetBIOS() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Restore NetBIOS on standalone systems')]
+        [Parameter(Mandatory=$false, HelpMessage='Restore NetBIOS on standalone systems')]
         [switch]$IncludeStandalone    
     )
 
@@ -249,7 +249,7 @@ Function Test-IsSMBEnabled() {
     [CmdletBinding()]
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The SMB version')]
+        [Parameter(Mandatory=$true, HelpMessage='The SMB version')]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(1,3)]
         [UInt32]$Version   
@@ -344,7 +344,7 @@ Function Uninstall-SMB() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The SMB version')]
+        [Parameter(Mandatory=$false, HelpMessage='The SMB version')]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(1,1)]
         [UInt32]$Version = 1    

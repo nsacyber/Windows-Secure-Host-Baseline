@@ -92,12 +92,12 @@ Function Invoke-AdjustPrivilege() {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param (
-        [Parameter(Position=0, Mandatory = $true, HelpMessage = 'The privilege name')]
+        [Parameter(Mandatory = $true, HelpMessage = 'The privilege name')]
         [ValidateSet('SeSystemEnvironmentPrivilege', IgnoreCase=$false)] 
         [ValidateNotNullOrEmpty()]
         [string]$PrivilegeName,
 
-        [Parameter(Position=1, Mandatory = $false, HelpMessage = 'Whether or not to enable or disable the privilege.')]
+        [Parameter(Mandatory = $false, HelpMessage = 'Whether or not to enable or disable the privilege.')]
         [ValidateNotNullOrEmpty()]
         [bool]$Enable  = $true
     )
@@ -133,12 +133,12 @@ Function Test-IsFirmwareTablePresent() {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param (
-        [Parameter(Position=0, Mandatory = $true, HelpMessage = 'The firmware table provider')]
+        [Parameter(Mandatory = $true, HelpMessage = 'The firmware table provider')]
         [ValidateSet('ACPI','FIRM','RSMB', IgnoreCase=$true)] 
         [ValidateNotNullOrEmpty()]
         [string]$Provider,
 
-        [Parameter(Position=1, Mandatory = $true, HelpMessage = 'The firmware table name')]
+        [Parameter(Mandatory = $true, HelpMessage = 'The firmware table name')]
         [ValidateNotNullOrEmpty()]
         [string]$Table
     )
@@ -559,7 +559,7 @@ Function Get-ArchitectureName() {
     [CmdletBinding()]
     [OutputType([string])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='Architecture')]
+        [Parameter(Mandatory=$true, HelpMessage='Architecture')]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(0,12)]
         [Uint32]$Architecture
@@ -803,13 +803,13 @@ Function Test-IsSystemCredentialGuardReady() {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Include operating system tests')]
+        [Parameter(Mandatory=$false, HelpMessage='Include operating system tests')]
         [switch]$IncludeOS,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Include TPM tests')]
+        [Parameter(Mandatory=$false, HelpMessage='Include TPM tests')]
         [switch]$IncludeTPM,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Include IOMMU tests')]
+        [Parameter(Mandatory=$false, HelpMessage='Include IOMMU tests')]
         [switch]$IncludeIOMMU 
     )
 

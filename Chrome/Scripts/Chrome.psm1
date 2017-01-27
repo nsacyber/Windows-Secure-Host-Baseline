@@ -27,11 +27,11 @@ Function Get-ChromeVersion() {
     [CmdletBinding()] 
     [OutputType([System.Version])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome release channel')]
+        [Parameter(Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
         [string]$Channel = 'stable',
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -110,22 +110,22 @@ Function Get-ChromeExtension() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Chrome extension ID')]
+        [Parameter(Mandatory=$true, HelpMessage='The Chrome extension ID')]
         [string]$ExtensionID,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The Chrome extension title')]
+        [Parameter(Mandatory=$true, HelpMessage='The Chrome extension title')]
         [string]$ExtensionTitle,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The Chrome extension version')]
+        [Parameter(Mandatory=$true, HelpMessage='The Chrome extension version')]
         [string]$ExtensionVersion,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The Chrome browser version')]
+        [Parameter(Mandatory=$false, HelpMessage='The Chrome browser version')]
         [SYstem.Version]$ChromeVersion,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='The folder path to save the extension to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the extension to')]
         [string]$Path,
 
-        [Parameter(Position=5, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -232,21 +232,21 @@ Function Get-ChromeInstaller() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Chrome architecture')]
+        [Parameter(Mandatory=$true, HelpMessage='The Chrome architecture')]
         [ValidateSet('64','32', IgnoreCase = $true)]
         [string]$Architecture,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The Chrome browser version')]
+        [Parameter(Mandatory=$false, HelpMessage='The Chrome browser version')]
         [System.Version]$ChromeVersion,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The Chrome release channel')]
+        [Parameter(Mandatory=$false, HelpMessage='The Chrome release channel')]
         [ValidateSet('dev', 'canary', 'beta', 'stable', IgnoreCase = $true)]
         [string]$Channel = 'stable',
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the installer to')]
         [string]$Path,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -348,13 +348,13 @@ Function Get-ChromeGroupPolicyTemplate() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The Chrome browser version')]
+        [Parameter(Mandatory=$false, HelpMessage='The Chrome browser version')]
         [System.Version]$ChromeVersion,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the template zip file to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the template zip file to')]
         [string]$Path,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -441,10 +441,10 @@ Function Get-GoogleUpdateGroupPolicyTemplate() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The folder path to save the template file to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the template file to')]
         [string]$Path,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 

@@ -33,7 +33,6 @@ function isWindows10 (){
 function GetVolumeOfPath ($path){
 	#Split-Path returns C: need to append \ for use as a volume
 	return $(Split-Path $path -Qualifier) + "\"
-
 }
 
 function GetVolumesFromPaths([string[]]$paths){
@@ -57,18 +56,12 @@ function CreateCIPolicyXml ($scanPath, $policyOutPath) {
 
 	New-CIPolicy -Level PcaCertificate -FilePath $policyOutPath -DriverFiles $executables -Fallback Hash -UserPEs 3> CIPolicyLog.txt
 	Write-Host "Created file $policyOutPath"
-
 }
 
 function CreateCIPolicyBin ($policyPath, $binOutPath){
 	ConvertFrom-CIPolicy $policyPath $binOutPath
 	Write-Host "Created file $binOutPath"
 }
-
-
-
-
-
 
 function CreateVolumeShadowCopyOfVolumes($volumes){
 	$shadowCopies = @()
@@ -82,12 +75,10 @@ function CreateVolumeShadowCopyOfVolumes($volumes){
 				Remove-VolumeShadowCopy $shadowCopy.ShadowId
 			}
 
-
 			return $NULL
 		}
 		Write-Host "Created ShadowCopy with ID=$($shadowCopy.ShadowId)"	
 		$shadowCopies += $shadowCopy
-
 	}
 
 	return ,$shadowCopies
@@ -102,13 +93,11 @@ function New-VolumeShadowCopy(){
 			[string]$context
 	)
 
-
 	BEGIN{}
 
 	PROCESS{
 		return (Get-WmiObject -List Win32_ShadowCopy).Create($volume, $context)
 	}
-
 
 	END{}
 }
@@ -135,7 +124,6 @@ function Remove-VolumeShadowCopy(){
 
 		return $TRUE
 	}
-
 
 	END{}
 }
@@ -196,11 +184,8 @@ function CreateCodeIntegrityPolicyForPaths(
 		Merge-CIPolicy -PolicyPaths $FullCIPolicyXmlPath,$IncrementalCIPolicyXmlPath -OutputFilePath $FullCIPolicyXmlPath 
 	}
 
-
 	CreateCIPolicyBin $FullCIPolicyXmlPath $CIPolicyBinPath
 }
-
-
 
 
 function New-Symlink(){
@@ -212,14 +197,12 @@ function New-Symlink(){
 			[string]$target
 	)
 
-
 	BEGIN{}
 
 	PROCESS{
 		cmd /c mklink /d $link $target
 		return $LASTEXITCODE
 	}
-
 
 	END{}
 }
@@ -232,7 +215,6 @@ function Remove-Symlink(){
 			[string]$link
 	)
 
-
 	BEGIN{}
 
 	PROCESS{
@@ -240,16 +222,13 @@ function Remove-Symlink(){
 		return $LASTEXITCODE
 	}
 
-
 	END{}
 }
-
 
 
 function Get-OSVersion(){
 	return [environment]::OSVersion.Version
 }
-
 
 
 function Enable-AuditMode(){
@@ -432,14 +411,12 @@ function Test-MajorOSVersion(){
 			[int]$expectedMajorOsVersion
 	)
 
-
 	BEGIN{}
 
 	PROCESS{
 
 		return  $(Get-OSversion).major -eq $expectedMajorOsVersion
 	}
-
 
 	END{}
 }
@@ -472,7 +449,6 @@ function Test-DeviceGuardConfiguredToDeploy() {
 	}
 
 	return $TRUE
-
 }
 
 function Test-DeviceGuardPolicyReady() {
@@ -550,7 +526,6 @@ function New-CIPolicyFromGoldenSystem (){
 		[string[]]$ScanPaths = @("C:\")
 	)
 
-
 	BEGIN{}
 
 	PROCESS{
@@ -564,11 +539,7 @@ function New-CIPolicyFromGoldenSystem (){
 	
 	}
 
-
 	END{}
-
-	
-
 }
 
 

@@ -18,15 +18,15 @@ Function Import-CertificateDownlevel() {
     [CmdletBinding()]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The path of the certificate file.')]
+        [Parameter(Mandatory=$true, HelpMessage='The path of the certificate file.')]
         [ValidateNotNullOrEmpty()]
         [string]$FilePath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The name of the certificate store to import the certificate to.')]
+        [Parameter(Mandatory=$true, HelpMessage='The name of the certificate store to import the certificate to.')]
         [ValidateNotNullOrEmpty()]
         [System.Security.Cryptography.X509Certificates.StoreName]$StoreName,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The name of the certificate store location to import the certificate to.')]
+        [Parameter(Mandatory=$true, HelpMessage='The name of the certificate store location to import the certificate to.')]
         [ValidateNotNullOrEmpty()]
         [System.Security.Cryptography.X509Certificates.StoreLocation]$StoreLocation
     )

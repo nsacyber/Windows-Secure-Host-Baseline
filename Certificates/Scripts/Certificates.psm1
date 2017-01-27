@@ -28,12 +28,12 @@ Function Get-Certificates() {
     [CmdletBinding()] 
     [OutputType([System.Security.Cryptography.X509Certificates.X509Certificate2[]])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The certificate store location')]
+        [Parameter(Mandatory=$true, HelpMessage='The certificate store location')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('CurrentUser','LocalMachine',IgnoreCase=$true)]
         [string]$StoreLocation,
 
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='The certificate store name')]
+        [Parameter(Mandatory=$false, HelpMessage='The certificate store name')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('ACRS','ADDRESSBOOK','AuthRoot','CA','ClientAuthIssuer','Disallowed','DPNGRA','EFS','FlightRoot','FVE','FVE_NKP','My','REQUEST','Root','SmartCardRoot','Trust','TrustedDevices','TrustedPeople','TrustedPublisher','UserDS','Windows Live ID Token Issuer',IgnoreCase=$true)]
         [string]$StoreName
@@ -66,7 +66,7 @@ Function Get-CertificateStoreNames() {
     [CmdletBinding()] 
     [OutputType([string[]])] 
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The certificate store location')]
+        [Parameter(Mandatory=$true, HelpMessage='The certificate store location')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('CurrentUser','LocalMachine',IgnoreCase=$true)]
         [string]$StoreLocation
@@ -94,7 +94,7 @@ Function Get-CertificateStoreDisplayName() {
     [CmdletBinding()] 
     [OutputType([string])] 
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The certificate store name')]
+        [Parameter(Mandatory=$true, HelpMessage='The certificate store name')]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('ACRS','ADDRESSBOOK','AuthRoot','CA','ClientAuthIssuer','Disallowed','DPNGRA','EFS','FlightRoot','FVE','FVE_NKP','My','REQUEST','Root','SmartCardRoot','Trust','TrustedDevices','TrustedPeople','TrustedPublisher','UserDS','Windows Live ID Token Issuer',IgnoreCase=$true)]
         [string]$StoreName

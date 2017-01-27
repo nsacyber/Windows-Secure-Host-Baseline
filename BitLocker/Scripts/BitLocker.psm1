@@ -19,7 +19,7 @@ Function Get-BitLockerStatus() {
     [CmdletBinding()] 
     #[OutputType([FveApi.FVE_STATUS])] # throws an error since the type isn't added until the function has executed
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The drive letter, including : character, to get the BitLocker status for')]
+        [Parameter(Mandatory=$true, HelpMessage='The drive letter, including : character, to get the BitLocker status for')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^[A-Z]:$')]
         [string]$Drive
@@ -108,23 +108,23 @@ Function Start-BitLockerEncryption() {
     [CmdletBinding()] 
     [OutputType([System.Version])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The drive letter, including : character, to enable BitLocker on')]
+        [Parameter(Mandatory=$true, HelpMessage='The drive letter, including : character, to enable BitLocker on')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^[A-Z]:$')]
         [string]$Drive,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Specifies to use a PIN along with a TPM')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies to use a PIN along with a TPM')]
         [switch]$UsePin,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Specifies the PIN rather than being prompted for it')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies the PIN rather than being prompted for it')]
         [ValidateNotNullOrEmpty()]
         [System.Security.SecureString]$Pin,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='The path of a folder to store recovery password information')]
+        [Parameter(Mandatory=$false, HelpMessage='The path of a folder to store recovery password information')]
         [ValidateNotNullOrEmpty()]
         [System.IO.DirectoryInfo]$RecoveryPath,
 
-        [Parameter(Position=4, Mandatory=$false, HelpMessage='Specifies to restart the system so the BitLocker encryption process can start')]
+        [Parameter(Mandatory=$false, HelpMessage='Specifies to restart the system so the BitLocker encryption process can start')]
         [switch]$Restart 
     )
 

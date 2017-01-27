@@ -5,11 +5,11 @@ Function Invoke-FileDownload() {
     [CmdletBinding()]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='URL of a file to download')]
+        [Parameter(Mandatory=$true, HelpMessage='URL of a file to download')]
         [ValidateNotNullOrEmpty()]
         [System.Uri]$Url,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The path to download the file to')]
+        [Parameter(Mandatory=$true, HelpMessage='The path to download the file to')]
         [ValidateNotNullOrEmpty()]
         [string]$Path
     )
@@ -52,7 +52,7 @@ Function Test-AssemblyAvailable() {
     [CmdletBinding()]
     [OutputType([bool])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The assembly name')]
+        [Parameter(Mandatory=$true, HelpMessage='The assembly name')]
         [ValidateNotNullOrEmpty()]
         [string]$AssemblyName
     )
@@ -72,12 +72,12 @@ Function Expand-ZipFile() {
     [CmdletBinding()]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The zip file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The zip file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.zip$')]
         [System.IO.FileInfo]$File,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The directory path to expand the zip file to')]
+        [Parameter(Mandatory=$true, HelpMessage='The directory path to expand the zip file to')]
         [ValidateNotNullOrEmpty()]
         [System.IO.DirectoryInfo]$Directory
     )
@@ -103,17 +103,17 @@ Function Invoke-XslTransform() {
     [CmdletBinding()]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The XML file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The XML file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.xml$')]
         [System.IO.FileInfo]$XmlPath,
 
-        [Parameter(Position=1, Mandatory=$true, HelpMessage='The XSL file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The XSL file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.xsl$')]
         [System.IO.FileInfo]$XslPath,
 
-        [Parameter(Position=2, Mandatory=$true, HelpMessage='The HTML file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The HTML file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.html$')]
         [System.IO.FileInfo]$HtmlPath
@@ -142,7 +142,7 @@ Function Get-StigProfiles() {
     [CmdletBinding()]
     [OutputType([System.Collections.Generic.List[psobject]])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The XML file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The XML file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.xml$')]
         [System.IO.FileInfo]$XmlPath
@@ -178,7 +178,7 @@ Function Get-StigRules() {
     [CmdletBinding()]
     [OutputType([System.Collections.Generic.List[psobject]])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The XML file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The XML file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.xml$')]
         [System.IO.FileInfo]$XmlPath
@@ -240,7 +240,7 @@ Function Start-Browser() {
     [CmdletBinding()]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The HTML file path')]
+        [Parameter(Mandatory=$true, HelpMessage='The HTML file path')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.html$')]
         [string]$HtmlPath
@@ -288,20 +288,20 @@ Function Get-Stig() {
     [CmdletBinding(DefaultParameterSetName='All')]
     [OutputType([void])]
     Param (
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The STIG zip file URL', ParameterSetName='URL')]
+        [Parameter(Mandatory=$true, HelpMessage='The STIG zip file URL', ParameterSetName='URL')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.zip$')]
         [System.Uri]$Url,
 
-        [Parameter(Position=0,Mandatory=$true, HelpMessage='The STIG zip file path', ParameterSetName='File')]
+        [Parameter(Mandatory=$true, HelpMessage='The STIG zip file path', ParameterSetName='File')]
         [ValidateNotNullOrEmpty()]
         [ValidatePattern('^.*\.zip$')]
         [System.IO.FileInfo]$File,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Open the transformed STIG HTML in the default browser')]
+        [Parameter(Mandatory=$false, HelpMessage='Open the transformed STIG HTML in the default browser')]
         [switch]$Open,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Create a CSV file with STIG rules in it')]
+        [Parameter(Mandatory=$false, HelpMessage='Create a CSV file with STIG rules in it')]
         [switch]$Csv
     )
 

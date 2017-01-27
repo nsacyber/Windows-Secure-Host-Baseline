@@ -33,14 +33,14 @@ Function Get-AdobeReaderManifest() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The type of manifest')]
+        [Parameter(Mandatory=$true, HelpMessage='The type of manifest')]
         [ValidateSet('ARM','Reader','ReaderServices', IgnoreCase = $true)]
         [string]$ManifestType,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='The folder path to save the manifest to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the manifest to')]
         [string]$Path,
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -140,16 +140,16 @@ Function Get-AdobeReaderOfflineInstaller() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
+        [Parameter(Mandatory=$true, HelpMessage='The Adobe Reader version')]
         [System.Version]$Version,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
+        [Parameter(Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
         [switch]$Multilingual,     
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The folder path to save the installer to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the installer to')]
         [string]$Path,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -261,16 +261,16 @@ Function Get-AdobeReaderPatch() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$true, HelpMessage='The Adobe Reader version')]
+        [Parameter(Mandatory=$true, HelpMessage='The Adobe Reader version')]
         [System.Version]$Version,
 
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
+        [Parameter(Mandatory=$false, HelpMessage='Get the Multilingual User Interface (MUI) version of Adobe Reader')]
         [switch]$Multilingual,     
 
-        [Parameter(Position=2, Mandatory=$false, HelpMessage='The folder path to save the patch file to')]
+        [Parameter(Mandatory=$false, HelpMessage='The folder path to save the patch file to')]
         [string]$Path,
 
-        [Parameter(Position=3, Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
+        [Parameter(Mandatory=$false, HelpMessage='Use HTTP instead of HTTPS')]
         [switch]$UseHTTP
     )
 
@@ -375,10 +375,10 @@ Function Install-AdobeUpdateTask() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Force the task installation to occur even if Adobe Reader is not installed on the system')]
+        [Parameter(Mandatory=$false, HelpMessage='Force the task installation to occur even if Adobe Reader is not installed on the system')]
         [switch]$Force,
         
-        [Parameter(Position=1, Mandatory=$false, HelpMessage='Update the existing task')]
+        [Parameter(Mandatory=$false, HelpMessage='Update the existing task')]
         [switch]$Update  
     )
 
@@ -470,7 +470,7 @@ Function Invoke-AdobeUpdate() {
     [CmdletBinding()] 
     [OutputType([void])]
     Param(
-        [Parameter(Position=0, Mandatory=$false, HelpMessage='Force the update to occur even if the update waiting time period has not elapsed')]
+        [Parameter(Mandatory=$false, HelpMessage='Force the update to occur even if the update waiting time period has not elapsed')]
         [switch]$Force  
     )
 
