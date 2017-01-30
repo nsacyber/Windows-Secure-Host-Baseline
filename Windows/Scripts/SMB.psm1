@@ -1,3 +1,4 @@
+#requires -RunAsAdministrator
 #requires -Version 5
 Set-StrictMode -Version 5
 
@@ -184,6 +185,30 @@ Function Get-SMBDialect() {
     $dialect = Get-SmbConnection -ServerName 'localhost' | Where-Object { $_.ShareName -eq $drive } | Select-Object Dialect -ExpandProperty Dialect
 
     return [System.Version]$dialect
+}
+
+Function Get-SMBAuditResult() {
+    <#
+    .SYNOPSIS
+    Gets a unique list of IP addresses found in the SMB 1.0 auditing logs.
+
+    .DESCRIPTION
+    Gets a unique list of IP addresses found in the SMB 1.0 auditing logs.
+
+    .EXAMPLE
+    Get-SMBAuditResult
+    #>
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    Param()
+
+    $addresses = [string[]](Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-SmbServer/Audit';ProviderName='Microsoft-Windows-SmbServer';Id=3000;Level=4} -ErrorAction SilentlyContinue| Select-Object { ([xml]$_.ToXml()).Event.EventData.Data.'#text' } -Unique)
+    
+    if ($addresses -eq $null) {
+        $addresses = [string[]]@()
+    }
+
+    return ,$addresses
 }
 
 #todo: Get-SMBDialectsInUse function. use Get-SMBConnection for client side and Get-SMBSession for server side. return unique list of dialects in use @([Server,1.1],[Client,2.0])
