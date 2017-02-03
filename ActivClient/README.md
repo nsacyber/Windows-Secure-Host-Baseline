@@ -81,55 +81,60 @@ The corresponding files on the file system are:
 * C:\Program Files (x86)\HID Global\ActivClient\ac.mscredprov.pincache.dll
 
 ## What is the US Department of Defense configuration
-When using the ActivClient MSI file and selecting US Department of Defense configuration, the following registry values are created:
+Using the ActivClient MSI file to install the US Department of Defense configuration appears to make 3 configuration changes:
+1. Enables legacy card edge
+1. Enables notification of card expiration
+1. Enables notification of certificate expiration
 
-* HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\
-* Name: DefaultCardEdge
-* Value: 1
-* Type: DWORD
-
-* HKLM\Software\HID Global\ActivClient\Notifications\CardValidity\
-* Name: EnableCardValidityCheck
-* Value: 1
-* Type: DWORD
-
-* HKLM\Software\HID Global\ActivClient\Notifications\CardValidity\
-* Name: EnableCertificateValidityCheck
-* Value: 1
-* Type: DWORD
+The registry values are:
+* First change:
+    * HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\
+    * Name: DefaultCardEdge
+    * Value: 1
+    * Type: DWORD
+* Second change:
+    * HKLM\Software\HID Global\ActivClient\Notifications\CardValidity\
+    * Name: EnableCardValidityCheck
+    * Value: 1
+    * Type: DWORD
+* Third change:
+    * HKLM\Software\HID Global\ActivClient\Notifications\CardValidity\
+    * Name: EnableCertificateValidityCheck
+    * Value: 1
+    * Type: DWORD
 
 To recreate this using Group Policy, configure the following policy settings:
 
-1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Smart Card**
-1. Double click the **Turn on US Department of Defense configuration** policy 
-1. Select the **Enabled** radio button
-1. Click the **OK** button
+* First policy:
+    1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Smart Card**
+    1. Double click the **Turn on US Department of Defense configuration** policy 
+    1. Select the **Enabled** radio button
+    1. Click the **OK** button
+* Second policy:
+    1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Notifications Management**
+    1. Double click the **Display Card Expiration notification** policy 
+    1. Select the **Enabled** radio button
+    1. Click the **OK** button
+* Third policy:
+    1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Notifications Management**
+    1. Double click the **Display Certificate Expiration notification** policy 
+    1. Select the **Enabled** radio button
+    1. Click the **OK** button
 
-Enabling the **Turn on US Department of Defense configuration** policy configures the following registry value:
-* Path: HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\
-* Name: DefaultCardEdge
-* Value: 1
-* Type: DWORD
+These policies correspond to the following registry values.
 
-
-1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Notifications Management**
-1. Double click the **Display Card Expiration notification** policy 
-1. Select the **Enabled** radio button
-1. Click the **OK** button
-
-Enabling the **Display Card Expiration notification** policy configures the following registry value:
-* Path: HKLM\Software\Policies\HID Global\ActivClient\Notifications\CardValidity
-* Name: EnableCardValidityCheck
-* Value: 1
-* Type: DWORD
-
-1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Notifications Management**
-1. Double click the **Display Certificate Expiration notification** policy 
-1. Select the **Enabled** radio button
-1. Click the **OK** button
-
-Enabling the **Display Certificate Expiration notification** policy configures the following registry value:
-* Path: HKLM\Software\Policies\HID Global\ActivClient\Notifications\CertificateValidity\
-* Name: EnableCertificatesValidityCheck
-* Value: 1
-* Type: DWORD
+* Enabling the **Turn on US Department of Defense configuration** policy configures the following registry value:
+    * Path: HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\ 
+    * Name: DefaultCardEdge 
+    * Value: 1 
+    * Type: DWORD 
+* Enabling the **Display Card Expiration notification** policy configures the following registry value:
+    * Path: HKLM\Software\Policies\HID Global\ActivClient\Notifications\CardValidity\ 
+    * Name: EnableCardValidityCheck 
+    * Value: 1 
+    * Type: DWORD 
+* Enabling the **Display Certificate Expiration notification** policy configures the following registry value:
+    * Path: HKLM\Software\Policies\HID Global\ActivClient\Notifications\CertificateValidity\ 
+    * Name: EnableCertificatesValidityCheck 
+    * Value: 1 
+    * Type: DWORD 
