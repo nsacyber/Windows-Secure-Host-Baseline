@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitions	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					revision="710.1" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+	<policyNamespaces>
+		<target prefix="advanceddiagnostics" namespace="HIDGlobal.Policies.HIDGlobal.AdvancedDiagnostics" />
+		<using prefix="hidglobal" namespace="HIDGlobal.Policies.HIDGlobal" />
+	</policyNamespaces>
+	<!--  Define every superseeded ADM/ADMX -->
+	<supersededAdm fileName="ActivIdentity.AdvancedDiagnostics.admx" />			<!--  Delivered with ActivClient 7.0.x -->
+	<!--  Define minimum required ADML revision  -->
+	<resources minRequiredRevision="710.1" />
+	<supportedOn>
+		<definitions>
+			<definition name="SUPPORTED_ADVDIAG_GENERIC" displayName="$(string.SUPPORTED_ADVDIAG_GENERIC)"/>
+		</definitions>
+	</supportedOn>
+	<!--  Use category CAT_AdvancedDiagnostics defined in ActivIdentity.admx  -->
+	<policies>
+		<policy name="mail" class="Machine" displayName="$(string.policy_displayName_mail)" explainText="$(string.policy_explainText_mail)"
+				key="SOFTWARE\Policies\HID Global\AdvancedDiagnostics"
+				presentation="$(presentation.policy_presentation_mail)">
+				<parentCategory ref="hidglobal:CAT_AdvancedDiagnostics" />
+				<supportedOn ref="SUPPORTED_ADVDIAG_GENERIC" />
+				<elements>
+					<text id="idmail" valueName="mail" required="true" />
+				</elements>
+		</policy>
+		
+		<policy name="SmartCardDiagnosticOff" class="Machine" displayName="$(string.policy_displayName_SmartCardDiagnosticOff)" explainText="$(string.policy_explainText_SmartCardDiagnosticOff)"
+				key="SOFTWARE\Policies\HID Global\AdvancedDiagnostics"
+				valueName="SmartCardDiagnosticOff">
+				<parentCategory ref="hidglobal:CAT_AdvancedDiagnostics" />
+				<supportedOn ref="SUPPORTED_ADVDIAG_GENERIC" />
+				<enabledValue> <decimal value="1" /> </enabledValue>
+				<disabledValue> <decimal value="0" /> </disabledValue>
+		</policy>
+		
+		<policy name="HideMail" class="Machine" displayName="$(string.policy_displayName_HideMail)" explainText="$(string.policy_explainText_HideMail)"
+				key="SOFTWARE\Policies\HID Global\AdvancedDiagnostics"
+				valueName="HideMail">
+				<parentCategory ref="hidglobal:CAT_AdvancedDiagnostics" />
+				<supportedOn ref="SUPPORTED_ADVDIAG_GENERIC" />
+				<enabledValue> <decimal value="1" /> </enabledValue>
+				<disabledValue> <decimal value="0" /> </disabledValue>
+		</policy>
+	</policies>
+</policyDefinitions>

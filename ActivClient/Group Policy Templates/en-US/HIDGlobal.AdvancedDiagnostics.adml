@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitionResources revision="710.1" schemaVersion="1.0">
+	<displayName></displayName>
+	<description></description>
+	<resources>
+	
+		<stringTable>
+		
+			<string id="SUPPORTED_ADVDIAG_GENERIC">At least Windows Vista SP1</string>
+			<string id="policy_displayName_mail">Email address where the diagnostics report will be sent</string>
+			<string id="policy_explainText_mail">Specifies an email address where the diagnostics report will be sent.&#10;&#10;If this setting is disabled or not configured, the email address must be entered manually in the diagnostic message.</string>
+			<string id="policy_displayName_SmartCardDiagnosticOff">Turn off smart card diagnostics in Advanced Diagnostics</string>
+			<string id="policy_explainText_SmartCardDiagnosticOff">Disables advanced diagnostics on inserted smart cards.&#10;&#10;If this setting is disabled or not configured, advanced diagnostics are performed on inserted smart cards.</string>
+			<string id="policy_displayName_HideMail">Hide Email menu in Advanced Diagnostics</string>
+			<string id="policy_explainText_HideMail">Defines if users can access the Email menu in the Advanced Diagnostics interface, and sending the diagnostics report by email.&#10;&#10;If this setting is disabled or not configured, then the Email menu is displayed in the Advanced Diagnostics interface.</string>
+			
+		</stringTable>
+		
+		<presentationTable>
+		
+			<presentation id="policy_presentation_mail">
+				<textBox refId="idmail">
+					<label>Email Address</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			
+		</presentationTable>
+		
+	</resources>
+</policyDefinitionResources>

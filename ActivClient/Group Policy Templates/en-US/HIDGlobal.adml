@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitionResources revision="710.1" schemaVersion="1.0">
+	<displayName></displayName>
+	<description></description>
+	<resources>
+	
+		<stringTable>
+		
+			<!--  Root category  -->
+			<string id="category_displayName_HIDGlobal">HID Global</string>
+			
+			<!--  Sub-categories  -->
+			<string id="category_displayName_Logging">Logging</string>
+			<string id="category_displayName_AdvancedDiagnostics">Advanced Diagnostics</string>
+			
+		</stringTable>
+		
+	</resources>
+</policyDefinitionResources>

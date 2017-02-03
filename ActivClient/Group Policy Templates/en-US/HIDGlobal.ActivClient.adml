@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitionResources revision="710.1" schemaVersion="1.0">
+	<displayName></displayName>
+	<description></description>
+	<resources>
+	
+		<stringTable>
+		
+			<string id="SUPPORTED_AC70_GENERIC">At least Windows Vista SP1</string>
+			<string id="SUPPORTED_AC71_FROM_WINDOWS8">At least Windows 8</string>
+			<string id="SUPPORTED_AC71_BELOW_WINDOWS8">Windows 7 and earlier</string>
+			
+			<!--  Root category  -->
+			<string id="category_displayName_ActivClient">ActivClient</string>
+			
+			<!--  Sub-categories  -->
+			<string id="category_displayName_CertificateAvailability">Certificate Availability</string>
+			<string id="category_displayName_LogonWindow">Logon Window</string>
+			<string id="category_displayName_NotificationAreaIcon">Notification Area Icon</string>
+			<string id="category_displayName_NotificationsManagement">Notifications Management</string>
+			<string id="category_displayName_OutlookEnhancements">Outlook Enhancements</string>
+			<string id="category_displayName_PinCaching">PIN Caching</string>
+			<string id="category_displayName_PinInitTool">PIN Initialization Tool</string>
+			<string id="category_displayName_PinManagement">PIN Management</string>
+			<string id="category_displayName_SmartCard">Smart Card</string>
+			<string id="category_displayName_SmartCardAutoUpdate">Smart Card Auto Update</string>
+			<string id="category_displayName_SmartCardReaders">Smart Card Readers</string>
+			<string id="category_displayName_SoftwareAutoUpdate">Software Auto Update</string>
+			<string id="category_displayName_UserConsole">User Console</string>
+			
+			<!--  Policies  -->
+			
+				<!--  Sub-category CertificateAvailability -->
+				<string id="policy_displayName_AutoConfigEFS">Turn off automatic configuration of Microsoft Windows EFS smart card certificate</string>
+				<string id="policy_explainText_AutoConfigEFS">Disables the automatic configuration of the Encrypting File System feature with a smart card certificate after Microsoft Windows PKI smart card logon. This feature automatically selects which certificate will be used for EFS.&#10;&#10;If this setting is not configured or disabled, then the certificate that will be used for EFS is automatically selected.</string>
+				<string id="policy_displayName_AutoUnRegOnLogOff">Remove certificates from Microsoft Windows on logoff</string>
+				<string id="policy_explainText_AutoUnRegOnLogOff">Defines if user certificates are removed from Microsoft Windows when users log off.&#10;&#10;Enable this feature if you are using a shared Microsoft Windows account and you do not want to see the certificates from all the users using their smart card on this computer, or if this computer is primarily used to issue smart cards for other users.&#10;&#10;When this setting is enabled, the smart card must remain inserted during logoff for certificates to be removed from Microsoft Windows properly.&#10;&#10;If this setting is not configured or disabled, then certificates are not removed from Microsoft Windows on logoff.</string>
+				<string id="policy_displayName_AutoUnRegOnRemove">Remove certificates from Microsoft Windows on smart card removal</string>
+				<string id="policy_explainText_AutoUnRegOnRemove">Removes user certificates from Microsoft Windows when users remove their smart card.&#10;&#10;Enable this feature if you are using a shared Windows account and you do not want to see the certificates from all the users using their smart card on this computer, or if this computer is primarily used to issue smart cards for other users.&#10;&#10;If this setting is not configured or disabled, then certificates are not removed from Microsoft Windows on card removal.</string>
+				<string id="policy_displayName_EnableReplaceCertDisplay">Display certificate replacement warning</string>
+				<string id="policy_explainText_EnableReplaceCertDisplay">Defines if a warning is displayed before the default certificate is replaced during certificate download with Microsoft Internet Explorer.&#10;&#10;If this setting is not configured or disabled, then the warning is not displayed.</string>
+				
+				<!--  Sub-category Logging -->
+				<string id="policy_displayName_LoggingEnabled">Turn on ActivClient logging</string>
+				<string id="policy_explainText_LoggingEnabled">Defines if users can generate log files for every action performed by ActivClient. No security sensitive information is logged. This might affect performance and should be activated only when required by Technical Support for troubleshooting purposes.&#10;&#10;If this setting is not configured or disabled, then ActivClient actions are not logged.</string>
+				<string id="policy_displayName_EnableWindowsPKILoginProfiling">Enable ActivClient performance logging for Microsoft Windows PKI Smart Card Logon</string>
+				<string id="policy_explainText_EnableWindowsPKILoginProfiling">Enables the creation of entries in the Microsoft Windows Event Viewer when a Microsoft Windows PKI Smart Card Logon starts and ends. This is used to troubleshoot Microsoft Windows PKI Smart Card Logon performance. Caution is needed when the smart card is used for other operations such as email signing or SSL authentication, as incorrect entries might be added in the Microsoft Windows Event Viewer.&#10;&#10;If this setting is not configured or disabled, then Microsoft Windows PKI Smart Card Logon performances are not logged.</string>
+				
+				<!--  Sub-category LogonWindow -->
+				<string id="policy_displayName_BannerHiRes">Static logon banner – High resolution</string>
+				<string id="policy_explainText_BannerHiRes">Specifies the path to a banner (in .bmp format) to be displayed in the Enter PIN window in high resolution mode.&#10;&#10;If this setting is not configured or disabled, then the ActivID ActivClient static banner is displayed.</string>
+				
+				<!--  Sub-category NotificationAreaIcon -->
+				<string id="policy_displayName_OTPClipboardTimeOut">Clipboard One-Time Password expiration (in seconds)</string>
+				<string id="policy_explainText_OTPClipboardTimeOut">Defines for how long (in seconds) the One-Time Password is available on the Clipboard.&#10;&#10;If this setting is not configured, then the One-Time Password is available for 30 seconds on the Clipboard.&#10;&#10;If this setting is disabled, then the generated One-Time Password is not automatically copied to the Clipboard.</string>
+				<string id="policy_displayName_OTPWindowTimeout">One-Time Password window duration (in seconds)</string>
+				<string id="policy_explainText_OTPWindowTimeout">Defines for how long (in seconds) the One-Time Password notification window is displayed.&#10;&#10;If this setting is not configured, the One-Time Password notification window is displayed for 10 seconds.&#10;&#10;If this setting is disabled, then the generated One-Time Password is not displayed in a notification window.</string>
+				<string id="policy_displayName_HideGetOTP">Hide Get One-Time Password menu</string>
+				<string id="policy_explainText_HideGetOTP">Defines if the Get One-Time Password menu is displayed, allowing users to generate a smart card-based One-Time Password from the ActivClient Agent.&#10;&#10;If this setting is not configured or disabled, the Get One-Time password menu is displayed.</string>
+				<string id="policy_displayName_HideOpenUserConsole">Hide Open menu</string>
+				<string id="policy_explainText_HideOpenUserConsole">Defines if the Open menu item is displayed in the ActivClient Agent menu. This option opens the ActivClient User Console.&#10;&#10;If this setting is not configured or disabled, the Open menu item is displayed.</string>
+				<string id="policy_displayName_HideInitPIN">Hide PIN Initialization Tool menu</string>
+				<string id="policy_explainText_HideInitPIN">Defines if the PIN Initialization Tool menu item is displayed in the ActivClient Agent menu. This option starts the PIN Initialization Tool, allowing users to initialize smart cards.&#10;&#10;Note: This menu is not displayed if the Pin Initialization Tool feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the PIN Initialization Tool menu is displayed.</string>
+				<string id="policy_displayName_HideAdvancedDiagnostics">Hide Advanced Diagnostics menu</string>
+				<string id="policy_explainText_HideAdvancedDiagnostics">Defines if the Advanced Diagnostics menu item is displayed in the ActivClient Agent menu. This option starts the Advanced Diagnostics tool, allowing users and help desk operators to diagnose ActivClient.&#10;&#10;Note: This menu is not displayed if the Troubleshooting feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the Advanced Diagnostics menu is displayed.</string>
+				<string id="policy_displayName_HideIcon">Hide notification area icon</string>
+				<string id="policy_explainText_HideIcon">Defines if the ActivClient Smart Card agent icon is displayed in the Microsoft Windows notification area.&#10;&#10;If this setting is not configured or disabled, then the ActivClient Agent icon is displayed.</string>
+				
+				<!--  Sub-category NotificationsManagement -->
+				<string id="NotificationsManagement_LogoffLock">At log off and screen lock</string>
+				<string id="NotificationsManagement_Logoff">Only at log off</string>
+				<string id="NotificationsManagement_Never">Never</string>
+				<string id="policy_displayName_CardAutoUpdateWarningDuration">Card Auto-Update Alert duration (in seconds)</string>
+				<string id="policy_explainText_CardAutoUpdateWarningDuration">Defines for how long (in seconds) the Card Auto-Update Alert is displayed.&#10;&#10;If this setting is not configured or disabled, then the Card Auto-Update Alert is displayed for 5 seconds.</string>
+				<string id="policy_displayName_CardAutoUpdateWarningMessage">Card Auto-Update Alert message (Windows 7 and earlier)</string>
+				<string id="policy_explainText_CardAutoUpdateWarningMessage">Specifies the message displayed to users when a card auto-update request is available.&#10;&#10;Note: To be displayed properly, the message must not exceed 243 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_CardAutoUpdateWarningToastMessage">Card Auto-Update Alert message (Windows 8 and later)</string>
+				<string id="policy_explainText_CardAutoUpdateWarningToastMessage">Specifies the message displayed to users when a card auto-update request is available.&#10;&#10;Note: To be displayed properly, the message must not exceed 60 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_CardAutoUpdateWarningToastTitle">Card Auto-Update Alert title (Windows 8 and later)</string>
+				<string id="policy_explainText_CardAutoUpdateWarningToastTitle">Specifies the title displayed to users when a card auto-update request is available.&#10;&#10;Note: To be displayed properly, the message must not exceed 40 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_HideBlockedCardManager">Hide Blocked Card Manager message when a smart card with a blocked card manager is inserted</string>
+				<string id="policy_explainText_HideBlockedCardManager">Defines if the Blocked Card Manager message is displayed when users insert a smart card with a blocked Card Manager.&#10;&#10;If this setting is not configured or disabled, the message is displayed when users insert a smart card with a blocked Card Manager.</string>
+				<string id="policy_displayName_BlockedCardManagerMessage">Blocked Card Manager message (Windows 7 and earlier)</string>
+				<string id="policy_explainText_BlockedCardManagerMessage">Specifies the message displayed to users when a smart card with a blocked Card Manager is inserted.&#10;&#10;Note: To be displayed properly, the message must not exceed 243 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_BlockedCardManagerToastMessage">Blocked Card Manager message (Windows 8 and later)</string>
+				<string id="policy_explainText_BlockedCardManagerToastMessage">Specifies the message displayed to users when a smart card with a blocked Card Manager is inserted.&#10;&#10;Note: To be displayed properly, the message must not exceed 60 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_BlockedCardManagerToastTitle">Blocked Card Manager title (Windows 8 and later)</string>
+				<string id="policy_explainText_BlockedCardManagerToastTitle">Specifies the title displayed to users when a smart card with a blocked Card Manager is inserted.&#10;&#10;Note: To be displayed properly, the message must not exceed 40 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_LockedCardMessage">Locked Card message (Windows 7 and earlier)</string>
+				<string id="policy_explainText_LockedCardMessage">Specifies the message displayed to users when a locked smart card is inserted that cannot be unlocked with ActivClient (no static unlock code or challenge/response unlock).&#10;&#10;If this setting is not configured or disabled, the default text “ActivClient has detected that the inserted smart card PIN is locked. Please contact the person or organization who gave you this card.” is displayed.</string>
+				<string id="policy_displayName_LockedCardToastMessage">Locked Card message (Windows 8 and later)</string>
+				<string id="policy_explainText_LockedCardToastMessage">Specifies the message displayed to users when a locked smart card is inserted that cannot be unlocked with ActivClient (no static unlock code or challenge/response unlock).&#10;&#10;Note: To be displayed properly, the message must not exceed 60 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_LockedCardToastTitle">Locked Card title (Windows 8 and later)</string>
+				<string id="policy_explainText_LockedCardToastTitle">Specifies the title displayed to users when a locked smart card is inserted that cannot be unlocked with ActivClient (no static unlock code or challenge/response unlock).&#10;&#10;Note: To be displayed properly, the message must not exceed 40 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_CardValidityCheckDelay">Delay before checking expiration after card insertion (in seconds)</string>
+				<string id="policy_explainText_CardValidityCheckDelay">Defines for how long (in seconds) ActivClient should wait after smart card insertion or Microsoft Windows logon/unlock before checking for smart card or certificate expiration.&#10;&#10;If this setting is not configured or disabled, the delay is 20 seconds.</string>
+				<string id="policy_displayName_CardValidityExpirationNotificationPeriod">Expiration notification period (in days)</string>
+				<string id="policy_explainText_CardValidityExpirationNotificationPeriod">Defines for how long (in days) the card or certificate expiration warning is displayed once the smart card or certificate has expired.&#10;&#10;If this setting is not configured or disabled, then the notification period is 5 days.</string>
+				<string id="policy_displayName_CardValidityCheckSentence">Expiration warning message</string>
+				<string id="policy_explainText_CardValidityCheckSentence">Specifies the message displayed when the user's smart card or a certificate has expired or will expire soon.&#10;&#10;Note: To be displayed properly, the message must not exceed 190 characters.&#10;&#10;If this setting is not configured or disabled, the default text “Contact the person or organization who gave you this smart card.” is displayed.</string>
+				<string id="policy_displayName_CardValidityCheckPeriod">Expiration warning period (in days)</string>
+				<string id="policy_explainText_CardValidityCheckPeriod">Defines for how long (in days), before smart card or certificate expiration, the warning message should start to be displayed.&#10;&#10;If this setting is not configured or disabled, then the message starts to be displayed 60 days before expiration.</string>
+				<string id="policy_displayName_CardValidityEnableCardValidityCheck">Display Card Expiration notification</string>
+				<string id="policy_explainText_CardValidityEnableCardValidityCheck">Defines if the Card Expiration notification is displayed to users when their smart card has expired or is about to expire.&#10;&#10;Note: A preference also exists for this setting, which may affect the behavior if this policy setting is not configured.&#10;&#10;If this setting is not configured or disabled, the Card Expiration notification is not displayed.</string>
+				<string id="policy_displayName_CertificateValidityEnableCertificatesValidityCheck">Display Certificate Expiration notification</string>
+				<string id="policy_explainText_CertificateValidityEnableCertificatesValidityCheck">Defines if the Certificate Expiration notification is displayed to users when their certificates have expired or are about to expire.&#10;&#10;Note: A preference also exists for this setting, which may affect the behavior if this policy setting is not configured.&#10;&#10;If this setting is not configured or disabled, then the Certificate Expiration notification is not displayed.</string>
+				<string id="policy_displayName_DisableNoReaderWarning">Hide No Smart Card Reader Alert</string>
+				<string id="policy_explainText_DisableNoReaderWarning">Defines if an alert to inform users that no smart card reader is connected to the workstation is displayed.&#10;&#10;If this setting is not configured or disabled, then the alert is displayed when no reader is connected</string>
+				<string id="policy_displayName_EnableSmartCardPresenceWarning">Unattended Smart Card Alert</string>
+				<string id="policy_explainText_EnableSmartCardPresenceWarning">Defines when to warn users if their smart card is still inserted in the smart card reader at log off or screen lock. ActivClient can be configured to notify user at log off and screen, at log off only, or never. ActivClient offers audio-only notification (a beep).&#10;&#10;If this setting is not configured or disabled, user is getting notified of the unattended smart card at log off and screen lock.</string>
+				<string id="policy_displayName_AudioFilePath">Unattended Smart Card Sound</string>
+				<string id="policy_explainText_AudioFilePath">Specifies the full path to an audio file to be played when a smart card is still inserted in the smart card reader at log off or screen lock.&#10;&#10;If this setting is not configured or disabled, user is getting notified of the unattended smart card with the default sound (three beeps).</string> 
+				<string id="policy_displayName_NoReaderWarningDuration">No Smart Card Reader Alert duration (in seconds)</string>
+				<string id="policy_explainText_NoReaderWarningDuration">Defines for how long (in seconds) the No Smart Card Reader Alert is displayed.&#10;&#10;If this setting is not configured or disabled, then the alert is displayed for 5 seconds.</string>
+				<string id="policy_displayName_NoReaderWarningMessage">No Smart Card Reader Alert message (Windows 7 and earlier)</string>
+				<string id="policy_explainText_NoReaderWarningMessage">Specifies the message displayed to users when no smart card reader is connected to the workstation.&#10;&#10;Note: To be displayed properly, the message must not exceed 243 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_NoReaderWarningToastMessage">No Smart Card Reader Alert message (Windows 8 and later)</string>
+				<string id="policy_explainText_NoReaderWarningToastMessage">Specifies the message displayed to users when no smart card reader is connected to the workstation.&#10;&#10;Note: To be displayed properly, the message must not exceed 60 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+				<string id="policy_displayName_NoReaderWarningToastTitle">No Smart Card Reader Alert title (Windows 8 and later)</string>
+				<string id="policy_explainText_NoReaderWarningToastTitle">Specifies the title displayed to users when no smart card reader is connected to the workstation.&#10;&#10;Note: To be displayed properly, the message must not exceed 40 characters.&#10;&#10;If this setting is not configured or disabled, then the default text is displayed.</string>
+						
+				<!--  Sub-category OutlookEnhancements -->
+				<string id="CRLCheck_Disabled">Disabled</string>
+				<string id="CRLCheck_EnabledEnforced">Enabled and enforced</string>
+				<string id="CRLCheck_Enabled">Enabled and not enforced</string>
+				<string id="HashAlgorithm_MD5">MD5</string>
+				<string id="HashAlgorithm_SHA1">SHA-1</string>
+				<string id="HashAlgorithm_SHA256">SHA-256</string>
+				<string id="HashAlgorithm_SHA384">SHA-384</string>
+				<string id="HashAlgorithm_SHA512">SHA-512</string>
+				<string id="EncryptionAlgorithm_3DES">3DES</string>
+				<string id="EncryptionAlgorithm_AES128">AES (128-bit)</string>
+				<string id="EncryptionAlgorithm_AES192">AES (192-bit)</string>
+				<string id="EncryptionAlgorithm_AES256">AES (256-bit)</string>
+				<string id="EncryptionAlgorithm_DES">DES</string>
+				<string id="EncryptionAlgorithm_RC240">RC2 (40-bit)</string>
+				<string id="EncryptionAlgorithm_RC264">RC2 (64-bit)</string>
+				<string id="EncryptionAlgorithm_RC2128">RC2 (128-bit)</string>
+				<string id="policy_displayName_AllowNameMismatch">Allow different email addresses in smart card certificate and Microsoft Exchange account</string>
+				<string id="policy_explainText_AllowNameMismatch">Defines if ActivClient checks that the smart card certificates used to configure the Microsoft Outlook profile (and also published to the GAL) are associated to the current Microsoft Outlook user. Specifically, it validates that the certificate email address corresponds to the email address configured for the Microsoft Exchange account.&#10;&#10;If this setting is not configured or disabled, then the email address in certificate is checked against the address configured for the user in Microsoft Exchange account.</string>
+				<string id="policy_displayName_DisableAutoRegOutlook">Turn off setup email certificates in Microsoft Outlook on card insertion</string>
+				<string id="policy_explainText_DisableAutoRegOutlook">Disables the automatic configuration of the Microsoft Outlook security profile on smart card insertion.&#10;&#10;If this setting is not configured or disabled, the Microsoft Outlook security profile is updated with the certificate from the smartcard on card insertion.</string>
+				<string id="policy_displayName_AutoContactAddOff">Turn off automatic addition of sender's certificates to Microsoft Outlook contacts</string>
+				<string id="policy_explainText_AutoContactAddOff">Disables the automatic creation and update of contact information with the sender's certificate attached to the opened email.&#10;&#10;If this setting is not configured or disabled, then the sender's certificates are automatically added to the Microsoft Outlook contacts</string>
+				<string id="policy_displayName_AutoDecrypt">Turn on automatic decryption of encrypted emails</string>
+				<string id="policy_explainText_AutoDecrypt">Enables the automatic decryption of opened emails. It also allows saving copies of emails locally in non-encrypted format.&#10;&#10;Automatically decrypted emails remain decrypted. Consider the security implications before using this setting.&#10;&#10;If this setting is not configured or disabled, then the encrypted emails are not automatically decrypted and do not remain decrypted.</string>
+				<string id="policy_displayName_PublishToGal">Turn on automatic publication of certificates to the Global Address List</string>
+				<string id="policy_explainText_PublishToGal">Enables the automatic publication of the user encryption certificate to the Global Address List (GAL) on smart card insertion.&#10;&#10;If this setting is not configured or disabled, then certificates are not published to the GAL on card insertion.</string>
+				<string id="policy_displayName_CRLCheck">Check CRL for Microsoft Outlook security profile creation and Publish to GAL</string>
+				<string id="policy_explainText_CRLCheck">Defines if a CRL check is required in order to automatically configure email certificates in Microsoft Outlook and to automatically publish certificates to the GAL. If “enabled and enforced”, the operation is not performed if the CRL is unavailable or if the certificate status is revoked or on hold. If “enabled and not enforced”, the operation is performed and a Microsoft Windows event warning is created if the CRL is unavailable or if the certificate status is revoked or on hold. If disabled, the operation is performed regardless of the CRL check status.&#10;&#10;If the setting is not configured, it is set to “Enabled and enforced”.</string>
+				<string id="policy_displayName_CRLCheckTimeout">Check CRL timeout for Microsoft Outlook security profile creation and Publish to GAL</string>
+				<string id="policy_explainText_CRLCheckTimeout">Defines the timeout in milliseconds (ms) for each certificate CRL check. Recommended values are between 0 and 50000.&#10;&#10;0 is used to represent the system default of 20000 ms.&#10;&#10;If this setting is not configured or disabled, the value is set to 0.</string>
+				<string id="policy_displayName_AuditAutoConfiguration">Disable audit for Microsoft Outlook security profile creation and Publish to GAL</string>
+				<string id="policy_explainText_AuditAutoConfiguration">Disables the audit of Microsoft Outlook security profile creation and certificate publication to the Global Address List.&#10;&#10;If this setting is not configured or disabled, then audit is performed.</string>
+				<string id="policy_displayName_AutoContactStorage">Microsoft Outlook Auto-Contact destination folder</string>
+				<string id="policy_explainText_AutoContactStorage">Specifies the location where contacts are updated in Microsoft Outlook. This folder must already have been created.&#10;&#10;If this setting is not configured or disabled, contacts are updated in the Microsoft Outlook Contacts folder.</string>
+				<string id="policy_displayName_HashAlgorithm">Hash algorithm configured in Security Profile on card insertion</string>
+				<string id="policy_explainText_HashAlgorithm">Defines the hashing algorithm configured in the Microsoft Outlook security profile on smart card insertion.&#10;&#10;Note: MD5 algorithm is not supported in Microsoft Outlook 2010.&#10;&#10;If this setting is not configured or disabled, then SHA-1 is used.</string>
+				<string id="policy_displayName_EncryptionAlgorithm">Encryption algorithm configured in Security Profile on card insertion</string>
+				<string id="policy_explainText_EncryptionAlgorithm">Defines the encryption algorithm configured in the Microsoft Outlook security profile on smart card insertion.&#10;&#10;If this setting is not configured or disabled, then 3DES is used.</string>
+				
+				<!--  Sub-category PinCaching -->
+				<string id="policy_displayName_TimeOutToClearCache">Number of minutes before PIN cache is cleared</string>
+				<string id="policy_explainText_TimeOutToClearCache">Defines the number of minutes before the PIN cache is cleared. The default value is 15.&#10;&#10;If this value is set to 9999, the PIN cache timeout is infinite. This means that PIN cache is cleared at log off or shutdown or session disconnect or card removal or workstation lock (depending on the Disable PIN cache clearance on workstation lock setting).&#10;&#10;If this setting is disabled or not configured, then the default value is taken into account.</string>	
+				<string id="policy_displayName_PerProcessPINCaching">Allow per-process PIN caching</string>
+				<string id="policy_explainText_PerProcessPINCaching">Defines if the PIN cache is shared between Microsoft Windows processes.&#10;&#10;If this setting is not configured or disabled, then all processes running in the same session share the same PIN cache.</string>
+				<string id="policy_displayName_PINCacheFlushOnLock">Disable PIN cache clearance on workstation lock</string>
+				<string id="policy_explainText_PINCacheFlushOnLock">Disables the clearance of the PIN cache when the workstation is locked.&#10;&#10;If this setting is not configured or disabled, then the PIN is cleared from the cache when the workstation is locked.&#10;&#10;Note: Disabling PIN cache clearance when the workstation is locked lowers the smart card deployment security.</string>
+				<string id="policy_displayName_PINCachingForPINAlwaysConfiguredPrivateKeys">Enable PIN caching for “PIN Always” private keys</string>
+				<string id="policy_explainText_PINCachingForPINAlwaysConfiguredPrivateKeys">Defines if the PIN cache is applicable for operations with a private key configured for “PIN Always”. If enabled, a confirmation dialog guarantees non-repudiation for these operations.&#10;&#10;If this setting is not configured or disabled, then PIN entry is required for all operations with a private key configured for “PIN Always”.&#10;&#10;Note: If this setting is enabled, per-process PIN caching is recommended for improved security, and is required for FIPS 201 compliance.</string>
+				
+				<!--  Sub-category PinInitTool -->
+				<string id="policy_displayName_PinInitToolDisableOTPReset">Turn Off OTP Initialized Card Re initialization</string>
+				<string id="policy_explainText_PinInitToolDisableOTPReset">Defines if users can re initialize a card with One-Time Password personalized.&#10;&#10;If this setting is not configured or Disabled, then the One-Time Password card can be re initialized.</string>	
+				
+				<!--  Sub-category PinManagement -->
+				<string id="policy_displayName_EnablePINPolicyVerificationBeforePINCheck">Allow ActivClient to validate the PIN code against the PIN policy before validating the PIN code against the smart card.</string>
+				<string id="policy_explainText_EnablePINPolicyVerificationBeforePINCheck">Defines if, during PIN authentication, ActivClient checks the compliance of the entered PIN code with the PIN length policy before verifying the PIN code against the smart card.&#10;&#10;If this setting is not configured or disabled, then ActivClient does not validate the PIN code against the PIN policy first.</string>
+				<string id="policy_displayName_PreventAlphaPIN">Prevent alphabetic characters in PIN code</string>
+				<string id="policy_explainText_PreventAlphaPIN">Defines if users can enter alphabetic characters in their PIN code.&#10;&#10;If this setting is disabled or not configured, then ActivClient accepts alphabetic characters in the PIN code.</string>
+				<string id="policy_displayName_DisplayInitCard">Display New Card window on card insertion</string>
+				<string id="policy_explainText_DisplayInitCard">Defines if users are prompted to initialize their smart card as soon as the non-initialized smart card is inserted into the reader. It is advised to disable this setting for deployments with ActivID Authentication Server or ActivID Credential Management System, as these products manage the PIN instead of ActivClient.&#10;&#10;If this setting is disabled or not configured, then ActivClient does not prompt users to initialize their smart card.</string>
+				<string id="policy_displayName_DisableUnlockDlgOnLockedCardInserted">Prevent Unlock Card window prompt when a locked card is inserted</string>
+				<string id="policy_explainText_DisableUnlockDlgOnLockedCardInserted">Disables prompting users with the Unlock Card window when users insert a locked smart card if this feature does not suit your deployment (for example, if you do not provide a card unlock service via the telephone).&#10;&#10;If this setting is disabled or not configured, then ActivClient prompts users with the Unlock Card window.</string>
+				<string id="policy_displayName_UnlockCardContactTelephoneNumber">Unlock card contact telephone number</string>
+				<string id="policy_explainText_UnlockCardContactTelephoneNumber">Specifies the contact telephone number that is displayed in the Unlock Card window prompt.&#10;&#10;If this setting is not configured or disabled, then no contact telephone number is displayed in the Unlock Card window prompt.</string>
+				<string id="policy_displayName_DisableCancelChangePINatFirstUse">Prevent cancellation of Change PIN at first use</string>
+				<string id="policy_explainText_DisableCancelChangePINatFirstUse">Disallows users from canceling the Change PIN process when they use their smart card for the first time.&#10;&#10;If this setting is disabled or not configured, then users can cancel the Change PIN process at first use.</string>
+				<string id="policy_displayName_EnableLargePINEntry">Allow entry of PIN code longer than the maximum PIN length</string>
+				<string id="policy_explainText_EnableLargePINEntry">Defines if users can enter a PIN code for verification against the smart card that is longer than the maximum PIN length.&#10;&#10;If this setting is disabled or not configured, then users cannot enter a PIN code that is longer than the maximum PIN length to the smart card.</string>
+				<string id="policy_displayName_PreventSmallPINEntry">Prevent entry of PIN code shorter than the minimum PIN length</string>
+				<string id="policy_explainText_PreventSmallPINEntry">Defines if users can enter a PIN code for verification against the smart card that is shorter than the minimum PIN length.&#10;&#10;If this setting is disabled or not configured, then users can enter a PIN code that is shorter than the minimum PIN length to the smart card.</string>
+				<string id="policy_displayName_PreventSamePINChange">Prevent users from reusing the current PIN code during Change PIN</string>
+				<string id="policy_explainText_PreventSamePINChange">Defines if users can reuse the current PIN code as the new PIN during a Change PIN operation.&#10;&#10;If this setting is disabled or not configured, then users can enter the current PIN code as new PIN code during the Change PIN operation.</string>
+				
+				<!--  Sub-category SmartCard -->
+				<string id="policy_displayName_DisableCaching">Disable smart card discovery information caching</string>
+				<string id="policy_explainText_DisableCaching">Disables the smart card discovery information caching.&#10;&#10;When this setting is not configured or disabled, performances are optimized by caching smart card discovery information. This smart card discovery process is repeated at each smart card insertion.</string>
+				<string id="policy_displayName_DefaultCardEdgeGSCIS">Turn on US Department of Defense configuration</string>
+				<string id="policy_explainText_DefaultCardEdgeGSCIS">For smart cards that comply with both the US government GSC-IS and PIV standards, defines which standard takes precedence for the middleware.&#10;&#10;Note: A preference also exists for this setting, which may affect the behavior if this policy setting is not configured.&#10;&#10;If this setting is not configured or disabled, then the PIV standard takes precedence for the middleware.</string>
+				
+				<!--  Sub-category SmartCardAutoUpdate -->
+				<string id="policy_displayName_CMSMDIDCTimeout">CMS MDIDC timeout (in seconds)</string>
+				<string id="policy_explainText_CMSMDIDCTimeout">Defines the maximum time (in seconds) allocated to perform a smart card update using CMS My Digital ID Card. When this timeout is reached, the process running the browser is terminated.&#10;&#10;If this setting is not configured, then the timeout is set to 600 seconds.</string>
+				<string id="policy_displayName_CMSMDIDCRetry">Maximum number of CMS MDIDC card update retries</string>
+				<string id="policy_explainText_CMSMDIDCRetry">Defines the maximum number of attempts to update the smart card and check the synchronization result after the CMS MDIDC timeout expires.&#10;&#10;Number of attempts should be between 0 and 10.&#10;&#10;If this setting is not configured, 2 attempts are configured. By enabling this setting, the number of attempts can be updated. If this setting is disabled, this means that no retry is executed. This is equivalent to setting the number of retries to 0.</string>
+				<string id="policy_displayName_CMSSyncManagerRetry">Maximum number of CMS Synchronization Manager retries</string>
+				<string id="policy_explainText_CMSSyncManagerRetry">Defines the maximum number of attempts to connect to the CMS Synchronization Manager after timeout.&#10;&#10;If this setting is not configured, the number of attempts is set to 2.</string>
+				<string id="policy_displayName_CMSSyncManagerTimeout">CMS Synchronization Manager timeout (in seconds)</string>
+				<string id="policy_explainText_CMSSyncManagerTimeout">Defines the maximum time (in seconds) allocated to check with CMS if smart card updates are available.&#10;&#10;If this setting is not configured, then the timeout is set to 5 seconds.&#10;&#10;A value of zero (0) means there is no client timeout, in which case the client timeout is determined by the server settings.</string>
+				<string id="policy_displayName_CardAutoUpdateEnabled">Enable Card Auto-Update</string>
+				<string id="policy_explainText_CardAutoUpdateEnabled">Defines if ActivClient will automatically check if inserted smart cards can be updated with card content updates available in the ActivID CMS. The smart card update process starts if updates are available.&#10;&#10;If this card auto-update is enabled, then the CMS server URL must be specified for ActivClient to perform the Auto-update check.</string>
+				<string id="policy_displayName_CMSServerURL">CMS server URL</string>
+				<string id="policy_explainText_CMSServerURL">Defines the connection URL for the CMS server (see the ActivID Credential Management System documentation). The port number is included in the URL.&#10;&#10;Example : http://www.mycompany.com:89898</string>
+				<string id="policy_displayName_UpdateFrequency">Frequency of update (in days)</string>
+				<string id="policy_explainText_UpdateFrequency">Defines the interval (in days) between checks for smart card updates.&#10;&#10;If this setting is not configured, then the update frequency is set to 7 days</string>
+				<string id="policy_displayName_CMSMaximumDelayAtLogin">Maximum delay for card update check after Windows logon (in minutes)</string>
+				<string id="policy_explainText_CMSMaximumDelayAtLogin">Defines how long (in minutes) ActivClient waits after Microsoft Windows logon before it contacts ActivID CMS to determine if smart card updates are available. To spread the requests received by CMS, this delay is a random value - between 0 and the maximum delay defined in this setting (in minutes).&#10;&#10;Recommended values are between 5 and 120.&#10;&#10;If this setting is not configured, then the delay is set to 120 minutes.</string>
+				<string id="policy_displayName_CMSMaximumDelayAfterCardInsertion">Maximum delay for card update check after card insertion (in minutes)</string>
+				<string id="policy_explainText_CMSMaximumDelayAfterCardInsertion">Defines how long (in minutes) ActivClient waits after card insertion before it contacts ActivID CMS to determine if smart card updates are available. This delay is a random value - between 0 and the maximum delay defined in this setting (in minutes).&#10;&#10;Recommended values are between 1 and 10.&#10;&#10;If this setting is not configured, then the delay is set to 5 minutes.</string>
+				
+				<!--  Sub-category SmartCardReaders -->
+				<string id="policy_displayName_EnablePINPADReaderSupport">Enable PIN Pad Readers Support</string>
+				<string id="policy_explainText_EnablePINPADReaderSupport">Enable the PIN Pad Readers Support.&#10;&#10;If this setting is enabled, then ActivClient uses the PIN Pad reader with secure PIN.&#10;&#10;If this setting is not configured or disabled, then ActivClient uses the PIN Pad reader as a standard smart card reader.&#10;&#10;Note: A reboot is needed after changing this configuration.</string>
+				<string id="policy_displayName_ReaderBlackList">Smart Card Readers Black List</string>
+				<string id="policy_explainText_ReaderBlackList">Defines the list of smart card readers not authorized for use with ActivClient.&#10;&#10;If this setting is not configured or disabled, then ActivClient uses any connected smart card reader.&#10;&#10;Note: This list is populated with the full reader name or a substring starting with the prefix of the reader name.</string>
+				
+				<!--  Sub-category SoftwareAutoUpdate -->
+				<string id="policy_displayName_SoftwareAutoUpdateEnabled">Enable software auto update</string>
+				<string id="policy_explainText_SoftwareAutoUpdateEnabled">Defines if ActivClient will automatically check if software update is made available.&#10;&#10;Enabling this setting requires to specify the network location (URL) where ActivClient Auto-Update service looks for the software updates, and the path to the local folder where the software updates are downloaded. The ActivClient Auto-Update service must have read and write permissions to the folder.&#10;&#10;If this setting is not configured or disabled, then the values remain empty and so no automatic update is performed.</string>
+				<string id="policy_displayName_CheckDays">Frequency of update (in days)</string>
+				<string id="policy_explainText_CheckDays">Defines the interval (in days) between checks for software updates.&#10;&#10;If this setting is not configured or disabled, the update frequency is set to 1 day</string>
+				<string id="policy_displayName_TimeBetweenRetry">Delay between update retries (in minutes)</string>
+				<string id="policy_explainText_TimeBetweenRetry">Defines the waiting period (in minutes) before the ActivClient Auto-Update service retries to update the software when a failure occurs.&#10;&#10;If this setting is not configured or disabled, then the delay is set to 15 minutes.&#10;&#10;Note: If this setting is configured to 0, an update attempt is immediately performed after a failure.</string>
+				<string id="policy_displayName_NumberOfRetries">Maximum number of update retries</string>
+				<string id="policy_explainText_NumberOfRetries">Defines the number of times the ActivClient Auto-Update service will attempt to update the software.&#10;&#10;If this setting is not configured or disabled, the number of attempts is set to 3.</string>
+				
+				<!--  Sub-category UserConsole -->
+				<string id="policy_displayName_DisableGenOTP">Disable One-Time Password generation</string>
+				<string id="policy_explainText_DisableGenOTP">Defines if users can generate a smart card-based One-Time Password in the User Console.&#10;&#10;If this setting is not configured or disabled, then the One-Time Password generation option is available.</string>
+				<string id="policy_displayName_DisableSynchOTP">Disable One-Time Password synchronization</string>
+				<string id="policy_explainText_DisableSynchOTP">Defines if users can resynchronize the smart card-based One-Time Password in the User Console.&#10;&#10;If this setting is not configured or disabled, then the One-Time Password resynchronization option is available.</string>
+				<string id="policy_displayName_DisableDeleteCert">Disable deletion of user certificates</string>
+				<string id="policy_explainText_DisableDeleteCert">Defines if users can delete their certificates.&#10;&#10;If this setting is not configured or disabled, then the certificate deletion option is available.</string>
+				<string id="policy_displayName_PreventDisplayViewType">Prevent users from switching between icon and detail view</string>
+				<string id="policy_explainText_PreventDisplayViewType">Defines if users can choose a view type from the Large Icons, Small Icons, List, and Details options.&#10;&#10;If this setting is not configured or disabled, then users can choose the view type. If this setting is enabled, users cannot choose between the view type and the User Console uses Large Icons.</string>
+				<string id="policy_displayName_HideDiagnosticTool">Hide Advanced Diagnostics icon</string>
+				<string id="policy_explainText_HideDiagnosticTool">Defines if the Advanced Diagnostics icon is displayed in the User Console standard toolbar, allowing users to access and use the Advanced Diagnostics tool.&#10;&#10;Note:  This menu is not displayed if the Troubleshooting feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the Advanced Diagnostics icon is displayed in the User Console.</string>
+				<string id="policy_displayName_HideHelp">Hide Help menu</string>
+				<string id="policy_explainText_HideHelp">Defines if the Help standard tool bar button and the ActivClient Help command in the Help menu are displayed in the User Console.&#10;&#10;If this setting is not configured or disabled, the Help menu and button are displayed in the User Console.</string>
+				<string id="policy_displayName_HideTaskPanel">Hide Tasks View from Explorer Bar</string>
+				<string id="policy_explainText_HideTaskPanel">Defines if the Tasks View is displayed in the Explorer toolbar in the User Console. If disabled, the Tree View is the only view available. If both the Tasks and Tree views are disabled, the Explorer toolbar is not displayed.&#10;&#10;If this setting is not configured or disabled, then the Tasks View is displayed.</string>
+				<string id="policy_displayName_HideTreeViewPanel">Hide Tree View from Explorer Bar</string>
+				<string id="policy_explainText_HideTreeViewPanel">Defines if the Tree View is displayed in the Explorer toolbar in the User Console. If disabled, the Tasks View is the only view available. If both the Tasks and Tree views are disabled, the Explorer toolbar is not displayed.&#10;&#10;If this setting is not configured or disabled, the Tree View is displayed.</string>
+				<string id="policy_displayName_HideReaderList">Hide Use Reader menu and Reader list icon</string>
+				<string id="policy_explainText_HideReaderList">Defines if the Use Reader menu and the Reader List toolbar icon are displayed in the User Console.&#10;&#10;If this setting is not configured or disabled, then the Use Reader menu and the Reader List toolbar icon are displayed in the User Console and available for use.</string>
+				<string id="policy_displayName_HideConfigMMC">Hide View Policy Settings menu</string>
+				<string id="policy_explainText_HideConfigMMC">Defines if the View Policy Settings menu is displayed in the User Console, allowing users to view the policy settings applied to this computer&#10;&#10;Note: This menu is not displayed if the Configuration Management feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the View Policy Settings menu is displayed in the User Console.</string>
+				<string id="policy_displayName_BackgroundImage">Image displayed on the lower right corner of the List view</string>
+				<string id="policy_explainText_BackgroundImage">Defines the path to the customized background image (lower right corner) of the User Console. The image must be in the .bmp format.&#10;&#10;If this setting is not configured or disabled, then the ActivClient background image is used (smartcard).</string>
+				<string id="policy_displayName_HideCACertFolder">Hide CA Certificates folder</string>
+				<string id="policy_explainText_HideCACertFolder">Defines if the CA Certificates folder is displayed in the User Console, allowing users to view CA Certificates stored on their smart card.&#10;&#10;If this setting is not configured or disabled, then the CA certificates folder is displayed in the User Console.</string>
+				<string id="policy_displayName_HideCertFolder">Hide My Certificates folder</string>
+				<string id="policy_explainText_HideCertFolder">Defines if the My Certificates folder is displayed in the User console, allowing users to view their smart card certificates.&#10;&#10;If this setting is not configured or disabled, then the My Certificates folder is displayed in the User Console.</string>
+				<string id="policy_displayName_HideAboutCard">Hide the Smart Card Info icon</string>
+				<string id="policy_explainText_HideAboutCard">Defines if the Smart Card Info icon is displayed in the right pane of the User Console, allowing users to view information such as smart card user name, manufacturer, model and serial number.&#10;&#10;If this setting is not configured or disabled, then the Smart card Info icon is displayed in the User Console.</string>
+				<string id="policy_displayName_DesactivateTabDemographic">Hide My Personal Info option</string>
+				<string id="policy_explainText_DesactivateTabDemographic">Defines if My Personal Info icon is displayed in the User Console, allowing users to view the personal information (demographic data) available on their smart card.&#10;&#10;If this setting is not configured or disabled, then the My Personal Info icon is displayed in the User Console.</string>
+				<string id="policy_displayName_DesactivateUnlock">Hide Unlock Card menu</string>
+				<string id="policy_explainText_DesactivateUnlock">Defines if the Unlock Card menu is displayed in the User Console, allowing users to access the Unlock Card tool in order to unlock their smart card.&#10;&#10;If this setting is not configured or disabled, then the Unlock Card menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HideUnlockCode">Hide View Unlock Code menu</string>
+				<string id="policy_explainText_HideUnlockCode">Defines if the View Unlock Code menu is displayed in the User Console, allowing users to view their unlock code. This is only applicable to standalone smart cards.&#10;&#10;If this setting is not configured or disabled, the View Unlock Code menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HidePinInit">Hide New Card menu</string>
+				<string id="policy_explainText_HidePinInit">Defines if New Card menu is displayed in the User Console, allowing users to access and use the PIN Initialization Tool.&#10;&#10;Note: This menu is not displayed if the PIN Initialization Tool feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the New Card menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HideReset">Hide Reset Card menu</string>
+				<string id="policy_explainText_HideReset">Defines if the Reset Card menu is displayed in the User Console, allowing users to reset their smart cards. This is only applicable to standalone smart cards.&#10;&#10;If this setting is not configured or disabled, the Reset Card menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HideCheckforCardUpdate">Hide Check for Card Update menu</string>
+				<string id="policy_explainText_HideCheckforCardUpdate">Defines if the Check for Card Update menu is displayed in the User Consoled, allowing users to check with ActivID CMS if an update is available for the inserted smart card.&#10;&#10;Note: This menu is not displayed if the Card auto-update service with ActivID CMS feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the Check for Card Update menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HidePublishToGal">Hide Publish to GAL menu</string>
+				<string id="policy_explainText_HidePublishToGal">Defines if the Publish to GAL menu is displayed in the User Console, allowing users to set up email certificates in Microsoft Outlook and publish certificates to the Global Address List.&#10;&#10;Note: This menu is not displayed if the Microsoft Outlook Usability Enhancements feature is not installed.&#10;&#10;If this setting is not configured or disabled, then the Publish to GAL menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HideImportCert">Hide Import Certificate menu</string>
+				<string id="policy_explainText_HideImportCert">Defines if the Import Certificate menu is displayed in the User Console, allowing users to import a certificate onto their smart card.&#10;&#10;If this setting is not configured or disabled, then the Import Certificate menu is displayed in the User Console.</string>
+				<string id="policy_displayName_HideExportCert">Hide Export Certificate menu</string>
+				<string id="policy_explainText_HideExportCert">Defines if the Export Certificate menu is displayed in the User Console, allowing users to export certificates from their smart card to a file.&#10;&#10;If this setting is not configured or disabled, then the Export Certificate menu is displayed in the User Console.</string>
+
+		</stringTable>
+
+		<presentationTable>
+		
+			<!--  Sub-category CertificateAvailability -->
+			<!--  N/A -->
+			
+			<!--  Sub-category Logging -->
+			<!--  N/A -->
+				
+			<!--  Sub-category LogonWindow -->
+			<presentation id="policy_presentation_BannerHiRes">
+				<textBox refId="idBannerHiRes">
+					<label>Path to static logon banner</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			
+			<!--  Sub-category NotificationAreaIcon -->
+			<presentation id="policy_presentation_OTPClipboardTimeOut">
+				<decimalTextBox refId="idOTPClipboardTimeOut" defaultValue="30" spin="true">Clipboard OTP expiration (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_OTPWindowTimeout">
+				<decimalTextBox refId="idOTPWindowTimeout" defaultValue="10" spin="true">OTP window duration (in seconds)</decimalTextBox>
+			</presentation>
+			
+			<!--  Sub-category NotificationsManagement -->
+			<presentation id="policy_presentation_CardAutoUpdateWarningDuration">
+				<decimalTextBox refId="idDuration" defaultValue="5">Alert duration (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CardAutoUpdateWarningMessage">
+				<textBox refId="idCardAutoUpdateWarningMessage">
+					<label>Card Auto-Update alert message</label>
+					<defaultValue>&lt;b&gt;Smart Card Update&lt;/b&gt; \n\nActivClient has detected that an update is available for your card. \n\nPlease click the link below in order to proceed with the update.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_CardAutoUpdateWarningToastMessage">
+				<textBox refId="idCardAutoUpdateWarningToastMessage">
+					<label>Card Auto-Update alert message</label>
+					<defaultValue>Please proceed in My Digital ID Card to update your card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_CardAutoUpdateWarningToastTitle">
+				<textBox refId="idCardAutoUpdateWarningToastTitle">
+					<label>Card Auto-Update alert title</label>
+					<defaultValue>Card Update Available</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_BlockedCardManagerMessage">
+				<textBox refId="idBlockedCardManagerMessage">
+					<label>Blocked Card Manager message</label>
+					<defaultValue>Your smart card's Card Manager is blocked; please contact the person or organization who gave you this card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_BlockedCardManagerToastMessage">
+				<textBox refId="idBlockedCardManagerToastMessage">
+					<label>Blocked Card Manager message</label>
+					<defaultValue>Please contact your administrator to unblock your smart card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_BlockedCardManagerToastTitle">
+				<textBox refId="idBlockedCardManagerToastTitle">
+					<label>Blocked Card Manager title</label>
+					<defaultValue>Card Manager Blocked</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_LockedCardMessage">
+				<textBox refId="idLockedCardMessage">
+					<label>Locked Card message</label>
+					<defaultValue>ActivClient has detected that the inserted smart card PIN is locked. Please contact the person or organization who gave you this card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_LockedCardToastMessage">
+				<textBox refId="idLockedCardToastMessage">
+					<label>Locked Card message</label>
+					<defaultValue>Please contact your administrator to unlock your card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_LockedCardToastTitle">
+				<textBox refId="idLockedCardToastTitle">
+					<label>Locked Card title</label>
+					<defaultValue>PIN Blocked</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_CardValidityCheckDelay">
+				<decimalTextBox refId="idValidityCheckDelay" defaultValue="20" spin="true">Delay before checking expiration after card insertion (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CardValidityExpirationNotificationPeriod">
+				<decimalTextBox refId="idExpirationNotificationPeriod" defaultValue="5" spin="true">Expiration notification period (in days)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CardValidityCheckSentence">
+				<textBox refId="idValidityCheckSentence">
+					<label>Expiration warning message</label>
+					<defaultValue>Contact the person or organization who gave you this smart card.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_CardValidityCheckPeriod">
+				<decimalTextBox refId="idValidityCheckPeriod" defaultValue="60" spin="true">Expiration warning period (in days)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_EnableSmartCardPresenceWarning">
+				<dropdownList refId="idEnable" noSort="true" defaultItem="1">Unattended Smart Card Alert</dropdownList>
+			</presentation>
+			<presentation id="policy_presentation_NoReaderWarningDuration">
+				<decimalTextBox refId="idDuration" defaultValue="5" spin="true">“No Smart Card Reader” alert duration (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_NoReaderWarningMessage">
+				<textBox refId="idMessage">
+					<label>“No Smart Card Reader” alert message</label>
+					<defaultValue>&lt;b&gt;Card Reader Not Detected&lt;/b&gt; \n\nActivClient was unable to detect a smart card reader connected to your computer.\n\nPlease ensure that your smart card reader is properly connected.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_NoReaderWarningToastMessage">
+				<textBox refId="idToastMessage">
+					<label>“No Smart Card Reader” alert message</label>
+					<defaultValue>Please check your card reader connection.</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_NoReaderWarningToastTitle">
+				<textBox refId="idToastTitle">
+					<label>“No Smart Card Reader” alert title</label>
+					<defaultValue>Card Reader Not Detected</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_AudioFilePath">
+				<textBox refId="idAudioFilePath">
+					<label>full path to an audio file to be played</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			
+			<!--  Sub-category OutlookEnhancements -->
+			<presentation id="policy_presentation_CRLCheck">
+				<dropdownList refId="idCRLCheck" defaultItem="1">Check CRL policy</dropdownList>
+			</presentation>
+			<presentation id="policy_presentation_CRLCheckTimeout">
+				<decimalTextBox refId="idCRLCheckTimeout" defaultValue="20000" spin="true">Check CRL timeout (in ms)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_AutoContactStorage">
+				<textBox refId="idAutoContactStorage">
+					<label>Auto-Contact destination folder</label>
+					<defaultValue>Contacts</defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_HashAlgorithm">
+				<dropdownList refId="idHashAlgorithm" defaultItem="1">Hash algorithm</dropdownList>
+			</presentation>
+			<presentation id="policy_presentation_EncryptionAlgorithm">
+				<dropdownList refId="idEncryptionAlgorithm" defaultItem="0">Encryption algorithm</dropdownList>
+			</presentation>
+			
+			<!--  Sub-category PinCaching -->
+			<presentation id="policy_presentation_TimeOutToClearCache">
+				<decimalTextBox refId="idTimeout" defaultValue="15" spin="true">Time before PIN cache is cleared (in minutes)</decimalTextBox>
+			</presentation>
+			
+			<!--  Sub-category PinManagement -->
+			<presentation id="policy_presentation_UnlockCardContactTelephoneNumber">
+				<textBox refId="idContactTel">
+					<label>Telephone number</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			
+			<!--  Sub-category SmartCardAutoUpdate -->
+			<presentation id="policy_presentation_CMSMDIDCTimeout">
+				<decimalTextBox refId="idCMSMDIDCTimeout" defaultValue="600" spin="true">CMS MDIDC timeout (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSMDIDCRetry">
+				<decimalTextBox refId="idCMSMDIDCRetry" defaultValue="2" spin="true">Maximum number of CMS MDIDC card update retries</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSSyncManagerRetry">
+				<decimalTextBox refId="idCMSSyncManagerRetry" defaultValue="2" spin="true">Maximum number of CMS Synchronization Manager retries</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSSyncManagerTimeout">
+				<decimalTextBox refId="idCMSSyncManagerTimeout" defaultValue="5" spin="true">CMS Synchronization Manager timeout (in seconds)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSServerURL">
+				<textBox refId="idURL">
+					<label>URL</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_UpdateFrequency">
+				<decimalTextBox refId="idUpdateFrequency" defaultValue="7" spin="true">Frequency of update (in days)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSMaximumDelayAtLogin">
+				<decimalTextBox refId="idCMSMaximumDelayAtLogin" defaultValue="120" spin="true">Maximum delay for card update check after Windows logon (in minutes)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_CMSMaximumDelayAfterCardInsertion">
+				<decimalTextBox refId="idCMSMaximumDelayAfterCardInsertion" defaultValue="5" spin="true">Maximum delay for card update check after card insertion (in minutes)</decimalTextBox>
+			</presentation>
+			
+			<!--  Sub-category SmartCardReaders -->
+			<presentation id="policy_presentation_ReaderBlackList">
+				<listBox refId="idReaderBlackList">Smart Card Readers Black List</listBox>
+				<text></text>
+			</presentation>
+			
+			<!--  Sub-category SoftwareAutoUpdate -->
+			<presentation id="policy_presentation_SoftwareAutoUpdateEnabled">
+				<textBox refId="idDownloadPath">
+					<label>Download path for software update</label>
+					<defaultValue></defaultValue>
+				</textBox>
+				<textBox refId="idURL">
+					<label>Software automatic update URL</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+			<presentation id="policy_presentation_CheckDays">
+				<decimalTextBox refId="idCheckDays" defaultValue="1" spin="true">Frequency of update (in days)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_TimeBetweenRetry">
+				<decimalTextBox refId="idTimeBetweenRetry" defaultValue="15" spin="true">Delay between update retries (in minutes)</decimalTextBox>
+			</presentation>
+			<presentation id="policy_presentation_NumberOfRetries">
+				<decimalTextBox refId="idNumberOfRetries" defaultValue="3" spin="true">Maximum number of retries</decimalTextBox>
+			</presentation>
+			
+			<!--  Sub-category UserConsole -->
+			<presentation id="policy_presentation_BackgroundImage">
+				<textBox refId="idBackgroundImage">
+					<label>Image path</label>
+					<defaultValue></defaultValue>
+				</textBox>
+			</presentation>
+
+		</presentationTable>
+		
+	</resources>
+</policyDefinitionResources>

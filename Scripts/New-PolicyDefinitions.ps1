@@ -14,6 +14,19 @@ $osVersion = '10.0.14393.0'
 Set-Location -Path $basePath
 
 $policy = [pscustomobject]@{
+    'PolicyName' = 'ActivClient';
+    'PolicyScopes' = [string[]]@('Computer');
+    'PolicyTypes' = [string[]]@('Domain','Local');
+    'PolicyModes' = [string[]]@('Audit','Enforced');
+    'PolicyTemplatePath' = '.\..\..\';
+    'PolicyTemplateType' = 'Application';
+    'PolicyTemplateVersion' = '7.1.0.157';
+}
+
+$policyPath = "$basePath\ActivClient\Group Policy Objects\Computer"
+$policy | ConvertTo-Json | Out-File -FilePath "$policyPath\policy.json" -Encoding ASCII -Force
+
+$policy = [pscustomobject]@{
     'PolicyName' = 'Adobe Reader';
     'PolicyScopes' = [string[]]@('Computer');
     'PolicyTypes' = [string[]]@('Domain','Local');

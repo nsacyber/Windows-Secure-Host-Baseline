@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitions	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					revision="710.1" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+	<policyNamespaces>
+		<target prefix="hidglobal" namespace="HIDGlobal.Policies.HIDGlobal" />
+	</policyNamespaces>
+	<resources minRequiredRevision="710.1" />
+	<categories>
+		<!--  Root category  -->
+		<category name="CAT_HIDGlobal" displayName="$(string.category_displayName_HIDGlobal)" />
+		<!--  Sub-categories  -->
+		<category name="CAT_Logging" displayName="$(string.category_displayName_Logging)" >
+			<parentCategory ref="CAT_HIDGlobal" />
+		</category>
+		<category name="CAT_AdvancedDiagnostics" displayName="$(string.category_displayName_AdvancedDiagnostics)">
+			<parentCategory ref="CAT_HIDGlobal" />
+		</category>
+	</categories>
+</policyDefinitions>

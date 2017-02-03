@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  HID Global -->
+<policyDefinitionResources revision="710.1" schemaVersion="1.0">
+	<displayName></displayName>
+	<description></description>
+	<resources>
+	
+		<stringTable>
+		
+			<string id="SUPPORTED_LOG_GENERIC">At least Windows Vista SP1</string>
+			<string id="policy_displayName_LogFile">Full path to log files folder</string>
+			<string id="policy_explainText_LogFile">Specifies the full path to the generated log files. &#10;&#10;The folder where logs are generated must be created and end users must be granted write permissions to this folder.&#10;&#10;When not configured or enabled, the default value is “%CommonProgramFiles%\HID Global\Logs”. &#10;&#10;Note: The above policy does not configure the path for log files of restricted processes:&#10;- The logs of processes running in low level integrity will always be generated in “%APPDATA%\..\LocalLow\HID Global\Logs“.&#10;- The logs of processes running in an AppContainer will always be generated in “%LOCALAPPDATA%\Packages\&lt;AppContainerName&gt;\AC\HID Global\Logs“.</string>
+			<string id="policy_displayName_MaxFileBackups">Maximum number of backup files</string>
+			<string id="policy_explainText_MaxFileBackups">Defines the maximum number of log file backups. The default value is 3.</string>
+			<string id="policy_displayName_MaxFileSize">Maximum log file size in MB</string>
+			<string id="policy_explainText_MaxFileSize">Defines the maximum size (in megabytes) of the log files. The default value is 20 MB.</string>
+			
+		</stringTable>
+		
+		<presentationTable>
+		
+			<presentation id="policy_presentation_LogFile">
+				<textBox refId="idLogFile">
+					<label>Path to log files folder</label>
+					<defaultValue>%CommonProgramFiles%\HID Global\Logs</defaultValue>
+				</textBox>
+			</presentation>
+		
+			<presentation id="policy_presentation_MaxFileBackups">
+				<decimalTextBox refId="idMaxFileBackups" defaultValue="3" spin="true">Maximum number of backup files</decimalTextBox>
+			</presentation>
+			
+			<presentation id="policy_presentation_MaxFileSize">
+				<decimalTextBox refId="idMaxFileSize" defaultValue="20" spin="true">Maximum log file size in MB</decimalTextBox>
+			</presentation>
+			
+		</presentationTable>
+		
+	</resources>
+</policyDefinitionResources>
