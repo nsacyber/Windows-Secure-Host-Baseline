@@ -1,0 +1,17 @@
+{
+    "PolicyName":  "ActivClient",
+    "PolicyScopes":  [
+                         "Computer"
+                     ],
+    "PolicyTypes":  [
+                        "Domain",
+                        "Local"
+                    ],
+    "PolicyModes":  [
+                        "Audit",
+                        "Enforced"
+                    ],
+    "PolicyTemplatePath":  ".\\..\\..\\",
+    "PolicyTemplateType":  "Application",
+    "PolicyTemplateVersion":  "7.1.0.157"
+}
