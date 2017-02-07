@@ -28,7 +28,10 @@ When selecting the **Typical** installation option in the installation wizard th
         (e) Online Help
 ```
 
-msiexec has a command line option, called [ADDLOCAL](https://msdn.microsoft.com/en-us/library/windows/desktop/aa367536(v=vs.85).aspx), that can be used to select which features to install by default. Using a tool such as [Orca](https://msdn.microsoft.com/en-us/library/windows/desktop/aa370557(v=vs.85).aspx) to inspect the MSI file reveals the following MSI feature names, corresponding to the above feature names in the installation wizard, that can be used by the ADDLOCAL option:
+The **US Department of Defense configuration** feature can be enabled after selecting the **Custom** option when using the MSI installer user interface. 
+
+
+msiexec.exe can be used to facilitate automated installation of the feature. msiexec has a command line option, called [ADDLOCAL](https://msdn.microsoft.com/en-us/library/windows/desktop/aa367536(v=vs.85).aspx), that can be used to select which features to install. Using a tool such as [Orca](https://msdn.microsoft.com/en-us/library/windows/desktop/aa370557(v=vs.85).aspx) to inspect the MSI file reveals the following MSI feature names correspond to the above feature names in the installation user interface and can be used by the ADDLOCAL option:
 
 ```
 (e) ActivClient
@@ -48,13 +51,13 @@ msiexec has a command line option, called [ADDLOCAL](https://msdn.microsoft.com/
         (d) SettingsManagement
         (e) Help
 ```
-Use the following command to install the features that would normally be installed by selecting **Typical** while also including the **US Department of Defense configuration** feature:
+Use the following command to install the features that would normally be installed by selecting **Typical** while also including the **US Department of Defense configuration** feature from the installer user interface:
 
 ```
 msiexec.exe /i /qn "ActivID ActivClient x64 7.1.msi" ALLUSERS=1 ADDLOCAL=ActivClient,Common,DeptofDefenseConfiguration,Digital,InitTool,MiniDriver,PKCS,Troubleshooting,UserConsole,Help
 ```
 
-The US Department of Defense configuration feature from the ActivClient MSI file  appears to make 3 configuration changes to a system:
+The US Department of Defense configuration feature from the ActivClient MSI file  appears to make 3 configuration changes to the system:
 1. Enables the legacy card edge
 1. Enables notification of card expiration
 1. Enables notification of certificate expiration
@@ -133,3 +136,32 @@ The ActivClient smart card logon credential provider, ac.mscredprov.pincache, ha
 The corresponding files on the file system are:
 * C:\Program Files\HID Global\ActivClient\ac.mscredprov.pincache.dll
 * C:\Program Files (x86)\HID Global\ActivClient\ac.mscredprov.pincache.dll
+
+## Updating the ActivClient Group Policy templates
+The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
+
+### Updating the ActivClient Group Policy templates for a domain 
+
+If the domain administrators have configured a [Group Policy Central Store](https://support.microsoft.com/en-us/kb/929841) for the domain, then copy the **HIDGlobal.ActivClient.admx**, **HIDGlobal.admx**, **HIDGlobal.AdvancedDiagnostics.admx**, and **HIDGlobal.Logging.admx** files to **\\\\_Fully Qualified Domain Name_\\SYSVOL\\_Fully Qualified Domain Name_\\Policies\\PolicyDefinitions\\** and copy the copy the **HIDGlobal.ActivClient.adml**, **HIDGlobal.adml**, **HIDGlobal.AdvancedDiagnostics.adml**, and **HIDGlobal.Logging.adml** files to **\\\\_Fully Qualified Domain Name_\\SYSVOL\\_Fully Qualified Domain Name_\\Policies\\PolicyDefinitions\\en-us\\**
+
+If the domain administrators have **not** configured a Group Policy Central Store for the domain, then copy  the **HIDGlobal.ActivClient.admx**, **HIDGlobal.admx**, **HIDGlobal.AdvancedDiagnostics.admx**, and **HIDGlobal.Logging.admx** files to **%SystemRoot%\PolicyDefinitions\\**, typically **C:\\Windows\\PolicyDefinitions\\**, and copy the **HIDGlobal.ActivClient.adml**, **HIDGlobal.adml**, **HIDGlobal.AdvancedDiagnostics.adml**, and **HIDGlobal.Logging.adml** files to **%SystemRoot%\\PolicyDefinitions\\en-us\\** folder on the domain controller.
+
+### Updating the ActivClient Group Policy templates for a standalone system 
+
+**%SystemRoot%\\PolicyDefinitions\\**, typically **C:\\Windows\\PolicyDefinitions\\**, contains Group Policy templates used by Local Group Policy on a standalone system. Copy the **ReaderDC.admx** file to **%SystemRoot%\\PolicyDefinitions\\** and copy the **HIDGlobal.ActivClient.adml**, **HIDGlobal.adml**, **HIDGlobal.AdvancedDiagnostics.adml**, and **HIDGlobal.Logging.adml** files to **%SystemRoot%\\PolicyDefinitions\\en-us\\** folder on the domain controller.
+
+## Importing the ActivClient Group Policy
+
+### Importing the ActivClient domain Group Policy
+Use the PowerShell Group Policy commands to import the ActivClient Group Policy into a domain. Run the following command on a domain controller from a PowerShell prompt running as a domain administrator. 
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'ActivClient'
+```
+
+### Importing the ActivClient local Group Policy
+Use Microsoft's LGPO tool to apply the ActiveClient Group Policy to a standalone system. Run the following command from a command prompt running as a local administrator.
+
+```
+Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'ActivClient' -ToolPath '.\LGPO\lgpo.exe'
+```
