@@ -16,10 +16,12 @@
 *.xml diff
 *.pol diff
 
+# treat registry files as text so they can be diffed
+*.reg diff
 
 # Despite the above settings, GitHub diffs will still say "Binary file not shown." for some files because GitHub ignores this for their display of web-based diffs. 
 # git diffs will work as expected, but not GitHub web-based diffs
-# Referencess:
+# References:
 # 1. http://stackoverflow.com/a/24382933
 # "GitHub doesn't use .gitattributes files for choosing which files to show in a diff"
 # 2. https://github.com/github/linguist/issues/1873#issuecomment-158671709
