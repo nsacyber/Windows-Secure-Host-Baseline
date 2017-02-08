@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>OneDrive Group Policy Settings</displayName>
+  <description>Various group policy settings for the OneDrive sync client, especially for configuring settings specific to enterprise functionality in the client.</description>
+  <resources>
+    <stringTable>
+      <!-- general -->
+      <string id="OneDriveNGSCSettingCategory">OneDrive</string>
+      
+      <!-- configure business FRE -->
+      <string id="DefaultToBusinessFRE">Automatically launch the OneDrive client FRE in business mode</string>
+      <string id="DefaultToBusinessFRE_help">This policy setting lets you configure OneDrive so that, when triggered, the first run experience is launched in a mode for users to configure their O365 account to sync with SPO.
+
+If you enable this policy setting:
+
+* If users unlink their account and the first run experience launches, it will upsell them to configure an organization account as opposed to a Microsoft account.
+* If a user uninstalls OneDrive, this regkey will be removed. If they then later reinstall OneDrive, the first run will default to the experience for configuring a Microsoft account.
+
+If you disable or do not configure this policy setting, OneDrive will default to showing the first run experience for configuring a Microsoft account.</string>
+
+      <!-- block syncing personal OneDrive -->
+      <string id="DisablePersonalSync">Prevent users from configuring personal OneDrive accounts</string>
+      <string id="DisablePersonalSync_help">This policy setting allows you to prevent users from configuring a personal OneDrive account on the machine. If users had previously added a personal OneDrive account to the machine, they will be shown an error the next time that they start the client.</string>
+
+      <!-- turn on enterprise tier cadence for app updates -->
+      <string id="EnableEnterpriseTier">Configure machine to receive updates after consumer production</string>
+      <string id="EnableEnterpriseTier_help">This policy setting will configure the machine to receive updates to the OneDrive client after the update is shipped to consumers. Without this policy setting, the default setting is to receive client updates at the same time as they're being shipped to consumers for the first time.</string>
+
+      <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir">Set the default location of the OneDrive folder</string>
+      <string id="DefaultRootDir_help">During the first run experience for account configuration, users will have their OneDrive folder location default to the path that you specify. If this policy setting is not set, the default location for the user's OneDrive folder will be under %userprofile%.
+      
+**DO THE FOLLOWING BEFORE TURNING ON THIS SETTING**
+Please update the default ADMX file template to use your tenant's ID and string for the default OneDrive folder path that you want to use.</string>
+
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot">Prevent users from changing the location of their OneDrive folder</string>
+      <string id="DisableCustomRoot_help">During the first run experience for account configuration, users will have their OneDrive folder location default to either %userprofile% or some other path that you specify. In addition, you can turn on this setting to prevent users from picking another location on the machine to put their OneDrive folder.
+
+**DO THE FOLLOWING BEFORE TURNING ON THIS SETTING**
+Please update the default ADMX file template to use your tenant's ID.</string>
+
+      <!-- turn off remote access/fetch on the machine (32-bit) -->
+      <string id="RemoteAccessGPOEnabled_32Bit">Prevent users from using the remote file fetch feature to access files on the machine (32-bit)</string>
+      <string id="RemoteAccessGPOEnabled_32Bit_help">
+This setting will prevent users from going to onedrive.com to use the remote fetch feature to browse the file system of the machine (a feature supported on OneDrive running on Windows, with the exception of Windows 8.1).
+
+This setting is for machines running 32-bit versions of Windows.
+      </string>
+
+      <!-- turn off remote access/fetch on the machine (64-bit) -->
+      <string id="RemoteAccessGPOEnabled_64Bit">Prevent users from using the remote file fetch feature to access files on the machine (64-bit)</string>
+      <string id="RemoteAccessGPOEnabled_64Bit_help">
+This setting will prevent users from going to onedrive.com to use the remote fetch feature to browse the file system of the machine (a feature supported on OneDrive running on Windows, with the exception of Windows 8.1).
+
+This setting is for machines running 64-bit versions of Windows.
+      </string>
+
+	  <!-- READ THE FOLLOWING LINES FOR INFO ON HOW TO USE THIS SECTION -->
+	  <!-- Template strings for adding additional per-tenant policies if there's already tenant id and/or path set for either DefaultRootDir or DisableCustomRoot -->
+	  <!-- ADD ADDITIONAL STRINGS HERE FOR OTHER IT ADMINS CONFIGURING THE SAME SETTING FOR OTHER TENANTS ON THE MACHINE -->
+	  <!-- CHANGE THE PLACEHOLDER SUBSTRING "Contoso" IN THE STRINGS BELOW TO THE NAME/LABEL YOU'D LIKE TO USE FOR YOUR ORGANIZATION/TENANT -->
+	  
+	  <!-- PER-TENANT SETTINGS FOR CONTOSO -->
+	  <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir_Contoso">Set the default location of the "OneDrive - Contoso" folder</string>
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot_Contoso">Prevent users from changing the location of their "OneDrive - Contoso" folder</string>
+	  
+	  <!-- PER-TENANT SETTINGS FOR NORTHWIND -->
+	  <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir_Northwind">Set the default location of the "OneDrive - Northwind" folder</string>
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot_Northwind">Prevent users from changing the location of their "OneDrive - Northwind" folder</string>
+	  
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

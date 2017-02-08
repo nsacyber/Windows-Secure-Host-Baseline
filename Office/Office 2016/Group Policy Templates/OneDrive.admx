@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="OneDriveNGSC" namespace="Microsoft.Policies.OneDriveNGSC" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="OneDriveNGSC" displayName="$(string.OneDriveNGSCSettingCategory)">
+      <parentCategory ref="windows:Software" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="DefaultToBusinessFRE" class="User" displayName="$(string.DefaultToBusinessFRE)" explainText="$(string.DefaultToBusinessFRE_help)" key="SOFTWARE\Microsoft\OneDrive" valueName="DefaultToBusinessFRE">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DisablePersonalSync" class="User" displayName="$(string.DisablePersonalSync)" explainText="$(string.DisablePersonalSync_help)" key="SOFTWARE\Microsoft\OneDrive" valueName="DisablePersonalSync">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="EnableEnterpriseTier" class="User" displayName="$(string.EnableEnterpriseTier)" explainText="$(string.EnableEnterpriseTier_help)" key="SOFTWARE\Microsoft\OneDrive" valueName="EnableEnterpriseTier">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="DefaultRootDir" class="User" displayName="$(string.DefaultRootDir)" explainText="$(string.DefaultRootDir_help)" key="SOFTWARE\Microsoft\OneDrive\Tenants\{INSERT YOUR TENANT'S GUID HERE}" valueName="DefaultRootDir">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <string>{INSERT YOUR CHOSEN PATH HERE}</string>
+	  </enabledValue>
+	  <disabledValue>
+	    <string></string>
+	  </disabledValue>
+    </policy>
+    <policy name="DisableCustomRoot" class="User" displayName="$(string.DisableCustomRoot)" explainText="$(string.DisableCustomRoot_help)" key="SOFTWARE\Microsoft\OneDrive\Tenants\{INSERT YOUR TENANT'S GUID HERE}" valueName="DisableCustomRoot">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemoteAccessGPOEnabled_32Bit" class="Machine" displayName="$(string.RemoteAccessGPOEnabled_32Bit)" explainText="$(string.RemoteAccessGPOEnabled_32Bit_help)" key="SOFTWARE\Microsoft\OneDrive\Remote Access" valueName="GPOEnabled">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+    <policy name="RemoteAccessGPOEnabled_64Bit" class="Machine" displayName="$(string.RemoteAccessGPOEnabled_64Bit)" explainText="$(string.RemoteAccessGPOEnabled_64Bit_help)" key="SOFTWARE\Wow6432Node\Microsoft\OneDrive\Remote Access" valueName="GPOEnabled">
+      <parentCategory ref="OneDriveNGSC" />
+      <supportedOn ref="windows:SUPPORTED_Windows7" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>
