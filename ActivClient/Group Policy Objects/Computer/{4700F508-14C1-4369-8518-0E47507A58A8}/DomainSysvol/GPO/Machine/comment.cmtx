@@ -1,0 +1,16 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<policyComments xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/CommentDefinitions">
+  <policyNamespaces>
+    <using prefix="ns0" namespace="Microsoft.Policies.CredentialProviders"></using>
+  </policyNamespaces>
+  <comments>
+    <admTemplate>
+      <comment policyRef="ns0:DefaultCredentialProvider" commentText="$(resource.ns0_DefaultCredentialProvider)"></comment>
+    </admTemplate>
+  </comments>
+  <resources minRequiredRevision="1.0">
+    <stringTable>
+      <string id="ns0_DefaultCredentialProvider">{8FD7E19C-3BF7-489B-A72C-846AB3678C96} is the the "Smartcard Credential Provider" on Windows 10 and Windows Server 2016</string>
+    </stringTable>
+  </resources>
+</policyComments>
