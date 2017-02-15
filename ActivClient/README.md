@@ -58,13 +58,14 @@ msiexec.exe /i /qn "ActivID ActivClient x64 7.1.msi" ALLUSERS=1 ADDLOCAL=ActivCl
 ```
 
 The US Department of Defense configuration feature from the ActivClient MSI file  appears to make 3 configuration changes to the system:
+
 1. Enables the legacy card edge
 1. Enables notification of card expiration
 1. Enables notification of certificate expiration
 
 These changes map to the following registry values:
 * First change:
-    * HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\
+    * HKLM\Software\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\
     * Name: DefaultCardEdge
     * Value: 1
     * Type: DWORD
@@ -101,7 +102,7 @@ Once the [ActivClient Group Policy templates](./Group Policy Templates/) have be
 These policies correspond to the following registry values.
 
 * Enabling the **Turn on US Department of Defense configuration** policy configures the following registry value:
-    * Path: HKLM\Software\Microsoft\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\ 
+    * Path: HKLM\Software\Policies\HID Global\SecurityModuleMW\DiscoveryProvider\CardEdge\ 
     * Name: DefaultCardEdge 
     * Value: 1 
     * Type: DWORD 
