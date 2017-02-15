@@ -120,23 +120,16 @@ These policies correspond to the following registry values.
 
 The provided Group Policy Object implements these 3 policies plus the policy from the [Configuring ActivClient as the default logon credential provider](#configuring-activclient-as-the-default-logon-credential-provider) section.
 
-## Configuring ActivClient as the default logon credential provider
-In addition to activating the US Department of Defense configuration option for ActivClient, administrators may want the smart card logon prompt to be the default logon prompt. Windows displays a logon prompt that prompts for a password by default but this behavior can be changed by enabling and configuring a Group Policy setting. To enable and configure the ActivClient smart card logon credential provider (NOT the built-in Windows smart card logon  credential provider) through Group Policy:
+## Configuring the smart card credential provider as the default logon credential provider
+In addition to activating the US Department of Defense configuration option for ActivClient, administrators may want the smart card logon prompt to be the default logon prompt. Windows displays a logon prompt that prompts for a password by default but this behavior can be changed by enabling and configuring a Group Policy setting. To enable and configure the Windows 10 smart card logon credential provider through Group Policy:
 
 1. Browse to **Computer Configuration** > **Administrative Templates** > **System** > **Logon**
 1. Double click the **Assign a default credential provider** policy
 1. Select the **Enabled** radio button
-1. Enter the value of **{05A69B2E-F05A-426b-BB43-7895A67B1A56}** in the **Assign the following credential provider as the default credential provider** text box
+1. Enter the value of **{8FD7E19C-3BF7-489B-A72C-846AB3678C96}** in the **Assign the following credential provider as the default credential provider** text box
 1. Click the **OK** button
 
-## About the ActivClient smart card logon credential provider
-The ActivClient smart card logon credential provider, ac.mscredprov.pincache, has a GUID of {05A69B2E-F05A-426b-BB43-7895A67B1A56}. After installing ActivClient, this GUID can be found as a registered credential provider under:
-* HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\
-* HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\
-
-The corresponding files on the file system are:
-* C:\Program Files\HID Global\ActivClient\ac.mscredprov.pincache.dll
-* C:\Program Files (x86)\HID Global\ActivClient\ac.mscredprov.pincache.dll
+Smart card logon will be the default logon prompt once a user has logged into the system at least one time using a smart card. If the **Interactive Logon: Do not display last username** Group Policy setting is enabled, then a username and password prompt will always be the default logon prompt ([1](<https://support.microsoft.com/en-us/help/2741622>),[2](https://community.spiceworks.com/topic/post/4992568)). The **Interactive logon: Require smart card** Group Policy setting can be used to force the smart card credential provider to be the default logon prompt, but then only smart card logons are allowed.
 
 ## Updating the ActivClient Group Policy templates
 The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.
