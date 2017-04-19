@@ -4,7 +4,7 @@ Microsoft AppLocker is an [application whitelisting](https://www.iad.gov/iad/lib
 
 Formal product evaluations also support the use of Microsoft AppLocker. The Common Criteria evaluation of Windows 10 against the NIAP [Protection Profile for General Purpose Operating Systems](https://www.niap-ccevs.org/Profile/Info.cfm?id=400) completed [April 5, 2016](https://www.niap-ccevs.org/Product/CompliantCC.cfm?CCID=2016.1052). The Common Criteria evaluation included the optional FPT_SRP_EXT requirement for Application Whitelisting. The Assurance Activity report shows that Microsoft AppLocker in Windows 10 was evaluated and passed the FPT_SRP_EXT requirement.
 
-Group Policy Objects containing a base whitelisting policy for both [Audit mode](./Group Policy Objects/Computer/Audit) and [Enforcement mode](./Group Policy Objects/Computer/Enforced) policy are included in the SHB for Windows 10.
+Group Policy Objects containing a base whitelisting policy for both [Audit mode](./Group%20Policy%20Objects/Computer/Audit) and [Enforcement mode](./Group%20Policy%20Objects/Computer/Enforced) policy are included in the SHB for Windows 10.
 
 ## Importing the AppLocker Group Policy
 By default, the AppLocker policy is imported configured in audit mode. To import it in enforcement mode, use the **-PolicyMode** option with the **'Enforced'** value.

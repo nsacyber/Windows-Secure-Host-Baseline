@@ -1,6 +1,6 @@
 # ActivClient
 
-ActivClient [Group Policy Objects](./Group Policy Objects/) for [Computer](./Group Policy Objects/Computer/) policy and [Group Policy template files](./Group Policy Templates/) are included in the SHB. ActivClient is used by those who want additional smart card login features outside of the built-in Windows smart card functionality. The most significant feature is support for reading the "legacy edge" used by Common Access Cards. This page provides instructions how to [enable support](#enabling-the-us-department-of-defense-configuration) for reading the legacy edge, called the US Department of Defense configuration, and [configuring the ActivClient smart card logon credential provider](#configuring-activclient-as-the-default-logon-credential-provider) as the default logon credential provider in Windows.
+ActivClient [Group Policy Objects](./Group%20Policy%20Objects/) for [Computer](./Group%20Policy%20Objects/Computer/) policy and [Group Policy template files](./Group%20Policy%20Templates/) are included in the SHB. ActivClient is used by those who want additional smart card login features outside of the built-in Windows smart card functionality. The most significant feature is support for reading the "legacy edge" used by Common Access Cards. This page provides instructions how to [enable support](#enabling-the-us-department-of-defense-configuration) for reading the legacy edge, called the US Department of Defense configuration, and [configuring the ActivClient smart card logon credential provider](#configuring-activclient-as-the-default-logon-credential-provider) as the default logon credential provider in Windows.
 
 ## Enabling the US Department of Defense configuration
 ActivClient does not enable support for the legacy edge, called the US Department of Defense configuration, by default. This configuration change can be applied at install time and can also be configured using local or domain Group Policy.
@@ -81,7 +81,7 @@ These changes map to the following registry values:
     * Type: DWORD
 
 ### Enabling the US Department of Defense configuration using Group Policy
-Once the [ActivClient Group Policy templates](./Group Policy Templates/) have been copied to the PolicyDefinitions folder, local and domain Group Policy editing tools can be used to enable the US Department of Defense configuration. Make 3 policy changes to enable the US Department of Defense configuration, and recreate the same settings that the installer configures, through Group Policy:
+Once the [ActivClient Group Policy templates](./Group%20Policy%20Templates/) have been copied to the PolicyDefinitions folder, local and domain Group Policy editing tools can be used to enable the US Department of Defense configuration. Make 3 policy changes to enable the US Department of Defense configuration, and recreate the same settings that the installer configures, through Group Policy:
 
 * First policy:
     1. Browse to **Computer Configuration** > **Administrative Templates** > **HID Global** > **ActivClient** > **Smart Card**
@@ -129,7 +129,7 @@ In addition to activating the US Department of Defense configuration option for 
 1. Enter the value of **{8FD7E19C-3BF7-489B-A72C-846AB3678C96}** in the **Assign the following credential provider as the default credential provider** text box
 1. Click the **OK** button
 
-Smart card logon will be the default logon prompt once a user has logged into the system at least one time using a smart card. If the **Interactive Logon: Do not display last username** Group Policy setting is enabled, then a username and password prompt will always be the default logon prompt ([1](<https://support.microsoft.com/en-us/help/2741622>),[2](https://community.spiceworks.com/topic/post/4992568)). The **Interactive logon: Require smart card** Group Policy setting can be used to force the smart card credential provider to be the default logon prompt, but then only smart card logons are allowed.
+Smart card logon will be the default logon prompt once a user has logged into the system at least one time using a smart card. If the **Interactive Logon: Do not display last username** Group Policy setting is enabled, then a username and password prompt will always be the default logon prompt ([1](https://support.microsoft.com/en-us/help/2741622),[2](https://community.spiceworks.com/topic/post/4992568)). The **Interactive logon: Require smart card** Group Policy setting can be used to force the smart card credential provider to be the default logon prompt, but then only smart card logons are allowed.
 
 ## Updating the ActivClient Group Policy templates
 The Group Policy template files need to be copied to specific a location on the file system. The location to copy the files to varies depending on if it is a domain versus a standalone system.

@@ -1,6 +1,6 @@
 # Adobe Reader DC
 
-[Group Policy Objects](./Group Policy Objects/) for [User](./Group Policy Objects/User/) and [Computer](./Group Policy Objects/Computer/) policy and [Group Policy template files](./Group Policy Templates/) are included in the SHB. The settings implemented in the GPOs are from the NSA Information Assurance guidance paper [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm). 
+[Group Policy Objects](./Group%20Policy%20Objects/) for [User](./Group%20Policy%20Objects/User/) and [Computer](./Group%20Policy%20Objects/Computer/) policy and [Group Policy template files](./Group%20Policy%20Templates/) are included in the SHB. The settings implemented in the GPOs are from the NSA Information Assurance guidance paper [Recommendations for Configuring Adobe Acrobat Reader DC in a Windows Environment](https://www.iad.gov/iad/library/ia-guidance/security-configuration/applications/recommendations-for-configuring-adobe-acrobat-reader-dc-in-a-windows-environment.cfm). 
 
 Using the [continuous track](http://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/whatsnewdc.html) version of Adobe Reader DC (ARDC) is recommended.
 

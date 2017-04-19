@@ -1,5 +1,5 @@
 # Windows Firewall
-A [Group Policy Object](./Group Policy Objects/Computer/) for the Windows 10 firewall is included in the SHB. The GPO contains a basic configuration to enable the built in firewall and logging capabilities. 
+A [Group Policy Object](./Group%20Policy%20Objects/Computer/) for the Windows 10 firewall is included in the SHB. The GPO contains a basic configuration to enable the built in firewall and logging capabilities. 
 
 ## Importing the Windows Firewall Group Policy
 

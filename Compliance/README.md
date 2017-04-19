@@ -1,12 +1,12 @@
 # Compliance Checks
 Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files are included in this repository. Compliance checks are available for:
 
-* [Adobe Reader DC](./../Adobe Reader/Compliance/)
+* [Adobe Reader DC](./../Adobe%20Reader/Compliance/)
 * [Chrome](./../Chrome/Compliance/)
 * [EMET](./../EMET/Compliance/)
-* [Internet Explorer](./../Internet Explorer/Compliance/)
+* [Internet Explorer](./../Internet%20Explorer/Compliance/)
 * [Windows](./../Windows/Compliance/)
-* [Windows Firewall](./../Windows Firewall/Compliance/)
+* [Windows Firewall](./../Windows%20Firewall/Compliance/)
 
 ## Running Compliance Checks
 

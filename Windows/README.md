@@ -1,5 +1,5 @@
 # Windows 10
-Group Policy Objects for [Computer](./Group Policy Objects/Computer/) and [User](./Group Policy Objects/User/) policies for Windows 10 are included in the SHB. The latest versions of  the [Group Policy Templates](./Group Policy Templates/) for Windows 10 are also included.
+Group Policy Objects for [Computer](./Group%20Policy%20Objects/Computer/) and [User](./Group%20Policy%20Objects/User/) policies for Windows 10 are included in the SHB. The latest versions of  the [Group Policy Templates](./Group%20Policy%20Templates/) for Windows 10 are also included.
 
 Note that the latest SHB (10.1.0) is for Windows 10 1607 which is what this repository is in sync with.
 

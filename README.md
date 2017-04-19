@@ -20,28 +20,28 @@ Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/secur
 
 This repository hosts Group Policy objects, compliance checks, and configuration tools in support of the DoD Secure Host Baseline (SHB) framework for Windows 10. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework for Windows 10](https://disa.deps.mil/ext/cop/iase/dod-images/Pages/Win10.aspx) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
-Questions or comments can be submitted to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) or posted on  [Windows 10 Secure Host Baseline project](https://software.forge.mil/sf/projects/win10shb) forums on Software Forge which requires a CAC or PIV smart card to access.
+Questions or comments can be submitted to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) or posted on [Windows 10 Secure Host Baseline project](https://software.forge.mil/sf/projects/win10shb) forums on Software Forge which requires a CAC or PIV smart card to access.
 
 ## Repository content
 
 ### Group Policy Objects
 
-* The [ActivClient folder](./ActivClient/README.md) contains  ActivClient [Computer](./ActivClient/Group Policy Objects/Computer/) policy for those who use smart card logons with ActivClient software.
-* The [Adobe Reader folder](./Adobe Reader/README.md) contains Adobe Reader DC [Computer](./Adobe Reader/Group Policy Objects/Computer/) and [User](./Adobe Reader/Group Policy Objects/User/) policies for the latest version of Adobe Reader DC.
-* The [AppLocker folder](./AppLocker/README.md) contains AppLocker [Computer](./AppLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
-* The [BitLocker folder](./BitLocker/README.md) contains BitLocker [Computer](./BitLocker/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
-* The [Certificates folder](./Certificates/README.md) contains [Computer](./Certificates/Group Policy Objects/Computer/) policy for distributing the DoD Root and Intermediate Certificate Authorities.
-* The [Chrome folder](./Chrome/README.md) contains Chrome browser [Computer](./Chrome/Group Policy Objects/Computer/) policy for the latest version of Chrome.
-* The [EMET folder](./EMET/README.md) contains EMET 5.5 [Computer](./EMET/Group Policy Objects/Computer/) policy for any version of Windows.
-* The [Internet Explorer folder](./Internet Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet Explorer/Group Policy Objects/Computer/) and [User](./Internet Explorer/Group Policy Objects/User/) policies for latest version of Windows 10.
-* The [Office folder](./Office/README.md) contains [Office 2013](./Office/Office 2013/) and [Office 2016](./Office/Office 2016/) policy.
-* The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group Policy Objects/User) and [Computer](./Windows/Group Policy Objects/Computer/) policies for the latest version of Windows 10.
-* The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group Policy Objects/Computer/) policy for the latest version of Windows 10.
+* The [ActivClient folder](./ActivClient/README.md) contains  ActivClient [Computer](./ActivClient/Group%20Policy%20Objects/Computer/) policy for those who use smart card logons with ActivClient software.
+* The [Adobe Reader folder](./Adobe%20Reader/README.md) contains Adobe Reader DC [Computer](./Adobe%20Reader/Group%20Policy%20Objects/Computer/) and [User](./Adobe%20Reader/Group%20Policy%20Objects/User/) policies for the latest version of Adobe Reader DC.
+* The [AppLocker folder](./AppLocker/README.md) contains AppLocker [Computer](./AppLocker/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
+* The [BitLocker folder](./BitLocker/README.md) contains BitLocker [Computer](./BitLocker/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
+* The [Certificates folder](./Certificates/README.md) contains [Computer](./Certificates/Group%20Policy%20Objects/Computer/) policy for distributing the DoD Root and Intermediate Certificate Authorities.
+* The [Chrome folder](./Chrome/README.md) contains Chrome browser [Computer](./Chrome/Group%20Policy%20Objects/Computer/) policy for the latest version of Chrome.
+* The [EMET folder](./EMET/README.md) contains EMET 5.5 [Computer](./EMET/Group%20Policy%20Objects/Computer/) policy for any version of Windows.
+* The [Internet Explorer folder](./Internet%20Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet%20Explorer/Group%20Policy%20Objects/Computer/) and [User](./Internet%20Explorer/Group%20Policy%20Objects/User/) policies for latest version of Windows 10.
+* The [Office folder](./Office/README.md) contains [Office 2013](./Office/Office%202013/) and [Office 2016](./Office/Office%202016/) policy.
+* The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group%20Policy%20Objects/User) and [Computer](./Windows/Group%20Policy%20Objects/Computer/) policies for the latest version of Windows 10.
+* The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
 
 ### Scripts and tools
 Scripts for aiding users with the SHB are located in the Scripts sub folders of each component. Scripts available for use so far:
 
-* [Adobe Reader](./Adobe Reader/Scripts/)
+* [Adobe Reader](./Adobe%20Reader/Scripts/)
 * [BitLocker](./BitLocker/Scripts/)
 * [Certificates](./Certificates/Scripts/)
 * [Chrome](./Chrome/Scripts/)
@@ -52,12 +52,12 @@ Scripts for aiding users with the SHB are located in the Scripts sub folders of 
 ### Compliance checks
 Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in the DoD) audit files are included in this repository. Compliance checks are available for:
 
-* [Adobe Reader DC](./Adobe Reader/Compliance/)
+* [Adobe Reader DC](./Adobe%20Reader/Compliance/)
 * [Chrome](./Chrome/Compliance/)
 * [EMET](./EMET/Compliance/)
-* [Internet Explorer](./Internet Explorer/Compliance/)
+* [Internet Explorer](./Internet%20Explorer/Compliance/)
 * [Windows](./Windows/Compliance/)
-* [Windows Firewall](./Windows Firewall/Compliance/)
+* [Windows Firewall](./Windows%20Firewall/Compliance/)
 
 Instructions for running the compliance checks in a domain or standalone environment can be found on the [Compliance](./Compliance/README.md) page.
 
