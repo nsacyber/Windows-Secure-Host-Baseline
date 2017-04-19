@@ -492,7 +492,7 @@ Function Get-Intersection() {
     )
 
     $result = [string[]]@(Compare-Object $ReferenceObject $DifferenceObject -PassThru -IncludeEqual -ExcludeDifferent)
-    return $result
+    return ,$result
 }
 
 Function Test-IsModuleAvailable() {
