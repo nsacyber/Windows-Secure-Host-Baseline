@@ -36,7 +36,7 @@ Questions or comments can be submitted to the [repository issue tracker](https:/
 * The [Internet Explorer folder](./Internet%20Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet%20Explorer/Group%20Policy%20Objects/Computer/) and [User](./Internet%20Explorer/Group%20Policy%20Objects/User/) policies for latest version of Windows 10.
 * The [Office folder](./Office/README.md) contains [Office 2013](./Office/Office%202013/) and [Office 2016](./Office/Office%202016/) policy.
 * The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group%20Policy%20Objects/User) and [Computer](./Windows/Group%20Policy%20Objects/Computer/) policies for the latest version of Windows 10.
-* The [Windows Firewall folder](./Windows Firewall/README.md) contains Windows Firewall [Computer](./Windows Firewall/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
+* The [Windows Firewall folder](./Windows%20Firewall/README.md) contains Windows Firewall [Computer](./Windows%20Firewall/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
 
 ### Scripts and tools
 Scripts for aiding users with the SHB are located in the Scripts sub folders of each component. Scripts available for use so far:
