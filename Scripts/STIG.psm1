@@ -198,6 +198,7 @@ Function Get-StigRules() {
         $description = $_.Rule.description
 
         $description = $description -replace "$([char]0x0A)",'' -replace "$([char]0x0D)",''
+        $description = [System.Security.SecurityElement]::Escape($description)
         $vuln = Select-Xml -Content "<root>$description</root>" -XPath './/VulnDiscussion'
 
         $discussion = ''
@@ -215,8 +216,6 @@ Function Get-StigRules() {
         # Outlook 2013 does not have ident property on most items, appears to only have it on 2
         if($_.Rule.PSObject.Properties.Name -contains 'ident') {
             $cci = @($_.Rule.ident | ForEach-Object { $_.'#text' }) -join ', '
-        } else {
-            Write-Warning -Message ('{0} is missing ident (CCI) property' -f $_.id)
         }
 
         $rule = [pscustomobject]@{
