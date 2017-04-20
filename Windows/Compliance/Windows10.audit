@@ -283,10 +283,10 @@ The Release ID is stored in the registry as a text string so passing a value gre
 		Rule ID:  SV-77839r1_rule
  		Severity: CAT I"
  value_type	: POLICY_TEXT
- value_data	: "1607"
+ value_data	: "1511"
  reg_key	: "HKLM\Software\Microsoft\Windows NT\CurrentVersion\"
  reg_item	: "ReleaseID"
- check_type	: CHECK_EQUAL
+ check_type	: CHECK_GREATER_THAN_OR_EQUAL
 </custom_item>
 
 # STIG ID	: WN10-00-000045
