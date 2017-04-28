@@ -65,4 +65,6 @@ Select-String -Path .\ComplianceReport.txt -Pattern 'FAILED'
 
 
 ## Links
-* [Nessus Compliance Checks Reference](https://support.tenable.com/support-center/nessus_compliance_reference.pdf)
+* [Nessus Compliance Checks Reference (PDF)](https://docs.tenable.com/nessus/compliancechecksreference/Content/Resources/PDF/NessusComplianceChecksReference.pdf)
+* [Nessus Compliance Checks Reference (HTML)](https://docs.tenable.com/nessus/compliancechecksreference/Content/ComplianceCheckTypes.htm)
+* [Nessus Compliance Checks Overview (PDF)](https://support.tenable.com/support-center/nessus_compliance_checks.pdf)
