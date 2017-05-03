@@ -1480,7 +1480,7 @@ Function Import-LocalCertificate() {
 
     $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains($certSearchPath) -and $_.PsIsContainer -eq $false})
 
-    $certificateFiles | ForEach {
+    $certificateFiles | ForEach-Object {
         $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $_.FullName
 
         # test if certificate exists so we don't try to import it again. you will get access denied errors
