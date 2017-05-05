@@ -1083,8 +1083,6 @@ Function Import-PolicyObject() {
 
     $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
-    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
-
     $parameters = $PSBoundParameters
 
     # Import-GPO works differently than LGPO, they expect a different folder (Import-GPO needs parent folder of GPO, LGPO needs actual folder of GPO)
@@ -1114,6 +1112,7 @@ Function Import-PolicyObject() {
             break 
          }
         'local' {
+            $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
             Import-LocalPolicyObject -Path $Path -ToolPath $ToolPath
             break 
         }
@@ -1121,6 +1120,7 @@ Function Import-PolicyObject() {
             if (Test-IsDomainJoined) {
                 Import-DomainPolicyObject -Path $Path -BackupGuid $BackupGuid -Name $Name
             } else {
+                $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
                 Import-LocalPolicyObject -Path $Path -ToolPath $ToolPath
             }
             break
@@ -1292,8 +1292,6 @@ Function New-PolicyObjectBackup() {
 
     $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
-    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
-
     $parameters = $PSBoundParameters
 
     if (('Local' -eq $PolicyType -or -not(Test-IsDomainJoined)) -and -not($parameters.ContainsKey('ToolPath'))) {
@@ -1310,6 +1308,7 @@ Function New-PolicyObjectBackup() {
             break 
          }
         'local' { 
+            $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
             New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath
             break 
         }
@@ -1317,6 +1316,7 @@ Function New-PolicyObjectBackup() {
             if (Test-IsDomainJoined) {
                 New-DomainPolicyObjectBackup -Path $Path -Name $Name
             } else {
+                $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
                 New-LocalPolicyObjectBackup -Path $Path -ToolPath $ToolPath 
             }
             break
@@ -1480,7 +1480,7 @@ Function Import-LocalCertificate() {
 
     $certificateFiles = @(Get-ChildItem -Path $Path -Recurse -Include *.cer | Where-Object { $_.FullName.Contains($certSearchPath) -and $_.PsIsContainer -eq $false})
 
-    $certificateFiles | ForEach {
+    $certificateFiles | ForEach-Object {
         $certificate = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList $_.FullName
 
         # test if certificate exists so we don't try to import it again. you will get access denied errors
@@ -1592,8 +1592,6 @@ Function Invoke-ApplySecureHostBaseline() {
 
     $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
 
-    $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
-
     $parameters = $PSBoundParameters
 
     if (-not($parameters.ContainsKey('PolicyType'))) {
@@ -1671,6 +1669,7 @@ Function Invoke-ApplySecureHostBaseline() {
 
     # there's only 1 policy object for local policy so only 1 backup needs to occur unlike domain policy
     if ('Local' -eq $PolicyType) {
+        $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
         New-PolicyObjectBackup -Path $gpoBackupFolder -PolicyType $PolicyType -ToolPath $ToolPath
     }
 
@@ -1721,6 +1720,7 @@ Function Invoke-ApplySecureHostBaseline() {
                 Import-LocalCertificate -Path $Path -Store 'Root'
                 Import-LocalCertificate -Path $Path -Store 'Intermediate'
             } else {
+                $ToolPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ToolPath)
                 Import-PolicyObject -Path $newPolicyPath -PolicyType $PolicyType -ToolPath $ToolPath
             }
 
