@@ -1,4 +1,4 @@
-# Hardware and Firmware Recommendations for an SHB System
+﻿# Hardware and Firmware Recommendations for an SHB System
 
 Microsoft provides a clear list of which security features in Windows 10 use certain hardware and firmware features in the [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware) article. The notation in the table is **R** = recommended, **Y** = required, and **N** = not used.
 
@@ -19,7 +19,7 @@ Properties of an ideal system for Windows 10 Secure Host Baseline include:
 * System supports firmware updates using Windows UEFI Firmware Update Platform specification (optional, but recommended).
 * System has passed a Windows Microsoft Hardware Certification Program for at least Windows 8, but preferably for Windows 10.
 
-**A system that satisfies the above properties should work out-of-the-box with [Credential Guard](../Credential Guard), [Device Guard](../Device Guard), and Virtualization-based protection of code integrity.**
+**A system that satisfies the above properties should work out-of-the-box with [Credential Guard](../Credential%20Guard), [Device Guard](../Device%20Guard), and Virtualization-based protection of code integrity.**
 
 A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available [here](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true). A similar list for AMD processors that support 64-bit, AMD-V, AMD-RVI, and AMD-Vi could not be found.
 
