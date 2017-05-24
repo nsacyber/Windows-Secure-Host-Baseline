@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- version: 1.0.0 -->
-<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" revision="1.0" schemaVersion="1.0">
+<!-- See https://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/gpo.html for Adobe Supported ADMX/ADML files -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions" 
+  revision="1.0" schemaVersion="1.0">
   <displayName>Adobe Reader DC</displayName>
   <description>This file contains strings for Adobe Reader DC policies</description>
   <resources>
-  
+
   <stringTable>
       <string id="SupportedReaderDC">Adobe Reader DC</string>
       <string id="SupportedReader11">Adobe Reader 11.0+</string>
+      <string id="SupportedReader11">Adobe Reader 10.0+</string>
+      <string id="SupportedReader95">Adobe Reader 9.5+</string>
       <string id="SupportedReader9">Adobe Reader 9.0+</string>
       <string id="SupportedReader81">Adobe Reader 8.1+</string>
-      
-      <!-- CATEGORIES --> 
+      <string id="SupportedReader80">Adobe Reader 8.0+</string>
+      <string id="SupportedReader70">Adobe Reader 7.0+</string>
+
       <string id="AdobeCategory">Adobe</string>
       <string id="ReaderDCCategory">Reader DC</string>
       <string id="SecurityCategory">Security</string>
@@ -20,85 +25,159 @@
       <string id="UpdaterCategory">Updater</string>
       <string id="OtherCategory">Other</string>
       <string id="TrustedLocationCategory">Trusted Locations</string>
-      
-      <!-- SECURITY SETTINGS -->
 
-      <string id="ProtectedView">Enable Protected View</string>
-      <string id="ProtectedView_Explain">Protected View is a highly secure, read-only mode that blocks most actions and application behavior until the user decides whether or not to trust the document. This helps protect users from potentially malicous content inside PDF files.  Protected View is only supported when Protected Mode is also enabled. Setting to Enabled will enable Protected View. Settings to Disabled or Not Configured will Disable Protected View.
+      <!--
+      <seeAlso>GroupID: V-64919</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000005</seeAlso>
+      -->
+      <string id="EnhancedSecurityStandalone">Enhanced Security: standalone mode</string>
+      <string id="EnhancedSecurityStandalone_Explain">The Enhanced Security feature is designed to limit document behaviors in workflows where those behaviors are perceived as a vulnerability or security risk. Enhanced Security blocks 6 specific behaviors: data injection, script injection, silent printing, web links (if not allowed by Trust Manager settings), cross domain access, and access to external streams. Standalone mode occurs when Adobe Reader is running as an application. Enhanced Security is enabled by default. Configuring this setting to Enabled or Disabled prevents users from changing it from the administrator's desired configuration. Not Configured and Enabled have the same behavior of enabling Enhanced Security but users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64921</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000010</seeAlso>
+      -->
+      <string id="EnhancedSecurityBrowser">Enhanced Security: browser mode</string>
+      <string id="EnhancedSecurityBrowser_Explain">The Enhanced Security feature is designed to limit document behaviors in workflows where those behaviors are perceived as a vulnerability or security risk. Enhanced Security blocks 6 specific behaviors: data injection, script injection, silent printing, web links (if not allowed by Trust Manager settings), cross domain access, and access to external streams. Browser mode occurs when Adobe Reader is running as a browser plugin. Enhanced Security is enabled by default. Configuring this setting to Enabled or Disabled prevents users from changing it from the administrator's desired configuration. Not Configured and Enabled have the same behavior of enabling Enhanced Security. Users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64923</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000015</seeAlso>
+      -->
+      <string id="ProtectedMode">Protected Mode</string>
+      <string id="ProtectedMode_Explain">Protected Mode is one of the application's most advanced security features and should be enabled to protect user systems and data. Protect mode transparently protects users against attacks by sandboxing the Reader DC application processes. Protected Mode is enabled by default. Configuring this setting to Enabled or Disabled prevents users from changing it from the administrator's desired configuration. Not Configured and Enabled have the same behavior of enabling Protected Mode. Users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64925</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000020</seeAlso>
+      -->
+      <string id="ProtectedView">Protected View</string>
+      <string id="ProtectedView_Explain">Protected View is a highly secure, read-only mode that blocks most actions and application behavior until the user decides whether or not to trust the document. This helps protect users from potentially malicous content inside PDF files. Protected View is only supported when Protected Mode is also enabled. Protected View is disabled by default. Not Configured and Disabled have the same behavior of disabling Protected Mode Protected View. Users can change the value when it is set to Not Configured.
       </string>
 
       <string id="DisableProtectedView">Disable Protected View</string>
       <string id="EnableProtectedViewUnsafeOnly">Enable Protected View for unsafe locations only</string>
       <string id="EnableProtectedView">Enable Protected View</string>
-      
-      <string id="ProtectedMode">Enable Protected Mode</string>
-      <string id="ProtectedMode_Explain">Protected Mode is one of the application's most advanced security features and should be enabled to protect user systems and data. Protectmode transparently protects users against attacks by sandboxing the ReaderDC application processes. Setting to Enabled or Not Configured will enable Protected Mode. </string>
-      
-      <string id="ProtectedViewForOutlook">Enable Protected View for Outlook Attachments</string>
+
+      <!--
+      <seeAlso>GroupID: V-64927</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000025</seeAlso>
+      -->
+      <string id="Hyperlinks">Hyperlink access to the Internet</string>
+      <string id="Hyperlinks_Explain">Global setting that controls if hyperlinks clicked inside PDF documents are allowed to access the Internet. Hyerlinks are disabled by default. Not Configured and Disabled have the same behavior of not allowing hyperlinks to access the internet. Users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64929</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000030</seeAlso>
+      -->
+      <string id="HyperlinksUserList">User non-whitelisted hyperlinks access to the Internet</string>
+      <string id="HyperlinksUserList_Explain">Controls if hyperlinks, that are not in a user's list, clicked inside PDF documents are allowed to access the Internet. Only applicable if 'Hyperlink access to the Internet' is Not Configured. If 'Hyperlink access to the Internet' is Not Configured, then the default behavior is 'Always ask'. Not Configured and Enabled with 'Always ask' have the same behavior of always asking for permission. Users can change the value when it is set to Not Configured.</string>
+
+      <string id="AlwaysAsk">Always ask</string>
+      <string id="AlwaysAllow">Always allow</string>
+      <string id="AlwaysBlock">Always block</string>
+
+      <!--
+      <seeAlso>GroupID: V-64931</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000035</seeAlso>
+      -->
+      <string id="Attachments">Attachments</string>
+      <string id="Attachments_Explain">Controls if attachments, other than PDF/FDF files, embedded inside PDF documents are allowed to open or launch via external applications. Not Configured and Enabled with 'Open and save permission are determined by a user defined list' have the same behavior. Users can change the value when it is set to Not Configured.</string>
+
+      <string id="UseList">Open and save permission are determined by a user defined list</string>
+      <string id="NoAttachments">No attachments may be opened or saved to disk</string>
+      <string id="AllAttachments">All attachments may be opened or saved to disk</string>
+
+      <!--
+      <seeAlso>GroupID: V-64933</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000045</seeAlso>
+      -->
+      <string id="EnableFlash">Flash rendering</string>
+      <string id="EnableFlash_Explain">Specifies whether Flash content should be rendered in a PDF. Flash content does not play by default. Not Configured and Disabled have the same behavior of not playing Flash content in the PDF. Users can change the value when it is set to Not Configured.</string>
+
+      <!-- 
+      <seeAlso>GroupID: V-64935</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000050</seeAlso>
+      -->
+      <string id="HandlerSwitching">PDF handler switching</string>
+      <string id="HandlerSwitching_Explain">PDF handler switching allows the ability to change the specified default PDF viewer through the Adobe Reader user interface. The default PDF reader can still be changed by operating system provided mechanisms. Not Configured and Enabled have the same behavior of allowing the user to change the default PDF viewer through the Adobe Reader user interface. Users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64937</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000055</seeAlso>
+      -->
+      <string id="CloudSendPlugin">Adobe Send and Track plugin for Outlook</string>
+      <string id="CloudSendPlugin_Explain">Controls availability of the Adobe Send and Track plugin for Outlook. This setting controls sending large files as public links through Outlook. The attached files are uploaded to Adobe Document Cloud and public links to the files are inserted in the email body. Recipients can click the link to preview the file in a browser window and can download the file if needed. The service can still be used without the plugin. Not Configured and Disabled have the same behavior of not enabling the plugin. Users can change the value when it is set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64937</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000055</seeAlso>
+      -->
+      <string id="CloudDocumentService">Adobe Document Cloud services</string>
+      <string id="CloudDocumentService_Explain">Controls Adobe Document Cloud service access from the Adobe Reader DC user interface except for services controlled by the other preferences. This setting does not affect Adobe Send for Signature, preference synchronization, or third party connectors. Not Configured and Enabled have the same behavior of allowing access to the Document Cloud services through the Adobe Reader DC user interface. Users can access the Document Cloud services through the Adobe Reader DC user interface when set to Not Configured.</string>
+
+      <!--
+      <seeAlso>GroupID: V-64941</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000065</seeAlso>
+      -->
+      <string id="CloudPrefSync">Preferences synchronization</string>
+      <string id="CloudPrefSync_Explain">Controls preferences synchronization. Synchronizes desktop preferences across devices on which the user is signed in with an Adobe ID (including mobile devices). Not Configured and Enabled have the same behavior of allowing preference synchronization when signed in with an Adobe ID.</string>
+
+      <seeAlso>GroupID: V-64943</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000070</seeAlso>
+      <string id="DisableMaintenance32">Disable Maintenance (32-bit)</string>
+      <string id="DisableMaintenance64">Disable Maintenance (64-bit)</string>
+      <string id="DisableMaintenance_Explain">Enable/Disable maintenance/re-install of Adobe Reader DC to fix installation problems. Setting to Enabled will prevent users from performing maintenance. </string>
+
+<!-- -->
+
+      <string id="ProtectedViewForOutlook">Protected View for Outlook Attachments</string>
       <string id="ProtectedViewForOutlook_Explain">Allows for the configuration of Protected View for attachment files being opened from Outlook</string>
-      
-      <string id="EnhancedSecurityStandalone">Enable Enhanced Security: Standalone</string>
-      <string id="EnhancedSecurityStandalone_Explain">Enhanced Security blocks 6 specific behaviors: data injection, script injection, silent printing, web links (if not allowed by Trust Manager settings), cross domain access, and access to external streams. Standalone mode occurs when Adobe Reader is running as an application.</string>
-      
-      <string id="EnhancedSecurityBrowser">Enable Enhanced Security: Browser</string>
-      <string id="EnhancedSecurityBrowser_Explain">Enhanced Security blocks 6 specific behaviors: data injection, script injection, silent printing, web links (if not allowed by Trust Manager settings), cross domain access, and access to external streams. Browser mode occurs when Adobe Reader is running as a browser plugin.</string>
-      
-      <string id="HandlerSwitching">Prevent PDF Handler Switching</string>
-      <string id="HandlerSwitching_Explain">PDF Handler switching allows an older version of Reader to open PDF files which could bypass newer security features like Protected Mode. Setting to Enabled will prevent PDF files from being opened with older versions of Reader.</string>
-      
+
       <!-- TRUSTED LOCATION SETTINGS --> 
-      
-      <string id="TrustedSites">Allow User Trusted Sites</string>
+
+      <string id="TrustedSites">User Trusted Sites</string>
       <string id="TrustedSites_Explain">Enable/Disable a user's ability to mark sites as Trusted. Trusted sites are not subjected to Protected View/Mode and other security features. Setting to Disabled will prevent user's from trusting PDF files before they are have been opened with Protected View.</string>
-      
-      <string id="TrustedFolders">Allow User Trusted Folders and Files</string>
+
+      <string id="TrustedFolders">User Trusted Folders and Files</string>
       <string id="TrustedFolders_Explain">Enable/Disable a user's ability to mark particular files as Trusted. This setting is related to the Yellow Message Bar for Protected View/Mode. By setting to Enabled or Not Configured a user can approve a single PDF file as trusted and get active content (like JavaScript) to execute. By setting to disabled a user will never be able to move beyond the Yellow Message Bar, essentially they will be in read-only mode and will not be able to enable any active content. Setting to disabled will have ramifications on user workflows. Not Configured and Disabled have the same behavior.</string>
-      
-      <string id="TrustedOSSites">Allow OS Trusted Sites</string>
-      <string id="TrustedOSSites_Explain">Enable/Disable OS Trsuted sites (from IE Zones) and use them as Reader DC Trusted sites. IE Trusted Sites are generally already under IT control. Setting to Enabled will allow PDF files openned from OS Trusted Sites to open normally without any security restrictions. Not Configured and Disabled have the same behavior.</string>
-      
-      <string id="TrustedCertificate">Allow Certified Documents as Trusted</string>
+
+      <string id="TrustedOSSites">OS Trusted Sites</string>
+      <string id="TrustedOSSites_Explain">Enable/Disable OS Trusted sites (from IE Zones) and use them as Reader DC Trusted sites. IE Trusted Sites are generally already under IT control. Setting to Enabled will allow PDF files openned from OS Trusted Sites to open normally without any security restrictions. Not Configured and Disabled have the same behavior.</string>
+
+      <string id="TrustedCertificate">Trust Certified Documents</string>
       <string id="TrustedCertificate_Explain">Enable/Disable Certified Documents as Trusted. Setting to Enabled will allow signed PDF files to open normally without any security restrictions. Not Configured or Disabled have the same behavior.</string>
-      
+ 
       <!-- CLOUD SETTINGS --> 
 
-      <string id="CloudSharepoint">Allow SharePoint Services</string>
+      <string id="CloudSharepoint">SharePoint Services</string>
       <string id="CloudSharepoint_Explain">Enable/Disable integration with SharePoint and Office 365 services.</string>
-      
-      <string id="CloudFilestore">Allow Adobe File Store</string>
+
+      <string id="CloudFilestore">Adobe Cloud File Storage</string>
       <string id="CloudFilestore_Explain">Enable/Disable integration with adobe.com cloud file storage services.</string>
-      
-      <string id="CloudWebmail">Allow WebMail</string>
+
+      <string id="CloudWebmail">WebMail integration</string>
       <string id="CloudWebmail_Explain">Enable/Disable integration with WebMail services (ie Yahoo, Google, etc).</string>
 
-      <string id="CloudUpdater">Allow Cloud Services</string>
-      <string id="CloudUpdater_Explain">Enable/Disable Adobe Cloud Services. This is the master switch for Adobe cloud services. This setting controls both updates to the product’s web-plugin components as well as all services without exception, including the sign-in screen. Setting this to Allow or Not configured will allow cloud services. Setting to Disabled will prevent cloud services.</string>
-      
-      <string id="CloudDocumentService">Allow Adobe Document Services</string>
-      <string id="CloudDocumentService_Explain">Enable/Disable Adobe Document Services. This setting controls and locks all cloud service access, except for features explicitly enabled by other settings. </string>
-      
-      <string id="CloudAdobeSign">Allow Adobe Send for Signature</string>
+      <string id="CloudAdobeSign">Adobe Send for Signature</string>
       <string id="CloudAdobeSign_Explain">Enable/Disable the eSign feature (formerly EchoSign). This setting controls access to Adobe's online signature service. </string>
-      
-      <string id="CloudPrefSync">Allow Synchronization Across Devices</string>
-      <string id="CloudPrefSync_Explain">Enable/Disable the synchronization feature. This new feaure synchronizes desktop preferences across devices on which the user is signed in with an Adobe ID (including mobile devices).</string>
-      
-      <string id="CloudWebConnectors">Allow Web Connectors</string>
+
+      <string id="CloudWebConnectors">Web Connectors</string>
       <string id="CloudWebConnectors_Explain">Enable/Disable third party connectors such as Dropbox, Google Drive, etc. This settings controls a user's ability to configure in-product access to third party services for file storage. </string>
-      
-      <string id="CloudSendPlugin">Allow Send Plugin for Outlook</string>
-      <string id="CloudSendPlugin_Explain">Enable/Disable the Outlook Send Pluggin. This setting controls sending large files as public links through Outlook. The attached files are uploaded to Adobe Document Cloud and public links to the files are inserted in the email body. Recipients can click the link to preview the file in a browser window and can download the file if needed.</string>
 
       <!-- UPDATER SETTINGS --> 
-      <string id="Updater">Allow Adobe Reader Product Updates</string>
+      <string id="Updater">Adobe Reader Product Updates</string>
       <string id="Updater_Explain">Enable/Disable ability for the Adobe Reader DC Updater to download and install product updates. This setting also controls the check for updates menu item. Setting to Allowed will allow updates to be downlaoded, including service updates if configured to allow. Setting to disabled will prevent the updater from running and hide the check for updates menu item. NOTE: The EULA must be accpected by the user, or the EULA GPO setting must be configured to Accept EULA before any updates can be downloaded.</string>
-      
-      <string id="UpdaterCloud">Allow Online Service Updates</string>
+
+      <string id="UpdaterCloud">Online Service Updates</string>
       <string id="UpdaterCloud_Explain">Enable/Disable ability for the Adobe Reader DC Updater to download online service updates. Setting to disabled will prevent the updater from downloading updates.</string>
-      
+<!--      
+      <string id="CloudUpdater">Cloud Services</string>
+      <string id="CloudUpdater_Explain">Enable/Disable Adobe Cloud Services. This is the master switch for Adobe cloud services. This setting controls both updates to the product’s web-plugin components as well as all services without exception, including the sign-in screen. Setting this to Allow or Not configured will allow cloud services. Setting to Disabled will prevent cloud services.</string>
+-->
       <string id="UpdaterLog">Updater Log Level</string>
       <string id="UpdaterLog_Explain">Configure log level for the Adobe Reader DC Updater. Setting to Disabled or Not Configured will produce basic logging. Setting to Enabled will produce verbose logging. Updater lgs can be found in C:\Users\username\AppData\Local\Temp\AdobeARM.txt</string>
-      
+
       <string id="UpdaterEula">Accept EULA</string>
       <string id="UpdaterEula_Explain">Enable/Disable acceptance of of end user license agreement (EULA) for the end user. Setting to Enabled will prevent the EULA from being displayed. The EULA must be accepted before the updater can download product updates.</string>
 
@@ -107,7 +186,7 @@
 
       <string id="UpdaterMode">Configure Adobe Reader (Legacy) update mode</string>
       <string id="UpdaterMode_Explain">Configures the Adobe Reader (Legacy) update mode. Not Configured and "Automatically download and install updates" have the same behavior.</string>
-      
+
       <string id="UpdaterCheckReader">Configure Adobe Reader update mode</string>
       <string id="UpdaterCheckReader_Explain">Configures the Adobe Reader update mode. Not Configured and "Automatically download updates but let the user choose when to install them." have the same behavior.</string>
 
@@ -117,64 +196,41 @@
       <string id="NotifyUserNoDownload">Notify the user that downloads are available but do not download them</string>
 
       <!-- EMBEDDED CONTENT SETTINGS --> 
-      <string id="Attachments">Allow Attachments</string>
-      <string id="Attachments_Explain">Enable/Disable attachments embedded inside PDF documents. Embedded attachments could contain malicious content and should only be enabled if necessary. Setting to Allow or Not Configured will allow embedded attachments.</string>
-
-      <string id="UseList">Open and save permission are determined by values in tBuiltInPermiList (white and black list of file types that can be saved and opened from a document).</string>
-      <string id="NoAttachments">No attachments may be opened or saved to disk</string>
-      <string id="AllAttachments">All attachments may be opened or saved to disk</string>
-
-      <string id="Hyperlinks">Allow Hyperlinks</string>
-      <string id="Hyperlinks_Explain">Enable/Disable hyperlinks inside PDF documents. Hyperlinks could lead a user to a malicious web site and should only be enabled if necessary. Setting to Allow or Not Configured will allow hyperlinks.</string>
-      
-      <string id="HyperlinksUserList">Allow Hyperlinks not in user list</string>
-      <string id="HyperlinksUserList_Explain">Enable/Disable hyperlinks inside PDF documents that are not in user list. Hyperlinks could lead a user to a malicious web site and should only be enabled if necessary. Setting to Allow or Not Configured will allow hyperlinks.</string>
-      
-      <string id="AlwaysAsk">Always ask</string>
-      <string id="AlwaysAllow">Always allow</string>
-      <string id="AlwaysBlock">Always block</string>
 
       <string id="Javascript">Allow JavaScript</string>
       <string id="Javascript_Explain">Enable/Disable JavaScript inside PDF documents. Many PDF files contain embedded JavaScript for business logic. Globally disabling JavaScript could break certain PDF files. It is recommended to protect users by setting Protected View and Protected Mode. Setting to Allow or Not Configured will allow JavaScript.</string>
-      
+
       <string id="JavascriptBlacklist">Enable JavaScript Blacklist</string>
       <string id="JavascriptBlacklist_Explain">This blacklist helps enterprises roll out policies that block specific JavaScript API(s) from executing within PDF files in their environment. Add the APIs to block as a pipe-separated list in the format of Object_Name.API_Name
 
 For example: Util.CharToByte|App.alert|Collab.getIcon
       </string>
-            
+
       <string id="Enable3d">Allow 3D Content</string>
       <string id="Enable3d_Explain">Enable/Disable 3D content inside PDF documents. Setting to Disabled or Not Configured will prevent 3D content inside PDF files from loading.</string>
-      
-      <string id="EnableFlash">Allow Flash</string>
-      <string id="EnableFlash_Explain">Enable/Disable Flash content inside PDF documents. Setting to Disabled or Not Configured will prevent Flash content inside PDF files from loading.</string>
-      
+
       <!-- OTHER SETTINGS --> 
       <string id="WelcomeScreen">Allow Welcome Screen</string>
       <string id="WelcomeScreen_Explain">Enable/disable the welcome screen. Enabled or Not Configured have the same behavior of showing the welcome screen.</string>
 
       <string id="UsageStats">Allow Sending Usage Statistics</string>
       <string id="UsageStats_Explain">Enable/Disable usage statistics going to adobe.com. Setting to Allow or Not Configured will allow usage statictics.</string>
-      
+
       <string id="Upsell">Allow Adobe Upsell</string>
       <string id="Upsell_Explain">Enable/Disable the Upsell feature. Upsell provides the user the opportunity to upgrade. For example, Reader users can purchase additional tools and features, and Acrobat Standard users can upgrade to Acrobat Professional. Setting to Disabled will prevent the Upsell feature from functioning.</string>
-      
+
       <string id="AutoFill">Allow Auto Complete (autoFill)</string>
       <string id="AutoFill_Explain">Enable/Disable AutoFill Options from the "Preferences" menu in Reader DC. This setting is not actually controlling autocomplete, just the preference menu area for autocomplete. By default, autocomplete is turned off.</string>
-      
+
       <string id="ShowMsgAtLaunch">Allow Messages at Startup</string>
       <string id="ShowMsgAtLaunch_Explain">Enable/Disable showing messages from Adobe when the product launches. Setting to Enabled or Not Configured will show messages. Setting to Disabled will prevent messages from being displayed.</string>
-      
+
       <string id="DontShowMsgWhenViewingDoc">Allow Messages when Document Opens</string>
       <string id="DontShowMsgWhenViewingDoc_Explain">Enable/Disable showing messages from Adobe when a document opens. Setting to Enabled will show messages. Setting to Disabled will prevent messages from being displayed.</string>
-      
+
       <string id="SplashScreen">Display Splash Screen at Startup</string>
       <string id="SplashScreen_Explain">Enable/Disable showing the adobe splash screen everytime the product launches. Setting to Enabled or Not Configured will show the splash screen. Setting to Disabled will prevent the splash screen.</string>
-      
-      <string id="DisableMaintenance32">Disable Maintenance (32-bit)</string>
-      <string id="DisableMaintenance64">Disable Maintenance (64-bit)</string>
-      <string id="DisableMaintenance_Explain">Enable/Disable maintenance/re-install of Adobe Reader DC to fix installation problems. Setting to Enabled will prevent users from performing maintenance. </string>
-      
+
       <!-- HKCU settings -->
 
       <string id="LoadSettingsFromUrlEUTL">Load European Union certificate authorities (EUTL) from Adobe</string>
@@ -187,10 +243,10 @@ For example: Util.CharToByte|App.alert|Collab.getIcon
       <string id="FipsMode_Explain">Turn FIPS mode on or off thereby requiring stronger encryptiong algortihms and limiting certain application behavior. Default is FIPS mode off. Not Configured and Disabled have the same behavior.</string>
 
     </stringTable>
-    
+
     <presentationTable>
       <presentation id="ProtectedView_Dropdown">
-        <dropdownList defaultItem="1" refId="ProtectedView_Dropdown">Protected View:</dropdownList>
+        <dropdownList defaultItem="2" refId="ProtectedView_Dropdown">Protected View:</dropdownList>
       </presentation>
 
       <presentation id="UpdaterMode_Dropdown">
@@ -214,7 +270,7 @@ For example: Util.CharToByte|App.alert|Collab.getIcon
           <label>JavaScript API Blacklist</label>
         </textBox>
       </presentation>
-    
+
     </presentationTable>
 
   </resources>

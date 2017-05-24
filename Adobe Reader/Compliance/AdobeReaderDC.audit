@@ -2,109 +2,116 @@
 # Author: NSA Information Assurance
 # Source: https://github.com/iadgov/Secure-Host-Baseline/Adobe Reader/Compliance/AdobeReaderDC.audit
 
-
-
 <check_type : "Windows" version : "2">
-<group_policy: "Adobe Reader DC Audit Policy">
+    <group_policy: "Adobe Reader DC Audit Policy">
 
+        <if>
+            <condition type: "or">
+                <custom_item> 
+                    type: FILE_CHECK 
+                    description: "Check if Adobe Reader DC is installed - "%programfiles% (x86)"
+                    value_type: POLICY_TEXT 
+                    value_data: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+                    file_option: MUST_EXIST
+                    severity: LOW
+                </custom_item>
+                <custom_item> 
+                    type: FILE_CHECK 
+                    description: "Check if Adobe Reader DC is installed - %programfiles%"
+                    value_type: POLICY_TEXT 
+                    value_data: "%programfiles%\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+                    file_option: MUST_EXIST
+                    severity: LOW
+                </custom_item>
+                <custom_item>
+                    type: REG_CHECK
+                    description: "Check if Adobe Reader DC is installed - WOW6432Node Registry Uninstall GUID"
+                    value_type: POLICY_TEXT
+                    value_data: "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}"
+                    reg_option: MUST_EXIST
+                    key_item: "DisplayName"
+                </custom_item>
+                <custom_item>
+                    type: REG_CHECK
+                    description: "Check if Adobe Reader DC is installed - Registry Uninstall GUID"
+                    value_type: POLICY_TEXT
+                    value_data: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}"
+                    reg_option: MUST_EXIST
+                    key_item: "DisplayName"
+                </custom_item>
+            </condition>
+        <then>
+            # SECURITY SETTINGS
 
-#### CHECK FOR ADOBE READER DC VERSION
+            <custom_item>
+                type: REGISTRY_SETTING
+                description: "Adobe Reader DC must enable Enhanced Security in a Standalone Application"
+                info: "V-64919"
+                info: "ARDC-CN-000005"
+                info: "CAT II"
+                info: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown Name: bEnhancedSecurityStandalone Type: DWORD Value: 1"
+                value_type: POLICY_DWORD
+                value_data: "1"
+                reg_key: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                reg_item: "bEnhancedSecurityStandalone"
+                severity: HIGH
+            </custom_item>
 
-<if>
-<condition type: "or">
+            <custom_item>
+                type: REGISTRY_SETTING
+                description: "Adobe Reader DC must enable Enhanced Security in a Browser"
+                info: "V-64921"
+                info: "ARDC-CN-000010"
+                info: "CAT II"
+                info: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown Name: bEnhancedSecurityInBrowser Type: DWORD Value: 1"
+                value_type: POLICY_DWORD
+                value_data: "1"
+                reg_key: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                reg_item: "bEnhancedSecurityInBrowser"
+                severity: HIGH
+            </custom_item>
 
-<custom_item> 
-	type: FILE_CHECK 
-	description: "Check if Adobe Reader DC is installed - file"
-	value_type: POLICY_TEXT 
-	value_data: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
-	file_option: MUST_EXIST
-	severity: LOW
-</custom_item>
-<custom_item> 
-	type: FILE_CHECK 
-	description: "Check if Adobe Reader DC is installed - file"
-	value_type: POLICY_TEXT 
-	value_data: "%programfiles%\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
-	file_option: MUST_EXIST
-	severity: LOW
-</custom_item>
-<custom_item>
-	type: REG_CHECK
-	description: "Check if Adobe Reader DC is installed - registry"
-	value_type: POLICY_TEXT
-	value_data: "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Adobe"
-	reg_option: MUST_EXIST
-	key_item: "DisplayName"
-</custom_item>
+            <custom_item>
+                type: REGISTRY_SETTING
+                description: "Adobe Reader DC must enable Protected Mode"
+                info: "V-64923"
+                info: "ARDC-CN-000015"
+                info: "CAT II"
+                info: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown Name: bProtectedMode Type: DWORD Value: 1"
+                value_type: POLICY_DWORD
+                value_data: "1"
+                reg_key: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                reg_item: "bProtectedMode"
+                severity: HIGH
+            </custom_item>
 
-</condition>
-<then>
+            <custom_item>
+                type: REGISTRY_SETTING
+                description: "Adobe Reader DC must enable Protected View"
+                info: "V-64925"
+                info: "ARDC-CN-000020"
+                info: "CAT II" 
+                info: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown Name: iProtectedView Type: DWORD Value:2"
+                value_type: POLICY_DWORD
+                value_data: "2"
+                reg_key: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
+                reg_item: "iProtectedView"
+                severity: HIGH
+            </custom_item>
 
-<custom_item> 
-	type: FILE_VERSION
-	description: "ARDC-CN-000340: Version Check"
-	info: "V-65677 Running the latest version of Reader protects users from known vulnerabilies."
-	value_type: POLICY_FILE_VERSION
-	value_data: "15.23.20053.211670"
-	file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
-	check_type: CHECK_GREATER_THAN_OR_EQUAL
-</custom_item>
-
-
-####
-####  RECOMMENDED REGISTRY SETTING CHECKS
-####
-
-# SECURITY SETTINGS
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "ARDC-CN-000020: Enable Protected View"
- info               	: "V-64925 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\iProtectedView (DWORD:2)"
- value_type		: POLICY_DWORD
- value_data		: "2"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
- reg_item		: "iProtectedView"
- severity		: HIGH
-</custom_item>
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "ARDC-CN-000015: Enable Protected Mode"
- info               	: "V-64923 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\bProtectedMode (DWORD:1)"
- value_type		: POLICY_DWORD
- value_data		: "1"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
- reg_item		: "bProtectedMode"
- severity		: HIGH
-</custom_item>
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "ARDC-CN-000005: Enable Enhanced Security"
- info               	: "V-64919 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\bEnhancedSecurityStandalone (DWORD:1)"
- value_type		: POLICY_DWORD
- value_data		: "1"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
- reg_item		: "bEnhancedSecurityStandalone"
- severity		: HIGH
-</custom_item>
-
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "ARDC-CN-000010: Enable Enhanced Security In Browser"
- info               	: "V-64921 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\bEnhancedSecurityInBrowser (DWORD:1)"
- value_type		: POLICY_DWORD
- value_data		: "1"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown"
- reg_item		: "bEnhancedSecurityInBrowser"
- severity		: HIGH
-</custom_item>
+            <custom_item>
+                type: REGISTRY_SETTING
+                description: "Adobe Reader DC must Block Websites"
+                info: "V-64927"
+                info: "ARDC-CN-000025"
+                info: "CAT II"
+                info: "Path: HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms Name: iURLPerms Type: DWORD: Value:1"
+                value_type: POLICY_DWORD
+                value_data: "1"
+                reg_key: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms"
+                reg_item: "iURLPerms"
+                severity: HIGH
+            </custom_item>
 
 <custom_item>
  type			: REGISTRY_SETTING
@@ -258,10 +265,10 @@
  type			: REGISTRY_SETTING
  description	        : "ARDC-CN-000055: Disable Send Plugin for Outlook"
  info               	: "V-64937 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices (DWORD:0)"
+ info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cCloud (DWORD:0)"
  value_type		: POLICY_DWORD
  value_data		: "0"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices"
+ reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cCloud"
  reg_item		: "bAdobeSendPluginToggle"
  severity		: MEDIUM
 </custom_item>
@@ -305,17 +312,7 @@
  severity		: HIGH
 </custom_item>
 
-<custom_item>
- type			: REGISTRY_SETTING
- description	        : "ARDC-CN-000025: Prevent URLs"
- info               	: "V-64927 Severity: CAT II"
- info               	: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms\iURLPerms (DWORD:1)"
- value_type		: POLICY_DWORD
- value_data		: "1"
- reg_key		: "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms"
- reg_item		: "iURLPerms"
- severity		: HIGH
-</custom_item>
+
 
 <custom_item>
  type			: REGISTRY_SETTING
@@ -466,13 +463,23 @@
 # severity		: MEDIUM
 #</custom_item>
 
-</then>
-<else>
+        <custom_item> 
+            type: FILE_VERSION
+            description: "Adobe Reader DC must have the latest Security-related Software Updates installed"
+            info: "V-65677"
+            info: "ARDC-CN-000340"
+            value_type: POLICY_FILE_VERSION
+            value_data: "17.9.20044.25828"
+            file: "%programfiles% (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"
+            check_type: CHECK_GREATER_THAN_OR_EQUAL
+            severity: HIGH
+        </custom_item>
+            </then>
+            <else>
 		<report type: "PASSED">
-		description: "Adobe Reader DC is not installed"
+		    description: "Adobe Reader DC is not installed"
 		</report>
-</else>
-</if>
-
-</group_policy>
+            </else>
+        </if>
+    </group_policy>
 </check_type>

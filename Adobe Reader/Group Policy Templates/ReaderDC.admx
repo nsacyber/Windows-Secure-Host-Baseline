@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- version: 1.0.0 -->
 <!-- See https://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/gpo.html for Adobe Supported ADMX/ADML files -->
-<!-- The settings in the this file are specific to DoD needs and align with the DISA STIG for Adobe Reader DC -->
 <policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   revision="1.0" schemaVersion="1.0" 
   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
@@ -13,6 +12,13 @@
   <supportedOn>
     <definitions>
       <definition displayName="$(string.SupportedReaderDC)" name="SupportedReaderDC"/>
+      <definition displayName="$(string.SupportedReader11)" name="SupportedReader11"/>
+      <definition displayName="$(string.SupportedReader95)" name="SupportedReader10"/>
+      <definition displayName="$(string.SupportedReader95)" name="SupportedReader95"/>
+      <definition displayName="$(string.SupportedReader9)" name="SupportedReader9"/>
+      <definition displayName="$(string.SupportedReader81)" name="SupportedReader81"/>
+      <definition displayName="$(string.SupportedReader80)" name="SupportedReader80"/>
+      <definition displayName="$(string.SupportedReader70)" name="SupportedReader70"/>
     </definitions>
   </supportedOn>
   <categories>
@@ -41,13 +47,53 @@
   </categories>
   <policies>
  
-    <!-- SECURITY SETTINGS --> 
+    <!-- Trust Manager > Enhanced Security -->
+    <policy class="Machine" displayName="$(string.EnhancedSecurityStandalone)" explainText="$(string.EnhancedSecurityStandalone_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="EnhancedSecurityStandalone" valueName="bEnhancedSecurityStandalone">
+      <parentCategory ref="SecurityCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=bEnhancedSecurityStandalone#EnhancedSecurity</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=bEnhancedSecurityStandalone#idkeyname_1_20055</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/enhanced.html</seeAlso>
+      <seeAlso>GroupID: V-64919</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000005</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader9"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    
+    <!-- Trust Manager > Enhanced Security -->
+    <policy class="Machine" displayName="$(string.EnhancedSecurityBrowser)" explainText="$(string.EnhancedSecurityBrowser_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="EnhancedSecurityBrowser" valueName="bEnhancedSecurityInBrowser">
+      <parentCategory ref="SecurityCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=bEnhancedSecurityInBrowser#EnhancedSecurity</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=bEnhancedSecurityInBrowser#idkeyname_1_20008</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/enhanced.html</seeAlso>
+      <seeAlso>GroupID: V-64921</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000010</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader9"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
  
     <policy class="Machine" displayName="$(string.ProtectedMode)" explainText="$(string.ProtectedMode_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="ProtectedMode" valueName="bProtectedMode">
       <parentCategory ref="SecurityCategory"/>
-      <seeAlso>hi</seeAlso>
-      <seeAlso>hi</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Privileged.html?zoom_highlight=bProtectedMode#ProtectedMode</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Privileged.html?zoom_highlight=bProtectedMode#idkeyname_1_11168</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/protectedmode.html</seeAlso>
+      <seeAlso>GroupID: V-64923</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000015</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -57,9 +103,16 @@
       </disabledValue>
     </policy>
     
+    <!-- Trust Manager > Protected View -->
     <policy class="Machine" displayName="$(string.ProtectedView)" explainText="$(string.ProtectedView_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
     name="ProtectedView" valueName="iProtectedView" presentation="$(presentation.ProtectedView_Dropdown)">
       <parentCategory ref="SecurityCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iProtectedView#ProtectedView</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iProtectedView#idkeyname_1_21247</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/protectedview.html</seeAlso>
+      <seeAlso>GroupID: V-64925</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000020</seeAlso>
+      <seeAlso>Value: 2</seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <elements>
         <enum id="ProtectedView_Dropdown" valueName="iProtectedView">
@@ -81,47 +134,99 @@
         </enum>
       </elements>
     </policy>
-    
-    <policy class="Machine" displayName="$(string.ProtectedViewForOutlook)" explainText="$(string.ProtectedViewForOutlook_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\TrustManager" 
-      name="ProtectedViewForOutlook" valueName="bEnableAlwaysOutlookAttachmentProtectedView">
-      <parentCategory ref="SecurityCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
+
+    <!-- Trust Manager > Internet Access -->
+    <policy class="Machine" displayName="$(string.Hyperlinks)" explainText="$(string.Hyperlinks_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms" 
+      name="Hyperlinks" valueName="iURLPerms">
+      <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iURLPerms#InternetAccess</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iURLPerms#idkeyname_1_19946</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/external.html#internet-access</seeAlso>
+      <seeAlso>GroupID: V-64927</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000025</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader70"/>
       <enabledValue>
-        <decimal value="0"/>
+        <decimal value="2"/>
       </enabledValue>
       <disabledValue>
         <decimal value="1"/>
       </disabledValue>
     </policy>
-    
-    <policy class="Machine" displayName="$(string.EnhancedSecurityStandalone)" explainText="$(string.EnhancedSecurityStandalone_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
-      name="EnhancedSecurityStandalone" valueName="bEnhancedSecurityStandalone">
-      <parentCategory ref="SecurityCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
+
+    <!-- Trust Manager > Internet Access -->
+    <policy class="Machine" displayName="$(string.HyperlinksUserList)" explainText="$(string.HyperlinksUserList_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms" 
+      name="HyperlinksUserList" valueName="iUnknownURLPerms" presentation="$(presentation.HyperlinksUserList_Dropdown)">
+      <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iUnknownURLPerms#InternetAccess</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/TrustManager.html?zoom_highlight=iUnknownURLPerms#idkeyname_1_19898</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/external.html#internet-access</seeAlso>
+      <seeAlso>GroupID: V-64929</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000030</seeAlso>
+      <seeAlso>Value: 3</seeAlso>
+      <supportedOn ref="SupportedReader70"/>
+      <elements>
+        <enum id="HyperlinksUserList_Dropdown" valueName="iUnknownURLPerms">
+          <item displayName="$(string.AlwaysAsk)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AlwaysAllow)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+          <item displayName="$(string.AlwaysBlock)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
+        </enum>
+      </elements>
     </policy>
-    
-    <policy class="Machine" displayName="$(string.EnhancedSecurityBrowser)" explainText="$(string.EnhancedSecurityBrowser_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
-      name="EnhancedSecurityBrowser" valueName="bEnhancedSecurityInBrowser">
-      <parentCategory ref="SecurityCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
+
+    <!-- Trust Manager > Attachments -->
+    <policy class="Machine" displayName="$(string.Attachments)" explainText="$(string.Attachments_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchAttachmentPerms" 
+      name="Attachments" valueName="iFileAttachmentPerms" presentation="$(presentation.Attachments_Dropdown)">
+      <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Attachments.html?zoom_highlight=iFileAttachmentPerms#Attachments</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Attachments.html?zoom_highlight=iFileAttachmentPerms#idkeyname_1_2863</seeAlso>
+      <seeAlso>Reference: http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/attachments.html</seeAlso>
+      <seeAlso>GroupID: V-64931</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000035</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader80"/>
+      <elements>
+        <enum id="Attachments_Dropdown" valueName="iFileAttachmentPerms">
+          <item displayName="$(string.UseList)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.NoAttachments)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.AllAttachments)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
     </policy>
- 
-    <policy class="Machine" displayName="$(string.HandlerSwitching)" explainText="$(string.HandlerSwitching_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
-      name="HandlerSwitching" valueName="bDisablePDFHandlerSwitching">
-      <parentCategory ref="SecurityCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
+
+    <policy class="Machine" displayName="$(string.EnableFlash)" explainText="$(string.EnableFlash_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="EnableFlash" valueName="bEnableFlash">
+      <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockdown.html?zoom_highlight=bEnableFlash#Flash</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockdown.html?zoom_highlight=bEnableFlash#idkeyname_1_7582</seeAlso>
+      <seeAlso>GroupID: V-64933</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000045</seeAlso>
+      <seeAlso>Value: 0</seeAlso>
+      <supportedOn ref="SupportedReader95"/>
       <enabledValue>
         <decimal value="1"/>
       </enabledValue>
@@ -130,6 +235,130 @@
       </disabledValue>
     </policy>
 
+    <!-- General -->
+    <policy class="Machine" displayName="$(string.HandlerSwitching)" explainText="$(string.HandlerSwitching_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
+      name="HandlerSwitching" valueName="bDisablePDFHandlerSwitching">
+      <parentCategory ref="SecurityCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockdown.html?zoom_highlight=bDisablePDFHandlerSwitching#PDFOwnership</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockdown.html?zoom_highlight=bDisablePDFHandlerSwitching#idkeyname_1_7477</seeAlso>
+      <seeAlso>GroupID: V-64935</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000050</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader10"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+
+    <policy class="Machine" displayName="$(string.CloudSendPlugin)" explainText="$(string.CloudSendPlugin_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cCloud" 
+      name="CloudSendPlugin" valueName="bAdobeSendPluginToggle">
+      <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/lockable.html?zoom_highlight=bAdobeSendPluginToggle#Servicesintegration(DC)</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Workflows.html#idkeyname_1_23988</seeAlso>
+      <seeAlso>GroupID: V-64937</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000055</seeAlso>
+      <seeAlso>Value: 0</seeAlso>
+      <supportedOn ref="SupportedReaderDC"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+
+    <policy class="Machine" displayName="$(string.CloudDocumentService)" explainText="$(string.CloudDocumentService_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
+      name="CloudDocumentService" valueName="bToggleAdobeDocumentServices">
+      <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Workflows.html?zoom_highlight=bToggleAdobeDocumentServices#Servicesintegration(DC)</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Workflows.html?zoom_highlight=bToggleAdobeDocumentServices#idkeyname_1_23729</seeAlso>
+      <seeAlso>GroupID: V-64939</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000060</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReaderDC"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+
+    <policy class="Machine" displayName="$(string.CloudPrefSync)" explainText="$(string.CloudPrefSync_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
+      name="CloudPrefSync" valueName="bTogglePrefsSync">
+      <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Workflows.html?zoom_highlight=bToggleAdobeDocumentServices#Servicesintegration(DC)</seeAlso>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Workflows.html?zoom_highlight=bTogglePrefsSync#idkeyname_1_23900</seeAlso>
+      <seeAlso>GroupID: V-64941</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000065</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReaderDC"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+
+    <!-- needs to be moved to a GP Preference -->
+    <policy class="Machine" displayName="$(string.DisableMaintenance32)" explainText="$(string.DisableMaintenance_Explain)" key="SOFTWARE\Adobe\Acrobat Reader\DC\Installer" 
+      name="DisableMaintenance32" valueName="DisableMaintenance">
+      <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Installer.html#idkeyname_1_8518</seeAlso>
+      <seeAlso>Reference: https://forums.adobe.com/thread/1821419</seeAlso>
+      <seeAlso>GroupID: V-64943</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000070</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader10"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+
+    <!-- needs to be moved to a GP Preference -->
+    <policy class="Machine" displayName="$(string.DisableMaintenance64)" explainText="$(string.DisableMaintenance_Explain)" key="SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" 
+      name="DisableMaintenance64" valueName="DisableMaintenance">
+      <seeAlso>Reference: https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/Installer.html#idkeyname_1_8518</seeAlso>
+      <seeAlso>Reference: https://forums.adobe.com/thread/1821419</seeAlso>
+      <seeAlso>GroupID: V-64943</seeAlso>
+      <seeAlso>RuleVersion: ARDC-CN-000070</seeAlso>
+      <seeAlso>Value: 1</seeAlso>
+      <supportedOn ref="SupportedReader10"/>
+      <supportedOn ref="SupportedReaderDC"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy> 
+
+<!-- -->
+    <policy class="Machine" displayName="$(string.ProtectedViewForOutlook)" explainText="$(string.ProtectedViewForOutlook_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\TrustManager" 
+      name="ProtectedViewForOutlook" valueName="bEnableAlwaysOutlookAttachmentProtectedView">
+      <parentCategory ref="SecurityCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
+      <supportedOn ref="SupportedReaderDC"/>
+      <enabledValue>
+        <decimal value="0"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1"/>
+      </disabledValue>
+    </policy>
+
+
     
     <!-- TRUSTED LOCATION SETTINGS -->
     
@@ -137,6 +366,11 @@
     <policy class="Machine" displayName="$(string.TrustedSites)" explainText="$(string.TrustedSites_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="TrustedSites" valueName="bDisableTrustedSites">
       <parentCategory ref="TrustedLocationCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -150,6 +384,11 @@
     <policy class="Machine" displayName="$(string.TrustedFolders)" explainText="$(string.TrustedFolders_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="TrustedFolders" valueName="bDisableTrustedFolders">
       <parentCategory ref="TrustedLocationCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -163,6 +402,11 @@
     <policy class="Machine" displayName="$(string.TrustedOSSites)" explainText="$(string.TrustedOSSites_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="TrustedOSSites" valueName="bDisableOSTrustedSites">
       <parentCategory ref="TrustedLocationCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -176,6 +420,11 @@
     <policy class="Machine" displayName="$(string.TrustedCertificate)" explainText="$(string.TrustedCertificate_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="TrustedCertificate" valueName="bEnableCertificateBasedTrust">
       <parentCategory ref="TrustedLocationCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReader11"/>
       <enabledValue>
         <decimal value="1"/>
@@ -190,6 +439,11 @@
     <policy class="Machine" displayName="$(string.CloudSharepoint)" explainText="$(string.CloudSharepoint_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cSharePoint" 
       name="CloudSharepoint" valueName="bDisableSharePointFeatures">
       <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -202,6 +456,11 @@
     <policy class="Machine" displayName="$(string.CloudFilestore)" explainText="$(string.CloudFilestore_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cCloud" 
       name="CloudFilestore" valueName="bDisableADCFileStore">
       <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -214,6 +473,11 @@
     <policy class="Machine" displayName="$(string.CloudWebmail)" explainText="$(string.CloudWebmail_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWebmailProfiles" 
       name="CloudWebmail" valueName="bDisableWebmail">
       <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -223,35 +487,14 @@
       </disabledValue>
     </policy>
   
-    <!-- duplicate of UpdaterCloud-->
-
-    <policy class="Machine" displayName="$(string.CloudUpdater)" explainText="$(string.CloudUpdater_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
-      name="CloudUpdater" valueName="bUpdater">
-      <parentCategory ref="CloudCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy>
-    
-    <policy class="Machine" displayName="$(string.CloudDocumentService)" explainText="$(string.CloudDocumentService_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
-      name="CloudDocumentService" valueName="bToggleAdobeDocumentServices">
-      <parentCategory ref="CloudCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="0"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="1"/>
-      </disabledValue>
-    </policy>
-    
     <policy class="Machine" displayName="$(string.CloudAdobeSign)" explainText="$(string.CloudAdobeSign_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
       name="CloudAdobeSign" valueName="bToggleAdobeSign">
       <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -260,22 +503,15 @@
         <decimal value="1"/>
       </disabledValue>
     </policy>
- 
-    <policy class="Machine" displayName="$(string.CloudPrefSync)" explainText="$(string.CloudPrefSync_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
-      name="CloudPrefSync" valueName="bTogglePrefsSync">
-      <parentCategory ref="CloudCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="0"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="1"/>
-      </disabledValue>
-    </policy>
-    
+   
     <policy class="Machine" displayName="$(string.CloudWebConnectors)" explainText="$(string.CloudWebConnectors_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
       name="CloudWebConnectors" valueName="bToggleWebConnectors">
       <parentCategory ref="CloudCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -284,24 +520,17 @@
         <decimal value="1"/>
       </disabledValue>
     </policy>
-    
-    <policy class="Machine" displayName="$(string.CloudSendPlugin)" explainText="$(string.CloudSendPlugin_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
-      name="CloudSendPlugin" valueName="bAdobeSendPluginToggle">
-      <parentCategory ref="CloudCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="0"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="1"/>
-      </disabledValue>
-    </policy>
-    
+  
     <!-- UPDATER SETTINGS --> 
     
     <policy class="Machine" displayName="$(string.Updater)" explainText="$(string.Updater_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="Updater" valueName="bUpdater">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -311,11 +540,14 @@
       </disabledValue>
     </policy>
 
-    <!-- duplicate of CloudUpdater -->
-
     <policy class="Machine" displayName="$(string.UpdaterCloud)" explainText="$(string.UpdaterCloud_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cServices" 
       name="UpdaterCloud" valueName="bUpdater">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -329,6 +561,11 @@
     <policy class="Machine" displayName="$(string.UpdaterLog)" explainText="$(string.UpdaterLog_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\1.0\ARM" 
       name="UpdaterLog" valueName="iLogLevel">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -342,6 +579,11 @@
     <policy class="Machine" displayName="$(string.UpdaterEula)" explainText="$(string.UpdaterEula_Explain)" key="Software\Wow6432Node\Adobe\Acrobat Reader\DC\AdobeViewer" 
       name="UpdaterEula" valueName="EULA">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -355,6 +597,11 @@
    <policy class="Machine" displayName="$(string.UpdaterDisableEula)" explainText="$(string.UpdaterDisableEula_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\1.0\ARM" 
       name="UpdaterDisableEula" valueName="iDisableCheckEula">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -368,6 +615,11 @@
     <policy class="Machine" displayName="$(string.UpdaterMode)" explainText="$(string.UpdaterMode_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\Legacy\Reader\{AC76BA86-7AD7-1033-7B44-AC0F074E4100}" 
       name="UpdaterMode" valueName="Mode" presentation="$(presentation.UpdaterMode_Dropdown)">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <elements>
         <enum id="UpdaterMode_Dropdown" valueName="Mode">
@@ -404,6 +656,11 @@
     <policy class="Machine" displayName="$(string.UpdaterCheckReader)" explainText="$(string.UpdaterCheckReader_Explain)" key="Software\Wow6432Node\Adobe\Adobe ARM\1.0\ARM" 
       name="UpdaterCheckReader" valueName="iCheckReader" presentation="$(presentation.UpdaterCheckReader_Dropdown)">
       <parentCategory ref="UpdaterCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <elements>
         <enum id="UpdaterCheckReader_Dropdown" valueName="iCheckReader">
@@ -437,72 +694,15 @@
     </policy>
 
     <!-- EMBEDDED CONTENT SETTINGS --> 
-    
-    <policy class="Machine" displayName="$(string.Attachments)" explainText="$(string.Attachments_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchAttachmentPerms" 
-      name="Attachments" valueName="iFileAttachmentPerms" presentation="$(presentation.Attachments_Dropdown)">
-      <parentCategory ref="EmbeddedContentCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <elements>
-        <enum id="Attachments_Dropdown" valueName="iFileAttachmentPerms">
-          <item displayName="$(string.UseList)">
-            <value>
-              <decimal value="0" />
-            </value>
-          </item>
-          <item displayName="$(string.NoAttachments)">
-            <value>
-              <decimal value="1" />
-            </value>
-          </item>
-          <item displayName="$(string.AllAttachments)">
-            <value>
-              <decimal value="2" />
-            </value>
-          </item>
-        </enum>
-      </elements>
-    </policy>
-    
-    <policy class="Machine" displayName="$(string.Hyperlinks)" explainText="$(string.Hyperlinks_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms" 
-      name="Hyperlinks" valueName="iURLPerms">
-      <parentCategory ref="EmbeddedContentCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="2"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="1"/>
-      </disabledValue>
-    </policy>
-    
-    <policy class="Machine" displayName="$(string.HyperlinksUserList)" explainText="$(string.HyperlinksUserList_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cDefaultLaunchURLPerms" 
-      name="HyperlinksUserList" valueName="iUnknownURLPerms" presentation="$(presentation.HyperlinksUserList_Dropdown)">
-      <parentCategory ref="EmbeddedContentCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <elements>
-        <enum id="HyperlinksUserList_Dropdown" valueName="iUnknownURLPerms">
-          <item displayName="$(string.AlwaysAsk)">
-            <value>
-              <decimal value="1" />
-            </value>
-          </item>
-          <item displayName="$(string.AlwaysAllow)">
-            <value>
-              <decimal value="2" />
-            </value>
-          </item>
-          <item displayName="$(string.AlwaysBlock)">
-            <value>
-              <decimal value="3" />
-            </value>
-          </item>
-        </enum>
-      </elements>
-    </policy>
-    
+     
     <policy class="Machine" displayName="$(string.Javascript)" explainText="$(string.Javascript_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="Javascript" valueName="bDisableJavaScript">
       <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -515,6 +715,11 @@
     <policy class="Machine" displayName="$(string.JavascriptBlacklist)" explainText="$(string.JavascriptBlacklist_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cJavaScriptPerms"
       presentation="$(presentation.JavascriptBlacklist_Textbox)" name="JavascriptBlacklist">
       <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <elements>
         <text id="JavascriptBlacklist_TextboxPrompt" valueName="tBlackList" />
@@ -524,6 +729,11 @@
     <policy class="Machine" displayName="$(string.Enable3d)" explainText="$(string.Enable3d_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="Enable3d" valueName="bEnable3D">
       <parentCategory ref="EmbeddedContentCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -532,24 +742,17 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
-    
-    <policy class="Machine" displayName="$(string.EnableFlash)" explainText="$(string.EnableFlash_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
-      name="EnableFlash" valueName="bEnableFlash">
-      <parentCategory ref="EmbeddedContentCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy>
-    
+  
     <!-- OTHER CONTENT SETTINGS -->
 
     <policy class="Machine" displayName="$(string.WelcomeScreen)" explainText="$(string.WelcomeScreen_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\cWelcomeScreen" 
       name="WelcomeScreen" valueName="bShowWelcomeScreen">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -562,6 +765,11 @@
     <policy class="Machine" displayName="$(string.UsageStats)" explainText="$(string.UsageStats_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="UsageStats" valueName="bUsageMeasurement">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -574,6 +782,11 @@
     <policy class="Machine" displayName="$(string.Upsell)" explainText="$(string.Upsell_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="Upsell" valueName="bAcroSuppressUpsell">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -586,6 +799,11 @@
     <policy class="Machine" displayName="$(string.AutoFill)" explainText="$(string.AutoFill_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown" 
       name="AutoFill" valueName="bAutoFill">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -598,6 +816,11 @@
     <policy class="Machine" displayName="$(string.ShowMsgAtLaunch)" explainText="$(string.ShowMsgAtLaunch_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cIPM" 
       name="ShowMsgAtLaunch" valueName="bShowMsgAtLaunch">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -610,6 +833,11 @@
     <policy class="Machine" displayName="$(string.DontShowMsgWhenViewingDoc)" explainText="$(string.DontShowMsgWhenViewingDoc_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockdown\cIPM" 
       name="DontShowMsgWhenViewingDoc" valueName="bDontShowMsgWhenViewingDoc">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="0"/>
@@ -624,6 +852,11 @@
     <policy class="Machine" displayName="$(string.SplashScreen)" explainText="$(string.SplashScreen_Explain)" key="Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWelcomeScreen" 
       name="SplashScreen" valueName="bShowWelcomeScreen">
       <parentCategory ref="OtherCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -632,38 +865,17 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>    
-
-    <!-- needs to be moved to a GP Preference -->
-    <policy class="Machine" displayName="$(string.DisableMaintenance32)" explainText="$(string.DisableMaintenance_Explain)" key="SOFTWARE\Adobe\Acrobat Reader\DC\Installer" 
-      name="DisableMaintenance32" valueName="DisableMaintenance">
-      <parentCategory ref="OtherCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy>
-
-    <!-- needs to be moved to a GP Preference -->
-    <policy class="Machine" displayName="$(string.DisableMaintenance64)" explainText="$(string.DisableMaintenance_Explain)" key="SOFTWARE\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" 
-      name="DisableMaintenance64" valueName="DisableMaintenance">
-      <parentCategory ref="OtherCategory"/>
-      <supportedOn ref="SupportedReaderDC"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy> 
-    
+   
     <!-- needs to be moved to a GP Preference -->
     <!-- V-65673 ARDC-CN-000330 -->
     <policy class="User" displayName="$(string.LoadSettingsFromUrlEUTL)" explainText="$(string.LoadSettingsFromUrlEUTL_Explain)" key="Software\Adobe\Acrobat Reader\DC\Security\CDigSig\cUETLDownload"
       name="LoadSettingsFromUrlEUTL" valueName="bLoadSettingsFromURL">
       <parentCategory ref="ReaderDCCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReader9"/>
       <enabledValue>
         <decimal value="1"/>
@@ -678,6 +890,11 @@
     <policy class="User" displayName="$(string.LoadSettingsFromUrlAATL)" explainText="$(string.LoadSettingsFromUrlAATL_Explain)" key="Software\Adobe\Acrobat Reader\DC\Security\CDigSig\cAdobeDownload"
       name="LoadSettingsFromUrlAATL" valueName="bLoadSettingsFromURL">
       <parentCategory ref="ReaderDCCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReader9"/>
       <enabledValue>
         <decimal value="1"/>
@@ -692,6 +909,11 @@
     <policy class="User" displayName="$(string.FipsMode)" explainText="$(string.FipsMode_Explain)" key="Software\Adobe\Acrobat Reader\DC\AVGeneral"
       name="FipsMode" valueName="bFipsMode">
       <parentCategory ref="ReaderDCCategory"/>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>Reference:  </seeAlso>
+      <seeAlso>GroupID:  </seeAlso>
+      <seeAlso>RuleVersion:  </seeAlso>
+      <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReader81"/>
       <enabledValue>
         <decimal value="1"/>
