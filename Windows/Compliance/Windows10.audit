@@ -551,19 +551,19 @@ powershell_args: "if (($m = (Get-WMIObject Win32_Group | Where-Object { $_.Name 
 
 # STIG ID	: WN10-00-000100
 <custom_item>
- type		: AUDIT_POWERSHELL
+ type		: REG_CHECK
  description	: "WN10-00-000100: Internet Information System (IIS) or its subcomponents must not be installed on a workstation."
  info		: "Installation ofInternet Information System (IIS) may allow unauthorized internet services to be hosted. Websites must only be hosted on servers that have been designated for that purpose and can be adequately secured.
 
-		Test returns the number of IIS components enabled.  Should be 0.
+		Test checks if HKLM\SOFTWARE\Microsoft\Inetstp\Components\ exists. It must not exist to pass.
 		
 		STIG ID: WM10-00-000100
 		Vuln ID: V-63377
 		Rule ID: SV-77867r1_rule
 		Severity: CAT I"
  value_type	: POLICY_TEXT
- value_data	: "0"
- powershell_args: "((Get-WindowsOptionalFeature -Online -FeatureName IIS*).State | select-string 'Enabled').Count"
+ value_data	: "HKLM\SOFTWARE\Microsoft\Inetstp\Components"
+ reg_option	: MUST_NOT_EXIST
 </custom_item>
 
 # STIG ID	: WN10-00-000105
