@@ -121,7 +121,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0027: Disbale Search Suggestions"
+ description	        : "DTBC-0027: Disable Search Suggestions"
  info               	: "V-44773 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\SearchSuggestEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
@@ -133,7 +133,7 @@
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0030: Disbale Incognito Mode"
+ description	        : "DTBC-0030: Disable Incognito Mode"
  info               	: "V-44777 Severity: CAT II"
  info               	: "HKLM\Software\Policies\Google\Chrome\IncognitoModeAvailability (DWORD:1)"
  value_type		: POLICY_DWORD
