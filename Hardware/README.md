@@ -21,7 +21,7 @@ Properties of an ideal system for Windows 10 Secure Host Baseline include:
 
 **A system that satisfies the above properties should work out-of-the-box with [Credential Guard](../Credential%20Guard), [Device Guard](../Device%20Guard), and Virtualization-based protection of code integrity.**
 
-A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available [here](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true). A similar list for AMD processors that support 64-bit, AMD-V, AMD-RVI, and AMD-Vi could not be found.
+A list of Intel processors that support 64-bit, VT-x, EPT, and VT-d is available [here](http://ark.intel.com/Search/FeatureFilter?productType=processors&ExtendedPageTables=true&VTD=true&EM64=true). A similar list for AMD processors that support 64-bit, AMD-V, AMD-RVI, and AMD-Vi could not be found.
 
 ## Hardware and firmware survey
 In support of deployment of the Windows 10 Secure Host Baseline, a number of hardware and firmware questions need to be answered about systems used by the DoD. The purpose of these questions is to determine how ready a system is to enable Windows 10 security features, such as Credential Guard and Device Guard, with the preferred hardware and firmware configuration. Answers to these questions can be used by DoD components to determine whether certain Windows 10 security features are supported by the model. Answers are needed for any Windows tablet, laptop, desktop, and server models produced by OEMs that are used in DoD. Answers should focus on enterprise and business class models rather than consumer class models. 
@@ -108,6 +108,6 @@ These section mentions some potential hardware and firmware issues related to Wi
 
 ## Other links
 
-* [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true&VTD=true)
-* [List of Intel processors that support 64-bit, VT-x, and EPT](http://ark.intel.com/Search/Advanced?s=t&InstructionSet=64-bit&VTX=true&ExtendedPageTables=true)
-* [What's new in Windows 10 security: Windows 10 hardware considerations](https://technet.microsoft.com/en-us/library/mt637125(v=vs.85).aspx#hardware)
+* [List of Intel processors that support 64-bit, VT-x, EPT, and VT-d](http://ark.intel.com/Search/FeatureFilter?productType=processors&ExtendedPageTables=true&VTD=true&EM64=true)
+* [List of Intel processors that support 64-bit, VT-x, and EPT](http://ark.intel.com/Search/FeatureFilter?productType=processors&ExtendedPageTables=true&EM64=true)
+* [What's new in Windows 10 security: Windows 10 hardware considerations](https://docs.microsoft.com/en-us/windows/device-security/device-guard/requirements-and-deployment-planning-guidelines-for-device-guard#baseline-protections)

@@ -28,6 +28,6 @@ NSA Information Assurance has a security guide for AppLocker called [Application
 
 ## Links
 
-* [Microsoft Requirements to use AppLocker](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/requirements-to-use-applocker)
-* [Microsoft AppLocker Policies Deployment Guide](https://technet.microsoft.com/en-us/itpro/windows/keep-secure/applocker-policies-deployment-guide)
+* [Microsoft Requirements to use AppLocker](https://docs.microsoft.com/en-us/windows/device-security/applocker/requirements-to-use-applocker)
+* [Microsoft AppLocker Policies Deployment Guide](https://docs.microsoft.com/en-us/windows/device-security/applocker/applocker-policies-deployment-guide)
 

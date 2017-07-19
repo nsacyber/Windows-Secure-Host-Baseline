@@ -24,7 +24,7 @@ Importing certificates varies depending on whether they are being imported for a
 
 ### Importing DoD certificates for a standalone system
 
-You can use PowerShell's [Import-Certificate command](https://technet.microsoft.com/en-us/%5Clibrary/hh848630(v=wps.630).aspx) to import the certificates. 
+You can use PowerShell's [Import-Certificate command](https://technet.microsoft.com/en-us/library/hh848630(v=wps.630).aspx) to import the certificates. 
 
 1. Open a PowerShell prompt as an administrator
 1. Change directory to the Certificates directory (e.g. **cd Secure-Host-Baseline\\Certificates**)
