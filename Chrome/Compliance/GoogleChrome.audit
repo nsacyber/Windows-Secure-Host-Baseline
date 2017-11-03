@@ -498,7 +498,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0021: Disbale Javascript for certain URL Schema"
+ description	        : "DTBC-0021: Disable Javascript for certain URL Schema"
  info               	: "V-44761 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\URLBlacklist (REG_SZ:javascript://*)"
  value_type		: POLICY_TEXT
@@ -510,7 +510,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0004: Disbale Pop-Ups"
+ description	        : "DTBC-0004: Disable Pop-Ups"
  info               	: "V-44719 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultPopupsSetting (DWORD:2)"
  value_type		: POLICY_DWORD
@@ -522,7 +522,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC0023: Disbale Cloud Printing"
+ description	        : "DTBC0023: Disable Cloud Printing"
  info               	: "V-44765 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\CloudPrintProxyEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
@@ -534,7 +534,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0017: Disbale Background Processing"
+ description	        : "DTBC-0017: Disable Background Processing"
  info               	: "V-44753 Severity: CAT II"
  info			: "HKLM\Software\Policies\Google\Chrome\BackgroundModeEnabled (DWORD:0)"
  value_type		: POLICY_DWORD
@@ -546,7 +546,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0015: Disbale 3rd Party Cookies"
+ description	        : "DTBC-0015: Disable 3rd Party Cookies"
  info               	: "V-44751 Severity: CAT III"
  info			: "HKLM\Software\Policies\Google\Chrome\BlockThirdPartyCookies (DWORD:1)"
  value_type		: POLICY_DWORD
@@ -558,7 +558,7 @@ info: "HKLM\Software\Policies\Google\Chrome\ExtensionInstallWhitelist\1"
 
 <custom_item>
  type			: REGISTRY_SETTING
- description	        : "DTBC-0003: Disbale Desktop Notifications"
+ description	        : "DTBC-0003: Disable Desktop Notifications"
  info               	: "V-44713 Severity: CAT III"
  info			: "HKLM\Software\Policies\Google\Chrome\DefaultNotificationsSetting (DWORD:2)"
  value_type		: POLICY_DWORD
