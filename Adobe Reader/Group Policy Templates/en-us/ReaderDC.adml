@@ -10,7 +10,7 @@
   <stringTable>
       <string id="SupportedReaderDC">Adobe Reader DC</string>
       <string id="SupportedReader11">Adobe Reader 11.0+</string>
-      <string id="SupportedReader11">Adobe Reader 10.0+</string>
+      <string id="SupportedReader10">Adobe Reader 10.0+</string>
       <string id="SupportedReader95">Adobe Reader 9.5+</string>
       <string id="SupportedReader9">Adobe Reader 9.0+</string>
       <string id="SupportedReader81">Adobe Reader 8.1+</string>

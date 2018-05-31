@@ -13,7 +13,7 @@
     <definitions>
       <definition displayName="$(string.SupportedReaderDC)" name="SupportedReaderDC"/>
       <definition displayName="$(string.SupportedReader11)" name="SupportedReader11"/>
-      <definition displayName="$(string.SupportedReader95)" name="SupportedReader10"/>
+      <definition displayName="$(string.SupportedReader10)" name="SupportedReader10"/>
       <definition displayName="$(string.SupportedReader95)" name="SupportedReader95"/>
       <definition displayName="$(string.SupportedReader9)" name="SupportedReader9"/>
       <definition displayName="$(string.SupportedReader81)" name="SupportedReader81"/>
@@ -330,7 +330,6 @@
       <seeAlso>GroupID: V-64943</seeAlso>
       <seeAlso>RuleVersion: ARDC-CN-000070</seeAlso>
       <seeAlso>Value: 1</seeAlso>
-      <supportedOn ref="SupportedReader10"/>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
         <decimal value="1"/>
@@ -409,10 +408,10 @@
       <seeAlso>Value:  </seeAlso>
       <supportedOn ref="SupportedReaderDC"/>
       <enabledValue>
-        <decimal value="1"/>
+        <decimal value="0"/>
       </enabledValue>
       <disabledValue>
-        <decimal value="0"/>
+        <decimal value="1"/>
       </disabledValue>
     </policy>
 
