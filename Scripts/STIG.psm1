@@ -364,9 +364,9 @@ Function Get-Stig() {
     # again, find the XML and XSL files no matter where they are since it changes based on the STIG
     # some files are in the direct folder while others are in sub folders
 
-    $xmlPath = @(Get-ChildItem -Path "$extractPath2\*.xml" -Recurse)[0].FullName 
-    $xslPath = @(Get-ChildItem -Path "$extractPath2\*.xsl" -Recurse)[0].FullName  
-    $htmlPath =  (@(Get-ChildItem -Path "$extractPath2\*.xml" -Recurse)[0].FullName).Replace('.xml','.html')
+    $xmlPath = @(Get-ChildItem -Path "$extractPath2\*.xml" -Recurse | Where-Object {$_.Name -like '*STIG*'})[0].FullName 
+    $xslPath = @(Get-ChildItem -Path "$extractPath2\*.xsl" -Recurse | Where-Object {$_.Name -like '*STIG*'})[0].FullName  
+    $htmlPath =  $xmlPath.Replace('.xml','.html')
 
     Invoke-XslTransform -XmlPath $xmlPath -XslPath $xslPath -HtmlPath $htmlPath
 
