@@ -123,8 +123,10 @@
       <string id="CloudPrefSync">Preferences synchronization</string>
       <string id="CloudPrefSync_Explain">Controls preferences synchronization. Synchronizes desktop preferences across devices on which the user is signed in with an Adobe ID (including mobile devices). Not Configured and Enabled have the same behavior of allowing preference synchronization when signed in with an Adobe ID.</string>
 
+      <!--
       <seeAlso>GroupID: V-64943</seeAlso>
       <seeAlso>RuleVersion: ARDC-CN-000070</seeAlso>
+      -->
       <string id="DisableMaintenance32">Disable Maintenance (32-bit)</string>
       <string id="DisableMaintenance64">Disable Maintenance (64-bit)</string>
       <string id="DisableMaintenance_Explain">Enable/Disable maintenance/re-install of Adobe Reader DC to fix installation problems. Setting to Enabled will prevent users from performing maintenance. </string>
