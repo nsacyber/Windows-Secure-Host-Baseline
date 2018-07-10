@@ -20,7 +20,7 @@ Using a [Secure Host Baseline](https://www.iad.gov/iad/library/ia-guidance/secur
 
 This repository hosts Group Policy objects, compliance checks, and configuration tools in support of the DoD Secure Host Baseline (SHB) framework for Windows 10. Administrators of [National Security Systems](https://www.iad.gov/iad/news/defining-a-national-security-system.cfm), such as those who are part of the [Defense Industrial Base](https://www.dhs.gov/defense-industrial-base-sector), can leverage this repository in lieu of access to the [DoD SHB framework for Windows 10](https://disa.deps.mil/ext/cop/iase/dod-images/Pages/Win10.aspx) which requires a Common Access Card (CAC) or Personal Identification Verification (PIV) smart card to access. 
 
-Questions or comments can be submitted to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues) or posted on [Windows 10 Secure Host Baseline project](https://software.forge.mil/sf/projects/win10shb) forums on Software Forge which requires a CAC or PIV smart card to access.
+Questions or comments can be submitted to the [repository issue tracker](https://github.com/nsacyber/Windows-Secure-Host-Baseline/issues) or posted on [Windows 10 Secure Host Baseline project](https://software.forge.mil/sf/projects/win10shb) forums on Software Forge which requires a CAC or PIV smart card to access.
 
 ## Repository content
 
@@ -73,7 +73,7 @@ To get started using the tools:
 
 ## Downloading the repository
 
-Download the [current code](https://github.com/iadgov/Secure-Host-Baseline/archive/master.zip) to your **Downloads** folder. It will be saved as **Secure-Host-Baseline-master.zip** by default.
+Download the [current code](https://github.com/nsacyber/Windows-Secure-Host-Baseline/archive/master.zip) to your **Downloads** folder. It will be saved as **Secure-Host-Baseline-master.zip** by default.
 
 ## Configuring the PowerShell environment
 The PowerShell commands are meant to run from a system with at least PowerShell 3.0 installed. PowerShell may need to be configured to run the commands.
@@ -136,7 +136,7 @@ Options for the command are:
 * **-ToolPath** - Optional. The path to the LGPO tool. Required when PolicyType is 'Local'.
 * **-UpdateTemplates** - Optional. Update Group Policy templates that correspond to the applied Group Policy objects.
 
-Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/iadgov/Secure-Host-Baseline/issues).
+Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help and examples or submit a question to the [repository issue tracker](https://github.com/nsacyber/Windows-Secure-Host-Baseline/issues).
 
 #### Applying the SHB policies to a standalone system
 
