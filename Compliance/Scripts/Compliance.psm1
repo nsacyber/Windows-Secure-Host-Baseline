@@ -2133,12 +2133,16 @@ function ProcessAudit {
     .PARAMETER RegAclList
     HashTable of Arrays containing Registry Access Control List
 
+    .PARAMETER PassThru
+    Writes test objects to pipeline.
+
     #>
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)][psobject]$node,
         [psobject]$FileAclList,
-        [psobject]$RegAclList
+        [psobject]$RegAclList,
+        [switch]$PassThru
     )
     [array]$conditionList = @()
     foreach ($customItem in $node.items) {
@@ -2173,8 +2177,30 @@ function ProcessAudit {
                 } else {
                     Write-Host "FAILED" $customItem["description"] -ForegroundColor Red
                 }
+                if ($PassThru) {
+                    [PSCustomObject]@{
+                        Info = $customItem["info"]
+                        Description = $customItem["description"]
+                        Type = $customItem["type"]
+                        ValueData = $customItem["value_data"]
+                        PowerShellArgs = $customItem["powershell_args"]
+                        ValueType = $customItem["value_type"]
+                        Passed = $false
+                    }
+                }
             } else {
                 Write-Host "PASSED" $customItem["description"] -ForegroundColor Green
+                if ($PassThru) {
+                    [PSCustomObject]@{
+                        Info = $customItem["info"]
+                        Description = $customItem["description"]
+                        Type = $customItem["type"]
+                        ValueData = $customItem["value_data"]
+                        PowerShellArgs = $customItem["powershell_args"]
+                        ValueType = $customItem["value_type"]
+                        Passed = $true
+                    }
+                }
             }
         }
          
@@ -2258,6 +2284,9 @@ function Test-Compliance {
     .PARAMETER Path
     The path of the audit file.
 
+    .PARAMETER PassThru
+    Writes test objects to pipeline.
+
     .EXAMPLE
     Test-Compliance -Path 'C:\File.audit' -Verbose
     #>
@@ -2265,7 +2294,10 @@ function Test-Compliance {
     [OutputType([void])] 
     Param(
         [Parameter(Mandatory=$true, HelpMessage='The path of the audit file')]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Mandatory=$false, HelpMessage='Writes test objects to pipeline')]
+        [switch]$PassThru
     )
 
         $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
@@ -2489,6 +2521,6 @@ function Test-Compliance {
     }
 
     #Process the audit file based on the grammar tree that was just created
-    ProcessAudit $headNode $file_acl $reg_acl
+    ProcessAudit $headNode $file_acl $reg_acl -PassThru:$PassThru
 }
 
