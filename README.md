@@ -1,8 +1,8 @@
-# Secure Host Baseline
+# Windows Secure Host Baseline
 
-## About the Secure Host Baseline
+## About the Windows Secure Host Baseline
 
-The Secure Host Baseline (SHB) provides an automated and flexible approach for assisting the DoD in deploying the latest releases of Windows 10 using a framework that can be consumed by organizations of all sizes. 
+The Windows Secure Host Baseline (SHB) provides an automated and flexible approach for assisting the DoD in deploying the latest releases of Windows 10 using a framework that can be consumed by organizations of all sizes. 
 
 
 The DoD CIO issued a memo on [November 20, 2015](http://www.esi.mil/download.aspx?id=5542) directing Combatant Commands, Services, Agencies and Field Activities (CC/S/As) to rapidly deploy the Windows 10 operating system throughout their respective organizations with the objective of completing deployment by the end of January 2017. The Deputy Secretary of Defense issued a memo on [February 26, 2016](http://www.esi.mil/download.aspx?id=5543) directing the DoD to complete a rapid deployment and transition to Microsoft Windows 10 Secure Host Baseline by the end of January 2017.[[1](http://www.esi.mil/contentview.aspx?id=685)]
@@ -29,10 +29,8 @@ Questions or comments can be submitted to the [repository issue tracker](https:/
 * The [ActivClient folder](./ActivClient/README.md) contains  ActivClient [Computer](./ActivClient/Group%20Policy%20Objects/Computer/) policy for those who use smart card logons with ActivClient software.
 * The [Adobe Reader folder](./Adobe%20Reader/README.md) contains Adobe Reader DC [Computer](./Adobe%20Reader/Group%20Policy%20Objects/Computer/) and [User](./Adobe%20Reader/Group%20Policy%20Objects/User/) policies for the latest version of Adobe Reader DC.
 * The [AppLocker folder](./AppLocker/README.md) contains AppLocker [Computer](./AppLocker/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
-* The [BitLocker folder](./BitLocker/README.md) contains BitLocker [Computer](./BitLocker/Group%20Policy%20Objects/Computer/) policy for the latest version of Windows 10.
 * The [Certificates folder](./Certificates/README.md) contains [Computer](./Certificates/Group%20Policy%20Objects/Computer/) policy for distributing the DoD Root and Intermediate Certificate Authorities.
 * The [Chrome folder](./Chrome/README.md) contains Chrome browser [Computer](./Chrome/Group%20Policy%20Objects/Computer/) policy for the latest version of Chrome.
-* The [EMET folder](./EMET/README.md) contains EMET 5.5 [Computer](./EMET/Group%20Policy%20Objects/Computer/) policy for any version of Windows.
 * The [Internet Explorer folder](./Internet%20Explorer/README.md) contains Internet Explorer 11 [Computer](./Internet%20Explorer/Group%20Policy%20Objects/Computer/) and [User](./Internet%20Explorer/Group%20Policy%20Objects/User/) policies for latest version of Windows 10.
 * The [Office folder](./Office/README.md) contains [Office 2013](./Office/Office%202013/) and [Office 2016](./Office/Office%202016/) policy.
 * The [Windows folder](./Windows/README.md) contains Windows 10 [User](./Windows/Group%20Policy%20Objects/User) and [Computer](./Windows/Group%20Policy%20Objects/Computer/) policies for the latest version of Windows 10.
@@ -42,11 +40,9 @@ Questions or comments can be submitted to the [repository issue tracker](https:/
 Scripts for aiding users with the SHB are located in the Scripts sub folders of each component. Scripts available for use so far:
 
 * [Adobe Reader](./Adobe%20Reader/Scripts/)
-* [BitLocker](./BitLocker/Scripts/)
 * [Certificates](./Certificates/Scripts/)
 * [Chrome](./Chrome/Scripts/)
 * [General](./Scripts/)
-* [Hardware](./Hardware/Scripts/)
 * [Windows](./Windows/Scripts/)
 
 ### Compliance checks
@@ -54,7 +50,6 @@ Nessus (aka [ACAS](http://www.disa.mil/cybersecurity/network-defense/acas) in th
 
 * [Adobe Reader DC](./Adobe%20Reader/Compliance/)
 * [Chrome](./Chrome/Compliance/)
-* [EMET](./EMET/Compliance/)
 * [Internet Explorer](./Internet%20Explorer/Compliance/)
 * [Windows](./Windows/Compliance/)
 * [Windows Firewall](./Windows%20Firewall/Compliance/)
