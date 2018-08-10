@@ -1,2 +1,0 @@
-
-If you started with SHB framework version 10.0.0 or 10.0.1 and then applied the August 2016 SHB update, then the SHB registry branding information may not reflect the 10.0.2 information. To confirm, go to **C:\\SHB\\Deployment Share\\Applications\\SHB Core Required - SHB Branding\\EnhancedBrand.reg** and make sure it matches [this](./shb.reg). If you started with SHB framework version 10.0.2, then the registry branding information should be correct.
