@@ -1502,7 +1502,7 @@ Function Invoke-ApplySecureHostBaseline() {
     Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
 
     .PARAMETER PolicyNames
-    Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
+    Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'Adobe Reader', 'AppLocker', 'Certificates', 'Chrome', 'Internet Explorer', 'Office 2013', 'Windows', 'Windows Firewall'.
 
     .PARAMETER PolicyScopes
     Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
@@ -1532,16 +1532,16 @@ Function Invoke-ApplySecureHostBaseline() {
     Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Chrome' -PolicyType 'Local' -PolicyMode 'Enforced' -BackupPath "$env:USERPROFILE\Desktop\MyBackup" -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced'
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced'
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe'
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced' -UpdateTemplates
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Domain' -PolicyMode 'Enforced' -UpdateTemplates
 
     .EXAMPLE
-    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
+    Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -PolicyType 'Local' -PolicyMode 'Enforced' -ToolPath '.\Secure-Host-Baseline\LGPO\lgpo.exe' -UpdateTemplates
     #>
     [CmdletBinding()]
     [OutputType([void])]
@@ -1554,7 +1554,7 @@ Function Invoke-ApplySecureHostBaseline() {
 
         [Parameter(Mandatory=$true, HelpMessage='The names of the policies to apply')]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('ActivClient', 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Office 2016', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
+        [ValidateSet('ActivClient', 'Adobe Reader', 'AppLocker', 'Certificates', 'Chrome', 'Internet Explorer', 'Office 2013', 'Office 2016', 'Windows', 'Windows Firewall', IgnoreCase=$true)]
         [string[]]$PolicyNames,
 
         [Parameter(Mandatory=$false, HelpMessage='The scope of the policies to apply')]

@@ -68,7 +68,7 @@ To get started using the tools:
 
 ## Downloading the repository
 
-Download the [current code](https://github.com/nsacyber/Windows-Secure-Host-Baseline/archive/master.zip) to your **Downloads** folder. It will be saved as **Secure-Host-Baseline-master.zip** by default.
+Download the [current code](https://github.com/nsacyber/Windows-Secure-Host-Baseline/archive/master.zip) to your **Downloads** folder. It will be saved as **Windows-Secure-Host-Baseline-master.zip** by default.
 
 ## Configuring the PowerShell environment
 The PowerShell commands are meant to run from a system with at least PowerShell 3.0 installed. PowerShell may need to be configured to run the commands.
@@ -86,7 +86,7 @@ Users will need to unblock the downloaded zip file since it will be marked as ha
 
 1. `cd $env:USERPROFILE` 
 1. `cd Downloads` 
-1. `Unblock-File -Path '.\Secure-Host-Baseline-master.zip'`
+1. `Unblock-File -Path '.\Windows-Secure-Host-Baseline-master.zip'`
 
 Running the PowerShell scripts inside the zip file without unblocking the file will result in the following warning:
 
@@ -98,7 +98,7 @@ Running the PowerShell scripts inside the zip file without unblocking the file w
 If the downloaded zip file is not unblocked before extracting it, then all the individual PowerShell files that were in the zip file will have to be unblocked. You will need to run the following command after Step 5 in the [Loading the code](#loading-the-code) section:
 
 ```
-Get-ChildItem -Path '.\Secure-Host-Baseline' -Recurse -Include '*.ps1','*.psm1' | Unblock-File -Verbose
+Get-ChildItem -Path '.\Windows-Secure-Host-Baseline' -Recurse -Include '*.ps1','*.psm1' | Unblock-File -Verbose
 ```
 
 See the [Unblock-File command's documentation](https://technet.microsoft.com/en-us/library/hh849924.aspx) for more information on how to use it.
@@ -107,11 +107,11 @@ See the [Unblock-File command's documentation](https://technet.microsoft.com/en-
 Now extract the downloaded zip file and load the PowerShell code used for apply the policies.
 
 1. Right click on the zip file and select **Extract All**
-1. At the dialog remove **Secure-Host-Baseline-master** from the end of the path since it will extract the files to a Secure-Host-Baseline-master folder by default
+1. At the dialog remove **Windows-Secure-Host-Baseline-master** from the end of the path since it will extract the files to a Windows-Secure-Host-Baseline-master folder by default
 1. Click the **Extract** button
-1. Rename the **Secure-Host-Baseline-master** folder to **Secure-Host-Baseline**
+1. Rename the **Windows-Secure-Host-Baseline-master** folder to **Windows-Secure-Host-Baseline**
 1. Open a PowerShell prompt as an administrator
-1. Import the [Group Policy PowerShell module](./Scripts/GroupPolicy.psm1) to load the code into the PowerShell session: `Import-Module -Name .\Secure-Host-Baseline\Scripts\GroupPolicy.psm1`
+1. Import the [Group Policy PowerShell module](./Scripts/GroupPolicy.psm1) to load the code into the PowerShell session: `Import-Module -Name .\Windows-Secure-Host-Baseline\Scripts\GroupPolicy.psm1`
 
 ### Applying the policies
 
@@ -123,7 +123,7 @@ The **Invoke-ApplySecureHostBaseline** command found in the [Group Policy PowerS
 
 Options for the command are:
 * **-Path** - Required. The path to the folder containing the downloaded and extracted GitHub SHB repository.
-* **-PolicyNames** - Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'ActivClient', 'Adobe Reader', 'AppLocker', 'BitLocker', 'Certificates', 'Chrome', 'EMET', 'Internet Explorer', 'Office 2013', 'Office 2016', 'Windows', 'Windows Firewall'.
+* **-PolicyNames** - Required. The names of the policies to apply. Can be 1 or more policy names. Available names: 'ActivClient', 'Adobe Reader', 'AppLocker', 'Certificates', 'Chrome', 'Internet Explorer', 'Office 2013', 'Office 2016', 'Windows', 'Windows Firewall'.
 * **-PolicyScopes** - Optional. The scope of the policies to apply. Available scopes: 'Computer', 'User'. Defaults to 'Computer','User'.
 * **-PolicyType** - Optional. The type of policies to apply. Available types: 'Domain', 'Local'. Defaults to 'Domain' when joined to a domain. Defaults to 'Local' when not joined to a domain.
 * **-PolicyMode** - Optional. The mode of policies to apply, if supported by the specific policy. For example, AppLocker supports audit and enforcement modes. Available modes: 'Audit', 'Enforced'. Defaults to 'Audit'.
@@ -138,7 +138,7 @@ Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help
 If applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
 
 ```
-Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
+Invoke-ApplySecureHostBaseline -Path '.\Windows-Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
 #### Applying the SHB policies to a domain
@@ -146,7 +146,7 @@ Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adob
 If applying the SHB policies to a domain, note that the Group Policy objects are only loaded into Active Directory. The policies are not linked to any OUs so the settings do not automatically take affect.
 
 ```
-Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','EMET','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall'
+Invoke-ApplySecureHostBaseline -Path '.\Windows-Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall'
 ``` 
 
 ### Checking compliance
