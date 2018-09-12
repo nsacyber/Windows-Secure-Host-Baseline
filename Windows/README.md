@@ -19,9 +19,6 @@ Use Microsoft's LGPO tool to apply the Windows Group Policy to a standalone syst
 Invoke-ApplySecureHostBaseline -Path '.\Secure-Host-Baseline' -PolicyNames 'Windows' -ToolPath '.\LGPO\lgpo.exe'
 ```
 
-## Hardware
-See the [Hardware page](./../Hardware/README.md) for more information about hardware and firmware requirements to take full advantage of Windows 10 security features.
-
 ## Remove Legacy Features
 It is highly recommended to remove legacy features and protocols as known and unknown vulnerabilities in them expose the network to severe risk. NSA Information Assurance has issued security guidance for the removal of [Outdated Software and Protocols](https://www.iad.gov/iad/library/ia-advisories-alerts/outdated-software-and-protocols-update.cfm). The [Scripts folder](./Scripts/) contains a number of PowerShell modules that can be used to disable or remove legacy components from Windows 10 such as [PowerShell 2.0](./Scripts/PowerShell.psm1), [SMB 1.0](./Scripts/SMB.psm1), and [NetBIOS](./Scripts/NetBIOS.psm1).
 
