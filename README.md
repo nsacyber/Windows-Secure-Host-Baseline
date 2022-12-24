@@ -135,7 +135,7 @@ Type **man Invoke-ApplySecureHostBaseline** at a PowerShell prompt for more help
 
 #### Applying the SHB policies to a standalone system
 
-If applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/01/4062/00/00/03/65/94/11/LGPO.zip) from [this Microsoft blog post](http://blogs.technet.com/b/secguide/archive/2016/01/21/lgpo-exe-local-group-policy-object-utility-v1-0.aspx) and extract the executable.
+If applying the SHB policies to a standalone system (e.g. not joined to a domain), then download the [LGPO tool](https://www.microsoft.com/en-us/download/details.aspx?id=55319) from [this Microsoft blog post](https://techcommunity.microsoft.com/t5/microsoft-security-baselines/lgpo-exe-local-group-policy-object-utility-v1-0/ba-p/701045) and extract the executable.
 
 ```
 Invoke-ApplySecureHostBaseline -Path '.\Windows-Secure-Host-Baseline' -PolicyNames 'Adobe Reader','AppLocker','Certificates','Chrome','Internet Explorer','Office 2013','Office 2016','Windows','Windows Firewall' -ToolPath '.\LGPO\lgpo.exe'
